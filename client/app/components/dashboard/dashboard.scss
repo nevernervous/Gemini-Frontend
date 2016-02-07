@@ -1,0 +1,20 @@
+@import '../../common/common';
+
+.dashboard {
+  @include gridle_row_full();
+}  
+.dashboard > navbar { 
+  @include gridle( 12 );
+  height: 52px;
+}
+.dashboard > .dashboard-container { 
+  @include gridle( 12 );
+  > sidebar { 
+    width: 257px;
+  }
+  > .dashboard-view { 
+    width: 100%;
+  }
+}
+
+

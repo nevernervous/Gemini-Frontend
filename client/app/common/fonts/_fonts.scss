@@ -1,0 +1,29 @@
+$base: 16;
+
+@mixin font-size($px:16) {
+  font-size: ($px/$base)+0em;
+}
+
+@mixin font-family($family, $size:16, $weight:400) {
+  font-family: $family;
+  font-weight: $weight;
+  @include font-size($size);
+}
+
+@mixin font-clanot-bold($size:16, $weight:400) {
+  $family: "ClanOT Bold", sans-serif;
+
+  @include font-family($family, $size, $weight);
+}
+
+@mixin font-clanot-book($size:16, $weight:400) {
+  $family: "ClanOT Book", sans-serif;
+
+  @include font-family($family, $size, $weight);
+}
+
+@mixin font-clanot-news($size:16, $weight:400) {
+  $family: "ClanOT News", sans-serif;
+
+  @include font-family($family, $size, $weight);
+}

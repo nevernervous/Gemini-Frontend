@@ -1,0 +1,47 @@
+// FONTS
+@import "fonts/fonts";
+
+// ICONS
+@import "icons/icons";
+
+// MIXINS
+@import "mixins/mixins";
+
+
+// BACKGROUND 
+$backgroundHighColor: #002143;
+$backgroundMediumColor: #4783B7;
+$backgroundLowColor: #61A9E3;
+
+// UI Kit
+$primaryBlueColor: #001C43;
+$primaryLightBlueColor: #19ABE6;
+$primaryGreyColor: #79858B;
+$primaryLightGreyColor: #D5D5D1;
+$primaryGreen: #C8DD15;
+$primaryWhiteColor: white;
+
+// UI Kit / Font
+$primaryFontColor: $primaryWhiteColor;
+$secondaryFontColor: #333;
+$disabledFontColor: $primaryGreyColor;
+
+// UI Kit / Alerts, Notification, ...
+$alertHighColor: #EF1A28;
+$alertLowColor: #FFBDC1;
+$warningHighColor: #db8c0e;
+$warningLowColor: #ffe0b2;
+$successColor: #44C339;
+$successColor: #CFEEC8;
+$notificationHighColor: $primaryLightBlueColor;
+$notificationLowColor: #C8E6F8;
+
+// UI Kit / Button
+$primaryButtonColor: $primaryBlueColor;
+$primaryButtonColorHover: #003B68;
+$secondaryButtonColor: $primaryLightBlueColor;
+$secondaryButtonColorHover: #47BDEC;
+$terciaryButtonColor: $primaryGreen;
+$terciaryButtonColorHover: #E2EB50;
+$ghostButtonColor: $secondaryButtonColor;
+$disabledButtonColor: $primaryLightGreyColor;

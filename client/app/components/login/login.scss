@@ -1,0 +1,26 @@
+@import '../../common/common';
+
+login { 
+  height: 100vh; // fill 100% of screen 
+  @include linear-gradient(to top, $backgroundHighColor 0%, $backgroundLowColor 50%, $backgroundMediumColor 100%);
+  @include gridle( row );
+}
+login > message-banner {
+  @include gridle( 12 );
+  height: 52px;
+} 
+login > .login-container { 
+  @include gridle( row row-align center);
+  margin: auto; // center to screen
+  width: 459px; // continer width
+  
+  > login-header {
+    @include gridle( row row-align center );
+    margin-top: -105px;    // pull up login container to center form. Size has to be the same of image.
+    margin-bottom: 25px;  // separation with the form  
+  }
+
+  > login-form {
+    @include gridle( 12 );
+  }
+}

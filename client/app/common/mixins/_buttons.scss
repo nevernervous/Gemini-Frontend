@@ -1,0 +1,35 @@
+
+@mixin style-btn($backgorund, $hover, $font) {
+  color: $font;
+  background: $backgorund;
+  border: 0px;
+  padding: 14px;  
+  &:hover {
+    background: $hover;    
+  }  
+}
+
+@mixin primary-btn() { 
+  @include style-btn($primaryButtonColor, $primaryButtonColorHover, $primaryFontColor);
+}
+@mixin secondary-btn() { 
+  @include style-btn($secondaryButtonColor, $secondaryButtonColorHover, $primaryFontColor);
+}
+@mixin terciary-btn() { 
+  @include style-btn($terciaryButtonColor, $terciaryButtonColorHover, $primaryFontColor);
+}
+@mixin disabled-btn() { 
+  @include style-btn($disabledButtonColor, $disabledButtonColor, $disableFontColor);
+}
+@mixin ghost-btn() { 
+  color: $ghostButtonColor;
+  background: $primaryWhiteColor;
+  border: 2px solid $ghostButtonColor ;
+  padding: 10px;  
+  &:hover {
+    border: 0px;
+    padding: 14px;
+    color: $primaryWhiteColor;
+    background: $ghostButtonColor;    
+  }    
+}

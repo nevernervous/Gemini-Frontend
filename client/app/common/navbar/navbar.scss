@@ -1,0 +1,30 @@
+@import '../common';
+
+// LAYOUT 
+.navbar {
+  @include gridle( row row-align middle );
+  height: 100%;
+  > .navbar-header {
+    @include gridle( 6 );
+    @include gridle_gutter( 28px 24px );
+  }
+  > nav-options { 
+    @include gridle( 6 );
+    @include gridle_gutter( 0px 112px );
+  }  
+}  
+
+// VARIATIONS 
+navbar { 
+  color: $primaryWhiteColor;
+  background: $primaryBlueColor;
+  > .navbar-header { 
+    
+    > i { 
+      font-size: 21px;
+    }
+    > .title { 
+      @include font-clanot-book(18);
+    }   
+  }
+}

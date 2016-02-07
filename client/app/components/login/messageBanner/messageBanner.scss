@@ -1,0 +1,14 @@
+@import '../../../common/common';
+
+message-banner > div {
+  @include gridle( row row-align center middle );
+  height: 100%;
+  color: $warningHighColor;
+  background: $warningLowColor;
+  > .icon-warning { 
+    @include icon-warning(28);
+  }
+  > span {
+    @include font-clanot-bold(18);
+  } 
+}

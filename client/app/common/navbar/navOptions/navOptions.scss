@@ -1,0 +1,20 @@
+@import '../../common';
+
+// LAYOUT
+.nav-options {
+  @include gridle( row row-align right );
+  > .img-circle {
+    @include gridle( 12 );
+    @include gridle( no-gutter );
+    margin-right: 10px;
+  }
+}
+
+// VARIATIONS
+.nav-options { 
+  > .img-circle {
+    max-width: 33px;
+    max-height: 33px;
+    border-radius: 50%;
+  }
+}

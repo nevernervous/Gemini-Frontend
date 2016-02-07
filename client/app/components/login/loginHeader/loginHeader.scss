@@ -1,0 +1,12 @@
+@import '../../../common/common';
+
+login-header > header {
+  
+  > .title { 
+    @include font-clanot-book(46);
+    margin: 0;
+    margin-top: 5px;
+    text-align: center;
+    color: $primaryFontColor;
+  }  
+}
