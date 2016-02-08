@@ -1,12 +1,9 @@
 @import '../../../common/common';
 
 // LAYOUT
-login-form > form {
-  @include gridle( row col );
+.login-form {
+  @include gridle( col );
   @include gridle( gutter 60px 0px );
-  @include box-shadow(0, 15px, 15px, rgba(0, 0, 0, 0.2));
-  
-  background-color:rgba(255, 255, 255, 0.75);
 
   > * {
     @include gridle( 12 );
@@ -17,8 +14,14 @@ login-form > form {
   }
 }
 
-// MESSAGE
-login-form > form > .message { 
+// VARIANTS
+.login-form {
+  @include box-shadow(0, 15px, 15px, rgba(0, 0, 0, 0.2));
+  background-color:rgba(255, 255, 255, 0.75);
+}
+
+// MESSAGE / VARIANTS
+.login-form > .message { 
   visibility: hidden;
   @include font-clanot-news(16);
   color: $alertHighColor;
@@ -29,11 +32,10 @@ login-form > form > .message {
     &:hover, &:focus { 
       text-decoration: underline;
     }
-  }
-
+  }   
 }
 
-// MESSAGE / VARIANTS
-login-form > form > .message.visible { 
+// MESSAGE / VARIANTS / VISIBLE
+.login-form > .message.visible { 
   visibility: visible;
 }

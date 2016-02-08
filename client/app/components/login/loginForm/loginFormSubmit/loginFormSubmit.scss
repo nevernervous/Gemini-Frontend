@@ -1,37 +1,36 @@
 @import '../../../../common/common';
 
 // LAYOUT
-login-form-submit {
-  > .submit-button { 
-    @include font-clanot-news(18);
-    width: 100%;
-    > span { 
-      display: block;
-    }
-    > .icon-spinner { 
-      @include spin();
-      display: none;
-      float: right;
-      margin-top: -23px;
-    }
-  }
-}
-
-// VARIANTS
-login-form-submit.-primary { 
-  > .submit-button { 
-    @include primary-btn();
+.login-form-submit { 
+  width: 100%;
+  > .icon-spinner { 
+    float: right;
+    margin-top: -23px;
   }  
 }
 
-login-form-submit.-loading { 
-  > .submit-button {
-    background: $disabledButtonColor;
-    > .icon-spinner { 
-      display: block;
-    } 
-    &:hover { 
-      background: $disabledButtonColor;
-    }   
+// VARIANTS
+.login-form-submit { 
+  @include font-clanot-news(18);
+  > span { 
+    display: block;
   }
+  > .icon-spinner { 
+    @include spin();
+    display: none;
+  }
+}
+// VARIANTS / PRIMARY
+.-primary > .login-form-submit { 
+  @include primary-btn();
+}  
+// VARIANTS / LOADING
+.-loading > .login-form-submit {
+  background: $disabledButtonColor;
+  > .icon-spinner { 
+    display: block;
+  } 
+  &:hover { 
+    background: $disabledButtonColor;
+  }   
 }

@@ -3,18 +3,39 @@
 // LAYOUT
 .nav-options {
   @include gridle( row row-align right );
-  > .img-circle {
-    @include gridle( 12 );
-    @include gridle( no-gutter );
-    margin-right: 10px;
+  height: 100%;
+  margin: 0;
+  margin-right: 10px;
+  > li {
+    @include gridle( row row-align  middle );
+    height: 100%;
+    > .img-circle {
+      height: 33px;
+    }
+    > dropdown-menu { 
+      position: absolute;
+      margin-top: 52px;
+      margin-left: -153px;
+      width: 153px;
+    }
   }
 }
 
 // VARIATIONS
 .nav-options { 
-  > .img-circle {
-    max-width: 33px;
-    max-height: 33px;
-    border-radius: 50%;
+  > li {
+    > .img-circle {
+      border-radius: 50%;
+    } 
+    > dropdown-menu { 
+      display: none;
+    }
+    
+    &:hover {
+      > dropdown-menu {
+        display: block;
+      }
+    }
   }
+  
 }

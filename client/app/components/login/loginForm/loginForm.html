@@ -1,4 +1,4 @@
-<form  name="loginform" ng-submit="loginform.$valid && vm.submit()" novalidate>
+<form class="login-form" name="loginform" ng-submit="loginform.$valid && vm.submit()" novalidate>
   <login-form-input ng-class="{'-invalid': vm.error && loginform.$submitted}" label="User ID"  type="text"     
                     value="vm.user" tabindex="1" on-focus="loginform.$setPristine()" is-required="true"></login-form-input>
   <login-form-input ng-class="{'-invalid': vm.error && loginform.$submitted}" label="Password" type="password" 
