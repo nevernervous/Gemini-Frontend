@@ -1,23 +1,23 @@
-import SidebarModule from './sidebar'
-import SidebarController from './sidebar.controller';
-import SidebarComponent from './sidebar.component';
-import SidebarTemplate from './sidebar.html';
+import MenuItemModule from './menuItem'
+import MenuItemController from './menuItem.controller';
+import MenuItemComponent from './menuItem.component';
+import MenuItemTemplate from './menuItem.html';
 
-describe('Sidebar', () => {
+describe('MenuItem', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(SidebarModule.name));
+  beforeEach(window.module(MenuItemModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new SidebarController();
+      return new MenuItemController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(SidebarModule).to.have.property('name');
+      expect(MenuItemModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('Sidebar', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<sidebar/>').html(SidebarTemplate);
+    const template = $('<menu-item/>').html(MenuItemTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('Sidebar', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = SidebarComponent;
+      let component = MenuItemComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(SidebarTemplate);
+        expect(component.template).to.equal(MenuItemTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('Sidebar', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(SidebarController);
+        expect(component.controller).to.equal(MenuItemController);
       });
   });
 });

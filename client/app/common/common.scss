@@ -14,11 +14,12 @@ $backgroundMediumColor: #4783B7;
 $backgroundLowColor: #61A9E3;
 
 // UI Kit
-$primaryBlueColor: #001C43;
+$primaryDarkBlueColor: #001C43;
+$primaryBlueColor: #4784b8;
 $primaryLightBlueColor: #19ABE6;
 $primaryGreyColor: #79858B;
 $primaryLightGreyColor: #D5D5D1;
-$primaryGreen: #C8DD15;
+$primaryGreenColor: #C8DD15;
 $primaryWhiteColor: white;
 
 // UI Kit / Font
@@ -37,11 +38,11 @@ $notificationHighColor: $primaryLightBlueColor;
 $notificationLowColor: #C8E6F8;
 
 // UI Kit / Button
-$primaryButtonColor: $primaryBlueColor;
+$primaryButtonColor: $primaryDarkBlueColor;
 $primaryButtonColorHover: #003B68;
 $secondaryButtonColor: $primaryLightBlueColor;
 $secondaryButtonColorHover: #47BDEC;
-$terciaryButtonColor: $primaryGreen;
+$terciaryButtonColor: $primaryGreenColor;
 $terciaryButtonColorHover: #E2EB50;
 $ghostButtonColor: $secondaryButtonColor;
 $disabledButtonColor: $primaryLightGreyColor;

@@ -1,3 +1,42 @@
+@import '../../../common';
+
+// LAYOUT
 .dropdown-menu{ 
+
+}  
+
+// VARIATIONS
+.dropdown-menu{ 
+  padding: 0;
   
+  > li { 
+    background: $primaryLightBlueColor;
+    @include font-clanot-book(16);
+    padding: 14px 17px;
+    border-bottom: 1px solid $primaryWhiteColor;
+    &:first-child::before { 
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      right: 10px;
+      top: -10px;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 10px solid $primaryLightBlueColor;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    
+    &:hover { 
+      background: $primaryBlueColor;
+      border-left: 4px solid $primaryGreenColor;
+      padding-left: 13px;
+      &:first-child::before { 
+        border-bottom: 10px solid $primaryBlueColor;
+      }
+    }
+  }
 }  

@@ -11,7 +11,6 @@ import yargs    from 'yargs';
 import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
-import gulpAsar from 'gulp-asar';
 import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
@@ -76,19 +75,6 @@ gulp.task('webpack', (cb) => {
   });
 });
 
-gulp.task('buildfiles', ['webpack'], () => {
-  return gulp.src(['dist/webapp/**/*', root + '/main.js', root + '/package.json'])
-    .pipe(gulp.dest('dist/tmp')); 
-});
-
-gulp.task('asar', ['buildfiles'], function() {
-
-  return gulp.src('dist/tmp/**/*', { base: 'dist/tmp/' })
-    .pipe(gulpAsar('app.asar'))
-    .pipe(gulp.dest('dist/app'));
-    
-});
-
 gulp.task('serve', () => {
   const config = require('./webpack.dev.config');
   config.entry.app = [
@@ -146,6 +132,4 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
-
 gulp.task('default', ['serve']);
-gulp.task('build', ['asar']);
