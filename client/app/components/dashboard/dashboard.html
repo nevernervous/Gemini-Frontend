@@ -1,7 +1,7 @@
 <div class="dashboard">
   <navbar></navbar>
-  <div class="dashboard-container">
-    <sidebar></sidebar>
+  <div class="dashboard-container" ng-class="{'menu-open': vm.menuOpen}">
+    <main-menu></main-menu>
     <div class="dashboard-view" ui-view></div>
   </div>
 </div>

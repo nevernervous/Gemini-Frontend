@@ -1,19 +1,18 @@
 @import '../../../common';
 
 // LAYOUT
-.dropdown-menu{ 
+.dropdown-menu { 
 
 }  
 
 // VARIATIONS
-.dropdown-menu{ 
+.dropdown-menu { 
   padding: 0;
+  background: $primaryLightBlueColor;
   
-  > li { 
-    background: $primaryLightBlueColor;
-    @include font-clanot-book(16);
-    padding: 14px 17px;
-    border-bottom: 1px solid $primaryWhiteColor;
+  > li {
+    border-bottom: 1px solid rgba($primaryWhiteColor, .5);
+    
     &:first-child::before { 
       content: '';
       display: block;
@@ -26,15 +25,13 @@
       border-right: 8px solid transparent;
       border-bottom: 10px solid $primaryLightBlueColor;
     }
+    
     &:last-child {
       border-bottom: 0;
-    }
+    }      
     
     &:hover { 
-      background: $primaryBlueColor;
-      border-left: 4px solid $primaryGreenColor;
-      padding-left: 13px;
-      &:first-child::before { 
+      &:first-child:not(.disabled)::before { 
         border-bottom: 10px solid $primaryBlueColor;
       }
     }

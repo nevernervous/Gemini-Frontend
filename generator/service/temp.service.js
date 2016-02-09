@@ -1,5 +1,5 @@
 let <%= name %>Service = function () {
-  
+  "ngInject";
   return {
   };
 };

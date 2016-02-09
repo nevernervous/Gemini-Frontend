@@ -1,3 +1,46 @@
 .menu-item{ 
   
 }  
+
+
+@import '../common';
+
+// MIXINS
+@mixin default() { 
+  color: $primaryWhiteColor; 
+  background: $primaryLightBlueColor;
+  @include font-clanot-book(16);
+  padding: 12px 17px;
+  border-left: 0px;
+}
+
+// LAYOUT
+.menu-item{ 
+
+}  
+
+// VARIATIONS
+.menu-item { 
+  @include default();
+  
+  > i { 
+    font-size: 24px;
+    margin-right: 16px;
+  }
+  
+  &:hover { 
+    background: $primaryBlueColor;
+    border-left: 4px solid $primaryGreenColor;
+    padding-left: 13px;
+    cursor: pointer;
+  }  
+}
+.-disabled > .menu-item { 
+  i, span { 
+    opacity: 0.5;
+  } 
+  &:hover { 
+    @include default();
+    cursor: default;
+  } 
+}

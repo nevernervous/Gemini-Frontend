@@ -1,3 +1,4 @@
 <div class="menu-item">
-  <h1>{{ vm.name }}</h1>
+  <i class="{{vm.icon}}" ng-if="vm.hasIcon()"></i>
+  <span>{{vm.label}}</span>
 </div>
