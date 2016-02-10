@@ -45,13 +45,15 @@ let paths = {
     common: resolveToApp('common'),
     component: resolveToComponents(), 
     page: resolveToComponents(),
-    service: resolveToServices()
+    service: resolveToServices(),
+    modal: resolveToComponents('modals')
   },
   blankTemplates: {
     common: path.join(__dirname, 'generator', 'component/**/*.**'),
     component: path.join(__dirname, 'generator', 'component/**/*.**'),
     page: path.join(__dirname, 'generator', 'page/**/*.**'),
-    service: path.join(__dirname, 'generator', 'service/**/*.**')
+    service: path.join(__dirname, 'generator', 'service/**/*.**'),
+    modal: path.join(__dirname, 'generator', 'modal/**/*.**')
   }
 };
 

@@ -1,8 +1,18 @@
 import angular from 'angular';
-import SessionFactory from './session.service';
+import ngStorage from 'ngstorage';
+import SessionService from './session.service';
+import TokenService from './token.service';
+import SessionInterceptor from './session.interceptor';
 
-let sessionModule = angular.module('session', [])
+let sessionModule = angular.module('session', [
+  ngStorage.name
+])
 
-.factory('Session', SessionFactory);
+.config(['$httpProvider', function($httpProvider) {  
+  $httpProvider.interceptors.push(SessionInterceptor);
+}])
+
+.factory('Token', TokenService)
+.factory('Session', SessionService);
 
 export default sessionModule;

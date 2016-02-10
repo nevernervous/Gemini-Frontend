@@ -3,6 +3,7 @@ import uiRouter from 'angular-ui-router';
 import Common from './common/common';
 import Components from './components/components';
 import Services from './services/services';
+import Filters from './filters/filters';
 import AppComponent from './app.component';
 
 import './app.scss';
@@ -12,7 +13,8 @@ angular.module('app', [
   uiRouter,
   Common.name,
   Components.name,
-  Services.name
+  Services.name,
+  Filters.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
