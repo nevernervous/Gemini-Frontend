@@ -5,9 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "angular": "1.5.0-rc.0",
+    "angular-modal-service": "^0.6.9",
     "angular-ui-router": "^0.2.15",
-    "lodash": "^3.8.0",
     "gridle": "^2.0.44",
+    "lodash": "^3.8.0",
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {

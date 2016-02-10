@@ -28,7 +28,7 @@
     background: $primaryLightBlueColor;
     
     > li {
-      border-bottom: 1px solid rgba($primaryWhiteColor, .5); 
+      border-bottom: 1px solid rgba($primaryWhiteColor, 0.5); 
       
       &:last-child {
         border-bottom: 0;
@@ -37,7 +37,7 @@
   }
   > .layer { 
     display: none;
-    background: rgba($primaryGreyColor, 0.5);  
+    background: rgba($primaryWhiteColor, 0.5);
   }
   
   &.open { 
