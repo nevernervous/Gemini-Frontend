@@ -5,15 +5,15 @@ import Common from './common/common';
 import Components from './components/components';
 import Services from './services/services';
 import Filters from './filters/filters';
+import Constants from './app.constants';
 import AppComponent from './app.component';
 
 import './app.scss';
 import 'normalize.css';
 
-const endpoint = 'http://localhost:8888/api';
-
 angular.module('app', [
   uiRouter,
+  Constants.name,
   Common.name,
   Components.name,
   Services.name,
@@ -34,10 +34,6 @@ angular.module('app', [
 })
 
 .component('app', AppComponent)
-
-.constant('Properties', {
-  endpoint: endpoint
-})
 
 deferredBootstrapper.bootstrap({
   element: document.body,  

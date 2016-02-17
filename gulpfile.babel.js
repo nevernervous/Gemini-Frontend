@@ -11,6 +11,8 @@ import yargs    from 'yargs';
 import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
+import ngConstant   from 'gulp-ng-constant';
+import restEmulator from 'gulp-rest-emulator';
 import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
@@ -107,6 +109,36 @@ gulp.task('serve', () => {
   });
 });
 
+gulp.task('constants', () => {
+  let env = yargs.argv.env || 'development';
+  let myConfig = require('./config.json');
+  
+  let envConfig = myConfig[env];
+  return ngConstant({
+      name: 'app.constants',
+      constants: envConfig,
+      wrap: 'commonjs',
+      stream: true
+    })
+    .pipe(rename("app.constants.js"))
+    .pipe(gulp.dest(resolveToApp()));
+});
+
+gulp.task('api', () => {
+    // Options not require
+    let options = {
+        port: 8889//,
+        // root: ['./'],
+        // rewriteNotFound: false,
+        // rewriteTemplate: 'index.html',
+        // corsEnable: false, // Set true to enable CORS
+        // corsOptions: {}, // CORS options, default all origins
+        // headers: {} // Set headers for all response, default blank
+    };
+    return gulp.src('./mocks/**/*.js')
+        .pipe(restEmulator(options));
+});
+
 gulp.task('watch', ['serve']);
 
 gulp.task('component', () => {
@@ -135,3 +167,4 @@ gulp.task('component', () => {
 });
 
 gulp.task('default', ['serve']);
+gulp.task('mock', ['api', 'serve']);
