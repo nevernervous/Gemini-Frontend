@@ -3,16 +3,14 @@ let sessionInterceptor = function (Token) {
   let _token = Token;
   
   let request = (config) => {
-    if (_token.exists()) {
-      config.headers['Authentication'] = _token.get().authenticationToken;
+    if (!_token.isExpired()) {
+      config.headers['Authorization'] = _token.get();
     }
     return config;
   }
   
   let response = (response) => {
-    if (_token.exists()) {
-      _token.update();
-    }
+    _token.update();
     return response;
   }  
 

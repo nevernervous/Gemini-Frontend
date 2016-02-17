@@ -22,9 +22,18 @@
 
 // MESSAGE / VARIANTS
 .login-form > .message { 
-  visibility: hidden;
-  @include font-clanot-news(16);
-  color: $alertHighColor;
+  min-height: 75px;
+  > * { 
+    visibility: hidden;
+    &.visible { 
+      visibility: visible;
+    }
+  }
+  > span { 
+    @include font-clanot-news(16);
+    color: $alertHighColor;    
+  }
+
   > a { 
     @include font-clanot-bold(16);
     color: $alertHighColor;
@@ -33,9 +42,4 @@
       text-decoration: underline;
     }
   }   
-}
-
-// MESSAGE / VARIANTS / VISIBLE
-.login-form > .message.visible { 
-  visibility: visible;
 }

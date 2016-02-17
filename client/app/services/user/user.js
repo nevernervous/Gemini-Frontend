@@ -3,6 +3,6 @@ import userService from './user.service';
 
 let userModule = angular.module('user', [])
 
-.factory('user', userService);
+.factory('User', userService);
 
 export default userModule;

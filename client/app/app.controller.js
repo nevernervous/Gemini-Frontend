@@ -10,29 +10,28 @@ class AppController {
     this.initialize();
   }
   
-  initialize() { 
+  initialize() {
     this._startSessionWatcher();
-    this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) => this._onChangeState(toState.name) );
+    this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) => this._onChangeState(toState.name, fromState.name, event.preventDefault) );
     this._rootScope.$on('SESSION.EXPIRING', this._expirationModal.open );
     this._rootScope.$on('SESSION.EXPIRED', this._session.logout );
+    this._rootScope.$on('SESSION.LOGOUT', () =>  this._state.go('login') );
   }
   
   _startSessionWatcher() {
-    if ( this._session.isLogged() ) {
-      this._token.watch();
-    }
     this._onChangeState(this._state.current.name)
   }
   
-  _onChangeState(state) {
-    this._state.go('dashboard.report'); 
-      this._expirationModal.open(); 
-    // if ( state === 'login' && this._session.isLogged() ) { 
-    //   this._state.go('dashboard.report'); 
-    //   this._expirationModal.open();
-    // } else if ( state !== 'login' && !this._session.isLogged() ) { 
-    //   this._state.go('login');
-    // }
+  _onChangeState(next, prev = '', cancel = ()=>{}) {
+    if ( this._session.isLogged() ) { 
+      if ( next === 'login' || next === '') { 
+        this._state.go('dashboard.report');
+      }
+    } else { 
+      if ( next !== 'login' ) {
+        this._state.go('login');
+      }
+    }
   }
 }
 

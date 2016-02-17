@@ -1,15 +1,14 @@
 class LogoutModalController {
   /*@ngInject*/
-  constructor($state, close) {
+  constructor(Session, close) {
     this.name = 'logoutModal';
     this._close = close;
-    this._state = $state;
+    this._session = Session;
   }
   
   ok() { 
-    // TODO: REMOVE SESSION
-    this._state.go('login');
-    this._close();
+    this._session.logout()
+    .finally( this._close );
   }
   cancel(){
     this._close();

@@ -1,14 +1,16 @@
 class ExpirationModalController {
   /*@ngInject*/
-  constructor($state, close, Session, Token) {
+  constructor($interval, close, Session, Token) {
     this.name = 'expirationModal';
     this._close = close;
     this._session = Session;
     this._token = Token;
+    this._interval = $interval;
+    this.initialize();
   }
   
   remaining() { 
-    return (new Date().getTime()) - 0; //(this._token.get().updateAt || 0);
+    return this._token.remainingTime();
   }
   
   yes() { 
@@ -19,13 +21,22 @@ class ExpirationModalController {
   }
   no() { 
     this._session.logout()
-    .finally(() => { 
-      this._close();
-      this._state.go('login');  
-    });
+    .finally( this._close ); 
   }  
-  close(){
+  close() {  
     this._close();
+  }
+  
+  onClose() {
+    this.remaining_interval && this._interval.cancel(this.remaining_interval); 
+  }
+  
+  initialize() { 
+    this.remaining_interval = this._interval( () => { 
+      if (this._token.remainingTime() === 0 ) {
+        this._close();
+      }
+    }, 1000 );
   }
 }
 
