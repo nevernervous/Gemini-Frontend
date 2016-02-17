@@ -9,6 +9,7 @@
   > .top { 
     @include gridle( row row-align right );
     margin: 0 14px;
+    visibility: hidden;
   }
   > .description {
     margin: 0 26px;

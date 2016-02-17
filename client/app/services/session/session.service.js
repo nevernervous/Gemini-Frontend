@@ -6,6 +6,15 @@ let sessionService = function (Properties, $rootScope, $localStorage, $http, uui
   let isLogged = () => {
     return !Token.isExpired();
   }
+  
+  let isExpired = () => {
+    let expired = false;
+    if ( !!_storage.session ) {
+      expired = _storage.session.expired;
+      delete _storage.session.expired;
+    }
+    return expired;
+  }
 
   // DOC: http://docs.ualgemini.apiary.io/#reference/0/tokens/create-a-new-token
   let login = (user, pass) => {
@@ -46,7 +55,7 @@ let sessionService = function (Properties, $rootScope, $localStorage, $http, uui
   };
 
   return { 
-    isLogged, 
+    isLogged, isExpired,
     // PROMISES
     login, renew, logout 
   };

@@ -63,6 +63,7 @@ let tokenService = function ($rootScope, $localStorage, $timeout, $interval, Con
       $timeout.cancel(_timer);
     }
     _timer = $timeout(() => { 
+      _storage.session.expired = true;
       $rootScope.$broadcast('SESSION.EXPIRED');
     }, remainingTime());        
   }      
