@@ -38,13 +38,13 @@ angular.module('app', [
 deferredBootstrapper.bootstrap({
   element: document.body,  
   module: 'app',
-  injectorModules: [Services.name],
+  injectorModules: [Constants.name],
   bootstrapConfig: {
     strictDi: true
   },  
   resolve: {
-    SETTINGS: ['$http', function ($http) {
-      return $http.get(endpoint + '/settings');
+    SETTINGS: ['$http', 'Properties', function ($http, Properties) {
+      return $http.get(Properties.endpoint + '/settings');
     }]
   }
 });

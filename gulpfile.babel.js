@@ -111,9 +111,8 @@ gulp.task('serve', () => {
 
 gulp.task('constants', () => {
   let env = yargs.argv.env || 'development';
-  let myConfig = require('./config.json');
-  
-  let envConfig = myConfig[env];
+  let envConfig = require('./config/' + env + '.json');
+
   return ngConstant({
       name: 'app.constants',
       constants: envConfig,
@@ -127,13 +126,13 @@ gulp.task('constants', () => {
 gulp.task('api', () => {
     // Options not require
     let options = {
-        port: 8889//,
+        port: 8889,
         // root: ['./'],
         // rewriteNotFound: false,
         // rewriteTemplate: 'index.html',
-        // corsEnable: false, // Set true to enable CORS
-        // corsOptions: {}, // CORS options, default all origins
-        // headers: {} // Set headers for all response, default blank
+        corsEnable: true//, // Set true to enable CORS
+        //corsOptions: {}, // CORS options, default all origins
+        //headers: {} // Set headers for all response, default blank
     };
     return gulp.src('./mocks/**/*.js')
         .pipe(restEmulator(options));
@@ -166,5 +165,5 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
-gulp.task('default', ['serve']);
-gulp.task('mock', ['api', 'serve']);
+gulp.task('default', ['constants', 'serve']);
+gulp.task('mock', ['constants', 'api', 'serve']);

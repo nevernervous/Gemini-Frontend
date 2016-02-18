@@ -58,7 +58,10 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "karma start"
+    "test": "karma start",
+    "mock":  "gulp mock --env=mock",
+    "local": "gulp --env=local",
+    "vagrant": "gulp --env=vagrant"
   },
   "keywords": [
     "angular",
