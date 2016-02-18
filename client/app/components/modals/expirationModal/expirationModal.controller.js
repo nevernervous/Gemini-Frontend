@@ -1,16 +1,14 @@
 class ExpirationModalController {
   /*@ngInject*/
-  constructor(close, Session, Token) {
+  constructor($rootScope, close, Session, Token) {
     this.name = 'expirationModal';
     this._close = close;
     this._session = Session;
-    this._token = Token;
+    this.remaining = Token.remainingTime;
+    
+    $rootScope.$on('SESSION.LOGOUT', () => this._close() ); 
   }
-  
-  remaining() { 
-    return this._token.remainingTime();
-  }
-  
+    
   yes() { 
     this._session.renew()
     .finally(() => { 
