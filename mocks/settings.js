@@ -5,7 +5,7 @@ module.exports = {
         "parameters":[
           {
             "name":"session.timeout",
-            "value":"3"
+            "value":"45"
           },
           {
             "name":"login.contact",
@@ -13,7 +13,7 @@ module.exports = {
           },
           {
             "name":"session.warning",
-            "value":"1"
+            "value":"15"
           }
         ]
       },

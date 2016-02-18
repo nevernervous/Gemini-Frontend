@@ -35,6 +35,7 @@ angular.module('app', [
 
 .component('app', AppComponent)
 
+
 deferredBootstrapper.bootstrap({
   element: document.body,  
   module: 'app',
