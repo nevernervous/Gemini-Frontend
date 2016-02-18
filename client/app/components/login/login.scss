@@ -16,7 +16,7 @@
   
   > login-header {
     @include gridle( row row-align center );
-    margin-top: -105px;    // pull up login container to center form. Size has to be the same of image.
+    margin-top: -25px;    // pull up login container to center form. Size has to be the same of image.
     margin-bottom: 25px;  // separation with the form  
   }
 
