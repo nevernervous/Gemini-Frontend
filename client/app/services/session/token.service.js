@@ -1,10 +1,10 @@
-let tokenService = function ($rootScope, $localStorage, $timeout, $interval, Configuration) {
+let tokenService = function ($rootScope, $localStorage, $interval, Configuration) {
   "ngInject";
   let _timer;
   let _interval;
   let _storage = $localStorage;
-  let session_timeout = Configuration.get('session.timeout') * 60 /* seconds */ * 1000 /* milliseconds */;
-  let session_warning = Configuration.get('session.warning') * 60 /* seconds */ * 1000 /* milliseconds */; 
+  let session_timeout = (Configuration.get('session.timeout') || 45) * 60 /* seconds */ * 1000 /* milliseconds */;
+  let session_warning = (Configuration.get('session.warning') || 15) * 60 /* seconds */ * 1000 /* milliseconds */; 
   
   let exists = () => {
     return (!!_storage.session && !!_storage.session.authenticationToken);
@@ -12,7 +12,9 @@ let tokenService = function ($rootScope, $localStorage, $timeout, $interval, Con
   
   let remainingTime = () => {
     let now = new Date().getTime();    
-    let remaining = ((_storage.session.updateAt || 0) + session_timeout) - now; 
+    let updateAt = _storage.session.updateAt || 0;
+    let timeout = session_timeout;
+    let remaining = updateAt + timeout - now; 
     return  remaining > 0 ? remaining : 0;
   }
   
@@ -41,31 +43,34 @@ let tokenService = function ($rootScope, $localStorage, $timeout, $interval, Con
     }
   }
   let startExpiring = () => { 
-    if ( !_interval && session_timeout ) {
+    if ( !_interval ) {
       _interval = $interval( () => {
         let pending = remainingTime();
         if ( pending < session_warning ) { 
           stopExpiring();
           $rootScope.$broadcast('SESSION.EXPIRING');
         } 
-      }, 60000); // EACH 1 MINUTE
+      }, 1000); // EACH 1 SECOND
     }
   }
   
   let stopExpired = () => { 
     if ( _timer ) { 
-      $timeout.cancel(_timer);
+      $interval.cancel(_timer);
       _timer = null;
     }
   }
   let startExpired = () => {
-    if ( _timer ) { 
-      $timeout.cancel(_timer);
-    }
-    _timer = $timeout(() => { 
-      _storage.session.expired = true;
-      $rootScope.$broadcast('SESSION.EXPIRED');
-    }, remainingTime());        
+    if ( !_timer ) {
+      _timer = $interval( () => {
+        let pending = remainingTime();
+        if ( pending === 0 ) { 
+          stopExpired();
+          _storage.session.expired = true;
+          $rootScope.$broadcast('SESSION.EXPIRED');
+        } 
+      }, 1000); // EACH 1 SECOND
+    }     
   }      
 
   let stop = () => { 
