@@ -15,9 +15,8 @@ ual-modal {
 // VARIANTS
 ual-modal.-yesno { 
   background: rgba($primaryWhiteColor, 0.9);  
-  
+  @include gridle(gutter 28% 0px);
   > ng-transclude {
-      @include gridle(gutter 50% 0px);
       @include gridle( row row-align center);
   }
 }
@@ -26,10 +25,10 @@ ual-modal.-fullmodal {
     background:  rgba($primaryWhiteColor, 0.9);
     > ng-transclude {
         height: 100%;
-        @include gridle(gutter 25% 0px);
+        @include gridle(gutter 12% 0px);
         @include gridle( row row-align center);
         > * {
-            width: 93%;
+            width: 1100px;
         }
     } 
 }

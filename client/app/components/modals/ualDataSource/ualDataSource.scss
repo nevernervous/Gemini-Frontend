@@ -3,23 +3,21 @@
 // LAYOUT 
 ual-data-source { 
   @include gridle( col );
-  overflow: hidden;
-  z-index: 2000;
-  display: block;
   
   > .top { 
-    @include gridle( row row-align right );
-    margin: 0 14px;
+    @include gridle( row row-align right );      
+    
   }
   > .container{
-    @include gridle(gutter 2% 5%);
+    @include gridle(gutter 56px 5%);
     > .title{
         @include font-clanot-bold(20);
-        @include gridle(gutter 2% 0px);
+        @include gridle(gutter 5px 0px);
     }
-    > .content{
-        max-height: 590px;
-        overflow-y: auto;
+    
+    > .buttons { 
+        @include gridle( row row-align right );
+        margin: 26px;
     }
     
   }
@@ -28,13 +26,41 @@ ual-data-source {
 // VARIATIONS
 ual-data-source {
   background: $primaryWhiteColor;
+  overflow: hidden;
+  z-index: 2000;
+  display: block;
   @include box-shadow(0, 6px, 15px, rgba(0, 0, 0, 0.3));
   
   > .top { 
-    font-size: 44px;
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    margin: -11px -18px;  
+    font-size: 65px;
     color: $primaryLightGreyColor;
     > i {
       cursor: pointer;
     }
   }
+  
+  >.container{
+    > .content{
+        max-height: 598px;
+        overflow-y: auto;
+    }
+    
+    > .buttons {
+        > button { 
+            margin-left: 15px;
+        }
+        > .apply { 
+            @include primary-btn(7px);
+            @include font-clanot-book(16);
+            width: 131px;
+        }
+    }
+  }
+  
+
 } 
