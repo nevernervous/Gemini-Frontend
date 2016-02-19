@@ -1,0 +1,36 @@
+@import '../../../common/common';
+
+// LAYOUT 
+.ual-data-source { 
+  @include gridle( col );
+  z-index: 2000;
+  
+  > .top { 
+    @include gridle( row row-align right );
+    margin: 0 14px;
+  }
+  > .container{
+    @include gridle(adapt);
+    @include gridle(gutter 2% 5%);
+    
+    > .title{
+        @include gridle(adapt);
+        @include font-clanot-bold(20);
+        @include gridle(gutter 2% 0px);
+    }
+  }
+}
+
+// VARIATIONS
+.ual-data-source {
+  background: $primaryWhiteColor;
+  @include box-shadow(0, 6px, 15px, rgba(0, 0, 0, 0.3));
+  
+  > .top { 
+    font-size: 44px;
+    color: $primaryLightGreyColor;
+    > i {
+      cursor: pointer;
+    }
+  }
+} 

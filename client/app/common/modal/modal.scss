@@ -1,7 +1,7 @@
 @import '../common';
 
 // LAYOUT 
-.modal { 
+ual-modal { 
   @include gridle( container ); 
   
   z-index: 1000;
@@ -12,10 +12,9 @@
   height: 100vh;
   
   > ng-transclude { 
-    @include gridle( row row-align center middle );
-    height: 70%;
+    @include gridle( row row-align center);
   }
-  > .layer { 
+   > .layer { 
     width: 100%;
     height: 100%;
     position: absolute;
@@ -26,8 +25,25 @@
 }  
 
 // VARIANTS
-.modal { 
+ual-modal.-yesno { 
   > .layer { 
     background: rgba($primaryWhiteColor, 0.5);  
   }
+  > ng-transclude {
+      margin-top: 26%;
+  }
+}
+
+ual-modal.-fullModal{
+    > .layer{
+        background:  rgba($primaryWhiteColor, 0.5)
+    }
+    > ng-transclude{
+        height: 100%;
+        @include gridle(gutter 20px 20px);
+        > div{
+            width: 96%;
+        }
+    }
+    
 }
