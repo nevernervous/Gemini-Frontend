@@ -3,6 +3,6 @@ import <%= name %>Service from './<%= name %>.service';
 
 let <%= name %>Module = angular.module('<%= name %>', [])
 
-.factory('<%= name %>', <%= name %>Service);
+.factory('<%= upCaseName %>', <%= name %>Service);
 
 export default <%= name %>Module;
