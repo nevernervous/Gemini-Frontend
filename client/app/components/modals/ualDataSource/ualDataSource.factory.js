@@ -7,7 +7,7 @@ let ualDataSourceService = function (modal) {
   
   let open = (options) => {    
     return modal.open({
-      template: '<ual-modal class="-fullModal">' + template + '</ual-modal>',
+      template: '<ual-modal class="-fullmodal"><ual-data-source>' + template + '</ual-data-source></ual-modal>',
       controller: controller,
       controllerAs : 'vm'
     })

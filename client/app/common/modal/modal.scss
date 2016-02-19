@@ -2,48 +2,34 @@
 
 // LAYOUT 
 ual-modal { 
-  @include gridle( container ); 
+    @include gridle( container ); 
   
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  
-  > ng-transclude { 
-    @include gridle( row row-align center);
-  }
-   > .layer { 
+    z-index: 1000;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
-    left: 0;    
-  }
- 
+    left: 0;
 }  
 
 // VARIANTS
 ual-modal.-yesno { 
-  > .layer { 
-    background: rgba($primaryWhiteColor, 0.5);  
-  }
+  background: rgba($primaryWhiteColor, 0.9);  
+  
   > ng-transclude {
-      margin-top: 26%;
+      @include gridle(gutter 50% 0px);
+      @include gridle( row row-align center);
   }
 }
 
-ual-modal.-fullModal{
-    > .layer{
-        background:  rgba($primaryWhiteColor, 0.5)
-    }
-    > ng-transclude{
+ual-modal.-fullmodal {
+    background:  rgba($primaryWhiteColor, 0.9);
+    > ng-transclude {
         height: 100%;
-        @include gridle(gutter 20px 20px);
-        > div{
-            width: 96%;
+        @include gridle(gutter 25% 0px);
+        @include gridle( row row-align center);
+        > * {
+            width: 93%;
         }
-    }
-    
+    } 
 }
