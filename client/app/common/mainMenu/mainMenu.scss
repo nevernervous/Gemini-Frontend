@@ -26,6 +26,7 @@
     padding: 0;
     margin: 0;
     background: $primaryLightBlueColor;
+    @include transition(left .3s ease-out);
     
     > li {
       border-bottom: 1px solid rgba($primaryWhiteColor, 0.5); 

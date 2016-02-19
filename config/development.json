@@ -1,0 +1,5 @@
+{
+  "Properties": {
+    "endpoint": "http://localhost:8888/api"  
+  }
+}

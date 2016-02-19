@@ -11,6 +11,8 @@ import yargs    from 'yargs';
 import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
+import ngConstant   from 'gulp-ng-constant';
+import restEmulator from 'gulp-rest-emulator';
 import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
@@ -45,13 +47,15 @@ let paths = {
     common: resolveToApp('common'),
     component: resolveToComponents(), 
     page: resolveToComponents(),
-    service: resolveToServices()
+    service: resolveToServices(),
+    modal: resolveToComponents('modals')
   },
   blankTemplates: {
     common: path.join(__dirname, 'generator', 'component/**/*.**'),
     component: path.join(__dirname, 'generator', 'component/**/*.**'),
     page: path.join(__dirname, 'generator', 'page/**/*.**'),
-    service: path.join(__dirname, 'generator', 'service/**/*.**')
+    service: path.join(__dirname, 'generator', 'service/**/*.**'),
+    modal: path.join(__dirname, 'generator', 'modal/**/*.**')
   }
 };
 
@@ -105,6 +109,35 @@ gulp.task('serve', () => {
   });
 });
 
+gulp.task('constants', () => {
+  let env = yargs.argv.env || 'development';
+  let envConfig = require('./config/' + env + '.json');
+
+  return ngConstant({
+      name: 'app.constants',
+      constants: envConfig,
+      wrap: 'commonjs',
+      stream: true
+    })
+    .pipe(rename("app.constants.js"))
+    .pipe(gulp.dest(resolveToApp()));
+});
+
+gulp.task('api', () => {
+    // Options not require
+    let options = {
+        port: 8889,
+        // root: ['./'],
+        // rewriteNotFound: false,
+        // rewriteTemplate: 'index.html',
+        corsEnable: true//, // Set true to enable CORS
+        //corsOptions: {}, // CORS options, default all origins
+        //headers: {} // Set headers for all response, default blank
+    };
+    return gulp.src('./mocks/**/*.js')
+        .pipe(restEmulator(options));
+});
+
 gulp.task('watch', ['serve']);
 
 gulp.task('component', () => {
@@ -132,4 +165,5 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
-gulp.task('default', ['serve']);
+gulp.task('default', ['constants', 'serve']);
+gulp.task('mock', ['constants', 'api', 'serve']);

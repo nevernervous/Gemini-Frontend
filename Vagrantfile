@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
   end  
   
+  config.vm.network "forwarded_port", guest: 8080, host: 8888
   config.vm.network "forwarded_port", guest: 3389, host: 3389
 
   config.vm.communicator = "winrm"

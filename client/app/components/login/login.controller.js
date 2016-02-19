@@ -1,8 +1,8 @@
 class LoginController {
   /*@ngInject*/
-  constructor($location) {
+  constructor($location, Session) {
     this.name = 'login';
-    this.expiration = !!$location.search().expiration;
+    this.expiration = Session.isExpired();
   }
 }
 

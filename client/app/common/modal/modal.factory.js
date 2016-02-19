@@ -8,7 +8,9 @@ let logoutModalService = function ($q, ModalService) {
     ModalService.showModal(options)
     .then( modal => {
       _modal = modal;
-      modal.close.then( result => deferred.resolve(result) );
+      modal.close
+      .then( result => deferred.resolve(result) )
+      .finally( () => _modal.controller.onClose && _modal.controller.onClose());
     })
     .catch( error => deferred.reject(error) );
     
