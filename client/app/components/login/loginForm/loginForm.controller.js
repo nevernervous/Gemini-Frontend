@@ -13,7 +13,7 @@ class LoginFormController {
     this.error = false; 
     this.loading = true;
     this._session.login(this.user, this.pass)
-    .then ( () => this._state.go('dashboard.report'))
+    .then ( () => this._state.go('dashboard.report-list'))
     .catch( response => this.error = response.data )
     .finally(() => {
       this.loading = false;
