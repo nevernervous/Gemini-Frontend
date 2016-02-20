@@ -4,6 +4,7 @@ import './ualButton.scss';
 
 let ualButtonComponent = {
   restrict: 'E',
+  transclude: true,
   bindings: {},
   template,
   controller,

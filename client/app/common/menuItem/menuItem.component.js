@@ -4,10 +4,8 @@ import './menuItem.scss';
 
 let menuItemComponent = {
   restrict: 'E',
-  bindings: {
-    label: '@',
-    icon: '@'
-  },
+  transclude: true,
+  bindings: {},
   template,
   controller,
   controllerAs: 'vm'

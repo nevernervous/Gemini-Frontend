@@ -6,7 +6,7 @@
   padding: $padding;  
 }
 
-@mixin button-primary($padding: 7px) { 
+@mixin button-primary($padding: 7px 19px) { 
   @include font-clanot-news(16);
   @include ual-button($color01, white, $padding);
   &:hover { 
@@ -14,11 +14,11 @@
   }
   &.-disabled { 
     @include ual-button(#99a7b4, #c2ccd3, $padding);
-    cursor: none;
+    cursor: default;
   }    
 }
 
-@mixin button-secondary($padding: 7px) { 
+@mixin button-secondary($padding: 7px 19px) { 
   @include font-clanot-news(16);
   @include ual-button($color03, white, $padding);
   &:hover { 
@@ -26,19 +26,19 @@
   }
   &.-disabled { 
     @include ual-button(#b0d4f1, #b0d4f1, $padding);
-    cursor: none;
+    cursor: default;
   }     
 }
 
-@mixin button-terciary($padding: 5px, $border: 2px) { 
+@mixin button-terciary($padding: 5px 17px, $border: 2px) { 
   @include font-clanot-news(16);
   @include ual-button(white, $color03, $padding, $border solid $color03);
   &:hover { 
     @include ual-button(white, #81c4ea, $padding, $border solid #81c4ea);
   }  
   &.-disabled { 
-    @include ual-button(white, #b0d4f1, $padding, $border 2px solid #b0d4f1);
-    cursor: none;
+    @include ual-button(white, #b0d4f1, $padding, $border solid #b0d4f1);
+    cursor: default;
   } 
 }
 
@@ -50,6 +50,6 @@
   }  
   &.-disabled { 
     @include ual-button(white, $color08, $padding);
-    cursor: none;
+    cursor: default;
   } 
 }

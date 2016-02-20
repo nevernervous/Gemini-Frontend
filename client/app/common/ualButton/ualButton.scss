@@ -1,13 +1,9 @@
-// MIXINS
-@mixin ual-button($backgorund, $font, $padding: 0, $border: 0) {
-  color: $font;
-  background: $backgorund;
-  border: $border;
-  padding: $padding;  
-}
+@import '../common';
 
-ual-button { 
-  
+ual-button {
+  cursor: pointer; 
+  text-align: center;
+  @include button-primary();
 }  
 
 ual-button.-primary { 

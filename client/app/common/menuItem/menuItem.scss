@@ -5,27 +5,22 @@
 
 @import '../common';
 
-// MIXINS
-@mixin default() { 
+// LAYOUT
+menu-item{ 
+  display: list-item;
+}  
+
+// VARIATIONS
+menu-item { 
   color: $primaryWhiteColor; 
   background: $primaryLightBlueColor;
   @include font-clanot-book(16);
   padding: 12px 17px;
   border-left: 0px;
-}
-
-// LAYOUT
-.menu-item{ 
-
-}  
-
-// VARIATIONS
-.menu-item { 
-  @include default();
   
-  > i { 
+  div > i { 
     font-size: 24px;
-    margin-right: 16px;
+    margin-right: 15px;
   }
   
   &:hover { 
@@ -35,12 +30,14 @@
     cursor: pointer;
   }  
 }
-.-disabled > .menu-item { 
-  i, span { 
-    opacity: 0.5;
-  } 
+menu-item.-disabled {
+  color: $primaryWhiteColor; 
+  background: $primaryLightBlueColor;
+  padding: 12px 17px;
+  border-left: 0px;  
+  opacity: 0.5; 
+
   &:hover { 
-    @include default();
     cursor: default;
   } 
 }
