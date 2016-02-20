@@ -7,24 +7,36 @@
 // MIXINS
 @import "mixins/mixins";
 
+// COLOURS
+$color01: #002244;
+$color02: #3271b1;
+$color03: #62a9e3;
+$color04: #8cbfea;
+$color05: #cddc39;
+$color06: #333333;
+$color07: #7c848a;
+$color08: #d4d4d4;
+$color09: #667a8e;
+$color10: #c0ddf4; 
+
 
 // BACKGROUND 
-$backgroundHighColor: #002143;
-$backgroundMediumColor: #4783B7;
-$backgroundLowColor: #61A9E3;
+$backgroundHighColor: $color01;
+$backgroundMediumColor: $color02;
+$backgroundLowColor: $color03;
 
 // UI Kit
-$primaryDarkBlueColor: #001C43;
-$primaryBlueColor: #4784b8;
-$primaryLightBlueColor: #19ABE6;
-$primaryGreyColor: #79858B;
-$primaryLightGreyColor: #D5D5D1;
-$primaryGreenColor: #C8DD15;
+$primaryDarkBlueColor: $color01;
+$primaryBlueColor: $color02;
+$primaryLightBlueColor: $color03;
+$primaryGreyColor: $color07;
+$primaryLightGreyColor: $color08;
+$primaryGreenColor: $color05;
 $primaryWhiteColor: white;
 
 // UI Kit / Font
 $primaryFontColor: $primaryWhiteColor;
-$secondaryFontColor: #333;
+$secondaryFontColor: $color06;
 $disabledFontColor: $primaryGreyColor;
 
 // UI Kit / Alerts, Notification, ...
@@ -36,13 +48,3 @@ $successColor: #44C339;
 $successColor: #CFEEC8;
 $notificationHighColor: $primaryLightBlueColor;
 $notificationLowColor: #C8E6F8;
-
-// UI Kit / Button
-$primaryButtonColor: $primaryDarkBlueColor;
-$primaryButtonColorHover: #003B68;
-$secondaryButtonColor: $primaryLightBlueColor;
-$secondaryButtonColorHover: #47BDEC;
-$terciaryButtonColor: $primaryGreenColor;
-$terciaryButtonColorHover: #E2EB50;
-$ghostButtonColor: $secondaryButtonColor;
-$disabledButtonColor: $primaryLightGreyColor;

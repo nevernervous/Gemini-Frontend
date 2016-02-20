@@ -1,0 +1,27 @@
+// MIXINS
+@mixin ual-button($backgorund, $font, $padding: 0, $border: 0) {
+  color: $font;
+  background: $backgorund;
+  border: $border;
+  padding: $padding;  
+}
+
+ual-button { 
+  
+}  
+
+ual-button.-primary { 
+  @include button-primary();
+}
+
+ual-button.-secondary { 
+  @include button-secondary();    
+}
+
+ual-button.-terciary { 
+  @include button-terciary();
+}
+
+ual-button.-link { 
+  @include button-link();
+}

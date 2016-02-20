@@ -1,41 +1,55 @@
-
-@mixin style-btn($backgorund, $hover, $font, $padding) {
+// MIXINS
+@mixin ual-button($backgorund, $font, $padding: 0, $border: 0) {
   color: $font;
   background: $backgorund;
-  border: 0px;
+  border: $border;
   padding: $padding;  
-  &:hover {
-    background: $hover;    
-  }  
 }
 
-@mixin primary-btn($padding: 14px) { 
-  @include style-btn($primaryButtonColor, $primaryButtonColorHover, $primaryFontColor, $padding);
-}
-@mixin secondary-btn($padding: 14px) { 
-  @include style-btn($secondaryButtonColor, $secondaryButtonColorHover, $primaryFontColor, $padding);
-}
-@mixin terciary-btn($padding: 14px) { 
-  @include style-btn($terciaryButtonColor, $terciaryButtonColorHover, $primaryFontColor, $padding);
-}
-@mixin disabled-btn($padding: 14px) { 
-  @include style-btn($disabledButtonColor, $disabledButtonColor, $disableFontColor, $padding);
-}
-@mixin ghost-btn() { 
-  color: $ghostButtonColor;
-  background: $primaryWhiteColor;
-  border: 2px solid $ghostButtonColor ;
-  padding: 10px;  
-  &:hover {
-    border: 0px;
-    padding: 14px;
-    color: $primaryWhiteColor;
-    background: $ghostButtonColor;    
+@mixin button-primary($padding: 7px) { 
+  @include font-clanot-news(16);
+  @include ual-button($color01, white, $padding);
+  &:hover { 
+    @include ual-button(#0a3d66, white, $padding);
+  }
+  &.-disabled { 
+    @include ual-button(#99a7b4, #c2ccd3, $padding);
+    cursor: none;
   }    
 }
-@mixin none-btn($padding: 14px) { 
-  color: $secondaryFontColor;
-  border: 0px;
-  padding: $padding;  
-  background: $primaryWhiteColor;
+
+@mixin button-secondary($padding: 7px) { 
+  @include font-clanot-news(16);
+  @include ual-button($color03, white, $padding);
+  &:hover { 
+    @include ual-button(#81c4ea, white, $padding);
+  }
+  &.-disabled { 
+    @include ual-button(#b0d4f1, #b0d4f1, $padding);
+    cursor: none;
+  }     
+}
+
+@mixin button-terciary($padding: 5px, $border: 2px) { 
+  @include font-clanot-news(16);
+  @include ual-button(white, $color03, $padding, $border solid $color03);
+  &:hover { 
+    @include ual-button(white, #81c4ea, $padding, $border solid #81c4ea);
+  }  
+  &.-disabled { 
+    @include ual-button(white, #b0d4f1, $padding, $border 2px solid #b0d4f1);
+    cursor: none;
+  } 
+}
+
+@mixin button-link($padding: 7px) { 
+  @include font-clanot-news(16);
+  @include ual-button(white, $color06, $padding);
+  &:hover { 
+    @include ual-button(white, $color07, $padding);
+  }  
+  &.-disabled { 
+    @include ual-button(white, $color08, $padding);
+    cursor: none;
+  } 
 }
