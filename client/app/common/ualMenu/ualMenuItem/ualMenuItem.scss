@@ -1,19 +1,14 @@
-.menu-item{ 
-  
-}  
-
-
-@import '../common';
+@import '../../common';
 
 // LAYOUT
-menu-item{ 
+ual-menu-item{ 
   display: list-item;
 }  
 
 // VARIATIONS
-menu-item { 
-  color: $primaryWhiteColor; 
-  background: $primaryLightBlueColor;
+ual-menu-item { 
+  color: $color00; 
+  background: $color03;
   @include font-clanot-book(16);
   padding: 12px 17px;
   border-left: 0px;
@@ -24,15 +19,15 @@ menu-item {
   }
   
   &:hover { 
-    background: $primaryBlueColor;
-    border-left: 4px solid $primaryGreenColor;
+    background: $color02;
+    border-left: 4px solid $color05;
     padding-left: 13px;
     cursor: pointer;
   }  
 }
-menu-item.-disabled {
-  color: $primaryWhiteColor; 
-  background: $primaryLightBlueColor;
+ual-menu-item.-disabled {
+  color: $color00; 
+  background: $color03;
   padding: 12px 17px;
   border-left: 0px;  
   opacity: 0.5; 

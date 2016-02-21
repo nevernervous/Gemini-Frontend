@@ -8,6 +8,7 @@
 @import "mixins/mixins";
 
 // COLOURS
+$color00: white;
 $color01: #002244;
 $color02: #3271b1;
 $color03: #62a9e3;
@@ -32,7 +33,7 @@ $primaryLightBlueColor: $color03;
 $primaryGreyColor: $color07;
 $primaryLightGreyColor: $color08;
 $primaryGreenColor: $color05;
-$primaryWhiteColor: white;
+$primaryWhiteColor: $color00;
 
 // UI Kit / Font
 $primaryFontColor: $primaryWhiteColor;

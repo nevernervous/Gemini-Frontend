@@ -1,23 +1,23 @@
-import MenuItemModule from './menuItem'
-import MenuItemController from './menuItem.controller';
-import MenuItemComponent from './menuItem.component';
-import MenuItemTemplate from './menuItem.html';
+import UalMenuItemModule from './ualMenuItem'
+import UalMenuItemController from './ualMenuItem.controller';
+import UalMenuItemComponent from './ualMenuItem.component';
+import UalMenuItemTemplate from './ualMenuItem.html';
 
-describe('MenuItem', () => {
+describe('UalMenuItem', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(MenuItemModule.name));
+  beforeEach(window.module(UalMenuItemModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new MenuItemController();
+      return new UalMenuItemController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(MenuItemModule).to.have.property('name');
+      expect(UalMenuItemModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('MenuItem', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<menu-item/>').html(MenuItemTemplate);
+    const template = $('<ual-menu-item/>').html(UalMenuItemTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('MenuItem', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = MenuItemComponent;
+      let component = UalMenuItemComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(MenuItemTemplate);
+        expect(component.template).to.equal(UalMenuItemTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('MenuItem', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(MenuItemController);
+        expect(component.controller).to.equal(UalMenuItemController);
       });
   });
 });
