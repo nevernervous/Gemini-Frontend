@@ -14,7 +14,10 @@ class ualButtonDirective {
     link(scope, element) {
       scope.$watch(
         () => element.attr('disabled'), 
-        newValue => console.log('change')//element.css('-disabled')
+        newValue => { 
+          let action = newValue ? 'addClass' : 'removeClass';
+          element[action]('-disabled');
+        }
       );
     }
 }
