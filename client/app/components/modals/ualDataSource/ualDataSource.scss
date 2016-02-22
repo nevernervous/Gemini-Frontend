@@ -9,7 +9,7 @@ ual-data-source {
     
   }
   > .container{
-    @include gridle(gutter 22px 5%);
+    @include gridle(gutter 22px 160px);
     > .title{
         @include font-clanot-bold(20);
         @include gridle(gutter 5px 0px);
