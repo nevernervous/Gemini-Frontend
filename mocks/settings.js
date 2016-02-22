@@ -13,7 +13,7 @@ module.exports = {
           },
           {
             "name":"session.warning",
-            "value":"1"
+            "value":"15"
           }
         ]
       },

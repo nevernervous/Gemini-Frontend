@@ -1,9 +1,11 @@
 class LogoutModalController {
   /*@ngInject*/
-  constructor(Session, close) {
+  constructor($rootScope, Session, close) {
     this.name = 'logoutModal';
     this._close = close;
     this._session = Session;
+    
+    $rootScope.$on('SESSION.LOGOUT', () => this._close() ); 
   }
   
   ok() { 
@@ -13,6 +15,7 @@ class LogoutModalController {
   cancel(){
     this._close();
   }
+
 }
 
 export default LogoutModalController;
