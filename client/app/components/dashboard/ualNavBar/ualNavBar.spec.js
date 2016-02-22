@@ -1,23 +1,23 @@
-import MainMenuHandlerModule from './mainMenuHandler'
-import MainMenuHandlerController from './mainMenuHandler.controller';
-import MainMenuHandlerComponent from './mainMenuHandler.component';
-import MainMenuHandlerTemplate from './mainMenuHandler.html';
+import UalNavBarModule from './ualNavBar'
+import UalNavBarController from './ualNavBar.controller';
+import UalNavBarComponent from './ualNavBar.component';
+import UalNavBarTemplate from './ualNavBar.html';
 
-describe('MainMenuHandler', () => {
+describe('UalNavBar', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(MainMenuHandlerModule.name));
+  beforeEach(window.module(UalNavBarModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new MainMenuHandlerController();
+      return new UalNavBarController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(MainMenuHandlerModule).to.have.property('name');
+      expect(UalNavBarModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('MainMenuHandler', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<main-menu-handler/>').html(MainMenuHandlerTemplate);
+    const template = $('<ual-nav-bar/>').html(UalNavBarTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('MainMenuHandler', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = MainMenuHandlerComponent;
+      let component = UalNavBarComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(MainMenuHandlerTemplate);
+        expect(component.template).to.equal(UalNavBarTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('MainMenuHandler', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(MainMenuHandlerController);
+        expect(component.controller).to.equal(UalNavBarController);
       });
   });
 });

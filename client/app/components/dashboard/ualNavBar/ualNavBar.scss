@@ -1,0 +1,67 @@
+@import '../../../common/common';
+
+// LAYOUT
+ual-nav-bar {
+  @include gridle( row row-align between middle);
+  > .navbar-header { 
+    color: $primaryWhiteColor;
+    @include gridle( gutter 0 24px );
+    > i { 
+      cursor: pointer;
+      margin-right: 16px;
+    }
+  }
+  > .navbar-options { 
+    @include gridle( gutter 0 112px );
+    > li { 
+      position: relative;
+      height: 33px;
+      > img { 
+        height: 100%;
+      }
+      > .dropdown-menu { 
+        position: absolute;
+        top: 42px;
+        right: 0px;        
+        width: 153px;
+        > ul { 
+          padding: 0px
+        }
+      }
+    }
+  }
+}
+
+// VARIANT 
+ual-nav-bar {
+  background-color: $color01;
+  > .navbar-header { 
+    color: $primaryWhiteColor;
+    @include font-clanot-bold(18);
+  }
+  > .navbar-options { 
+    > li > img.img-circle { 
+      border-radius: 50%;
+    }
+    > li > .dropdown-menu {
+      display: none; 
+      &::before { 
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        right: 8px;
+        top: -10px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 10px solid $primaryLightBlueColor;
+      }
+    }
+    > li:hover > .dropdown-menu {
+      display: block;  
+    }
+  }
+}
+
+
