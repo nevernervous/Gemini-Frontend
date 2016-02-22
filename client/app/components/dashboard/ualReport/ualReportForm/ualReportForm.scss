@@ -45,11 +45,9 @@
         @include gridle (row row-align between);
     }
 
-    button {
+    ual-button {
         margin: 30px;
         width: 160px;
-        @include secondary-btn(7px 19px);
-        @include font-clanot-book(16);
     }
 
     .slicers {

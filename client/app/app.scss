@@ -43,14 +43,6 @@ ng-outlet {
 }
 
 ul {
-    list-style-type: none;
-}
-
-a {
-    text-decoration: none;
-    color: #62a9e3;
-
-    &:hover {
-        color: #81c4ea;
-    }
+  list-style-type: none;
+  padding: 0;
 }
