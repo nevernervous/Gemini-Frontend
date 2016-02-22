@@ -9,7 +9,7 @@ ual-data-source {
     
   }
   > .container{
-    @include gridle(gutter 22px 160px);
+    @include gridle(gutter 22px 100px);
     > .title{
         @include font-clanot-bold(20);
         @include gridle(gutter 5px 0px);
@@ -45,9 +45,9 @@ ual-data-source {
   }
   
   >.container{
-    height: 85%;
+    height: 100%;
     > .content{
-        height: 100%;
+        height: 85%;
         overflow-y: auto;
     }
     
