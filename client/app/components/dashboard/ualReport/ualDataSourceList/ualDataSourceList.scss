@@ -1,0 +1,16 @@
+@import '../../../../common/common';
+
+ual-data-source-list { 
+    
+  @include gridle(adapt);
+  .group-name{
+      @include gridle(12);
+      @include font-clanot-bold(20);
+      @include gridle(gutter 24px 0)
+  }
+  .group-item{
+      @include gridle(12);
+      @include gridle(gutter 10px 0);
+      @include font-clanot-book(18);
+  }
+}  
