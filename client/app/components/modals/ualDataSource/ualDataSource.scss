@@ -45,8 +45,9 @@ ual-data-source {
   }
   
   >.container{
+    height: 85%;
     > .content{
-        max-height: 430px;
+        height: 100%;
         overflow-y: auto;
     }
     
