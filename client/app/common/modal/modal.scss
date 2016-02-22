@@ -31,6 +31,7 @@ ual-modal.-fullmodal {
         > * {
             @include box-shadow(0, 0, 0, rgba($primaryWhiteColor, 0.9));
             height: 100%;
+            width: 100%;
         }
     }   
 }
