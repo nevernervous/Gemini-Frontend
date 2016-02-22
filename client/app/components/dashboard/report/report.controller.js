@@ -1,7 +1,13 @@
 class ReportController {
-  constructor() {
-    this.name = 'report';
-  }
+    /*@ngInject*/
+    constructor(ualDataSource) {
+        this.name = 'report';
+        this._dataSource = ualDataSource;
+    }
+
+    openDataSourceModal() {
+        this._dataSource.open();
+    }
 }
 
 export default ReportController;

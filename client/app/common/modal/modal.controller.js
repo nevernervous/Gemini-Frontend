@@ -1,11 +1,7 @@
 class ModalController {
   /*@ngInject*/
-  constructor(modal) {
+  constructor() {
     this.name = 'modal';
-    this._modal = modal;
-  }
-  close(){
-    this._modal.close();
   }
 }
 
