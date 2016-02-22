@@ -1,11 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import dashboardComponent from './dashboard.component';
-import Report from './report/report';
+import ualReport from './ualReport/ualReport';
 
 let dashboardModule = angular.module('dashboard', [
   uiRouter,
-  Report.name  
+  ualReport.name  
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
