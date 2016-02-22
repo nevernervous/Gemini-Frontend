@@ -5,7 +5,7 @@ class ReportController {
         this._dataSource = ualDataSource;
     }
 
-    openFullModal() {
+    openDataSourceModal() {
         this._dataSource.open();
     }
 }
