@@ -1,3 +1,119 @@
-.ual-report-form { 
-  
-}  
+@import '../../../../common/common';
+
+.ual-report-form {
+    @include gridle_container();
+    min-width: 1280px;
+    margin: 0 auto;
+    padding: 0 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+    .appName {
+        @include font-clanot-book(16);
+        font-weight: bold;
+        color: #333333;
+        margin-top: 34px;
+    }
+
+    .reportName {
+        @include font-clanot-book(20);
+        color: #7c848a;
+        padding: 0 0 15px 0;
+
+        > div {
+            margin-left: 10px;
+        }
+    }
+
+    .info {
+        padding: 16px 0;
+
+        > div {
+            margin-left: 10px;
+
+            > span {
+                @include font-clanot-book(16);
+                color: #7c848a;
+            }
+
+            > b {
+                @include font-clanot-bold(16);
+                color: #333333;
+                font-weight: normal;
+            }
+
+            > a {
+                @include font-clanot-book(14);
+            }
+        }
+    }
+
+    .separatorLine {
+        border-bottom: 1px solid #d4d4d4;
+    }
+
+    > div {
+        @include gridle (row row-align between);
+    }
+
+    button {
+        margin: 30px; //TODO: Revisar si se deja 30 o 27?
+        width: 160px;
+        @include secondary-btn(7px 19px);
+        @include font-clanot-book(16);
+    }
+
+    .slicers {
+        display: none;
+
+        > div {
+            border: 1px solid #e9e9e7;
+            width: 16%;
+            height: 400px;
+        }
+    }
+
+    .report-tabs {
+        height: 586px;
+
+        .tabOptions {
+            border: 1px solid #e9e9e7;
+            @include gridle (row row-align between);
+
+            &.left {
+                width: 60%;
+                border-right: 1px solid #e9e9e7;
+
+                .tabSelector {
+                    width: 30%;
+                    background-color: #e9e9e7;
+
+                    .tabOption {
+                        padding: 15px;
+                        height: 45px;
+
+                        &.active {
+                            border-left: 5px solid #62a9e3;
+                            background-color: white;
+                        }
+                    }
+                }
+
+                .tabVariables {
+                    width: 70%;
+                    padding: 15px;
+                }
+            }
+
+            &.right {
+                margin-left: 10px;
+                width: 40%;
+                border-left: 1px solid #e9e9e7;
+
+                .tabSelectedVariables {
+                    padding: 15px;
+                }
+            }
+        }
+    }
+}

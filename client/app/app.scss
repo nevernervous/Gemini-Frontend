@@ -45,3 +45,13 @@ ng-outlet {
 ul {
   list-style-type: none;
 }
+
+a {
+    @include font-clanot-news(16);
+    text-decoration: none;
+    color: #62a9e3;
+
+    &:hover {
+        color: #81c4ea;
+    }
+}
