@@ -28,7 +28,8 @@ ual-modal.-fullmodal {
         @include gridle(gutter 12% 0px);
         @include gridle( row row-align center);
         > * {
-            width: 1100px;
+            @include box-shadow(0, 0, 0, rgba($primaryWhiteColor, 0.9));
+            width: 1103px;
         }
-    } 
+    }   
 }
