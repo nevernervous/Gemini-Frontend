@@ -5,11 +5,13 @@
 <ul class="navbar-options">
   <li>
     <img class="img-circle" src="{{vm.user}}">  
-    <ual-menu class="dropdown-menu">
-      <ual-menu-item class="-disabled">Settings</ual-menu-item>
-      <ual-menu-item class="-disabled">Help</ual-menu-item>
-      <ual-menu-item ng-click="vm.logout()">Logout</ual-menu-item>
-    </ual-menu>
+    <ual-tooltip class="-dropdown">
+      <ual-menu>
+        <ual-menu-item class="-disabled">Settings</ual-menu-item>
+        <ual-menu-item class="-disabled">Help</ual-menu-item>
+        <ual-menu-item ng-click="vm.logout()">Logout</ual-menu-item>
+      </ual-menu>
+    </ual-tooltip>
   </li> 
 </ul>    
 

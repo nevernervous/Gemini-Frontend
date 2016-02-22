@@ -1,5 +1,4 @@
 import angular from 'angular';
-//import ualButtonComponent from './ualButton.component';
 import ualButtonDirective from './ualButton.directive';
 
 let ualButtonModule = angular.module('ualButton', [])

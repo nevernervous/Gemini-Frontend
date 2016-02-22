@@ -19,14 +19,8 @@ ual-nav-bar {
       > img { 
         height: 100%;
       }
-      > .dropdown-menu { 
-        position: absolute;
-        top: 42px;
-        right: 0px;        
+      > ual-tooltip {     
         width: 153px;
-        > ul { 
-          padding: 0px
-        }
       }
     }
   }
@@ -43,22 +37,10 @@ ual-nav-bar {
     > li > img.img-circle { 
       border-radius: 50%;
     }
-    > li > .dropdown-menu {
+    > li > ual-tooltip {
       display: none; 
-      &::before { 
-        content: '';
-        display: block;
-        width: 0;
-        height: 0;
-        position: absolute;
-        right: 8px;
-        top: -10px;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-bottom: 10px solid $primaryLightBlueColor;
-      }
     }
-    > li:hover > .dropdown-menu {
+    > li:hover > ual-tooltip {
       display: block;  
     }
   }

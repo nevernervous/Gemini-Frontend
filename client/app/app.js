@@ -1,4 +1,5 @@
 import angular from 'angular';
+//import jQuery from 'jquery';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
@@ -7,6 +8,8 @@ import Services from './services/services';
 import Filters from './filters/filters';
 import Constants from './app.constants';
 import AppComponent from './app.component';
+
+//window.$ = window.jQuery = jQuery;
 
 import './app.scss';
 import 'normalize.css';
