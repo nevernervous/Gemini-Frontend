@@ -1,4 +1,4 @@
-let mainMenuServiceService = function () {
+let ualMainMenuServiceService = function () {
   "ngInject";
   let _isOpen = false;
   
@@ -12,4 +12,4 @@ let mainMenuServiceService = function () {
   };
 };
 
-export default mainMenuServiceService;
+export default ualMainMenuServiceService;

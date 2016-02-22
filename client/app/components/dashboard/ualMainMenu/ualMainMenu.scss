@@ -1,0 +1,19 @@
+@import '../../../common/common';
+
+// LAYOUT
+ual-main-menu { 
+  position: absolute;
+  width: 257px;
+  height: 100vh;
+} 
+
+// VARIANTS
+ual-main-menu {
+  background: $color03;
+  left: -257px;
+  @include transition(left .3s ease-out);
+}
+ual-main-menu.-open { 
+  left: 0px;
+}    
+

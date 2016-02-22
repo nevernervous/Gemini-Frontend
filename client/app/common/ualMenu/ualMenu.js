@@ -1,11 +1,11 @@
 import angular from 'angular';
+import ualMenuItemComponent from './ualMenuItem/ualMenuItem.component';
 import ualMenuComponent from './ualMenu.component';
-import ualMenuItem from './ualMenuItem/ualMenuItem';
 
 let ualMenuModule = angular.module('ualMenu', [
-  ualMenuItem.name
 ])
 
+.component('ualMenuItem', ualMenuItemComponent)
 .component('ualMenu', ualMenuComponent);
 
 export default ualMenuModule;

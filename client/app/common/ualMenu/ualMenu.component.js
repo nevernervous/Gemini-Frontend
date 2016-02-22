@@ -4,6 +4,7 @@ import './ualMenu.scss';
 
 let ualMenuComponent = {
   restrict: 'E',
+  transclude: true,
   bindings: {},
   template,
   controller,

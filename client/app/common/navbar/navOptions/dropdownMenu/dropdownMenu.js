@@ -1,9 +1,9 @@
 import angular from 'angular';
 import dropdownMenuComponent from './dropdownMenu.component';
-import MenuItem from '../../../menuItem/menuItem';
+import ualMenu from '../../../ualMenu/ualMenu';
 
 let dropdownMenuModule = angular.module('dropdownMenu', [
-  MenuItem.name
+  ualMenu.name
 ])
 
 .component('dropdownMenu', dropdownMenuComponent);

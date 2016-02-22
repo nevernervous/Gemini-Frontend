@@ -1,23 +1,23 @@
-import MainMenuModule from './mainMenu'
-import MainMenuController from './mainMenu.controller';
-import MainMenuComponent from './mainMenu.component';
-import MainMenuTemplate from './mainMenu.html';
+import UalMainMenuModule from './ualMainMenu'
+import UalMainMenuController from './ualMainMenu.controller';
+import UalMainMenuComponent from './ualMainMenu.component';
+import UalMainMenuTemplate from './ualMainMenu.html';
 
-describe('MainMenu', () => {
+describe('UalMainMenu', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(MainMenuModule.name));
+  beforeEach(window.module(UalMainMenuModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new MainMenuController();
+      return new UalMainMenuController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(MainMenuModule).to.have.property('name');
+      expect(UalMainMenuModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('MainMenu', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<main-menu/>').html(MainMenuTemplate);
+    const template = $('<ual-main-menu/>').html(UalMainMenuTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('MainMenu', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = MainMenuComponent;
+      let component = UalMainMenuComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(MainMenuTemplate);
+        expect(component.template).to.equal(UalMainMenuTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('MainMenu', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(MainMenuController);
+        expect(component.controller).to.equal(UalMainMenuController);
       });
   });
 });

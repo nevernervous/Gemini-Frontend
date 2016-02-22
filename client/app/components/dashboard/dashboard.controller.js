@@ -1,12 +1,10 @@
 class DashboardController {
-  constructor() {
+  /*@ngInject*/
+  constructor(ualMainMenu) {
     this.name = 'dashboard';
-    this.menuOpen = false;
+    this.mainMenu = ualMainMenu;
   }
-  
-  toggleMenu() { 
-    this.menuOpen = !this.menuOpen;
-  }
+ 
 }
 
 export default DashboardController;
