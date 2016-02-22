@@ -1,16 +1,16 @@
-import ReportModule from './report'
-import ReportController from './report.controller';
-import ReportComponent from './report.component';
-import ReportTemplate from './report.html';
+import UalReportListModule from './ualReportList'
+import UalReportListController from './ualReportList.controller';
+import UalReportListComponent from './ualReportList.component';
+import UalReportListTemplate from './ualReportList.html';
 
-describe('Report', () => {
+describe('UalReportList', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(ReportModule.name));
+  beforeEach(window.module(UalReportListModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new ReportController();
+      return new UalReportListController();
     };
   }));
 
@@ -27,7 +27,7 @@ describe('Report', () => {
   });
 
   describe('Template', () => {
-    const template = $('<report/>').html(ReportTemplate); 
+    const template = $('<ual-report-list/>').html(UalReportListTemplate); 
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
@@ -37,10 +37,10 @@ describe('Report', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = ReportComponent;
+      let component = UalReportListComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(ReportTemplate);
+        expect(component.template).to.equal(UalReportListTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -48,7 +48,7 @@ describe('Report', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(ReportController);
+        expect(component.controller).to.equal(UalReportListController);
       });
   });
 });

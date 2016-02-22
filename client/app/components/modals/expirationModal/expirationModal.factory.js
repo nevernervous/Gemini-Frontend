@@ -7,7 +7,7 @@ let expirationModalService = function (modal) {
   
   let open = (options) => {    
     return modal.open({
-      template: '<modal>' + template + '</modal>',
+      template: '<ual-modal class="-yesno">' + template + '</ual-modal>',
       controller: controller,
       controllerAs : 'vm'
     })

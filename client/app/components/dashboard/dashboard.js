@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 import dashboardComponent from './dashboard.component';
 import ualNavBar from './ualNavBar/ualNavBar';
 import ualMainMenu from './ualMainMenu/ualMainMenu';
-import Report from './report/report';
+import ualReport from './ualReport/ualReport';
 
 let dashboardModule = angular.module('dashboard', [
   uiRouter,
@@ -11,7 +11,7 @@ let dashboardModule = angular.module('dashboard', [
   ualNavBar.name,
   ualMainMenu.name,
   // CONTENT
-  Report.name
+  ualReport.name  
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
