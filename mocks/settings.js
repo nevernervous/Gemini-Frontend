@@ -5,7 +5,7 @@ module.exports = {
         "parameters":[
           {
             "name":"session.timeout",
-            "value":"10"
+            "value":"45"
           },
           {
             "name":"login.contact",
