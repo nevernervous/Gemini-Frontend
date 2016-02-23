@@ -1,4 +1,4 @@
-let reportContextService = function () {
+let ualReportService = function () {
   "ngInject";
   
   let datasource = null;
@@ -35,4 +35,4 @@ let reportContextService = function () {
   };
 };
 
-export default reportContextService;
+export default ualReportService;

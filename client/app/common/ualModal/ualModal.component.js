@@ -1,6 +1,6 @@
-import template from './modal.html';
-import controller from './modal.controller';
-import './modal.scss';
+import template from './ualModal.html';
+import controller from './ualModal.controller';
+import './ualModal.scss';
 
 let modalComponent = {
   restrict: 'E',

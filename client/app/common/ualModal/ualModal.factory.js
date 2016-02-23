@@ -1,4 +1,4 @@
-let logoutModalService = function ($q, ModalService) {
+let ualModalService = function ($q, ModalService) {
   "ngInject";
   let _modal;
   
@@ -24,4 +24,4 @@ let logoutModalService = function ($q, ModalService) {
   return { open, close };
 };
 
-export default logoutModalService;
+export default ualModalService;

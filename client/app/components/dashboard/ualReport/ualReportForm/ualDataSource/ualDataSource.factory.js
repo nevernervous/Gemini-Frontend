@@ -2,11 +2,11 @@ import template from './ualDataSource.html';
 import controller from './ualDataSource.controller';
 import './ualDataSource.scss';
 
-let ualDataSourceService = function (modal) {
+let ualDataSourceService = function (ualModal) {
   "ngInject";
   
   let open = (options) => {    
-    return modal.open({
+    return ualModal.open({
       template: '<ual-modal class="-fullmodal">' + template + '</ual-modal>',
       controller: controller,
       controllerAs : 'vm'
