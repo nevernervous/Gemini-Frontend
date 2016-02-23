@@ -1,32 +1,27 @@
 @import '../../../../common/common';
 
-.ual-report-form {
+ual-report-form {
     @include gridle_container();
     min-width: 1280px;
     margin: 0 auto;
     padding: 0 10px;
-    margin-left: 50px;
-    margin-right: 50px;
 
-    .appName {
+    .header {
+        @include gridle (row row-align between);
         @include font-clanot-book(16);
-        font-weight: bold;
         color: #333333;
         margin-top: 34px;
     }
 
     .reportName {
-        @include font-clanot-book(20);
+        @include font-clanot-bold(20);
         color: #7c848a;
         padding: 0 0 15px 0;
-
-        > div {
-            margin-left: 10px;
-        }
     }
 
     .info {
         padding: 16px 0;
+        @include gridle (row row-align between);
 
         > div {
             margin-left: 10px;
@@ -45,15 +40,13 @@
             > a {
                 @include font-clanot-book(14);
             }
+
+            color: #7c848a;
         }
     }
 
     .separatorLine {
         border-bottom: 1px solid #d4d4d4;
-    }
-
-    > div {
-        @include gridle (row row-align between);
     }
 
     button {
@@ -75,6 +68,7 @@
 
     .report-tabs {
         height: 586px;
+        @include gridle (row row-align between);
 
         .tabOptions {
             border: 1px solid #e9e9e7;

@@ -8,6 +8,6 @@ let modalModule = angular.module('modal', [
 ])
 
 .factory('modal', modalFactory)
-.component('modal', modalComponent);
+.component('ualModal', modalComponent);
 
 export default modalModule;

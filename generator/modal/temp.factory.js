@@ -7,7 +7,7 @@ let <%= name %>Service = function (modal) {
   
   let open = (options) => {    
     return modal.open({
-      template: '<modal>' + template + '</modal>',
+      template: '<ual-modal>' + template + '</ual-modal>',
       controller: controller,
       controllerAs : 'vm'
     })

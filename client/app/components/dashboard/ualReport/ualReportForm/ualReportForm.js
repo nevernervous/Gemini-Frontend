@@ -1,7 +1,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ualReportFormComponent from './ualReportForm.component';
-import ualVariablesSelector from './ualVariablesSelector/ualVariablesSelector'
+import ualVariablesSelector from './ualVariablesSelector/ualVariablesSelector';
 
 let ualReportFormModule = angular.module('ualReportForm', [
   uiRouter,

@@ -12,46 +12,36 @@
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
-*:focus { 
-  outline: 0;
+*:focus {
+    outline: 0;
 }
 
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
 .app-view {
-  height: 100vh;
-  @include gridle( container );
-  @include font-clanot-news();
+    height: 100vh;
+    @include gridle( container );
+    @include font-clanot-news();
 }
 
 ng-outlet {
-  > div {
-    height: 100%;
-  }
+    > div {
+        height: 100%;
+    }
 }
 
 ul {
   list-style-type: none;
-}
-
-a {
-    @include font-clanot-news(16);
-    text-decoration: none;
-    color: #62a9e3;
-
-    &:hover {
-        color: #81c4ea;
-    }
 }
