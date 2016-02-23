@@ -55,9 +55,7 @@ ual-data-source {
         > button { 
             margin-left: 15px;
         }
-        > .apply { 
-            @include primary-btn(7px);
-            @include font-clanot-book(16);
+        > .-primary { 
             width: 131px;
         }
     }

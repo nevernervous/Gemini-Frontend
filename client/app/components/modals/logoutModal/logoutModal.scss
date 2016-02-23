@@ -1,0 +1,47 @@
+@import '../../../common/common';
+
+// LAYOUT 
+.logout-modal { 
+  @include gridle( col );
+	width: 582px;
+  z-index: 2000;
+  
+  > .top { 
+    @include gridle( row row-align right );
+    margin: 0 14px;
+    visibility: hidden;
+  }
+  > .description {
+    margin: 0 26px;
+  } 
+  > .buttons { 
+    @include gridle( row row-align right );
+    margin: 26px;
+  }
+}
+
+// VARIATIONS
+.logout-modal {
+  background: $primaryWhiteColor;
+  @include box-shadow(0, 6px, 15px, rgba(0, 0, 0, 0.3));
+  
+  > .top { 
+    font-size: 44px;
+    color: $primaryLightGreyColor;
+    > i {
+      cursor: pointer;
+    }
+  }
+  > .description { 
+    @include font-clanot-book(18);
+    color: $secondaryFontColor;
+  }
+  > .buttons {
+    > .ual-button { 
+      margin-left: 15px;
+    }
+    > .-primary { 
+      width: 131px;
+    }
+  }
+} 
