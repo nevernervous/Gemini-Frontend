@@ -1,16 +1,20 @@
 @import '../../../../common/common';
 
 ual-data-source-list { 
-    
-  @include gridle(adapt);
+  @include gridle(col col-align left);
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+        column-count: 3;
   .group-name{
-      @include gridle(12);
+      display: inline-block;
+      @include gridle(4);
       @include font-clanot-bold(20);
-      @include gridle(gutter 24px 0)
+      @include gridle(gutter 24px 0px)
   }
   .group-item{
-      @include gridle(12);
-      @include gridle(gutter 10px 0);
+      display: inline-block;
+      @include gridle(4);
+      @include gridle(gutter 10px 0px);
       @include font-clanot-book(18);
   }
 }  
