@@ -1,0 +1,18 @@
+@import '../../../../../common/common';
+
+//Layout
+ual-data-source-list { 
+    @include column-content(4);
+    .group-name{
+        @include font-clanot-bold(20);
+        @include gridle(gutter 24px 0px)
+    }
+    .group-item{
+        @include gridle(gutter 10px 0px);
+        @include font-clanot-book(18);
+    }
+}  
+
+
+//Variations
+

@@ -48,15 +48,12 @@ ual-data-source {
     height: 100%;
     > .content{
         height: 85%;
-        // overflow-y: auto;
+        overflow-y: auto;
     }
     
     > .buttons {
         > button { 
             margin-left: 15px;
-        }
-        > .-primary { 
-            width: 131px;
         }
     }
   }

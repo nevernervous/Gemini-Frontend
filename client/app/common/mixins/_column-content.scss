@@ -1,0 +1,6 @@
+@mixin column-content($columns: 3) {
+    display: block;
+    -webkit-column-count: $columns;
+    -moz-column-count: $columns;
+    column-count: $columns;
+}
