@@ -165,5 +165,4 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
-gulp.task('default', ['constants', 'serve']);
-gulp.task('mock', ['constants', 'api', 'serve']);
+gulp.task('default', ['constants', 'api', 'serve']);

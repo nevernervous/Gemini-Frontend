@@ -1,4 +1,4 @@
-let sessionInterceptor = function (Token) {
+let sessionInterceptor = function (Token, $rootScope) {
   "ngInject";
   let _token = Token;
   
@@ -13,8 +13,14 @@ let sessionInterceptor = function (Token) {
     _token.update();
     return response;
   }  
+  
+  let reponseError = (response) => {
+    if (response.status === 401) { 
+      $rootScope.$broadcast('SESSION.EXPIRED');
+    }
+  }
 
-  return { request, response };
+  return { request, response, reponseError };
 };
 
 export default sessionInterceptor;

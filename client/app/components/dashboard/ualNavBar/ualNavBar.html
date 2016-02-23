@@ -1,0 +1,18 @@
+<div class="navbar-header">
+  <i class="ion-navicon" ng-click="vm.toggleMenu()"></i>
+  <span class="title">Gemini</span> 
+</div>
+<ul class="navbar-options">
+  <li>
+    <img class="img-circle" ng-src="{{vm.user}}" >  
+    <ual-tooltip class="-dropdown">
+      <ual-menu>
+        <ual-menu-item class="-disabled">Settings</ual-menu-item>
+        <ual-menu-item class="-disabled">Help</ual-menu-item>
+        <ual-menu-item ng-click="vm.logout()">Logout</ual-menu-item>
+      </ual-menu>
+    </ual-tooltip>
+  </li> 
+</ul>    
+
+ 
