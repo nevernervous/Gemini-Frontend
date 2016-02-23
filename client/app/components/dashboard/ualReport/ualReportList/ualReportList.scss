@@ -1,8 +1,7 @@
 @import '../../../../common/common';
 
-.ual-report-list { 
-  @include gridle( row row-align right );
-    > button { 
-      margin: 30px;      
-    }
+ual-report-list {
+  .header { 
+    @include gridle( row row-align right );    
+  } 
 }  

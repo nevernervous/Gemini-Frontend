@@ -2,11 +2,11 @@ class UalReportFormController {
   /*@ngInject*/
   constructor(ualDataSource) {
     this.name = 'ualReportForm';
-    this._ualDataSourceModal = ualDataSource;
+    this._datasourcemodal = ualDataSource;
   }
   
-  openDataSourceModal(){
-      this._ualDataSourceModal.open();
+  $onInit() { 
+    this._datasourcemodal.open();
   }
   
   

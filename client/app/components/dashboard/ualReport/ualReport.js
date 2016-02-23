@@ -1,13 +1,13 @@
 import angular from 'angular';
-import ualReportList from './ualReportList/ualReportList';
-import ualReportForm from './ualReportForm/ualReportForm';
-import ualDataSource from './ualDataSource/ualDataSource';
+import ualReportService from './ualReport.service'
+import ualReportList from './ualReportList/ualReportList'
+import ualReportForm from './ualReportForm/ualReportForm'
 
 let ualReportModule = angular.module('ualReport', [
-    ualDataSource.name,
-    ualReportList.name,
-    ualReportForm.name
+  ualReportList.name,
+  ualReportForm.name
 ])
 
+.service('ualReport', ualReportService);
 export default ualReportModule;
 

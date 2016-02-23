@@ -1,6 +1,8 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import dashboardComponent from './dashboard.component';
+import LogoutModal from './logoutModal/logoutModal';
+import ExpirationModal from './expirationModal/expirationModal';
 import ualNavBar from './ualNavBar/ualNavBar';
 import ualMainMenu from './ualMainMenu/ualMainMenu';
 import ualReport from './ualReport/ualReport';
@@ -10,6 +12,9 @@ let dashboardModule = angular.module('dashboard', [
   // LAYOUT
   ualNavBar.name,
   ualMainMenu.name,
+  // MODALS
+  LogoutModal.name,
+  ExpirationModal.name,  
   // CONTENT
   ualReport.name  
 ])
