@@ -1,0 +1,6 @@
+    <div class="data-source-name" ng-show="vm.hasElements()">
+        {{vm.sourceItem.name}}
+    </div>
+    <div ng-repeat="item in vm.filteredElements = (vm.sourceItem.elements | filter: vm.searchFilter)" data-id="{{item.id}}" class="data-source-item" ng-class="{active: vm.isActive()}" ng-click="vm.activate()">
+        {{item.name}}
+    </div>

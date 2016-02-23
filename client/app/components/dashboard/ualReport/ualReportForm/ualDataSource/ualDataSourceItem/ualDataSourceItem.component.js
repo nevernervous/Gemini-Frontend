@@ -8,6 +8,9 @@ let ualDataSourceItemComponent = {
       searchFilter : "=?",
       sourceItem: "=?"
   },
+  require: {
+      dataSourceListCtrl: '^ualDataSourceList'
+  },
   template,
   controller,
   controllerAs: 'vm'

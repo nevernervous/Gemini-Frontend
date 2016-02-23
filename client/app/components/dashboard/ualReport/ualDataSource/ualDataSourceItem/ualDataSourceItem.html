@@ -1,6 +1,0 @@
-    <div class="data-source-name" ng-show="vm.hasElements()">
-        {{vm.sourceItem.name}}
-    </div>
-    <div ng-repeat-start="item in vm.filteredElements = (vm.sourceItem.elements | filter: vm.searchFilter)" data-id="{{item.id}}" class="data-source-item"  ng-repeat-end="">
-        {{item.name}}
-    </div>

@@ -189,6 +189,14 @@ class UalDataSourceListController {
             }
         ];
     }
+    
+    setActive(dataSource){
+        this.activeDataSource = dataSource;
+    }
+    
+    getActive(){
+        return this.activeDataSource;
+    }
 }
 
 export default UalDataSourceListController;
