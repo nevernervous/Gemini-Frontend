@@ -1,8 +1,3 @@
-<div ng-repeat="group in vm.groupList">
-    <div class="group-name">
-        {{group.name}}
-    </div>
-    <div ng-repeat-start="item in group.elements" data-id="{{item.id}}" class="group-item"  ng-repeat-end="">
-        {{item.name}}
-    </div>
+<div ng-repeat="item in vm.dataSourceList">
+    <ual-data-source-item search-filter="vm.searchFilter" source-item="item"></ual-data-source-item>
 </div>

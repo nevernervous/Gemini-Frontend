@@ -1,0 +1,12 @@
+@import '../../../../../common/common';
+
+ual-data-source-item {
+    .data-source-name{
+        @include font-clanot-bold(20);
+        @include gridle(gutter 24px 0px)
+    }
+    .data-source-item{
+        @include gridle(gutter 10px 0px);
+        @include font-clanot-book(18);
+    }
+}  

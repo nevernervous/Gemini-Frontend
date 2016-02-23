@@ -5,8 +5,8 @@ import './ualDataSourceList.scss';
 let ualDataSourceListComponent = {
   restrict: 'E',
   bindings: {
-      groupList : "=?",
-      searchFilter: "@"
+      dataSourceList : "=?",
+      searchFilter: "=?"
   },
   template,
   controller,

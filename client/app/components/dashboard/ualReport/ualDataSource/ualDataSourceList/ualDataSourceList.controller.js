@@ -2,7 +2,7 @@ class UalDataSourceListController {
     /*@ngInject*/
     constructor() {
         this.name = 'ualDataSourceList';
-        this.groupList = [
+        this.dataSourceList = [
             {
                 name: "Group 1",
                 elements: [

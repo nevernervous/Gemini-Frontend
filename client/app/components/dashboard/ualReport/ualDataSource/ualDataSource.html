@@ -8,7 +8,8 @@
             Select Data Source
         </div>
         <div class="content">
-            <ual-data-source-list></ual-data-source-list>
+            <input type="text" ng-model="vm.searchFilter">
+            <ual-data-source-list search-filter="vm.searchFilter"></ual-data-source-list>
 
         </div>
 
