@@ -4,91 +4,76 @@ ual-report-form {
     @include gridle_container();
     min-width: 1280px;
     margin: 0 auto;
-    padding: 0 10px;
+
+    .header, .reportName, .selectedParameters, .report-tabs, .report-tab-option {
+        @include gridle(row row-align between);
+    }
+
+    .reportName, .selectedParameters {
+        padding: 21px 0;
+    }
 
     .header {
-        @include gridle (row row-align between);
-        @include font-clanot-book(16);
-        color: #333333;
         margin-top: 34px;
+
+        .title {
+            @include font-clanot-bold(20);
+            color: $color06;
+        }
     }
 
     .reportName {
-        @include font-clanot-bold(20);
-        color: #7c848a;
-        padding: 0 0 15px 0;
+
+        .title {
+            @include font-clanot-book(20);
+            color: $color07;
+        }
     }
 
-    .info {
-        padding: 16px 0;
-        @include gridle (row row-align between);
+    .selectedParameters {
 
-        > div {
-            margin-left: 10px;
+        .title {
+            @include font-clanot-book(16);
+            color: $color07;
+        }
 
-            > span {
-                @include font-clanot-book(16);
-                color: #7c848a;
-            }
+        .section {
+            @include font-clanot-bold(16);
+            color: $color06;
+        }
 
-            > b {
-                @include font-clanot-bold(16);
-                color: #333333;
-                font-weight: normal;
-            }
-
-            > a {
-                @include font-clanot-book(14);
-            }
-
-            color: #7c848a;
+        .action{
+            @include link();
         }
     }
 
     .separatorLine {
-        border-bottom: 1px solid #d4d4d4;
-    }
-
-    button {
-        margin: 30px; //TODO: Revisar si se deja 30 o 27?
-        width: 160px;
-        @include secondary-btn(7px 19px);
-        @include font-clanot-book(16);
-    }
-
-    .slicers {
-        display: none;
-
-        > div {
-            border: 1px solid #e9e9e7;
-            width: 16%;
-            height: 400px;
-        }
+        border-bottom: 1px solid $color08;
     }
 
     .report-tabs {
         height: 586px;
-        @include gridle (row row-align between);
 
-        .tabOptions {
-            border: 1px solid #e9e9e7;
-            @include gridle (row row-align between);
+        .report-tab-option {
+            border: 1px solid $color07;
 
             &.left {
                 width: 60%;
-                border-right: 1px solid #e9e9e7;
+                border-right: 1px solid $color07;
 
                 .tabSelector {
                     width: 30%;
-                    background-color: #e9e9e7;
+                    background-color: $color09;
 
                     .tabOption {
                         padding: 15px;
                         height: 45px;
+                        cursor: pointer;
 
                         &.active {
-                            border-left: 5px solid #62a9e3;
-                            background-color: white;
+                            border-left: 5px solid $color03;
+                            background-color: $color00;
+                            cursor: default;
                         }
                     }
                 }
@@ -100,9 +85,10 @@ ual-report-form {
             }
 
             &.right {
+                display: none;
                 margin-left: 10px;
                 width: 40%;
-                border-left: 1px solid #e9e9e7;
+                border-left: 1px solid $color07;
 
                 .tabSelectedVariables {
                     padding: 15px;

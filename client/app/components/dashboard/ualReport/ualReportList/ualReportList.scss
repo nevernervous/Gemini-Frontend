@@ -3,8 +3,6 @@
 .ual-report-list { 
   @include gridle( row row-align right );
     > button { 
-      margin: 30px;
-      @include terciary-btn(7px 19px);
-      @include font-clanot-book(16);      
+      margin: 30px;      
     }
 } 

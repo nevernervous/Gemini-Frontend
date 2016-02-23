@@ -11,6 +11,7 @@
 
 // VARIANTS
 .login-form-submit { 
+  @include button-primary(14px);
   @include font-clanot-news(18);
   > span { 
     display: block;
@@ -21,16 +22,15 @@
   }
 }
 // VARIANTS / PRIMARY
-.-primary > .login-form-submit { 
-  @include primary-btn();
-}  
 // VARIANTS / LOADING
 .-loading > .login-form-submit {
-  background: $disabledButtonColor;
+  background: #99a7b4;
+  color: #c2ccd3;
   > .icon-spinner { 
     display: block;
   } 
   &:hover { 
-    background: $disabledButtonColor;
+    background: #99a7b4;
+    color: #c2ccd3;
   }   
 }

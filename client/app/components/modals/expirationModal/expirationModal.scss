@@ -45,16 +45,8 @@
     }
   }  
   > .buttons {
-    > button { 
+    > .ual-button { 
       margin-left: 15px;
-    }
-    > .cancel { 
-      @include none-btn(7px);
-      @include font-clanot-book(16);
-    }
-    > .yes { 
-      @include primary-btn(7px 19px);
-      @include font-clanot-book(16);
     }
   }  
 } 
