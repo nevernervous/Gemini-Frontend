@@ -1,9 +1,11 @@
 import angular from 'angular';
 import ualVariablesComponent from './ualVariables.component';
-import ualTabContainer from './ualTabContainer/ualTabContainer';
+import ualTabs from './ualTabs/ualTabs';
+import ualTab from './ualTab/ualTab';
 
 let ualVariablesModule = angular.module('ualVariables', [
-    ualTabContainer.name
+ualTabs.name, 
+ualTab.name
 ])
 
 .component('ualVariables', ualVariablesComponent);

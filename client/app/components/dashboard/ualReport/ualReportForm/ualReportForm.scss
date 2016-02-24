@@ -2,7 +2,6 @@
 
 ual-report-form {
     @include gridle_container();
-    min-width: 1280px;
     margin: 0 auto;
 
     .header, .reportName, .selectedParameters, .report-tabs, .report-tab-option {

@@ -1,13 +1,16 @@
-import {onInit} from 'angular/angular';
-
 class UalTabController {
     /*@ngInject*/
     constructor() {
-        this.setValues();
+        //console.log("child tab");
+        //this.setValues(this);
     }
         
-    setValues(){
-        this.tabsCtrl.addTab(this);
+    setValues(tab){
+        this.ualTabs.add(tab);
+    }
+
+    $onInit(){
+        //this.tabs.add(tab);
     }
 }
 

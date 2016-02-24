@@ -1,8 +1,8 @@
 import angular from 'angular';
-import ualTabComponent from './ualTab.component';
+import ualTabDirective from './ualTab.directive';
 
 let ualTabModule = angular.module('ualTab', [])
 
-.component('ualTab', ualTabComponent);
+.directive('ualTab', () => new ualTabDirective());
 
 export default ualTabModule;

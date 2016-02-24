@@ -1,0 +1,8 @@
+@import '../../../../../../common/common';
+
+ual-tabs {
+    @include gridle(row row-align between);
+    border: 1px solid $color07;
+    background-color: $color09;
+    width: 60%;
+}

@@ -7,6 +7,7 @@ import Components from './components/components';
 import Services from './services/services';
 import Filters from './filters/filters';
 import Constants from './app.constants';
+import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
 
 //window.$ = window.jQuery = jQuery;
@@ -23,17 +24,21 @@ angular.module('app', [
   Filters.name
 ])
 
-.config(($stateProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS) => {
+.config(($stateProvider, $httpProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS, Properties) => {
   "ngInject";
-
   $urlRouterProvider.otherwise('/login');
 
+  // LOAD SETTINGS
   let parameters = {};
   SETTINGS.parameters.forEach( item => {
     parameters[item.name] = item.value;
   });
   ConfigurationProvider.load(parameters);
   
+  // SETUP FALLBACK
+  if ( Properties.fallback ) { 
+    $httpProvider.interceptors.push(Interceptor);
+  }
 })
 
 .component('app', AppComponent)

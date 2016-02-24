@@ -1,0 +1,10 @@
+<div class="title">
+  Your session is about to expire!
+</div>  
+<div class="description">
+  You will be logged out in <strong>{{ vm.remaining() | secondstotime }}</strong> minutes. Do you want to stay signed in?
+</div>
+<div class="buttons">  
+  <ual-button class="-link"  ng-click="vm.no()">No, sign me out</ual-button>
+  <ual-button class="-primary"  ng-click="vm.yes()">Yes, keep me signed in</button>
+</div>  

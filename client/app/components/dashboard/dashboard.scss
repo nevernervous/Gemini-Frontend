@@ -14,7 +14,7 @@ dashboard > .dashboard-container {
   width: 100%;
   > .dashboard-view { 
     width: 100%;
-    margin-left: 50px;
+    @include gridle( gutter 60px 100px );
   }
 }
 
