@@ -1,4 +1,4 @@
-<ual-menu>
+<ual-menu ng-click="vm.toggle()">
   <ual-menu-item icon="ion-speedometer" class="-disabled">
     <i class="ion-speedometer"></i>Dashboard
   </ual-menu-item>
@@ -11,7 +11,7 @@
   <ual-menu-item class="-disabled">
     <i class="ion-android-plane"></i>Space Planning
   </ual-menu-item>
-  <ual-menu-item ng-click="vm.toggle()">
+  <ual-menu-item  ui-sref="dashboard.report-list">
     <i class="ion-ios-pie-outline"></i>Reports
   </ual-menu-item>
   <ual-menu-item class="-disabled">

@@ -3,7 +3,9 @@ let datasourceService = function (Properties, $http) {
   const endpoint = Properties.endpoint + '/datasources';
   
   let all = () => {
-    return $http.get(endpoint);  
+    return $http.get(endpoint, {
+      cache: true
+    });  
   }
   
   return {
