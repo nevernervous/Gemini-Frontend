@@ -1,7 +1,8 @@
 class UalMainMenuController {
   /*@ngInject*/
-  constructor() {
+  constructor(ualMainMenu) {
     this.name = 'ualMainMenu';
+    this.toggle = ualMainMenu.toggle;
   }
 }
 

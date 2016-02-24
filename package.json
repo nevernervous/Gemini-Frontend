@@ -58,7 +58,7 @@
   },
   "scripts": {
     "test": "karma start",
-    "mock":  "gulp --env=mock",
+    "mock": "gulp --env=mock",
     "local": "gulp --env=local",
     "vagrant": "gulp --env=vagrant"
   },
