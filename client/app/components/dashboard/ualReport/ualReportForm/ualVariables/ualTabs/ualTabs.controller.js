@@ -10,7 +10,6 @@ class UalTabsController {
     };
 
     selectTab(index) {
-        //console.log("index: " + index);
         this.tabs[this.selectedTab].selected = false;
         this.tabs[index].selected = true;
         this.selectedTab = index;

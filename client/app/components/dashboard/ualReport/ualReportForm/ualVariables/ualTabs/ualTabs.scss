@@ -5,4 +5,40 @@ ual-tabs {
     border: 1px solid $color07;
     background-color: $color09;
     width: 60%;
+    
+    .active {
+        color: $color06;
+        border-left: 5px solid $color03;
+        background-color: $color00 !important;
+    }
+   
+    .tabs-list {
+        width: 30%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .tabs-list li {
+        /*float: left;*/
+        background-color: $color09;
+        color: $color06;
+        height: 45px;
+        border-bottom: 1px solid $color08;
+    }
+
+    .tabs-list li a {
+        color: $color06;
+        display: block;
+        text-decoration: none;
+        padding: 12px 20px;
+    }
+
+    .tabs-content {
+        padding: 0 20px;
+        width: 70%;
+        background-color: $color00;
+    }
+
 }

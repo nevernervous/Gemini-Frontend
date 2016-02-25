@@ -2,46 +2,44 @@
 
 ual-report-form {
     @include gridle_container();
-    margin: 0 auto;
-
-    .header, .reportName, .selectedParameters, .report-tabs, .report-tab-option {
-        @include gridle(row row-align between);
-    }
 
     .reportName, .selectedParameters {
         padding: 21px 0;
     }
 
     .header {
+        @include gridle(row row-align between);
         margin-top: 34px;
 
-        .title {
+        >.title {
             @include font-clanot-bold(20);
             color: $color06;
         }
     }
 
     .reportName {
+        @include gridle(row row-align between);
 
-        .title {
+        >.title {
             @include font-clanot-book(20);
             color: $color07;
         }
     }
 
     .selectedParameters {
+        @include gridle(row row-align between);
 
-        .title {
+        >.title {
             @include font-clanot-book(16);
             color: $color07;
         }
 
-        .section {
+        >.selectedValue {
             @include font-clanot-bold(16);
             color: $color06;
         }
 
-        .action{
+        >.action{
             @include link();
         }
     }
@@ -50,49 +48,4 @@ ual-report-form {
         border-bottom: 1px solid $color08;
     }
 
-    .report-tabs {
-        height: 586px;
-
-        .report-tab-option {
-            border: 1px solid $color07;
-
-            &.left {
-                width: 60%;
-                border-right: 1px solid $color07;
-
-                .tabSelector {
-                    width: 30%;
-                    background-color: $color09;
-
-                    .tabOption {
-                        padding: 15px;
-                        height: 45px;
-                        cursor: pointer;
-
-                        &.active {
-                            border-left: 5px solid $color03;
-                            background-color: $color00;
-                            cursor: default;
-                        }
-                    }
-                }
-
-                .tabVariables {
-                    width: 70%;
-                    padding: 15px;
-                }
-            }
-
-            &.right {
-                display: none;
-                margin-left: 10px;
-                width: 40%;
-                border-left: 1px solid $color07;
-
-                .tabSelectedVariables {
-                    padding: 15px;
-                }
-            }
-        }
-    }
 }

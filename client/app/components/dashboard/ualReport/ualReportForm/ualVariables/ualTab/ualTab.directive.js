@@ -1,26 +1,30 @@
 import template from './ualTab.html';
-import controller from './ualTab.controller';
+import controller from './ualTab.controller'
 import './ualTab.scss';
 
 class ualTabDirective {
     /*@ngInject*/
     constructor() {
         this.restrict = 'E';
+        this.scope = {};
         this.transclude = true;
         this.template = template;
-        this.scope =  {
-            label: '@'
-        };
         this.require = '^ualTabs';
         this.controllerAs = 'vm';
+        this.controller = controller;
+        this.bindings = {
+            title: '@',
+            selected: '@'
+        };
     }
 
-    link(scope, $element, $attrs, $ctrl) {
+    link(scope, element, attrs, ctrl) {
         scope.tab = {
-            label: scope.label,
+            title: attrs.title,
             selected: false
         };
-        $ctrl.addTab(scope.tab);
+
+        ctrl.addTab(scope.tab);
     }
 }
 

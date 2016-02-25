@@ -13,10 +13,9 @@ class ualTabsDirective {
         this.controllerAs = 'vm';
     }
     
-    link(scope, element, $attrs, $ctrl) {
-
+    link(scope, element, attrs, ctrl) {
         // set the first tab to show first
-        $ctrl.selectTab($attrs.active || 0);
+        ctrl.selectTab(attrs.active || 0);
     }
 
 }
