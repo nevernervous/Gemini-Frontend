@@ -2,14 +2,15 @@ import template from './<%= name %>.html';
 import controller from './<%= name %>.controller';
 import './<%= name %>.scss';
 
-let <%= name %>Service = function (modal) {
+let <%= name %>Service = function (ualModal) {
   "ngInject";
   
-  let open = (options) => {    
-    return modal.open({
+  let open = (inputs) => {    
+    return ualModal.open({
       template: '<ual-modal>' + template + '</ual-modal>',
       controller: controller,
-      controllerAs : 'vm'
+      controllerAs : 'vm',
+      inputs: inputs
     })
   }
 

@@ -1,6 +1,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ualDataSource from './ualDataSource/ualDataSource';
+import ualVariables from './ualVariables/ualVariables';
 import ualReportFormComponent from './ualReportForm.component';
 import ualVariables from './ualVariables/ualVariables';
 
@@ -8,7 +9,8 @@ let ualReportFormModule = angular.module('ualReportForm', [
   uiRouter,
   ualVariables.name,
   // MODALS
-  ualDataSource.name
+  ualDataSource.name,
+  ualVariables.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {

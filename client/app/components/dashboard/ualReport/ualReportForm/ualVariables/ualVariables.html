@@ -1,12 +1,9 @@
-<ual-tabs>
-    <ual-tab title="Standard Variables">
-        <h4>Choose Variables</h4>
-        <p>Lorem ipsum dolor sit amet</p>
-    </ual-tab>
-    <ual-tab title="Custom Variables">
-        <h4>Custom Variables</h4>
-    </ual-tab>
-</ual-tabs>
-<div class="selectedVariables">
-    <h4>Selected Variables (0)</h4>
+<div class="top">
+  <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
+</div>
+<div class="container">
+
+</div>
+<div class="buttons">
+  <ual-button class="-primary" ng-disabled="vm.selecteds | isEmpty" ng-click="vm.apply()">Apply</ual-button>
 </div>

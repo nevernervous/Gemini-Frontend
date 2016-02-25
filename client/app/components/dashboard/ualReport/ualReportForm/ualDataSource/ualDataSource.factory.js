@@ -2,12 +2,13 @@ import template from './ualDataSource.html';
 import controller from './ualDataSource.controller';
 import './ualDataSource.scss';
 
-let ualDataSourceService = function (ualModal, DataSource) {
+let ualDataSourceService = function (ualModal, DataSource, ualDataSourceChangeModal) {
   "ngInject";
   
   let open = (inputs) => {    
     // DI
     inputs.DataSource = DataSource;
+    inputs.ualDataSourceChangeModal = ualDataSourceChangeModal;
     
     // OPEN
     return ualModal.open({

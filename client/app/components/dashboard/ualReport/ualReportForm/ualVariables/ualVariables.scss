@@ -1,12 +1,15 @@
 @import '../../../../../common/common';
 
-ual-variables {
-    @include gridle(row row-align between);
-    height: 586px;
-
-    .selectedVariables {
-        border: 1px solid $color07;
-        width: 39%;
-        padding: 0 20px;
-    }
+// LAYOUT 
+.ual-variables { 
 }
+
+// VARIATIONS
+.ual-variables > ng-transclude {
+  > .top { 
+    font-size: 68px;
+    margin: -10px 10px;    
+    color: rgba($color06, 0.5);  
+    cursor: pointer;
+  }
+} 
