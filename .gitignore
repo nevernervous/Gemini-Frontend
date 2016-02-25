@@ -9,3 +9,4 @@ reports/
 .vagrant/
 .vs
 *.sln 
+/gemini.sln
