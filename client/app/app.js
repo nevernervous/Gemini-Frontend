@@ -32,7 +32,7 @@ angular.module('app', [
 
   // LOAD SETTINGS
   let parameters = {};
-  SETTINGS.parameters.forEach( item => {
+  SETTINGS.data.forEach( item => {
     parameters[item.name] = item.value;
   });
   ConfigurationProvider.load(parameters);
