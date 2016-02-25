@@ -1,6 +1,10 @@
-@mixin column-content($columns: 3) {
+@mixin column-content($columns: 3, $width: 200px) {
     display: block;
     -webkit-column-count: $columns;
     -moz-column-count: $columns;
     column-count: $columns;
+    
+    -webkit-column-width: $width;
+    -moz-column-width: $width;
+    column-width: $width;
 }

@@ -1,21 +1,16 @@
 class UalDataSourceItemController {
   /*@ngInject*/
   constructor() {
-      this.filteredElements = [];
-  }
-  hasElements(){
-      return !!this.filteredElements &&  this.filteredElements.length > 0;
   }
   
-  isActive(){
-      let activeDataSource = this.dataSourceListCtrl.getActive();
-      if(!activeDataSource){
+  isActive(currentDataSource){
+      if(!this.datasourceActive){
          return false; 
       }
-      return activeDataSource.id === this.sourceItem.id;
+      return this.datasourceActive.id === currentDataSource.id;
   }
-  activate(){
-      this.dataSourceListCtrl.setActive(this.sourceItem);
+  activate(selectedDataSource){
+      this.datasourceActive = selectedDataSource;
   }
   
 }

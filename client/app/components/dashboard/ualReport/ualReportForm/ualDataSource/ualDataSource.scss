@@ -12,7 +12,7 @@ ual-data-source {
     @include gridle(gutter 22px 100px);
     > .title{
         @include font-clanot-bold(20);
-        @include gridle(gutter 5px 0px);
+        @include gridle(gutter 5px 15px);
     }
     
     > .buttons { 

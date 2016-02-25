@@ -5,11 +5,8 @@ import './ualDataSourceItem.scss';
 let ualDataSourceItemComponent = {
   restrict: 'E',
   bindings: {
-      searchFilter : "=?",
-      sourceItem: "=?"
-  },
-  require: {
-      dataSourceListCtrl: '^ualDataSourceList'
+      datasourceItem: "=?",
+      datasourceActive: '=?'
   },
   template,
   controller,

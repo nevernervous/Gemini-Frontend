@@ -1,12 +1,27 @@
 @import '../../../../../../common/common';
 
+//Layout
 ual-data-source-item {
-    .data-source-name{
+    .data-source-group-name{
         @include font-clanot-bold(20);
-        @include gridle(gutter 24px 0px)
+        @include gridle(gutter 24px 15px);
     }
-    .data-source-item{
+    .data-source-group-element{
         @include gridle(gutter 10px 0px);
         @include font-clanot-book(18);
+        > span{
+            @include gridle(gutter 15px 15px)
+        }
     }
 }  
+
+
+//Variations
+ual-data-source-item {
+    .data-source-group-element.active{
+        > span{
+            background-color: $backgroundHighColor;
+            color: $primaryWhiteColor;
+        }
+    }
+}
