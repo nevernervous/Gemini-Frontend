@@ -2,7 +2,7 @@ module.exports = {
   '/api/settings': {
     GET: {
       data: {
-        "parameters":[
+        "data":[
           {
             "name":"session.timeout",
             "value":"45"

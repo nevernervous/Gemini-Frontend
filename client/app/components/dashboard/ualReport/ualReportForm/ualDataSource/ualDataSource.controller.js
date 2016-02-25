@@ -1,8 +1,9 @@
 class UalDataSourceController {
   /*@ngInject*/
-  constructor(close, DataSource, selected) {
+  constructor(close, DataSource, selected, ualDataSourceChangeModal) {
     this._close = close;
     this._datasource = DataSource;
+    this._changemodal = ualDataSourceChangeModal;
     this._selected = selected;
     
     this.datasources = []; 
@@ -11,7 +12,13 @@ class UalDataSourceController {
   }
   
   apply() {
-    this._close(this.selected);
+    if (this._selected && (this._selected !== this.selected) ) { 
+      this._changemodal.open({oldDataSource: this._selected, newDataSource: this.selected})
+      .then(response => response && this._close(this.selected) );
+    } else {
+      this._close(this.selected);  
+    }
+    
   }
   cancel() {
     this._close(this._selected);
