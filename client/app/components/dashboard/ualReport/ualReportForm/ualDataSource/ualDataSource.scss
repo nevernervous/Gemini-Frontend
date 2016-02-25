@@ -14,7 +14,14 @@
     cursor: pointer;
   }
   
-  >.container > div {
-    height: 100%;
-  }
+    >.container {
+        > .title{
+            @include font-clanot-bold(20);
+            @include gridle(gutter 10px 15px);
+        }
+        > .content-list {
+            height: 100%;
+            overflow-x: auto;
+        }
+    }
 } 

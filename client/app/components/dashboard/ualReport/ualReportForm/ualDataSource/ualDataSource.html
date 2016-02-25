@@ -1,11 +1,14 @@
 <div class="top">
-  <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
+    <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
 </div>
 <div class="container">
-  <div ng-if="!vm.datasources">Loading ...</div>
-  <div ng-if="vm.datasources">
-                  <ual-data-source-list datasource-list="vm.datasources" datasource-active="vm.selected"></ual-data-source-list>
-  </div>
+    <div class="title">
+            Select Data Source 
+    </div>
+    <div class="content-list" ng-if="!vm.datasources">Loading ...</div>
+    <div class="content-list" ng-if="vm.datasources">
+        <ual-data-source-list datasource-list="vm.datasources" datasource-active="vm.selected"></ual-data-source-list>
+    </div>
 </div>
 <div class="buttons">
     <ual-button class="-primary" ng-disabled="!vm.selected" ng-click="vm.apply()">Apply</ual-button>
