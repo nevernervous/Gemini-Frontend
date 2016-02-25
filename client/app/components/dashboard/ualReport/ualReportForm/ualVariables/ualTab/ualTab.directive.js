@@ -1,5 +1,4 @@
 import template from './ualTab.html';
-import controller from './ualTab.controller'
 import './ualTab.scss';
 
 class ualTabDirective {
@@ -11,7 +10,6 @@ class ualTabDirective {
         this.template = template;
         this.require = '^ualTabs';
         this.controllerAs = 'vm';
-        this.controller = controller;
         this.bindings = {
             title: '@',
             selected: '@'
