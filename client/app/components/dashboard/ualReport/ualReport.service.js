@@ -10,16 +10,13 @@ let ualReportService = function () {
   }
   
   let getDataSource = () => datasource;
-  let setDataSource = value => datasource = value;
-  
-  let pushVariable = value => variables.push(value);
-  let pullVariable = value => { 
-    let index = variables.indexOf(value);
-    if (index > -1) { 
-      variables.splice(index, 1);
-    }
+  let setDataSource = value => {
+    variables = []; 
+    datasource = value;
   }
+  
   let getVariables = () => variables;
+  let setVariables = value => variables = value;  
   
   return {
     create,
@@ -28,9 +25,8 @@ let ualReportService = function () {
       set: setDataSource
     },
     variables: {
-      push: pushVariable,
-      pull: pullVariable,
-      get: getVariables
+      get: getVariables,
+      set: setVariables      
     }
   };
 };
