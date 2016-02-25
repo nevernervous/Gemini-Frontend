@@ -9,7 +9,8 @@ import Filters from './filters/filters';
 import Constants from './app.constants';
 import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
-import AngularFilter from 'angular-filter';
+import 'angular-filter';
+import 'lodash';
 
 //window.$ = window.jQuery = jQuery;
 

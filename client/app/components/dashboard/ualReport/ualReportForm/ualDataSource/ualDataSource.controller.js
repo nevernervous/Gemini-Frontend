@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 class UalDataSourceController {
     /*@ngInject*/
     constructor(close, DataSource, selected, ualDataSourceChangeModal) {
@@ -46,7 +44,10 @@ class UalDataSourceController {
 
     _initialize() {
         this._datasource.all()
-            .then(response => this.datasources = response.data);
+            .then(response => {
+                this.datasources = response.data
+                this.datasourceGroups = _.chain(this.datasources).map("group").uniq("groupId");
+            });
     }
 }
 
