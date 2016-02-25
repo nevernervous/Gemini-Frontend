@@ -11,8 +11,10 @@ let ualReportService = function () {
   
   let getDataSource = () => datasource;
   let setDataSource = value => {
-    variables = []; 
-    datasource = value;
+    if ( datasource !== value ) { 
+      variables = []; 
+      datasource = value;  
+    }
   }
   
   let getVariables = () => variables;
