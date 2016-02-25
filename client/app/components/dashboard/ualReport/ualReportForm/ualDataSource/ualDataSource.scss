@@ -2,25 +2,6 @@
 
 // LAYOUT 
 .ual-data-source { 
-  // @include gridle( col );
-  
-  // > .top { 
-  //   @include gridle( row row-align right );      
-    
-  // }
-  // > .container{
-  //   @include gridle(gutter 22px 100px);
-  //   > .title{
-  //       @include font-clanot-bold(20);
-  //       @include gridle(gutter 5px 0px);
-  //   }
-    
-  //   > .buttons { 
-  //       @include gridle( row row-align right );
-  //       margin: 17px;
-  //   }
-    
-  // }
 }
 
 // VARIATIONS
@@ -31,39 +12,4 @@
     color: rgba($color06, 0.5);  
     cursor: pointer;
   }
-  // background: $primaryWhiteColor;
-  // overflow: hidden;
-  // z-index: 2000;
-  // display: block;
-  // @include box-shadow(0, 6px, 15px, rgba(0, 0, 0, 0.3));
-  
-  // > .top { 
-  //   position: fixed;
-  //   top:0;
-  //   left: 0;
-  //   width: 100%;
-  //   margin: -11px -18px;  
-  //   font-size: 65px;
-  //   color: $primaryLightGreyColor;
-  //   > i {
-  //     cursor: pointer;
-  //   }
-  // }
-  
-  // >.container{
-  //   height: 100%;
-  //   > .content{
-  //       height: 85%;
-  //       overflow-y: auto;
-  //   }
-    
-  //   > .buttons {
-  //       > button { 
-  //           margin-left: 15px;
-  //       }
-  //       > .-primary { 
-  //           width: 131px;
-  //       }
-  //   }
-  // }
 } 
