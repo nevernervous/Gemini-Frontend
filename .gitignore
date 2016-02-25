@@ -8,4 +8,4 @@ dist/
 reports/
 .vagrant/
 .vs
-*.sln
+*.sln"FILE_NAME" 
