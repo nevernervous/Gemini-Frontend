@@ -7,21 +7,26 @@
 
 // VARIATIONS
 .ual-data-source > ng-transclude {
-  > .top { 
-    font-size: 68px;
-    margin: -10px 10px;    
-    color: rgba($color06, 0.5);  
-    cursor: pointer;
-  }
-  
-    >.container {
+    > .top { 
+        font-size: 68px;
+        margin: -10px 10px;    
+        color: rgba($color06, 0.5);  
+        cursor: pointer;
+    }
+    
+    >.container { 
         > .title{
             @include font-clanot-bold(20);
-            @include gridle(gutter 10px 15px);
-        }
+            padding: 10px 15px;
+        } 
         > .content-list {
             height: 100%;
             overflow-x: auto;
+            > .data-source-list {
+                @include gridle(gutter 30px 15px);
+                @include column-content(4);
+                height: 88%;
+            }
         }
     }
 } 

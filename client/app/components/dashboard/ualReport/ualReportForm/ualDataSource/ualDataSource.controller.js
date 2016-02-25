@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 class UalDataSourceController {
     /*@ngInject*/
     constructor(close, DataSource, selected) {
@@ -7,34 +9,35 @@ class UalDataSourceController {
         this._selected = selected;
 
         this.datasources = [];
+        this.datasourceGroups = [];
         this.selected = selected;
         this._initialize();
     }
 
     _initialize() {
         this._datasource.all()
-            .then(response => this.datasources = this.createDataSourceList(response.data));
+            .then(response => {
+                this.datasources = response.data
+                this.datasourceGroups = _.chain(this.datasources).map("group").uniq("groupId");
+            });
     }
-
-    createDataSourceList(dataSources) {
-        return _.chain(dataSources)
-            .groupBy((item) => {
-                return item.group.groupId;
-            })
-            .pairs()
-            .map((currentItem) => {
-                var group = _.object(_.zip(["groupId", "groupElements"], currentItem));
-
-                group.groupName = _.chain(group.groupElements).map("group.groupName").first().value();
-                group.groupElements = _.map(group.groupElements, (item) => {
-                    return _.omit(item, ["group"])
-                });
-
-                return group;
-            })
-            .value();
-
-    };
+    
+    getGroupById(groupId){
+        groupId = parseInt(groupId);
+        return this.datasourceGroups.find({ groupId }).value();
+    }
+    
+    isActive(itemId){
+        if(!this.selected){
+            return false;
+        }
+        
+        return this.selected.id === itemId;
+    }
+    
+    toogleSelected(item){
+        this.selected = this.isActive(item.id) ? null : item;
+    }
 
 
     close() {

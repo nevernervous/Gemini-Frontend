@@ -1,12 +1,10 @@
 import angular from 'angular';
 import ualDataSourceFactory from './ualDataSource.factory';
-import ualDataSourceList from './ualDataSourceList/ualDataSourceList';
-import lodash from 'lodash';
+import ualDataSourceGroup from './ualDataSourceGroup/ualDataSourceGroup';
 
 let ualDataSourceModule = angular.module('ualDataSource', [
-    ualDataSourceList.name
+    ualDataSourceGroup.name
 ])
-.service("lodash", () => lodash)
 .factory('ualDataSource', ualDataSourceFactory);
 
 export default ualDataSourceModule;

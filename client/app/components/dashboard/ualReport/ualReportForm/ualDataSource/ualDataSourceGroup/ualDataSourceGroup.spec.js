@@ -1,23 +1,23 @@
-import UalDataSourceListModule from './ualDataSourceList'
-import UalDataSourceListController from './ualDataSourceList.controller';
-import UalDataSourceListComponent from './ualDataSourceList.component';
-import UalDataSourceListTemplate from './ualDataSourceList.html';
+import UalDataSourceGroupModule from './ualDataSourceGroup'
+import UalDataSourceGroupController from './ualDataSourceGroup.controller';
+import UalDataSourceGroupComponent from './ualDataSourceGroup.component';
+import UalDataSourceGroupTemplate from './ualDataSourceGroup.html';
 
-describe('UalDataSourceList', () => {
+describe('UalDataSourceGroup', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalDataSourceListModule.name));
+  beforeEach(window.module(UalDataSourceGroupModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalDataSourceListController();
+      return new UalDataSourceGroupController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalDataSourceListModule).to.have.property('name');
+      expect(UalDataSourceGroupModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalDataSourceList', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-data-source-list/>').html(UalDataSourceListTemplate);
+    const template = $('<ual-data-source-group/>').html(UalDataSourceGroupTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalDataSourceList', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalDataSourceListComponent;
+      let component = UalDataSourceGroupComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalDataSourceListTemplate);
+        expect(component.template).to.equal(UalDataSourceGroupTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalDataSourceList', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalDataSourceListController);
+        expect(component.controller).to.equal(UalDataSourceGroupController);
       });
   });
 });

@@ -5,10 +5,10 @@ import './ualDataSourceItem.scss';
 let ualDataSourceItemComponent = {
   restrict: 'E',
   bindings: {
-      datasourceItem: "=?",
-      datasourceActive: '=?'
+      datasourceItem: "="
   },
   template,
+  transclude: true,
   controller,
   controllerAs: 'vm'
 };

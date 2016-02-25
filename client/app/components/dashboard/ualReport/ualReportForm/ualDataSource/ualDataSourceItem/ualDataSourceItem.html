@@ -1,11 +1,3 @@
-<div class="data-source-group-name">
-    {{vm.datasourceItem.groupName}}
-</div>
-<div ng-repeat="item in vm.datasourceItem.groupElements" 
-     class="data-source-group-element" 
-     ng-class="{active: vm.isActive(item)}"
-     ng-click="vm.activate(item)">
-    <span>
-        {{item.name}}
-    </span>
-</div>
+<span>
+    {{vm.datasourceItem.name}}
+</span>
