@@ -29,6 +29,10 @@ class UalDataSourceController {
         groupId = parseInt(groupId);
         return this.datasourceGroups.find({ groupId }).value();
     }
+    
+    orderGroups(item){
+        return  _.chain(item).map('group.order').first().value();
+    }
 
     isActive(itemId) {
         if (!this.selected) {
