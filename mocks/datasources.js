@@ -1,5 +1,5 @@
 module.exports = {
-  '/api/datasources': {
+  '/api/DataSource': {
     GET: {
       data: [
       {
@@ -215,5 +215,37 @@ module.exports = {
       ],
       code: 200
     }
-  }
+  },
+  '/api/DataSource/1/ColumnGroups': {
+    GET: {
+      "data": [
+        {
+          "groupId": 1,
+          "groupName": "Column Group Name",
+          "groupUrl": "/api/Datasources/1/ColumnGroups/1"
+        }
+      ]
+    }
+  },
+  '/api/DataSource/1/ColumnGroups/1': {
+    GET: {
+      "data": [
+        {
+          "id": 1,
+          "name": "Variable name",
+          "order": 1,
+          "type": "Type",
+          "description": "Variable Description",
+          "dataSource": {
+            "dataSourceId": 1,
+            "dataSourceName": "Data Source Name"
+          },
+          "group": {
+            "groupId": 1,
+            "groupName": "Group Name"
+          }
+        }
+      ]
+    }
+  }   
 };

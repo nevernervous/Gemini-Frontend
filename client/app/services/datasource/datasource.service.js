@@ -1,6 +1,6 @@
 let datasourceService = function (Properties, $http) {
   "ngInject";
-  const endpoint = Properties.endpoint + '/datasources';
+  const endpoint = Properties.endpoint + '/DataSource';
   
   let all = () => {
     return $http.get(endpoint, {
@@ -8,8 +8,20 @@ let datasourceService = function (Properties, $http) {
     });  
   }
   
+  let groups = (datasources) => {
+    return $http.get(`${endpoint}/${datasources}/ColumnGroups`, {
+      cache: true
+    });  
+  }
+  
+  let variables = (datasources, group) => {
+    return $http.get(`${endpoint}/${datasources}/ColumnGroups/${group}`, {
+      cache: true
+    });  
+  }  
+  
   return {
-    all
+    all, groups, variables
   };
 };
 
