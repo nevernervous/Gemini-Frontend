@@ -1,7 +1,7 @@
 class UalReportListController {
   /*@ngInject*/
   constructor() {
-    this.name = 'Report';
+    this.name = 'ualReportList';
   }
 }
 

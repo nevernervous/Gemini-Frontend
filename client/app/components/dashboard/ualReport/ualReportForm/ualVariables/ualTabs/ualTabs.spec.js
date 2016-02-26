@@ -1,23 +1,23 @@
-import ModalModule from './modal'
-import ModalController from './modal.controller';
-import ModalComponent from './modal.component';
-import ModalTemplate from './modal.html';
+import UalTabsModule from './ualTabs'
+import UalTabsController from './ualTabs.controller';
+import UalTabsComponent from './ualTabs.component';
+import UalTabsTemplate from './ualTabs.html';
 
-describe('Modal', () => {
+describe('UalTabs', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(ModalModule.name));
+  beforeEach(window.module(UalTabsModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new ModalController();
+      return new UalTabsController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(ModalModule).to.have.property('name');
+      expect(UalTabsModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('Modal', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<modal/>').html(ModalTemplate);
+    const template = $('<ual-tabs/>').html(UalTabsTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('Modal', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = ModalComponent;
+      let component = UalTabsComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(ModalTemplate);
+        expect(component.template).to.equal(UalTabsTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('Modal', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(ModalController);
+        expect(component.controller).to.equal(UalTabsController);
       });
   });
 });
