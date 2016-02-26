@@ -1,0 +1,7 @@
+@import '../../../../../../common/common';
+
+ual-data-source-label { 
+  @include gridle(row);
+  @include gridle(gutter 15px);
+  
+}  

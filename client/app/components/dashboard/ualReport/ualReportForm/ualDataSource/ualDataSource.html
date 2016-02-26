@@ -3,7 +3,9 @@
 </div>
 <div class="container">
   <div ng-if="!vm.datasources">Loading ...</div>
-  <div ng-if="vm.datasources">Loaded</div>
+  <div ng-if="vm.datasources">
+      <ual-data-source-label></ual-data-source-label>
+  </div>
 </div>
 <div class="buttons">
     <ual-button class="-primary" ng-disabled="!vm.selected" ng-click="vm.apply()">Apply</ual-button>
