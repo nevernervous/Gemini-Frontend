@@ -7,3 +7,6 @@ node_modules
 dist/
 reports/
 .vagrant/
+.vs
+*.sln 
+/gemini.sln

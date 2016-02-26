@@ -6,9 +6,9 @@ import ualReportFormComponent from './ualReportForm.component';
 
 let ualReportFormModule = angular.module('ualReportForm', [
   uiRouter,
+  ualVariables.name,
   // MODALS
-  ualDataSource.name,
-  ualVariables.name
+  ualDataSource.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
