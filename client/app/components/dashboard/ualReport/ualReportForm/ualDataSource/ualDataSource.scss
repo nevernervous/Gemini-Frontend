@@ -2,14 +2,31 @@
 
 // LAYOUT 
 .ual-data-source { 
+    
 }
 
 // VARIATIONS
 .ual-data-source > ng-transclude {
-  > .top { 
-    font-size: 68px;
-    margin: -10px 10px;    
-    color: rgba($color06, 0.5);  
-    cursor: pointer;
-  }
+    > .top { 
+        font-size: 68px;
+        margin: -10px 10px;    
+        color: rgba($color06, 0.5);  
+        cursor: pointer;
+    }
+    
+    >.container { 
+        > .title{
+            @include font-clanot-bold(20);
+            padding: 10px 20px;
+        } 
+        > .content-list {
+            height: 100%;
+            overflow-x: auto;
+            padding: 30px 15px;
+            > .data-source-list {
+                @include column-content(4);
+                height: calc(100% - 34px)
+            }
+        }
+    }
 } 

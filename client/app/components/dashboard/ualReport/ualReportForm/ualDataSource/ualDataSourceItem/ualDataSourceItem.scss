@@ -1,0 +1,22 @@
+@import '../../../../../../common/common';
+
+//Layout
+ual-data-source-item {
+    display: block;
+    @include gridle(gutter 10px 0px);
+    @include font-clanot-book(18);
+    > span{
+        padding: 7.5px 7.5px 7.5px 7.5px;
+    }
+}  
+
+
+//Variations
+ual-data-source-item {
+    &.-selected{
+        > span{
+            background-color: $backgroundHighColor;
+            color: $primaryWhiteColor;
+        }
+    }
+}
