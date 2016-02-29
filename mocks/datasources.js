@@ -45,6 +45,16 @@ module.exports = {
           "groupId": 1,
           "groupName": "Column Group Name",
           "groupUrl": "/api/Datasources/1/ColumnGroups/1"
+        },
+        {
+            "groupId": 2,
+            "groupName": "Second Group Name",
+            "groupUrl": "/api/Datasources/1/ColumnGroups/2"
+        },
+        {
+            "groupId": 3,
+            "groupName": "Third Group Name",
+            "groupUrl": "/api/Datasources/2/ColumnGroups/3"
         }
       ]
     }

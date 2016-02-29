@@ -1,0 +1,11 @@
+<ul class="variables-groups" ng-click="vm.toggle()">
+    <li ng-repeat="group in vm.groups">
+        <div class="group-name">{{group.groupName}}</div>
+        <div ng-class="{'-open': vm.isOpen()}">
+            {{group.isOpen()}}
+            <ual-variable-item ng-repeat="group in vm.groups">
+                {{group.groupName}}
+            </ual-variable-item>
+        </div>
+    </li>
+</ul>
