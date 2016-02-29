@@ -3,8 +3,13 @@
 //Layout
 ual-data-source-group { 
     .datasource-group{
-        @include font-clanot-bold(20);
-        padding: 12px 7.5px 12px 7.5px;
+        padding: 12px 8px;
     }
 }  
 
+ual-data-source-group { 
+    .datasource-group{
+        @include font-clanot-bold(16);
+        color: $color06;
+    }
+}  
