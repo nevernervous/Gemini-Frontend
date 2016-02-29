@@ -1,7 +1,13 @@
 @import '../../../../../../common/common';
 
+//Layout
+ual-data-source-label {
+  
+}
+
+//Variations
 ual-data-source-label { 
-  @include gridle(row);
-  @include gridle(gutter 15px);
+  @include font-clanot-book(16);
+  color: $primaryGreyColor;
   
 }  

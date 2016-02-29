@@ -4,7 +4,9 @@ import './ualDataSourceLabel.scss';
 
 let ualDataSourceLabelComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+      datasourceSelected : "="
+  },
   template,
   controller,
   controllerAs: 'vm'

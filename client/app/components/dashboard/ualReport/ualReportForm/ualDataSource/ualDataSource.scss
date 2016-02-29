@@ -14,15 +14,18 @@
         cursor: pointer;
     }
     
-    >.container { 
-        > .title{
+    >.container {
+        .title{
             @include font-clanot-bold(20);
-            padding: 10px 20px;
+            padding: 6px 8px;
         } 
-        > .content-list {
+        .search-area {
+            padding: 4px 8px 14px 8px;
+        }
+        .content-list {
             height: 100%;
             overflow-x: auto;
-            padding: 30px 15px;
+            padding: 8px 0px;
             > .data-source-list {
                 @include column-content(4);
                 height: calc(100% - 34px)
