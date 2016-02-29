@@ -4,7 +4,7 @@
 ual-data-source-group { 
     .datasource-group{
         @include font-clanot-bold(20);
-        @include gridle(gutter 24px 15px);
+        padding: 12px 7.5px 12px 7.5px;
     }
 }  
 

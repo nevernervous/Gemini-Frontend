@@ -6,7 +6,7 @@ ual-data-source-item {
     @include gridle(gutter 10px 0px);
     @include font-clanot-book(18);
     > span{
-        @include gridle(gutter 15px 15px)
+        padding: 7.5px 7.5px 7.5px 7.5px;
     }
 }  
 
