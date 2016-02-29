@@ -10,6 +10,7 @@
     "angular-modal-service": "^0.6.9",
     "angular-ui-router": "^0.2.15",
     "angular-uuid": "0.0.2",
+    "angular-filter": "^0.5.8",
     "gridle": "^2.0.44",
     "lodash": "^3.8.0",
     "ngstorage": "^0.3.10",

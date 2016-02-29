@@ -9,5 +9,5 @@ let ualReportModule = angular.module('ualReport', [
 ])
     
 .service('ualReport', ualReportService);
-    
 export default ualReportModule;
+

@@ -1,0 +1,14 @@
+@mixin column-content($columns: 3, $min-width: 200px, $columnfill: auto) {
+    display: block;
+    -webkit-column-count: $columns;
+    -moz-column-count: $columns;
+    column-count: $columns;
+    
+    -webkit-column-width: $min-width;
+    -moz-column-width: $min-width;
+    column-width: $min-width;
+    
+
+    -moz-column-fill: $columnfill;
+    column-fill: $columnfill;
+}
