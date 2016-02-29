@@ -25,7 +25,7 @@
             padding: 30px 15px;
             > .data-source-list {
                 @include column-content(4);
-                height: 88%;
+                height: calc(100% - 34px)
             }
         }
     }
