@@ -2,27 +2,14 @@
 
 // LAYOUT
 ual-variables-group {
+    border-top: 1px solid $color00;
 
-    > .variables-groups {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-
-        > li {
-            display: block;
-            text-decoration: none;
-
-            > .group-name {
-                background-color: $color04;
-                border-top: 1px solid $color00;
-                border-bottom: 1px solid $color00;
-                border-left: 3px solid $color10;
-                color: $color00;
-                height: 36px;
-                padding: 9px 14px;
-            }
-        }
+    .group-name {
+        background-color: $color04;
+        border-left: 3px solid $color10;
+        color: $color00;
+        height: 36px;
+        padding: 9px 14px;
 
         &:hover {
             cursor: pointer;
@@ -32,16 +19,11 @@ ual-variables-group {
 
 // VARIANTS
 ual-variables-group {
-    > .variables-groups {
-
-        > .group-item {
-            display: block;
-            top: -36px;
-            @include transition(left .3s ease-out);
-        }
-    }
+    display: block;
+    height: 36px;
+    overflow: hidden;
 }
 
 ual-variables-group.-open {
-    left: 0;
+    height: 200px;     
 }

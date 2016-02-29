@@ -1,9 +1,38 @@
 <div class="top">
-  <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
+    <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
 </div>
 <div class="container">
+    <div class="title">
+        Manage Variables
+    </div>
+    <div class="content-list" ng-if="!vm.allGroups">Loading ...</div>
+    <div class="content-list" ng-if="vm.allGroups">
+        <div class="variables">
+            <ual-tabs>
+                <ual-tab title="Standard Variables">
+                    <h4>Choose Variables</h4>
 
+                    <ual-variables-group group-id="{{group.groupId}}"
+                                         group-name="{{group.groupName}}"
+                                         ng-repeat="group in vm.allGroups"
+                                         ng-class="{'-open': vm.isSelected(group)}"
+                                         ng-click="vm.toggle(group)">
+                        <ual-variable-item variable-name="{{variable.name}}"
+                                           ng-repeat="variable in vm.getVariablesByGroup(group.groupId)">
+                        </ual-variable-item>
+                    </ual-variables-group>
+
+                </ual-tab>
+                <ual-tab title="Custom Variables">
+                    <h4>Custom Variables</h4>
+                </ual-tab>
+            </ual-tabs>
+            <div class="selectedVariables">
+                <h4>Selected Variables (0)</h4>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="buttons">
-  <ual-button class="-primary" ng-disabled="vm.selecteds | isEmpty" ng-click="vm.apply()">Apply</ual-button>
+    <ual-button class="-primary" ng-disabled="vm.selecteds | isEmpty" ng-click="vm.apply()">Apply</ual-button>
 </div>

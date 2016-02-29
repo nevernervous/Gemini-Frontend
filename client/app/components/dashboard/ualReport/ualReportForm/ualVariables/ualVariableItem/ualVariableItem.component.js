@@ -5,13 +5,12 @@ import './ualVariableItem.scss';
 let ualVariableItemComponent = {
     restrict: 'E',
     transclude: true,
-    bindings: {},
+    bindings: {
+        variableName: '@'
+    },
     template,
     controller,
-    controllerAs: 'vm',
-    require: {
-        variableGroup: '^ualVariablesGroup'
-    },
+    controllerAs: 'vm'
 };
 
 export default ualVariableItemComponent;

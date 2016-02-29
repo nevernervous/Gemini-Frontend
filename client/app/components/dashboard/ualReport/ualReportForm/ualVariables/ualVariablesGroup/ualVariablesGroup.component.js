@@ -5,7 +5,10 @@ import './ualVariablesGroup.scss';
 let ualVariablesGroupComponent = {
     restrict: 'E',
     transclude: true,
-  bindings: {},
+    bindings: {
+        groupItem: '=',
+        groupName: '@'
+    },
   template,
   controller,
   controllerAs: 'vm'

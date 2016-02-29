@@ -228,11 +228,6 @@ module.exports = {
             "groupId": 2,
             "groupName": "Second Group Name",
             "groupUrl": "/api/Datasources/1/ColumnGroups/2"
-        },
-        {
-            "groupId": 3,
-            "groupName": "Third Group Name",
-            "groupUrl": "/api/Datasources/2/ColumnGroups/3"
         }
       ]
     }
@@ -257,5 +252,26 @@ module.exports = {
         }
       ]
     }
-  }   
+  },
+  '/api/DataSource/1/ColumnGroups/2': {
+      GET: {
+          "data": [
+            {
+                "id": 2,
+                "name": "Variable name two",
+                "order": 1,
+                "type": "Type",
+                "description": "Variable Description two",
+                "dataSource": {
+                    "dataSourceId": 1,
+                    "dataSourceName": "Data Source Name"
+                },
+                "group": {
+                    "groupId": 2,
+                    "groupName": "Group Name"
+                }
+            }
+          ]
+      }
+  }
 };
