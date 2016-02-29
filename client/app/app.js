@@ -9,7 +9,6 @@ import Filters from './filters/filters';
 import Constants from './app.constants';
 import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
-import 'angular-filter';
 import 'lodash';
 
 //window.$ = window.jQuery = jQuery;
@@ -19,7 +18,6 @@ import 'normalize.css';
 
 angular.module('app', [
   uiRouter,
-  'angular.filter',
   Constants.name,
   Common.name,
   Components.name,

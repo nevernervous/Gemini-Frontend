@@ -17,13 +17,13 @@
     >.container { 
         > .title{
             @include font-clanot-bold(20);
-            padding: 10px 15px;
+            padding: 10px 20px;
         } 
         > .content-list {
             height: 100%;
             overflow-x: auto;
+            padding: 30px 15px;
             > .data-source-list {
-                @include gridle(gutter 30px 15px);
                 @include column-content(4);
                 height: 88%;
             }

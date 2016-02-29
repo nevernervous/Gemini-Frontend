@@ -1,10 +1,11 @@
 class UalDataSourceController {
     /*@ngInject*/
-    constructor(close, DataSource, selected, ualDataSourceChangeModal) {
+    constructor(close, DataSource, selected, ualDataSourceChangeModal, $filter) {
         this._close = close;
         this._datasource = DataSource;
         this._changemodal = ualDataSourceChangeModal;
         this._selected = selected;
+        this._filter = $filter;
 
         this.datasources = [];
         this.datasourceGroups = [];
@@ -38,7 +39,7 @@ class UalDataSourceController {
         if (!this.selected) {
             return false;
         }
-
+        
         return this.selected.id === itemId;
     }
 
@@ -49,8 +50,14 @@ class UalDataSourceController {
     _initialize() {
         this._datasource.all()
             .then(response => {
-                this.datasources = response.data
-                this.datasourceGroups = _.chain(this.datasources).map("group").uniq("groupId");
+                let datasources = response.data;
+                
+                datasources = this._filter("groupBy")(datasources, 'group.groupId');
+                datasources = this._filter('toArray')(datasources, 'true');
+                datasources = this._filter('orderBy')(datasources, this.orderGroups);
+                
+                this.datasources = datasources;
+                this.datasourceGroups = _.chain(response.data).map("group").uniq("groupId");
             });
     }
 }
