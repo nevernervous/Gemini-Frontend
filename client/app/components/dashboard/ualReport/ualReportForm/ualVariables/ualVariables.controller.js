@@ -17,6 +17,8 @@ class UalVariablesController {
     }
     toggle(variable) { 
         let index = this.selecteds.indexOf(variable);
+
+        //console.log(variable);
       
         (index > -1) ?  
           this.selecteds.splice(index, 1) :
@@ -32,8 +34,8 @@ class UalVariablesController {
 
     getVariablesByGroup(groupId){
         //TODO: Lo hace muchas veces
-        console.log("groupby:")
-        console.log(this.allVariables);
+        //console.log("groupby:")
+        //console.log(this.allVariables);
         return this.allVariables[groupId];
     }
 

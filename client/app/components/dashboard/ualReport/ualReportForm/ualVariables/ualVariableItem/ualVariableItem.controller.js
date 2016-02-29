@@ -3,6 +3,10 @@ class UalVariableItemController {
   constructor() {
   }
 
+    insideToggle(){
+        console.log("inside");
+    }
+
 }
 
 export default UalVariableItemController;

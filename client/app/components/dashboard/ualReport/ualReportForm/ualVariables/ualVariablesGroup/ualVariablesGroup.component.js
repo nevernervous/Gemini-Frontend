@@ -6,7 +6,8 @@ let ualVariablesGroupComponent = {
     restrict: 'E',
     transclude: true,
     bindings: {
-        groupItem: '=',
+        selected: '=',
+        groupId: '@',
         groupName: '@'
     },
   template,

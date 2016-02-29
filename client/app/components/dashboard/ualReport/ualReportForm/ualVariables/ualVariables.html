@@ -18,7 +18,8 @@
                                          ng-class="{'-open': vm.isSelected(group)}"
                                          ng-click="vm.toggle(group)">
                         <ual-variable-item variable-name="{{variable.name}}"
-                                           ng-repeat="variable in vm.getVariablesByGroup(group.groupId)">
+                                           ng-repeat="variable in vm.getVariablesByGroup(group.groupId)"
+                                           ng-click="vm.insideToggle()">
                         </ual-variable-item>
                     </ual-variables-group>
 

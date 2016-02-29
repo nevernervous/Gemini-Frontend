@@ -3,6 +3,8 @@
 // LAYOUT
 ual-variables-group {
     border-top: 1px solid $color00;
+    display: block;
+    overflow: hidden;
 
     .group-name {
         background-color: $color04;
@@ -19,11 +21,20 @@ ual-variables-group {
 
 // VARIANTS
 ual-variables-group {
-    display: block;
-    height: 36px;
-    overflow: hidden;
+
+    >.group-item {
+        display: none;
+    }
 }
 
-ual-variables-group.-open {
-    height: 200px;     
+ual-variables-group.-open {    
+    @include transition(top 0.25s ease-in); 
+
+    >.group-item {
+        display: block;
+        /*height: 250px;*/
+        height: auto;
+        max-height: 250px;
+        overflow-y: auto;
+    }
 }
