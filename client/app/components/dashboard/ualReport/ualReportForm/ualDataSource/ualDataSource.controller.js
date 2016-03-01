@@ -26,6 +26,11 @@ class UalDataSourceController {
     this._close(this._selected);
   }
 
+  showGroup(size){
+      debugger;
+      return true;
+  }
+
   getGroupById(groupId) {
     groupId = parseInt(groupId);
     return this.datasourceGroups.find({ groupId }).value();

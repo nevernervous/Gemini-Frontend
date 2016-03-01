@@ -66,8 +66,9 @@ ual-modal.-fullmodal {
         
     > .top {
       position: fixed;
-      top: -12px;
-      right: 15px;
+      margin: -10px 10px;    
+      top: 0px;
+      right: 0px;
     }
     > .container {
       width: 100%;

@@ -4,7 +4,9 @@ import './ualSearchFilter.scss';
 
 let ualSearchFilterComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+      searchTerm : "="
+  },
   template,
   controller,
   controllerAs: 'vm'
