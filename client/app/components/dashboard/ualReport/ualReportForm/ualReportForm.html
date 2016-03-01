@@ -1,18 +1,22 @@
 <div class="header">
     <div class="title">Create Report</div>
-    <div><ual-button class="secondary">Save</ual-button></div>
+    <div>
+        <ual-button class="-secondary">Save</ual-button>
+    </div>
 </div>
 <div class="reportName separatorLine">
     <div class="title">This is the Report Name</div>
 </div>
 <div class="selectedParameters separatorLine">
-    <div><span class="title">Data Source:</span> <span class="selectedValue">Polaris</span> <a class="action" href="#">Change Data Source</a></div>
-    <div><span class="title">Variables:</span> <span class="selectedValue">10 Variables Selected</span> <a class="action" href="#">Manage Variables</a></div>
+    <div><span class="title">Data Source:</span> <span class="selectedValue">Polaris</span> <a class="action" href ng-click="vm.selectDataSource()">Change Data Source</a></div>
+    <div><span class="title">Variables:</span> <span class="selectedValue">10 Variables Selected</span> <a class="action" href
+        ng-click="vm.selectVariables()">Manage Variables</a></div>
 </div>
 <div class="selectedParameters">
     <div><span class="title">Slicer:</span> <span class="selectedValue">6 Slicers Selected</span> <a class="action" href="#">Manage Slicers</a></div>
 </div>
-<br /><br />
+<br />
+<br />
 
 <ual-variables>
 </ual-variables>

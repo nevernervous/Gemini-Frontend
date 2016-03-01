@@ -1,9 +1,25 @@
 <div class="top">
-  <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
+    <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
 </div>
+
 <div class="container">
-  <div ng-if="!vm.datasources">Loading ...</div>
-  <div ng-if="vm.datasources">Loaded</div>
+    <div class="title">
+        Select Data Source
+    </div>
+    <div class="search-area">
+        <ual-data-source-label datasource-selected="vm.selected">
+        </ual-data-source-label>
+    </div>
+    <div class="content-list" ng-if="!vm.datasources">Loading ...</div>
+    <div class="content-list" ng-if="vm.datasources">
+        <div class="data-source-list">
+            <ual-data-source-group datasource-group="vm.getGroupById(groups.$key)" ng-repeat="groups in vm.datasources">
+                <ual-data-source-item datasource-item='item' ng-repeat="item in groups | orderBy : 'order'" ng-click="vm.toogleSelected(item)"
+                ng-class="{'-selected': vm.isActive(item.id)}">
+                </ual-data-source-item>
+            </ual-data-source-group>
+        </div>
+    </div>
 </div>
 <div class="buttons">
     <ual-button class="-primary" ng-disabled="!vm.selected" ng-click="vm.apply()">Apply</ual-button>

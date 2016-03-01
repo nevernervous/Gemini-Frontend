@@ -10,6 +10,7 @@ import Filters from './filters/filters';
 import Constants from './app.constants';
 import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
+import 'lodash';
 
 //window.$ = window.jQuery = jQuery;
 
@@ -41,7 +42,6 @@ angular.module('app', [
     $httpProvider.interceptors.push(Interceptor);
   }
 })
-
 .component('app', AppComponent)
 
 
