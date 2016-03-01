@@ -24,7 +24,7 @@
                     </ual-variables-group>
 
                     <!--<ual-variables-group datasource-id="{{vm.datasourceId}}">
-                        
+
                     </ual-variables-group>-->
 
                 </ual-tab>
@@ -33,7 +33,11 @@
                 </ual-tab>
             </ual-tabs>
             <div class="selectedVariables">
-                <h4>Selected Variables (0)</h4>
+              <ual-pane title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0">
+                <ul>
+                  <ual-variable-selected-item ng-repeat="item in vm.selecteds" variable-item="item" variable-order="$index" on-delete="vm.toggle(item)"></ual-variable-selected-item>
+                </ul>
+              </ual-pane>
             </div>
         </div>
     </div>

@@ -1,69 +1,62 @@
 class UalVariablesController {
-    /*@ngInject*/
-    constructor(close, datasource, selecteds, DataSource, $filter) {
-        this._close = close;
-        this._datasource = datasource;   //CurrentDataSourceSelected   
-        this._DataSource = DataSource;   //Servicios
-        this._filter = $filter;
-        
-        this.datasourceId = datasource.id;
-        this.selecteds = selecteds || []; 
-        this.allGroups = []; //All groups
-        this.allVariables = {};
-        this._initialize();
-    }
-  
-    isSelected(variable) { 
-        return (this.selecteds.indexOf(variable) > -1);
-    }
-    toggle(variable) { 
-        let index = this.selecteds.indexOf(variable);
+  /*@ngInject*/
+  constructor(close, $q, DataSourceService, ualVariablesDeteleAllModal, datasource, selecteds) {
+    // SERVICES
+    this._close = close;
+    this._datasourceService = DataSourceService;
+    this._deleteallmodal = ualVariablesDeteleAllModal;
+    this._q = $q;
 
-        //console.log(variable);
-      
-        (index > -1) ?  
-          this.selecteds.splice(index, 1) :
-          this.selecteds.push(variable);
-    }
-  
-    apply() {
-        this._close(this.selecteds);  
-    }
-    cancel() {
-        this._close(this._selecteds);
-    }
+    // VARS / PRIVATE
+    this._datasource = datasource;
+    this._selecteds = selecteds;
 
-    getVariablesByGroup(groupId){
-        //TODO: Lo hace muchas veces
-        //console.log("groupby:")
-        //console.log(this.allVariables);
-        return this.allVariables[groupId];
-    }
+    // VARS / PUBLIC
+    this.variables = [];
+    this.selecteds = selecteds || [];
 
-    getAllVariablesByGroup(datasourceId, groupId){
-        return this._DataSource.variables(datasourceId, groupId)
-                   .then (response => {
-                       this.allVariables[groupId] = response.data;
-                   });
-    }
-  
-    _initialize() { 
-        let datasourceId = this._datasource.id;
+    this._initialize();
+  }
 
-        this._DataSource.groups(this._datasource.id)
-               .then (response => {
-                   let allgroups = response.data;
+  isSelected(variable) {
+    return (this.selecteds.indexOf(variable) > -1);
+  }
+  toggle(variable) {
+    let index = this.selecteds.indexOf(variable);
+    (index > -1) ?
+      this.selecteds.splice(index, 1) :
+      this.selecteds.push(variable);
+  }
 
-                   angular.forEach(allgroups, (value, key) =>
-                   {         
-                       this.getAllVariablesByGroup(datasourceId, value.groupId);
-                   });
+  deleteAll() {
+    this._deleteallmodal.open()
+      .then(response => {
+        if (response) this.selecteds = [];
+      });
+  }
 
-                   allgroups = this._filter('toArray')(allgroups, 'true');
-                   this.allGroups = allgroups;
+  apply() {
+    this._close(this.selecteds);
+  }
+  cancel() {
+    this._close(this._selecteds);
+  }
 
-               });
-    }
+  _serialize(groups, index, promise) {
+    index += 1;
+    promise.then(variables => {
+      this.variables = _.union(this.variables, variables.data);
+      if (index < groups.length) {
+        this._serialize(groups, index,
+          this._datasourceService.variables(this._datasource, groups[index]));
+      }
+    });
+  }
+
+  _initialize() {
+    this._datasourceService.groups(this._datasource)
+      .then(groups => this._serialize(groups.data, -1, this._q.when({ data: [] })));
+  }
 }
 
 export default UalVariablesController;
