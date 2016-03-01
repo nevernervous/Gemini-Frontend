@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'lodash';
 //import jQuery from 'jquery';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';

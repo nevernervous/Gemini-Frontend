@@ -21,7 +21,7 @@ let sessionService = function (Properties, $rootScope, $localStorage, $http, uui
     _storage.session = {
       username: user,
       password: pass,
-      clientId: uuid.v4()
+      clientId: uuid.v4().substring(0, 20)
     };
     
     let promise = $http.post(endpoint, _storage.session);

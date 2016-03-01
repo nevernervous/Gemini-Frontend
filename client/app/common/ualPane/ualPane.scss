@@ -1,0 +1,25 @@
+@import '../common';
+
+// LAYOUT
+ual-pane {
+  > .pane-header {
+    @include gridle(row row-align between);
+  }
+  > .pane-body {
+
+  }
+}
+
+// VARIATIONS
+ual-pane {
+  > .pane-header {
+    > .title {
+      @include font-clanot-news(16);
+      color: $color07;
+    }
+    > .action {
+      @include link();
+    }
+  }
+}
+
