@@ -7,7 +7,7 @@ let ualDataSourceService = function (ualModal, DataSource, ualDataSourceChangeMo
   
   let open = (inputs) => {    
     // DI
-    inputs.DataSource = DataSource;
+    inputs.DataSourceService = DataSource;
     inputs.ualDataSourceChangeModal = ualDataSourceChangeModal;
     
     // OPEN
