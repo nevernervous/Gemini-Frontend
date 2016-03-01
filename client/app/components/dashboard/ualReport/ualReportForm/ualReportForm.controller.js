@@ -12,7 +12,7 @@ class UalReportFormController {
     this._datasourcemodal.open({selected: this._report.datasource.get()})
     .then(datasource => {
       datasource ? 
-        this._report.datasource.set(datasource) && this.selectVariables() :  
+        this._report.datasource.set(datasource) || this.selectVariables() :  
         this._state.go('dashboard.report-list');
     });
   }

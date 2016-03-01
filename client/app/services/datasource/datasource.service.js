@@ -4,19 +4,19 @@ let datasourceService = function (Properties, $http) {
   
   let all = () => {
     return $http.get(endpoint, {
-      cache: true
+      cache: Properties.cache
     });  
   }
   
-  let groups = (datasources) => {
-    return $http.get(`${endpoint}/${datasources}/ColumnGroups`, {
-      cache: true
+  let groups = (datasource) => {
+    return $http.get(`${endpoint}/${datasource.id}/ColumnGroups`, {
+      cache: Properties.cache
     });  
   }
   
-  let variables = (datasources, group) => {
-    return $http.get(`${endpoint}/${datasources}/ColumnGroups/${group}`, {
-      cache: true
+  let variables = (datasource, group) => {
+    return $http.get(`${endpoint}/${datasource.id}/ColumnGroups/${group.groupId}/Columns`, {
+      cache: Properties.cache
     });  
   }  
   

@@ -1,8 +1,8 @@
 class UalDataSourceController {
   /*@ngInject*/
-  constructor(close, DataSource, selected, ualDataSourceChangeModal) {
+  constructor(close, DataSourceService, selected, ualDataSourceChangeModal) {
     this._close = close;
-    this._datasource = DataSource;
+    this._datasourceService = DataSourceService;
     this._changemodal = ualDataSourceChangeModal;
     this._selected = selected;
     
@@ -25,8 +25,10 @@ class UalDataSourceController {
   }
   
   _initialize() { 
-    this._datasource.all()
-    .then( response => this.datasources = response.data );
+    this._datasourceService.all()
+    .then( response => { 
+      this.datasources = response.data;
+    });
   }
 }
 
