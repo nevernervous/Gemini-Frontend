@@ -2,12 +2,12 @@
   text-decoration: none;
   color: #62a9e3;
   @include font-clanot-news(16);
-  
+
   &:hover {
     color: #81c4ea;
   }
-  
-  &.-disabled { 
+
+  &.-disabled {
     color: #b0d4f1;
     cursor: default;
   }
