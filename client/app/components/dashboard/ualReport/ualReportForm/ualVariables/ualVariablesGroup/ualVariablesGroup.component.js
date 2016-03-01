@@ -8,7 +8,8 @@ let ualVariablesGroupComponent = {
     bindings: {
         selected: '=',
         groupId: '@',
-        groupName: '@'
+        groupName: '@',
+        datasourceId: '@'
     },
   template,
   controller,

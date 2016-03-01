@@ -5,7 +5,8 @@ class UalVariablesController {
         this._datasource = datasource;   //CurrentDataSourceSelected   
         this._DataSource = DataSource;   //Servicios
         this._filter = $filter;
-
+        
+        this.datasourceId = datasource.id;
         this.selecteds = selecteds || []; 
         this.allGroups = []; //All groups
         this.allVariables = {};

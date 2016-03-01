@@ -1,8 +1,27 @@
-<div class="group-name">{{vm.groupName}}</div>
+<div class="group-name" ng-class="{'-loading': vm.loading}">
+    {{vm.groupName}}
+    <i class="ion-ios-loop icon-spinner"></i>
+</div>
 <div ng-transclude class="group-item"></div>
 <!--<div class="group-name" ng-click="vm.toggle(group-id)"
      ng-class="{'-open': vm.isSelected}">
     {{vm.groupName}}
 </div>
 <div ng-transclude class="group-item"></div>-->
+<!--<div ng-repeat="group in vm.allGroups">
+    <div class="group-name" ng-click="vm.toggle(group.groupId)">
+        {{group.groupName}}
+        <i class="ion-ios-loop icon-spinner"></i>
+    </div>
+    <div ng-transclude class="group-item">
+        <ual-variable-item></ual-variable-item>
+    </div>
+</div>-->
+<!--<ul class="group-name">
+    <li ng-repeat="tab in vm.tabs" ng-class="{active:tab.selected}">
+        <a href="" ng-bind="tab.title" ng-click="vm.selectTab($index);">
+        </a>
+    </li>
+</ul>
 
+<div class="tabs-content" ng-transclude></div>-->
