@@ -25,7 +25,7 @@
             @include gridle(row);
             padding: 4px 8px 14px 8px !important;
             > * {
-                @include gridle(4)               
+                @include gridle(6)               
             }
            
         }

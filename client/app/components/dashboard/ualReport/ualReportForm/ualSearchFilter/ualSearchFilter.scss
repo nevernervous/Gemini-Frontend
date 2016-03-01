@@ -1,8 +1,23 @@
 @import '../../../../../common/common';
 
 ual-search-filter { 
-  input{
-      max-width: 559px;
-      width: 100%;
+  > label {
+    border-color: #ddd;
+    background-color: #fff;
+    color: #444;
+    z-index: 2;
+    margin: -1px;
+    padding: 8px;
+    border-width: 1px;
+    border-style: solid;
+    input{
+        max-width: 559px;
+        width: 90%;
+        border: 0;
+    }   
+    i {
+        font-size: 20px;
+        vertical-align: middle;
+    }
   }
 }  
