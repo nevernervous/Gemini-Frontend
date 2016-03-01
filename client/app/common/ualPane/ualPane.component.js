@@ -8,7 +8,8 @@ let ualPaneComponent = {
   bindings: {
     title: '@',
     action: '@',
-    onAction: '&'
+    onAction: '&',
+    isDisabled: '='
   },
   template,
   controller,
