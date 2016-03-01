@@ -1,23 +1,20 @@
 @import '../../../../../common/common';
-
-ual-search-filter { 
-  > label {
-    border-color: #ddd;
-    background-color: #fff;
-    color: #444;
-    z-index: 2;
-    margin: -1px;
-    padding: 8px;
-    border-width: 1px;
-    border-style: solid;
-    input{
-        max-width: 559px;
-        width: 90%;
-        border: 0;
-    }   
-    i {
-        font-size: 20px;
-        vertical-align: middle;
+ual-search-filter {
+    > label {
+        border: 1px solid $color08;
+        background-color: $color00;
+        color: #444;
+        z-index: 2;
+        margin: -1px;
+        padding: 8px;
+        input {
+            max-width: 559px;
+            width: 88%;
+            border: 0;
+        }
+        i {
+            font-size: 20px;
+            vertical-align: middle;
+        }
     }
-  }
-}  
+}
