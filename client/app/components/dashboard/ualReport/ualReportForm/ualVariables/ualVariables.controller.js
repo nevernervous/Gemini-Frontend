@@ -1,11 +1,12 @@
 class UalVariablesController {
   /*@ngInject*/
-  constructor(close, $q, DataSourceService, ualVariablesDeteleAllModal, datasource, selecteds) {
+  constructor(close, $q, DataSourceService, ualVariablesDeteleAllModal, datasource, selecteds, $filter) {
     // SERVICES
     this._close = close;
     this._datasourceService = DataSourceService;
     this._deleteallmodal = ualVariablesDeteleAllModal;
     this._q = $q;
+    this._filter = $filter;
 
     // VARS / PRIVATE
     this._datasource = datasource;
@@ -14,6 +15,9 @@ class UalVariablesController {
     // VARS / PUBLIC
     this.variables = [];
     this.selecteds = selecteds || [];
+    this.datasourceId = datasource.id;
+    this.allGroups = []; //All groups
+    this.allVariables = {};
 
     this._initialize();
   }
@@ -26,6 +30,15 @@ class UalVariablesController {
     (index > -1) ?
       this.selecteds.splice(index, 1) :
       this.selecteds.push(variable);
+  }
+
+  selectAll(){
+    this.variables.forEach( item => {
+      let index = this.selecteds.indexOf(item.id);
+      if (index == -1){
+        this.selecteds.push(item.id);
+      }
+    });
   }
 
   deleteAll() {
@@ -42,11 +55,22 @@ class UalVariablesController {
     this._close(this._selecteds);
   }
 
+  getVariablesByGroup(groupId){
+    let variablesByGroup = this.allVariables[groupId];
+    return variablesByGroup;
+  }
+
   _serialize(groups, index, promise) {
     index += 1;
     promise.then(variables => {
       this.variables = _.union(this.variables, variables.data);
+
+      //let vars = this._filter('toArray')(variables.data, 'true');
+
+      this.allVariables[index] = variables.data;
+
       if (index < groups.length) {
+        this.allGroups.push(groups[index]);
         this._serialize(groups, index,
           this._datasourceService.variables(this._datasource, groups[index]));
       }

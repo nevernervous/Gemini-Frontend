@@ -1,9 +1,10 @@
-
-<ul class="tabs-list">
+<div class="tabs-container">
+  <ul class="tabs-list">
     <li ng-repeat="tab in vm.tabs" ng-class="{active:tab.selected}">
-        <a href="" ng-bind="tab.title" ng-click="vm.selectTab($index);">
-        </a>
+      <a href="" ng-bind="tab.title" ng-click="vm.selectTab($index);">
+      </a>
     </li>
-</ul>
+  </ul>
+  <div class="tabs-content" ng-transclude></div>
+</div>
 
-<div class="tabs-content" ng-transclude></div>

@@ -6,6 +6,7 @@ let ualVariableItemComponent = {
     restrict: 'E',
     transclude: true,
     bindings: {
+        isSelected: '=',
         variableName: '@'
     },
     template,

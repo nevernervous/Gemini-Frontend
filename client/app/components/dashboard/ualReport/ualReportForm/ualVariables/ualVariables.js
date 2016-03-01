@@ -8,8 +8,8 @@ import ualVariablesGroup from './ualVariablesGroup/ualVariablesGroup';
 import ualVariableItem from './ualVariableItem/ualVariableItem';
 
 let ualVariablesModule = angular.module('ualVariables', [
-  ualVariablesDeteleAllModal.name,
-  ualVariableSelectedItem.name
+ualVariablesDeteleAllModal.name,
+ualVariableSelectedItem.name,
 ualTabs.name,
 ualTab.name,
 ualVariablesGroup.name,

@@ -1,47 +1,43 @@
 <div class="top">
-    <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
+  <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
 </div>
 <div class="container">
-    <div class="title">
-        Manage Variables
+  <div class="title">
+    Manage Variables
+  </div>
+  <div class="content-list" ng-if="!vm.allGroups">Loading ...</div>
+  <div class="content-list" ng-if="vm.allGroups">
+    <div class="variables">
+      <ual-tabs class="tabs">
+        <ual-tab title="Standard Variables">
+          <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="vm.selecteds.length == vm.variables.length">
+            <ual-variables-group group-id="{{group.groupId}}"
+                                 group-name="{{group.groupName}}"
+                                 ng-repeat="group in vm.allGroups"
+                                 ng-class="{'-loading': !vm.variables}">
+              <ual-variable-item variable-name="{{variable.name}}"
+                                 is-selected="vm.isSelected(variable.id)"
+                                 ng-repeat="variable in vm.getVariablesByGroup(group.groupId)"
+                                 ng-click="vm.toggle(variable.id)">
+              </ual-variable-item>
+            </ual-variables-group>
+          </ual-pane>
+        </ual-tab>
+        <ual-tab title="Custom Variables">
+          <ual-pane title="Custom Variables">
+          </ual-pane>
+        </ual-tab>
+      </ual-tabs>
+      <div class="selectedVariables">
+        <ual-pane title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0">
+          <ul>
+            <ual-variable-selected-item ng-repeat="item in vm.selecteds" variable-item="item" variable-order="$index" on-delete="vm.toggle(item)"></ual-variable-selected-item>
+          </ul>
+        </ual-pane>
+      </div>
     </div>
-    <div class="content-list" ng-if="!vm.allGroups">Loading ...</div>
-    <div class="content-list" ng-if="vm.allGroups">
-        <div class="variables">
-            <ual-tabs>
-                <ual-tab title="Standard Variables">
-                    <h4>Choose Variables</h4>
-
-                    <ual-variables-group group-id="{{group.groupId}}"
-                                         group-name="{{group.groupName}}"
-                                         ng-repeat="group in vm.allGroups"
-                                         ng-class="{'-open': vm.isSelected(group)}"
-                                         ng-click="vm.toggle(group)">
-                        <ual-variable-item variable-name="{{variable.name}}"
-                                           ng-repeat="variable in vm.getVariablesByGroup(group.groupId)"
-                                           ng-click="vm.insideToggle()">
-                        </ual-variable-item>
-                    </ual-variables-group>
-
-                    <!--<ual-variables-group datasource-id="{{vm.datasourceId}}">
-
-                    </ual-variables-group>-->
-
-                </ual-tab>
-                <ual-tab title="Custom Variables">
-                    <h4>Custom Variables</h4>
-                </ual-tab>
-            </ual-tabs>
-            <div class="selectedVariables">
-              <ual-pane title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0">
-                <ul>
-                  <ual-variable-selected-item ng-repeat="item in vm.selecteds" variable-item="item" variable-order="$index" on-delete="vm.toggle(item)"></ual-variable-selected-item>
-                </ul>
-              </ual-pane>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 <div class="buttons">
-    <ual-button class="-primary" ng-disabled="vm.selecteds | isEmpty" ng-click="vm.apply()">Apply</ual-button>
+  <ual-button class="-primary" ng-disabled="vm.selecteds | isEmpty" ng-click="vm.apply()">Apply</ual-button>
 </div>

@@ -6,7 +6,7 @@ let ualVariablesGroupComponent = {
     restrict: 'E',
     transclude: true,
     bindings: {
-        selected: '=',
+        loading: '@',
         groupId: '@',
         groupName: '@',
         datasourceId: '@'

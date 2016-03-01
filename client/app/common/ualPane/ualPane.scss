@@ -4,6 +4,8 @@
 ual-pane {
   > .pane-header {
     @include gridle(row row-align between);
+    margin: 0;
+    padding: 0 0 12px 0;
   }
   > .pane-body {
 

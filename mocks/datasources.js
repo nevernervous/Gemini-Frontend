@@ -211,7 +211,7 @@ module.exports = {
         },
         "order": 22
       }
-      
+
       ],
       code: 200
     }
@@ -309,15 +309,15 @@ module.exports = {
             "groupId": 1,
             "groupName": "Group Name"
           }
-        }                                
+        }
       ]
     }
   },
-  '/api/DataSource/1/ColumnGroups/2': {
+  '/api/DataSource/1/ColumnGroups/2/Columns': {
       GET: {
           "data": [
             {
-                "id": 2,
+                "id": 6,
                 "name": "Variable name two",
                 "order": 1,
                 "type": "Type",

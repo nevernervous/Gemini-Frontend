@@ -19,44 +19,22 @@ ual-variables-group {
 
         > .icon-spinner {
             float: right;
-            //TODO: Es necesario?
-            //margin-top: -24px;
+            margin-top: -24px;
+        }
+    }
+
+    > .group-item {
+        @include transition(left .3s ease-out);
+        display: none;
+        height: 0;
+
+        &.-open {
+            display: block;
+            height: auto;
+            max-height: 250px;
+            overflow-y: auto;
         }
     }
 }
 
 // VARIANTS
-ual-variables-group {
-
-    > .group-item {
-        display: none;
-    }
-
-    > .group-name {
-
-        > .icon-spinner {
-            @include spin();
-            display: none;
-        }
-    }
-}
-
-ual-variables-group.-open {
-    @include transition(top 0.25s ease-in);
-
-    > .group-item {
-        display: block;
-        /*height: 250px;*/
-        height: auto;
-        max-height: 250px;
-        overflow-y: auto;
-    }
-
-    > .group-name {
-
-        > .icon-spinner {
-            margin-top: 0;
-            display: block;
-        }
-    }
-}
