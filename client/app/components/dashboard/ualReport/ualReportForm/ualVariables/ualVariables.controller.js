@@ -1,9 +1,10 @@
 class UalVariablesController {
   /*@ngInject*/
-  constructor(close, $q, DataSourceService, ualVariablesDeteleAllModal, datasource, selecteds) {
+  constructor(close, $q, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
     // SERVICES
     this._close = close;
     this._datasourceService = DataSourceService;
+    this._cancelmodal = ualVariablesCancelModal;
     this._deleteallmodal = ualVariablesDeteleAllModal;
     this._q = $q;
 
@@ -13,7 +14,7 @@ class UalVariablesController {
 
     // VARS / PUBLIC
     this.variables = [];
-    this.selecteds = selecteds || [];
+    this.selecteds = _.clone(selecteds) || [];
 
     this._initialize();
   }
@@ -39,7 +40,25 @@ class UalVariablesController {
     this._close(this.selecteds);
   }
   cancel() {
-    this._close(this._selecteds);
+    if ( this._hasChange() ) {
+      this._cancelmodal.open()
+        .then(response => response && this._close(this._selecteds) );
+    } else {
+      this._close(this._selecteds);
+    }
+  }
+
+  _hasChange() {
+    if ( this._selecteds.length === this.selecteds.length ) {
+      let index = 0;
+      for ( ; index < this._selecteds.length; index ++) {
+        if ( this._selecteds[index].id !== this.selecteds[index].id ) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return true;
   }
 
   _serialize(groups, index, promise) {
