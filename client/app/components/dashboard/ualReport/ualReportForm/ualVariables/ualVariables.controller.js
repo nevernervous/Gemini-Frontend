@@ -29,6 +29,15 @@ class UalVariablesController {
       this.selecteds.push(variable);
   }
 
+  selectAll(){
+    this.variables.forEach( item => {
+      let index = this.selecteds.indexOf(item);
+      if (index == -1){
+        this.selecteds.push(item);
+      }
+    });
+  }
+
   deleteAll() {
     this._deleteallmodal.open()
       .then(response => {
@@ -65,6 +74,7 @@ class UalVariablesController {
     index += 1;
     promise.then(variables => {
       this.variables = _.union(this.variables, variables.data);
+
       if (index < groups.length) {
         this._serialize(groups, index,
           this._datasourceService.variables(this._datasource, groups[index]));
