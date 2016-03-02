@@ -1,9 +1,10 @@
 class UalVariablesController {
   /*@ngInject*/
-  constructor(close, $q, DataSourceService, ualVariablesDeteleAllModal, datasource, selecteds, $filter) {
+  constructor(close, $q, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds, $filter) {
     // SERVICES
     this._close = close;
     this._datasourceService = DataSourceService;
+    this._cancelmodal = ualVariablesCancelModal;
     this._deleteallmodal = ualVariablesDeteleAllModal;
     this._q = $q;
     this._filter = $filter;
@@ -14,7 +15,7 @@ class UalVariablesController {
 
     // VARS / PUBLIC
     this.variables = [];
-    this.selecteds = selecteds || [];
+    this.selecteds = _.clone(selecteds) || [];
     this.datasourceId = datasource.id;
     this.allGroups = []; //All groups
     this.allVariables = {};
@@ -52,7 +53,25 @@ class UalVariablesController {
     this._close(this.selecteds);
   }
   cancel() {
+    if ( this._hasChange() ) {
+      this._cancelmodal.open()
+        .then(response => response && this._close(this._selecteds) );
+    } else {
     this._close(this._selecteds);
+  }
+  }
+
+  _hasChange() {
+    if ( this._selecteds.length === this.selecteds.length ) {
+      let index = 0;
+      for ( ; index < this._selecteds.length; index ++) {
+        if ( this._selecteds[index].id !== this.selecteds[index].id ) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return true;
   }
 
   getVariablesByGroup(groupId){
@@ -64,9 +83,6 @@ class UalVariablesController {
     index += 1;
     promise.then(variables => {
       this.variables = _.union(this.variables, variables.data);
-
-      //let vars = this._filter('toArray')(variables.data, 'true');
-
       this.allVariables[index] = variables.data;
 
       if (index < groups.length) {
