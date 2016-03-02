@@ -19,7 +19,7 @@
           </ual-pane>
         </ual-tab>
       </ual-tabs>
-      <div class="selectedVariables">
+      <div class="selected-variables">
         <ual-pane title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0">
           <ul>
             <ual-variable-selected-item ng-repeat="item in vm.selecteds" variable-item="item" variable-order="$index" on-delete="vm.toggle(item)"></ual-variable-selected-item>

@@ -53,8 +53,8 @@ class UalVariablesController {
       this._cancelmodal.open()
         .then(response => response && this._close(this._selecteds) );
     } else {
-    this._close(this._selecteds);
-  }
+      this._close(this._selecteds);
+    }
   }
 
   _hasChange() {
