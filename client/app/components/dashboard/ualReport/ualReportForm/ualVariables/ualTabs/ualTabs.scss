@@ -1,47 +1,47 @@
 @import '../../../../../../common/common';
 
 ual-tabs {
-    > .tabs-container {
-        @include gridle(row);
-        border: 1px solid $color07;
+  > .tabs-container {
+    @include gridle(row row-align between);
+    border: 1px solid $color07;
+    background-color: $color09;
+    margin: 0 10px 0 0;
+    padding: 0;
+
+    > .tabs-list {
+      @include gridle( 4 );
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      overflow: hidden;
+
+      > li {
         background-color: $color09;
-        margin: 0 10px 0 0;
-        padding: 0;
+        color: $color06;
+        height: 45px;
+        min-width: 258px;
 
-        > .tabs-list {
-            @include gridle( 4 );
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            overflow: hidden;
-
-            > li {
-                background-color: $color09;
-                color: $color06;
-                height: 45px;
-                min-width: 258px;
-
-                > a {
-                    color: $color06;
-                    display: block;
-                    text-decoration: none;
-                    padding: 12px 20px;
-                }
-
-                &.active {
-                    color: $color06;
-                    border-left: 5px solid $color03;
-                    background-color: $color00;
-                }
-            }
+        > a {
+          color: $color06;
+          display: block;
+          text-decoration: none;
+          padding: 12px 20px;
         }
 
-        > .tabs-content {
-            @include gridle( 8 );
-            margin: 0;
-            padding: 12px 15px;
-            overflow: hidden;
-            background-color: $color00;
+        &.active {
+          color: $color06;
+          border-left: 5px solid $color03;
+          background-color: $color00;
         }
+      }
     }
+
+    > .tabs-content {
+      @include gridle( 8 );
+      margin: 0;
+      padding: 12px 15px;
+      overflow: hidden;
+      background-color: $color00;
+    }
+  }
 }

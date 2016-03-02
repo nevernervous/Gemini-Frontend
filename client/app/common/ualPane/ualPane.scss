@@ -2,26 +2,26 @@
 
 // LAYOUT
 ual-pane {
-    > .pane-header {
-        @include gridle(row row-align between);
-        @include gridle(gutter 0 0 12px 0 );
-        margin: 0;
-    }
+  > .pane-header {
+    @include gridle(row row-align between);
+    @include gridle(gutter 0 0 12px 0 );
+    margin: 0;
+  }
 
-    > .pane-body {
-    }
+  > .pane-body {
+  }
 }
 
 // VARIATIONS
 ual-pane {
-    > .pane-header {
-        > .title {
-            @include font-clanot-news(16);
-            color: $color07;
-        }
-
-        > .action {
-            @include link();
-        }
+  > .pane-header {
+    > .title {
+      @include font-clanot-news(16);
+      color: $color07;
     }
+
+    > .action {
+      @include link();
+    }
+  }
 }
