@@ -31,9 +31,9 @@ class UalVariablesController {
 
   selectAll(){
     this.variables.forEach( item => {
-      let index = this.selecteds.indexOf(item.id);
+      let index = this.selecteds.indexOf(item);
       if (index == -1){
-        this.selecteds.push(item.id);
+        this.selecteds.push(item);
       }
     });
   }
