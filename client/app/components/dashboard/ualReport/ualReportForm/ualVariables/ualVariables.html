@@ -5,22 +5,11 @@
   <div class="title">
     Manage Variables
   </div>
-  <div class="content-list" ng-if="!vm.allGroups">Loading ...</div>
-  <div class="content-list" ng-if="vm.allGroups">
+  <div class="content-list">
     <div class="variables">
       <ual-tabs class="tabs">
         <ual-tab title="Standard Variables">
           <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="vm.selecteds.length == vm.variables.length">
-            <ual-variables-group group-id="{{group.groupId}}"
-                                 group-name="{{group.groupName}}"
-                                 ng-repeat="group in vm.allGroups"
-                                 ng-class="{'-loading': !vm.variables}">
-              <ual-variable-item variable-name="{{variable.name}}"
-                                 is-selected="vm.isSelected(variable.id)"
-                                 ng-repeat="variable in vm.getVariablesByGroup(group.groupId)"
-                                 ng-click="vm.toggle(variable.id)">
-              </ual-variable-item>
-            </ual-variables-group>
           </ual-pane>
         </ual-tab>
         <ual-tab title="Custom Variables">

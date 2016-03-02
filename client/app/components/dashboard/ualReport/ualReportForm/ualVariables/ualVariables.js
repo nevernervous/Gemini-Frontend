@@ -5,17 +5,13 @@ import ualVariablesDeteleAllModal from './ualVariablesDeteleAllModal/ualVariable
 import ualVariableSelectedItem from './ualVariableSelectedItem/ualVariableSelectedItem';
 import ualTabs from './ualTabs/ualTabs';
 import ualTab from './ualTab/ualTab';
-import ualVariablesGroup from './ualVariablesGroup/ualVariablesGroup';
-import ualVariableItem from './ualVariableItem/ualVariableItem';
 
 let ualVariablesModule = angular.module('ualVariables', [
   ualVariablesCancelModal.name,
   ualVariablesDeteleAllModal.name,
 ualVariableSelectedItem.name,
 ualTabs.name,
-ualTab.name,
-ualVariablesGroup.name,
-ualVariableItem.name
+ualTab.name
 ])
 
 .factory('ualVariables', ualVariablesFactory);
