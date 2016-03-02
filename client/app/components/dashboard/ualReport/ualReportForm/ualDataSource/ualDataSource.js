@@ -8,7 +8,7 @@ let ualDataSourceModule = angular.module('ualDataSource', [
         ualDataSourceChangeModal.name,
         ualDataSourceGroup.name,
         ualDataSourceLabel.name
-    ])
-    .factory('ualDataSource', ualDataSourceFactory);
+])
+.factory('ualDataSource', ualDataSourceFactory);
 
 export default ualDataSourceModule;
