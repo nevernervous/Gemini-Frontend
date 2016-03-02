@@ -3,14 +3,12 @@ import uiRouter from 'angular-ui-router';
 import ualDataSource from './ualDataSource/ualDataSource';
 import ualVariables from './ualVariables/ualVariables';
 import ualReportFormComponent from './ualReportForm.component';
-import ualSearchFilter from './ualSearchFilter/ualSearchFilter';
 
 let ualReportFormModule = angular.module('ualReportForm', [
   uiRouter,
   ualVariables.name,
   // MODALS
-  ualDataSource.name,
-  ualSearchFilter.name
+  ualDataSource.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
