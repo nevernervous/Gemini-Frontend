@@ -1,23 +1,23 @@
-import UalSearchFilterModule from './ualSearchFilter'
-import UalSearchFilterController from './ualSearchFilter.controller';
-import UalSearchFilterComponent from './ualSearchFilter.component';
-import UalSearchFilterTemplate from './ualSearchFilter.html';
+import UalInputModule from './ualInput'
+import UalInputController from './ualInput.controller';
+import UalInputComponent from './ualInput.component';
+import UalInputTemplate from './ualInput.html';
 
-describe('UalSearchFilter', () => {
+describe('UalInput', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalSearchFilterModule.name));
+  beforeEach(window.module(UalInputModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalSearchFilterController();
+      return new UalInputController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalSearchFilterModule).to.have.property('name');
+      expect(UalInputModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalSearchFilter', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-search-filter/>').html(UalSearchFilterTemplate);
+    const template = $('<ual-input/>').html(UalInputTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalSearchFilter', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalSearchFilterComponent;
+      let component = UalInputComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalSearchFilterTemplate);
+        expect(component.template).to.equal(UalInputTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalSearchFilter', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalSearchFilterController);
+        expect(component.controller).to.equal(UalInputController);
       });
   });
 });
