@@ -222,23 +222,7 @@ module.exports = {
         {
           "groupId": 1,
           "groupName": "Column Group Name",
-          "groupUrl": "/api/Datasources/1/ColumnGroups/1",
-          "variables": [
-            {
-              "id": 1,
-              "name": "Variable name",
-              "order": 1,
-              "type": "Type",
-              "description": "Variable Description"
-            },
-            {
-              "id": 2,
-              "name": "Variable name 2",
-              "order": 2,
-              "type": "Type",
-              "description": "Variable Description"
-            }
-          ]
+          "groupUrl": "/api/Datasources/1/ColumnGroups/1"
         },
         {
           "groupId": 2,

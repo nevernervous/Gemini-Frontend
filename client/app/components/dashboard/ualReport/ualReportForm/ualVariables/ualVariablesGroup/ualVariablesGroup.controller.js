@@ -1,12 +1,13 @@
 class UalVariablesGroupController {
   /*@ngInject*/
   constructor() {
-    this.loading = false;
     this.selected = false;
   }
 
   toggle(){
-    this.selected = !this.selected;
+    if (this.groupEnabled == true){
+      this.selected = !this.selected;
+    }
   }
 }
 

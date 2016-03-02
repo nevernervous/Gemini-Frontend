@@ -6,43 +6,43 @@
 
 // VARIATIONS
 .ual-variables > ng-transclude {
-    > .top {
-        font-size: 68px;
-        margin: -10px 10px;
-        color: rgba($color06, 0.5);
-        cursor: pointer;
+  > .top {
+    font-size: 68px;
+    margin: -10px 10px;
+    color: rgba($color06, 0.5);
+    cursor: pointer;
+  }
+
+  > .container {
+
+    > .title {
+      @include font-clanot-bold(20);
+      padding: 10px 20px;
     }
 
-    > .container {
+    > .content-list {
+      height: 100%;
+      overflow-x: auto;
+      padding: 30px 15px;
 
-        > .title {
-            @include font-clanot-bold(20);
-            padding: 10px 20px;
+      > .variables {
+        @include gridle(row);
+        margin: 0;
+        padding: 0;
+
+        > .tabs {
+          @include gridle(7);
+          margin: 0;
+          padding: 0;
         }
 
-        > .content-list {
-            height: 100%;
-            overflow-x: auto;
-            padding: 30px 15px;
-
-            > .variables {
-                @include gridle(row);
-                margin: 0;
-                padding: 0;
-
-                > .tabs {
-                    @include gridle(7);
-                    margin: 0;
-                    padding: 0;
-                }
-
-                > .selected-variables {
-                    @include gridle(5);
-                    border: 1px solid $color07;
-                    margin: 0;
-                }
-            }
-
+        > .selected-variables {
+          @include gridle(5);
+          border: 1px solid $color07;
+          margin: 0;
         }
+      }
     }
+  }
 }
+

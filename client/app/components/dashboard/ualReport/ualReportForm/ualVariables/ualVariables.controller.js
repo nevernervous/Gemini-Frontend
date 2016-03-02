@@ -78,6 +78,7 @@ class UalVariablesController {
       this.variables = _.union(this.variables, variables.data);
 
       if (index < groups.length) {
+        this.groups.push(groups[index]);
         this._serialize(groups, index,
           this._datasourceService.variables(this._datasource, groups[index]));
       }
@@ -86,11 +87,7 @@ class UalVariablesController {
 
   _initialize() {
     this._datasourceService.groups(this._datasource)
-      .then(groups => {
-        this.groups = groups.data;
-        this.loaded = false;
-      });
-    //.then(groups => this._serialize(groups.data, -1, this._q.when({ data: [] })));
+    .then(groups => this._serialize(groups.data, -1, this._q.when({ data: [] })));
   }
 }
 
