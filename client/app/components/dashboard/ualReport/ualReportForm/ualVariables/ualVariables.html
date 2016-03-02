@@ -9,8 +9,9 @@
     <div class="variables">
       <ual-tabs class="tabs">
         <ual-tab title="Standard Variables">
-          <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="vm.selecteds.length == vm.variables.length">
-
+          <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="vm.loaded">
+            <ual-variables-group group-id="{{group.groupId}}" group-name="{{group.groupName}}" ng-repeat="group in vm.groups" ng-class="{'-loading': !vm.variables}">
+            </ual-variables-group>
           </ual-pane>
         </ual-tab>
         <ual-tab title="Custom Variables">

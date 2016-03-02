@@ -15,6 +15,8 @@ class UalVariablesController {
     // VARS / PUBLIC
     this.variables = [];
     this.selecteds = _.clone(selecteds) || [];
+    this.groups = [];
+    this.loaded = true;
 
     this._initialize();
   }
@@ -84,7 +86,11 @@ class UalVariablesController {
 
   _initialize() {
     this._datasourceService.groups(this._datasource)
-      .then(groups => this._serialize(groups.data, -1, this._q.when({ data: [] })));
+      .then(groups => {
+        this.groups = groups.data;
+        this.loaded = false;
+      });
+    //.then(groups => this._serialize(groups.data, -1, this._q.when({ data: [] })));
   }
 }
 

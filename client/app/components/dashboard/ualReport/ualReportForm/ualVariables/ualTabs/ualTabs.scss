@@ -39,7 +39,7 @@ ual-tabs {
     > .tabs-content {
       @include gridle( 8 );
       margin: 0;
-      padding: 12px 15px;
+      padding: 0 15px;
       overflow: hidden;
       background-color: $color00;
     }

@@ -38,7 +38,6 @@
 
                 > .selected-variables {
                     @include gridle(5);
-                    @include gridle(gutter 12px 15px);
                     border: 1px solid $color07;
                     margin: 0;
                 }
