@@ -211,7 +211,7 @@ module.exports = {
         },
         "order": 22
       }
-      
+
       ],
       code: 200
     }
@@ -223,6 +223,11 @@ module.exports = {
           "groupId": 1,
           "groupName": "Column Group Name",
           "groupUrl": "/api/Datasources/1/ColumnGroups/1"
+        },
+        {
+            "groupId": 2,
+            "groupName": "Second Group Name",
+            "groupUrl": "/api/Datasources/1/ColumnGroups/2"
         }
       ]
     }
@@ -304,8 +309,29 @@ module.exports = {
             "groupId": 1,
             "groupName": "Group Name"
           }
-        }                                
+        }
       ]
     }
-  }   
+  },
+  '/api/DataSource/1/ColumnGroups/2/Columns': {
+      GET: {
+          "data": [
+            {
+                "id": 6,
+                "name": "Variable name two",
+                "order": 1,
+                "type": "Type",
+                "description": "Variable Description two",
+                "dataSource": {
+                    "dataSourceId": 1,
+                    "dataSourceName": "Data Source Name"
+                },
+                "group": {
+                    "groupId": 2,
+                    "groupName": "Group Name"
+                }
+            }
+          ]
+      }
+  }
 };
