@@ -12,9 +12,15 @@ ual-variables-group {
     color: $color00;
     height: 36px;
     padding: 9px 14px;
+    display: block;
+    z-index: 90000;
 
     &:hover {
       cursor: pointer;
+    }
+
+    > .group-icon {
+      float: right;
     }
 
     > .icon-spinner {
@@ -29,7 +35,7 @@ ual-variables-group {
 
     &.-open {
       display: block;
-      height: auto; /*height: auto;*/
+      height: 250px; /*height: auto;*/
       max-height: 250px;
       overflow-y: auto;
     }
@@ -37,7 +43,6 @@ ual-variables-group {
 }
 
 // VARIANTS
-// VARIANTS / LOADING
 ual-variables-group {
   > .group-name {
     > .icon-spinner {
@@ -47,11 +52,11 @@ ual-variables-group {
   }
 }
 
-
 // VARIATIONS / LOADING
 ual-variables-group.-loading {
   > .group-name {
     cursor: default;
+
     > .icon-spinner {
       display: block;
     }

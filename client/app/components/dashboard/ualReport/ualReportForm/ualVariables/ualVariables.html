@@ -10,7 +10,7 @@
       <ual-tabs class="tabs">
         <ual-tab title="Standard Variables">
           <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="vm.loaded">
-            <ual-variables-group group-id="{{group.groupId}}" group-name="{{group.groupName}}" ng-repeat="group in vm.groups" ng-class="{'-loading': true}" group-enabled="false">
+            <ual-variables-group group-name="{{group.groupName}}" ng-repeat="group in vm.groups" ng-class="{'-loading': false}" loading="false" group-enabled="true">
             </ual-variables-group>
           </ual-pane>
         </ual-tab>

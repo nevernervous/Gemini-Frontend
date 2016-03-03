@@ -3,14 +3,13 @@ import controller from './ualVariablesGroup.controller';
 import './ualVariablesGroup.scss';
 
 let ualVariablesGroupComponent = {
-    restrict: 'E',
-    transclude: true,
-    bindings: {
-        groupEnabled: '@',
-        groupId: '@',
-        groupName: '@',
-        datasourceId: '@'
-    },
+  restrict: 'E',
+  transclude: true,
+  bindings: {
+    loading: '=',
+    groupEnabled: '=',
+    groupName: '@',
+  },
   template,
   controller,
   controllerAs: 'vm'
