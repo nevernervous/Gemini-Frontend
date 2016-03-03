@@ -9,7 +9,7 @@ class ualInputDirective {
         this.replace = true;
         this.template = template;
         this.scope = {
-            inputText : '=ngModel',
+            value : '=ngModel',
             icon: '@'
         };
     }
