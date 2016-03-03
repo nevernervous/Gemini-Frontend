@@ -1,8 +1,7 @@
 import angular from 'angular';
-import ualInputDirective from './ualInput.directive';
+import ualInputComponent from './ualInput.component';
 
 let ualInputModule = angular.module('ualInput', [])
-
-.directive('ualInput', () => new ualInputDirective());
+.component('ualInput', ualInputComponent);
 
 export default ualInputModule;
