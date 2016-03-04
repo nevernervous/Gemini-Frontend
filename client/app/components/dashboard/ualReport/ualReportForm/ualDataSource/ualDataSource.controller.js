@@ -6,6 +6,7 @@ class UalDataSourceController {
     this._changemodal = ualDataSourceChangeModal;
     this._selected = selected;
     this._filter = $filter;
+    this.searchTerm = {};
 
     this.datasources = [];
     this.datasourceGroups = [];
@@ -24,6 +25,10 @@ class UalDataSourceController {
   }
   cancel() {
     this._close(this._selected);
+  }
+
+  shouldShow(group){
+      return this._filter("filter")(group, this.searchTerm).length > 0;
   }
 
   getGroupById(groupId) {

@@ -1,37 +1,42 @@
 @import '../../../../../common/common';
-
 // LAYOUT 
-.ual-data-source { 
-    
+.ual-data-source > ng-transclude {
+    @include gridle(container);
+    >.container {
+        height: calc(100% - 34px);
+        .title {
+            padding: 17px 8px;
+        }
+        .search-area {
+            @include gridle(row);
+            margin: 0;
+            padding: 4px 0 25px 0;
+            > * {
+                @include gridle(6)
+            }
+        }
+        .content-list {
+            height: calc(100% - 120px);
+            overflow-x: auto;
+            padding: 14px 0;
+            > .data-source-list {
+                @include column-content(4);
+                height: 100%;
+            }
+        }
+    }
 }
 
 // VARIATIONS
 .ual-data-source > ng-transclude {
-    > .top { 
+    > .top {
         font-size: 68px;
-        margin: -10px 10px;    
-        color: rgba($color06, 0.5);  
+        color: rgba($color06, 0.5);
         cursor: pointer;
     }
-    
     >.container {
-        height: calc(100% - 34px);
-        .title{
+        .title {
             @include font-clanot-bold(20);
-            padding: 6px 8px;
-        } 
-        .search-area {
-            padding: 4px 8px 14px 8px;
-        }
-        .content-list {
-            height: calc(100% - 75px);
-            overflow-x: auto;
-            padding: 8px 0px;
-            > .data-source-list {
-                @include column-content(4);
-                height: 100%;
-                
-            }
         }
     }
-} 
+}
