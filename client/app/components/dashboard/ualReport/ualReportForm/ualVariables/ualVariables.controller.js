@@ -46,6 +46,7 @@ class UalVariablesController {
       this.allVariables[groupId].forEach( item => {
         let index = this.selecteds.indexOf(item);
 
+        //temporalmente, para ver si lo toma Vic
         variable.selected = !(indexGroup > -1);
 
         if (indexGroup > -1){
@@ -69,38 +70,47 @@ class UalVariablesController {
         this.selecteds.push(variable);
 
       let groupedVariables = _(this.selecteds).groupBy("group.groupId").value();
+      let indexGroup = this.selectedGroups.indexOf(groupId);
 
       if (groupedVariables[groupId]){
 
         if (this.allVariables[variable.group.groupId].length == groupedVariables[groupId].length)
         {
-          let indexGroup = this.selectedGroups.indexOf(groupId);
           if (indexGroup == -1) this.selectedGroups.push(groupId);
-
         }
         else{
-          let indexGroup = this.selectedGroups.indexOf(variable.group.groupId);
           if (indexGroup > -1) this.selectedGroups.splice(indexGroup, 1)
         }
 
       }
       else{
         //si no hay elementos del grupo, quitar el grupo
-        let indexGroup = this.selectedGroups.indexOf(groupId);
         if (indexGroup > -1) this.selectedGroups.splice(indexGroup, 1);
       }
     }
 
-    //this.loading = (this.allGroups.length == this.selectedGroups.length);
+
+    if (this.selectedGroups.length == 0)
+      this.loading = false;
+    else{
+
+      this.loading = (this.allGroups.length == this.selectedGroups.length);
+    }
 
   }
 
   selectAll(){
-    this.loading = true;
     this.allGroups.forEach (item => {
-      let index = this.selectedGroups.indexOf(item);
-      if (index == -1) this.selectedGroups.push(item);
+      let index = this.selectedGroups.indexOf(item.groupId);
+      if (index == -1) this.selectedGroups.push(item.groupId);
     });
+    console.log(this.selectedGroups.length);
+    if (this.selectedGroups.length == 0)
+      this.loading = false;
+    else{
+      this.loading = (this.allGroups.length == this.selectedGroups.length);
+    }
+    console.log(this.loading);
     this.variables.forEach( item => {
       let index = this.selecteds.indexOf(item);
       if (index == -1) this.selecteds.push(item);
