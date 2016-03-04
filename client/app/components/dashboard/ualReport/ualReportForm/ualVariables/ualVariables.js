@@ -6,6 +6,7 @@ import ualVariableSelectedItem from './ualVariableSelectedItem/ualVariableSelect
 import ualTabs from './ualTabs/ualTabs';
 import ualTab from './ualTab/ualTab';
 import ualVariablesGroup from './ualVariablesGroup/ualVariablesGroup';
+import ualVariableItem from './ualVariableItem/ualVariableItem';
 
 let ualVariablesModule = angular.module('ualVariables', [
   ualVariablesCancelModal.name,
@@ -13,7 +14,8 @@ let ualVariablesModule = angular.module('ualVariables', [
 ualVariableSelectedItem.name,
 ualTabs.name,
 ualTab.name,
-ualVariablesGroup.name
+ualVariablesGroup.name,
+ualVariableItem.name
 ])
 
 .factory('ualVariables', ualVariablesFactory);

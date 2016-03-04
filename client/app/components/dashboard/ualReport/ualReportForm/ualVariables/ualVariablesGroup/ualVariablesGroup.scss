@@ -35,7 +35,7 @@ ual-variables-group {
 
     &.-open {
       display: block;
-      height: 250px; /*height: auto;*/
+      height: auto; /*height: 250px;*/
       max-height: 250px;
       overflow-y: auto;
     }

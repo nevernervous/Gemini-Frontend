@@ -9,8 +9,13 @@
     <div class="variables">
       <ual-tabs class="tabs">
         <ual-tab title="Standard Variables">
-          <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="vm.loaded">
-            <ual-variables-group group-name="{{group.groupName}}" ng-repeat="group in vm.groups" ng-class="{'-loading': false}" group-enabled="true">
+          <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="vm.loading">
+            <ual-variables-group group-name="{{group.groupName}}" ng-repeat="group in vm.allGroups" ng-class="{'-loading': false}" group-enabled="true">
+              <ual-variable-item variable-name="Select All" is-selected="vm.isSelectedGroup(group.groupId)" ng-click="vm.toggle(group)">
+              </ual-variable-item>
+              <ual-variable-item variable-name="{{variable.name}}" is-selected="vm.isSelected(variable)"
+                                 ng-repeat="variable in vm.getVariablesByGroup(group.groupId)" ng-click="vm.toggle(variable)">
+              </ual-variable-item>
             </ual-variables-group>
           </ual-pane>
         </ual-tab>
