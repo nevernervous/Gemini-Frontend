@@ -26,15 +26,6 @@ class UalDataSourceController {
     this._close(this._selected);
   }
 
-  getGroupById(groupId) {
-    groupId = parseInt(groupId);
-    return this.datasourceGroups.find({ groupId }).value();
-  }
-
-  orderGroups(item) {
-    return _.chain(item).map('group.order').first().value();
-  }
-
   isActive(itemId) {
     if (!this.selected) {
       return false;
@@ -48,17 +39,8 @@ class UalDataSourceController {
   }
 
   _initialize() {
-    this._datasource.all()
-      .then(response => {
-        let datasources = response.data;
-
-        datasources = this._filter("groupBy")(datasources, 'group.groupId');
-        datasources = this._filter('toArray')(datasources, 'true');
-        datasources = this._filter('orderBy')(datasources, this.orderGroups);
-
-        this.datasources = datasources;
-        this.datasourceGroups = _.chain(response.data).map("group").uniq("groupId");
-      });
+    this._datasource.all('group')
+      .then(response => this.datasources = response.data);
   }
 }
 

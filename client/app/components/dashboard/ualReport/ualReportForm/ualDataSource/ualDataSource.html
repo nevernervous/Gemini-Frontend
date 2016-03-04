@@ -13,8 +13,8 @@
     <div class="content-list" ng-if="!vm.datasources">Loading ...</div>
     <div class="content-list" ng-if="vm.datasources">
         <div class="data-source-list">
-            <ual-data-source-group datasource-group="vm.getGroupById(groups.$key)" ng-repeat="groups in vm.datasources">
-                <ual-data-source-item datasource-item='item' ng-repeat="item in groups | orderBy : 'order'" ng-click="vm.toogleSelected(item)"
+            <ual-data-source-group datasource-group="group.data" ng-repeat="group in vm.datasources.groups | orderBy : 'data.order'">
+                <ual-data-source-item datasource-item='item' ng-repeat="item in group.items | orderBy : 'order'" ng-click="vm.toogleSelected(item)"
                 ng-class="{'-selected': vm.isActive(item.id)}">
                 </ual-data-source-item>
             </ual-data-source-group>
