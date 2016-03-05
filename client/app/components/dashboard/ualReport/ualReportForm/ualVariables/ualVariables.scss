@@ -4,35 +4,40 @@
 
 // VARIATIONS
 .ual-variables > ng-transclude {
-    > .top {
-        font-size: 68px;
-        color: rgba($color06, 0.5);
-        cursor: pointer;
-    }
-    > .container {
-        > .title {
-            @include font-clanot-bold(20);
-            padding: 10px 20px;
-        }
-        > .content-list {
-            height: 100%;
-            overflow-x: auto;
-            padding: 30px 15px;
-            > .variables {
-                @include gridle(row);
-                margin: 0;
-                padding: 0;
-                > .tabs {
-                    @include gridle(7);
-                    margin: 0;
-                    padding: 0;
-                }
-                > .selected-variables {
-                    @include gridle(5);
-                    border: 1px solid $color07;
-                    margin: 0;
-                }
+  > .container {
+    > .content-list {
+      height: calc(100% - 60px);
+      overflow-x: auto;
+      padding: 10px 0;
+      > .variables {
+        @include gridle(row);
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        > .tabs {
+          @include gridle(7);
+          height: 100%;
+          margin: 0;
+          padding: 0;
+
+          .standard-variables ual-pane {
+            ual-variables-group {
+              ual-checkbox {
+                padding: 7px 0;
+                display: list-item;
+                list-style: none;
+                cursor: pointer;
+              }
             }
+          }
         }
+        > .selected-variables {
+          @include gridle(5);
+          height: 100%;
+          border: 1px solid $color07;
+          margin: 0;
+        }
+      }
     }
+  }
 }

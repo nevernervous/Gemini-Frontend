@@ -3,23 +3,24 @@
 ual-tabs {
   > .tabs-container {
     @include gridle(row row-align between);
-    border: 1px solid $color07;
-    background-color: $color09;
+    height: 100%;
     margin: 0 10px 0 0;
     padding: 0;
 
     > .tabs-list {
       @include gridle( 4 );
+      border-right: 1px solid $color07;
+      background-color: $color08;
       margin: 0;
       padding: 0;
       list-style: none;
-      overflow: hidden;
 
       > li {
-        background-color: $color09;
+        @include font-clanot-news(16);
+        border-top: 1px solid $color00;
+        background-color: $color08;
         color: $color06;
         height: 45px;
-        min-width: 258px;
 
         > a {
           color: $color06;
@@ -28,15 +29,35 @@ ual-tabs {
           padding: 12px 20px;
         }
 
+        &:first-child {
+          border-top: 0;
+        }
+        &:last-child {
+          border-bottom: 1px solid $color00;
+        }
+        &.active + li {
+          border-top: 0;
+        }
         &.active {
-          color: $color06;
+          width: calc(100% + 2px); // remove border for selected
+          border: 1px solid $color07;
           border-left: 5px solid $color03;
+          border-right: 0;
+
+          @include font-clanot-bold(16);
+          color: $color06;
           background-color: $color00;
+
+          > a {
+            padding: 12px 15px;
+          }
         }
       }
     }
 
     > .tabs-content {
+      border: 1px solid $color07;
+      border-left: 0;
       @include gridle( 8 );
       margin: 0;
       padding: 0 15px;

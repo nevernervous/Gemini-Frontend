@@ -10,10 +10,10 @@ import ualVariablesGroup from './ualVariablesGroup/ualVariablesGroup';
 let ualVariablesModule = angular.module('ualVariables', [
   ualVariablesCancelModal.name,
   ualVariablesDeteleAllModal.name,
-ualVariableSelectedItem.name,
-ualTabs.name,
-ualTab.name,
-ualVariablesGroup.name
+  ualVariableSelectedItem.name,
+  ualTabs.name,
+  ualTab.name,
+  ualVariablesGroup.name
 ])
 
 .factory('ualVariables', ualVariablesFactory);

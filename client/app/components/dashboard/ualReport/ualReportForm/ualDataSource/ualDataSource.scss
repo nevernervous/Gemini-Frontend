@@ -1,42 +1,26 @@
 @import '../../../../../common/common';
-// LAYOUT 
+// LAYOUT
 .ual-data-source > ng-transclude {
-    @include gridle(container);
-    >.container {
-        height: calc(100% - 34px);
-        .title {
-            padding: 17px 8px;
-        }
-        .search-area {
-            @include gridle(row);
-            margin: 0;
-            padding: 4px 0 25px 0;
-            > * {
-                @include gridle(6)
-            }
-        }
-        .content-list {
-            height: calc(100% - 120px);
-            overflow-x: auto;
-            padding: 14px 0;
-            > .data-source-list {
-                @include column-content(4);
-                height: 100%;
-            }
-        }
+  @include gridle(container);
+  >.container {
+    .search-area {
+      @include gridle(row);
+      margin: 0;
+      padding: 4px 0 25px 0;
+      > * {
+        @include gridle(6)
+      }
     }
+    .content-list {
+      height: calc(100% - 120px);
+      overflow-x: auto;
+      padding: 10px 0;
+      > .data-source-list {
+        @include column-content(4);
+        height: 100%;
+      }
+    }
+  }
 }
 
 // VARIATIONS
-.ual-data-source > ng-transclude {
-    > .top {
-        font-size: 68px;
-        color: rgba($color06, 0.5);
-        cursor: pointer;
-    }
-    >.container {
-        .title {
-            @include font-clanot-bold(20);
-        }
-    }
-}

@@ -1,25 +1,25 @@
 let ualReportService = function () {
   "ngInject";
-  
+
   let datasource = null;
   let variables = [];
-  
+
   let create = () => {
     datasource = null;
-    variables = [];    
+    variables = [];
   }
-  
+
   let getDataSource = () => datasource;
   let setDataSource = value => {
-    if ( datasource !== value ) { 
-      variables = []; 
-      datasource = value;  
+    if ( !datasource || datasource.id !== value.id ) {
+      variables = [];
+      datasource = value;
     }
   }
-  
+
   let getVariables = () => variables;
-  let setVariables = value => variables = value;  
-  
+  let setVariables = value => variables = value;
+
   return {
     create,
     datasource: {
@@ -28,7 +28,7 @@ let ualReportService = function () {
     },
     variables: {
       get: getVariables,
-      set: setVariables      
+      set: setVariables
     }
   };
 };
