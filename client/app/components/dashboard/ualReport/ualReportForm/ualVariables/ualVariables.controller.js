@@ -88,15 +88,7 @@ class UalVariablesController {
         if (indexGroup > -1) this.selectedGroups.splice(indexGroup, 1);
       }
     }
-
-
-    if (this.selectedGroups.length == 0)
-      this.loading = false;
-    else{
-
-      this.loading = (this.allGroups.length == this.selectedGroups.length);
-    }
-
+    this.enableSelectAll();
   }
 
   selectAll(){
@@ -104,13 +96,9 @@ class UalVariablesController {
       let index = this.selectedGroups.indexOf(item.groupId);
       if (index == -1) this.selectedGroups.push(item.groupId);
     });
-    console.log(this.selectedGroups.length);
-    if (this.selectedGroups.length == 0)
-      this.loading = false;
-    else{
-      this.loading = (this.allGroups.length == this.selectedGroups.length);
-    }
-    console.log(this.loading);
+
+    this.enableSelectAll();
+
     this.variables.forEach( item => {
       let index = this.selecteds.indexOf(item);
       if (index == -1) this.selecteds.push(item);
@@ -125,6 +113,13 @@ class UalVariablesController {
   getVariablesByGroup(groupId){
     let variablesByGroup = this.allVariables[groupId];
     return variablesByGroup;
+  }
+  enableSelectAll(){
+    if (this.selectedGroups.length == 0)
+      this.loading = false;
+    else{
+      this.loading = (this.allGroups.length == this.selectedGroups.length);
+    }
   }
 
   apply() {
