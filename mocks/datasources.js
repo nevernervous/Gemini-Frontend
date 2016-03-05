@@ -217,122 +217,128 @@ module.exports = {
       code: 200
     }
   },
-  '/api/DataSource/1/ColumnGroups': {
+  '/api/DataSources/1/ColumnGroups': {
     GET: {
-      "data": [
-        {
-          "groupId": 1,
-          "groupName": "Column Group Name",
-          "groupUrl": "/api/Datasources/1/ColumnGroups/1"
-        },
-        {
+      data: {
+        "data": [
+          {
+            "groupId": 1,
+            "groupName": "Column Group Name",
+            "groupUrl": "/api/Datasources/1/ColumnGroups/1"
+          },
+          {
             "groupId": 2,
             "groupName": "Second Group Name",
             "groupUrl": "/api/Datasources/1/ColumnGroups/2"
-        }
-      ]
+          }
+        ]
+      }
     }
   },
-  '/api/DataSource/1/ColumnGroups/1/Columns': {
+  '/api/DataSources/1/ColumnGroups/1/Columns': {
     GET: {
-      "data": [
-        {
-          "id": 1,
-          "name": "Variable name",
-          "order": 1,
-          "type": "Type",
-          "description": "Variable Description",
-          "dataSource": {
-            "dataSourceId": 1,
-            "dataSourceName": "Data Source Name"
+      data:{
+        "data": [
+          {
+            "id": 1,
+            "name": "Variable name",
+            "order": 1,
+            "type": "Type",
+            "description": "Variable Description",
+            "dataSource": {
+              "dataSourceId": 1,
+              "dataSourceName": "Data Source Name"
+            },
+            "group": {
+              "groupId": 1,
+              "groupName": "Group Name"
+            }
           },
-          "group": {
-            "groupId": 1,
-            "groupName": "Group Name"
-          }
-        },
-        {
-          "id": 2,
-          "name": "Variable name 2",
-          "order": 2,
-          "type": "Type",
-          "description": "Variable Description",
-          "dataSource": {
-            "dataSourceId": 1,
-            "dataSourceName": "Data Source Name"
+          {
+            "id": 2,
+            "name": "Variable name 2",
+            "order": 2,
+            "type": "Type",
+            "description": "Variable Description",
+            "dataSource": {
+              "dataSourceId": 1,
+              "dataSourceName": "Data Source Name"
+            },
+            "group": {
+              "groupId": 1,
+              "groupName": "Group Name"
+            }
           },
-          "group": {
-            "groupId": 1,
-            "groupName": "Group Name"
-          }
-        },
-        {
-          "id": 3,
-          "name": "Variable name 3",
-          "order": 1,
-          "type": "Type",
-          "description": "Variable Description",
-          "dataSource": {
-            "dataSourceId": 1,
-            "dataSourceName": "Data Source Name"
+          {
+            "id": 3,
+            "name": "Variable name 3",
+            "order": 1,
+            "type": "Type",
+            "description": "Variable Description",
+            "dataSource": {
+              "dataSourceId": 1,
+              "dataSourceName": "Data Source Name"
+            },
+            "group": {
+              "groupId": 1,
+              "groupName": "Group Name"
+            }
           },
-          "group": {
-            "groupId": 1,
-            "groupName": "Group Name"
-          }
-        },
-        {
-          "id": 4,
-          "name": "Variable name 4",
-          "order": 1,
-          "type": "Type",
-          "description": "Variable Description",
-          "dataSource": {
-            "dataSourceId": 1,
-            "dataSourceName": "Data Source Name"
+          {
+            "id": 4,
+            "name": "Variable name 4",
+            "order": 1,
+            "type": "Type",
+            "description": "Variable Description",
+            "dataSource": {
+              "dataSourceId": 1,
+              "dataSourceName": "Data Source Name"
+            },
+            "group": {
+              "groupId": 1,
+              "groupName": "Group Name"
+            }
           },
-          "group": {
-            "groupId": 1,
-            "groupName": "Group Name"
+          {
+            "id": 5,
+            "name": "Variable name 5",
+            "order": 1,
+            "type": "Type",
+            "description": "Variable Description",
+            "dataSource": {
+              "dataSourceId": 1,
+              "dataSourceName": "Data Source Name"
+            },
+            "group": {
+              "groupId": 1,
+              "groupName": "Group Name"
+            }
           }
-        },
-        {
-          "id": 5,
-          "name": "Variable name 5",
-          "order": 1,
-          "type": "Type",
-          "description": "Variable Description",
-          "dataSource": {
-            "dataSourceId": 1,
-            "dataSourceName": "Data Source Name"
-          },
-          "group": {
-            "groupId": 1,
-            "groupName": "Group Name"
-          }
-        }
-      ]
+        ]
+      }
     }
   },
   '/api/DataSource/1/ColumnGroups/2/Columns': {
-      GET: {
-          "data": [
-            {
-                "id": 6,
-                "name": "Variable name two",
-                "order": 1,
-                "type": "Type",
-                "description": "Variable Description two",
-                "dataSource": {
-                    "dataSourceId": 1,
-                    "dataSourceName": "Data Source Name"
-                },
-                "group": {
-                    "groupId": 2,
-                    "groupName": "Group Name"
-                }
+    GET: {
+      data: {
+        "data": [
+          {
+            "id": 6,
+            "name": "Variable name two",
+            "order": 1,
+            "type": "Type",
+            "description": "Variable Description two",
+            "dataSource": {
+              "dataSourceId": 1,
+              "dataSourceName": "Data Source Name"
+            },
+            "group": {
+              "groupId": 2,
+              "groupName": "Group Name"
             }
-          ]
+          }
+        ]
       }
+    }
   }
 };

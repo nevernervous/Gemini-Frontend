@@ -1,0 +1,69 @@
+@import '../../../../../../common/common';
+
+// LAYOUT
+ual-variables-group {
+  border-top: 1px solid $color00;
+  display: block;
+  overflow: hidden;
+
+  > .group-name {
+    background-color: $color04;
+    border-left: 3px solid $color10;
+    color: $color00;
+    height: 36px;
+    padding: 9px 7px 9px 14px;
+    display: block;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    > .group-icon {
+      float: right;
+      font-size: 24px;
+      margin-top: -4px;
+    }
+
+    > .icon-spinner {
+      float: right;
+    }
+  }
+
+  > .group-item {
+    @include transition(left .3s ease-out);
+    display: none;
+    height: 0;
+
+    &.-open {
+      display: block;
+      height: 250px; /*height: auto;*/
+      max-height: 250px;
+      overflow-y: auto;
+    }
+  }
+}
+
+// VARIANTS
+ual-variables-group {
+  > .group-name {
+    > .icon-spinner {
+      @include spin();
+      display: none;
+    }
+  }
+}
+
+// VARIATIONS / LOADING
+ual-variables-group.-loading {
+  > .group-name {
+    cursor: default;
+
+    > .icon-spinner {
+      display: block;
+    }
+
+    > .group-icon {
+      display: none;
+    }
+  }
+}

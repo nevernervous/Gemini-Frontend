@@ -1,22 +1,21 @@
-<div class="header">
+<div class="report-header">
     <div class="title">Create Report</div>
-    <div>
-        <ual-button class="-secondary">Save</ual-button>
-    </div>
+    <ual-button class="save-button -secondary">Save</ual-button>
 </div>
-<div class="reportName separatorLine">
-    <div class="title">This is the Report Name</div>
+<div class="report-body" >
+  <div class="section report-name">
+      <div class="title">Untitled Report</div>
+  </div>
+  <div class="section selected-parameters">
+      <div class="selected-parameter">
+        <span class="title">Data Source:</span>
+        <span class="value">{{vm.report.datasource.get().name}}</span>
+        <a class="action" href ng-click="vm.selectDataSource()">Change Data Source</a>
+      </div>
+      <div class="selected-parameter">
+        <span class="title">Variables:</span>
+        <span class="value">10 Variables Selected</span>
+        <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
+      </div>
+  </div>
 </div>
-<div class="selectedParameters separatorLine">
-    <div><span class="title">Data Source:</span> <span class="selectedValue">Polaris</span> <a class="action" href ng-click="vm.selectDataSource()">Change Data Source</a></div>
-    <div><span class="title">Variables:</span> <span class="selectedValue">10 Variables Selected</span> <a class="action" href
-        ng-click="vm.selectVariables()">Manage Variables</a></div>
-</div>
-<div class="selectedParameters">
-    <div><span class="title">Slicer:</span> <span class="selectedValue">6 Slicers Selected</span> <a class="action" href="#">Manage Slicers</a></div>
-</div>
-<br />
-<br />
-
-<ual-variables>
-</ual-variables>

@@ -6,9 +6,9 @@ class UalDataSourceController {
     this._changemodal = ualDataSourceChangeModal;
     this._selected = selected;
     this._filter = $filter;
+    this.searchTerm = {};
 
-    this.datasources = [];
-    this.datasourceGroups = [];
+    this.datasources;
     this.selected = selected;
     this._initialize();
   }
@@ -26,12 +26,12 @@ class UalDataSourceController {
     this._close(this._selected);
   }
 
-  isActive(itemId) {
-    if (!this.selected) {
-      return false;
-    }
+  shouldShow(group) {
+    return this._filter("filter")(group.items, this.searchTerm).length > 0;
+  }
 
-    return this.selected.id === itemId;
+  isActive(itemId) {
+    return (this.selected) && this.selected.id === itemId;
   }
 
   toogleSelected(item) {

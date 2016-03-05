@@ -1,26 +1,26 @@
 @import '../common';
 
-// LAYOUT 
-ual-modal { 
-    @include gridle( container ); 
+// LAYOUT
+ual-modal {
+    @include gridle( container );
     z-index: 1000;
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
-}  
+}
 
 // VARIANTS
-ual-modal { 
+ual-modal {
   > ng-transclude {
     z-index: 2000;
-    background: $color00;    
+    background: $color00;
   }
 }
-ual-modal.-yesno { 
-  background: rgba($color00, 0.5);  
-  
+ual-modal.-yesno {
+  background: rgba($color00, 0.5);
+
   > ng-transclude {
     @include gridle( row );
     padding: 26px !important;
@@ -28,7 +28,7 @@ ual-modal.-yesno {
     width: 582px;
     @include box-shadow(0, 6px, 15px, rgba(0, 0, 0, 0.3));
     color: $color06;
-        
+
     > .title {
       width: 100%;
       margin-bottom: 20px;
@@ -38,51 +38,61 @@ ual-modal.-yesno {
       width: 100%;
       margin-bottom: 20px;
       @include font-clanot-book(16);
-      > strong { 
+      > strong {
         @include font-clanot-bold(16);
-      }      
-    } 
-    > .buttons { 
+      }
+    }
+    > .buttons {
       @include gridle( row row-align right );
       margin: 0;
       width: 100%;
       > .-primary {
-        margin-left: 15px; 
+        margin-left: 15px;
         min-width: 131px;
       }
-    }      
+    }
   }
 }
 
 ual-modal.-fullmodal {
   background:  rgba($color00, 0.9);
   padding: 52px 50px;
-  
+
   > ng-transclude {
     @include gridle( row );
     margin: 0;
     color: $color06;
     height: 100%;
-        
+
     > .top {
       position: fixed;
+      margin: -10px 10px;
       top: 0px;
       right: 0px;
+      > i {
+        font-size: 68px;
+        color: rgba($color06, 0.5);
+        cursor: pointer;
+      }
     }
     > .container {
       width: 100%;
       height: 100%;
-      margin: 0;  
-    } 
-    > .buttons { 
+      margin: 0;
+      > .title {
+        @include font-clanot-bold(20);
+        padding: 15px 10px;
+      }
+    }
+    > .buttons {
       @include gridle( row row-align right );
       margin: 0;
       width: 100%;
       > .-primary {
-        margin-left: 15px; 
-        min-width: 131px;
+        margin-left: 15px;
+        min-width: 165px;
       }
-    }      
-  } 
+    }
+  }
 }
 

@@ -13,36 +13,31 @@ class UalVariablesController {
     this._selecteds = selecteds;
 
     // VARS / PUBLIC
-    this.variables = [];
+    this.variables;
     this.selecteds = _.clone(selecteds) || [];
+    this.loaded = false;
 
     this._initialize();
   }
 
   isSelected(variable) {
-    return (this.selecteds.indexOf(variable) > -1);
+    return _.find(this.selecteds, { 'id': variable.id });
   }
   toggle(variable) {
-    let index = this.selecteds.indexOf(variable);
-    (index > -1) ?
-      this.selecteds.splice(index, 1) :
+    this.isSelected(variable) ?
+      _.remove(this.selecteds, { 'id': variable.id }) :
       this.selecteds.push(variable);
   }
 
   selectAll(){
-    this.variables.forEach( item => {
-      let index = this.selecteds.indexOf(item);
-      if (index == -1){
-        this.selecteds.push(item);
-      }
-    });
+    this.selecteds = _.clone(this.variables.items);
   }
 
   deleteAll() {
     this._deleteallmodal.open()
-      .then(response => {
-        if (response) this.selecteds = [];
-      });
+    .then(response => {
+      if (response) this.selecteds = [];
+    });
   }
 
   apply() {
@@ -58,33 +53,17 @@ class UalVariablesController {
   }
 
   _hasChange() {
-    if ( this._selecteds.length === this.selecteds.length ) {
-      let index = 0;
-      for ( ; index < this._selecteds.length; index ++) {
-        if ( this._selecteds[index].id !== this.selecteds[index].id ) {
-          return true;
-        }
-      }
-      return false;
-    }
-    return true;
-  }
-
-  _serialize(groups, index, promise) {
-    index += 1;
-    promise.then(variables => {
-      this.variables = _.union(this.variables, variables.data);
-
-      if (index < groups.length) {
-        this._serialize(groups, index,
-          this._datasourceService.variables(this._datasource, groups[index]));
-      }
-    });
+    return !_.isEqual(this._selecteds.length, this.selecteds.length);
   }
 
   _initialize() {
-    this._datasourceService.groups(this._datasource)
-      .then(groups => this._serialize(groups.data, -1, this._q.when({ data: [] })));
+    this._datasourceService.variables(this._datasource)
+    .then(variables => {
+      this.variables = variables.data;
+      this.loaded = true;
+    },
+    error => console.error(error),
+    progress => this.variables = progress.data);
   }
 }
 

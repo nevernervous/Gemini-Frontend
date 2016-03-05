@@ -4,11 +4,12 @@
 ual-data-source-item {
     display: block;
     @include gridle(gutter 10px 0px);
+    cursor: pointer;
 
     > span{
         padding: 8px;
     }
-}  
+}
 
 
 //Variations
@@ -18,8 +19,8 @@ ual-data-source-item {
     }
     &.-selected{
         > span{
-            background-color: $color04;
-            color: $primaryWhiteColor;
+          @include font-clanot-bold(14);
+            background-color: $color10;
         }
     }
 }
