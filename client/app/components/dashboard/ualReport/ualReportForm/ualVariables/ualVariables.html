@@ -37,5 +37,5 @@
   </div>
 </div>
 <div class="buttons">
-  <ual-button class="-primary" ng-disabled="vm.selecteds | isEmpty" ng-click="vm.apply()">Apply</ual-button>
+  <ual-button class="-primary" ng-disabled="(vm.selecteds | isEmpty) || !vm.hasChange()" ng-click="vm.apply()">Apply</ual-button>
 </div>
