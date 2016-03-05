@@ -318,7 +318,7 @@ module.exports = {
       }
     }
   },
-  '/api/DataSource/1/ColumnGroups/2/Columns': {
+  '/api/DataSources/1/ColumnGroups/2/Columns': {
     GET: {
       data: {
         "data": [

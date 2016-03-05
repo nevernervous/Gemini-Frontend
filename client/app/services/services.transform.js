@@ -8,7 +8,7 @@ let servicesTransform = function ($http) {
       return response
     },
     simple: (response) => {
-      return response.data;
+      return response ? response.data : response;
     },
     group: (response) => {
 

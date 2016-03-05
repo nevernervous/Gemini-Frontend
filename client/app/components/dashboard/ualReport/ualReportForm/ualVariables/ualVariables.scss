@@ -19,6 +19,17 @@
           height: 100%;
           margin: 0;
           padding: 0;
+
+          .standard-variables ual-pane {
+            ual-variables-group {
+              ual-checkbox {
+                padding: 7px 0;
+                display: list-item;
+                list-style: none;
+                cursor: pointer;
+              }
+            }
+          }
         }
         > .selected-variables {
           @include gridle(5);

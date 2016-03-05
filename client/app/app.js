@@ -1,6 +1,6 @@
 import angular from 'angular';
 import 'lodash';
-//import jQuery from 'jquery';
+import jQuery from 'jquery';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
@@ -12,7 +12,7 @@ import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
 import 'lodash';
 
-//window.$ = window.jQuery = jQuery;
+window.$ = window.jQuery = jQuery;
 
 import './app.scss';
 import 'normalize.css';
@@ -36,9 +36,9 @@ angular.module('app', [
     parameters[item.name] = item.value;
   });
   ConfigurationProvider.load(parameters);
-  
+
   // SETUP FALLBACK
-  if ( Properties.fallback ) { 
+  if ( Properties.fallback ) {
     $httpProvider.interceptors.push(Interceptor);
   }
 })
@@ -46,12 +46,12 @@ angular.module('app', [
 
 
 deferredBootstrapper.bootstrap({
-  element: document.body,  
+  element: document.body,
   module: 'app',
   injectorModules: [Constants.name],
   bootstrapConfig: {
     strictDi: true
-  },  
+  },
   resolve: {
     SETTINGS: ['$http', 'Properties', function ($http, Properties) {
       return $http.get(Properties.endpoint + '/settings');

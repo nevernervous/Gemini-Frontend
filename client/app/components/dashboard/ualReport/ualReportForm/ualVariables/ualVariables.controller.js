@@ -1,6 +1,6 @@
 class UalVariablesController {
   /*@ngInject*/
-  constructor(close, $q, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
+  constructor(close, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
     // SERVICES
     this._close = close;
     this._datasourceService = DataSourceService;
@@ -23,16 +23,31 @@ class UalVariablesController {
   isSelected(variable) {
     return _.find(this.selecteds, { 'id': variable.id });
   }
+
   toggle(variable) {
     this.isSelected(variable) ?
       _.remove(this.selecteds, { 'id': variable.id }) :
       this.selecteds.push(variable);
   }
 
+  isSelectedGroup(group) {
+    return _.reduce(group.items, (result, item) => result && this.isSelected(item), true);
+  }
+  toggleGroup(group) {
+    if (this.isSelectedGroup(group)) {
+      const ids = _.map(group.items, item => item.id);
+      this.selecteds = _.reject(this.selecteds, item => _.includes(ids, item.id));
+    } else {
+      this.selecteds = _.chain(this.selecteds)
+        .union(group.items)
+        .uniq('id')
+        .value();
+    }
+  }
+
   selectAll(){
     this.selecteds = _.clone(this.variables.items);
   }
-
   deleteAll() {
     this._deleteallmodal.open()
     .then(response => {
@@ -53,7 +68,15 @@ class UalVariablesController {
   }
 
   _hasChange() {
-    return !_.isEqual(this._selecteds.length, this.selecteds.length);
+    let change = false;
+    if (this._selecteds.length === this.selecteds.length) {
+      for (let i = 0; i < this._selecteds.length && !change; i++) {
+        change = (this._selecteds[i].id !== this.selecteds[i].id);
+      }
+    } else {
+      change = true;
+    }
+    return change;
   }
 
   _initialize() {

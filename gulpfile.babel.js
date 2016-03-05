@@ -45,7 +45,7 @@ let paths = {
   output: root,
   basePath: {
     common: resolveToApp('common'),
-    component: resolveToComponents(), 
+    component: resolveToComponents(),
     page: resolveToComponents(),
     service: resolveToServices(),
     modal: resolveToComponents('modals')
@@ -145,12 +145,12 @@ gulp.task('component', () => {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
   const dash = (val) => {
-    return val.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();  
-  }; 
+    return val.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+  };
   const name = yargs.argv.name;
   const type =  yargs.argv.type || 'component'; // page, component, service
   const basePath = paths.basePath[type];
-  const parentPath = yargs.argv.parent || '';  
+  const parentPath = yargs.argv.parent || '';
   const destPath = path.join(basePath, parentPath, name);
 
   return gulp.src(paths.blankTemplates[type])

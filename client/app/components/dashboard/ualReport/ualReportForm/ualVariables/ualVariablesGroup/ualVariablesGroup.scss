@@ -30,14 +30,13 @@ ual-variables-group {
   }
 
   > .group-item {
-    @include transition(left .3s ease-out);
-    display: none;
-    height: 0;
+    @include transition(all .3s ease-out);
+    max-height: 0;
 
     &.-open {
-      display: block;
-      height: 250px; /*height: auto;*/
-      max-height: 250px;
+      max-height: 440px;
+      padding: 7px 13px;
+      border: 1px solid $color08;
       overflow-y: auto;
     }
   }

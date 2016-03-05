@@ -14,7 +14,7 @@ class UalDataSourceController {
   }
 
   apply() {
-    if (this._selected && (this._selected !== this.selected)) {
+    if (this._selected && (this._selected.id !== this.selected.id) ) {
       this._changemodal.open({ oldDataSource: this._selected, newDataSource: this.selected })
         .then(response => response && this._close(this.selected));
     } else {

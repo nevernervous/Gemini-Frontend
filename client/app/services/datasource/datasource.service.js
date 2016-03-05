@@ -28,7 +28,7 @@ let datasourceService = function (Properties, ServicesTransform, $http, $q) {
           deferred.resolve(response);
         } else {
           deferred.notify(response);
-          _serialize(_.tails(requests), deferred)
+          _serialize(tails, deferred)
         }
       });
     } else {
@@ -78,7 +78,8 @@ let datasourceService = function (Properties, ServicesTransform, $http, $q) {
         },
         error => deferred.reject(error),
         progress => { // NOTIFICATION FOR EACH GROUP VARIABLES
-          _.find(response.data.groups, {'groupId': progress.data[0].group.groupId}).items = done.data;
+          let group = _.find(response.data.groups, group => group.data.groupId === progress.data[0].group.groupId);
+          if (group) group.items = progress.data;
           response.data.items = _.union(response.data.items, progress.data);
           deferred.notify(response);
         }
