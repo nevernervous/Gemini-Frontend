@@ -59,7 +59,7 @@ class UalVariablesController {
     this._close(this.selecteds);
   }
   cancel() {
-    if ( this._hasChange() ) {
+    if ( this.hasChange() ) {
       this._cancelmodal.open()
         .then(response => response && this._close(this._selecteds) );
     } else {
@@ -67,7 +67,7 @@ class UalVariablesController {
     }
   }
 
-  _hasChange() {
+  hasChange() {
     let change = false;
     if (this._selecteds.length === this.selecteds.length) {
       for (let i = 0; i < this._selecteds.length && !change; i++) {
