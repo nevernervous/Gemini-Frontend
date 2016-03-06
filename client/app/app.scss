@@ -1,9 +1,10 @@
-@import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
-
 @import url("common/fonts/clanot-book");
 @import url("common/fonts/clanot-bold");
 @import url("common/fonts/clanot-news");
 @import url("./common/icons");
+
+@import url("common/ionicons");
+@import 'common/ionicons/scss/ionicons';
 
 @import 'common/common';
 
