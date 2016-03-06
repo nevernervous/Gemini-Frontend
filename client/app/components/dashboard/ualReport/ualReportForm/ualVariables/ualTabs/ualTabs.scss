@@ -41,7 +41,7 @@ ual-tabs {
         &.active {
           width: calc(100% + 2px); // remove border for selected
           border: 1px solid $color07;
-          border-left: 5px solid $color03;
+          border-left: 4px solid $color03;
           border-right: 0;
 
           @include font-clanot-bold(16);

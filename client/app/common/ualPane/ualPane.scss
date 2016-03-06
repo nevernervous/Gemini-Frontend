@@ -9,6 +9,10 @@ ual-pane {
   }
 
   > .pane-body {
+    > .search-box {
+      display: block;
+      margin-bottom: 10px;
+    }
   }
 }
 

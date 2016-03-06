@@ -2,4 +2,4 @@
   <span class="title">{{vm.title}}</span>
   <a href class="action" ng-class="{'-disabled': vm.isDisabled}" ng-click="!vm.isDisabled && vm.onAction()">{{vm.action}}</a>
 </div>
-<ng-transclude></ng-transclude>
+<ng-transclude class="pane-body"></ng-transclude>

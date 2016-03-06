@@ -17,6 +17,9 @@ class UalVariablesController {
     this.selecteds = _.clone(selecteds) || [];
     this.loaded = false;
 
+    this.standardFilter = {};
+    this.selectedFilter = {};
+
     this._initialize();
   }
 

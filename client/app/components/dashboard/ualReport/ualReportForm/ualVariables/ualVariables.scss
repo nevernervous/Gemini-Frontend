@@ -20,7 +20,7 @@
           margin: 0;
           padding: 0;
 
-          .standard-variables ual-pane {
+          .standard-variables {
             ual-variables-group {
               ual-checkbox {
                 padding: 7px 0;
@@ -36,6 +36,10 @@
           height: 100%;
           border: 1px solid $color07;
           margin: 0;
+          padding: 0 15px;
+          .selected-list {
+            margin-left: -7px;
+          }
         }
       }
     }
