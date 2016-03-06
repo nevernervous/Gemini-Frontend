@@ -3,12 +3,11 @@
     border: 1px solid $color08;
     background-color: $color00;
     color: $color07;
-    z-index: 2;
-    margin: -1px;
     padding: 8px;
     input {
-        width: calc(100% - 38px);
-        border: 0;
+      width: calc(100% - 38px);
+      border: 0;
+      height: 34px;
     }
     i {
         font-size: 20px;
