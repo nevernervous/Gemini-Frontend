@@ -1,13 +1,9 @@
 @import '../../../../../common/common';
 // LAYOUT
-.ual-variables {}
-
-// VARIATIONS
 .ual-variables > ng-transclude {
   > .container {
     > .content-list {
       height: calc(100% - 60px);
-      overflow-x: auto;
       padding: 10px 0;
       > .variables {
         @include gridle(row);
@@ -25,8 +21,6 @@
               ual-checkbox {
                 padding: 7px 0;
                 display: list-item;
-                list-style: none;
-                cursor: pointer;
               }
             }
           }
@@ -34,12 +28,35 @@
         > .selected-variables {
           @include gridle(5);
           height: 100%;
-          border: 1px solid $color07;
           margin: 0;
           padding: 0 15px;
           .selected-list {
             margin-left: -7px;
           }
+        }
+      }
+    }
+  }
+}
+
+// VARIATIONS
+.ual-variables > ng-transclude {
+  > .container {
+    > .content-list {
+      overflow-x: auto;
+      > .variables {
+        > .tabs {
+          .standard-variables {
+            ual-variables-group {
+              ual-checkbox {
+                list-style: none;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        > .selected-variables {
+          border: 1px solid $color07;
         }
       }
     }

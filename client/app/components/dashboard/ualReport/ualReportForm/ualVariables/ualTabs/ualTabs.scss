@@ -1,5 +1,6 @@
 @import '../../../../../../common/common';
 
+// LAYOUT
 ual-tabs {
   > .tabs-container {
     @include gridle(row row-align between);
@@ -8,11 +9,53 @@ ual-tabs {
     padding: 0;
 
     > .tabs-list {
-      @include gridle( 4 );
-      border-right: 1px solid $color07;
-      background-color: $color08;
+      @include gridle( 5 );
       margin: 0;
       padding: 0;
+
+      > li {
+        height: 45px;
+
+        > a {
+          display: block;
+          padding: 12px 5px 12px 20px;
+        }
+
+        &.active {
+          width: calc(100% + 2px); // remove border for selected
+          > a {
+            padding: 12px 5px 12px 15px;
+          }
+        }
+      }
+    }
+    > .tabs-content {
+      @include gridle( 7 );
+      margin: 0;
+      padding: 0 15px;
+    }
+  }
+}
+// LAYOUT / PROJECTOR
+ual-tabs { @include gridle_state (  projector  ) {
+  > .tabs-container {
+    > .tabs-list {
+      @include gridle( 4 );
+    }
+    > .tabs-content {
+      @include gridle( 8 );
+    }
+  }
+}}
+
+
+// VARIATIONS
+ual-tabs {
+  > .tabs-container {
+
+    > .tabs-list {
+      border-right: 1px solid $color07;
+      background-color: $color08;
       list-style: none;
 
       > li {
@@ -20,13 +63,11 @@ ual-tabs {
         border-top: 1px solid $color00;
         background-color: $color08;
         color: $color06;
-        height: 45px;
 
         > a {
+          @include ellipses();
           color: $color06;
-          display: block;
           text-decoration: none;
-          padding: 12px 20px;
         }
 
         &:first-child {
@@ -39,7 +80,6 @@ ual-tabs {
           border-top: 0;
         }
         &.active {
-          width: calc(100% + 2px); // remove border for selected
           border: 1px solid $color07;
           border-left: 4px solid $color03;
           border-right: 0;
@@ -47,10 +87,6 @@ ual-tabs {
           @include font-clanot-bold(16);
           color: $color06;
           background-color: $color00;
-
-          > a {
-            padding: 12px 15px;
-          }
         }
       }
     }
@@ -58,9 +94,6 @@ ual-tabs {
     > .tabs-content {
       border: 1px solid $color07;
       border-left: 0;
-      @include gridle( 8 );
-      margin: 0;
-      padding: 0 15px;
       overflow: hidden;
       background-color: $color00;
     }
