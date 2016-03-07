@@ -7,9 +7,8 @@
         Select Data Source
     </div>
     <div class="search-area">
-        <ual-input value="vm.searchTerm.name" icon="ion-ios-search-strong"></ual-input>
-        <ual-data-source-label datasource-selected="vm.selected">
-        </ual-data-source-label>
+        <ual-input value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
+        <ual-data-source-label datasource-selected="vm.selected"></ual-data-source-label>
     </div>
     <div class="content-list" ng-if="!vm.datasources">Loading ...</div>
     <div class="content-list" ng-if="vm.datasources">
@@ -23,5 +22,5 @@
     </div>
 </div>
 <div class="buttons">
-    <ual-button class="-primary" ng-disabled="!vm.selected" ng-click="vm.apply()">Apply</ual-button>
+    <ual-button class="-primary" ng-disabled="!vm.hasChange()" ng-click="vm.apply()">Apply</ual-button>
 </div>

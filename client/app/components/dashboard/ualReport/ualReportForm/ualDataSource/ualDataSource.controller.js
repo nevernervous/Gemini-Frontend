@@ -1,8 +1,9 @@
 class UalDataSourceController {
   /*@ngInject*/
-  constructor(close, DataSource, selected, ualDataSourceChangeModal, $filter) {
+  constructor(close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter) {
     this._close = close;
     this._datasource = DataSource;
+    this._cancelmodal = ualDataSourceCancelModal;
     this._changemodal = ualDataSourceChangeModal;
     this._selected = selected;
     this._filter = $filter;
@@ -14,7 +15,7 @@ class UalDataSourceController {
   }
 
   apply() {
-    if (this._selected && (this._selected.id !== this.selected.id) ) {
+    if (this._selected && this.hasChange()) { // FIRST TIME
       this._changemodal.open({ oldDataSource: this._selected, newDataSource: this.selected })
         .then(response => response && this._close(this.selected));
     } else {
@@ -23,7 +24,16 @@ class UalDataSourceController {
 
   }
   cancel() {
-    this._close(this._selected);
+    if ( this.hasChange() ) {
+      this._cancelmodal.open()
+        .then(response => response && this._close(this._selected) );
+    } else {
+      this._close(this._selected);
+    }
+  }
+
+  hasChange() {
+    return (!this._selected && this.selected) || (this._selected && this.selected && (this._selected.id !== this.selected.id) );
   }
 
   shouldShow(group) {

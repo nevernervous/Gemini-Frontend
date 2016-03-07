@@ -7,10 +7,10 @@
 
 // VARIATIONS
 .login-header {
-  > .title { 
+  > .title {
     @include font-clanot-book(46);
     margin-top: 5px;
     text-align: center;
-    color: $primaryFontColor;
-  } 
+    color: $color00;
+  }
 }
