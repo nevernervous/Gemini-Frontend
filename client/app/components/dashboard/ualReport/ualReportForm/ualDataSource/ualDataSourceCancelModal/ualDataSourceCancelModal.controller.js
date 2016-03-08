@@ -1,7 +1,7 @@
-class UalVariablesCancelModalController {
+class UalDataSourceCancelModalController {
   /*@ngInject*/
   constructor($rootScope, close) {
-    this.name = 'ualVariablesCancelModal';
+    this.name = 'ualDataSourceCancelModal';
     this._close = close;
 
     this._suscriptions = [];
@@ -21,4 +21,4 @@ class UalVariablesCancelModalController {
   }
 }
 
-export default UalVariablesCancelModalController;
+export default UalDataSourceCancelModalController;

@@ -1,11 +1,12 @@
 class UalVariablesController {
   /*@ngInject*/
-  constructor(close, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
+  constructor(close, $filter, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
     // SERVICES
     this._close = close;
     this._datasourceService = DataSourceService;
     this._cancelmodal = ualVariablesCancelModal;
     this._deleteallmodal = ualVariablesDeteleAllModal;
+    this._filter = $filter;
     this._q = $q;
 
     // VARS / PRIVATE
@@ -13,7 +14,7 @@ class UalVariablesController {
     this._selecteds = selecteds;
 
     // VARS / PUBLIC
-    this.variables;
+    this.variables = {items: []}
     this.selecteds = _.clone(selecteds) || [];
     this.loaded = false;
 
@@ -21,7 +22,16 @@ class UalVariablesController {
     this.selectedFilter = {};
 
     this._initialize();
+
+    this._suscriptions = [];
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
   }
+
+  _closemodal(response) {
+    this._suscriptions.forEach(suscription => suscription());
+    this._close(response);
+  }
+
 
   isSelected(variable) {
     return _.find(this.selecteds, { 'id': variable.id });
@@ -49,24 +59,29 @@ class UalVariablesController {
   }
 
   selectAll(){
-    this.selecteds = _.clone(this.variables.items);
+    const filters = this._filter("filter")(this.variables.items, this.standardFilter);
+    this.selecteds = _.clone(filters);
   }
   deleteAll() {
     this._deleteallmodal.open()
     .then(response => {
-      if (response) this.selecteds = [];
+      if (response) {
+        const filters = this._filter("filter")(this.selecteds, this.selectedFilter);
+        const ids = _.map(filters, item => item.id);
+        this.selecteds = _.reject(this.selecteds, item => _.includes(ids, item.id));
+      }
     });
   }
 
   apply() {
-    this._close(this.selecteds);
+    this._closemodal(this.selecteds);
   }
   cancel() {
     if ( this.hasChange() ) {
       this._cancelmodal.open()
-        .then(response => response && this._close(this._selecteds) );
+        .then(response => response && this._closemodal(this._selecteds) );
     } else {
-      this._close(this._selecteds);
+      this._closemodal(this._selecteds);
     }
   }
 
