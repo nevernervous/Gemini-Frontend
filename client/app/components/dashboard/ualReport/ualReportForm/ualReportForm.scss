@@ -45,6 +45,9 @@ ual-report-form {
         >.value {
           @include font-clanot-bold(16);
           color: $color06;
+          @include ellipses();
+          width: 100%;
+          display: inline-block;
         }
 
         >.action {

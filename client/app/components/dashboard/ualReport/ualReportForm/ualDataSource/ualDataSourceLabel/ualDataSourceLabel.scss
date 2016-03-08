@@ -1,16 +1,17 @@
 @import '../../../../../../common/common';
-
 // LAYOUT
-ual-data-source-label {
-
-}
+ual-data-source-label {}
 
 // VARIATIONS
 ual-data-source-label {
-  @include font-clanot-book(16);
-  color: $color07;
-
-  > div > span {
-    @include font-clanot-bold(16);
-  }
+    @include font-clanot-book(16);
+    color: $color07;
+    .datasource-name {
+        @include ellipses();
+        display: inline-block;
+        width: 100%;
+    }
+    > div > span {
+        @include font-clanot-bold(16);
+    }
 }
