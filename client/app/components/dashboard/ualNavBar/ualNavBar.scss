@@ -21,6 +21,15 @@ ual-nav-bar {
       }
       > ual-tooltip {
         width: 153px;
+        margin-top: 4px;
+
+        @include -moz-browser(){
+          margin-top: 3px;
+        }
+
+        @include -ms-browser(){
+          padding-top: 2px;
+        }
       }
     }
   }

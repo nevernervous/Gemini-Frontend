@@ -8,6 +8,7 @@ ual-tooltip {
 // VARIANTS
 ual-tooltip.-dropdown {
   right: 0px;
+
   &::before {
     content: '';
     display: block;
@@ -19,5 +20,9 @@ ual-tooltip.-dropdown {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-bottom: 10px solid $color03;
+
+    @include -ms-browser() {
+      padding-top: 2px;
+    }
   }
 }
