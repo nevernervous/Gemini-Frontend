@@ -1,54 +1,54 @@
 <div class="top">
-    <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
+  <i class="ion-ios-close-empty" ng-click="vm.cancel()"></i>
 </div>
 <div class="container">
-    <div class="title">
-        Manage Variables
-    </div>
-    <div class="content-list">
-        <div class="variables">
-            <ual-tabs class="tabs">
-                <ual-tab class="standard-variables" title="Standard Variables">
-                    <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0">
-                        <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
-                        <div class="empty-search" ng-hide="(vm.variables.items | filter:vm.standardFilter.name).length > 0">
-                            <div>No result match for your search</div>
-                        </div>
-                        <div class="group-list">
-                            <ual-variables-group group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filter:vm.standardFilter | isEmpty)">
-                                <ual-checkbox id="group_{{group.data.groupId}}" ng-click="vm.toggleGroup(group)" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name">
-                                    Select All
-                                </ual-checkbox>
-                                <ual-checkbox ng-repeat="item in group.items | filter:vm.standardFilter | orderBy : 'order'" id="variable_{{item.id}}" ng-click="vm.toggle(item)" is-checked="vm.isSelected(item)">
-                                    {{item.name}}
-                                </ual-checkbox>
-                            </ual-variables-group>
-                        </div>
-                    </ual-pane>
-                </ual-tab>
-                <ual-tab title="Custom Variables" is-enabled="false">
-                    <ual-pane title="Custom Variables">
-
-                    </ual-pane>
-                </ual-tab>
-            </ual-tabs>
-            <div class="selected-variables">
-                <ual-pane title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0 || (vm.selecteds && (vm.selecteds | filter:vm.selectedFilter | isEmpty))">
-                    <ual-input class="search-box" value="vm.selectedFilter.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
-                    <div class="empty-search" ng-hide="vm.selecteds.length == 0 || (vm.selecteds | filter:vm.selectedFilter.name).length > 0">
-                        <div>No result match for your search</div>
-                    </div>
-                    <div class="empty-list" ng-hide="vm.selecteds.length > 0">
-                        <div>No variables has been selected yet. Please select variables from the left menu.</div>
-                    </div>
-                    <ul class="selected-list">
-                        <ual-variable-selected-item ng-repeat="item in vm.selecteds | filter:vm.selectedFilter" variable-item="item" variable-order="$index + 1" on-delete="vm.toggle(item)"></ual-variable-selected-item>
-                    </ul>
-                </ual-pane>
+  <div class="title">
+    Manage Variables
+  </div>
+  <div class="content-list">
+    <div class="variables">
+      <ual-tabs class="tabs">
+        <ual-tab class="standard-variables" title="Standard Variables">
+          <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0">
+            <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
+            <div class="group-list" ng-show="(vm.variables.items | filter:vm.standardFilter.name).length > 0">
+              <ual-variables-group group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filter:vm.standardFilter | isEmpty)">
+                <ual-checkbox id="group_{{group.data.groupId}}" ng-click="vm.toggleGroup(group)" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name">
+                  Select All
+                </ual-checkbox>
+                <ual-checkbox ng-repeat="item in group.items | filter:vm.standardFilter | orderBy : 'order'" id="variable_{{item.id}}" ng-click="vm.toggle(item)" is-checked="vm.isSelected(item)">
+                  {{item.name}}
+                </ual-checkbox>
+              </ual-variables-group>
             </div>
-        </div>
+            <div class="empty-search" ng-hide="(vm.variables.items | filter:vm.standardFilter.name).length > 0">
+              <div>No result match for your search</div>
+            </div>
+          </ual-pane>
+        </ual-tab>
+        <ual-tab title="Custom Variables" is-enabled="false">
+          <ual-pane title="Custom Variables">
+
+          </ual-pane>
+        </ual-tab>
+      </ual-tabs>
+      <div class="selected-variables">
+        <ual-pane title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0 || (vm.selecteds && (vm.selecteds | filter:vm.selectedFilter | isEmpty))">
+          <ual-input class="search-box" value="vm.selectedFilter.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
+          <div class="empty-search" ng-hide="vm.selecteds.length == 0 || (vm.selecteds | filter:vm.selectedFilter.name).length > 0">
+            <div>No result match for your search</div>
+          </div>
+          <div class="empty-list" ng-hide="vm.selecteds.length > 0">
+            <div>No variables has been selected yet. Please select variables from the left menu.</div>
+          </div>
+          <ul class="selected-list">
+            <ual-variable-selected-item ng-repeat="item in vm.selecteds | filter:vm.selectedFilter" variable-item="item" variable-order="$index + 1" on-delete="vm.toggle(item)"></ual-variable-selected-item>
+          </ul>
+        </ual-pane>
+      </div>
     </div>
+  </div>
 </div>
 <div class="buttons">
-    <ual-button class="-primary" ng-disabled="!vm.hasChange() || (vm.selecteds && (vm.selecteds | isEmpty))" ng-click="vm.apply()">Apply</ual-button>
+  <ual-button class="-primary" ng-disabled="!vm.hasChange() || (vm.selecteds && (vm.selecteds | isEmpty))" ng-click="vm.apply()">Apply</ual-button>
 </div>

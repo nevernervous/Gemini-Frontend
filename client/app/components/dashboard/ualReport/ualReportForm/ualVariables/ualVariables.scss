@@ -15,9 +15,6 @@
                     color: $color07;
                     text-align: center;
                     height: 80%;
-                    > div {
-                        @include vertical-align();
-                    }
                 }
                 > .tabs {
                     @include gridle(7);

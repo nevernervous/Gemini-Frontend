@@ -2,9 +2,9 @@
 
 // LAYOUT
 ual-variable-selected-item {
-  @include gridle(row row-align between);
+  @include gridle(row row-align middle between);
   display: list-item;
-  height: 31px;
+  height: 32px;
   margin: 0;
   cursor: move;
 
@@ -36,6 +36,7 @@ ual-variable-selected-item {
     > .variable-order {
       @include font-clanot-news(12);
       text-align: center;
+      vertical-align: middle;
     }
 
     > .variable-name {
