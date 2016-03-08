@@ -29,6 +29,7 @@ ual-tabs {
         }
       }
     }
+
     > .tabs-content {
       @include gridle( 7 );
       margin: 0;
@@ -38,16 +39,19 @@ ual-tabs {
   }
 }
 // LAYOUT / PROJECTOR
-ual-tabs { @include gridle_state (  projector  ) {
-  > .tabs-container {
-    > .tabs-list {
-      @include gridle( 4 );
-    }
-    > .tabs-content {
-      @include gridle( 8 );
+ual-tabs {
+  @include gridle_state ( projector ) {
+    > .tabs-container {
+      > .tabs-list {
+        @include gridle( 4 );
+      }
+
+      > .tabs-content {
+        @include gridle( 8 );
+      }
     }
   }
-}}
+}
 
 
 // VARIATIONS
@@ -74,12 +78,15 @@ ual-tabs {
         &:first-child {
           border-top: 0;
         }
+
         &:last-child {
           border-bottom: 1px solid $color00;
         }
+
         &.active + li {
           border-top: 0;
         }
+
         &.active {
           border: 1px solid $color08;
           border-left: 4px solid $color03;
@@ -88,6 +95,11 @@ ual-tabs {
           @include font-clanot-bold(16);
           color: $color06;
           background-color: $color00;
+        }
+
+        &.disabled {
+          pointer-events: none;
+          cursor: default;
         }
       }
     }
