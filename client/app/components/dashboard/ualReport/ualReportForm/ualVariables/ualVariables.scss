@@ -67,7 +67,6 @@
 .ual-variables > ng-transclude {
     > .container {
         > .content-list {
-            overflow-x: auto;
             > .variables {
                 > .tabs {
                     .standard-variables {
@@ -78,9 +77,9 @@
                             }
                         }
                     }
-                    > .selected-variables {
-                        border: 1px solid $color08;
-                    }
+                }
+                > .selected-variables {
+                    border: 1px solid $color08;
                 }
             }
         }
