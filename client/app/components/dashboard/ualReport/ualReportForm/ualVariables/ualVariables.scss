@@ -18,9 +18,6 @@
           text-align: center;
           height: 80%;
 
-          > div {
-            @include vertical-align();
-          }
         }
 
         > .tabs {
