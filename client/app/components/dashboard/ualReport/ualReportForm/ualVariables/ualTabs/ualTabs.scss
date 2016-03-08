@@ -55,7 +55,7 @@ ual-tabs {
   > .tabs-container {
 
     > .tabs-list {
-      border-right: 1px solid $color07;
+      border-right: 1px solid $color08;
       background-color: $color08;
       list-style: none;
 
@@ -81,7 +81,7 @@ ual-tabs {
           border-top: 0;
         }
         &.active {
-          border: 1px solid $color07;
+          border: 1px solid $color08;
           border-left: 4px solid $color03;
           border-right: 0;
 
@@ -93,7 +93,7 @@ ual-tabs {
     }
 
     > .tabs-content {
-      border: 1px solid $color07;
+      border: 1px solid $color08;
       border-left: 0;
       overflow: hidden;
       background-color: $color00;

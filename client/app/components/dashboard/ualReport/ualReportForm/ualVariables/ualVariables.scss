@@ -65,5 +65,8 @@
                 }
             }
         }
+        > .selected-variables {
+            border: 1px solid $color08;
+        }
     }
 }

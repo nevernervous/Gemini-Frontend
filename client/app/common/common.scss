@@ -21,25 +21,10 @@ $color09: #667a8e;
 $color10: #c0ddf4;
 $color99: #000;
 
-
 // BACKGROUND
 $backgroundHighColor: $color01;
 $backgroundMediumColor: $color02;
 $backgroundLowColor: $color03;
-
-// UI Kit
-$primaryDarkBlueColor: $color01;
-$primaryBlueColor: $color02;
-$primaryLightBlueColor: $color03;
-$primaryGreyColor: $color07;
-$primaryLightGreyColor: $color08;
-$primaryGreenColor: $color05;
-$primaryWhiteColor: $color00;
-
-// UI Kit / Font
-$primaryFontColor: $primaryWhiteColor;
-$secondaryFontColor: $color06;
-$disabledFontColor: $primaryGreyColor;
 
 // UI Kit / Alerts, Notification, ...
 $alertHighColor: #EF1A28;
@@ -48,5 +33,5 @@ $warningHighColor: #db8c0e;
 $warningLowColor: #ffe0b2;
 $successColor: #44C339;
 $successColor: #CFEEC8;
-$notificationHighColor: $primaryLightBlueColor;
+$notificationHighColor: $color03;
 $notificationLowColor: #C8E6F8;
