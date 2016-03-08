@@ -4,9 +4,10 @@
 ual-variable-selected-item {
   @include gridle(row row-align between);
   display: list-item;
-  height: 31px;
+  height: 32px;
   margin: 0;
   cursor: move;
+  vertical-align: middle;
 
   > .variable-container {
     @include gridle(gutter 14px);
