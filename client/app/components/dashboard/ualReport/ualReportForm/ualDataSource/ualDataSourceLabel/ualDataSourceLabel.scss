@@ -8,7 +8,6 @@ ual-data-source-label {
     color: $color07;
     .datasource-name {
         @include ellipses();
-        display: inline-block;
         width: 100%;
     }
     > div > span {
