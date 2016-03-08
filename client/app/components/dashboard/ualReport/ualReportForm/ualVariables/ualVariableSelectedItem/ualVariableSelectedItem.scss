@@ -2,12 +2,11 @@
 
 // LAYOUT
 ual-variable-selected-item {
-  @include gridle(row row-align between);
+  @include gridle(row row-align middle between);
   display: list-item;
   height: 32px;
   margin: 0;
   cursor: move;
-  vertical-align: middle;
 
   > .variable-container {
     @include gridle(gutter 14px);
