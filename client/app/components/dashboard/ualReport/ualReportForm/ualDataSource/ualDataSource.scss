@@ -13,11 +13,10 @@
     }
     .content-list {
       height: calc(100% - 120px);
-      overflow-x: auto;
       padding: 10px 0;
+      overflow-y: scroll;
       > .data-source-list {
         @include column-content(4);
-        height: 100%;
       }
     }
   }
