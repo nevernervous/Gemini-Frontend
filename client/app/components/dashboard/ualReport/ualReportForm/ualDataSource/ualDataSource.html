@@ -13,7 +13,7 @@
     </div>
     <div class="content-list" ng-if="!vm.datasources">Loading ...</div>
     <div class="content-list" ng-if="vm.datasources">
-        <div class="data-source-list">
+        <div class="data-source-list" ng-class="{'-many-columns': vm.hasManyColumns()}">
             <ual-data-source-group datasource-group="group.data" ng-repeat="group in vm.datasources.groups | orderBy : 'data.order'" ng-show="vm.shouldShow(group)">
                 <ual-data-source-item datasource-item='item' ng-repeat="item in group.items | filter:vm.searchTerm | orderBy : 'order'" ng-click="vm.toogleSelected(item)"
                 ng-class="{'-selected': vm.isActive(item.id)}">
