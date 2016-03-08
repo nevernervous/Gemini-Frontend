@@ -2,7 +2,6 @@
 
 // LAYOUT
 ual-data-source-label {
-
 }
 
 // VARIATIONS
@@ -10,7 +9,10 @@ ual-data-source-label {
   @include font-clanot-book(16);
   color: $color07;
 
-  > div > span {
+  > div > .datasource-name {
     @include font-clanot-bold(16);
+    @include ellipses();
+    display: inline-block;
+    width: 100%;
   }
 }

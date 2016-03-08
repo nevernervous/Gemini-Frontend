@@ -11,5 +11,10 @@ ual-data-source-group {
   .datasource-group{
     @include font-clanot-bold(16);
     color: $color06;
+    > span{
+        @include ellipses();
+        display: inline-block;
+        width: 100%;
+    }
   }
 }
