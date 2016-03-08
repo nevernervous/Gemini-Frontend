@@ -9,7 +9,7 @@
     <div class="variables">
       <ual-tabs class="tabs">
         <ual-tab class="standard-variables" title="Standard Variables">
-          <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0">
+          <ual-pane title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0 || ( vm.variables.items | filter:vm.standardFilter | isEmpty)">
             <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
             <div class="group-list" ng-show="(vm.variables.items | filter:vm.standardFilter.name).length > 0">
               <ual-variables-group group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filter:vm.standardFilter | isEmpty)">

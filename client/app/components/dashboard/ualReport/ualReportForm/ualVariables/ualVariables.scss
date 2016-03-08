@@ -10,12 +10,7 @@
                 height: 100%;
                 margin: 0;
                 padding: 0;
-                .empty-search {
-                    @include font-clanot-book(14);
-                    color: $color07;
-                    text-align: center;
-                    height: 80%;
-                }
+
                 > .tabs {
                     @include gridle(7);
                     height: 100%;
@@ -34,6 +29,13 @@
                             }
                         }
                     }
+                    .empty-search {
+                        @include gridle(row row-align middle center);
+                        @include font-clanot-book(14);
+                        color: $color07;
+                        text-align: center;
+                        height: 100%;
+                    }
                 }
                 > .selected-variables {
                     @include gridle(5);
@@ -46,13 +48,21 @@
                         overflow: auto;
                     }
                     .empty-list {
+                        @include gridle(row row-align middle center);
                         @include font-clanot-book(14);
                         color: $color07;
                         text-align: center;
-                        height: 80%;
-                        > div {
-                            @include vertical-align();
+                        height: calc(100% - 100px);
+                        div {
+                          max-width: 350px;
                         }
+                    }
+                    .empty-search {
+                        @include gridle(row row-align middle center);
+                        height: calc(100% - 100px);
+                        @include font-clanot-book(14);
+                        color: $color07;
+                        text-align: center;
                     }
                 }
             }
