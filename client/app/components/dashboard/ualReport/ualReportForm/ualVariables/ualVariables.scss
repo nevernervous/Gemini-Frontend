@@ -5,11 +5,24 @@
     > .content-list {
       height: calc(100% - 60px);
       padding: 10px 0;
+
       > .variables {
         @include gridle(row);
         height: 100%;
         margin: 0;
         padding: 0;
+
+        .empty-search {
+          @include font-clanot-book(14);
+          color: $color07;
+          text-align: center;
+          height: 80%;
+
+          > div {
+            @include vertical-align();
+          }
+        }
+
         > .tabs {
           @include gridle(7);
           height: 100%;
@@ -19,19 +32,33 @@
           .standard-variables {
             ual-variables-group {
               ual-checkbox {
+                @include ellipses();
                 padding: 7px 0;
                 display: list-item;
               }
             }
           }
         }
+
         > .selected-variables {
           @include gridle(5);
           height: 100%;
           margin: 0;
           padding: 0 15px;
+
           .selected-list {
             margin-left: -7px;
+          }
+
+          .empty-list {
+            @include font-clanot-book(14);
+            color: $color07;
+            text-align: center;
+            height: 80%;
+
+            > div {
+              @include vertical-align();
+            }
           }
         }
       }
@@ -44,6 +71,7 @@
   > .container {
     > .content-list {
       overflow-x: auto;
+
       > .variables {
         > .tabs {
           .standard-variables {
@@ -55,6 +83,7 @@
             }
           }
         }
+
         > .selected-variables {
           border: 1px solid $color07;
         }

@@ -12,14 +12,16 @@ class ualTabDirective {
         this.controllerAs = 'vm';
         this.bindings = {
             title: '@',
-            selected: '@'
+            selected: '@',
+            isEnabled: '@'
         };
     }
 
-    link(scope, element, attrs, ctrl) {
+  link(scope, element, attrs, ctrl) {
         scope.tab = {
             title: attrs.title,
-            selected: false
+            selected: false,
+            isEnabled: attrs.isEnabled
         };
 
         ctrl.addTab(scope.tab);
