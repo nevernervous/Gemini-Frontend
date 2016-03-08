@@ -3,7 +3,6 @@
 //Layout
 ual-data-source-item {
     display: block;
-    @include gridle(gutter 10px 0px);
     cursor: pointer;
 
     > span{
