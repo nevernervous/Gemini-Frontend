@@ -8,9 +8,6 @@ let ualModalService = function ($q, $rootScope, ModalService) {
     ModalService.showModal(options)
     .then( modal => {
       _modal = modal;
-
-      $rootScope.$on('SESSION.LOGOUT', () => _modal.controller._close() );
-
       modal.close
       .then( result => deferred.resolve(result) )
       .finally( () => _modal.controller.onClose && _modal.controller.onClose());

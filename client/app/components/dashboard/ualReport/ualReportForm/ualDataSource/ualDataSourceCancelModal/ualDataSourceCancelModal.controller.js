@@ -1,15 +1,23 @@
 class UalDataSourceCancelModalController {
   /*@ngInject*/
-  constructor(close) {
+  constructor($rootScope, close) {
     this.name = 'ualDataSourceCancelModal';
     this._close = close;
+
+    this._suscriptions = [];
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+  }
+
+  _closemodal(response) {
+    this._suscriptions.forEach(suscription => suscription());
+    this._close(response);
   }
 
   no() {
-    this._close(false);
+    this._closemodal(false);
   }
   yes() {
-    this._close(true);
+    this._closemodal(true);
   }
 }
 

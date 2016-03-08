@@ -20,11 +20,13 @@ ual-modal {
 ual-modal.-yesno {
   background: rgba($color00, 0.5);
   @include gridle( row row-align middle center);
+  margin: 0;
 
   > ng-transclude {
     padding: 26px !important;
     width: 582px;
-    @include box-shadow(0, 6px, 15px, rgba(0, 0, 0, 0.3));
+    @include box-shadow(6px, 6px, 0, 0, rgba(0, 0, 0, 0.1));
+    border: 1px solid $color08;
     color: $color06;
     margin-bottom: 20%;
 
