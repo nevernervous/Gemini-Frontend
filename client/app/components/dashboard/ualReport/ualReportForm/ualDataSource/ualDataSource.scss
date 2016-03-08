@@ -4,7 +4,7 @@
   @include gridle(container);
   >.container {
     .search-area {
-      @include gridle(row);
+      @include gridle(row row-align middle);
       margin: 0;
       padding: 4px 0 25px 0;
       > * {

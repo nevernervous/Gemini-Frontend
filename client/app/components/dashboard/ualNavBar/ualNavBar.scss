@@ -3,45 +3,46 @@
 // LAYOUT
 ual-nav-bar {
   @include gridle( row row-align between middle);
-  > .navbar-header { 
-    color: $primaryWhiteColor;
+  > .navbar-header {
+    color: $color00;
     @include gridle( gutter 0 24px );
-    > i { 
+    > i {
       cursor: pointer;
       margin-right: 16px;
     }
   }
-  > .navbar-options { 
+  > .navbar-options {
     @include gridle( gutter 0 112px );
-    > li { 
+    > li {
       position: relative;
       height: 33px;
-      > img { 
+      > img {
         height: 100%;
       }
-      > ual-tooltip {     
+      > ual-tooltip {
         width: 153px;
       }
     }
   }
 }
 
-// VARIANT 
+// VARIANT
 ual-nav-bar {
   background-color: $color01;
-  > .navbar-header { 
-    color: $primaryWhiteColor;
+  > .navbar-header {
+    color: $color00;
     @include font-clanot-bold(18);
   }
-  > .navbar-options { 
-    > li > img.img-circle { 
+  > .navbar-options {
+    > li > img.img-circle {
       border-radius: 50%;
     }
     > li > ual-tooltip {
-      display: none; 
+      display: none;
+      @include box-shadow(0, 3px, 5px, 1px, rgba($color99, 0.2));
     }
     > li:hover > ual-tooltip {
-      display: block;  
+      display: block;
     }
   }
 }

@@ -1,8 +1,9 @@
 class UalDataSourceController {
   /*@ngInject*/
-  constructor(close, DataSource, selected, ualDataSourceChangeModal, $filter) {
+  constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter) {
     this._close = close;
     this._datasource = DataSource;
+    this._cancelmodal = ualDataSourceCancelModal;
     this._changemodal = ualDataSourceChangeModal;
     this._selected = selected;
     this._filter = $filter;
@@ -11,19 +12,36 @@ class UalDataSourceController {
     this.datasources;
     this.selected = selected;
     this._initialize();
+
+    this._suscriptions = [];
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+  }
+
+  _closemodal(response) {
+    this._suscriptions.forEach(suscription => suscription());
+    this._close(response);
   }
 
   apply() {
-    if (this._selected && (this._selected.id !== this.selected.id) ) {
+    if (this._selected && this.hasChange()) { // FIRST TIME
       this._changemodal.open({ oldDataSource: this._selected, newDataSource: this.selected })
-        .then(response => response && this._close(this.selected));
+        .then(response => response && this._closemodal(this.selected));
     } else {
-      this._close(this.selected);
+      this._closemodal(this.selected);
     }
 
   }
   cancel() {
-    this._close(this._selected);
+    if ( this.hasChange() ) {
+      this._cancelmodal.open()
+        .then(response => response && this._closemodal(this._selected) );
+    } else {
+      this._closemodal(this._selected);
+    }
+  }
+
+  hasChange() {
+    return (!this._selected && this.selected) || (this._selected && this.selected && (this._selected.id !== this.selected.id) );
   }
 
   shouldShow(group) {

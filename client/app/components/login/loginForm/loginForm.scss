@@ -9,37 +9,37 @@
     @include gridle( 12 );
     @include gridle( gutter 40px 100px );
   }
-  > .message { 
+  > .message {
     @include gridle( gutter 0px 50px 30px 50px);
   }
 }
 
 // VARIANTS
 .login-form {
-  @include box-shadow(0, 15px, 15px, rgba(0, 0, 0, 0.2));
+  @include box-shadow(0, 15px, 15px, 0, rgba(0, 0, 0, 0.2));
   background-color:rgba(255, 255, 255, 0.75);
 }
 
 // MESSAGE / VARIANTS
-.login-form > .message { 
+.login-form > .message {
   min-height: 75px;
-  > * { 
+  > * {
     visibility: hidden;
-    &.visible { 
+    &.visible {
       visibility: visible;
     }
   }
-  > span { 
+  > span {
     @include font-clanot-news(16);
-    color: $alertHighColor;    
+    color: $alertHighColor;
   }
 
-  > a { 
+  > a {
     @include font-clanot-bold(16);
     color: $alertHighColor;
     text-decoration: none;
-    &:hover, &:focus { 
+    &:hover, &:focus {
       text-decoration: underline;
     }
-  }   
+  }
 }

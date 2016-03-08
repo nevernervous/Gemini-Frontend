@@ -6,6 +6,7 @@ let ualInputComponent = {
     restrict: 'E',
     bindings: {
         value: '=',
+        minChars: '=',
         icon: '@'
     },
     template: template,
