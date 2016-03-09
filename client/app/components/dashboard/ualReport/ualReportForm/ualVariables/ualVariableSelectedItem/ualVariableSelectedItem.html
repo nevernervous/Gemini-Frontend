@@ -1,0 +1,8 @@
+<div class="variable-container"> 
+  <input class="variable-order" type="text" ng-model="vm.variableOrder">
+  <span class="variable-name">{{vm.variableItem.name}}</span>
+  <span class="variable-group">{{vm.variableItem.group.groupName}}</span>
+</div>
+<div class="variable-actions">
+  <i class="variable-delete ion-ios-close-empty" ng-click="vm.onDelete()"></i>
+</div>

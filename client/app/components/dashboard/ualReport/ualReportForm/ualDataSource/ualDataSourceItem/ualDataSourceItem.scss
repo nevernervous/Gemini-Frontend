@@ -1,0 +1,28 @@
+@import '../../../../../../common/common';
+
+//Layout
+ual-data-source-item {
+    display: block;
+    cursor: pointer;
+
+    > span{
+        @include ellipses();
+        width: 100%;
+        display: inline-block;
+        padding: 8px;
+    }
+}
+
+
+//Variations
+ual-data-source-item {
+    > span{
+        @include font-clanot-book(14);
+    }
+    &.-selected{
+        > span{
+          @include font-clanot-bold(14);
+            background-color: $color10;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+@import '../../../../common/common';
+
+// MIXIN
+@mixin input-invalid() {
+  border: 2px solid $alertHighColor;
+  padding: 8px;
+  & + .icon-warning {
+    display: block;
+  }
+
+  &:focus {
+    border: 2px solid $color03;
+    padding: 8px;
+    & + .icon-warning {
+      display: none;
+    }
+  }
+}
+
+// LAYOUT
+.login-form-input {
+  > input {
+    @include gridle(12);
+    width: 100%;
+  }
+}
+
+// VARIANTS
+.login-form-input {
+  > label {
+    @include font-clanot-book(20);
+    color: $color06;
+  }
+  > input {
+    @include font-clanot-book(16);
+    color: $color06;
+    border: none;
+    padding: 10px;
+    margin-top: 15px;
+
+    &:focus {
+      border: 2px solid $color03;
+      padding: 8px;
+    }
+  }
+  > .icon-warning {
+    display: none;
+    float: right;
+    padding-right: 5px;
+    margin-top: -32px;
+    color: $alertHighColor;
+    @include icon-warning(23);
+  }
+
+  > input.ng-invalid.ng-touched {
+   @include input-invalid();
+  }
+}
+
+// VARIANTS / INVALID
+.-invalid > .login-form-input {
+  > input {
+    @include input-invalid();
+  }
+}

@@ -1,0 +1,59 @@
+@import '../../../common/common';
+
+// LAYOUT
+ual-nav-bar {
+  @include gridle( row row-align between middle);
+  > .navbar-header {
+    color: $color00;
+    @include gridle( gutter 0 24px );
+    > i {
+      cursor: pointer;
+      margin-right: 16px;
+    }
+  }
+  > .navbar-options {
+    @include gridle( gutter 0 112px );
+    > li {
+      position: relative;
+      height: 33px;
+      > img {
+        height: 100%;
+      }
+      > ual-tooltip {
+        width: 153px;
+        margin-top: 4px;
+
+        @include -moz-browser(){
+          margin-top: 3px;
+        }
+
+        @include -ms-browser(){
+          padding-top: 2px;
+        }
+      }
+    }
+  }
+}
+
+// VARIANT
+ual-nav-bar {
+  background-color: $color01;
+  > .navbar-header {
+    color: $color00;
+    @include font-clanot-bold(18);
+  }
+  > .navbar-options {
+    > li > img.img-circle {
+      border-radius: 50%;
+    }
+    > li > ual-tooltip {
+      display: none;
+      @include box-shadow(0, 3px, 5px, 1px, rgba($color99, 0.2));
+    }
+    > li:hover > ual-tooltip {
+      display: block;
+    }
+  }
+}
+
+

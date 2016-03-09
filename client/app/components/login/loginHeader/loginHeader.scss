@@ -1,0 +1,16 @@
+@import '../../../common/common';
+
+// LAYOUT
+.login-header {
+  @include gridle( col );
+}
+
+// VARIATIONS
+.login-header {
+  > .title {
+    @include font-clanot-book(46);
+    margin-top: 5px;
+    text-align: center;
+    color: $color00;
+  }
+}

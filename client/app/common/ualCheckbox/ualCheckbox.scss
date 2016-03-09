@@ -1,0 +1,27 @@
+@import '../common';
+
+ual-checkbox {
+  > input[type="checkbox"] {
+    display:none;
+  }
+  > input[type="checkbox"] + label {
+    display:inline-block;
+    width:15px;
+    height:15px;
+    margin:-1px 4px 0 0;
+    vertical-align: middle;
+    background:url(_unchecked.jpg) left top no-repeat;
+    cursor:pointer;
+  }
+  > input[type="checkbox"]:checked + label {
+    background:url(_checked.jpg) top no-repeat;
+  }
+  > span {
+    @include font-clanot-book(14);
+    color: $color06;
+    cursor: pointer;
+  }
+  > input[type="checkbox"]:checked + label + span {
+    @include font-clanot-bold(14);
+  }
+}

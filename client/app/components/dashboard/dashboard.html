@@ -1,0 +1,5 @@
+<ual-nav-bar></ual-nav-bar>
+<div class="dashboard-container" ng-class="{'menu-open': vm.menuOpen}">
+  <ual-main-menu ng-class="{'-open': vm.mainMenu.isOpen()}"></ual-main-menu>
+  <div class="dashboard-view" ui-view></div>
+</div>

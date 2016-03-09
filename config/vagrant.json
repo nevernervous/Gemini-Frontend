@@ -1,0 +1,9 @@
+{
+  "Properties": {
+    "endpoint": "http://10.100.10.4:8080/api",
+    "cache": false,
+    "fallback": { 
+      "endpoint": "http://localhost:8889/api"
+    }  
+  }
+}

@@ -1,0 +1,23 @@
+@import '../common';
+
+.ual-button {
+  cursor: pointer; 
+  text-align: center;
+  @include button-primary();
+}  
+
+.ual-button.-primary { 
+  @include button-primary();
+}
+
+.ual-button.-secondary { 
+  @include button-secondary();    
+}
+
+.ual-button.-terciary { 
+  @include button-terciary();
+}
+
+.ual-button.-link { 
+  @include button-link();
+}

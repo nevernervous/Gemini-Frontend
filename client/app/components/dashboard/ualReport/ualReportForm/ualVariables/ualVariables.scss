@@ -1,0 +1,94 @@
+@import '../../../../../common/common';
+// LAYOUT
+.ual-variables > ng-transclude {
+    > .container {
+        > .content-list {
+            height: calc(100% - 60px);
+            padding: 10px 0;
+            > .variables {
+                @include gridle(row);
+                height: 100%;
+                margin: 0;
+                padding: 0;
+
+                > .tabs {
+                    @include gridle(7);
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                    .standard-variables {
+                        .group-list {
+                            overflow: auto;
+                            height: 100%;
+                        }
+                        ual-variables-group {
+                            ual-checkbox {
+                                @include ellipses();
+                                padding: 7px 0;
+                                display: list-item;
+                            }
+                        }
+                    }
+                    .empty-search {
+                        @include gridle(row row-align middle center);
+                        @include font-clanot-book(14);
+                        color: $color07;
+                        text-align: center;
+                        height: 100%;
+                    }
+                }
+                > .selected-variables {
+                    @include gridle(5);
+                    height: 100%;
+                    margin: 0;
+                    padding: 0 15px;
+                    .selected-list {
+                        height: calc(100% - 100px);
+                        margin-left: -7px;
+                        overflow: auto;
+                    }
+                    .empty-list {
+                        @include gridle(row row-align middle center);
+                        @include font-clanot-book(14);
+                        color: $color07;
+                        text-align: center;
+                        height: calc(100% - 100px);
+                        div {
+                          max-width: 350px;
+                        }
+                    }
+                    .empty-search {
+                        @include gridle(row row-align middle center);
+                        height: calc(100% - 100px);
+                        @include font-clanot-book(14);
+                        color: $color07;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// VARIATIONS
+.ual-variables > ng-transclude {
+    > .container {
+        > .content-list {
+            > .variables {
+                > .tabs {
+                    .standard-variables {
+                        ual-variables-group {
+                            ual-checkbox {
+                                list-style: none;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                > .selected-variables {
+                    border: 1px solid $color08;
+                }
+            }
+        }
+    }
+}

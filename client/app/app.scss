@@ -1,0 +1,49 @@
+@import url("common/fonts/clanot-book");
+@import url("common/fonts/clanot-bold");
+@import url("common/fonts/clanot-news");
+@import url("./common/icons");
+
+@import url("common/ionicons");
+@import 'common/ionicons/scss/ionicons';
+
+@import 'common/common';
+
+@include keyframes-spin();
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+*:focus {
+    outline: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.app-view {
+    height: 100vh;
+    @include gridle( container );
+    @include font-clanot-news();
+}
+
+ng-outlet {
+    > div {
+        height: 100%;
+    }
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}

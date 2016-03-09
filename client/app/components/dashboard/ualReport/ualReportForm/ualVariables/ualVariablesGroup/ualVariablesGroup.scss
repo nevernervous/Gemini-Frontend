@@ -1,0 +1,75 @@
+@import '../../../../../../common/common';
+
+// LAYOUT
+ual-variables-group {
+  border-top: 1px solid $color00;
+  display: block;
+  overflow: hidden;
+
+  > .group-name {
+    background-color: $color04;
+    border-left: 3px solid $color10;
+    color: $color00;
+    height: 36px;
+    padding: 9px 7px 9px 14px;
+    display: block;
+
+    > span {
+      @include ellipses();
+      display: inline-block;
+      width: calc(100% - 24px);
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    > .group-icon {
+      float: right;
+      font-size: 24px;
+      margin-top: -4px;
+    }
+
+    > .icon-spinner {
+      float: right;
+    }
+  }
+
+  > .group-item {
+    @include transition(all .3s ease-out);
+    max-height: 0;
+
+    &.-open {
+      max-height: 440px;
+      padding: 7px 13px;
+      border: 1px solid $color08;
+      overflow-y: auto;
+      margin-bottom: 2px;
+    }
+  }
+}
+
+// VARIANTS
+ual-variables-group {
+  > .group-name {
+    > .icon-spinner {
+      @include spin();
+      display: none;
+    }
+  }
+}
+
+// VARIATIONS / LOADING
+ual-variables-group.-loading {
+  > .group-name {
+    cursor: default;
+
+    > .icon-spinner {
+      display: block;
+    }
+
+    > .group-icon {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@import "~gridle/sass/gridle/gridle-flex";
+@include gridle_setup(());
+
+@include gridle_register_state ( projector , (
+  max-width: 1024px
+));
+
+@include gridle_register_state ( desktop , (
+  min-width: 1025px,
+  max-width: 1366px
+));
+
+@include gridle_register_state ( undocked , (
+  min-width: 1365px,
+  max-width: 1680px
+));
+
+@include gridle_register_state ( docked , (
+  min-width: 1681px
+));

@@ -1,0 +1,41 @@
+@import '../../../common/common';
+
+// LAYOUT
+ual-main-menu { 
+  position: fixed;
+  top: 52px;
+  height: 100vh;
+  width: 0;
+  > ual-menu { 
+    position: absolute;
+    width: 257px;
+    height: 100%;  
+  }
+  > .layer { 
+    width: 100%;
+    height: 100%;  
+  }
+} 
+
+// VARIANTS
+ual-main-menu {
+  > ual-menu { 
+    background: $color03;
+    left: -257px;
+    @include transition(left .3s ease-out);    
+  }
+  > .layer {
+    display: none;
+    background-color: rgba($color00, 0.5);
+  }    
+}
+ual-main-menu.-open {
+  width: 100%;
+  > ual-menu { 
+    left: 0px;  
+  }
+  > .layer { 
+    display: block;
+  }
+}    
+

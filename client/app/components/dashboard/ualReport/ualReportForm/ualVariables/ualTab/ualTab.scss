@@ -1,0 +1,9 @@
+@import '../../../../../../common/common';
+ual-tab { 
+    > div{
+        height: 100%;
+        > div{
+            height: calc(100% - 100px);
+        }
+    }
+}  

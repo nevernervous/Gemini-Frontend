@@ -1,0 +1,28 @@
+@import '../common';
+
+// LAYOUT
+ual-tooltip {
+  position: absolute;
+}
+
+// VARIANTS
+ual-tooltip.-dropdown {
+  right: 0px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 8px;
+    top: -10px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid $color03;
+
+    @include -ms-browser() {
+      padding-top: 2px;
+    }
+  }
+}

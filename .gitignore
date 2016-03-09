@@ -1,0 +1,12 @@
+.DS_Store
+.tmp
+.git
+node_modules
+.settings
+*.log
+dist/
+reports/
+.vagrant/
+.vs
+*.sln 
+/gemini.sln
