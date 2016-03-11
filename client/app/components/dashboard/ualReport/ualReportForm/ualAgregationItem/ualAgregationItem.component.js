@@ -5,11 +5,10 @@ import './ualAgregationItem.scss';
 let ualAgregationItemComponent = {
   restrict: 'E',
   bindings: {
-      name: "@?",
-      numerator: "=?"
   },
   template,
   controller,
+  transclude: true,
   controllerAs: 'vm'
 };
 

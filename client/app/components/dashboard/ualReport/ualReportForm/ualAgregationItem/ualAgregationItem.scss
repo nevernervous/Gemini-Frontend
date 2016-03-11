@@ -1,10 +1,34 @@
 @import '../../../../../common/common';
-.ual-agregation-item { 
-  border: 1px solid $color08;
-  background-color: $color00;
-  color: $color07;
-  padding: 8px;
-  span{
-      
-  }
-}  
+ual-agregation-item {
+    padding: 4px 5px;
+    label {
+        @include gridle(12);
+        border: 1px solid $color08;
+        background-color: $color00;
+        color: $color06;
+        padding: 3px;
+        @include font-clanot-book(14);
+        > span {
+            vertical-align: middle;
+            width: calc(100% - 18px);
+            @include ellipses();
+            display: inline-block;
+        }
+        > i {
+            vertical-align: middle;
+            display: inline-block;
+            color: $color07;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    }
+}
+
+//Variations
+ual-agregation-item {
+    label {
+        &:hover {
+            background-color: $color11;
+        }
+    }
+}

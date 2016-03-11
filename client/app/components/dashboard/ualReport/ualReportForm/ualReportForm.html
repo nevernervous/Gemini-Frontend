@@ -2,23 +2,38 @@
     <div class="title">Create Report</div>
     <ual-button class="save-button -secondary">Save</ual-button>
 </div>
-<div class="report-body" >
-  <div class="section report-name">
-      <div class="title">Untitled Report</div>
-  </div>
-  <div class="section selected-parameters">
-      <div class="selected-parameter">
-        <span class="title">Data Source:</span>
-        <span class="value">{{vm.report.datasource.get().name}}</span>
-        <a class="action" href ng-click="vm.selectDataSource()">Change Data Source</a>
-      </div>
-      <div class="selected-parameter">
-        <span class="title">Variables:</span>
-        <span class="value">{{vm.report.variables.get().length}} Variables Selected</span>
-        <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
-      </div>
-  </div>
-  <div class="section aggregations-values">
-      <ual-agregation-item name="Algo"></ual-agregation-item>
-  </div>
+<div class="report-body">
+    <div class="section report-name">
+        <div class="title">Untitled Report</div>
+    </div>
+    <div class="section selected-parameters">
+        <div class="selected-parameter">
+            <span class="title">Data Source:</span>
+            <span class="value">{{vm.report.datasource.get().name}}</span>
+            <a class="action" href ng-click="vm.selectDataSource()">Change Data Source</a>
+        </div>
+        <div class="selected-parameter">
+            <span class="title">Variables:</span>
+            <span class="value">{{vm.report.variables.get().length}} Variables Selected</span>
+            <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
+        </div>
+    </div>
+    <div class="section aggregations-values">
+        <div class="aggregation-search">
+
+        </div>
+        <div class="aggregation-items">
+            <div class="aggregated-container">
+                <ual-agregation-item >1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis ex ultricies, molestie lacus eget, commodo diam</ual-agregation-item>
+                <ual-agregation-item >2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis ex ultricies, molestie lacus eget, commodo diam</ual-agregation-item>
+                <ual-agregation-item >3. Algo corto</ual-agregation-item>
+                <ual-agregation-item >4. Algo corto</ual-agregation-item>
+                <ual-agregation-item >5. Algo corto</ual-agregation-item>
+                <ual-agregation-item >6. Algo corto</ual-agregation-item>
+                <ual-agregation-item >7. Algo corto</ual-agregation-item>
+                <ual-agregation-item >8. Algo corto</ual-agregation-item>
+                <ual-agregation-item >9. Algo corto</ual-agregation-item>
+            </div>
+        </div>
+    </div>
 </div>
