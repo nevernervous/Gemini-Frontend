@@ -1,13 +1,14 @@
-let tokenService = function ($rootScope, $localStorage, $interval, Configuration) {
+let tokenService = function ($rootScope, $window, $localStorage, $interval, $timeout, Configuration) {
   "ngInject";
   let _timer;
   let _interval;
+  let _keepalive;
   let _storage = $localStorage;
   let session_timeout = (Configuration.get('session.timeout') || 45) * 60 /* seconds */ * 1000 /* milliseconds */;
   let session_warning = (Configuration.get('session.warning') || 15) * 60 /* seconds */ * 1000 /* milliseconds */;
 
   let exists = () => {
-    return (!!_storage.session && !!_storage.session.authenticationToken);
+    return (!!_storage.session && !!_storage.session.authenticationToken && localStorage.getItem('gemini.keepalive'));
   }
 
   let remainingTime = () => {
@@ -75,13 +76,31 @@ let tokenService = function ($rootScope, $localStorage, $interval, Configuration
     }
   }
 
+  let stopKeepAlive = () => {
+    if ( _keepalive ) {
+      $timeout.cancel(_keepalive);
+      _keepalive = null;
+    }
+  }
+  let startKeepAlive = () => {
+    if ( !_keepalive ) {
+      _keepalive = $timeout( () => {
+        localStorage.setItem('gemini.keepalive', true);
+        _keepalive = null;
+        startKeepAlive();
+      }, 5000); // EACH 5 SECOND
+    }
+  }
+
   let stop = () => {
     stopExpired();
     stopExpiring();
+    stopKeepAlive();
   }
   let start = () => {
     startExpired();
     startExpiring();
+    startKeepAlive();
   }
 
   let update = () => {
@@ -92,6 +111,7 @@ let tokenService = function ($rootScope, $localStorage, $interval, Configuration
   }
 
   let create = (token) => {
+    localStorage.setItem('gemini.keepalive', true);
     _storage.session.authenticationToken = token;
     update();
   }
@@ -108,6 +128,11 @@ let tokenService = function ($rootScope, $localStorage, $interval, Configuration
     if ( !isExpired() ) {
       start();
     }
+
+    $window.onbeforeunload = () => {
+      stop();
+      localStorage.removeItem('gemini.keepalive');
+    };
   }
   initialize();
 
