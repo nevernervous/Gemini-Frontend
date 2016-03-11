@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 class LoginFormController {
   /*@ngInject*/
   constructor($state, Session, Configuration) {
@@ -11,7 +13,10 @@ class LoginFormController {
     this.user = Session.get() ? Session.get().username : null;
   }
 
-  submit(form) {
+  submit() {
+    // Change focus to emulate IE behaviour
+    $('login-form-submit').focus();
+
     this.error = false;
     this.loading = true;
     this._session.login(this.user, this.pass)
