@@ -4,58 +4,58 @@ let tokenService = function ($rootScope, $localStorage, $interval, Configuration
   let _interval;
   let _storage = $localStorage;
   let session_timeout = (Configuration.get('session.timeout') || 45) * 60 /* seconds */ * 1000 /* milliseconds */;
-  let session_warning = (Configuration.get('session.warning') || 15) * 60 /* seconds */ * 1000 /* milliseconds */; 
-  
+  let session_warning = (Configuration.get('session.warning') || 15) * 60 /* seconds */ * 1000 /* milliseconds */;
+
   let exists = () => {
     return (!!_storage.session && !!_storage.session.authenticationToken);
   }
-  
+
   let remainingTime = () => {
-    let now = new Date().getTime();    
+    let now = new Date().getTime();
     let updateAt = _storage.session.updateAt || 0;
     let timeout = session_timeout;
-    let remaining = updateAt + timeout - now; 
+    let remaining = updateAt + timeout - now;
     return  remaining > 0 ? remaining : 0;
   }
-  
+
   let isExpiring = () => {
     if ( exists() ) {
       return remainingTime() < session_warning;
     }
     return true;
   }
-  
+
   let isExpired = () => {
-    return !( exists() && (remainingTime() > 0) ); 
-  }  
-  
+    return !( exists() && (remainingTime() > 0) );
+  }
+
   let get = () => {
-    if ( exists() ) { 
+    if ( exists() ) {
       return _storage.session.authenticationToken;
-    } 
+    }
     return null;
-  } 
-  
+  }
+
   let stopExpiring = () => {
-    if ( _interval ) { 
+    if ( _interval ) {
       $interval.cancel(_interval);
       _interval = null;
     }
   }
-  let startExpiring = () => { 
+  let startExpiring = () => {
     if ( !_interval ) {
       _interval = $interval( () => {
         let pending = remainingTime();
-        if ( pending < session_warning ) { 
+        if ( pending < session_warning ) {
           stopExpiring();
           $rootScope.$broadcast('SESSION.EXPIRING');
-        } 
+        }
       }, 1000); // EACH 1 SECOND
     }
   }
-  
-  let stopExpired = () => { 
-    if ( _timer ) { 
+
+  let stopExpired = () => {
+    if ( _timer ) {
       $interval.cancel(_timer);
       _timer = null;
     }
@@ -64,44 +64,46 @@ let tokenService = function ($rootScope, $localStorage, $interval, Configuration
     if ( !_timer ) {
       _timer = $interval( () => {
         let pending = remainingTime();
-        if ( pending === 0 ) { 
+        if ( pending === 0 ) {
           stopExpired();
-          _storage.session.expired = true;
+          if ( exists() ) {
+            _storage.session.expired = true;
+          }
           $rootScope.$broadcast('SESSION.EXPIRED');
-        } 
+        }
       }, 1000); // EACH 1 SECOND
-    }     
-  }      
+    }
+  }
 
-  let stop = () => { 
+  let stop = () => {
     stopExpired();
     stopExpiring();
-  }  
-  let start = () => { 
+  }
+  let start = () => {
     startExpired();
     startExpiring();
   }
-        
+
   let update = () => {
-    if ( exists() ) { 
+    if ( exists() ) {
       _storage.session.updateAt = new Date().getTime();
-	    start(); 
+	    start();
     }
-  }   
-  
-  let create = (token) => { 
-    _storage.session.authenticationToken = token; 
+  }
+
+  let create = (token) => {
+    _storage.session.authenticationToken = token;
     update();
   }
-  
+
   let destroy = () => {
-    if ( exists() ) { 
+    stop();
+    if ( exists() ) {
       delete _storage.session.authenticationToken;
       delete _storage.session.updateAt;
-    }    
-    stop();
-  };  
-  
+    }
+  };
+
   let initialize = () => {
     if ( !isExpired() ) {
       start();
