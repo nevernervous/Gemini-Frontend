@@ -6,14 +6,15 @@ class UalNavBarController {
     this.name = 'ualNavBar';
     this.user = user;
     this._session = Session;
-    
+
     this._logoutModal = logoutModal;
     this.toggleMenu = ualMainMenu.toggle;
+    this.dropDownOpen = false;
   }
-  
-  logout() { 
+
+  logout() {
     this._logoutModal.open()
-    .then( response => response && this._session.logout() ); 
+    .then( response => response && this._session.logout() );
   }
 }
 
