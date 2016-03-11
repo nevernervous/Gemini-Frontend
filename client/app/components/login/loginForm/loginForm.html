@@ -4,7 +4,7 @@
   <login-form-input ng-class="{'-invalid': vm.error && loginform.$submitted}" label="Password" type="password"
                     value="vm.pass" tabindex="2" on-focus="loginform.$setPristine()" is-required="true"></login-form-input>
   <div class="message">
-    <span ng-class="{visible: vm.error }">{{vm.error.errorMessage || 'The userID or password are incorrect'}}</span>
+    <span ng-class="{visible: vm.error }">{{vm.error.errorMessage || 'The userID or password are invalid'}}</span>
     <a href="mailto:{{vm.mailto}}" ng-class="{visible: vm.error.errorCode == 1}">Please click here to contact PDS.</a>
   </div>
   <login-form-submit class="-primary" ng-class="{'-loading': vm.loading}" tabindex="3"></login-form-submit>
