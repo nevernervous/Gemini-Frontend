@@ -3,9 +3,9 @@
   <span class="title">Gemini</span>
 </div>
 <ul class="navbar-options">
-  <li ng-click="vm.dropDownOpen = !vm.dropDownOpen">
+  <li ng-click="vm.toggleDropDown($event)">
     <img class="img-circle" ng-src="{{vm.user}}" >
-    <ual-tooltip class="-dropdown" ng-show="vm.dropDownOpen">
+    <ual-tooltip class="-dropdown" ng-show="vm.isOpenDropDown()">
       <ual-menu>
         <ual-menu-item class="-disabled">Settings</ual-menu-item>
         <ual-menu-item class="-disabled">Help</ual-menu-item>
