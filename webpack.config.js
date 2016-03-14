@@ -13,7 +13,7 @@ module.exports = {
   entry: {},
   module: {
     loaders: [
-       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
+       { test: /\.(ttf|eot|otf|woff(2)?)(\?[a-z0-9]+)?$/, loader : 'file-loader' },
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
        { test: /\.html$/, loader: 'raw' },
        { test: /\.scss$/, loaders: [ ...styleLoad, 'sass?sourceMap'] },

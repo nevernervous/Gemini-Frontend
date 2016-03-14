@@ -11,6 +11,7 @@ import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
 import 'lodash';
 
+import './common/fonts/clanot/clanot.scss';
 import './app.scss';
 import 'normalize.css';
 

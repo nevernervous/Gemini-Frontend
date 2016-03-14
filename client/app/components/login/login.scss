@@ -10,17 +10,12 @@
   height: 52px;
 }
 .login > .login-container {
-  @include gridle( row row-align center);
   margin: auto; // center to screen
-  width: 459px; // continer width
+  width: 439px; // continer width
 
   > login-header {
-    @include gridle( row row-align center );
-    margin-top: -25px;    // pull up login container to center form. Size has to be the same of image.
+    display: block;
     margin-bottom: 25px;  // separation with the form
   }
 
-  > login-form {
-    @include gridle( 12 );
-  }
 }

@@ -1,0 +1,6 @@
+{
+  "Properties": {
+    "endpoint": "http://vcld16gdgemap02.global.ual.com:8080/api",
+    "cache": true
+  }
+}
