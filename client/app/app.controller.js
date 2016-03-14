@@ -1,10 +1,12 @@
 class AppController {
   /*@ngInject*/
-  constructor($rootScope, $state, Session) {
+  constructor($rootScope, ualNavBar, $state, Session) {
     this.name = 'app';
     this._session = Session;
     this._state = $state;
     this._rootScope = $rootScope;
+
+    this.navBar = ualNavBar;
   }
 
   _startSessionWatcher() {
