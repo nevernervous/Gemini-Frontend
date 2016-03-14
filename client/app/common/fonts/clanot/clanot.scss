@@ -1,0 +1,23 @@
+@font-face {
+	font-family: "ClanOT-Book";
+	font-weight: 200;
+	font-style: regular;
+	src: url("ClanOT-Book.eot");
+	src: url("ClanOT-Book.ttf") format("truetype"), url("ClanOT-Book.woff") format("woff"), url("ClanOT-Book.eot") format("embedded-opentype");
+}
+
+@font-face {
+	font-family: "ClanOT-News";
+	font-weight: 400;
+	font-style: regular;
+	src: url("ClanOT-News.eot");
+	src: url("ClanOT-News.ttf") format("truetype"), url("ClanOT-News.woff") format("woff"), url("ClanOT-News.eot") format("embedded-opentype");
+}
+
+@font-face {
+	font-family: "ClanOT-Bold";
+	font-weight: 600;
+	font-style: regular;
+	src: url("ClanOT-Bold.eot");
+	src: url("ClanOT-Bold.ttf") format("truetype"), url("ClanOT-Bold.woff") format("woff"), url("ClanOT-Bold.eot") format("embedded-opentype");
+}

@@ -62,7 +62,8 @@
     "mock": "gulp --env=mock",
     "local": "gulp --env=local",
     "vagrant": "gulp --env=vagrant",
-    "dev": "gulp constants --env=development && gulp webpack"
+    "dev": "gulp constants --env=development && gulp webpack",
+    "qa": "gulp constants --env=qa && gulp webpack"
   },
   "keywords": [
     "angular",
