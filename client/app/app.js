@@ -1,6 +1,5 @@
 import angular from 'angular';
 import 'lodash';
-import jQuery from 'jquery';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
@@ -12,8 +11,7 @@ import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
 import 'lodash';
 
-window.$ = window.jQuery = jQuery;
-
+import './common/fonts/clanot/clanot.scss';
 import './app.scss';
 import 'normalize.css';
 

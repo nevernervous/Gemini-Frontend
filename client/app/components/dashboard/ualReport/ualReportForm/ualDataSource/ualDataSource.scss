@@ -20,8 +20,24 @@
             }
         }
     }
+    .loading-message,
+    .empty-search {
+        @include gridle(12);
+        @include font-clanot-book(16);
+        color: $color07;
+    }
+    .content-list {
+        height: calc(100% - 120px);
+        padding: 10px 0;
+        overflow-y: scroll;
+        > .data-source-list {
+            @include column-content(4);
+        }
+    }
 }
 
+
+}
 // VARIATIONS
 .ual-data-source {
     .container {
