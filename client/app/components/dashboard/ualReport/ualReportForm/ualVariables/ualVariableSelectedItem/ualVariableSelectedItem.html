@@ -1,5 +1,5 @@
-<div class="variable-container"> 
-  <input class="variable-order" type="text" ng-model="vm.variableOrder">
+<div class="variable-container">
+  <input class="variable-order" type="text" ng-model="vm.variableOrder" ng-blur="vm.onBlur(vm.variableItem, vm.variableOrder)">
   <span class="variable-name">{{vm.variableItem.name}}</span>
   <span class="variable-group">{{vm.variableItem.group.groupName}}</span>
 </div>

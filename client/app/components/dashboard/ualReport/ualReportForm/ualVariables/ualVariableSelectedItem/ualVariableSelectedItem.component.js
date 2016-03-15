@@ -7,6 +7,8 @@ let ualVariableSelectedItemComponent = {
   bindings: {
     variableItem: '<',
     variableOrder: '<',
+    cbChange: '=',
+    cbBind: '=',
     onDelete: '&'
   },
   template,

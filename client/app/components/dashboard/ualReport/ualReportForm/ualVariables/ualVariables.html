@@ -43,7 +43,7 @@
           </div>
           <ul class="selected-list" dnd-list="vm.selecteds">
             <ual-variable-selected-item ng-repeat="item in vm.selecteds | filter:vm.selectedFilter"
-              variable-item="item" variable-order="$index + 1" on-delete="vm.toggle(item)"
+              variable-item="item" variable-order="$index + 1" on-delete="vm.toggle(item)" cb-change="vm.changeOrder" cb-bind="vm"
               dnd-draggable="item" dnd-moved="vm.selecteds.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="models.selected = item"
               ng-class="{'selected': models.selected === item}">
             </ual-variable-selected-item>

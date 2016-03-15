@@ -73,6 +73,11 @@ class UalVariablesController {
     });
   }
 
+  changeOrder(variable, order) {
+    _.remove(this.selecteds, { 'id': variable.id });
+    this.selecteds.splice(order - 1, 0, variable);
+  }
+
   apply() {
     this._closemodal(this.selecteds);
   }
