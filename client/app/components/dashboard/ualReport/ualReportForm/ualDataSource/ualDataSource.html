@@ -13,7 +13,7 @@
     <div class="loading-message" ng-show="!vm.datasources">Loading ...</div>
     <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filter:vm.searchTerm | isEmpty)">No results match your search</div>
     <div class="content-list" ng-show="vm.datasources" id="content-list">
-        <div class="data-source-list" id="data-source-list" ual-resize on-resize='vm.checkOverflow()'>
+        <div class="data-source-list" ng-class="{'-horizontal-fill': !vm.hasHorizontalOverflow}" id="data-source-list" ual-resize on-resize='vm.checkOverflow()'>
             <ual-data-source-group datasource-group="group.data" ng-repeat="group in vm.datasources.groups | orderBy : 'data.order'" ng-show="vm.shouldShow(group)">
                 <ual-data-source-item datasource-item="item" ng-repeat="item in group.items | filter:vm.searchTerm | orderBy : 'order'" ng-click="vm.toogleSelected(item)" ng-class="{'-selected': vm.isActive(item.id)}" ual-on-last-item>
                 </ual-data-source-item>

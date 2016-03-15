@@ -15,7 +15,9 @@
             height: calc(100% - 120px);
             padding: 10px 0;
             overflow-y: scroll;
+            overflow-x: hidden;
             > .data-source-list {
+                padding-bottom: 20px;
                 @include column-content(4);
             }
         }
