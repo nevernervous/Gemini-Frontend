@@ -1,17 +1,27 @@
 class AppController {
   /*@ngInject*/
-  constructor($rootScope, ualNavBar, $state, Session) {
+  constructor($rootScope, ualNavBar, $state, $timeout, Session) {
     this.name = 'app';
     this._session = Session;
     this._state = $state;
     this._rootScope = $rootScope;
+    this._timeout = $timeout;
 
     this.navBar = ualNavBar;
   }
 
-  _startSessionWatcher() {
-    this._onChangeState(this._state.current.name)
+  _sessionWatcher() {
+    this._timeout( () => {
+      this._onChangeState(this._state.current.name);
+      this._sessionWatcher();
+    }, 1000); // EACH 1 SECOND
   }
+
+  _startSessionWatcher() {
+    this._onChangeState(this._state.current.name);
+    this._sessionWatcher();
+  }
+
 
   _onChangeState(next, prev = '', cancel = ()=>{}) {
     if ( this._session.isLogged() ) {

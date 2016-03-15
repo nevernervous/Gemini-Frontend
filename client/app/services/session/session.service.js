@@ -1,6 +1,5 @@
-let sessionService = function (Properties, $rootScope, $localStorage, $http, uuid, Token) {
+let sessionService = function (Properties, $rootScope, $http, uuid, Token) {
   "ngInject";
-  let _storage = $localStorage;
   const endpoint = Properties.endpoint + '/tokens';
 
   let isLogged = () => {
@@ -8,37 +7,34 @@ let sessionService = function (Properties, $rootScope, $localStorage, $http, uui
   }
 
   let isExpired = () => {
-    let expired = false;
-    if ( !!_storage.session ) {
-      expired = _storage.session.expired;
-      delete _storage.session.expired;
-    }
+    let expired = sessionStorage.getItem("gemini.expired");
+    sessionStorage.removeItem("gemini.expired");
     return expired;
   }
 
   // DOC: http://docs.ualgemini.apiary.io/#reference/0/tokens/create-a-new-token
   let login = (user, pass) => {
-    _storage.session = {
+    localStorage.setItem('gemini.session.user', user);
+    let session = {
       username: user,
       password: pass,
       clientId: uuid.v4().substring(0, 20)
     };
 
-    let promise = $http.post(endpoint, _storage.session);
+    let promise = $http.post(endpoint, session);
 
     promise.then( response => {
-      delete _storage.session.password;
       Token.create(response.data.authenticationToken);
-    })
-    .catch( response => {
-      delete _storage.session.clientId;
     });
 
     return promise;
   };
 
   let get = () => {
-    return _storage.session;
+    return {
+      username: localStorage.getItem('gemini.session.user'),
+      token: Token.get()
+    };
   }
 
   // DOC: http://docs.ualgemini.apiary.io/#reference/0/tokens/refresh-token
