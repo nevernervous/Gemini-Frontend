@@ -10,8 +10,9 @@
         <ual-input value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
         <ual-data-source-label datasource-selected="vm.selected"></ual-data-source-label>
     </div>
-    <div class="content-list" ng-if="!vm.datasources">Loading ...</div>
-    <div class="content-list" ng-if="vm.datasources">
+    <div class="loading-message" ng-show="!vm.datasources">Loading ...</div>
+    <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filter:vm.searchTerm | isEmpty)">No results match your search</div>
+    <div class="content-list" ng-show="vm.datasources">
         <div class="data-source-list">
             <ual-data-source-group datasource-group="group.data" ng-repeat="group in vm.datasources.groups | orderBy : 'data.order'" ng-show="vm.shouldShow(group)">
                 <ual-data-source-item datasource-item="item" ng-repeat="item in group.items | filter:vm.searchTerm | orderBy : 'order'" ng-click="vm.toogleSelected(item)"
