@@ -1,21 +1,20 @@
 @import '../../common/common';
-
 .login {
-  height: 100vh; // fill 100% of screen
-  @include linear-gradient(to top, $backgroundHighColor 0%, $backgroundLowColor 50%, $backgroundMediumColor 100%);
-  @include gridle( row );
+    height: 100vh; // fill 100% of screen
+    @include linear-gradient(to top, $backgroundHighColor 0%, $backgroundLowColor 50%, $backgroundMediumColor 100%);
+    @include gridle( row);
 }
+
 .login > message-banner {
-  @include gridle( 12 );
-  height: 52px;
+    @include gridle( 12);
+    height: 52px;
 }
+
 .login > .login-container {
-  margin: auto; // center to screen
-  width: 439px; // continer width
-
-  > login-header {
-    display: block;
-    margin-bottom: 25px;  // separation with the form
-  }
-
+    width: 439px; // continer width
+    margin: auto;
+    height: 571px;
+    > login-header {
+        margin-bottom: 25px; // separation with the form
+    }
 }
