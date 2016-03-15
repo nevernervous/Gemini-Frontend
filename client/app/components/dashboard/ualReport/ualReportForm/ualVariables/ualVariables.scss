@@ -87,6 +87,13 @@
                 }
                 > .selected-variables {
                     border: 1px solid $color08;
+                    .selected-list > .dndPlaceholder {
+                      height: 32px;
+                      background-color: $color08;
+                    }
+                    .selected-list > .dndDraggingSource {
+                      display: none;
+                    }
                 }
             }
         }
