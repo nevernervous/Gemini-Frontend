@@ -1,9 +1,13 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualReport, ualDataSource, ualVariables) {
+  constructor($state, ualReport, ualDataSource, ualVariables, Aggregator) {
     this._state = $state;
     this._datasourcemodal = ualDataSource;
     this._variablesmodal = ualVariables;
+
+    this._service = {
+      aggregator: Aggregator
+    }
 
     this.report = ualReport;
   }
@@ -12,9 +16,18 @@ class UalReportFormController {
   selectDataSource() {
     this._datasourcemodal.open({selected: this.report.datasource.get()})
     .then(datasource => {
-      datasource ?
-        this.report.datasource.set(datasource) :
+      if ( datasource && !this.report.datasource.equal(datasource)) {
+
+        this.report.datasource.set(datasource);
+        this.report.variables.set([]);
+        this._service.aggregator.all(datasource)
+        .then(aggregators => {
+          this.report.aggregators.set(_.filter(aggregators.data, 'isDefaultAggregator'))
+        })
+
+      } else if (!datasource) {
         this._state.go('dashboard.report-list');
+      }
     });
   }
 
