@@ -55,6 +55,27 @@ class UalDataSourceController {
   toogleSelected(item) {
     this.selected = this.isActive(item.id) ? null : item;
   }
+  
+  checkOverflow(){
+      let $marker = $("#overflow-marker");
+      let $container = $("#content-list");
+      let $contentList = $("#data-source-list");
+      
+      let markerWidth = $marker.position().left;
+      let containerWidth = $container.width();
+
+      let hasHorizontalOverflow = markerWidth > containerWidth;
+      let needHorizontalFill = $container.height() > $contentList.height();
+
+      if (hasHorizontalOverflow) {
+          $("#data-source-list").removeClass("-horizontal-fill");
+          return;
+      }
+      
+      if(needHorizontalFill){
+          $("#data-source-list").addClass("-horizontal-fill");
+      }
+  }
 
   _initialize() {
     this._datasource.all('group')

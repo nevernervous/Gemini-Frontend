@@ -6,6 +6,7 @@ import ualMenu from './ualMenu/ualMenu';
 import ualPane from './ualPane/ualPane';
 import ualTooltip from './ualTooltip/ualTooltip';
 import ualInput from './ualInput/ualInput';
+import ualResize from './ualResize/ualResize';
 
 let commonModule = angular.module('app.common', [
   ualModal.name,
@@ -14,7 +15,8 @@ let commonModule = angular.module('app.common', [
   ualMenu.name,
   ualPane.name,
   ualTooltip.name,
-  ualInput.name
+  ualInput.name,
+  ualResize.name
 ]);
 
 export default commonModule;
