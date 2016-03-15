@@ -13,10 +13,10 @@
             <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
             <div class="group-list" ng-show="(vm.variables.items | filter:vm.standardFilter.name).length > 0">
               <ual-variables-group group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filter:vm.standardFilter | isEmpty)">
-                <ual-checkbox id="group_{{group.data.groupId}}" ng-click="vm.toggleGroup(group)" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name">
+                <ual-checkbox id="group_{{group.data.groupId}}" on-click="vm.toggleGroup(group)" item="group" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name">
                   Select All
                 </ual-checkbox>
-                <ual-checkbox ng-repeat="item in group.items | filter:vm.standardFilter | orderBy : 'order'" id="variable_{{item.id}}" ng-click="vm.toggle(item)" is-checked="vm.isSelected(item)">
+                <ual-checkbox ng-repeat="item in group.items | filter:vm.standardFilter | orderBy : 'order'" id="variable_{{item.id}}" on-click="vm.toggle(item)" item="item" is-checked="vm.isSelected(item)">
                   {{item.name}}
                 </ual-checkbox>
               </ual-variables-group>
