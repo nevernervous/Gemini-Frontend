@@ -57,23 +57,23 @@ class UalDataSourceController {
   }
   
   checkOverflow(){
-      let $marker = $("#overflow-marker");
-      let $container = $("#content-list");
-      let $contentList = $("#data-source-list");
-      
-      let markerWidth = $marker.position().left;
-      let containerWidth = $container.width();
+      let $marker = angular.element(document.getElementById("overflow-marker"))[0];
+      let $container = angular.element(document.getElementById("content-list"))[0];
+      let $contentList = angular.element(document.getElementById("data-source-list"))[0];
+
+      let markerWidth = $marker.offsetLeft;
+      let containerWidth = $container.clientWidth;
 
       let hasHorizontalOverflow = markerWidth > containerWidth;
-      let needHorizontalFill = $container.height() > $contentList.height();
+      let needHorizontalFill = $container.clientHeight > $contentList.clientHeight;
 
       if (hasHorizontalOverflow) {
-          $("#data-source-list").removeClass("-horizontal-fill");
+          angular.element(document.getElementById("data-source-list")).removeClass("-horizontal-fill");
           return;
       }
       
       if(needHorizontalFill){
-          $("#data-source-list").addClass("-horizontal-fill");
+          angular.element(document.getElementById("data-source-list")).addClass("-horizontal-fill");
       }
   }
 
