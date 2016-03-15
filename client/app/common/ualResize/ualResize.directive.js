@@ -7,7 +7,6 @@ class ualResizeDirective {
         this.scope = {
             onResize: "&"
         };
-        // this.controller = controller;
         this.controllerAs = 'vm';
         
     }
