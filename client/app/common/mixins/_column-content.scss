@@ -13,3 +13,10 @@
      -moz-column-fill: $columnFill;            
      column-fill: $columnFill;
 }
+
+
+@mixin break-inside($break: avoid){
+    -webkit-column-break-inside: $break; /* Chrome, Safari, Opera */
+          page-break-inside: $break; /* Firefox */
+               break-inside: $break; /* IE10 */
+}
