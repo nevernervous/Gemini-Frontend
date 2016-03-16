@@ -14,6 +14,7 @@ module.exports = {
   module: {
     loaders: [
        { test: /\.(ttf|eot|otf|woff(2)?)(\?[a-z0-9]+)?$/, loader : 'file-loader' },
+       { test: /[\/\\]node_modules[\/\\]jquery[\/\\]index\.js$/, loader: "imports?this=>window" },
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
        { test: /\.html$/, loader: 'raw' },
        { test: /\.scss$/, loaders: [ ...styleLoad, 'sass?sourceMap'] },
