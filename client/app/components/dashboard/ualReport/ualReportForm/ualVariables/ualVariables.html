@@ -39,7 +39,7 @@
             <div>No results match your search</div>
           </div>
           <div class="empty-list" ng-hide="vm.selecteds.length > 0">
-            <div>No variables has been selected yet. Please select variables from the left menu.</div>
+            <div>No variables have been selected yet. Please select variables from the left menu.</div>
           </div>
           <ul class="selected-list">
             <ual-variable-selected-item ng-repeat="item in vm.selecteds | filter:vm.selectedFilter" variable-item="item" variable-order="$index + 1" on-delete="vm.toggle(item)"></ual-variable-selected-item>
