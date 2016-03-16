@@ -60,7 +60,7 @@ class UalDataSourceController {
         if (this.finishItemRender) {
             let $marker = angular.element(document.getElementById("overflow-marker"))[0];
             let $container = angular.element(document.getElementById("content-list"))[0];
-            let $contentList = angular.element(document.getElementById("data-source-list"))[0];
+            let $resizableContainer = angular.element(document.getElementById("resizable-container"))[0];
 
             if(!$marker || !$container){
                 return;
@@ -69,7 +69,7 @@ class UalDataSourceController {
             let containerWidth = $container.clientWidth;
 
             let hasHorizontalOverflow = markerWidth > containerWidth;
-            let needHorizontalFill = $container.clientHeight > $contentList.clientHeight;
+            let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
 
             this.hasHorizontalOverflow = hasHorizontalOverflow || !needHorizontalFill;  
 

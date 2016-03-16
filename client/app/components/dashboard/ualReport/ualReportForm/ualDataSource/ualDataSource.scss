@@ -14,9 +14,9 @@
         .content-list {
             height: calc(100% - 120px);
             padding: 10px 0;
-            overflow-y: scroll;
+            overflow-y: auto;
             overflow-x: hidden;
-            > .data-source-list {
+            .data-source-list {
                 padding-bottom: 20px;
                 @include column-content(4);
             }
@@ -34,8 +34,9 @@
 .ual-data-source {
     .container {
         .content-list {
-            > .data-source-list {
-                &.-horizontal-fill {
+            .data-source-list {
+                .-horizontal-fill {
+                    overflow: hidden;
                     height: 100%;
                     @include column-fill(auto);
                 }
