@@ -62,6 +62,9 @@ class UalDataSourceController {
             let $container = angular.element(document.getElementById("content-list"))[0];
             let $contentList = angular.element(document.getElementById("data-source-list"))[0];
 
+            if(!$marker || !$container){
+                return;
+            }
             let markerWidth = $marker.offsetLeft;
             let containerWidth = $container.clientWidth;
 
