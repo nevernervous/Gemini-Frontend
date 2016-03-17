@@ -1,5 +1,7 @@
 import angular from 'angular';
 import 'lodash';
+import $ from 'jquery';
+import customScroll from './vendors/jquery.mCustomScrollbar.concat.min.js';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
@@ -9,11 +11,14 @@ import Filters from './filters/filters';
 import Constants from './app.constants';
 import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
-import 'lodash';
 
 import './common/fonts/clanot/clanot.scss';
 import './app.scss';
 import 'normalize.css';
+
+window.$ = $;
+window.customScroll = customScroll;
+window.customScroll(window.$);
 
 angular.module('app', [
   uiRouter,

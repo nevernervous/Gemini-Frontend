@@ -14,11 +14,8 @@
         .content-list {
             height: calc(100% - 120px);
             padding: 10px 0;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            > .data-source-list {
-                padding-bottom: 20px;
-                @include column-content(4);
+            .data-source-list {
+              @include column-content(4);
             }
         }
         .loading-message,
@@ -34,7 +31,10 @@
 .ual-data-source {
     .container {
         .content-list {
-            > .data-source-list {
+            .mCS_no_scrollbar_y {
+              height: 100%;
+            }
+            .data-source-list {
                 &.-horizontal-fill {
                     height: 100%;
                     @include column-fill(auto);

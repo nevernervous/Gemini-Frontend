@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 class UalVariablesGroupController {
   /*@ngInject*/
   constructor() {
@@ -9,6 +11,7 @@ class UalVariablesGroupController {
       this.open = !this.open;
     }
   }
+
 }
 
 export default UalVariablesGroupController;
