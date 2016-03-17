@@ -7,6 +7,7 @@ class UalDataSourceChangeModalController {
 
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
   }
 
   _closemodal(response) {
