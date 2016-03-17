@@ -1,4 +1,4 @@
-let sessionService = function (Properties, $rootScope, $http, uuid, Token) {
+let sessionService = function (Properties, $http, uuid, Token) {
   "ngInject";
   const endpoint = Properties.endpoint + '/tokens';
 
@@ -6,11 +6,11 @@ let sessionService = function (Properties, $rootScope, $http, uuid, Token) {
     return !Token.isExpired();
   }
 
-  let isExpired = () => {
-    let expired = sessionStorage.getItem("gemini.expired");
-    sessionStorage.removeItem("gemini.expired");
-    return expired;
-  }
+  // let isExpired = () => {
+  //   let expired = sessionStorage.getItem("gemini.expired");
+  //   sessionStorage.removeItem("gemini.expired");
+  //   return expired;
+  // }
 
   // DOC: http://docs.ualgemini.apiary.io/#reference/0/tokens/create-a-new-token
   let login = (user, pass) => {
@@ -48,14 +48,13 @@ let sessionService = function (Properties, $rootScope, $http, uuid, Token) {
 
     promise.finally( () => {
       Token.destroy();
-      $rootScope.$broadcast('SESSION.LOGOUT');
     });
 
     return  promise;
   };
 
   return {
-    isLogged, isExpired, get,
+    isLogged, get, //isExpired,
     // PROMISES
     login, renew, logout
   };
