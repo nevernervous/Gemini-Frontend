@@ -26,7 +26,10 @@ class DashboardController {
 
   $onInit() {
     this._suscriptions.push(this._rootScope.$on('SESSION.EXPIRING', () => this.expiration()));
-    this._suscriptions.push(this._rootScope.$on('SESSION.EXPIRED', () => this._session.logout()));
+    this._suscriptions.push(this._rootScope.$on('SESSION.EXPIRED', () =>  {
+      this._unsuscribe();
+      this._state.go('login');
+    }));
     this._suscriptions.push(this._rootScope.$on('SESSION.LOGOUT', () =>  {
       this._unsuscribe();
       this._state.go('login');

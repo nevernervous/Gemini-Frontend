@@ -14,7 +14,8 @@ class UalDataSourceController {
         this._initialize();
 
         this._suscriptions = [];
-        this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
+        this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+        this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
     }
 
     _closemodal(response) {
@@ -71,7 +72,7 @@ class UalDataSourceController {
             let hasHorizontalOverflow = markerWidth > containerWidth;
             let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
 
-            this.hasHorizontalOverflow = hasHorizontalOverflow || !needHorizontalFill;  
+            this.hasHorizontalOverflow = hasHorizontalOverflow || !needHorizontalFill;
 
         }
     }

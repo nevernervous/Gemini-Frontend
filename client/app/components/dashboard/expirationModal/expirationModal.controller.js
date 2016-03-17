@@ -6,28 +6,25 @@ class ExpirationModalController {
     this._token = Token;
 
     this._suscriptions = [];
-    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  {
-      this._unsuscribe();
-      this._close(true);
-    }));
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('SESSION.RENEW', () =>   this._closemodal(true)));
   }
 
   remaining() {
-    if (!this._token.isExpiring()) {
-      this._close(true);
-    }
     return this._token.remainingTime();
   }
 
-  _unsuscribe() {
+  _closemodal(response) {
     this._suscriptions.forEach(suscription => suscription());
+    this._close(response);
   }
 
   yes() {
-    this._close(true);
+    this._closemodal(true);
   }
   no() {
-    this._close(false);
+    this._closemodal(false);
   }
 
 }
