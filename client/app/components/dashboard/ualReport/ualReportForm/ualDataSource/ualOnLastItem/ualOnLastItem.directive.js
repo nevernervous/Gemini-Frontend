@@ -9,6 +9,7 @@ class ualOnLastItemDirective {
     link(scope, element, attrs) {
         var isLastGroup = scope.$parent.$parent.$parent.$last;
         if (scope.$last && isLastGroup) {
+            scope.vm.finishItemRender = true;
             scope.vm.checkOverflow();
         }
     }

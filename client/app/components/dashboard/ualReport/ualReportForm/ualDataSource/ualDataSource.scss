@@ -15,7 +15,7 @@
             height: calc(100% - 120px);
             padding: 10px 0;
             .data-source-list {
-                @include column-content(4);
+              @include column-content(4);
             }
         }
         .loading-message,
