@@ -2,22 +2,28 @@
 	font-family: "ClanOT-Book";
 	font-weight: 200;
 	font-style: regular;
-	src: url("ClanOT-Book.eot");
-	src: url("ClanOT-Book.ttf") format("truetype"), url("ClanOT-Book.woff") format("woff"), url("ClanOT-Book.eot") format("embedded-opentype");
+	//src: url("ClanOT-Book.eot");
+	//src: url("ClanOT-Book.ttf") format("truetype"), url("ClanOT-Book.woff") format("woff"), url("ClanOT-Book.eot") format("embedded-opentype");
+	src: url("ClanBook.eot");
+	src: url("ClanBook.ttf") format("truetype"), url("ClanBook.woff") format("woff"), url("ClanBook.eot") format("embedded-opentype");
 }
 
 @font-face {
 	font-family: "ClanOT-News";
 	font-weight: 400;
 	font-style: regular;
-	src: url("ClanOT-News.eot");
-	src: url("ClanOT-News.ttf") format("truetype"), url("ClanOT-News.woff") format("woff"), url("ClanOT-News.eot") format("embedded-opentype");
+	//src: url("ClanOT-News.eot");
+	//src: url("ClanOT-News.ttf") format("truetype"), url("ClanOT-News.woff") format("woff"), url("ClanOT-News.eot") format("embedded-opentype");
+	src: url("ClanNews.eot");
+	src: url("ClanNews.ttf") format("truetype"), url("ClanNews.woff") format("woff"), url("ClanNews.eot") format("embedded-opentype");
 }
 
 @font-face {
 	font-family: "ClanOT-Bold";
 	font-weight: 600;
 	font-style: regular;
-	src: url("ClanOT-Bold.eot");
-	src: url("ClanOT-Bold.ttf") format("truetype"), url("ClanOT-Bold.woff") format("woff"), url("ClanOT-Bold.eot") format("embedded-opentype");
+	//src: url("ClanOT-Bold.eot");
+	//src: url("ClanOT-Bold.ttf") format("truetype"), url("ClanOT-Bold.woff") format("woff"), url("ClanOT-Bold.eot") format("embedded-opentype");
+	src: url("ClanBold.eot");
+	src: url("ClanBold.ttf") format("truetype"), url("ClanBold.woff") format("woff"), url("ClanBold.eot") format("embedded-opentype");
 }
