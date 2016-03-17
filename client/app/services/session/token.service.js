@@ -36,13 +36,13 @@ let tokenService = function ($rootScope, $window, $timeout, Configuration) {
           expiring = false;
           expired = false;
           $rootScope.$broadcast('SESSION.RENEW');
-        } else if ( is_expired && expiring ) {
+        } else if ( is_expired && expiring && !(remaining > 0) ) {
           login = false;
           expiring = false;
           expired = true;
           localStorage.removeItem('gemini.token.id');
           localStorage.removeItem('gemini.token.keepalive');
-          localStorage.removeItem('gemini.token.updateAt');
+          //localStorage.removeItem('gemini.token.updateAt');
           $rootScope.$broadcast('SESSION.EXPIRED');
         } else if ( is_expired && login ) {
           login = false;
@@ -115,7 +115,7 @@ let tokenService = function ($rootScope, $window, $timeout, Configuration) {
     expired = false;
     localStorage.removeItem('gemini.token.id');
     localStorage.removeItem('gemini.token.keepalive');
-    localStorage.removeItem('gemini.token.updateAt');
+    //localStorage.removeItem('gemini.token.updateAt');
     $rootScope.$broadcast('SESSION.LOGOUT');
   };
 
