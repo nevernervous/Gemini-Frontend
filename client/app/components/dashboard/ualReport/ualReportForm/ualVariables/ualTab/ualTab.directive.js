@@ -11,7 +11,7 @@ class ualTabDirective {
         this.require = '^ualTabs';
         this.controllerAs = 'vm';
         this.bindings = {
-            title: '@',
+            ualTitle: '@',
             selected: '@',
             isEnabled: '@'
         };
@@ -19,7 +19,7 @@ class ualTabDirective {
 
   link(scope, element, attrs, ctrl) {
         scope.tab = {
-            title: attrs.title,
+            ualTitle: attrs.ualTitle,
             selected: false,
             isEnabled: attrs.isEnabled
         };
