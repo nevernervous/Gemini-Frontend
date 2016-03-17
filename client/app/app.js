@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'lodash';
 import $ from 'jquery';
-import customScroll from 'malihu-custom-scrollbar-plugin';
+import customScroll from './vendors/jquery.mCustomScrollbar.concat.min.js';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
