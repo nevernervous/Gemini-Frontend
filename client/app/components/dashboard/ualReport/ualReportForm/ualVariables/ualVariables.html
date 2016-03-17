@@ -38,7 +38,7 @@
           <div class="empty-search" ng-hide="vm.selecteds.length == 0 || (vm.selecteds | filter:vm.selectedFilter).length > 0">
             <div>No results match your search</div>
           </div>
-          <div class="empty-list" ng-hide="(vm.selecteds.length | filter:vm.selectedFilter) > 0">
+          <div class="empty-list" ng-hide="(vm.selecteds).length > 0">
             <div>No variables have been selected yet. Please select variables from the left menu.</div>
           </div>
           <ul class="selected-list">
