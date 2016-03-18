@@ -8,6 +8,8 @@ let ualVariablesGroupComponent = {
   bindings: {
     groupEnabled: '=',
     groupName: '@',
+    groupId: '@',
+    finishVariableRender : '=finishRender'
   },
   template,
   controller,

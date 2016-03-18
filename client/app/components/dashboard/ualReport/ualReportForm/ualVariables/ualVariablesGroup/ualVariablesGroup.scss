@@ -48,7 +48,7 @@ ual-variables-group {
       max-height: 440px;
       padding: 7px 0 7px 13px;
       border: 1px solid $color08;
-      overflow-y: auto;
+      overflow-y: hidden;
       margin-bottom: 2px;
       &:not(.mCS_no_scrollbar) .mCSB_scrollTools {
         @include transition(opacity .3s ease-out .5s, visibility .3s ease-out .5s);
