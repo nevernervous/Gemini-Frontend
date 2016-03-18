@@ -52,13 +52,14 @@ ual-report-form {
                 .aggregation-search-container {
                     @include gridle(row);
                     span {
-                        @include gridle(3.6);
+                        @include gridle(3.7);
                         text-align: right;
                         line-height: 32px;
                         display: inline-block;
                     }
                     ual-input {
-                        @include gridle(6.6);
+                        @include gridle(6.5);
+                        font-size: 14px;
                     }
                 }
             }
