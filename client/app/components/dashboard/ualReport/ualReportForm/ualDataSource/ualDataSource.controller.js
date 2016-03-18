@@ -1,6 +1,6 @@
 class UalDataSourceController {
     /*@ngInject*/
-    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter) {
+    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate) {
         this._close = close;
         this._datasource = DataSource;
         this._cancelmodal = ualDataSourceCancelModal;
@@ -8,6 +8,8 @@ class UalDataSourceController {
         this._selected = selected;
         this._filter = $filter;
         this.searchTerm = {};
+        
+        this._animate = $animate;
 
         this.datasources;
         this.selected = selected;
@@ -72,11 +74,16 @@ class UalDataSourceController {
             let hasHorizontalOverflow = markerWidth > containerWidth;
             let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
 
-            this.hasHorizontalOverflow = hasHorizontalOverflow || !needHorizontalFill;
-
-            setTimeout(() => {
-                this.hasLoaded = true;
-            }, 200);
+            if(!(hasHorizontalOverflow || !needHorizontalFill)){
+                this._animate.addClass($resizableContainer, '-horizontal-fill').then(() => {
+                    this.hasLoaded = true;
+                });
+            } else{
+                 this._animate.removeClass($resizableContainer, '-horizontal-fill').then(() => {
+                    this.hasLoaded = true;
+                });
+            }
+            
         }
     }
 

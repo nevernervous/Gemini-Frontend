@@ -1,4 +1,5 @@
 import angular from 'angular';
+import angularAnimate from 'angular-animate';
 import 'lodash';
 import $ from 'jquery';
 import customScroll from './vendors/jquery.mCustomScrollbar.concat.min.js';
@@ -28,7 +29,8 @@ angular.module('app', [
   Common.name,
   Components.name,
   Services.name,
-  Filters.name
+  Filters.name,
+  'ngAnimate'
 ])
 
 .config(($stateProvider, $httpProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS, Properties) => {
