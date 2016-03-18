@@ -74,6 +74,9 @@ class UalDataSourceController {
 
             this.hasHorizontalOverflow = hasHorizontalOverflow || !needHorizontalFill;
 
+            setTimeout(() => {
+                this.hasLoaded = true;
+            }, 200);
         }
     }
 

@@ -10,9 +10,9 @@
         <ual-input value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
         <ual-data-source-label datasource-selected="vm.selected"></ual-data-source-label>
     </div>
-    <div class="loading-message" ng-show="!vm.datasources">Loading ...</div>
+    <div class="loading-message" ng-show="!vm.datasources || !vm.hasLoaded">Loading ...</div>
     <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filter:vm.searchTerm | isEmpty)">No results match your search</div>
-    <div class="content-list" ng-show="vm.datasources" id="content-list">
+    <div class="content-list" ng-show="vm.datasources && vm.hasLoaded" id="content-list">
         <div class="data-source-list">
             <div id="resizable-container" ual-resize on-resize='vm.checkOverflow()' ng-class="{'-horizontal-fill': !vm.hasHorizontalOverflow}">
                 <ual-data-source-group datasource-group="group.data" ng-repeat="group in vm.datasources.groups | orderBy : 'data.order'" ng-show="vm.shouldShow(group)">
