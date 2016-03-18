@@ -36,17 +36,30 @@ ual-variables-group {
   }
 
   > .group-item {
-    @include transition(all .3s ease-out);
+    @include transition(max-height .3s ease-out, padding .3s ease-out, border .3s ease-out);
     max-height: 0;
+    .mCSB_scrollTools {
+      display: block !important;
+      visibility: hidden;
+      opacity: 0;
+    }
 
     &.-open {
       max-height: 440px;
-      padding: 7px 13px;
+      padding: 7px 0 7px 13px;
       border: 1px solid $color08;
       overflow-y: auto;
       margin-bottom: 2px;
+      &:not(.mCS_no_scrollbar) .mCSB_scrollTools {
+        @include transition(opacity .3s ease-out .5s, visibility .3s ease-out .5s);
+        visibility: visible;
+        opacity: 1;
+      }
     }
+
+
   }
+
 }
 
 // VARIANTS

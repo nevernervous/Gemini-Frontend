@@ -1,115 +1,135 @@
-let tokenService = function ($rootScope, $localStorage, $interval, Configuration) {
+let tokenService = function ($rootScope, $window, $timeout, Configuration) {
   "ngInject";
   let _timer;
-  let _interval;
-  let _storage = $localStorage;
+  let login = false;
+  let expiring = false;
+  let expired = false;
   let session_timeout = (Configuration.get('session.timeout') || 45) * 60 /* seconds */ * 1000 /* milliseconds */;
-  let session_warning = (Configuration.get('session.warning') || 15) * 60 /* seconds */ * 1000 /* milliseconds */; 
-  
-  let exists = () => {
-    return (!!_storage.session && !!_storage.session.authenticationToken);
-  }
-  
-  let remainingTime = () => {
-    let now = new Date().getTime();    
-    let updateAt = _storage.session.updateAt || 0;
-    let timeout = session_timeout;
-    let remaining = updateAt + timeout - now; 
-    return  remaining > 0 ? remaining : 0;
-  }
-  
-  let isExpiring = () => {
-    if ( exists() ) {
-      return remainingTime() < session_warning;
+  let session_warning = (Configuration.get('session.warning') || 15) * 60 /* seconds */ * 1000 /* milliseconds */;
+
+  let start = () => {
+    if ( !_timer ) {
+      _timer = $timeout( () => {
+
+        // console.log('---------------------------------')
+        // console.log('login: ' + login);
+        // console.log('isExpired: ' + isExpired());
+        // console.log('expiring: ' + expiring);
+        // console.log('remainingTime: ' + remainingTime());
+        // console.log('session_timeout: ' + session_timeout);
+        // console.log('session_warning: ' + session_warning);
+        // console.log('gemini.token.id: ' + localStorage.getItem('gemini.token.id'));
+        // console.log('gemini.token.keepalive: ' + localStorage.getItem('gemini.token.keepalive'));
+        // console.log('gemini.token.updateAt: ' + localStorage.getItem('gemini.token.updateAt'));
+        let is_expired = isExpired();
+        let remaining = remainingTime();
+
+        if ( !is_expired && !login ) {
+          login = true;
+          expired = false;
+          $rootScope.$broadcast('SESSION.LOGIN');
+        } else if ( !is_expired && login && remaining < session_warning && !expiring ) {
+          expiring = true;
+          expired = false;
+          $rootScope.$broadcast('SESSION.EXPIRING');
+        } else if ( !is_expired && login && remaining > session_warning && expiring ) {
+          expiring = false;
+          expired = false;
+          $rootScope.$broadcast('SESSION.RENEW');
+        } else if ( is_expired && expiring && !(remaining > 0) ) {
+          login = false;
+          expiring = false;
+          expired = true;
+          localStorage.removeItem('gemini.token.id');
+          localStorage.removeItem('gemini.token.keepalive');
+          //localStorage.removeItem('gemini.token.updateAt');
+          $rootScope.$broadcast('SESSION.EXPIRED');
+        } else if ( is_expired && login ) {
+          login = false;
+          expiring = false;
+          expired = false;
+          $rootScope.$broadcast('SESSION.LOGOUT');
+        }
+
+        if ( !is_expired ) {
+          localStorage.setItem('gemini.token.keepalive', new Date().getTime());
+        }
+
+        _timer = null;
+        start();
+      }, 1000); // EACH 1 SECOND
     }
+  }
+
+  let stop = () => {
+    _timer = null;
+    $timeout.cancel(_timer);
+  }
+
+  let isExpired = () => {
+    //console.log("isExpired");
+    if (!!localStorage.getItem('gemini.token.id') && !!localStorage.getItem('gemini.token.keepalive') && !!localStorage.getItem('gemini.token.updateAt') ) {
+      let alive = remainingTime() > 0;
+      let now = new Date().getTime();
+      let keepalive = (now - localStorage.getItem('gemini.token.keepalive')) < 5000 ; // LESS THAN 5 SECONDS
+      // console.log("isExpired.alive: " + alive);
+      // console.log("isExpired.keepalive: " + keepalive);
+      // console.log("isExpired: " + !(alive && keepalive));
+      return !(alive && keepalive);
+    }
+    //console.log("isExpired: true");
     return true;
   }
-  
-  let isExpired = () => {
-    return !( exists() && (remainingTime() > 0) ); 
-  }  
-  
-  let get = () => {
-    if ( exists() ) { 
-      return _storage.session.authenticationToken;
-    } 
-    return null;
-  } 
-  
-  let stopExpiring = () => {
-    if ( _interval ) { 
-      $interval.cancel(_interval);
-      _interval = null;
-    }
-  }
-  let startExpiring = () => { 
-    if ( !_interval ) {
-      _interval = $interval( () => {
-        let pending = remainingTime();
-        if ( pending < session_warning ) { 
-          stopExpiring();
-          $rootScope.$broadcast('SESSION.EXPIRING');
-        } 
-      }, 1000); // EACH 1 SECOND
-    }
-  }
-  
-  let stopExpired = () => { 
-    if ( _timer ) { 
-      $interval.cancel(_timer);
-      _timer = null;
-    }
-  }
-  let startExpired = () => {
-    if ( !_timer ) {
-      _timer = $interval( () => {
-        let pending = remainingTime();
-        if ( pending === 0 ) { 
-          stopExpired();
-          _storage.session.expired = true;
-          $rootScope.$broadcast('SESSION.EXPIRED');
-        } 
-      }, 1000); // EACH 1 SECOND
-    }     
-  }      
 
-  let stop = () => { 
-    stopExpired();
-    stopExpiring();
-  }  
-  let start = () => { 
-    startExpired();
-    startExpiring();
+  let remainingTime = () => {
+    let now = new Date().getTime();
+    let updateAt = !!localStorage.getItem('gemini.token.updateAt') ? parseInt(localStorage.getItem('gemini.token.updateAt')) : 0;
+    let timeout = session_timeout;
+    let remaining = updateAt + timeout - now;
+    return  remaining > 0 ? remaining : 0;
   }
-        
+
+  let get = () => localStorage.getItem('gemini.token.id');
+  let wasExpired = () => expired;
+
   let update = () => {
-    if ( exists() ) { 
-      _storage.session.updateAt = new Date().getTime();
-	    start(); 
-    }
-  }   
-  
-  let create = (token) => { 
-    _storage.session.authenticationToken = token; 
-    update();
-  }
-  
-  let destroy = () => {
-    if ( exists() ) { 
-      delete _storage.session.authenticationToken;
-      delete _storage.session.updateAt;
-    }    
-    stop();
-  };  
-  
-  let initialize = () => {
     if ( !isExpired() ) {
-      start();
+      localStorage.setItem('gemini.token.updateAt', new Date().getTime());
     }
+  }
+
+  let create = (token) => {
+    let now = new Date().getTime();
+    login = true;
+    expiring = false;
+    expired = false;
+    localStorage.setItem('gemini.token.id', token);
+    localStorage.setItem('gemini.token.keepalive', now);
+    localStorage.setItem('gemini.token.updateAt', now);
+    $rootScope.$broadcast('SESSION.LOGIN');
+  }
+
+  let destroy = () => {
+    login = false;
+    expiring = false;
+    expired = false;
+    localStorage.removeItem('gemini.token.id');
+    localStorage.removeItem('gemini.token.keepalive');
+    //localStorage.removeItem('gemini.token.updateAt');
+    $rootScope.$broadcast('SESSION.LOGOUT');
+  };
+
+  let initialize = () => {
+    start();
+    $window.onbeforeunload = () => {
+      stop();
+    };
   }
   initialize();
 
-  return { isExpired, isExpiring, remainingTime, get, create, destroy, update };
+  return {
+    isExpired, wasExpired, remainingTime, get,
+    create, destroy, update };
 };
 
 export default tokenService;

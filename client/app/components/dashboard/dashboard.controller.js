@@ -12,8 +12,12 @@ class DashboardController {
   }
 
   expiration() {
-    this._expirationModal.open()
-    .then( response => response ? this._session.renew() : this._session.logout() );
+    if ( this._session.isLogged() ) {
+      this._expirationModal.open()
+      .then( response => response ? this._session.renew() : this._session.logout() );
+    } else {
+      this._session.logout();
+    }
   }
 
   _unsuscribe() {
@@ -22,9 +26,12 @@ class DashboardController {
 
   $onInit() {
     this._suscriptions.push(this._rootScope.$on('SESSION.EXPIRING', () => this.expiration()));
-    this._suscriptions.push(this._rootScope.$on('SESSION.EXPIRED', this._session.logout ));
+    this._suscriptions.push(this._rootScope.$on('SESSION.EXPIRED', () =>  {
+      this._unsuscribe();
+      this._state.go('login');
+    }));
     this._suscriptions.push(this._rootScope.$on('SESSION.LOGOUT', () =>  {
-      this._unsuscribe()
+      this._unsuscribe();
       this._state.go('login');
     }));
   }

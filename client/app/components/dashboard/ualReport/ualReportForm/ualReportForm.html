@@ -2,23 +2,24 @@
     <div class="title">Create Report</div>
     <ual-button class="save-button -secondary">Save</ual-button>
 </div>
-<div class="report-body">
-    <div class="section report-name">
-        <div class="title">Untitled Report</div>
-    </div>
-    <div class="section selected-parameters">
-        <div class="selected-parameter">
-            <span class="title">Data Source:</span>
-            <span class="value">{{vm.report.datasource.get().name}}</span>
-            <a class="action" href ng-click="vm.selectDataSource()">Change Data Source</a>
-        </div>
-        <div class="selected-parameter">
-            <span class="title">Variables:</span>
-            <span class="value">{{vm.report.variables.get().length}} Variables Selected</span>
-            <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
-        </div>
-    </div>
-    <div class="section aggregations-values">
+<div class="report-body" >
+  <div class="section report-name">
+      <div class="title">Untitled Report</div>
+  </div>
+  <div class="section selected-parameters">
+      <div class="selected-parameter">
+        <span class="title">Data Source:</span>
+        <span class="value">{{vm.report.datasource.get().name}}</span>
+        <a class="action" href ng-click="vm.selectDataSource()">Change Data Source</a>
+      </div>
+      <div class="selected-parameter">
+        <span class="title">Variables:</span>
+        <span class="value" ng-show="vm.report.variables.get() | isEmpty">No Variables Selected</span>
+        <span class="value" ng-hide="vm.report.variables.get() | isEmpty">{{vm.report.variables.get().length}} Variables Selected</span>
+        <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
+      </div>
+  </div>
+      <div class="section aggregations-values">
         <div class="aggregation-search">
 
         </div>
