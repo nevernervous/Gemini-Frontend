@@ -3,7 +3,7 @@
   <i class="ion-ios-loop icon-spinner"></i>
   <i class="group-icon" ng-class="vm.open ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
 </div>
-<div ng-transclude id="vgroup_{{vm.groupId}}" class="group-item" ng-class="{'-open': vm.open}"
-  ual-scroll ual-scroll-disabled="!vm.groupEnabled || !vm.needScroll()"
+<div ng-transclude class="group-item" ng-class="{'-open': vm.open}"
+  ual-scroll ual-scroll-disabled="!vm.groupEnabled"
   ual-scroll-options="{ theme:'dark' }"></div>
 

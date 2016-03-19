@@ -97,6 +97,11 @@
                                 cursor: pointer;
                             }
                         }
+                        ual-variables-group.no_scroll {
+                          .mCustomScrollbar .mCSB_scrollTools {
+                            visibility: hidden;
+                          }
+                        }
                     }
                 }
                 > .selected-variables {

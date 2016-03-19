@@ -7,9 +7,7 @@ let ualVariablesGroupComponent = {
   transclude: true,
   bindings: {
     groupEnabled: '=',
-    groupName: '@',
-    groupId: '@',
-    finishVariableRender : '=finishRender'
+    groupName: '@'
   },
   template,
   controller,
