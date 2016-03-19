@@ -8,7 +8,7 @@ class UalDataSourceController {
         this._selected = selected;
         this._filter = $filter;
         this.searchTerm = {};
-        
+
         this._animate = $animate;
 
         this.datasources;
@@ -16,7 +16,7 @@ class UalDataSourceController {
         this._initialize();
 
         this._suscriptions = [];
-        this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+        this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
         this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
     }
 
@@ -63,27 +63,29 @@ class UalDataSourceController {
         if (this.finishItemRender) {
             let $marker = angular.element(document.getElementById("overflow-marker"))[0];
             let $container = angular.element(document.getElementById("content-list"))[0];
-            let $contentList = angular.element(document.getElementById("data-source-list"))[0];
+            let $resizableContainer = angular.element(document.getElementById("resizable-container"))[0];
+            let $dataSourceList = angular.element(document.getElementById("data-source-list"))[0];
 
-            if(!$marker || !$container){
+            if (!$marker || !$container) {
                 return;
             }
+
             let markerWidth = $marker.offsetLeft;
             let containerWidth = $container.clientWidth;
 
             let hasHorizontalOverflow = markerWidth > containerWidth;
-            let needHorizontalFill = $container.clientHeight > $contentList.clientHeight;
-
-            if(!(hasHorizontalOverflow || !needHorizontalFill)){
-                this._animate.addClass($resizableContainer, '-horizontal-fill').then(() => {
+            let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
+            
+            if (!(hasHorizontalOverflow || !needHorizontalFill)) {
+                this._animate.addClass($dataSourceList, '-horizontal-fill').then(() => {
                     this.hasLoaded = true;
                 });
-            } else{
-                 this._animate.removeClass($resizableContainer, '-horizontal-fill').then(() => {
+            } else {
+                this._animate.removeClass($dataSourceList, '-horizontal-fill').then(() => {
                     this.hasLoaded = true;
                 });
             }
-            
+
         }
     }
 
