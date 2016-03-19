@@ -57,7 +57,7 @@ ual-modal.-yesno {
 
 ual-modal.-fullmodal {
   background:  rgba($color00, 0.9);
-  padding: 52px 50px;
+  padding: 52px 40px;
 
   > ng-transclude {
     @include gridle( row );

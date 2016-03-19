@@ -6,7 +6,7 @@ let ualPaneComponent = {
   restrict: 'E',
   transclude: true,
   bindings: {
-    title: '@',
+    ualTitle: '@',
     action: '@',
     onAction: '&',
     isDisabled: '='

@@ -1,8 +1,13 @@
 .DS_Store
 .tmp
 .git
+<<<<<<< HEAD
 node_modules
 .node_modules*
+=======
+.node_modules*
+node_modules*
+>>>>>>> b752e6c0be34892e6c15c74b1dbc6b5af2bf1da5
 .settings
 *.log
 dist/
