@@ -33,6 +33,18 @@
                                 @include ellipses();
                                 padding: 7px 0;
                                 display: list-item;
+                                position: relative;
+
+                                &:hover ual-tooltip {
+                                    display: inline;
+                                    position: fixed;
+                                }
+
+                                ual-tooltip {
+                                    display: none;
+                                    margin-left: 15px;
+                                    margin-top: -7px;
+                                }
                             }
                         }
                     }

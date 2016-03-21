@@ -25,8 +25,9 @@ ual-tooltip.-dropdown {
       padding-top: 2px;
     }
   }
-  
-  ual-tooltip.-tooltip {
+}
+
+ual-tooltip.-tooltip {
     @include font-clanot-book(12);
     color: $color00;
     background-color: $color03;
@@ -35,6 +36,7 @@ ual-tooltip.-dropdown {
     text-align: center;
     z-index: 99;
     margin-top: -40px;
+    white-space: normal;
 
     @include -moz-browser() {
         margin-top: -1px;
@@ -56,4 +58,3 @@ ual-tooltip.-dropdown {
         border-right: 10px solid $color03;
     }
   }
-}

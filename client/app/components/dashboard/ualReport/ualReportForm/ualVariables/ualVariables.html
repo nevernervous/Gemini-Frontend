@@ -16,8 +16,11 @@
                 <ual-checkbox id="group_{{group.data.groupId}}" on-click="vm.toggleGroup(group)" item="group" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name">
                   Select All
                 </ual-checkbox>
-                <ual-checkbox ng-repeat="item in group.items | filter:vm.standardFilter | orderBy : 'order'" id="variable_{{item.id}}" on-click="vm.toggle(item)" item="item" is-checked="vm.isSelected(item)" ual-on-last-variable>
-                  {{item.name}}
+                <ual-checkbox ng-repeat="item in group.items | filter:vm.standardFilter | orderBy : 'order'" id="variable_{{item.id}}" on-click="vm.toggle(item)" item="item" is-checked="vm.isSelected(item)" ual-on-last-variable ng-mouseover="vm.showTooltip($event)" ng-mouseleave="vm.hideTooltip($event)">
+                  <span>{{item.name}}</span>
+                  <ual-tooltip class="-tooltip">
+                    {{item.description}}
+                  </ual-tooltip>
                 </ual-checkbox>
               </ual-variables-group>
             </div>
