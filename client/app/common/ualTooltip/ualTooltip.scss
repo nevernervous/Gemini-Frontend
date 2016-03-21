@@ -25,4 +25,35 @@ ual-tooltip.-dropdown {
       padding-top: 2px;
     }
   }
+  
+  ual-tooltip.-tooltip {
+    @include font-clanot-book(12);
+    color: $color00;
+    background-color: $color03;
+    padding: 10px;
+    max-width: 300px;
+    text-align: center;
+    z-index: 99;
+    margin-top: -40px;
+
+    @include -moz-browser() {
+        margin-top: -1px;
+    }
+
+     @include -ms-browser() {
+       margin-top: -2px;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        left: -10px;
+        position: absolute;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 10px solid $color03;
+    }
+  }
 }
