@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 class UalVariablesController {
   /*@ngInject*/
   constructor(close, $filter, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
@@ -73,6 +75,25 @@ class UalVariablesController {
       }
     });
   }
+  
+  showTooltip(e){
+      var p = $("#"+e.target.id);
+      var offset = p.offset();
+      
+      var parentWidth = p.width();
+      var childWidth = p.children().find("span").width();
+      
+      if (parentWidth && childWidth) p.children().find("span").first().next().css("left", (childWidth > parentWidth ?  parentWidth : childWidth) + offset.left + 23);
+      if (offset) p.children().find("span").first().next().css("top", offset.top + 4);
+      
+      p.children().find("span").first().next().css("display", "inline");            
+  }
+
+  hideTooltip(e){ 
+      var p = $("#"+e.target.id);
+      p.children().find("span").first().next().css("display", "none");
+  }
+  
 
   apply() {
     this._closemodal(this.selecteds);
