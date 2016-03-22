@@ -86,15 +86,12 @@ class UalVariablesController {
                         
     offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
     offset.top = offset.top + 4;
-    offset.position = "fixed";
-    offset.display = "inline";
-    tooltip.addClass("-active");
+    tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
     tooltip.css(offset);     
   }
     
   hideTooltip(){
-    $(".-active").css("display", "none");
-    $(".-active").removeClass("-active");
+    $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
   }
 
   apply() {

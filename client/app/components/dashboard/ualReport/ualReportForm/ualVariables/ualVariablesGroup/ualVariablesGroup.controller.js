@@ -13,8 +13,7 @@ class UalVariablesGroupController {
   }  
   
   hideTooltip(){
-    $(".-active").css("display", "none");
-    $(".-active").removeClass("-active");
+    $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
   }
 
 }
