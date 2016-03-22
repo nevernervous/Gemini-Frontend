@@ -6,7 +6,7 @@ module.exports = {
           {
             "id": 1,
             "name": "Data Source Name 1 with long name for testing the application",
-            "description": "Data Source Description 1",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
             "group": {
               "groupId": 1,
               "groupName": "Group Name 1",
@@ -17,7 +17,7 @@ module.exports = {
           {
             "id": 2,
             "name": "Data Source Name 2",
-            "description": "Data Source Description 2",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
             "group": {
               "groupId": 1,
               "groupName": "Group Name 1",
@@ -50,7 +50,7 @@ module.exports = {
           {
             "id": 5,
             "name": "Data Source Name 5",
-            "description": "Data Source Description 5",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
             "group": {
               "groupId": 2,
               "groupName": "Group Name 2",
@@ -72,7 +72,7 @@ module.exports = {
           {
             "id": 7,
             "name": "Data Source Name 7",
-            "description": "Data Source Description 7",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
             "group": {
               "groupId": 3,
               "groupName": "Group Name 3",
@@ -171,7 +171,7 @@ module.exports = {
                   {
                     "id": 16,
                     "name": "Data Source Name 16",
-                    "description": "Data Source Description 16",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
                     "group": {
                       "groupId": 4,
                       "groupName": "Group Name 4",
@@ -215,7 +215,7 @@ module.exports = {
                   {
                     "id": 20,
                     "name": "Data Source Name 20 with long name for test",
-                    "description": "Data Source Description 20",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
                     "group": {
                       "groupId": 4,
                       "groupName": "Group Name 4",
@@ -259,7 +259,7 @@ module.exports = {
                   {
                     "id": 24,
                     "name": "Data Source Name 24",
-                    "description": "Data Source Description 24",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
                     "group": {
                       "groupId": 5,
                       "groupName": "Group Name 5",
@@ -337,7 +337,7 @@ module.exports = {
               {
                 "id": 31,
                 "name": "Data Source Name 31 with long name for testing",
-                "description": "Data Source Description 31",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
                 "group": {
                   "groupId": 6,
                   "groupName": "Group Name 6",
