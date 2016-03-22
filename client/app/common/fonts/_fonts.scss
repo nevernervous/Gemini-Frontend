@@ -10,20 +10,20 @@ $base: 16;
   @include font-size($size);
 }
 
-@mixin font-clanot-bold($size:16, $weight:400) {
-  $family: "ClanOT Bold", sans-serif;
+@mixin font-clanot-bold($size:16, $weight:600) {
+  $family: "ClanOT-Bold", sans-serif;
 
   @include font-family($family, $size, $weight);
 }
 
-@mixin font-clanot-book($size:16, $weight:400) {
-  $family: "ClanOT Book", sans-serif;
+@mixin font-clanot-book($size:16, $weight:200) {
+  $family: "ClanOT-Book", sans-serif;
 
   @include font-family($family, $size, $weight);
 }
 
 @mixin font-clanot-news($size:16, $weight:400) {
-  $family: "ClanOT News", sans-serif;
+  $family: "ClanOT-News", sans-serif;
 
   @include font-family($family, $size, $weight);
 }

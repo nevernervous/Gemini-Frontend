@@ -2,7 +2,10 @@
 
 // LAYOUT
 .login-header {
-  @include gridle( col );
+  img {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 // VARIATIONS
