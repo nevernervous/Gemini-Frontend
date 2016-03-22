@@ -7,6 +7,8 @@ let ualCheckboxComponent = {
   transclude: true,
   bindings: {
     id: '@',
+    item: '=',
+    onClick: '&',
     isChecked: '='
   },
   template,

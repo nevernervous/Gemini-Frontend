@@ -14,7 +14,8 @@
       </div>
       <div class="selected-parameter">
         <span class="title">Variables:</span>
-        <span class="value">{{vm.report.variables.get().length}} Variables Selected</span>
+        <span class="value" ng-show="vm.report.variables.get() | isEmpty">No Variables Selected</span>
+        <span class="value" ng-hide="vm.report.variables.get() | isEmpty">{{vm.report.variables.get().length}} Variables Selected</span>
         <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
       </div>
   </div>

@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 class UalVariablesController {
   /*@ngInject*/
   constructor(close, $filter, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
@@ -25,6 +27,7 @@ class UalVariablesController {
 
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
   }
 
   _closemodal(response) {
@@ -71,6 +74,24 @@ class UalVariablesController {
         this.selecteds = _.reject(this.selecteds, item => _.includes(ids, item.id));
       }
     });
+  }
+  
+  showTooltip(e){
+    let span = $("#"+e.target.id);
+    let checkboxItem = span.parent().parent();    
+    let offset = checkboxItem.offset();
+    let parentWidth = checkboxItem.width();
+    let childWidth = span.width();
+    let tooltip = span.first().next();
+                        
+    offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
+    offset.top = offset.top + 4;
+    tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
+    tooltip.css(offset);     
+  }
+    
+  hideTooltip(){
+    $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
   }
 
   apply() {
