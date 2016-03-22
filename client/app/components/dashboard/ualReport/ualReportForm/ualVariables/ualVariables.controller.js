@@ -77,23 +77,22 @@ class UalVariablesController {
   }
   
   showTooltip(e){
-      var p = $("#"+e.target.id);
-      var offset = p.offset();
-      
-      var parentWidth = p.width();
-      var childWidth = p.children().find("span").width();
-      
-      if (parentWidth && childWidth) p.children().find("span").first().next().css("left", (childWidth > parentWidth ?  parentWidth : childWidth) + offset.left + 23);
-      if (offset) p.children().find("span").first().next().css("top", offset.top + 4);
-      
-      p.children().find("span").first().next().css("display", "inline");            
+    let span = $("#"+e.target.id);
+    let checkboxItem = span.parent().parent();    
+    let offset = checkboxItem.offset();
+    let parentWidth = checkboxItem.width();
+    let childWidth = span.width();
+    let tooltip = span.first().next();
+                        
+    offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
+    offset.top = offset.top + 4;
+    tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
+    tooltip.css(offset);     
   }
-
-  hideTooltip(e){ 
-      var p = $("#"+e.target.id);
-      p.children().find("span").first().next().css("display", "none");
+    
+  hideTooltip(){
+    $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
   }
-  
 
   apply() {
     this._closemodal(this.selecteds);

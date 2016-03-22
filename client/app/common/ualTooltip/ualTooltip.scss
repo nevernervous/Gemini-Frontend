@@ -58,3 +58,15 @@ ual-tooltip.-tooltip {
         border-right: 10px solid $color03;
     }
   }
+
+ual-tooltip{
+    &.-hide-tooltip {  
+        display: none;
+        visibility: hidden;
+    }
+    
+    &.-show-tooltip{
+        position: fixed;
+        display: inline;
+    }
+}
