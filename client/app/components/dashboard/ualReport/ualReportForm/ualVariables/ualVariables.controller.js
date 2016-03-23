@@ -75,21 +75,23 @@ class UalVariablesController {
       }
     });
   }
-  
+
   showTooltip(e){
     let span = $("#"+e.target.id);
-    let checkboxItem = span.parent().parent();    
+    let checkboxItem = span.parent().parent();
     let offset = checkboxItem.offset();
     let parentWidth = checkboxItem.width();
     let childWidth = span.width();
     let tooltip = span.first().next();
-                        
+
     offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
-    offset.top = offset.top + 4;
+    offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
+    offset.top += window.isIE || window.isFirefox ? 8 : 5;
+
     tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
-    tooltip.css(offset);     
+    tooltip.css(offset);
   }
-    
+
   hideTooltip(){
     $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
   }
