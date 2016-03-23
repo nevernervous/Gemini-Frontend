@@ -20,6 +20,13 @@
                         .group-list {
                             overflow: auto;
                             height: 100%;
+                            margin-right: -15px;
+                            > .mCustomScrollBox {
+                              padding-right: 15px;
+                            }
+                            > .mCSB_inside > .mCSB_container {
+                              margin-right:  0;
+                            }
                         }
                         ual-variables-group {
                             ual-checkbox {
@@ -46,6 +53,13 @@
                         height: calc(100% - 100px);
                         margin-left: -7px;
                         overflow: auto;
+                        margin-right: -15px;
+                        > .mCustomScrollBox {
+                          padding-right: 15px;
+                        }
+                        > .mCSB_inside > .mCSB_container {
+                          margin-right:  0;
+                        }
                     }
                     .empty-list {
                         @include gridle(row row-align middle center);
@@ -83,17 +97,20 @@
                                 cursor: pointer;
                             }
                         }
+                        ual-variables-group.no_scroll {
+                          .mCustomScrollbar .mCSB_scrollTools {
+                            visibility: hidden;
+                          }
+                        }
                     }
                 }
                 > .selected-variables {
-                    border: 1px solid $color08;
-                    .selected-list > .dndPlaceholder {
-                      height: 32px;
+                  border: 1px solid $color08;
+                  .selected-list {
+                    .selected-container.over {
                       background-color: $color08;
                     }
-                    .selected-list > .dndDraggingSource {
-                      display: none;
-                    }
+                  }
                 }
             }
         }

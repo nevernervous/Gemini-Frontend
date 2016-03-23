@@ -1,4 +1,4 @@
-@mixin column-content($columns: 3, $min-width: 200px, $columnfill: auto) {
+@mixin column-content($columns: 3, $min-width: 200px) {
     display: block;
     -webkit-column-count: $columns;
     -moz-column-count: $columns;
@@ -7,8 +7,16 @@
     -webkit-column-width: $min-width;
     -moz-column-width: $min-width;
     column-width: $min-width;
-    
+}
 
-    -moz-column-fill: $columnfill;
-    column-fill: $columnfill;
+@mixin column-fill($columnFill: auto){
+     -moz-column-fill: $columnFill;            
+     column-fill: $columnFill;
+}
+
+
+@mixin break-inside($break: avoid){
+    -webkit-column-break-inside: $break; /* Chrome, Safari, Opera */
+          page-break-inside: $break; /* Firefox */
+               break-inside: $break; /* IE10 */
 }

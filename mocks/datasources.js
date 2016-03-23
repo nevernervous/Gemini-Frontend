@@ -553,7 +553,7 @@ module.exports = {
                 "data": [
                     {
                         "groupId": 1,
-                        "groupName": "Column Group Name",
+                        "groupName": "Flight Level",
                         "groupUrl": "/api/Datasources/1/ColumnGroups/1"
                     },
                     {
@@ -571,7 +571,7 @@ module.exports = {
                 "data": [
                     {
                         "id": 1,
-                        "name": "Variable name",
+                        "name": "Flight Number",
                         "order": 1,
                         "type": "Type",
                         "description": "Variable Description",
@@ -581,7 +581,7 @@ module.exports = {
                         },
                         "group": {
                             "groupId": 1,
-                            "groupName": "Group Name"
+                            "groupName": "Flight Level"
                         }
                     },
                     {

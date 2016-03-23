@@ -54,7 +54,8 @@ let datasourceService = function (Properties, ServicesTransform, $http, $q) {
         return {
           method: 'GET',
           url: `${endpoint}/${datasource.id}/ColumnGroups/${group.groupId}/Columns`,
-          cache: Properties.cache,
+          // Force NO cache to fix Bug 22520.
+          cache: false, //Properties.cache,
           transformResponse: ServicesTransform.generate(transformation)
         }
       });
