@@ -31,6 +31,7 @@ ual-tooltip.-dropdown {
     }
   }
 }
+
 ual-tooltip.-error {
   background-color: $color12;
   color: $color11;
@@ -70,4 +71,44 @@ ual-tooltip.-error {
     border-right: 3px solid transparent;
     border-top: 8px solid $color12;
   }
+}
+
+ual-tooltip.-tooltip {
+    @include font-clanot-news(12);
+    color: $color00;
+    background-color: $color03;
+    padding: 10px;
+    max-width: 300px;
+    text-align: center;
+    z-index: 99;
+    white-space: normal;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        left: -5px;
+        position: absolute;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        border-right: 5px solid $color03;
+
+        top: calc(50% - 3px);
+        @include -ms-browser() {
+          top: calc(50% - 2px);
+        }
+    }
+}
+
+ual-tooltip {
+    &.-hide-tooltip {
+        display: none;
+        visibility: hidden;
+    }
+
+    &.-show-tooltip{
+        position: fixed;
+        display: inline;
+    }
 }
