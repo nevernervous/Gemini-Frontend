@@ -10,9 +10,8 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
     v.cpus = 2
-  end  
-  
-  config.vm.network "forwarded_port", guest: 8080, host: 8888
+  end
+
   config.vm.network "forwarded_port", guest: 3389, host: 3389
 
   config.vm.communicator = "winrm"
