@@ -74,32 +74,27 @@ class UalDataSourceController {
 
             this.hasHorizontalOverflow = hasHorizontalOverflow || !needHorizontalFill;
         }
-    }  
-    
-    showTooltip(e){        
+    }
+
+    showTooltip(e){
       let datasource = $("#"+e.target.id);
-      
-      if (e.target.nodeName == 'UAL-DATA-SOURCE-ITEM') {     
-        let span = datasource.find("span:eq(0)");      
+
+      if (e.target.nodeName == 'UAL-DATA-SOURCE-ITEM') {
+        let span = datasource.find("span:eq(0)");
         let offset = span.offset();
         let parentWidth = span.width();
         let childWidth = datasource.find("span:eq(1)").width();
         let tooltip = datasource.find("ual-tooltip");
-        
+
         offset.left = (childWidth > parentWidth ?  (parentWidth + 5) : (childWidth + 10)) + offset.left;
-        
-        if (navigator.vendor.indexOf('Google') > -1) 
-          offset.top = offset.top + 35; //Chrome
-        else if (navigator.appVersion.indexOf('.NET') > -1)
-          offset.top = offset.top - 3; //IE
-        else 
-          offset.top = offset.top - 1; //FF
-        
+        offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
+        offset.top += window.isIE  ? 2 : 5;
+
         tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
         tooltip.css(offset);
-      }                       
+      }
     }
-    
+
     hideTooltip(){
       $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
     }
