@@ -86,7 +86,7 @@ class UalVariablesController {
 
     offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
     offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
-    offset.top += window.isIE || window.isFirefox ? 8 : 5;
+    offset.top += window.isIE || window.isFirefox ? 7 : 5;
 
     tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
     tooltip.css(offset);
