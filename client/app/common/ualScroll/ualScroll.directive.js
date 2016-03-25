@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 class ualScrollDirective {
   /*@ngInject*/
-  constructor() {
+  constructor($compile) {
     this.restrict = 'A';
     this.scope = {
       ualScrollDisabled: '=',
