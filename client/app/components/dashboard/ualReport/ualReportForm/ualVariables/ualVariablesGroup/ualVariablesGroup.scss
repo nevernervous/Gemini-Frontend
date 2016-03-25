@@ -7,6 +7,7 @@ ual-variables-group {
   overflow: hidden;
 
   > .group-name {
+    @include font-clanot-news(14);
     background-color: $color04;
     border-left: 3px solid $color10;
     color: $color00;
