@@ -11,9 +11,7 @@ class UalVariablesController {
     this._filter = $filter;
     this._q = $q;
     this._timeout = $timeout;
-    this.scrolling  = {
-      "selected-list": false
-    }
+    this.scrolling  = false;
 
     // VARS / PRIVATE
     this._datasource = datasource;
@@ -84,7 +82,7 @@ class UalVariablesController {
     $('#selected-searchbox').focus();
   }
   scrollTo(binId) {
-    if ( !this.scrolling['selected-list'] ) {
+    if ( !this.scrolling ) {
       let container = { e: $("#selected-list") };
       container.top = container.e.offset().top;
       container.height = container.e.height();
@@ -95,21 +93,25 @@ class UalVariablesController {
       item.height = item.e.height();
       item.bottom = item.top + item.height;
 
-      let timeout = this._timeout.bind(this);
+      if ( !item.e.hasClass('last') && !item.e.hasClass('first') ) {
+        let timeout = this._timeout.bind(this);
 
-      if ( (item.top - item.height ) < container.top && container.top < item.bottom ) {
-        this.scrolling['selected-list'] = true;
-        $("#selected-list").mCustomScrollbar("scrollTo", "+=200",
-          {callback: timeout(() => {
-            this.scrolling['selected-list'] = false;
-          }, 500) } );
-      }
-      if ( item.top < container.bottom && container.bottom < (item.bottom + item.height) ) {
-        this.scrolling['selected-list'] = true;
-        $("#selected-list").mCustomScrollbar("scrollTo", "-=200",
-          {callback: timeout(() => {
-            this.scrolling['selected-list'] = false;
-          }, 500) } );
+        if ( (item.top - item.height ) < container.top && container.top < item.bottom ) {
+          this.scrolling = true;
+          $("#selected-list").mCustomScrollbar("scrollTo", "+=200",
+            { scrollEasing:"linear",
+              callback: timeout(() => {
+              this.scrolling = false;
+            }, 500) } );
+        }
+        if ( item.top < container.bottom && container.bottom < (item.bottom + item.height) ) {
+          this.scrolling = true;
+          $("#selected-list").mCustomScrollbar("scrollTo", "-=200",
+            { scrollEasing:"linear",
+              callback: timeout(() => {
+              this.scrolling = false;
+            }, 500) } );
+        }
       }
     }
 

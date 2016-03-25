@@ -2,51 +2,51 @@
 var app = angular.module('dragDrop', []);
 
 app.directive('draggable', function() {
-  return function(scope, element) {
-    // this gives us the native JS object
-    var el = element[0];
+  return {
+    restrict: 'A',
+    link: function(scope, element) {
+      // this gives us the native JS object
+      var el = element[0];
 
-    el.draggable = false;
+      el.draggable = false;
 
-    el.addEventListener(
-      'dragstart',
-      function(e) {
+      let dragstart = function(e) {
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('Text', this.id);
         this.classList.add('drag');
         return false;
-      },
-      false
-    );
+      }
 
-    el.addEventListener(
-      'dragend',
-      function(e) {
+      let dragend = function(e) {
         this.classList.remove('drag');
         return false;
-      },
-      false
-    );
+      }
 
-    // ngMouseOver
-    el.onmouseover = function() {
-      this.classList.add('-hovered');
-    };
-    el.onmouseout = function() {
-      this.classList.remove('-hovered');
-    };
+      let mouseover = function(e) {
+        this.classList.add('-hovered');
+      }
+      let mouseout = function(e) {
+        this.classList.remove('-hovered');
+      }
 
+      el.addEventListener('dragstart', dragstart, false);
+      el.addEventListener('dragend', dragend, false);
+      el.addEventListener('mouseover', mouseover, false);
+      el.addEventListener('mouseout', mouseout, false);
+
+    }
   }
 });
 
 app.directive('droppable', function() {
   return {
+    restrict: 'A',
     scope: {
       drop: '&',
       dragover: '&',
       dragenter: '&',
       dragleave: '&',
-      actionDisabled: '=',
+      ualDisabled: '=',
       bind: '=',
       bin: '='
     },
@@ -55,89 +55,89 @@ app.directive('droppable', function() {
       var el = element[0],
       owner =  scope.bind ? scope.bind : this;
 
-      el.addEventListener(
-        'dragover',
-        function(e) {
-          e.dataTransfer.dropEffect = 'move';
-          // allows us to drop
-          if (e.preventDefault) e.preventDefault();
-          this.classList.add('over');
+      let dragover = function(e) {
+        e.dataTransfer.dropEffect = 'move';
+        // allows us to drop
+        if (e.preventDefault) e.preventDefault();
+        this.classList.add('over');
 
-          if ( !scope.actionDisabled && scope.dragover() ) {
-            var binId = this.id;
-            scope.$apply(function(scope) {
-              var fn = scope.dragover().bind(owner);
-              if ('undefined' !== typeof fn) {
-                fn(binId);
-              }
-            });
-          }
-          return false;
-        },
-        false
-      );
-
-      el.addEventListener(
-        'dragenter',
-        function(e) {
-          if (e.preventDefault) e.preventDefault();
-          this.classList.add('over');
-
-          if ( !scope.actionDisabled && scope.dragenter() ) {
-            var binId = this.id;
-            scope.$apply(function(scope) {
-              var fn = scope.dragenter().bind(owner);
-              if ('undefined' !== typeof fn) {
-                fn(binId);
-              }
-            });
-          }
-          return false;
-        },
-        false
-      );
-
-      el.addEventListener(
-        'dragleave',
-        function(e) {
-          if (e.preventDefault) e.preventDefault();
-          this.classList.remove('over');
-
-          if ( !scope.actionDisabled && scope.dragleave() ) {
-            var binId = this.id;
-            scope.$apply(function(scope) {
-              var fn = scope.dragleave().bind(owner);
-              if ('undefined' !== typeof fn) {
-                fn(binId);
-              }
-            });
-          }
-          return false;
-        },
-        false
-      );
-
-      el.addEventListener(
-        'drop',
-        function(e) {
-          // Stops some browsers from redirecting.
-          if (e.stopPropagation) e.stopPropagation();
-          this.classList.remove('over');
-
+        if ( scope.dragover() ) {
           var binId = this.id;
-          var item = document.getElementById(e.dataTransfer.getData('Text'));
-          // this.appendChild(item);
-          // call the passed drop function
           scope.$apply(function(scope) {
-            var fn = scope.drop().bind(owner);
+            var fn = scope.dragover().bind(owner);
             if ('undefined' !== typeof fn) {
-              fn(item.id, binId, scope.bin);
+              fn(binId);
             }
           });
-          return false;
-        },
-        false
-      );
+        }
+        return false;
+      }
+
+      let dragenter = function(e) {
+        if (e.preventDefault) e.preventDefault();
+        this.classList.add('over');
+
+        if ( scope.dragenter() ) {
+          var binId = this.id;
+          scope.$apply(function(scope) {
+            var fn = scope.dragenter().bind(owner);
+            if ('undefined' !== typeof fn) {
+              fn(binId);
+            }
+          });
+        }
+        return false;
+      }
+
+      let drop = function(e) {
+        // Stops some browsers from redirecting.
+        if (e.stopPropagation) e.stopPropagation();
+        this.classList.remove('over');
+
+        var binId = this.id;
+        var item = document.getElementById(e.dataTransfer.getData('Text'));
+        // this.appendChild(item);
+        // call the passed drop function
+        scope.$apply(function(scope) {
+          var fn = scope.drop().bind(owner);
+          if ('undefined' !== typeof fn) {
+            fn(item.id, binId, scope.bin);
+          }
+        });
+        return false;
+      }
+
+      let dragleave = function(e) {
+        if (e.preventDefault) e.preventDefault();
+        this.classList.remove('over');
+
+        if ( scope.dragleave() ) {
+          var binId = this.id;
+          scope.$apply(function(scope) {
+            var fn = scope.dragleave().bind(owner);
+            if ('undefined' !== typeof fn) {
+              fn(binId);
+            }
+          });
+        }
+        return false;
+      }
+
+      scope.$watch('ualDisabled', function(ualDisabled) {
+        if (!ualDisabled) {
+          el.addEventListener('dragover', dragover, false);
+          el.addEventListener('dragenter', dragenter, false);
+          el.addEventListener('dragleave', dragleave, false);
+          el.addEventListener('drop', drop, false);
+        } else {
+          el.classList.remove('over');
+          el.removeEventListener('dragover', dragover);
+          el.removeEventListener('dragenter', dragenter);
+          el.removeEventListener('dragleave', dragleave);
+          el.removeEventListener('drop', drop);
+        }
+      });
+
     }
   }
 });

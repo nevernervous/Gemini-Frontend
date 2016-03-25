@@ -7,7 +7,7 @@
     ng-change="vm.onChange(vm.variableOrder)" ng-focus="vm.onFocus($event)" >
   <div class="variable-description" ng-mouseover="vm.onMouseover()" ng-mouseleave="vm.onMouseleave()">
     <span class="variable-name" >{{vm.variableItem.name}}</span>
-    <span class="variable-group" ng-mouseover="vm.onMouseover()" ng-mouseleave="vm.onMouseleave()">{{vm.variableItem.group.groupName}}</span>
+    <span class="variable-group">{{vm.variableItem.group.groupName}}</span>
   </div>
 </div>
 <div class="variable-actions">
