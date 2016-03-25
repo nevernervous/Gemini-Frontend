@@ -75,6 +75,7 @@ ual-tooltip.-error {
 
 ual-tooltip.-tooltip {
     @include font-clanot-news(12);
+    font-size: 12px;
     color: $color00;
     background-color: $color03;
     padding: 10px;
