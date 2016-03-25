@@ -43,15 +43,15 @@
             <div>No variables have been selected yet. Please select variables from the left menu.</div>
           </div>
           <ul id="selected-list" class="selected-list" ng-if="vm.selecteds.length > 0" ual-scroll
-              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }" >
+              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
             <li class="selected-container" ng-repeat="item in vm.selecteds | filter:vm.selectedFilter"
-                droppable id="{{ vm.itemPosition(item) }}_selected_container"
+                droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container"
                 drop="vm.onDrop" dragover="vm.scrollTo" bind="vm"  ual-disabled="vm.scrolling"
                 ng-class="{'last': $last, 'first': $first}">
               <ual-variable-selected-item
-                variable-id="{{ vm.itemPosition(item) }}_selected_container" variable-total="vm.selecteds.length" variable-item="item" variable-order="vm.itemPosition(item) + 1"
+                variable-id="{{ vm.itemPosition(item) + 1 }}_selected_container" variable-total="vm.selecteds.length" variable-item="item" variable-order="vm.itemPosition(item) + 1"
                 on-delete="vm.toggle(item)" cb-change="vm.changeOrder" cb-bind="vm"
-                draggable id="{{ vm.itemPosition(item) }}_selected_item" item="item" ual-disabled="vm.scrolling"
+                draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item" item="item"
                 ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}" >
               </ual-variable-selected-item>
             </li>

@@ -91,7 +91,8 @@ app.directive('droppable', function() {
 
       let drop = function(e) {
         // Stops some browsers from redirecting.
-        if (e.stopPropagation) e.stopPropagation();
+        if(e.preventDefault) { e.preventDefault(); }
+        if(e.stopPropagation) { e.stopPropagation(); }
         this.classList.remove('over');
 
         var binId = this.id;

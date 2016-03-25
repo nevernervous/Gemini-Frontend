@@ -4,7 +4,6 @@ class UalVariableSelectedItemController {
   /*@ngInject*/
   constructor() {
     this.name = 'ualVariableSelectedItem';
-    this.order = this.variableOrder;
     this.error = false;
   }
 
@@ -22,11 +21,11 @@ class UalVariableSelectedItemController {
 
   onBlur(event, item, order) {
     this.error = false;
-    if ( this.order !== order && this.isValid(order)) {
-      this.order = order;
+    let position = _.parseInt(this.variableId.split('_')[0]);
+    if ( position !== order && this.isValid(order)) {
       this.cbChange.bind(this.cbBind)(item, order);
     } else {
-      this.variableOrder = this.order;
+      this.variableOrder = position;
     }
   }
 
@@ -43,8 +42,6 @@ class UalVariableSelectedItemController {
       this.error = false;
     }
   }
-
-
 
 }
 

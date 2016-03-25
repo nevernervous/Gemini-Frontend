@@ -13,6 +13,9 @@ ual-variable-selected-item {
     > .variable-order {
       width: 35px;
       padding: 0px;
+      @include -ms-browser() {
+        padding-top: 2px;
+      }
     }
     > .variable-description {
       display: inline-block;
@@ -47,7 +50,6 @@ ual-variable-selected-item {
     > .variable-order {
       @include font-clanot-news(12);
       text-align: center;
-      vertical-align: middle;
     }
 
     > .variable-description {
