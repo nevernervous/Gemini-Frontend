@@ -3,15 +3,16 @@
     border: 1px solid $color08;
     background-color: $color00;
     padding: 7px 8px 8px 8px;
+    
     input {
-      width: calc(100% - 38px);
+      width: calc(100% - 40px);
       border: 0;
       height: 30px;
       color: $color06;
     }
     i {
       font-size: 22px;
-      vertical-align: sub;
-      color: $color07;
+      vertical-align: middle;
+      color: $color07;      
     }
 }
