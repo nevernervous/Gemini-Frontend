@@ -12,7 +12,7 @@ ual-dropdown-item {
 //Variations
 ual-dropdown-item { 
     &:hover{
-        background-color: #e9e9e9;
+        background-color: $color17;
         @include font-clanot-news(14);
         color: $color06;
     }
