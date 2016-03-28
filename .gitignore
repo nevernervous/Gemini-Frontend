@@ -11,3 +11,4 @@ reports/
 .vs
 *.sln 
 /gemini.sln
+/nbproject/private/
