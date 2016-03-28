@@ -56,7 +56,7 @@ ual-modal.-yesno {
 }
 
 ual-modal.-fullmodal {
-  background:  rgba($color00, 0.9);
+  background:  rgba($color00, 0.95);
   padding: 52px 40px;
 
   > ng-transclude {
@@ -72,7 +72,7 @@ ual-modal.-fullmodal {
       right: 0px;
       > i {
         font-size: 68px;
-        color: rgba($color06, 0.5);
+        color: rgba($color07, 0.5);
         cursor: pointer;
       }
     }

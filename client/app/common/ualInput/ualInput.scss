@@ -2,15 +2,15 @@
 .ual-input {
     border: 1px solid $color08;
     background-color: $color00;
-    padding: 8px;
+    padding: 7px 8px 8px 8px;
     input {
       width: calc(100% - 38px);
       border: 0;
-      height: 32px;
+      height: 30px;
       color: $color06;
     }
     i {
-      font-size: 20px;
+      font-size: 22px;
       vertical-align: sub;
       color: $color07;
     }

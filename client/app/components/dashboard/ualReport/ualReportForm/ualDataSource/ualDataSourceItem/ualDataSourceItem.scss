@@ -9,7 +9,7 @@ ual-data-source-item {
         @include ellipses();
         width: 100%;
         display: inline-block;
-        padding: 8px;
+        padding: 5px;
     }
 }
 
@@ -20,9 +20,14 @@ ual-data-source-item {
         @include font-clanot-book(14);
     }
     &.-selected{
-        > span{
+        > span {
           @include font-clanot-bold(14);
-            background-color: $color10;
+            
+          >span {
+            background-color: $color10;  
+            padding: 5px;  
+            margin: 0 5px 0 -5px;             
+          }
         }
     }
 }

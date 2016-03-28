@@ -3,12 +3,11 @@
 //Layout
 ual-data-source-group {
   .datasource-group{
-    padding: 12px 8px;
+    padding: 12px 5px;
   }
 }
 
 ual-data-source-group {
-  padding-bottom: 20px;
   display: block;
   @include break-inside();
   .datasource-group{
