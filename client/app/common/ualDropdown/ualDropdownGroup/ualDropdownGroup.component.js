@@ -4,7 +4,9 @@ import './ualDropdownGroup.scss';
 
 let ualDropdownGroupComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+      name : "@"      
+  },
   template,
   controller,
   transclude: true,

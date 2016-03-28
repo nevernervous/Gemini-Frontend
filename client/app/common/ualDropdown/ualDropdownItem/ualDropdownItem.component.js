@@ -4,7 +4,9 @@ import './ualDropdownItem.scss';
 
 let ualDropdownItemComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+      name : "@"
+  },
   template,
   controller,
   transclude: true,

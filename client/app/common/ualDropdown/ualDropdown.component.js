@@ -5,10 +5,13 @@ import './ualDropdown.scss';
 let ualDropdownComponent = {
   restrict: 'E',
   bindings: {
-      values: "="
   },
   template,
   controller,
+  transclude: {
+      'messages': '?ualDropdownMessages',
+      'items': "ualDropdownItems"
+  },
   controllerAs: 'vm'
 };
 
