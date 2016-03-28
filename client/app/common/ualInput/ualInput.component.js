@@ -5,6 +5,7 @@ import './ualInput.scss';
 let ualInputComponent = {
     restrict: 'E',
     bindings: {
+        ualId: '@',
         value: '=',
         minChars: '=',
         icon: '@',

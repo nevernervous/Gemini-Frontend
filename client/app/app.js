@@ -1,8 +1,24 @@
+    // Opera 8.0+
+window.isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    // Firefox 1.0+
+window.isFirefox = typeof InstallTrigger !== 'undefined';
+    // At least Safari 3+: "[object HTMLElementConstructor]"
+window.isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+    // Internet Explorer 6-11
+window.isIE = /*@cc_on!@*/false || !!document.documentMode;
+    // Edge 20+
+window.isEdge = !isIE && !!window.StyleMedia;
+    // Chrome 1+
+window.isChrome = !!window.chrome && !!window.chrome.webstore;
+    // Blink engine detection
+window.isBlink = (isChrome || isOpera) && !!window.CSS;
+
 import angular from 'angular';
 import 'lodash';
 import $ from 'jquery';
 import customScroll from './vendors/jquery.mCustomScrollbar.concat.min.js';
 import localStorage from './vendors/localStorage.js';
+import JtDro from './vendors/JtDro.js';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
@@ -21,8 +37,10 @@ import 'normalize.css';
 window.$ = $;
 window.customScroll = customScroll;
 window.customScroll(window.$);
+console.log("JtDro: " + !!JtDro);
 
 angular.module('app', [
+  'dragDrop',
   uiRouter,
   Constants.name,
   Common.name,

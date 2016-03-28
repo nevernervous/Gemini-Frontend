@@ -6,6 +6,11 @@ ual-tooltip {
 }
 
 // VARIANTS
+ual-tooltip {
+  i {
+    display: none;
+  }
+}
 ual-tooltip.-dropdown {
   right: 0px;
 
@@ -25,4 +30,85 @@ ual-tooltip.-dropdown {
       padding-top: 2px;
     }
   }
+}
+
+ual-tooltip.-error {
+  background-color: $color12;
+  color: $color11;
+  @include font-clanot-news(12);
+  display: flex;
+  align-items: stretch;
+  padding: 17px 17px;
+  width: 226px;
+  cursor: default;
+
+  i {
+    display: inline-flex;
+    font-size: 24px;
+    margin-top: -3px;
+    cursor: pointer;
+    @include -ms-browser() {
+      margin-left: -5px;
+    }
+  }
+  ng-transclude {
+    display: inline-flex;
+    padding-left: 5px;
+    @include -ms-browser() {
+      padding-left: 15px;
+    }
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 50%;
+    bottom: -8px;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 8px solid $color12;
+  }
+}
+
+ual-tooltip.-tooltip {
+    @include font-clanot-news(12);
+    color: $color00;
+    background-color: $color03;
+    padding: 10px;
+    max-width: 300px;
+    text-align: center;
+    z-index: 99;
+    white-space: normal;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        left: -5px;
+        position: absolute;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        border-right: 5px solid $color03;
+
+        top: calc(50% - 3px);
+        @include -ms-browser() {
+          top: calc(50% - 2px);
+        }
+    }
+}
+
+ual-tooltip {
+    &.-hide-tooltip {
+        display: none;
+        visibility: hidden;
+    }
+
+    &.-show-tooltip{
+        position: fixed;
+        display: inline;
+    }
 }
