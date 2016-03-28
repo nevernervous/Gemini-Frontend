@@ -48,22 +48,48 @@ ual-report-form {
             @include gridle(row);
             > .aggregation-search {
                 @include gridle(7 suffix 5);
-                padding: 30px 0px;
+                padding: 30px 0 20px 0;
                 .aggregation-search-container {
                     @include gridle(row);
-                    span {
-                        @include gridle(3.7);
+                    .-label {
+                        @include gridle(3.5);
                         text-align: right;
                         line-height: 32px;
                         display: inline-block;
                     }
                     ual-input {
-                        @include gridle(6.5);
+                        position: relative;
+                        @include gridle(6.6);
                         font-size: 14px;
+                        ual-dropdown {
+                            width: calc(100% - 21px);
+                            position: absolute;
+                            left: 10px;
+                            bottom: 34px;
+                            border-bottom-style: none;
+                            .-message {
+                                span{
+                                    display: inline-block;
+                                }
+                                .-max-reached {
+                                    color: $warningHighColor;
+                                    background: $warningLowColor;
+                                    width: 100%;
+                                    padding-top: 1px;
+                                    @include font-clanot-bold(12);
+                                    > .-icon-warning {
+                                        font-size: 12px;
+                                        vertical-align: middle;
+                                        @include icon-warning(14);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
             >.aggregation-items {
+                padding: 0 0 20px 0;
                 @include gridle(12);
                 > .aggregated-container {
                     @include gridle(row prefix 2);
