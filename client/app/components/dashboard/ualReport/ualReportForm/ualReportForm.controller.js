@@ -4,6 +4,7 @@ class UalReportFormController {
         this._state = $state;
         this._datasourcemodal = ualDataSource;
         this._variablesmodal = ualVariables;
+        this.maxAggregators = 10;
 
         this._timeout = $timeout;
 
@@ -27,7 +28,7 @@ class UalReportFormController {
                     this.report.variables.set([]);
                     this._service.aggregator.all(datasource)
                         .then(aggregators => {
-                            this.report.aggregators.set(_.filter(aggregators.data, 'isDefaultAggregator'));
+                           this.report.aggregators.set(_.filter(aggregators.data, 'isDefaultAggregator'));
                         });
 
                     this._service.aggregator.groups(datasource)
@@ -54,6 +55,19 @@ class UalReportFormController {
     $onInit() {
         this.report.create();
         this.selectDataSource();
+    }
+
+    addAggregator(aggregator) {
+        let addedAggregators = this.report.aggregators.get();
+        if (!_.some(addedAggregators, { id: aggregator.id }) && addedAggregators.length < this.maxAggregators) {
+            aggregator.disabled = true;
+            addedAggregators.push(aggregator);
+        }
+    }
+    hideDropDown() {
+        this._timeout(() => {
+            this.dropDownStyle.visibility = 'hidden';
+        }, 100);
     }
 
 

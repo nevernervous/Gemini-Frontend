@@ -40,7 +40,6 @@ let servicesTransform = function($http) {
                 })
                 .toArray()
                 .value();
-                debugger;
             return {
                 groups,
                 items: response.data
