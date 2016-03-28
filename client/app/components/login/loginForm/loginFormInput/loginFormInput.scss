@@ -50,20 +50,10 @@
     margin-top: -35px;
     color: $alertHighColor;
     font-size: 23px;
-    &::before {
-      content: "\F405";
-    }
     @include -ms-browser(){
         margin-top: -30px;
     }
     
-  }
-  > .icon-error{
-    display: none;
-    float: right;
-    padding-right: 5px;
-    margin-top: -32px;
-    color: $alertHighColor;
   }
   > input.ng-invalid.ng-touched {
    @include input-invalid();

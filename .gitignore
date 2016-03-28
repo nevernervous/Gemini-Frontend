@@ -1,3 +1,6 @@
+.project
+project.properties
+project.xml
 .DS_Store
 .tmp
 .git

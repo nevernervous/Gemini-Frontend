@@ -75,16 +75,11 @@ class UalDataSourceController {
 
             let hasHorizontalOverflow = markerWidth > containerWidth;
             let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
+            let action = (!(hasHorizontalOverflow || !needHorizontalFill)) ? "addClass" : "removeClass" ;
             
-            if (!(hasHorizontalOverflow || !needHorizontalFill)) {
-                this._animate.addClass($dataSourceList, '-horizontal-fill').then(() => {
+            this._animate[action]($dataSourceList, '-horizontal-fill').then(() => {
                     this.hasLoaded = true;
                 });
-            } else {
-                this._animate.removeClass($dataSourceList, '-horizontal-fill').then(() => {
-                    this.hasLoaded = true;
-                });
-            }
 
         }
     }
