@@ -1,7 +1,9 @@
 @import '../../common';
 
 ual-dropdown-item { 
-  display: block;
+  display: inline-block;
+  @include ellipses();
+  width: 100%;
   color: $color06;
   @include font-clanot-book(14);
   padding: 4px 1em;
