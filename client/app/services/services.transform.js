@@ -35,12 +35,14 @@ let servicesTransform = function($http) {
                 .map((isRecomend) => {
                     return {
                         name: isRecomend ? "Recommended aggregators" : "Others",
-                        items: _.filter(response.data, 'isDefaultAggregator', isRecomend)
+                        items: _.chain(response.data)
+                                .filter('isDefaultAggregator', isRecomend)
+                                .sortBy('order')
+                                .value()
                     }
                 })
                 .toArray()
                 .value();
-                debugger;
             return {
                 groups,
                 items: response.data

@@ -5,7 +5,7 @@ module.exports = {
         "data": [
           {
               "id": 1,
-              "name": "Aggregator Name 1",
+              "name": "Aggregator Name Lorem ipseum Mucho Adues Kishhj 1",
               "isRecomendid": true,
               "isDefaultAggregator": true,
               "order": 5
