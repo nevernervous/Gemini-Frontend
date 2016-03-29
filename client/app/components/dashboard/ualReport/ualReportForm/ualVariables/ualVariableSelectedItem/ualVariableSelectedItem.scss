@@ -4,9 +4,7 @@
 ual-variable-selected-item {
   @include gridle(row row-align middle between);
   display: list-item;
-  height: 32px;
   margin: 0;
-  cursor: move;
 
   > .variable-container {
     @include gridle(gutter 14px);
@@ -15,6 +13,13 @@ ual-variable-selected-item {
     > .variable-order {
       width: 35px;
       padding: 0px;
+      @include -ms-browser() {
+        padding-top: 2px;
+      }
+    }
+    > .variable-description {
+      display: inline-block;
+      width: calc(100% - 55px);
     }
   }
 
@@ -29,28 +34,45 @@ ual-variable-selected-item {
 
 // VARIATIONS
 ual-variable-selected-item {
+  -webkit-user-select: none; // event if it's not necessary, let's just add it
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  > ual-tooltip {
+    z-index: 10;
+    visibility: hidden;
+  }
   > .variable-container {
     @include ellipses();
     width: calc(100% - 30px);
 
     > .variable-order {
+      -webkit-user-select: none; // event if it's not necessary, let's just add it
+      -ms-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
       @include font-clanot-news(12);
       text-align: center;
       vertical-align: middle;
       border: 1px solid $color08;
     }
 
-    > .variable-name {
-      @include font-clanot-news(14);
-      color: $color06;
-      margin-left: 5px;
+    > .variable-description {
+      cursor: move;
+      > .variable-name {
+        @include font-clanot-news(14);
+        color: $color06;
+        margin-left: 5px;
+      }
+
+      > .variable-group {
+        @include font-clanot-book(14);
+        color: $color07;
+        margin-left: 5px;
+      }
     }
 
-    > .variable-group {
-      @include font-clanot-book(14);
-      color: $color07;
-      margin-left: 5px;
-    }
   }
 
   > .variable-actions {
@@ -63,9 +85,23 @@ ual-variable-selected-item {
   }
 }
 
-ual-variable-selected-item:hover {
-  background-color: $color10;
+// VARIATION / ERROR
+ual-variable-selected-item {
+  > ual-tooltip.error {
+    top: -95px;
+    left: -85px;
+    visibility: visible;
+  }
+  > .variable-container.error {
+    > .variable-order {
+      border: 2px solid $color11;
+    }
+  }
+}
 
+// VARIATION / HOVER
+ual-variable-selected-item.-hovered {
+  background-color: $color10;
   > .variable-actions > .variable-delete {
     visibility: visible;
   }

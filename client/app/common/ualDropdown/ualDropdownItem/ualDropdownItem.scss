@@ -1,0 +1,22 @@
+@import '../../common';
+
+ual-dropdown-item { 
+  display: block;
+  color: $color06;
+  @include font-clanot-book(14);
+  padding: 4px 1em;
+  margin: 1px 0;
+}
+
+
+//Variations
+ual-dropdown-item { 
+    &:hover{
+        background-color: #e9e9e9;
+        @include font-clanot-news(14);
+        color: $color06;
+    }
+    &.-disabled{
+        color: $color07;
+    }
+}

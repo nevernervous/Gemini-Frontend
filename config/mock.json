@@ -1,5 +1,5 @@
 {
-  "Properties": {
+  "Properties": {    
     "endpoint": "http://localhost:8889/api",
     "cache": false,
     "fallback": {

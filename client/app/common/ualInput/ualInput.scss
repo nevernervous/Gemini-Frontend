@@ -3,8 +3,9 @@
     border: 1px solid $color08;
     background-color: $color00;
     padding: 7px 8px 8px 8px;
-    
+
     input {
+      @include font-clanot-book(14);
       width: calc(100% - 40px);
       border: 0;
       height: 30px;
@@ -13,6 +14,6 @@
     i {
       font-size: 22px;
       vertical-align: middle;
-      color: $color07;      
+      color: $color07;
     }
 }
