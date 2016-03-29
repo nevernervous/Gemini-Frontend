@@ -1,6 +1,6 @@
 class UalDataSourceController {
     /*@ngInject*/
-    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter) {
+    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate) {
         this._close = close;
         this._datasource = DataSource;
         this._cancelmodal = ualDataSourceCancelModal;
@@ -9,12 +9,14 @@ class UalDataSourceController {
         this._filter = $filter;
         this.searchTerm = {};
 
+        this._animate = $animate;
+
         this.datasources;
         this.selected = selected;
         this._initialize();
 
         this._suscriptions = [];
-        this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+        this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
         this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
     }
 
@@ -61,18 +63,24 @@ class UalDataSourceController {
         if (this.finishItemRender) {
             let $marker = angular.element(document.getElementById("overflow-marker"))[0];
             let $container = angular.element(document.getElementById("content-list"))[0];
-            let $contentList = angular.element(document.getElementById("data-source-list"))[0];
+            let $resizableContainer = angular.element(document.getElementById("resizable-container"))[0];
+            let $dataSourceList = angular.element(document.getElementById("data-source-list"))[0];
 
-            if(!$marker || !$container){
+            if (!$marker || !$container) {
                 return;
             }
+
             let markerWidth = $marker.offsetLeft;
             let containerWidth = $container.clientWidth;
 
             let hasHorizontalOverflow = markerWidth > containerWidth;
-            let needHorizontalFill = $container.clientHeight > $contentList.clientHeight;
+            let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
+            let action = (!(hasHorizontalOverflow || !needHorizontalFill)) ? "addClass" : "removeClass" ;
+            
+            this._animate[action]($dataSourceList, '-horizontal-fill').then(() => {
+                    this.hasLoaded = true;
+                });
 
-            this.hasHorizontalOverflow = hasHorizontalOverflow || !needHorizontalFill;
         }
     }
 

@@ -46,12 +46,15 @@
   > .icon-warning {
     display: none;
     float: right;
-    padding-right: 5px;
-    margin-top: -32px;
+    padding-right: 7px;
+    margin-top: -35px;
     color: $alertHighColor;
-    @include icon-warning(23);
+    font-size: 23px;
+    @include -ms-browser(){
+        margin-top: -30px;
+    }
+    
   }
-
   > input.ng-invalid.ng-touched {
    @include input-invalid();
   }
