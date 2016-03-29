@@ -10,6 +10,10 @@ class UalVariablesGroupController {
     if (this.groupEnabled) {
       this.open = !this.open;
     }
+  }  
+  
+  hideTooltip(){
+    $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
   }
 
 }

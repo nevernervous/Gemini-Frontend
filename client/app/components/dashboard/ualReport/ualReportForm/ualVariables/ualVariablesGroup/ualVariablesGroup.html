@@ -5,5 +5,4 @@
 </div>
 <div ng-transclude class="group-item" ng-class="{'-open': vm.open}"
   ual-scroll ual-scroll-disabled="!vm.groupEnabled"
-  ual-scroll-options="{ theme:'dark' }"></div>
-
+  ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } } "></div>
