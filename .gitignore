@@ -1,4 +1,3 @@
-.project
 .DS_Store
 .tmp
 .git
@@ -13,3 +12,4 @@ reports/
 *.sln 
 /gemini.sln
 nbproject/
+.project
