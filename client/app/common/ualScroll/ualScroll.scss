@@ -1,5 +1,12 @@
 @import '../common';
 
-.mCSB_dragger_bar { 
-    background-color: $color08 !important; 
+.mCSB_scrollTools {
+  opacity: 1 !important;
+}
+
+.mCSB_draggerRail {
+  background-color: $other04 !important;
+}
+.mCSB_dragger_bar {
+  background-color: $other03 !important;
 }
