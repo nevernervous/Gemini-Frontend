@@ -55,7 +55,6 @@ ual-report-form {
                         @include gridle(2);
                         text-align: right;
                         line-height: 32px;
-                        margin: 0 3px;
                         display: inline-block;
                     }
                     ual-input {
@@ -98,7 +97,7 @@ ual-report-form {
                 > .aggregated-container {
                     @include gridle(row prefix 2);
                     > ual-agregation-item {
-                        @include gridle(2.4);
+                        width: 20%;
                     }
                 }
             }
