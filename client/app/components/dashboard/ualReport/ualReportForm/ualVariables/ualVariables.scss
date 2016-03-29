@@ -33,6 +33,30 @@
                                 @include ellipses();
                                 padding: 7px 0;
                                 display: list-item;
+                                position: relative;
+                                                                
+                                > span {
+                                    background-color: transparent;
+                                    
+                                    &:hover ual-tooltip {
+                                        display: inline;
+                                        position: fixed;
+                                    }
+                                }
+
+                                ual-tooltip {                                    
+                                    display: none;
+                                    margin-left: 15px;
+                                    margin-top: -7px;
+                                    
+                                    opacity:0;
+                                    opacity: 1 \9; /*just in case ie*/
+                                    @include fadeIn();
+                                    @include animation(fadeIn ease-in 1);
+                                    @include animation-fill-mode(forwards);
+                                    @include animation-duration(0.2s);
+                                    @include animation-delay(1s);                                                                                                      
+                                }
                             }
                         }
                     }
@@ -67,6 +91,7 @@
                         color: $color07;
                         text-align: center;
                         height: calc(100% - 100px);
+                        line-height: 2;
                         div {
                           max-width: 350px;
                         }

@@ -75,18 +75,36 @@ class UalDataSourceController {
 
             let hasHorizontalOverflow = markerWidth > containerWidth;
             let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
+            let action = (!(hasHorizontalOverflow || !needHorizontalFill)) ? "addClass" : "removeClass" ;
             
-            if (!(hasHorizontalOverflow || !needHorizontalFill)) {
-                this._animate.addClass($dataSourceList, '-horizontal-fill').then(() => {
+            this._animate[action]($dataSourceList, '-horizontal-fill').then(() => {
                     this.hasLoaded = true;
                 });
-            } else {
-                this._animate.removeClass($dataSourceList, '-horizontal-fill').then(() => {
-                    this.hasLoaded = true;
-                });
-            }
 
         }
+    }
+
+    showTooltip(e){
+      let datasource = $("#"+e.target.id);
+
+      if (e.target.nodeName == 'UAL-DATA-SOURCE-ITEM') {
+        let span = datasource.find("span:eq(0)");
+        let offset = span.offset();
+        let parentWidth = span.width();
+        let childWidth = datasource.find("span:eq(1)").width();
+        let tooltip = datasource.find("ual-tooltip");
+
+        offset.left = (childWidth > parentWidth ?  (parentWidth + 5) : (childWidth + 10)) + offset.left;
+        offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
+        offset.top += window.isIE  ? 2 : 5;
+
+        tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
+        tooltip.css(offset);
+      }
+    }
+
+    hideTooltip(){
+      $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
     }
 
     _initialize() {

@@ -11,13 +11,16 @@
         <ual-tab class="standard-variables" ual-title="Standard Variables">
           <ual-pane ual-title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0 || ( vm.variables.items | filter:vm.standardFilter | isEmpty)">
             <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
-            <div class="group-list" ual-scroll ual-scroll-options="{ theme:'dark' }" ng-show="(vm.variables.items | filter:vm.standardFilter).length > 0">
+            <div class="group-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" ng-show="(vm.variables.items | filter:vm.standardFilter).length > 0">
               <ual-variables-group ng-class="{no_scroll: (group.items | filter:vm.standardFilter).length < 12 }"group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filter:vm.standardFilter | isEmpty)">
                 <ual-checkbox id="group_{{group.data.groupId}}" on-click="vm.toggleGroup(group)" item="group" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name">
                   Select All
                 </ual-checkbox>
                 <ual-checkbox ng-repeat="item in group.items | filter:vm.standardFilter | orderBy : 'order'" id="variable_{{item.id}}" on-click="vm.toggle(item)" item="item" is-checked="vm.isSelected(item)" ual-on-last-variable>
-                  {{item.name}}
+                  <span id="span_{{item.id}}" ng-mouseover="vm.showTooltip($event)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip($event)">{{item.name}}</span>
+                  <ual-tooltip class="-tooltip">
+                    {{item.description}}
+                  </ual-tooltip>
                 </ual-checkbox>
               </ual-variables-group>
             </div>
