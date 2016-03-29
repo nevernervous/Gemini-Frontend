@@ -19,7 +19,7 @@
                 
                 .data-source-group {
                     .data-source-item {                             
-                        &:hover > ual-tooltip {
+                        &:hover > span > ual-tooltip {
                             display: inline;
                             position: fixed;
                         }   
