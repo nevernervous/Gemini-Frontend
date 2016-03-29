@@ -32,20 +32,28 @@ ual-modal.-yesno {
 
     > .title {
       width: 100%;
+      margin-top: 14px;
       margin-bottom: 20px;
-      @include font-clanot-book(18);
+      @include font-clanot-news(18);
+      color: $color07;
     }
     > .description {
       width: 100%;
       margin-bottom: 20px;
+      color: $color06;
       @include font-clanot-book(16);
+      line-height: 1.5;      
       > strong {
         @include font-clanot-bold(16);
+      }
+      &.no-title{
+        margin-top: 14px;
       }
     }
     > .buttons {
       @include gridle( row row-align right );
       margin: 0;
+      padding-top: 22px;
       width: 100%;
       > .-primary {
         margin-left: 15px;
