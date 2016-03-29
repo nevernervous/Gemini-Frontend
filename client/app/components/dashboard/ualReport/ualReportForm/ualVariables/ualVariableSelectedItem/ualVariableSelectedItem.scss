@@ -48,6 +48,10 @@ ual-variable-selected-item {
     width: calc(100% - 30px);
 
     > .variable-order {
+      -webkit-user-select: none; // event if it's not necessary, let's just add it
+      -ms-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
       @include font-clanot-news(12);
       text-align: center;
     }
@@ -79,6 +83,7 @@ ual-variable-selected-item {
   }
 }
 
+// VARIATION / ERROR
 ual-variable-selected-item {
   > ual-tooltip.error {
     top: -95px;
@@ -91,6 +96,8 @@ ual-variable-selected-item {
     }
   }
 }
+
+// VARIATION / HOVER
 ual-variable-selected-item.-hovered {
   background-color: $color10;
   > .variable-actions > .variable-delete {

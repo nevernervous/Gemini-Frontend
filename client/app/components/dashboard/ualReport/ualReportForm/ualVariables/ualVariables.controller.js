@@ -105,7 +105,7 @@ class UalVariablesController {
         let timeout = this._timeout.bind(this);
         let move = item.height * 5;
 
-        if ( (item.top - item.height ) < list.top && list.top < item.bottom ) {
+        if ( (item.top - (item.height * 0.9)) < list.top && list.top < item.bottom ) {
           this.scrolling = true;
           container.top += move;
           container.top = container.top > 0 ? 0 : container.top;
@@ -138,6 +138,7 @@ class UalVariablesController {
   }
   changeOrder(variable, order) {
     _.remove(this.selecteds, { 'id': variable.id });
+    $(".-hovered").removeClass("-hovered");
     this.selecteds.splice(order - 1, 0, variable);
   }
   itemPosition(variable) {
