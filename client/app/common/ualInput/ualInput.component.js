@@ -5,11 +5,15 @@ import './ualInput.scss';
 let ualInputComponent = {
     restrict: 'E',
     bindings: {
-      ualId: '@',
-      value: '=',
-      minChars: '=',
-      icon: '@'
+        ualId: '@',
+        value: '=',
+        minChars: '=',
+        icon: '@',
+        onBlur: '&?',
+        onKeyup: '&?',
+        onFocus: '&?'
     },
+    transclude: true,
     template: template,
     controller: controller,
     controllerAs: 'vm'

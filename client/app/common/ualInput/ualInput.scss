@@ -8,9 +8,12 @@
       width: calc(100% - 38px);
       border: 0;
       height: 32px;
+      @include font-clanot-book(14);
+      color: $color06;
     }
     i {
       font-size: 20px;
       vertical-align: sub;
+      color: $color07;
     }
 }
