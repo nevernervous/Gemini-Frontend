@@ -47,19 +47,20 @@ ual-report-form {
         .aggregations-values {
             @include gridle(row);
             > .aggregation-search {
-                @include gridle(7 suffix 5);
+                @include gridle(12);
                 padding: 30px 0 20px 0;
                 .aggregation-search-container {
                     @include gridle(row);
                     .-label {
-                        @include gridle(3);
+                        @include gridle(2);
                         text-align: right;
                         line-height: 32px;
+                        margin: 0 3px;
                         display: inline-block;
                     }
                     ual-input {
                         position: relative;
-                        @include gridle(6.95);
+                        @include gridle(4);
                         font-size: 14px;
                         ual-dropdown {
                             width: calc(100% - 21px);
@@ -95,7 +96,7 @@ ual-report-form {
                 padding: 0 0 20px 0;
                 @include gridle(12);
                 > .aggregated-container {
-                    @include gridle(row prefix 1.69);
+                    @include gridle(row prefix 2);
                     > ual-agregation-item {
                         @include gridle(2.4);
                     }
