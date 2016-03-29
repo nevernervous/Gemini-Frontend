@@ -1,7 +1,7 @@
 $base: 16;
 
 @mixin font-size($px:16) {
-  font-size: ($px/$base)+0em;
+  font-size: $px+0px;// ($px/$base)+0em;
 }
 
 @mixin font-family($family, $size:16, $weight:400) {

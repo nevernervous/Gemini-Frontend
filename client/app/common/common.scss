@@ -19,11 +19,21 @@ $color07: #7c848a;
 $color08: #d4d4d4;
 $color09: #667a8e;
 $color10: #c0ddf4;
+// COLOURS / ERROR
+$color11: #cd202c;
+$color12: #fac6ca;
+// COLOURS / WARNING
+$color13: #db8c0e;
+$color14: #ffe0b2;
+// COLOURS / SUCCESS
+$color15: #6ead3d;
+$color16: #d7edc8;
 $color99: #000;
 
 // COLOURS / OTHERS
 $other03: #aeb3b6;
 $other04: #ECECEB;
+
 
 // BACKGROUND
 $backgroundHighColor: $color01;
@@ -31,11 +41,12 @@ $backgroundMediumColor: $color02;
 $backgroundLowColor: $color03;
 
 // UI Kit / Alerts, Notification, ...
-$alertHighColor: #EF1A28;
-$alertLowColor: #FFBDC1;
-$warningHighColor: #db8c0e;
-$warningLowColor: #ffe0b2;
-$successColor: #44C339;
-$successColor: #CFEEC8;
-$notificationHighColor: $color03;
-$notificationLowColor: #C8E6F8;
+
+$alertHighColor: $color11;
+$alertLowColor: $color12;
+$warningHighColor: $color13;
+$warningLowColor: $color14;
+$successColor: $color15;
+$successColor: $color16;
+$messageHighColor: $color03;
+$messageLowColor: $color00;

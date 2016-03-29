@@ -1,0 +1,12 @@
+@import '../../common';
+
+ual-dropdown-group { 
+  display: block;
+  padding: 0 0 9px 0px;
+  strong{
+      display: inline-block;
+      padding: 5px 1em;
+      @include font-clanot-news(14);
+      color: $color07;
+  }
+}  
