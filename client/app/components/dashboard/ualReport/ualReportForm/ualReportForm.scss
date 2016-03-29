@@ -52,14 +52,14 @@ ual-report-form {
                 .aggregation-search-container {
                     @include gridle(row);
                     .-label {
-                        @include gridle(3.5);
+                        @include gridle(3);
                         text-align: right;
                         line-height: 32px;
                         display: inline-block;
                     }
                     ual-input {
                         position: relative;
-                        @include gridle(6.6);
+                        @include gridle(6.95);
                         font-size: 14px;
                         ual-dropdown {
                             width: calc(100% - 21px);
@@ -70,6 +70,9 @@ ual-report-form {
                             .-message {
                                 span{
                                     display: inline-block;
+                                }
+                                .-no-result{
+                                    padding: 15px 0;
                                 }
                                 .-max-reached {
                                     color: $warningHighColor;
@@ -92,7 +95,7 @@ ual-report-form {
                 padding: 0 0 20px 0;
                 @include gridle(12);
                 > .aggregated-container {
-                    @include gridle(row prefix 2);
+                    @include gridle(row prefix 1.69);
                     > ual-agregation-item {
                         @include gridle(2.4);
                     }
