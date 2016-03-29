@@ -1,6 +1,4 @@
 .project
-project.properties
-project.xml
 .DS_Store
 .tmp
 .git
@@ -14,4 +12,4 @@ reports/
 .vs
 *.sln 
 /gemini.sln
-/nbproject/private/
+/nbproject/*
