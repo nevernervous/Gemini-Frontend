@@ -12,6 +12,7 @@ class UalReportFormController {
             aggregator: Aggregator
         }
         this.dropDownStyle = {};
+        this.inputStyle = {};
 
         this.report = ualReport;
     }
@@ -71,10 +72,17 @@ class UalReportFormController {
     isAggregated(aggregator){
         return _.some(this.report.aggregators.get(), { id: aggregator.id });
     }
+    
     hideDropDown() {
         this._timeout(() => {
             this.dropDownStyle.visibility = 'hidden';
+            this.inputStyle.position = 'static';
         }, 100);
+    }
+    
+    showDropdown(){
+        this.inputStyle.position = 'relative';
+        this.dropDownStyle.visibility = 'visible'
     }
 
 
