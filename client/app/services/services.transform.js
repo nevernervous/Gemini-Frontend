@@ -27,23 +27,6 @@ let servicesTransform = function($http) {
                 groups: groups,
                 items: response
             }
-        },
-        aggregators: (response) => {
-            let groups = _.chain(response.data)
-                .map('isDefaultAggregator')
-                .uniq()
-                .map((isRecomend) => {
-                    return {
-                        name: isRecomend ? "Recommended aggregators" : "Others",
-                        items: _.filter(response.data, 'isDefaultAggregator', isRecomend)
-                    }
-                })
-                .toArray()
-                .value();
-            return {
-                groups,
-                items: response.data
-            }
         }
 
     }
