@@ -1,24 +1,23 @@
 @import '../../common';
-
-ual-dropdown-item { 
-  display: inline-block;
-  @include ellipses();
-  width: 100%;
-  color: $color06;
-  @include font-clanot-book(14);
-  padding: 4px 1em;
-  margin: 1px 0;
+ual-dropdown-item {
+    display: inline-block;
+    @include ellipses();
+    width: 100%;
+    color: $color06;
+    @include font-clanot-book(14);
+    padding: 4px 1em;
+    margin: 1px 0;
 }
 
-
 //Variations
-ual-dropdown-item { 
-    &:hover{
+ual-dropdown-item:not(.-disabled) {
+    &:hover {
         background-color: $others01;
         @include font-clanot-news(14);
         color: $color06;
     }
-    &.-disabled{
-        color: $color07;
-    }
+}
+
+ual-dropdown-item.-disabled {
+    color: $color07;
 }

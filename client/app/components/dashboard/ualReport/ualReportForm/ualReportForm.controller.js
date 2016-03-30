@@ -64,9 +64,12 @@ class UalReportFormController {
     addAggregator(aggregator) {
         let addedAggregators = this.report.aggregators.get();
         if (!_.some(addedAggregators, { id: aggregator.id }) && addedAggregators.length < this.maxAggregators) {
-            aggregator.disabled = true;
             addedAggregators.push(aggregator);
         }
+    }
+    
+    isAggregated(aggregator){
+        return _.some(this.report.aggregators.get(), { id: aggregator.id });
     }
     hideDropDown() {
         this._timeout(() => {

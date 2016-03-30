@@ -21,7 +21,6 @@
     </div>
     <div class="section aggregations-values">
         <div class="aggregation-search">
-            <div class="aggregation-search-container">
                 <span class="-label">Aggregate by</span>
                 <ual-input on-focus="vm.dropDownStyle.visibility = 'visible'" on-blur="vm.hideDropDown()" value="vm.search.name" icon="ion-ios-search-strong">
                     <ual-dropdown filter='vm.search'ng-style="vm.dropDownStyle">
@@ -35,13 +34,12 @@
                         </ual-dropdown-messages>
                         <ual-dropdown-items ual-scroll ual-scroll-options="{ theme:'dark' }" ng-if="vm.aggregators.groups" ng-class="{'-no-results': (vm.aggregators.items | filter: vm.search | isEmpty) }">
                             <ual-dropdown-group name="{{group.name}}" ng-repeat="group in vm.aggregators.groups" ng-if="!(group.items | filter: vm.search | isEmpty)">
-                                <ual-dropdown-item ng-click="vm.addAggregator(item)" name="{{item.name}}" ng-repeat="item in group.items | filter: vm.search" ng-class="{'-disabled': item.disabled}">
+                                <ual-dropdown-item ng-click="vm.addAggregator(item)" name="{{item.name}}" ng-repeat="item in group.items | filter: vm.search" ng-class="{'-disabled': vm.isAggregated(item)}">
                                 </ual-dropdown-item>
                             </ual-dropdown-group>
                         </ual-dropdown-items>
                     </ual-dropdown>
                 </ual-input>
-            </div>
         </div>
         <div class="aggregation-items">
             <div class="aggregated-container">
