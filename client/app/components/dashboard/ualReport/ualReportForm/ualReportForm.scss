@@ -46,42 +46,46 @@ ual-report-form {
         }
         .aggregations-values {
             @include gridle(row);
+            padding: 30px 0;
             > .aggregation-search {
-                @include gridle(7 suffix 5);
-                padding: 30px 0 20px 0;
-                .aggregation-search-container {
-                    @include gridle(row);
-                    .-label {
-                        @include gridle(3.5);
-                        text-align: right;
-                        line-height: 32px;
-                        display: inline-block;
-                    }
-                    ual-input {
-                        position: relative;
-                        @include gridle(6.6);
-                        font-size: 14px;
-                        ual-dropdown {
-                            width: calc(100% - 21px);
-                            position: absolute;
-                            left: 10px;
-                            bottom: 34px;
-                            border-bottom-style: none;
-                            .-message {
-                                span{
-                                    display: inline-block;
+                padding-bottom: 20px;
+                @include gridle(12);
+                .-label {
+                    display: inline-block;
+                    @include font-clanot-book(16);
+                    color: $color07;
+                    width: 110px;
+                }
+                ual-input {
+                    position: relative;
+                    display: inline-block;
+                    width: 300px;
+                    ual-dropdown {
+                        width:100%;
+                        position: absolute;
+                        left: 0;
+                        bottom: 34px;
+                        border-bottom-style: none;
+                        .-message {
+                            span {
+                                display: inline-block;
+                            }
+                            .-no-result {
+                                padding: 15px 0;
+                            }
+                            .-max-reached {
+                                color: $warningHighColor;
+                                background: $warningLowColor;
+                                width: 100%;
+                                padding-top: 1px;
+                                @include font-clanot-bold(12);
+                                @media (max-width: 1024px) {
+                                    @include font-clanot-bold(11);
                                 }
-                                .-max-reached {
-                                    color: $warningHighColor;
-                                    background: $warningLowColor;
-                                    width: 100%;
-                                    padding-top: 1px;
-                                    @include font-clanot-bold(12);
-                                    > .-icon-warning {
-                                        font-size: 12px;
-                                        vertical-align: middle;
-                                        @include icon-warning(14);
-                                    }
+                                > .-icon-warning {
+                                    font-size: 12px;
+                                    vertical-align: middle;
+                                    @include icon-warning(14);
                                 }
                             }
                         }
@@ -89,12 +93,14 @@ ual-report-form {
                 }
             }
             >.aggregation-items {
-                padding: 0 0 20px 0;
                 @include gridle(12);
                 > .aggregated-container {
-                    @include gridle(row prefix 2);
+                    @include gridle(row);
+                    padding-left: 120px !important;
                     > ual-agregation-item {
-                        @include gridle(2.4);
+                        display: inline-block;
+                        width: 20%;
+                        height: 32px;
                     }
                 }
             }
