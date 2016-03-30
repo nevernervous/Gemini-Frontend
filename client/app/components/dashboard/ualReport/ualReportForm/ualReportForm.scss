@@ -68,10 +68,10 @@ ual-report-form {
                             bottom: 34px;
                             border-bottom-style: none;
                             .-message {
-                                span{
+                                span {
                                     display: inline-block;
                                 }
-                                .-no-result{
+                                .-no-result {
                                     padding: 15px 0;
                                 }
                                 .-max-reached {
@@ -80,6 +80,9 @@ ual-report-form {
                                     width: 100%;
                                     padding-top: 1px;
                                     @include font-clanot-bold(12);
+                                    @media (max-width: 1024px) {
+                                        @include font-clanot-bold(11);
+                                    }
                                     > .-icon-warning {
                                         font-size: 12px;
                                         vertical-align: middle;
