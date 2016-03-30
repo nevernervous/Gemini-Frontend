@@ -28,7 +28,11 @@ class UalReportFormController {
                     this.report.variables.set([]);
                     this._service.aggregator.all(datasource)
                         .then(aggregators => {
-                           this.report.aggregators.set(_.filter(aggregators.data, 'isDefaultAggregator'));
+                            let defaultAggregators = _.chain(aggregators.data)
+                                                      .filter('isDefaultAggregator')
+                                                      .sortBy('order')
+                                                      .value();
+                            this.report.aggregators.set(defaultAggregators);
                         });
 
                     this._service.aggregator.groups(datasource)
