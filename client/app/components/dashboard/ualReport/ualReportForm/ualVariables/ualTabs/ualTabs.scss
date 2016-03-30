@@ -60,13 +60,13 @@ ual-tabs {
 
     > .tabs-list {
       border-right: 1px solid $color08;
-      background-color: $color08;
+      background-color: $other05;
       list-style: none;
 
       > li {
         @include font-clanot-news(16);
         border-top: 1px solid $color00;
-        background-color: $color08;
+        background-color: $other05;
         color: $color06;
 
         > a {

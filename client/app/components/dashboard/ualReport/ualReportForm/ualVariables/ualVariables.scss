@@ -34,28 +34,28 @@
                                 padding: 7px 0;
                                 display: list-item;
                                 position: relative;
-                                                                
+
                                 > span {
                                     background-color: transparent;
-                                    
+
                                     &:hover ual-tooltip {
                                         display: inline;
                                         position: fixed;
                                     }
                                 }
 
-                                ual-tooltip {                                    
+                                ual-tooltip {
                                     display: none;
                                     margin-left: 15px;
                                     margin-top: -7px;
-                                    
+
                                     opacity:0;
                                     opacity: 1 \9; /*just in case ie*/
                                     @include fadeIn();
                                     @include animation(fadeIn ease-in 1);
                                     @include animation-fill-mode(forwards);
                                     @include animation-duration(0.2s);
-                                    @include animation-delay(1s);                                                                                                      
+                                    @include animation-delay(1s);
                                 }
                             }
                         }
@@ -91,6 +91,7 @@
                         color: $color07;
                         text-align: center;
                         height: calc(100% - 100px);
+                        line-height: 1.5;
                         div {
                           max-width: 350px;
                         }
@@ -118,7 +119,6 @@
                         ual-variables-group {
                             ual-checkbox {
                                 list-style: none;
-                                cursor: pointer;
                             }
                         }
                         ual-variables-group.no_scroll {
@@ -129,7 +129,12 @@
                     }
                 }
                 > .selected-variables {
-                    border: 1px solid $color08;
+                  border: 1px solid $color08;
+                  .selected-list {
+                    .selected-container.over {
+                      background-color: $color08;
+                    }
+                  }
                 }
             }
         }

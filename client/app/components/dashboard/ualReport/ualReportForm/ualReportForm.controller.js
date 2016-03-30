@@ -1,46 +1,74 @@
 class UalReportFormController {
-  /*@ngInject*/
-  constructor($state, ualReport, ualDataSource, ualVariables, Aggregator) {
-    this._state = $state;
-    this._datasourcemodal = ualDataSource;
-    this._variablesmodal = ualVariables;
+    /*@ngInject*/
+    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, $timeout) {
+        this._state = $state;
+        this._datasourcemodal = ualDataSource;
+        this._variablesmodal = ualVariables;
+        this.maxAggregators = 10;
 
-    this._service = {
-      aggregator: Aggregator
+        this._timeout = $timeout;
+
+        this._service = {
+            aggregator: Aggregator
+        }
+        this.dropDownStyle = {};
+
+        this.report = ualReport;
     }
 
-    this.report = ualReport;
-  }
-
-  // STEP 1
-  selectDataSource() {
-    this._datasourcemodal.open({selected: this.report.datasource.get()})
-    .then(datasource => {
-      if ( datasource && !this.report.datasource.equal(datasource)) {
-
-        this.report.datasource.set(datasource);
-        this.report.variables.set([]);
-        this._service.aggregator.all(datasource)
-        .then(aggregators => {
-          this.report.aggregators.set(_.filter(aggregators.data, 'isDefaultAggregator'))
+    // STEP 1
+    selectDataSource() {
+        this._datasourcemodal.open({
+            selected: this.report.datasource.get()
         })
+            .then(datasource => {
+                if (datasource && !this.report.datasource.equal(datasource)) {
 
-      } else if (!datasource) {
-        this._state.go('dashboard.report-list');
-      }
-    });
-  }
+                    this.report.datasource.set(datasource);
+                    this.report.variables.set([]);
+                    this._service.aggregator.all(datasource)
+                        .then(aggregators => {
+                           this.report.aggregators.set(_.filter(aggregators.data, 'isDefaultAggregator'));
+                        });
 
-  // STEP 2
-  selectVariables() {
-    this._variablesmodal.open({datasource: this.report.datasource.get(), selecteds: this.report.variables.get()})
-    .then(variables => this.report.variables.set(variables));
-  }
+                    this._service.aggregator.groups(datasource)
+                        .then((reply) => {
+                            this.aggregators = reply.data;
+                        });
 
-  $onInit() {
-    this.report.create();
-    this.selectDataSource();
-  }
+                } else if (!datasource) {
+                    this._state.go('dashboard.report-list');
+                }
+            });
+    }
+
+    // STEP 2
+    selectVariables() {
+        this._variablesmodal.open({
+            datasource: this.report.datasource.get(),
+            selecteds: this.report.variables.get()
+        })
+            .then(variables => this.report.variables.set(variables));
+    }
+
+
+    $onInit() {
+        this.report.create();
+        this.selectDataSource();
+    }
+
+    addAggregator(aggregator) {
+        let addedAggregators = this.report.aggregators.get();
+        if (!_.some(addedAggregators, { id: aggregator.id }) && addedAggregators.length < this.maxAggregators) {
+            aggregator.disabled = true;
+            addedAggregators.push(aggregator);
+        }
+    }
+    hideDropDown() {
+        this._timeout(() => {
+            this.dropDownStyle.visibility = 'hidden';
+        }, 100);
+    }
 
 
 }

@@ -1,60 +1,103 @@
 @import '../../../../common/common';
-
 ual-report-form {
-  @include gridle_container();
-
-  > .report-header {
-    @include gridle(row row-align between);
-    >.title {
-      @include font-clanot-bold(20);
-      color: $color06;
-    }
-    >.save-button {
-      width: 165px;
-    }
-  }
-
-  > .report-body {
-    > .section {
-      border-bottom: 1px solid $color08;
-    }
-
-    .report-name {
-      @include gridle(row);
-      padding: 20px 0;
-
-      >.title {
-        @include gridle(6);
-        @include font-clanot-book(24);
-        color: $color07;
-      }
-    }
-
-    .selected-parameters {
-      @include gridle(row);
-      padding: 15px 0;
-
-      >.selected-parameter {
-        @include gridle(6);
-
+    @include gridle_container();
+    > .report-header {
+        @include gridle(row row-align between);
         >.title {
-          @include font-clanot-book(16);
-          color: $color07;
+            @include font-clanot-bold(20);
+            color: $color06;
         }
-
-        >.value {
-          @include font-clanot-bold(16);
-          color: $color06;
+        >.save-button {
+            width: 165px;
         }
-
-        >.action {
-          margin-left: 5px;
-          @include link();
-          font-size: 14px;
-        }
-      }
     }
-
-  }
-
+    > .report-body {
+        > .section {
+            border-bottom: 1px solid $color08;
+        }
+        .report-name {
+            @include gridle(row);
+            padding: 20px 0;
+            >.title {
+                @include gridle(6);
+                @include font-clanot-book(24);
+                color: $color07;
+            }
+        }
+        .selected-parameters {
+            @include gridle(row);
+            padding: 30px 0;
+            >.selected-parameter {
+                @include gridle(6);
+                >.title {
+                    @include font-clanot-book(16);
+                    color: $color07;
+                }
+                >.value {
+                    @include font-clanot-bold(16);
+                    color: $color06;
+                }
+                >.action {
+                    margin-left: 5px;
+                    @include link();
+                    font-size: 14px;
+                }
+            }
+        }
+        .aggregations-values {
+            @include gridle(row);
+            > .aggregation-search {
+                @include gridle(7 suffix 5);
+                padding: 30px 0 20px 0;
+                .aggregation-search-container {
+                    @include gridle(row);
+                    .-label {
+                        @include gridle(3.5);
+                        text-align: right;
+                        line-height: 32px;
+                        display: inline-block;
+                    }
+                    ual-input {
+                        position: relative;
+                        @include gridle(6.6);
+                        font-size: 14px;
+                        ual-dropdown {
+                            width: calc(100% - 21px);
+                            position: absolute;
+                            left: 10px;
+                            bottom: 34px;
+                            border-bottom-style: none;
+                            .-message {
+                                span{
+                                    display: inline-block;
+                                }
+                                .-max-reached {
+                                    color: $warningHighColor;
+                                    background: $warningLowColor;
+                                    width: 100%;
+                                    padding-top: 1px;
+                                    @include font-clanot-bold(12);
+                                    > .-icon-warning {
+                                        font-size: 12px;
+                                        vertical-align: middle;
+                                        @include icon-warning(14);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            >.aggregation-items {
+                padding: 0 0 20px 0;
+                @include gridle(12);
+                > .aggregated-container {
+                    @include gridle(row prefix 2);
+                    > ual-agregation-item {
+                        @include gridle(2.4);
+                    }
+                }
+            }
+        }
+    }
 }
