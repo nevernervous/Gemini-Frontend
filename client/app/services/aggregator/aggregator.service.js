@@ -1,20 +1,20 @@
-let aggregatorService = function(Properties, AggregatorTransform, $http) {
+let aggregatorService = function(Properties, ServicesTransform, AggregatorTransform,  $http) {
     "ngInject";
     const endpoint = Properties.endpoint + '/DataSources';
 
     let all = (datasource) => {
-        let transformation = [AggregatorTransform.get('simple')];
+        let transformation = [ServicesTransform.get('simple')];
         return $http.get(`${endpoint}/${datasource.id}/Aggregators`, {
             cache: Properties.cache,
-            transformResponse: AggregatorTransform.generate(transformation)
+            transformResponse: ServicesTransform.generate(transformation)
         });
     }
 
     let groups = (datasource) => {
-        let transformation = [AggregatorTransform.get('aggregators')];
+        let transformation = [AggregatorTransform.get('grouped')];
         return $http.get(`${endpoint}/${datasource.id}/Aggregators`, {
             cache: Properties.cache,
-            transformResponse: AggregatorTransform.generate(transformation)
+            transformResponse: ServicesTransform.generate(transformation)
         });
     };
 
