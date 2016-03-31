@@ -12,6 +12,7 @@ class UalReportFormController {
             aggregator: Aggregator
         }
         this.dropDownStyle = {};
+        this.inputStyle = {};
 
         this.report = ualReport;
     }
@@ -28,7 +29,11 @@ class UalReportFormController {
                     this.report.variables.set([]);
                     this._service.aggregator.all(datasource)
                         .then(aggregators => {
-                           this.report.aggregators.set(_.filter(aggregators.data, 'isDefaultAggregator'));
+                            let defaultAggregators = _.chain(aggregators.data)
+                                                      .filter('isDefaultAggregator')
+                                                      .sortBy('order')
+                                                      .value();
+                            this.report.aggregators.set(defaultAggregators);
                         });
 
                     this._service.aggregator.groups(datasource)
@@ -60,14 +65,24 @@ class UalReportFormController {
     addAggregator(aggregator) {
         let addedAggregators = this.report.aggregators.get();
         if (!_.some(addedAggregators, { id: aggregator.id }) && addedAggregators.length < this.maxAggregators) {
-            aggregator.disabled = true;
             addedAggregators.push(aggregator);
         }
     }
+    
+    isAggregated(aggregator){
+        return _.some(this.report.aggregators.get(), { id: aggregator.id });
+    }
+    
     hideDropDown() {
         this._timeout(() => {
             this.dropDownStyle.visibility = 'hidden';
+            this.inputStyle.position = 'static';
         }, 100);
+    }
+    
+    showDropdown(){
+        this.inputStyle.position = 'relative';
+        this.dropDownStyle.visibility = 'visible'
     }
 
 

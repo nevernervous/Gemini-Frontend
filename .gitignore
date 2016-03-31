@@ -11,5 +11,5 @@ reports/
 .vs
 *.sln 
 /gemini.sln
-/nbproject/
-/.project
+nbproject/
+.project

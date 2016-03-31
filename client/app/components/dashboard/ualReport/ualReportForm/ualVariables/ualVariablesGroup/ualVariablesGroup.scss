@@ -70,6 +70,9 @@ ual-variables-group {
       @include spin();
       display: none;
     }
+    &.-open {
+      border-left: 3px solid $color03;
+    }
   }
 }
 

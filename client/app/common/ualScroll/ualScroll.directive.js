@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import './ualScroll.scss';
 
 class ualScrollDirective {
   /*@ngInject*/
