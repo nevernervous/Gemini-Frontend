@@ -46,9 +46,9 @@ ual-report-form {
         }
         .aggregations-values {
             @include gridle(row);
-            padding: 30px 0;
+            padding: 25px 0;
             > .aggregation-search {
-                padding-bottom: 20px;
+                padding-bottom: 8px;
                 @include gridle(12);
                 .-label {
                     display: inline-block;
@@ -59,7 +59,7 @@ ual-report-form {
                 ual-input {
                     position: relative;
                     display: inline-block;
-                    width: 300px;
+                    width: 350px;
                     ual-dropdown {
                         width:100%;
                         position: absolute;
@@ -98,6 +98,8 @@ ual-report-form {
                     @include gridle(row);
                     padding-left: 120px !important;
                     > ual-agregation-item {
+                        margin-bottom: 10px;
+                        margin-top: 10px;
                         display: inline-block;
                         width: 20%;
                         height: 32px;
