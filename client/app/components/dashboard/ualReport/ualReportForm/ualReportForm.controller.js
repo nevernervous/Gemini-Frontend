@@ -1,6 +1,6 @@
 class UalReportFormController {
     /*@ngInject*/
-    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, $document) {
+    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator) {
         this._state = $state;
         this._datasourcemodal = ualDataSource;
         this._variablesmodal = ualVariables;
@@ -9,10 +9,6 @@ class UalReportFormController {
         this._service = {
             aggregator: Aggregator
         }
-
-        $document.bind("mouseup", (event) => {
-            this.hideDropDown(event);
-        });
 
         this.dropDownStyle = {};
         this.inputStyle = {};
@@ -71,18 +67,14 @@ class UalReportFormController {
             addedAggregators.push(aggregator);
         }
     }
+
     isAggregated(aggregator) {
         return _.some(this.report.aggregators.get(), { id: aggregator.id });
     }
     
-    hideDropDown(event) {
-        let $container = $("#inpAggregators");
-        let isChild = $container.has(event.target).length > 0;
-        let isSame = $container.is(event.target);
-        if (!isSame && !isChild) {
-            this.dropDownStyle.visibility = 'hidden';
-            this.inputStyle.position = 'static';
-        }
+    hideDropdown() {
+        this.dropDownStyle.visibility = 'hidden';
+        this.inputStyle.position = 'static';
     }
 
     showDropdown() {
