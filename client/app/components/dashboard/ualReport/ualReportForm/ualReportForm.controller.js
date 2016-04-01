@@ -1,16 +1,19 @@
 class UalReportFormController {
     /*@ngInject*/
-    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, $timeout) {
+    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, $document) {
         this._state = $state;
         this._datasourcemodal = ualDataSource;
         this._variablesmodal = ualVariables;
         this.maxAggregators = 10;
 
-        this._timeout = $timeout;
-
         this._service = {
             aggregator: Aggregator
         }
+
+        $document.bind("mouseup", (event) => {
+            this.hideDropDown(event);
+        });
+
         this.dropDownStyle = {};
 
         this.report = ualReport;
@@ -29,9 +32,9 @@ class UalReportFormController {
                     this._service.aggregator.all(datasource)
                         .then(aggregators => {
                             let defaultAggregators = _.chain(aggregators.data)
-                                                      .filter('isDefaultAggregator')
-                                                      .sortBy('order')
-                                                      .value();
+                                .filter('isDefaultAggregator')
+                                .sortBy('order')
+                                .value();
                             this.report.aggregators.set(defaultAggregators);
                         });
 
@@ -68,10 +71,15 @@ class UalReportFormController {
             addedAggregators.push(aggregator);
         }
     }
-    hideDropDown() {
-        this._timeout(() => {
+    
+    hideDropDown(event) {
+        let $container = $("#inpAggregators");
+        let isChild = $container.has(event.target).length > 0;
+        let isSame = $container.is(event.target);
+        if (!isSame && !isChild) {
             this.dropDownStyle.visibility = 'hidden';
-        }, 100);
+            this.inputStyle.position = 'static';
+        }
     }
 
 

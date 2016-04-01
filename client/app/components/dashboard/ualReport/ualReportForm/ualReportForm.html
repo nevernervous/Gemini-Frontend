@@ -23,7 +23,7 @@
         <div class="aggregation-search">
             <div class="aggregation-search-container">
                 <span class="-label">Aggregate by</span>
-                <ual-input on-focus="vm.dropDownStyle.visibility = 'visible'" on-blur="vm.hideDropDown()" value="vm.search.name" icon="ion-ios-search-strong">
+                <ual-input on-focus="vm.dropDownStyle.visibility = 'visible'" value="vm.search.name" icon="ion-ios-search-strong" id="inpAggregators">
                     <ual-dropdown filter='vm.search'ng-style="vm.dropDownStyle">
                         <ual-dropdown-messages>
                             <span class="-max-reached" ng-if="vm.report.aggregators.get().length >= vm.maxAggregators"> 
