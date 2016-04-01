@@ -15,6 +15,7 @@ class UalReportFormController {
         });
 
         this.dropDownStyle = {};
+        this.inputStyle = {};
 
         this.report = ualReport;
     }
@@ -67,9 +68,11 @@ class UalReportFormController {
     addAggregator(aggregator) {
         let addedAggregators = this.report.aggregators.get();
         if (!_.some(addedAggregators, { id: aggregator.id }) && addedAggregators.length < this.maxAggregators) {
-            aggregator.disabled = true;
             addedAggregators.push(aggregator);
         }
+    }
+    isAggregated(aggregator) {
+        return _.some(this.report.aggregators.get(), { id: aggregator.id });
     }
     
     hideDropDown(event) {
@@ -80,6 +83,11 @@ class UalReportFormController {
             this.dropDownStyle.visibility = 'hidden';
             this.inputStyle.position = 'static';
         }
+    }
+
+    showDropdown() {
+        this.inputStyle.position = 'relative';
+        this.dropDownStyle.visibility = 'visible'
     }
 
 

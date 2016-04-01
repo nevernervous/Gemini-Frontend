@@ -54,6 +54,8 @@ ual-variable-selected-item {
       user-select: none;
       @include font-clanot-news(12);
       text-align: center;
+      vertical-align: middle;
+      border: 1px solid $color08;
     }
 
     > .variable-description {

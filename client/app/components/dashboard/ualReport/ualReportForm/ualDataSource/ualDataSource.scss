@@ -19,7 +19,7 @@
                 
                 .data-source-group {
                     .data-source-item {                             
-                        &:hover > ual-tooltip {
+                        &:hover > span > ual-tooltip {
                             display: inline;
                             position: fixed;
                         }   
@@ -41,7 +41,7 @@
     .container {
         .content-list {
             .mCS_no_scrollbar_y {
-              height: 100%;
+                height: 100%;
             }
             .data-source-list {
                 &.-horizontal-fill {

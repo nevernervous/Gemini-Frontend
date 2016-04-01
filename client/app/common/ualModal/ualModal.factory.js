@@ -7,6 +7,7 @@ let ualModalService = function($q, $rootScope, ModalService) {
 
         ModalService.showModal(options)
             .then(modal => {
+                $("ual-modal button").focus();
                 setBackwardNavigation(true);
                 _modal = modal;
                 modal.close

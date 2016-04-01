@@ -1,10 +1,12 @@
 import user from './user.jpg';
+import menu from './menu.png';
 
 class UalNavBarController {
   /*@ngInject*/
   constructor(ualMainMenu, ualNavBar, Session, logoutModal) {
     this.name = 'ualNavBar';
     this.user = user;
+    this.menu = menu;
     this._session = Session;
 
     this._logoutModal = logoutModal;

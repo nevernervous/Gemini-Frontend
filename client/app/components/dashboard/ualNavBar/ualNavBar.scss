@@ -5,10 +5,14 @@ ual-nav-bar {
   @include gridle( row row-align between middle);
   > .navbar-header {
     color: $color00;
-    @include gridle( gutter 0 24px );
-    > i {
+    @include gridle( gutter 0 26px );
+    padding-top: 2px;
+    > .img-menu {
       cursor: pointer;
       margin-right: 16px;
+    }
+    > .title {
+      vertical-align: top;
     }
   }
   > .navbar-options {
