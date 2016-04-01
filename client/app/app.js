@@ -29,6 +29,7 @@ import Filters from './filters/filters';
 import Constants from './app.constants';
 import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
+import '@iamadamjowett/angular-click-outside/clickoutside.directive';
 
 import './common/fonts/clanot/clanot.scss';
 
@@ -42,6 +43,7 @@ console.log("JtDro: " + !!JtDro);
 
 angular.module('app', [
   'dragDrop',
+  'angular-click-outside',
   uiRouter,
   Constants.name,
   Common.name,
