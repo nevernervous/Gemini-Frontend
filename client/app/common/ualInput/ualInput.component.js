@@ -11,7 +11,8 @@ let ualInputComponent = {
         icon: '@',
         onBlur: '&?',
         onKeyup: '&?',
-        onFocus: '&?'
+        onFocus: '&?',
+        onKeypress: '&?'
     },
     transclude: true,
     template: template,
