@@ -4,4 +4,9 @@ ual-report-list {
   .header { 
   @include gridle( row row-align right );
     }
+    
+  .body-table{
+    @include gridle( row );
+    margin-top: 30px;
+  }  
 }  

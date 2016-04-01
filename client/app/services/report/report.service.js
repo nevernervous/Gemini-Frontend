@@ -1,4 +1,4 @@
-let reportService = function () {
+let reportService = function (Properties, ServicesTransform, $http, $q) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
 
