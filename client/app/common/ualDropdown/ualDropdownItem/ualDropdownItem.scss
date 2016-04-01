@@ -15,6 +15,7 @@ ual-dropdown-item:not(.-disabled) {
         background-color: $others01;
         @include font-clanot-news(14);
         color: $color06;
+        cursor: pointer;
     }
 }
 
