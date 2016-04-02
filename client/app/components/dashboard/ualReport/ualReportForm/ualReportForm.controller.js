@@ -1,6 +1,6 @@
 class UalReportFormController {
     /*@ngInject*/
-    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, $timeout) {
+    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, Report, $timeout) {
         this._state = $state;
         this._datasourcemodal = ualDataSource;
         this._variablesmodal = ualVariables;
@@ -9,12 +9,16 @@ class UalReportFormController {
         this._timeout = $timeout;
 
         this._service = {
-            aggregator: Aggregator
+            aggregator: Aggregator,
+            report: Report
         }
         this.dropDownStyle = {};
         this.inputStyle = {};
 
         this.report = ualReport;
+        
+        this.messageDisplayed = false;
+        this.saveResultMessage = {type: "-success",icon:"ion-ios-close-outline",text:"Falló"};
     }
 
     // STEP 1
@@ -85,7 +89,41 @@ class UalReportFormController {
         this.dropDownStyle.visibility = 'visible'
     }
 
-
+    setMesage(code = -1){
+        switch(code){
+            case 0: 
+                this.saveResultMessage = {type: "-success",icon:"ion-ios-checkmark-outline",text:"Report saved successfully."};
+                break;
+            case 1: 
+                this.saveResultMessage = {type: "-error",icon:"ion-ios-close-outline",text:"Report name already exists. Please select another."};
+                break;
+            default:
+                this.saveResultMessage = {type: "-error",icon:"ion-ios-close-outline",text:"The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."};
+                break;
+        }
+    }
+    saveReport(){
+        let report = this.report;
+        let form = this;
+        if(!report.name.get()){
+            return ;
+        }
+        this._service.report.save(report).then(
+            function(response){
+                form.setMesage(0);
+                report.reportId.set(response.data.reportId);
+            },
+            function(response){
+                if(false) form.setMesage(1);
+                else form.setMesage();
+                console.log("muerte... destrucción.... cumbia");
+            }
+        ).catch(function(){
+            form.setMesage();
+        }).finally(function(){
+            form.messageDisplayed = true;
+        });
+    }
 }
 
 export default UalReportFormController;

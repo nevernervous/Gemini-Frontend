@@ -6,13 +6,15 @@ import User from './user/user';
 import Configuration from './configuration/configuration';
 import Datasource from './datasource/datasource';
 import Aggregator from './aggregator/aggregator';
+import Report from './report/report';
 
 let sessionModule = angular.module('app.services', [
   Session.name,
   User.name,
   Configuration.name,
   Datasource.name,
-  Aggregator.name
+  Aggregator.name,
+  Report.name,
 ])
 
 .factory('ServicesTransform', servicesTransform)

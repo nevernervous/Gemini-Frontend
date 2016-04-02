@@ -1,0 +1,42 @@
+@import '../common';
+
+// LAYOUT
+ual-message-banner {
+    @include gridle( 12 );
+    width:100%;
+    &.-dashboard{
+        position: fixed;
+        width: 100%;
+        margin: 0;
+        left: 0;
+        top: 52px;
+    }
+    .ual-message-banner{
+        @include gridle( row row-align center middle );
+        height: 52px;
+    }
+}
+
+// VARIATIONS
+.ual-message-banner { 
+  color: $warningHighColor;
+  background: $warningLowColor;
+  i{
+    padding-right: 8px;
+    font-size: 26px;
+  }
+  &.-success{
+    color: $successHighColor;
+    background: $successLowColor;
+  }
+  &.-error{
+    color: $alertHighColor;
+    background: $alertLowColor;
+  }
+  > .icon-warning { 
+    @include icon-warning(26);
+  }
+  > span {
+    @include font-clanot-bold(18);
+  } 
+}

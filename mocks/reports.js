@@ -1,5 +1,9 @@
 module.exports = {
   '/api/Reports': {
+    POST: {
+        data: {"reportId": 1},
+        code: 401
+    },
     GET: {
       data: {
         "data": [
