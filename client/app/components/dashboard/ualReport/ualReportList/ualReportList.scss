@@ -7,6 +7,59 @@ ual-report-list {
     
   .body-table{
     @include gridle( row );
-    margin-top: 30px;
+    padding-top: 30px;
+    
+    > ual-table {
+        width: 100%;
+        
+        > .table-body {
+        
+          > ual-table-body {
+           width: 100%;
+            @include gridle(row);
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid $color08;
+                
+            > ual-column {
+              display: inline;
+              text-align: left;
+              color: $color07;
+            
+              &.-link-report {
+                margin-top: 2px;
+                @include gridle( 4 );
+                
+                > ng-transclude > a {                
+                  @include link();
+                }
+              }
+              
+              &.-data-report {
+                margin-top: 2px;
+                @include gridle( 4 );
+              }
+                
+              &.-center-date {
+                text-align: center;
+                margin-top: 2px;
+                @include gridle( 2 );
+              }
+                
+              &.-right-actions {
+                text-align: right;
+                margin-top: -2px;
+                @include gridle( 2 );
+                   
+                > ng-transclude > i {
+                  font-size: 22px;
+                }
+              }
+            }
+          }
+        }
+        
+    }
+    
   }  
 }  

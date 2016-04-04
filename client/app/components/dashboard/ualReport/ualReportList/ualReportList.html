@@ -2,9 +2,23 @@
     <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
 </div>
 <div class="body-table">
-    <ual-table ual-data="vm.reports">
-        <!--<ual-table-row ng-repeat="">
-            
-        </ual-table-row>    -->
+    <ual-table>         
+        <ual-table-body ng-repeat="item in vm.reports">
+            <ual-column class="-link-report">
+                <a href="#">{{item.name}}</a>
+            </ual-column>
+            <ual-column class="-data-report">
+                {{item.dataSource.dataSourceName}}
+            </ual-column>
+            <ual-column class="-center-date">
+                {{item.lastModificationDate}}
+            </ual-column>
+            <ual-column class="-right-actions">
+                <i class="ion-ios-close-outline"></i>
+                <i class="ion-ios-close-outline"></i>
+                <i class="ion-ios-close-outline"></i>
+                <i class="ion-ios-close-outline"></i>
+            </ual-column>        
+        </ual-table-body>
     </ual-table>    
 </div>    
