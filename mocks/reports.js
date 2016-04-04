@@ -2,7 +2,7 @@ module.exports = {
   '/api/Reports': {
     POST: {
         data: {"reportId": 1},
-        code: 401
+        code: 201
     },
     GET: {
       data: {

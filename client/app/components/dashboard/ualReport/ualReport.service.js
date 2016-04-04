@@ -8,7 +8,7 @@ let ualReportService = function () {
   let reportId = null;
   
   let create = () => {
-    name = "null";
+    name = null;
     datasource = null;
     variables = [];
     aggregators = [];
