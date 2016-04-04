@@ -23,6 +23,7 @@ class UalVariableSelectedItemController {
     this.error = false;
     let position = _.parseInt(this.variableId.split('_')[0]);
     if ( position !== order && this.isValid(order)) {
+      this.variableOrder = _.parseInt(order);
       this.cbChange.bind(this.cbBind)(item, order);
     } else {
       this.variableOrder = position;
