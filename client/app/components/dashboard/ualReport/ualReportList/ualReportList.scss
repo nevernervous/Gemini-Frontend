@@ -19,10 +19,54 @@ ual-report-list {
         display: block;
         height: 100%;
         width: 100%;
-        z-index: 98;  
+        z-index: 98; 
         
-          .ual-table-row {
-                        
+          .ual-table-header {
+            width: 100%;
+            @include gridle(row);
+              
+            > ual-column {
+              @include gridle( 3 );
+              display: inline;
+              text-align: left;              
+              
+              > ng-transclude {
+                pointer-events: none;
+                  
+                > span {
+                 pointer-events: none;
+                }
+                
+                > i {                                      
+  
+                  &.-hide-sort {
+                    display: none;
+                  }
+                    
+                  &.show-sort {
+                    display: block;
+                  }
+                    
+                }
+                
+              }
+              
+              &.-order-by{
+                  cursor: pointer;
+              }
+                
+              //&.-center-date {
+                 //@include gridle( 2 );
+              //}
+                    
+              &.-right-actions {
+                 //@include gridle( 2 );
+                 text-align: right;
+              }
+            }
+          }
+        
+          .ual-table-row {                        
             height: 50px;
             width: 100%;
             @include gridle(row);
@@ -35,10 +79,11 @@ ual-report-list {
               display: inline;
               text-align: left;
               color: $color07;
-            
+              @include gridle( 3 );
+              
               &.-link-report {
                 margin-top: 2px;
-                @include gridle( 4 );
+                //@include gridle( 4 );
                 
                 > ng-transclude > a {                
                   @include link();
@@ -47,19 +92,18 @@ ual-report-list {
               
               &.-data-report {
                 margin-top: 2px;
-                @include gridle( 4 );
+                //@include gridle( 4 );
               }
                 
               &.-center-date {
-                text-align: center;
                 margin-top: 2px;
-                @include gridle( 2 );
+                //@include gridle( 2 );
               }
                 
               &.-right-actions {
                 text-align: right;
                 margin-top: -2px;
-                @include gridle( 2 );
+                //@include gridle( 2 );
                    
                 > ng-transclude > i {
                   font-size: 22px;

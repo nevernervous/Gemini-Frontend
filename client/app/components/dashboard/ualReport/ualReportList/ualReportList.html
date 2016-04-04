@@ -4,6 +4,23 @@
 <div class="container">
     <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
         <ual-table class="ual-table">
+          <ual-table-header class="ual-table-header">
+            <ual-column id="ual-column-name" class="-order-by" ng-click="vm.sortColumn($event, [{column: 'name', order:'asc'}])">
+               Report Name
+               <i class="ion-ios-arrow-down -hide-sort"></i>
+            </ual-column>
+            <ual-column id="ual-column-data-source" class="-order-by" ng-click="vm.sortColumn($event, [{column: 'dataSource.dataSourceId', order:'asc'}, {column: 'lastModificationDate', order: 'desc'}])">
+                Data Source
+                <i class="ion-ios-arrow-down -hide-sort"></i>
+            </ual-column>
+            <ual-column id="ual-column-date" class="-center-date -order-by" ng-click="vm.sortColumn($event, [{column: 'lastModificationDate', order:'desc'}])">
+                Date
+                <i class="ion-ios-arrow-up -show-sort"></i>
+            </ual-column>
+            <ual-column class="-right-actions">
+                Actions
+            </ual-column>    
+          </ual-table-header>
           <ual-table-row ng-repeat="item in vm.reports" class="ual-table-row">
             <ual-column class="-link-report">
                 <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>

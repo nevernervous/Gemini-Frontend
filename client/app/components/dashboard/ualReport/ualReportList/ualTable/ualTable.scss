@@ -3,9 +3,7 @@
 ual-table { 
   
   .table-header {
-            @include gridle(row);    
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
+    pointer-events: null;
+  }
+  
 }  
