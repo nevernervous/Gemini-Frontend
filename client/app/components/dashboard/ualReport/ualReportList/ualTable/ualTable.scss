@@ -8,11 +8,4 @@ ual-table {
             margin: 0;
             padding: 0;
         }
-        
-        .table-body {
-            @include gridle(row);
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
 }  

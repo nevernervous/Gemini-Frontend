@@ -1,25 +1,35 @@
 @import '../../../../common/common';
 
-ual-report-list {
-  .header { 
-  @include gridle( row row-align right );
-    }
+ual-report-list {   
+   display: block;
+   height: 100%;
     
-  .body-table{
-    @include gridle( row );
+  .header { 
+    @include gridle( row row-align right );
+  }
+      
+  .container {
+    height: 100%;    
     padding-top: 30px;
     
-    > ual-table {
+    .content-list {
+        height: calc(100% - 100px);
+    
+       .ual-table {
+        display: block;
+        height: 100%;
         width: 100%;
+        z-index: 98;  
         
-        > .table-body {
-        
-          > ual-table-body {
-           width: 100%;
+          .ual-table-row {
+                        
+            height: 50px;
+            width: 100%;
             @include gridle(row);
             padding-top: 12px;
             padding-bottom: 12px;
             border-bottom: 1px solid $color08;
+            @include font-clanot-book(16);
                 
             > ual-column {
               display: inline;
@@ -58,8 +68,6 @@ ual-report-list {
             }
           }
         }
-        
     }
-    
   }  
 }  

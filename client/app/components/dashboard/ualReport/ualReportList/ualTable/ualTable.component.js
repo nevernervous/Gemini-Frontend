@@ -8,7 +8,7 @@ let ualTableComponent = {
   },
   transclude: {
     'header': '?ualTableHeader',
-    'body': 'ualTableBody',
+    'row': 'ualTableRow',
     'footer': '?ualTableFooter'
   },
   template,

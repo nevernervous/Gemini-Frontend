@@ -10,8 +10,6 @@ class UalReportListController {
     this._initialize();
   }
   
-  //_initialize() ¿Cuál dejar?
-  //$onInit() {
   _initialize() {
     this._reportService.all()
       .then(response => this.reports = response.data);
