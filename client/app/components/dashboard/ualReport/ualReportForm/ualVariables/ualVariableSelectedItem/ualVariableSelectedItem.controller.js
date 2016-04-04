@@ -31,7 +31,7 @@ class UalVariableSelectedItemController {
   }
 
   onChange(order) {
-    if ( !this.isValid(order) ) {
+    if ( !this.isValid(order) && order != "") {
       let tooltip = $('#' + this.variableId + ' ual-tooltip');
       let offset = $('#' + this.variableId).offset();
       offset.position = 'fixed';
