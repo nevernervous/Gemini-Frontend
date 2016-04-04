@@ -21,9 +21,16 @@ ual-message-banner {
 .ual-message-banner { 
   color: $warningHighColor;
   background: $warningLowColor;
+  span{
+    vertical-align: super;
+  }
   i{
     padding-right: 8px;
     font-size: 26px;
+    &.icon-warning { 
+        @include icon-warning(26);
+      }
+  
   }
   &.-success{
     color: $successHighColor;
@@ -32,9 +39,6 @@ ual-message-banner {
   &.-error{
     color: $alertHighColor;
     background: $alertLowColor;
-  }
-  > .icon-warning { 
-    @include icon-warning(26);
   }
   > span {
     @include font-clanot-bold(18);
