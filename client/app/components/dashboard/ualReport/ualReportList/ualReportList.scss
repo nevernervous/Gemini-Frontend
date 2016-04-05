@@ -14,6 +14,10 @@ ual-report-list {
     
     .content-list {
         height: calc(100% - 100px);
+        
+        > .mCSB_inside > .mCSB_container {
+            margin-right:  15px;
+        }
     
        .ual-table {
         display: block;
@@ -24,6 +28,8 @@ ual-report-list {
           .ual-table-header {
             width: 100%;
             @include gridle(row);
+            background-color: $color07;;    
+            padding: 12px !important;      
               
             > ual-column {
               @include gridle( 3 );
@@ -46,10 +52,8 @@ ual-report-list {
                   &.show-sort {
                     display: block;
                   }
-                    
-                }
-                
-              }
+                }                
+              }               
               
               &.-order-by{
                   cursor: pointer;
@@ -57,8 +61,18 @@ ual-report-list {
               
               &.-right-actions {
                  text-align: right;
-                 display: none;
               }
+            }                        
+              
+            &.-disabled {
+               > ual-column {
+                 pointer-events: none;
+                 cursor: default;
+               
+                  > ng-transclude > i {
+                    display: none;                    
+                  }
+               }             
             }
           }
         
@@ -66,40 +80,57 @@ ual-report-list {
             height: 50px;
             width: 100%;
             @include gridle(row);
-            padding-top: 12px;
-            padding-bottom: 12px;
+            padding: 12px !important;
             border-bottom: 1px solid $color08;
             @include font-clanot-book(16);
+            
+            &:hover{
+              .-right-actions {
+                > ng-transclude > i {
+                  display: inline-block;                  
+                  visibility: visible;
+                }
+              }
+            }
                 
             > ual-column {
-              display: inline;
+              display: inline-block;
               text-align: left;
               color: $color07;
               @include gridle( 3 );
+              margin-top: 2px;
               
               &.-link-report {
-                margin-top: 2px;
                 
                 > ng-transclude > a {                
                   @include link();
                 }
-              }
-              
-              &.-data-report {
-                margin-top: 2px;
-              }
-                
-              &.-center-date {
-                margin-top: 2px;
-              }
+              }              
                 
               &.-right-actions {
                 text-align: right;
-                margin-top: -2px;
-                display: none;
+                margin-top: 0px;
                    
                 > ng-transclude > i {
                   font-size: 22px;
+                  padding-left: 5px;
+                  display: none;
+                  height: 42px;
+                  vertical-align: middle;
+                                    
+                  opacity:0;
+                  opacity: 1 \9; /*just in case ie*/
+                  @include fadeIn();
+                  @include animation(fadeIn ease-in 1);
+                  @include animation-fill-mode(forwards);
+                  @include animation-duration(0.2s);
+                  @include animation-delay(1s);
+                  
+                  &.ion-ios-close-empty {
+                    cursor: pointer;
+                    font-size: 32px;
+                    margin-top: -10px;
+                  }
                 }
               }
             }
@@ -111,11 +142,10 @@ ual-report-list {
             @include font-clanot-book(14);
             color: $color07;
             text-align: center;
-            height: calc(100% - 100px);
+            height: 100%;
             line-height: 1.5;
-            div {
-                max-width: 350px;
-            }
+            display: block;
+            margin-top: 42px;
         }
     }
   }  

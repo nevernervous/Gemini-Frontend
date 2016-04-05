@@ -2,23 +2,23 @@
     <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
 </div>
 <div class="container">
-    <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
+    <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">        
         <ual-table class="ual-table">            
-          <ual-table-header class="ual-table-header" ng-hide="(vm.reports).length == 0">
+          <ual-table-header class="ual-table-header" ng-class="{'-disabled': (vm.reports).length == 0}">
             <ual-column id="ual-column-name" class="-order-by" ng-click="vm.sortColumn($event, [{column: 'name', order:'asc'}])">
                Report Name
-               <i class="ion-ios-arrow-down -hide-sort"></i>
+               <i class="ion-ios-arrow-down -hide-sort" ng-hide="(vm.reports).length == 0"></i>
             </ual-column>
             <ual-column id="ual-column-data-source" class="-order-by" ng-click="vm.sortColumn($event, [{column: 'dataSource.dataSourceId', order:'asc'}, {column: 'lastModificationDate', order: 'desc'}])">
                 Data Source
-                <i class="ion-ios-arrow-down -hide-sort"></i>
+                <i class="ion-ios-arrow-down -hide-sort" ng-hide="(vm.reports).length == 0"></i>
             </ual-column>
-            <ual-column id="ual-column-date" class="-center-date -order-by" ng-click="vm.sortColumn($event, [{column: 'lastModificationDate', order:'desc'}])">
+            <ual-column id="ual-column-date" class="-order-by" ng-click="vm.sortColumn($event, [{column: 'lastModificationDate', order:'desc'}])">
                 Last Modification Date
                 <i class="ion-ios-arrow-down -show-sort"></i>
             </ual-column>
             <ual-column class="-right-actions">
-                Actions
+                &nbsp;
             </ual-column>    
           </ual-table-header>
           <ual-table-row ng-repeat="item in vm.reports" class="ual-table-row">
@@ -32,15 +32,14 @@
                 {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm'}} CT
             </ual-column>
             <ual-column class="-right-actions">
-                <i class="ion-ios-redo-outline"></i>
-                <i class="ion-ios-download-outline"></i>
+                <i class="ion-android-person-add"></i>
                 <i class="ion-ios-copy-outline"></i>
-                <i class="ion-ios-compose-outline"></i>
+                <i class="ion-ios-close-empty" ng-click="vm.deleteReport(item)"></i>
             </ual-column>        
         </ual-table-row>
       </ual-table>
       <div class="empty-list" ng-hide="(vm.reports).length > 0">
-        No report exists.
+        No report exists
       </div>
     </div>    
 </div>

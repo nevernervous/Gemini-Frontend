@@ -1,14 +1,21 @@
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report) {
-    this.name = 'ualReportList';
-        
-    this.reports = [];
-    
+  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
+    this.reports = [];    
     this._reportService = Report;
+    this._deletereportmodal = ualReportListDeleteReportModal;
     
-    this._initialize();    
+    this._initialize();  
+    
+    this._suscriptions = [];
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));  
   }
+  
+  _closemodal(response) {
+    this._suscriptions.forEach(suscription => suscription());
+    this._close(response);
+  }  
   
   _initialize() {
 
@@ -47,9 +54,22 @@ class UalReportListController {
       
     this.reports = _.chain(this.reports)
                     .sortByOrder(columns, order)
-                    .value();                  
+                    .value();              
   }
   
+  deleteReport(report) {
+    this._deletereportmodal.open()
+    .then(response => {
+      if (response) {
+        this.reports = this.reports
+                            .filter(function (item) {
+                                return item.id !== report.id;
+                            }); 
+                            
+        //TODO: Hacer servicio para borrado lógico                            
+      }
+    });
+  }
 }
 
 export default UalReportListController;
