@@ -7,6 +7,7 @@ let ualMessageBannerComponent = {
   bindings: {
       config: "="
   },
+  transclude: true,
   template,
   controller,
   controllerAs: 'vm'

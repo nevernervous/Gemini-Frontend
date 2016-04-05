@@ -4,13 +4,15 @@ import ualDataSource from './ualDataSource/ualDataSource';
 import ualVariables from './ualVariables/ualVariables';
 import ualReportFormComponent from './ualReportForm.component';
 import ualAgregationItem from './ualAgregationItem/ualAgregationItem';
+import ualReportInput from './ualReportInput/ualReportInput';
 
 let ualReportFormModule = angular.module('ualReportForm', [
   uiRouter,
   ualVariables.name,
   // MODALS
   ualDataSource.name,
-  ualAgregationItem.name
+  ualAgregationItem.name,
+  ualReportInput.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {

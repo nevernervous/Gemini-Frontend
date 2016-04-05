@@ -43,6 +43,9 @@ let ualReportService = function () {
         get: getName,
         set: setName
     },
+    _name: function(value){
+      return (angular.isDefined(value))? this.name.set(value): this.name.get();  
+    },
     datasource: {
       get: getDataSource,
       set: setDataSource,

@@ -1,0 +1,9 @@
+<div class="report-form-input">
+    <label ng-hide="vm.visibleInput" ng-click="vm.displayInput(true)" for="reportName">{{vm.labelText()}}</label>
+    <div ng-show="vm.visibleInput">
+        <input type="text" ng-model="vm.report._name" ng-model-options="{ getterSetter:true, allowInvalid:true }" 
+               ng-blur="vm.displayInput(false)" ng-keypress="vm.checkEnter($event)" id="reportName"
+               placeholder="Enter report name">
+        <i class="icon-warning ion-ios-close-outline"></i>
+    </div>
+</div>
