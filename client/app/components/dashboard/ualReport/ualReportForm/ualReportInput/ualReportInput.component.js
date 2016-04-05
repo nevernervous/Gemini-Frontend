@@ -10,7 +10,8 @@ let ualReportInputComponent = {
     type: '@',
     value: '=',
     onFocus: '&',
-    isRequired: '='
+    isRequired: '=',
+    invalidInput: '=',
   },
   template,
   controller,

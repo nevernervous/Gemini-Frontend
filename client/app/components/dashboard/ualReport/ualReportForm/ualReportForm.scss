@@ -15,15 +15,6 @@ ual-report-form {
         > .section {
             border-bottom: 1px solid $color08;
         }
-        .report-name {
-            @include gridle(row);
-            padding: 20px 0;
-            >.title {
-                @include gridle(6);
-                @include font-clanot-book(24);
-                color: $color07;
-            }
-        }
         .selected-parameters {
             @include gridle(row);
             padding: 30px 0;

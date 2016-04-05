@@ -19,6 +19,8 @@ class UalReportFormController {
         
         this.messageDisplayed = false;
         this.saveResultMessage = {type: "-success",icon:"ion-ios-close-outline",text:"Falló"};
+        
+        this.duplicatedName = false;
     }
 
     // STEP 1
@@ -112,16 +114,25 @@ class UalReportFormController {
             function(response){
                 form.setMesage(0);
                 report.reportId.set(response.data.reportId);
+                form.messageDisplayed = true;
             },
             function(response){
-                if(false) form.setMesage(1);
-                else form.setMesage();
+                if(false){ 
+                    form.setMesage(1);
+                    form.messageDisplayed = true;
+                }else{ 
+                    form.duplicatedName = true;
+                    form.messageDisplayed = false;
+                    //form.setMesage();
+                }
                 console.log("muerte... destrucción.... cumbia");
             }
         ).catch(function(){
             form.setMesage();
-        }).finally(function(){
             form.messageDisplayed = true;
+        }).finally(function(){
+//            console.log("hola mundo");
+//            $apply();
         });
     }
 }
