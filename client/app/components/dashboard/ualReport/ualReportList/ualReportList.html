@@ -3,8 +3,8 @@
 </div>
 <div class="container">
     <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
-        <ual-table class="ual-table">
-          <ual-table-header class="ual-table-header">
+        <ual-table class="ual-table">            
+          <ual-table-header class="ual-table-header" ng-hide="(vm.reports).length == 0">
             <ual-column id="ual-column-name" class="-order-by" ng-click="vm.sortColumn($event, [{column: 'name', order:'asc'}])">
                Report Name
                <i class="ion-ios-arrow-down -hide-sort"></i>
@@ -15,7 +15,7 @@
             </ual-column>
             <ual-column id="ual-column-date" class="-center-date -order-by" ng-click="vm.sortColumn($event, [{column: 'lastModificationDate', order:'desc'}])">
                 Last Modification Date
-                <i class="ion-ios-arrow-up -show-sort"></i>
+                <i class="ion-ios-arrow-down -show-sort"></i>
             </ual-column>
             <ual-column class="-right-actions">
                 Actions
@@ -39,5 +39,8 @@
             </ual-column>        
         </ual-table-row>
       </ual-table>
+      <div class="empty-list" ng-hide="(vm.reports).length > 0">
+        No reports exists.
+      </div>
     </div>    
 </div>

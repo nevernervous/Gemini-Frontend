@@ -7,14 +7,14 @@ class UalReportListController {
     
     this._reportService = Report;
     
-    this._initialize();    
+    //this._initialize();    
   }
   
   _initialize() {
 
     this._reportService.all()
       .then(response => this.reports = _.chain(response.data)
-                                       .sortByOrder(['lastModificationDate'], ['asc'])
+                                       .sortByOrder(['lastModificationDate'], ['desc'])
                                        .value());                                          
   }
   
