@@ -1,10 +1,12 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualReport, ualDataSource, ualVariables, Aggregator) {
+  constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, $scope) {
     this._state = $state;
     this._datasourcemodal = ualDataSource;
     this._variablesmodal = ualVariables;
     this.maxAggregators = 10;
+    
+    this._scope = $scope;
 
     this._service = {
       aggregator: Aggregator
@@ -56,6 +58,11 @@ class UalReportFormController {
   $onInit() {
     this.report.create();
     this.selectDataSource();
+
+    this._scope.$on('UALMODAL.OPEN', () => {
+        this.hideDropdown();
+    });
+
   }
 
   addAggregator(aggregator) {

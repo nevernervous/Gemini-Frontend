@@ -2,15 +2,14 @@ let ualModalService = function($q, $rootScope, ModalService, $timeout) {
   "ngInject";
   let _modal;
 
+  let suscriptions = [];
+
   let open = (options) => {
     let deferred = $q.defer();
 
     ModalService.showModal(options)
       .then(modal => {
-        $timeout(() => {
-          $('body').click();
-        })
-        
+        suscriptions.push($rootScope.$broadcast('UALMODAL.OPEN'));
         $("ual-modal button").focus();
         setBackwardNavigation(true);
         _modal = modal;
@@ -27,7 +26,12 @@ let ualModalService = function($q, $rootScope, ModalService, $timeout) {
   }
 
   let close = () => {
+    suscriptions.push($rootScope.$broadcast('UALMODAL.CLOSE'));
     _modal.controller._close();
+    $rootScope.$on('$stateChangeStart', () => {
+       suscriptions.forEach(item => item()); 
+    });
+
   }
 
   let preventBackwardNavigation = (event) => {
