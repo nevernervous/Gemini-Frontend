@@ -29,7 +29,7 @@
                 {{item.dataSource.dataSourceName}}
             </ual-column>
             <ual-column class="-center-date">
-                {{item.lastModificationDate}}
+                {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm'}} CT
             </ual-column>
             <ual-column class="-right-actions">
                 <i class="ion-ios-redo-outline"></i>
@@ -40,7 +40,7 @@
         </ual-table-row>
       </ual-table>
       <div class="empty-list" ng-hide="(vm.reports).length > 0">
-        No reports exists.
+        No report exists.
       </div>
     </div>    
 </div>

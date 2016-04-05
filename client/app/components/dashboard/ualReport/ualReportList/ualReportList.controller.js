@@ -7,7 +7,7 @@ class UalReportListController {
     
     this._reportService = Report;
     
-    //this._initialize();    
+    this._initialize();    
   }
   
   _initialize() {

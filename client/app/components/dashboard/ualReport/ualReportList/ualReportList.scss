@@ -57,6 +57,7 @@ ual-report-list {
               
               &.-right-actions {
                  text-align: right;
+                 display: none;
               }
             }
           }
@@ -95,6 +96,7 @@ ual-report-list {
               &.-right-actions {
                 text-align: right;
                 margin-top: -2px;
+                display: none;
                    
                 > ng-transclude > i {
                   font-size: 22px;
