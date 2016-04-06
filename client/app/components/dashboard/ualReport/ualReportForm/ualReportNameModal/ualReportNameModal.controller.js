@@ -30,7 +30,7 @@ class ualReportNameModalController {
             modal._closemodal(true);
         },
         function(response){
-            if(false){ 
+            if(true){ 
                 form.setMesage(1);
                 form.messageDisplayed = true;
                 
