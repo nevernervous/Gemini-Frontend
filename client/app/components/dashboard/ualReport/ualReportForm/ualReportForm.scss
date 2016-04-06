@@ -60,6 +60,15 @@ ual-report-form {
                     position: relative;
                     display: inline-block;
                     width: 350px;
+                    
+                    i {
+                        @include -ms-browser(){
+                           margin-top: 6px;
+                           vertical-align: middle;
+                           display: inline-block;
+                        }
+                    }
+                    
                     ual-dropdown {
                         width:100%;
                         position: absolute;
