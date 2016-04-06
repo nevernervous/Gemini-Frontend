@@ -8,7 +8,7 @@ class UalDataSourceController {
         this._selected = selected;
         this._filter = $filter;
         this.searchTerm = {};
-
+        
         this._animate = $animate;
 
         this.datasources;
@@ -48,7 +48,7 @@ class UalDataSourceController {
     }
 
     shouldShow(group) {
-        return this._filter("filter")(group.items, this.searchTerm).length > 0;
+        return this._filter("filterBy")(group.items, this.searchTerm).length > 0;
     }
 
     isActive(itemId) {
