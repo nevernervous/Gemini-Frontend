@@ -9,7 +9,7 @@ ual-report-list {
   }
       
   .container {
-    height: 100%;    
+    height: 100%;
     padding-top: 30px;
     
     .content-list {
@@ -22,11 +22,9 @@ ual-report-list {
        .ual-table {
         display: block;
         height: 100%;
-        width: 100%;
         z-index: 98; 
         
           .ual-table-header {
-            width: 100%;
             @include gridle(row);
             background-color: $color07;;    
             padding: 12px !important;      
@@ -44,7 +42,6 @@ ual-report-list {
                 }
                 
                 > i {                                      
-  
                   &.-hide-sort {
                     display: none;
                   }
