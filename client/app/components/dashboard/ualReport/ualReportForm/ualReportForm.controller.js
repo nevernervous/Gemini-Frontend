@@ -1,10 +1,13 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualReport, ualDataSource, ualVariables, Aggregator) {
+  constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, $scope) {
     this._state = $state;
     this._datasourcemodal = ualDataSource;
     this._variablesmodal = ualVariables;
     this.maxAggregators = 10;
+
+    this._scope = $scope;
+    this._suscriptions = [];
 
     this._service = {
       aggregator: Aggregator
@@ -14,6 +17,19 @@ class UalReportFormController {
     this.inputStyle = {};
 
     this.report = ualReport;
+  }
+
+  $onInit() {
+    this.report.create();
+    this.selectDataSource();
+
+    this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
+
+    this._scope.$on('$stateChangeStart', () => this._unsuscribe());
+  }
+
+  _unsuscribe() {
+    this._suscriptions.forEach(suscription => suscription());
   }
 
   // STEP 1
@@ -50,12 +66,6 @@ class UalReportFormController {
       selecteds: this.report.variables.get()
     })
       .then(variables => this.report.variables.set(variables));
-  }
-
-
-  $onInit() {
-    this.report.create();
-    this.selectDataSource();
   }
 
   addAggregator(aggregator) {
