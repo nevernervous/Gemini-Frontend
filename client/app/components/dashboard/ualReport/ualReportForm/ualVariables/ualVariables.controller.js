@@ -48,6 +48,7 @@ class UalVariablesController {
     this.isSelected(variable) ?
       _.remove(this.selecteds, { 'id': variable.id }) :
       this.selecteds.push(variable);
+      this.hideTooltip();
   }
 
   isSelectedGroup(group) {
