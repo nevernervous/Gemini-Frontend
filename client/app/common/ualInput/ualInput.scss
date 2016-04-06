@@ -10,6 +10,9 @@
       border: 0;
       height: 30px;
       color: $color06;
+      &:disabled {
+        background-color: $color00;
+      }
     }
     i {
       font-size: 22px;
