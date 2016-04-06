@@ -14,7 +14,7 @@ ual-dropdown-item {
 ual-dropdown-item:not(.-disabled) {
     &:hover {
         background-color: $others01;
-        @include font-clanot-bold(14);
+        @include font-clanot-news(14);
         color: $color06;
         cursor: pointer;
     }
