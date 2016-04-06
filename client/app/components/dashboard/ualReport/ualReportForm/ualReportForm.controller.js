@@ -1,6 +1,6 @@
 class UalReportFormController {
     /*@ngInject*/
-    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, Report, $timeout) {
+    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, Report, $timeout, ualReportNameModal) {
         this._state = $state;
         this._datasourcemodal = ualDataSource;
         this._variablesmodal = ualVariables;
@@ -21,6 +21,8 @@ class UalReportFormController {
         this.saveResultMessage = {type: "-success",icon:"ion-ios-close-outline",text:"Falló"};
         
         this.duplicatedName = false;
+        
+        this._ualReportNameModal = ualReportNameModal;
     }
 
     // STEP 1
@@ -108,6 +110,10 @@ class UalReportFormController {
         let report = this.report;
         let form = this;
         if(!report.name.get()){
+            this._ualReportNameModal.open({
+                report: this.report,
+                reportForm: this,
+            });
             return ;
         }
         this._service.report.save(report).then(
