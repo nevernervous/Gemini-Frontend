@@ -30,6 +30,8 @@ class UalVariablesController {
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
     this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('DRAGGING.START', () => this.dragging = true));
+    this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
   }
 
   _closemodal(response) {

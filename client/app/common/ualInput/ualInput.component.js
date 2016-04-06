@@ -7,12 +7,13 @@ let ualInputComponent = {
     bindings: {
         ualId: '@',
         value: '=',
-        minChars: '=',
+        minChars: '<',
         icon: '@',
         onBlur: '&?',
         onKeyup: '&?',
         onFocus: '&?',
-        onKeypress: '&?'
+        onKeypress: '&?',
+        ualDisabled: '<'
     },
     transclude: true,
     template: template,
