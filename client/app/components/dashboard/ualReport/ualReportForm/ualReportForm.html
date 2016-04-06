@@ -45,7 +45,7 @@
     </div>
     <div class="aggregation-items">
       <div class="aggregated-container">
-        <ual-agregation-item ng-repeat="item in vm.report.aggregators.get()">{{item.name}}</ual-agregation-item>
+        <ual-agregation-item ng-repeat="item in vm.report.aggregators.get()">{{$index+1}}. {{item.name}}</ual-agregation-item>
       </div>
     </div>
   </div>
