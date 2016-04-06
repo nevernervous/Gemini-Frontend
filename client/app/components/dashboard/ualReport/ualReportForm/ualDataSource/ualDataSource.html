@@ -12,7 +12,7 @@
     </div>
     <div class="loading-message" ng-show="!vm.datasources || !vm.hasLoaded">Loading ...</div>
     <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filter:vm.searchTerm | isEmpty)">No results match your search</div>
-    <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark', advanced:{ updateOnContentResize: true, updateOnSelectorChange: '#resizable-container' } }" ng-if="vm.datasources" id="content-list">
+    <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark', advanced:{ updateOnContentResize: true, updateOnSelectorChange: '#resizable-container' }, callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip }  }" ng-if="vm.datasources" id="content-list">
         <div class="data-source-list" id="data-source-list" ng-show="vm.hasLoaded">
             <div id="resizable-container" ual-resize on-resize='vm.checkOverflow()' >
                 <ual-data-source-group datasource-group="group.data" ng-repeat="group in vm.datasources.groups | orderBy : 'data.order'" ng-show="vm.shouldShow(group)" class="data-source-group">
