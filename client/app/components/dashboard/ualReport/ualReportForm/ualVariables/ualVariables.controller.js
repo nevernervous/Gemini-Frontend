@@ -64,14 +64,14 @@ class UalVariablesController {
   }
 
   selectAll(){
-    const filters = this._filter("filter")(this.variables.items, this.standardFilter);
+    const filters = this._filter("filterBy")(this.variables.items, this.standardFilter);
     this.selecteds = _.clone(filters);
   }
   deleteAll() {
     this._deleteallmodal.open()
     .then(response => {
       if (response) {
-        const filters = this._filter("filter")(this.selecteds, this.selectedFilter);
+        const filters = this._filter("filterBy")(this.selecteds, this.selectedFilter);
         const ids = _.map(filters, item => item.id);
         this.selecteds = _.reject(this.selecteds, item => _.includes(ids, item.id));
       }
