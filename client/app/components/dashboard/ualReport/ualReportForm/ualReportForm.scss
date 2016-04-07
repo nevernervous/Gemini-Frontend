@@ -60,17 +60,15 @@ ual-report-form {
                     position: relative;
                     display: inline-block;
                     width: 350px;
-                    
                     i {
-                        @include -ms-browser(){
-                           margin-top: 6px;
-                           vertical-align: middle;
-                           display: inline-block;
+                        @include -ms-browser() {
+                            margin-top: 6px;
+                            vertical-align: middle;
+                            display: inline-block;
                         }
                     }
-                    
                     ual-dropdown {
-                        width:100%;
+                        width: 100%;
                         position: absolute;
                         left: 0;
                         bottom: 34px;
@@ -88,12 +86,19 @@ ual-report-form {
                                 width: 100%;
                                 padding-top: 1px;
                                 @include font-clanot-bold(12);
-                                @media (max-width: 1024px) {
-                                    @include font-clanot-bold(11);
+                                > span {
+                                    margin: auto 0;
                                 }
                                 > .-icon-warning {
+                                    vertical-align: middle; 
+                                    @include -ms-browser {
+                                        vertical-align: sub;
+                                    }
+                                    @include -moz-browser(){
+                                        vertical-align: bottom;
+                                    }
                                     font-size: 12px;
-                                    vertical-align: middle;
+                                    margin: auto 0;
                                     @include icon-warning(14);
                                 }
                             }
