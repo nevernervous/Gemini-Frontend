@@ -21,6 +21,10 @@ ual-modal.-yesno {
             .-error-tooltip{
                 color: $alertHighColor;
                 margin-top: 10px;
+                @include -ms-browser(){
+                    position: relative;
+                    top: 10px;
+                }
             }
       }
   }
