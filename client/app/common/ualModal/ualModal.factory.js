@@ -14,6 +14,7 @@ let ualModalService = function($q, $rootScope, ModalService, $timeout) {
         modal.close
           .then(result => deferred.resolve(result))
           .finally(() => {
+            $rootScope.$broadcast('UALMODAL.CLOSE');
             setBackwardNavigation(false);
             _modal.controller.onClose && _modal.controller.onClose()
           });
@@ -24,7 +25,6 @@ let ualModalService = function($q, $rootScope, ModalService, $timeout) {
   }
 
   let close = () => {
-    $rootScope.$broadcast('UALMODAL.CLOSE');
     _modal.controller._close();
   }
 
