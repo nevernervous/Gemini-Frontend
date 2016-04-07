@@ -30,7 +30,7 @@ class ualReportNameModalController {
             modal._closemodal(true);
         },
         function(response){
-            if(true){ 
+            if(response.data.indexOf(form.duplicatedErrorResponse) < 0){ 
                 form.setMesage(1);
                 form.messageDisplayed = true;
                 

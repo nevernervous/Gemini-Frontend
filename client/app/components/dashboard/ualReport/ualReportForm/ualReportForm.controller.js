@@ -20,6 +20,7 @@ class UalReportFormController {
         this.messageDisplayed = false;
         this.saveResultMessage = {type: "-success",icon:"ion-ios-close-outline",text:"Falló"};
         
+        this.duplicatedErrorResponse = "There is already a report with the same name";
         this.duplicatedName = false;
         
         this._ualReportNameModal = ualReportNameModal;
@@ -123,7 +124,7 @@ class UalReportFormController {
                 form.messageDisplayed = true;
             },
             function(response){
-                if(false){ 
+                if(response.data.indexOf(form.duplicatedErrorResponse) < 0){ 
                     form.setMesage(1);
                     form.messageDisplayed = true;
                 }else{ 
