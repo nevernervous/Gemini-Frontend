@@ -29,7 +29,7 @@
                             }
                         }
                         ual-variables-group {
-                            ual-checkbox {
+                            ual-checkbox {                                
                                 @include ellipses();
                                 padding: 7px 0;
                                 display: list-item;
@@ -38,6 +38,7 @@
 
                                 > span {
                                     background-color: transparent;
+                                    line-height: 1;
 
                                     &:hover ual-tooltip {
                                         display: inline;
