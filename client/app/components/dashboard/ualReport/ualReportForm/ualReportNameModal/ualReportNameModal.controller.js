@@ -40,7 +40,6 @@ class ualReportNameModalController {
                 form.messageDisplayed = false;
                 //form.setMesage();
             }
-            console.log("muerte... destrucción.... cumbia");
         }
     ).catch(function(){
         form.setMesage();
