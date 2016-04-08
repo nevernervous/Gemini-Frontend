@@ -19,7 +19,6 @@ class UalReportListController {
   }  
   
   order(predicate) {
-    console.log(predicate);  
     this.predicate = predicate;
     this.reverse = (this.predicate === predicate) ? !this.reverse : false;
     this.reports = this._filter('orderBy')(this.reports, predicate, this.reverse);
