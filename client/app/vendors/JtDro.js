@@ -14,10 +14,12 @@ app.directive('draggable', function() {
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('Text', this.id);
         this.classList.add('drag');
+        scope.$emit("DRAGGING.START");
         return false;
       }
 
       let dragend = function(e) {
+        scope.$emit("DRAGGING.END");
         this.classList.remove('drag');
         return false;
       }
