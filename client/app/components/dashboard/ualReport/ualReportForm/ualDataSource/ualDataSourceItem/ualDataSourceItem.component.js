@@ -5,7 +5,7 @@ import './ualDataSourceItem.scss';
 let ualDataSourceItemComponent = {
   restrict: 'E',
   bindings: {
-      datasourceItem: "="
+      datasourceItem: "<"
   },
   template,
   transclude: true,

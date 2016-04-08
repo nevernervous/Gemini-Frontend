@@ -5,7 +5,7 @@ import './ualDataSourceGroup.scss';
 let ualDataSourceGroupComponent = {
   restrict: 'E',
   bindings: {
-      datasourceGroup : "="
+      datasourceGroup : "<"
   },
   template,
   transclude: true,

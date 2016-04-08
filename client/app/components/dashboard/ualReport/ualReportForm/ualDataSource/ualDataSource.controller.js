@@ -8,7 +8,7 @@ class UalDataSourceController {
         this._selected = selected;
         this._filter = $filter;
         this.searchTerm = {};
-        
+
         this._animate = $animate;
 
         this.datasources;
@@ -18,6 +18,8 @@ class UalDataSourceController {
         this._suscriptions = [];
         this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
         this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
+        this._suscriptions.push($rootScope.$on('RENDER.END', () => this.columnCount()));
+
     }
 
     _closemodal(response) {
@@ -59,30 +61,38 @@ class UalDataSourceController {
         this.selected = this.isActive(item.id) ? null : item;
     }
 
-    checkOverflow() {
-        if (this.finishItemRender) {
-            let $marker = angular.element(document.getElementById("overflow-marker"))[0];
-            let $container = angular.element(document.getElementById("content-list"))[0];
-            let $resizableContainer = angular.element(document.getElementById("resizable-container"))[0];
-            let $dataSourceList = angular.element(document.getElementById("data-source-list"))[0];
+    columnCount() {
+      let total = ( this.datasources.items.length + this.datasources.groups.length ) * 36;
+      let $container = angular.element(document.getElementById("content-list"))[0];
+      let rows = Math.ceil(total / $container.clientHeight);
 
-            if (!$marker || !$container) {
-                return;
-            }
-
-            let markerWidth = $marker.offsetLeft;
-            let containerWidth = $container.clientWidth;
-
-            let hasHorizontalOverflow = markerWidth > containerWidth;
-            let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
-            let action = (!(hasHorizontalOverflow || !needHorizontalFill)) ? "addClass" : "removeClass" ;
-            
-            this._animate[action]($dataSourceList, '-horizontal-fill').then(() => {
-                    this.hasLoaded = true;
-                });
-
-        }
+      this.columns = rows > 3 ? "columns-4" : "columns-" + rows;
     }
+
+    // checkOverflow() {
+    //     if (this.finishItemRender) {
+    //         let $marker = angular.element(document.getElementById("overflow-marker"))[0];
+    //         let $container = angular.element(document.getElementById("content-list"))[0];
+    //         let $resizableContainer = angular.element(document.getElementById("resizable-container"))[0];
+    //         let $dataSourceList = angular.element(document.getElementById("data-source-list"))[0];
+
+    //         if (!$marker || !$container) {
+    //             return;
+    //         }
+
+    //         let markerWidth = $marker.offsetLeft;
+    //         let containerWidth = $container.clientWidth;
+
+    //         let hasHorizontalOverflow = markerWidth > containerWidth;
+    //         let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
+    //         let action = (!(hasHorizontalOverflow || !needHorizontalFill)) ? "addClass" : "removeClass" ;
+
+    //         this._animate[action]($dataSourceList, '-horizontal-fill').then(() => {
+    //                 this.hasLoaded = true;
+    //             });
+
+    //     }
+    // }
 
     showTooltip(e){
       let datasource = $("#"+e.target.id);
@@ -108,8 +118,11 @@ class UalDataSourceController {
     }
 
     _initialize() {
-        this._datasource.all('group')
-            .then(response => this.datasources = response.data);
+      this.columns = "columns-1";
+      this._datasource.all('group')
+      .then(response => {
+        this.datasources = response.data;
+      });
     }
 }
 
