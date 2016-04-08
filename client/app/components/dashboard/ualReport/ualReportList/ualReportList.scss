@@ -27,15 +27,10 @@ ual-report-list {
               
             > ual-column {
               @include gridle( 3 );
-              display: inline;
-              text-align: left;              
+              display: inline-block;
+              text-align: left; 
               
-              > ng-transclude {
-                pointer-events: none;
-                  
-                > span {
-                 pointer-events: none;
-                }
+              > ng-transclude {                                    
                 
                 > i {                                      
   

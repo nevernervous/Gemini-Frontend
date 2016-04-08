@@ -5,17 +5,20 @@
     <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
         <ual-table class="ual-table">            
           <ual-table-header class="ual-table-header" ng-hide="(vm.reports).length == 0">
-            <ual-column id="ual-column-name" class="-order-by" ng-click="vm.sortColumn($event, [{column: 'name', order:'asc'}])">
+            <ual-column id="ual-column-name" class="-order-by" ng-click="vm.order(['name'])">
                Report Name
-               <i class="ion-ios-arrow-down -hide-sort"></i>
+               <i class="ion-ios-arrow-up" ng-show="vm.predicate == 'name' && vm.reverse" ></i>
+               <i class="ion-ios-arrow-down" ng-show="vm.predicate == 'name' && !vm.reverse" ></i>
             </ual-column>
-            <ual-column id="ual-column-data-source" class="-order-by" ng-click="vm.sortColumn($event, [{column: 'dataSource.dataSourceId', order:'asc'}, {column: 'lastModificationDate', order: 'desc'}])">
+            <ual-column id="ual-column-data-source" class="-order-by" ng-click="vm.order(['dataSource'])">
                 Data Source
-                <i class="ion-ios-arrow-down -hide-sort"></i>
+                <i class="ion-ios-arrow-up" ng-show="vm.predicate ==  'dataSource' && vm.reverse"></i>
+                <i class="ion-ios-arrow-down" ng-show="vm.predicate == 'dataSource' && !vm.reverse"></i>
             </ual-column>
-            <ual-column id="ual-column-date" class="-center-date -order-by" ng-click="vm.sortColumn($event, [{column: 'lastModificationDate', order:'desc'}])">
+            <ual-column id="ual-column-date" class="-center-date -order-by" ng-click="vm.order(['lastModificationDate'])">
                 Last Modification Date
-                <i class="ion-ios-arrow-down -show-sort"></i>
+                <i class="ion-ios-arrow-up" ng-show="vm.predicate == 'lastModificationDate' && vm.reverse"></i>
+                <i class="ion-ios-arrow-down" ng-show="vm.predicate == 'lastModificationDate' && !vm.reverse"></i>
             </ual-column>
             <ual-column class="-right-actions">
                 Actions
@@ -26,7 +29,7 @@
                 <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>
             </ual-column>
             <ual-column class="-data-report">
-                {{item.dataSource.dataSourceName}}
+                {{item.dataSource}}
             </ual-column>
             <ual-column class="-center-date">
                 {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm'}} CT
