@@ -29,7 +29,14 @@
                             }
                         }
                         ual-variables-group {
-                            ual-checkbox {
+                            ual-checkbox { 
+                                    
+                                &.-select-all {
+                                  > span > span {
+                                    @include font-clanot-news(14);
+                                  }
+                                }
+                                                           
                                 @include ellipses();
                                 padding: 7px 0;
                                 display: list-item;
@@ -38,6 +45,7 @@
 
                                 > span {
                                     background-color: transparent;
+                                    line-height: 1;
 
                                     &:hover ual-tooltip {
                                         display: inline;
