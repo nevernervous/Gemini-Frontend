@@ -1,9 +1,9 @@
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $filter) {
-    this.name = 'ualReportList';        
+  constructor(Report, $filter) {       
     this.reports = [];    
     this._reportService = Report;
+    
     this._filter = $filter;
     this.predicate = 'lastModificationDate';
     this.reverse = true;
