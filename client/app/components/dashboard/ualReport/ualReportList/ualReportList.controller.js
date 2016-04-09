@@ -18,11 +18,19 @@ class UalReportListController {
                                        .value());                                           
   }  
   
-  order(predicate) {
+  order(predicate) {      
     this.predicate = predicate;
     this.reverse = (this.predicate === predicate) ? !this.reverse : false;
+    
+    if (predicate.indexOf("-lastModificationDate") > -1)
+      predicate[1] = this.reverse ? "lastModificationDate" : '-lastModificationDate';  
+    
     this.reports = this._filter('orderBy')(this.reports, predicate, this.reverse);
   };  
+  
+  contains(column){
+      return (this.predicate.indexOf(column) > -1);
+  }
   
 }
 

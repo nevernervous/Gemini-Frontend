@@ -10,10 +10,10 @@
                <i class="ion-ios-arrow-up" ng-show="vm.predicate == 'name' && vm.reverse" ></i>
                <i class="ion-ios-arrow-down" ng-show="vm.predicate == 'name' && !vm.reverse" ></i>
             </ual-column>
-            <ual-column id="ual-column-data-source" class="-order-by" ng-click="vm.order(['dataSource'])">
+            <ual-column id="ual-column-data-source" class="-order-by" ng-click="vm.order(['dataSource','-lastModificationDate'])">
                 Data Source
-                <i class="ion-ios-arrow-up" ng-show="vm.predicate ==  'dataSource' && vm.reverse"></i>
-                <i class="ion-ios-arrow-down" ng-show="vm.predicate == 'dataSource' && !vm.reverse"></i>
+                <i class="ion-ios-arrow-up" ng-show="vm.contains('dataSource') && vm.reverse"></i>
+                <i class="ion-ios-arrow-down" ng-show="vm.contains('dataSource') && !vm.reverse"></i>
             </ual-column>
             <ual-column id="ual-column-date" class="-center-date -order-by" ng-click="vm.order(['lastModificationDate'])">
                 Last Modification Date
