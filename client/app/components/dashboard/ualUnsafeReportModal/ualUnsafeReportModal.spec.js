@@ -1,23 +1,23 @@
-import UalMessageBanner2Module from './ualMessageBanner'
-import UalMessageBanner2Controller from './ualMessageBanner.controller';
-import UalMessageBanner2Component from './ualMessageBanner.component';
-import UalMessageBanner2Template from './ualMessageBanner.html';
+import UalUnsafeReportModalModule from './ualUnsafeReportModal'
+import UalUnsafeReportModalController from './ualUnsafeReportModal.controller';
+import UalUnsafeReportModalComponent from './ualUnsafeReportModal.component';
+import UalUnsafeReportModalTemplate from './ualUnsafeReportModal.html';
 
-describe('UalMessageBanner', () => {
+describe('UalUnsafeReportModal', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalMessageBanner2Module.name));
+  beforeEach(window.module(UalUnsafeReportModalModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalMessageBanner2Controller();
+      return new UalUnsafeReportModalController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalMessageBanner2Module).to.have.property('name');
+      expect(UalUnsafeReportModalModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalMessageBanner', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-message-banner/>').html(UalMessageBanner2Template);
+    const template = $('<ual-unsafe-report-modal/>').html(UalUnsafeReportModalTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalMessageBanner', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalMessageBanner2Component;
+      let component = UalUnsafeReportModalComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalMessageBanner2Template);
+        expect(component.template).to.equal(UalUnsafeReportModalTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalMessageBanner', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalMessageBanner2Controller);
+        expect(component.controller).to.equal(UalUnsafeReportModalController);
       });
   });
 });

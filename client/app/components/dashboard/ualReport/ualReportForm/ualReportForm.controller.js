@@ -1,6 +1,6 @@
 class UalReportFormController {
     /*@ngInject*/
-    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, Report, $timeout, ualReportNameModal) {
+    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, Report, $timeout, ualReportNameModal, $rootScope) {
         this._state = $state;
         this._datasourcemodal = ualDataSource;
         this._variablesmodal = ualVariables;
@@ -24,6 +24,9 @@ class UalReportFormController {
         this.duplicatedName = false;
         
         this._ualReportNameModal = ualReportNameModal;
+        
+//        this.initialReportHash = 0;
+        
     }
 
     // STEP 1
@@ -122,6 +125,8 @@ class UalReportFormController {
                 form.setMesage(0);
                 report.reportId.set(response.data.reportId);
                 form.messageDisplayed = true;
+                report.untouch();
+//                form.initialReportHash = report.hash();
             },
             function(response){
                 if(response.data.indexOf(form.duplicatedErrorResponse) < 0){ 

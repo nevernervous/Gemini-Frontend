@@ -26,6 +26,7 @@ class ualReportNameModalController {
             form.setMesage(0);
             report.reportId.set(response.data.reportId);
             form.messageDisplayed = true;
+            form.initialReportHash = report.hash();
             
             modal._closemodal(true);
         },
