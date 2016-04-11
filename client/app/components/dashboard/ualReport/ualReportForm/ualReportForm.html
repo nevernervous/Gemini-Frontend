@@ -31,7 +31,7 @@
           <ual-dropdown filter='vm.search' ng-style="vm.dropDownStyle" click-outside="vm.hideDropdown()" outside-if-not="inputDropdown">
             <ual-dropdown-messages>
               <span class="-max-reached" ng-if="vm.report.aggregators.get().length >= vm.maxAggregators">
-                  <i class="-icon-warning"></i> You have reached the limit of 10 aggregators
+                  <i class="-icon-warning"></i> <span>You have reached the limit of 10 aggregators</span>
               </span>
               <span class="-no-result" ng-if="vm.aggregators.items | filterBy: vm.search | isEmpty">
                   No results match your search
@@ -49,7 +49,7 @@
     </div>
     <div class="aggregation-items">
       <div class="aggregated-container">
-        <ual-agregation-item ng-repeat="item in vm.report.aggregators.get()">{{item.name}}</ual-agregation-item>
+        <ual-agregation-item ng-repeat="item in vm.report.aggregators.get()">{{$index+1}}. {{item.name}}</ual-agregation-item>
       </div>
     </div>
   </div>

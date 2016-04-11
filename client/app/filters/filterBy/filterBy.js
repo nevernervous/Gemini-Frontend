@@ -38,6 +38,9 @@ let filterByFilter = function() {
   }
 
   let filter = (items, query) => {
+    if(!items){
+       return [];
+    }
     return items.filter((item) => {
       return nonStrictComparision(sanitize(item), sanitize(query));
     });
