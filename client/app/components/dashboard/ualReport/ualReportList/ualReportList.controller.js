@@ -1,9 +1,13 @@
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
+  constructor(Report, $filter, $rootScope, ualReportListDeleteReportModal) {
     this.reports = [];    
     this._reportService = Report;
     this._deletereportmodal = ualReportListDeleteReportModal;
+    
+    this._filter = $filter;
+    this.predicate = 'lastModificationDate';
+    this.reverse = true;
     
     this._initialize();  
     
@@ -25,48 +29,31 @@ class UalReportListController {
                                        .value());                                          
   }
   
-  sortColumn(e, args) {  
-    let icon = $("#"+e.target.id).find("i");          
-    let columns = [];
-    let order = [];
-    let isAscending = false;
+  order(predicate) {      
+    this.predicate = predicate;
+    this.reverse = (this.predicate === predicate) ? !this.reverse : false;
     
-    if ($(".-show-sort").parent().parent()[0].id != icon.parent().parent()[0].id) 
-        $(".-show-sort").removeClass("ion-ios-arrow-up").removeClass("ion-ios-arrow-down");       
+    if (predicate.indexOf("-lastModificationDate") > -1)
+      predicate[1] = this.reverse ? "lastModificationDate" : '-lastModificationDate';  
     
-    $(".-show-sort").removeClass("-show-sort").addClass("-hide-sort"); 
-    icon.removeClass("-hide-sort").addClass("-show-sort");
-     
-    isAscending = !icon.hasClass( "ion-ios-arrow-up" );
-      
-    icon.hasClass( "ion-ios-arrow-up" ) ? icon.removeClass("ion-ios-arrow-up").addClass("ion-ios-arrow-down")
-                                        : icon.removeClass("ion-ios-arrow-down").addClass("ion-ios-arrow-up");
-      
-    $.each(args, function() {
-      $.each(this, function(key, value) {
-        key == "column" ? columns.push(value) : order.push(isAscending ? 'asc' : 'desc');
-      });      
-    })
-      
-    if (e.target.id == "ual-column-data-source"){
-      order[order.length - 1] = 'asc';
-    }
-      
-    this.reports = _.chain(this.reports)
-                    .sortByOrder(columns, order)
-                    .value();              
+    this.reports = this._filter('orderBy')(this.reports, predicate, this.reverse);
+  };  
+  
+  contains(column){
+      return (this.predicate.indexOf(column) > -1);
   }
   
   deleteReport(report) {
     this._deletereportmodal.open()
     .then(response => {
-      if (response) {
-        this.reports = this.reports
-                            .filter(function (item) {
-                                return item.id !== report.id;
-                            }); 
-                            
-        //TODO: Hacer servicio para borrado lógico                            
+      if (response) {          
+        this._reportService.delete(report.id)
+        .then(function(response){
+           this.reports = this.reports = this.reports
+                                .filter(function (item) {
+                                    return item.id !== report.id;
+                                }); 
+        }); 
       }
     });
   }

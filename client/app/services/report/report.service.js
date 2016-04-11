@@ -10,8 +10,17 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
     });
   }
   
+  let deleteReport= (id) => {
+    let transformation = [ServicesTransform.get('simple')];
+    return $http.delete(endpoint+"/"+id, {
+       cache: Properties.cache,
+       transformResponse: ServicesTransform.generate(transformation) 
+    });  
+  }
+  
   return {
-      all
+      all,
+      delete: deleteReport
   };
 };
 
