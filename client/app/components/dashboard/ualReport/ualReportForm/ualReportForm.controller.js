@@ -1,18 +1,20 @@
 class UalReportFormController {
     /*@ngInject*/
-    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, Report, $timeout, ualReportNameModal, $rootScope) {
+    constructor($state, ualReport, ualDataSource, ualVariables, Aggregator, Report, $timeout, ualReportNameModal, $scope ) {
         this._state = $state;
         this._datasourcemodal = ualDataSource;
         this._variablesmodal = ualVariables;
         this.maxAggregators = 10;
 
-    this._scope = $scope;
-    this._suscriptions = [];
-
+        this._scope = $scope;
+        this._suscriptions = [];
+        
         this._service = {
             aggregator: Aggregator,
-            report: Report
-        }
+            report: Report,
+        };
+        
+        
         this.dropDownStyle = {};
         this.inputStyle = {};
 
@@ -25,16 +27,8 @@ class UalReportFormController {
         this.duplicatedName = false;
         
         this._ualReportNameModal = ualReportNameModal;
-        
-//        this.initialReportHash = 0;
-        
+    
     }
-
-    this.dropDownStyle = {};
-    this.inputStyle = {};
-
-    this.report = ualReport;
-  }
 
   $onInit() {
     this.report.create();

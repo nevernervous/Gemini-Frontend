@@ -23,7 +23,7 @@ let commonModule = angular.module('app.common', [
   ualScroll.name,
   ualInput.name,
   ualResize.name,
-  ualRender.name
+  ualRender.name,
   ualMessageBanner.name,
 ]);
 
