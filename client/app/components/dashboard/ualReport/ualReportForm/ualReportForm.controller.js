@@ -126,6 +126,7 @@ class UalReportFormController {
                 report.reportId.set(response.data.reportId);
                 form.messageDisplayed = true;
                 report.untouch();
+                form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
 //                form.initialReportHash = report.hash();
             },
             function(response){

@@ -26,9 +26,11 @@ class ualReportNameModalController {
             form.setMesage(0);
             report.reportId.set(response.data.reportId);
             form.messageDisplayed = true;
-            form.initialReportHash = report.hash();
+            report.untouch();
             
             modal._closemodal(true);
+            
+            form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
         },
         function(response){
             if(response.data.indexOf(form.duplicatedErrorResponse) < 0){ 
