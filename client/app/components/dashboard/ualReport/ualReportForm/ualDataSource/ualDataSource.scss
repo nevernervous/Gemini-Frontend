@@ -15,15 +15,28 @@
             height: calc(100% - 120px);
             padding: 10px 0;
             .data-source-list {
-                @include column-content(4);
-                
+                &.columns-1 {
+                  @include column-content(1);
+                }
+                &.columns-2 {
+                  @include column-content(2);
+                }
+                &.columns-3 {
+                  @include column-content(3);
+                }
+                &.columns-4 {
+                  @include column-content(4);
+                }
+                // @include column-content(4);
+                // @include column-fill(auto);
+
                 .data-source-group {
-                    .data-source-item {                             
+                    .data-source-item {
                         &:hover > span > ual-tooltip {
                             display: inline;
                             position: fixed;
-                        }   
-                    }                    
+                        }
+                    }
                 }
             }
         }

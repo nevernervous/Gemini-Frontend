@@ -2,7 +2,7 @@ let appInterceptor = function ($q, $injector, Properties) {
   "ngInject";
   
   let responseError = (response) => {
-    if (response.status === 404 && response.config.url.startsWith(Properties.endpoint)) {
+    if (response.status === 404 && response.config.url.indexOf(Properties.endpoint) == 0) {
       console.warn("You are usgin fallback server for: " + response.config.url);
       var $http = $injector.get('$http');
       response.config.url = response.config.url.replace(Properties.endpoint, Properties.fallback.endpoint)
