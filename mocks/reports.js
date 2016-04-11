@@ -9,7 +9,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 1,
               "dataSourceName": "Data Source Name 1"
-            },   
+            },
             "lastModificationDate": "2002-04-26T09:00:00",
             "status": 1
           },
@@ -19,7 +19,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 2,
               "dataSourceName": "Data Source Name 2"
-            },   
+            },
             "lastModificationDate": "2015-05-02T10:00:05",
             "status": 1
           },
@@ -29,7 +29,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 3,
               "dataSourceName": "Data Source Name 3"
-            },   
+            },
             "lastModificationDate": "2016-01-05T10:00:06",
             "status": 1
           },
@@ -39,7 +39,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 1,
               "dataSourceName": "Data Source Name 1"
-            },   
+            },
             "lastModificationDate": "2014-06-04T10:00:05",
             "status": 1
           },
@@ -49,7 +49,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 2,
               "dataSourceName": "Data Source Name 2"
-            },   
+            },
             "lastModificationDate": "2016-01-05T10:00:05",
             "status": 1
           },
@@ -59,7 +59,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 3,
               "dataSourceName": "Data Source Name 3"
-            },   
+            },
             "lastModificationDate": "2016-01-06T10:00:05",
             "status": 1
           },
@@ -69,7 +69,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 7,
               "dataSourceName": "Data Source Name 7"
-            },   
+            },
             "lastModificationDate": "2016-01-07T10:00:05",
             "status": 1
           },
@@ -79,7 +79,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 8,
               "dataSourceName": "Data Source Name 8"
-            },   
+            },
             "lastModificationDate": "2013-11-21T20:00:30",
             "status": 1
           },
@@ -89,7 +89,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 4,
               "dataSourceName": "Data Source Name 4"
-            },   
+            },
             "lastModificationDate": "2016-01-09T10:00:05",
             "status": 1
           },
@@ -99,7 +99,7 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 5,
               "dataSourceName": "Data Source Name 5"
-            },   
+            },
             "lastModificationDate": "2016-01-10T10:00:04",
             "status": 1
           },
@@ -109,103 +109,136 @@ module.exports = {
             "dataSource": {
               "dataSourceId": 6,
               "dataSourceName": "Data Source Name 6"
-            },   
+            },
             "lastModificationDate": "2016-01-11T10:00:05",
             "status": 1
           },
-              {
-                "id": 12,
-                "name": "My First Report 162",
+          {
+            "id": 12,
+            "name": "My First Report 162",
             "dataSource": {
               "dataSourceId": 8,
               "dataSourceName": "Data Source Name 8"
-            },   
+            },
             "lastModificationDate": "2016-01-12T02:00:05",
             "status": 1
-              },
-              {
-                "id": 13,
-                "name": "My First Report 183",
+          },
+          {
+            "id": 1,
+            "name": "My First Report 183",
             "dataSource": {
               "dataSourceId": 1,
               "dataSourceName": "Data Source Name 1"
-            },   
+            },
             "lastModificationDate": "2016-10-21T10:00:09",
             "status": 1
-              },
-                  {
-                    "id": 14,
-                    "name": "My First Report 1004",
+          },
+          {
+            "id": 14,
+            "name": "My First Report 1004",
             "dataSource": {
               "dataSourceId": 4,
               "dataSourceName": "Data Source Name 4"
-            },   
+            },
             "lastModificationDate": "2016-09-15T10:00:05",
             "status": 1
-                  },
-              {
-                "id": 15,
-               "name": "My First Report 1875",
+          },
+          {
+            "id": 15,
+            "name": "My First Report 1875",
             "dataSource": {
               "dataSourceId": 8,
               "dataSourceName": "Data Source Name 8"
-            },   
+            },
             "lastModificationDate": "2016-01-15T10:00:05",
             "status": 1
-              },
-                  {
-                    "id": 16,
-                   "name": "My First Report 15466",
+          },
+          {
+            "id": 16,
+            "name": "My First Report 15466",
             "dataSource": {
               "dataSourceId": 1,
               "dataSourceName": "Data Source Name 1"
-            },   
+            },
             "lastModificationDate": "2016-06-01T19:00:02",
             "status": 1
-                  },
-              {
-                "id": 17,
-                "name": "My First Report 16467",
+          },
+          {
+            "id": 17,
+            "name": "My First Report 16467",
             "dataSource": {
               "dataSourceId": 2,
               "dataSourceName": "Data Source Name 2"
-            },   
+            },
             "lastModificationDate": "2016-07-01T12:00:05",
             "status": 1
-              },
-                  {
-                    "id": 18,
-                    "name": "My First Report 14648",
+          },
+          {
+            "id": 18,
+            "name": "My First Report 14648",
             "dataSource": {
               "dataSourceId": 6,
               "dataSourceName": "Data Source Name 6"
-            },   
+            },
             "lastModificationDate": "2016-01-30T10:00:05",
             "status": 1
-                  },
-              {
-                "id": 19,
-                "name": "My First Report 2",
+          },
+          {
+            "id": 19,
+            "name": "My First Report 2",
             "dataSource": {
               "dataSourceId": 9,
               "dataSourceName": "Data Source Name 9"
-            },   
+            },
             "lastModificationDate": "2016-02-19T10:00:01",
             "status": 1
-              },
-                  {
-                    "id": 20,
-                    "name": "My First Report 20",
+          },
+          {
+            "id": 20,
+            "name": "My First Report 20",
             "dataSource": {
               "dataSourceId": 10,
               "dataSourceName": "Data Source Name 10"
-            },   
+            },
             "lastModificationDate": "2016-03-24T10:00:05",
             "status": 1
-                  }
+          }
         ]
       },
       code: 200
     }
+  },
+  '/api/Reports/1': {
+    GET: {
+      data: {
+        "data": {
+          "name": "Report name",
+          "dataSourceId": 1,
+          "dataSource": "DataSource Name",
+          "variables": [
+            {
+              "Id": 1,
+              "Order": 1
+            },
+          ],
+          "aggregators": [
+            {
+              "Id": 1,
+              "Order": 2
+            },
+            {
+              "Id": 2,
+              "Order": 1
+            },
+            {
+              "Id": 3,
+              "Order": 3
+            },
+          ]
+        }
+      },
+      code: 200
+    }
   }
+
 };

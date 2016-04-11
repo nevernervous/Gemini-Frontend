@@ -2,6 +2,7 @@ let ualReportService = function () {
   "ngInject";
 
   let datasource = null;
+  let reportData = null;
   let variables = [];
   let aggregators = [];
 
@@ -10,7 +11,13 @@ let ualReportService = function () {
     variables = [];
     aggregators = [];
   }
-
+  
+  let update = (reportData) => {
+    datasource = reportData.datasource;
+    variables = reportData.variables;
+    aggregators = reportData.aggregators;
+  };
+  
   let getDataSource = () => datasource;
   let setDataSource = value => datasource = value;
   let equalDataSource = newDataSource => {
@@ -22,9 +29,15 @@ let ualReportService = function () {
 
   let getAggregators = () => aggregators;
   let setAggregators = value => aggregators = value;
+  
+  let getReportData = () => reportData;
+  let setReportData = value => reportData = value;
 
   return {
+    update,
     create,
+    get: getReportData,
+    set: setReportData,
     datasource: {
       get: getDataSource,
       set: setDataSource,

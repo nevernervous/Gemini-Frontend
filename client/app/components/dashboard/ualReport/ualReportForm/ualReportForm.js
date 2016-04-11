@@ -23,7 +23,7 @@ let ualReportFormModule = angular.module('ualReportForm', [
     })
     .state('dashboard.report-edit', {
         url: '/report/:id',
-        template: '<ual-report-form></ual-report-form>'
+        template: '<ual-report-form></ual-report-form>'        
     });
 })
 

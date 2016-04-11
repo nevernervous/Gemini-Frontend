@@ -39,11 +39,7 @@ class AppController {
 
 
   _onChangeState(next, prev = '', cancel = ()=>{}) {
-    if ( this._session.isLogged() ) {
-      if ( next === 'login' || next === '') {
-        this._state.go('dashboard.report-list');
-      }
-    } else {
+    if ( !this._session.isLogged() ) {
       if ( next !== 'login' ) {
         this._state.go('login');
       }

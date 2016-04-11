@@ -23,7 +23,7 @@
           </ual-table-header>
           <ual-table-row ng-repeat="item in vm.reports" class="ual-table-row">
             <ual-column class="-link-report">
-                <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>
+                <a ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a>
             </ual-column>
             <ual-column class="-data-report">
                 {{item.dataSource.dataSourceName}}
