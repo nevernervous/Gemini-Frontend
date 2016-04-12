@@ -1,157 +1,102 @@
 @import '../../../../common/common';
 
-ual-report-list {   
-   display: block;
-   height: 100%;
-    
-  .header { 
+//Layout
+ual-report-list {
+  display: block;
+  height: 100%;
+
+  .header {
     @include gridle( row row-align right );
   }
-      
+
   .container {
     height: 100%;
     padding-top: 30px;
-    
+
     .content-list {
-        height: calc(100% - 100px);
-        
-        > .mCSB_inside > .mCSB_container {
-            margin-right:  15px;
-        }
-    
-       .ual-table {
-        display: block;
-        height: 100%;
-        z-index: 98; 
-        
-          .ual-table-header {
-            @include gridle(row);
-            background-color: $color07;;    
-            padding: 12px !important;      
-              
-            > ual-column {
-              @include gridle( 3 );
-              display: inline;
-              text-align: left; 
-              white-space: nowrap;             
-              
-              > ng-transclude {
-                pointer-events: none;
-                  
-                > span {
-                 pointer-events: none;
-                }
-                
-                > i {                                      
-                  &.-hide-sort {
-                    display: none;
-                  }
-                    
-                  &.show-sort {
-                    display: block;
-                  }
-                }                
-              }               
-              
-              &.-order-by{
-                  cursor: pointer;
-              }
-              
-              &.-right-actions {
-                 text-align: right;
-              }
-            }                        
-              
-            &.-disabled {
-               > ual-column {
-                 pointer-events: none;
-                 cursor: default;
-               
-                  > ng-transclude > i {
-                    display: none;                    
-                  }
-               }             
-            }
-          }
-        
-          .ual-table-row {                        
-            height: 50px;
-            width: 100%;
-            @include gridle(row);
-            padding-top: 12px;
-            padding-left: 12px !important;
-            
-            @include -ms-browser(){
-                padding-top: 16px;
-            }
-            
-            padding-bottom: 12px;
-            border-bottom: 1px solid $color08;
-            @include font-clanot-book(16);
-            
-            &:hover{
-              .-right-actions {
-                > ng-transclude > i {
-                  display: inline-block;                  
-                  visibility: visible;
-                }
-              }
-            }
-                
-            > ual-column {
-              display: inline-block;
-              text-align: left;
-              color: $color07;
-              @include gridle( 3 );
-              margin-top: 2px;
-              
-              &.-link-report {
-                
-                > ng-transclude > a {                
-                  @include link();
-                }
-              }              
-                
-              &.-right-actions {
-                text-align: right;
-                margin-top: 0px;
-                   
-                > ng-transclude > i {
-                  font-size: 22px;
-                  padding-left: 5px;
-                  display: none;
-                  height: 42px;
-                  vertical-align: middle;
-                                    
-                  opacity:0;
-                  opacity: 1 \9; /*just in case ie*/
-                  @include fadeIn();
-                  @include animation(fadeIn ease-in 1);
-                  @include animation-fill-mode(forwards);
-                  @include animation-duration(0.2s);
-                  @include animation-delay(1s);
-                  
-                  &.ion-ios-close-empty {
-                    cursor: pointer;
-                    font-size: 32px;
-                    margin-top: -10px;
-                  }
-                }
-              }
-            }
-          }
-        }
-    
-       .empty-list {
-            @include gridle(row row-align middle center);
-            @include font-clanot-book(14);
-            color: $color07;
-            text-align: center;
-            height: 100%;
-            line-height: 1.5;
-            display: block;
-            margin-top: 42px;
-        }
+      height: calc(100% - 100px);
+
+      > .mCSB_inside > .mCSB_container {
+        margin-right: 15px;
+      }
     }
+
+    .empty-list {
+      @include gridle(row row-align middle center);     
+      height: 100%;
+      line-height: 1.5;
+      display: block;
+      margin-top: 42px;
+    }
+    
+    .ual-table-row {
+      padding: 8px 12px !important;
+      width: 100%;
+      height: 47px;
+      vertical-align: middle;
+    }
+  }
+}
+
+//Variations
+ual-report-list {
+    
+  .empty-list{
+    @include font-clanot-book(14);
+    color: $color07;
+    text-align: center;
   }  
-}  
+
+  .ual-table-row {
+    @include font-clanot-book(16);
+    border-bottom: 1px solid $color08;
+    
+    .column {
+      display: inline-block;
+      text-align: left;
+      white-space: nowrap;
+      width: 25%;
+      color: $color07;
+      line-height: 1;
+
+      &.-link-report > a {
+        @include link();
+      }
+
+      &.-right-actions {
+        text-align: right;
+        margin-top: 0px;
+        height: 32px;
+        vertical-align: middle;
+
+        > i {
+          font-size: 22px;
+          padding-left: 5px;
+          display: none;
+          opacity: 0;
+          opacity: 1 \9; /*just in case ie*/
+          @include fadeIn();
+          @include animation(fadeIn ease-in 1);
+          @include animation-fill-mode(forwards);
+          @include animation-duration(0.2s);
+          @include animation-delay(1s);
+          margin-top: -1px;
+          vertical-align: middle;
+
+          &.ion-ios-close-empty {
+            cursor: pointer;
+            font-size: 32px;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .-right-actions {
+        > i {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

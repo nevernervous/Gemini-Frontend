@@ -1,23 +1,23 @@
-import UalColumnModule from './ualColumn'
-import UalColumnController from './ualColumn.controller';
-import UalColumnComponent from './ualColumn.component';
-import UalColumnTemplate from './ualColumn.html';
+import UalUnsafeReportModalModule from './ualUnsafeReportModal'
+import UalUnsafeReportModalController from './ualUnsafeReportModal.controller';
+import UalUnsafeReportModalComponent from './ualUnsafeReportModal.component';
+import UalUnsafeReportModalTemplate from './ualUnsafeReportModal.html';
 
-describe('UalColumn', () => {
+describe('UalUnsafeReportModal', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalColumnModule.name));
+  beforeEach(window.module(UalUnsafeReportModalModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalColumnController();
+      return new UalUnsafeReportModalController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalColumnModule).to.have.property('name');
+      expect(UalUnsafeReportModalModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalColumn', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-column/>').html(UalColumnTemplate);
+    const template = $('<ual-unsafe-report-modal/>').html(UalUnsafeReportModalTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalColumn', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalColumnComponent;
+      let component = UalUnsafeReportModalComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalColumnTemplate);
+        expect(component.template).to.equal(UalUnsafeReportModalTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalColumn', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalColumnController);
+        expect(component.controller).to.equal(UalUnsafeReportModalController);
       });
   });
 });

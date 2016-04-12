@@ -1,0 +1,56 @@
+@import '../common';
+@import '../ionicons/scss/ionicons';
+
+// LAYOUT
+ual-message-banner {
+    @include gridle( 12 );
+    width:100%;
+    &.-dashboard{
+        position: fixed;
+        width: 100%;
+        margin: 0;
+        left: 0;
+        top: 52px;
+    }
+    div{
+        @include gridle( row row-align center middle );
+        height: 52px;
+        > span{
+            vertical-align: super;
+            @include font-clanot-bold(18);
+        }
+        i{
+            padding-right: 8px;
+            font-size: 26px;
+        }
+    }
+}
+
+// VARIATIONS
+
+// VARIATION / DEFAULT (WARNING)
+ual-message-banner{
+  color: $warningHighColor;
+  background: $warningLowColor;
+  i{
+    @include icon-warning(26);
+  }
+}
+
+// VARIATION / SUCCESS
+ual-message-banner.-success{
+  color: $successHighColor;
+  background: $successLowColor;
+  i{
+      @extend .ion-ios-checkmark-outline;
+  }
+}
+
+// VARIATION / ERROR
+ual-message-banner.-error{
+  color: $alertHighColor;
+  background: $alertLowColor;
+  i{
+      @extend .ion-ios-close-outline;
+  }
+}

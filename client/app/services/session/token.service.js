@@ -71,7 +71,7 @@ let tokenService = function ($rootScope, $window, $timeout, Configuration) {
     if (!!localStorage.getItem('gemini.token.id') && !!localStorage.getItem('gemini.token.keepalive') && !!localStorage.getItem('gemini.token.updateAt') ) {
       let alive = remainingTime() > 0;
       let now = new Date().getTime();
-      let keepalive = (now - localStorage.getItem('gemini.token.keepalive')) < 5000 ; // LESS THAN 5 SECONDS
+      let keepalive = (now - localStorage.getItem('gemini.token.keepalive')) < 240000 ; // 4 min
       // console.log("isExpired.alive: " + alive);
       // console.log("isExpired.keepalive: " + keepalive);
       // console.log("isExpired: " + !(alive && keepalive));

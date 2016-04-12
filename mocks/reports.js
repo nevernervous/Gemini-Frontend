@@ -1,5 +1,15 @@
 module.exports = {
   '/api/Reports': {
+    POST: {
+        //SUCCESS
+        data: {"reportId": 1},
+        code: 201,
+        
+        //REPORT NAME DUPLICATED
+//        data: ["There is already a report with the same name"],
+//        data: ["Custom error"],
+//        code: 400,
+    },
     GET: {
       data: {
         "data": [

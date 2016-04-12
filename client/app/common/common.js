@@ -9,6 +9,8 @@ import ualScroll from './ualScroll/ualScroll';
 import ualInput from './ualInput/ualInput';
 import ualDropdown from './ualDropdown/ualDropdown';
 import ualResize from './ualResize/ualResize';
+import ualRender from './ualRender/ualRender';
+import ualMessageBanner from './ualMessageBanner/ualMessageBanner';
 
 let commonModule = angular.module('app.common', [
   ualModal.name,
@@ -20,7 +22,9 @@ let commonModule = angular.module('app.common', [
   ualDropdown.name,
   ualScroll.name,
   ualInput.name,
-  ualResize.name
+  ualResize.name,
+  ualRender.name,
+  ualMessageBanner.name,
 ]);
 
 export default commonModule;
