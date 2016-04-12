@@ -47,7 +47,7 @@ class UalReportFormController {
     this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
 
     this._suscriptions.push(this._scope.$on('$stateChangeStart', ( event, toState, toParams, fromState, fromParams ) => {
-        if(!this.report.exitConfirmed.get()){
+        if(!this.report.exitConfirmed.get() && this.report.touched()){
             event.preventDefault();
             this._ualUnsafeReportModal.open({state: this._state, toState: toState, report: this.report});
         }else{

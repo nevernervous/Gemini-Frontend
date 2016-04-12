@@ -8,7 +8,6 @@ class ualReportInputController {
   
   displayInput(val) {
       this.visibleInput = val;
-      
   }
   labelText(){
       return this.report.name.get()?this.report.name.get():'Enter report name';

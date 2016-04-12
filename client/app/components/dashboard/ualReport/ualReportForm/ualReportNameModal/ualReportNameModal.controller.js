@@ -10,10 +10,16 @@ class ualReportNameModalController {
         };
         
     this.duplicatedName = false;
+    
+    this._suscriptions = [];
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
+
   }
 
   _closemodal(response) {
-//      this._suscriptions.forEach(suscription => suscription());
+      this._suscriptions.forEach(suscription => suscription());
       this._close(response);
   }
 
