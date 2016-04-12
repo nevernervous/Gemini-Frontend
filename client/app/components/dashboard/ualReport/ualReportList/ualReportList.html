@@ -3,43 +3,23 @@
 </div>
 <div class="container">
     <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
-        <ual-table class="ual-table">            
-          <ual-table-header class="ual-table-header" ng-hide="(vm.reports).length == 0">
-            <ual-column id="ual-column-name" class="-order-by" ng-click="vm.order(['name'])">
-               Report Name
-               <i class="ion-ios-arrow-up" ng-show="vm.predicate == 'name' && vm.reverse" ></i>
-               <i class="ion-ios-arrow-down" ng-show="vm.predicate == 'name' && !vm.reverse" ></i>
-            </ual-column>
-            <ual-column id="ual-column-data-source" class="-order-by" ng-click="vm.order(['dataSource','-lastModificationDate'])">
-                Data Source
-                <i class="ion-ios-arrow-up" ng-show="vm.contains('dataSource') && vm.reverse"></i>
-                <i class="ion-ios-arrow-down" ng-show="vm.contains('dataSource') && !vm.reverse"></i>
-            </ual-column>
-            <ual-column id="ual-column-date" class="-center-date -order-by" ng-click="vm.order(['lastModificationDate'])">
-                Last Modification Date
-                <i class="ion-ios-arrow-up" ng-show="vm.predicate == 'lastModificationDate' && vm.reverse"></i>
-                <i class="ion-ios-arrow-down" ng-show="vm.predicate == 'lastModificationDate' && !vm.reverse"></i>
-            </ual-column>
-            <ual-column class="-right-actions">
-                Actions
-            </ual-column>    
-          </ual-table-header>
-          <ual-table-row ng-repeat="item in vm.reports" class="ual-table-row">
-            <ual-column class="-link-report">
+      <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
+        {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">          
+         <ual-table-row class="ual-table-row" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">    
+            <div class="column columns-4 -link-report">
                 <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>
-            </ual-column>
-            <ual-column class="-data-report">
+            </div>
+            <div class="column columns-4 -data-report">
                 {{item.dataSource}}
-            </ual-column>
-            <ual-column class="-center-date">
-                {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm'}} CT
-            </ual-column>
-            <ual-column class="-right-actions">
-                <i class="ion-ios-redo-outline"></i>
-                <i class="ion-ios-download-outline"></i>
+            </div>
+            <div class="column columns-4 -center-date">
+                {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm CT'}}
+            </div>
+            <div class="column columns-4 -right-actions">
+                <i class="ion-android-person-add"></i>
                 <i class="ion-ios-copy-outline"></i>
-                <i class="ion-ios-compose-outline"></i>
-            </ual-column>        
+                <i class="ion-ios-close-empty"></i>
+            </div>        
         </ual-table-row>
       </ual-table>
       <div class="empty-list" ng-hide="(vm.reports).length > 0">

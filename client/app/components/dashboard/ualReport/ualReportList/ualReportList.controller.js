@@ -1,10 +1,9 @@
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $filter) {       
+  constructor(Report) {       
     this.reports = [];    
     this._reportService = Report;
-    
-    this._filter = $filter;
+              
     this.predicate = 'lastModificationDate';
     this.reverse = true;
     
@@ -17,21 +16,6 @@ class UalReportListController {
                                        .sortByOrder(['lastModificationDate'], ['desc'])
                                        .value());                                           
   }  
-  
-  order(predicate) {      
-    this.predicate = predicate;
-    this.reverse = (this.predicate === predicate) ? !this.reverse : false;
-    
-    if (predicate.indexOf("-lastModificationDate") > -1)
-      predicate[1] = this.reverse ? "lastModificationDate" : '-lastModificationDate';  
-    
-    this.reports = this._filter('orderBy')(this.reports, predicate, this.reverse);
-  };  
-  
-  contains(column){
-      return (this.predicate.indexOf(column) > -1);
-  }
-  
 }
 
 export default UalReportListController;

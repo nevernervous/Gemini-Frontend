@@ -9,96 +9,70 @@ ual-report-list {
   }
       
   .container {
-    height: 100%;    
+    height: 100%;
     padding-top: 30px;
     
     .content-list {
         height: calc(100% - 100px);
-    
-       .ual-table {
-        display: block;
-        height: 100%;
-        width: 100%;
-        z-index: 98; 
         
-          .ual-table-header {
-            width: 100%;
-            @include gridle(row);
-              
-            > ual-column {
-              @include gridle( 3 );
-              display: inline-block;
-              text-align: left; 
-              
-              > ng-transclude {                                    
-                
-                > i {                                      
-  
-                  &.-hide-sort {
-                    display: none;
-                  }
+        > .mCSB_inside > .mCSB_container {
+            margin-right:  15px;           
+            
+             > .ual-table {
+                .table-row {
+                   .column {
+                     &.columns-4{
+                      @include gridle( 3 );
+                    } 
                     
-                  &.show-sort {
-                    display: block;
-                  }
+                    &.-link-report {
+                        margin-top: 2px;
+                        
+                        > a {                
+                        @include link();
+                        }
+                    }
                     
-                }
+                    &.-right-actions {
+                        text-align: right;
+                        margin-top: 0px;
+                        
+                        > i {
+                        font-size: 22px;
+                        padding-left: 5px;
+                        display: none;
+                        height: 42px;
+                        vertical-align: middle;
+                                            
+                        opacity:0;
+                        opacity: 1 \9; /*just in case ie*/
+                        @include fadeIn();
+                        @include animation(fadeIn ease-in 1);
+                        @include animation-fill-mode(forwards);
+                        @include animation-duration(0.2s);
+                        @include animation-delay(1s);
+                        
+                        &.ion-ios-close-empty {
+                            cursor: pointer;
+                            font-size: 32px;
+                            margin-top: -10px;
+                        }
+                        }
+                    }               
+                }  
                 
-              }
-              
-              &.-order-by{
-                  cursor: pointer;
-              }
-              
-              &.-right-actions {
-                 text-align: right;
-                 display: none;
-              }
-            }
-          }
-        
-          .ual-table-row {                        
-            height: 50px;
-            width: 100%;
-            @include gridle(row);
-            padding-top: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid $color08;
-            @include font-clanot-book(16);
-                
-            > ual-column {
-              display: inline;
-              text-align: left;
-              color: $color07;
-              @include gridle( 3 );
-              
-              &.-link-report {
-                margin-top: 2px;
-                
-                > ng-transclude > a {                
-                  @include link();
-                }
-              }
-              
-              &.-data-report {
-                margin-top: 2px;
-              }
-                
-              &.-center-date {
-                margin-top: 2px;
-              }
-                
-              &.-right-actions {
-                text-align: right;
-                margin-top: -2px;
-                display: none;
-                   
-                > ng-transclude > i {
-                  font-size: 22px;
-                }
-              }
-            }
-          }
+                .ual-table-row {
+                    &:hover{
+                        .-right-actions {
+                            > i {
+                            display: inline-block;                  
+                            visibility: visible;
+                            }
+                        }
+                    }
+               }       
+             }
+           }
         }
     
        .empty-list {
@@ -106,11 +80,10 @@ ual-report-list {
             @include font-clanot-book(14);
             color: $color07;
             text-align: center;
-            height: calc(100% - 100px);
+            height: 100%;
             line-height: 1.5;
-            div {
-                max-width: 350px;
-            }
+            display: block;
+            margin-top: 42px;
         }
     }
   }  

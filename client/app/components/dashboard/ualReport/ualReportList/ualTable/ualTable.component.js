@@ -5,11 +5,13 @@ import './ualTable.scss';
 let ualTableComponent = {
   restrict: 'E',
   bindings: {
+      tableData: '&',
+      tableColumns: '=',
+      predicate: '=',
+      reverse: '='   
   },
   transclude: {
-    'header': '?ualTableHeader',
-    'row': 'ualTableRow',
-    'footer': '?ualTableFooter'
+    'row': 'ualTableRow'
   },
   template,
   controller,
