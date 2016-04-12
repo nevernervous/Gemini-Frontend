@@ -31,7 +31,6 @@ class UalReportFormController {
         this.saveResultMessages.set(1,{msgClass: {"-error": true}, msgText : "Report name already exists. Please select another." });
         this.saveResultMessages.set(2,{msgClass: {"-error": true}, msgText : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."});
         
-        
         this.duplicatedErrorResponse = "There is already a report with the same name";
         this.duplicatedName = false;
         
@@ -151,7 +150,7 @@ class UalReportFormController {
         }
         this._service.report.save(report).then(
             function(response){
-                form.saveResult = form.saveResultMessages.has(0)? 0 : null;
+                form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
                 report.reportId.set(response.data.reportId);
                 form.messageDisplayed = true;
                 report.untouch();
@@ -160,7 +159,7 @@ class UalReportFormController {
             },
             function(response){
                 if(response.data.indexOf(form.duplicatedErrorResponse) < 0){ 
-                    form.saveResult = form.saveResultMessages.has(1)? 1 : null;
+                    form.saveResult = form.saveResultMessages.has(1)? form.saveResultMessages.get(1) : form.saveResultMessages.get(null);
                     form.messageDisplayed = true;
                 }else{ 
                     form.duplicatedName = true;
@@ -168,7 +167,7 @@ class UalReportFormController {
                 }
             }
         ).catch(function(){
-            form.saveResult = form.saveResultMessages.has(2)? 2 : null;
+            form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
             form.messageDisplayed = true;
         });
     }
