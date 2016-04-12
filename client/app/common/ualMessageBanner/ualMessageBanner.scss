@@ -1,4 +1,5 @@
 @import '../common';
+@import '../ionicons/scss/ionicons';
 
 // LAYOUT
 ual-message-banner {
@@ -11,36 +12,45 @@ ual-message-banner {
         left: 0;
         top: 52px;
     }
-    .ual-message-banner{
+    div{
         @include gridle( row row-align center middle );
         height: 52px;
+        > span{
+            vertical-align: super;
+            @include font-clanot-bold(18);
+        }
+        i{
+            padding-right: 8px;
+            font-size: 26px;
+        }
     }
 }
 
 // VARIATIONS
-.ual-message-banner { 
+
+// VARIATION / DEFAULT (WARNING)
+ual-message-banner{
   color: $warningHighColor;
   background: $warningLowColor;
-  span{
-    vertical-align: super;
-  }
   i{
-    padding-right: 8px;
-    font-size: 26px;
-    &.icon-warning { 
-        @include icon-warning(26);
-      }
-  
+    @include icon-warning(26);
   }
-  &.-success{
-    color: $successHighColor;
-    background: $successLowColor;
+}
+
+// VARIATION / SUCCESS
+ual-message-banner.-success{
+  color: $successHighColor;
+  background: $successLowColor;
+  i{
+      @extend .ion-ios-checkmark-outline;
   }
-  &.-error{
-    color: $alertHighColor;
-    background: $alertLowColor;
+}
+
+// VARIATION / ERROR
+ual-message-banner.-error{
+  color: $alertHighColor;
+  background: $alertLowColor;
+  i{
+      @extend .ion-ios-close-outline;
   }
-  > span {
-    @include font-clanot-bold(18);
-  } 
 }

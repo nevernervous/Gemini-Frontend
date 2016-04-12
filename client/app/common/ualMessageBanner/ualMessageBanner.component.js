@@ -5,7 +5,7 @@ import './ualMessageBanner.scss';
 let ualMessageBannerComponent = {
   restrict: 'E',
   bindings: {
-      config: "="
+      text: "<"
   },
   transclude: true,
   template,

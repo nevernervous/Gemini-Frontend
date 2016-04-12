@@ -5,15 +5,13 @@ import './ualReportNameModal.scss';
 let ualReportNameModalService = function (ualModal) {
   "ngInject";
 
-  let open = (options) => {   
+  let open = (inputs) => {   
+      
     return ualModal.open({
       template: '<ual-modal class="-yesno">' + template + '</ual-modal>',
       controller: controller,
       controllerAs : 'vm',
-      inputs: {
-          report: options.report,
-          reportForm: options.reportForm,
-      },
+      inputs: inputs,
     });
   }
 

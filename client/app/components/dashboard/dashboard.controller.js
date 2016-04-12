@@ -1,6 +1,6 @@
 class DashboardController {
   /*@ngInject*/
-  constructor($rootScope, $state, ualMainMenu, Session, expirationModal, ualUnsafeReportModal, ualReport) {
+  constructor($rootScope, $state, ualMainMenu, Session, expirationModal) {
     this.name = 'dashboard';
     this._rootScope = $rootScope;
     this._state = $state;
@@ -8,10 +8,8 @@ class DashboardController {
     this._session = Session;
     this._expirationModal = expirationModal;
 
-    this._ualUnsafeReportModal = ualUnsafeReportModal;
     this._suscriptions = [];
     
-    this.report = ualReport;
     
   }
 
@@ -37,18 +35,6 @@ class DashboardController {
     this._suscriptions.push(this._rootScope.$on('SESSION.LOGOUT', () =>  {
       this._unsuscribe();
       this._state.go('login');
-    }));
-    
-    this._suscriptions.push(this._rootScope.$on('$stateChangeStart', ( event, toState, toParams, fromState, fromParams ) => {
-        if(this._state.current.url.match(/\/report\/new/gi) && this.report.touched()){
-            console.log(this.report.exitConfirmed.get());
-            if(!this.report.exitConfirmed.get()){
-                event.preventDefault();
-                this._ualUnsafeReportModal.open({state: this._state, toState: toState, report: this.report});
-            }else{
-                this.report.exitConfirmed.set(false);
-            }
-        }
     }));
     
   }

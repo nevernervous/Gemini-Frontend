@@ -7,6 +7,7 @@ module.exports = {
         
         //REPORT NAME DUPLICATED
 //        data: ["There is already a report with the same name"],
+//        data: ["Custom error"],
 //        code: 400,
     },
     GET: {

@@ -1,15 +1,24 @@
 class ualReportNameModalController {
   /*@ngInject*/
-  constructor($rootScope, close, $state, toState, state, report) {
+  constructor($timeout, $q, $rootScope, close, $state, toState, state, report) {
     this.name = 'ualReportNameModal';
     this._close = close;
     this.toState = toState;
     this.state = $state;
     this._report = report;
+    this._q = $q;
+    this._timeout = $timeout;
+
+    this._suscriptions = [];
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
+    
   }
 
   _closemodal(response) {
-//      this._suscriptions.forEach(suscription => suscription());
+      this._close();
+      this._suscriptions.forEach(suscription => suscription());
       this._close(response);
   }
 

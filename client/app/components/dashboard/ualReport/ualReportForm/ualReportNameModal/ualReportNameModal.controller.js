@@ -23,21 +23,19 @@ class ualReportNameModalController {
     let modal = this;
     this._service.report.save(report).then(
         function(response){
-            form.setMesage(0);
+            form.saveResult = form.saveResultMessages.has(0)? 0 : null;
             report.reportId.set(response.data.reportId);
             form.messageDisplayed = true;
             report.untouch();
             
             modal._closemodal(true);
-            
-            form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
         },
         function(response){
             if(response.data.indexOf(form.duplicatedErrorResponse) < 0){ 
-                form.setMesage(1);
+                form.saveResult = form.saveResultMessages.has(1)? 1 : null;
                 form.messageDisplayed = true;
                 
-                this._closemodal(true);
+                this._closemodal(false);
             }else{ 
                 modal.duplicatedName = true;
                 form.messageDisplayed = false;
@@ -45,15 +43,11 @@ class ualReportNameModalController {
             }
         }
     ).catch(function(){
-        form.setMesage();
+        form.saveResult = form.saveResultMessages.has(2)? 2 : null;
         form.messageDisplayed = true;
         
-        modal._closemodal(true);
-    }).finally(function(){
-//            console.log("hola mundo");
-//            $apply();
+        modal._closemodal(false);
     });
-    //this._closemodal(true);
   }
   cancel(){
     this._closemodal(false);

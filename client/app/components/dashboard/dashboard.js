@@ -6,7 +6,6 @@ import ExpirationModal from './expirationModal/expirationModal';
 import ualNavBar from './ualNavBar/ualNavBar';
 import ualMainMenu from './ualMainMenu/ualMainMenu';
 import ualReport from './ualReport/ualReport';
-import ualUnsafeReportModal from './ualUnsafeReportModal/ualUnsafeReportModal';
 
 let dashboardModule = angular.module('dashboard', [
   uiRouter,
@@ -16,7 +15,6 @@ let dashboardModule = angular.module('dashboard', [
   // MODALS
   LogoutModal.name,
   ExpirationModal.name,  
-  ualUnsafeReportModal.name,
   // CONTENT
   ualReport.name,
 ])

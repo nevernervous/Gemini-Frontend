@@ -1,6 +1,6 @@
 import angular from 'angular';
-import ualReportService from '../ualReport/ualReport.service';
-console.log(ualReportService);
+import ualReportService from '../../ualReport.service';
+
 import ualUnsafeReportModalFactory from './ualUnsafeReportModal.factory';
 
 let ualUnsafeReportModalModule = angular.module('ualUnsafeReportModal', [

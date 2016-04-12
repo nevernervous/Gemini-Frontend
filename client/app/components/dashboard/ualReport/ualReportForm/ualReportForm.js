@@ -6,6 +6,8 @@ import ualReportFormComponent from './ualReportForm.component';
 import ualAgregationItem from './ualAgregationItem/ualAgregationItem';
 import ualReportInput from './ualReportInput/ualReportInput';
 import ualReportNameModal from './ualReportNameModal/ualReportNameModal';
+import ualUnsafeReportModal from './ualUnsafeReportModal/ualUnsafeReportModal';
+
 
 let ualReportFormModule = angular.module('ualReportForm', [
   uiRouter,
@@ -15,6 +17,7 @@ let ualReportFormModule = angular.module('ualReportForm', [
   ualDataSource.name,
   ualAgregationItem.name,
   ualReportNameModal.name,
+  ualUnsafeReportModal.name,
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
