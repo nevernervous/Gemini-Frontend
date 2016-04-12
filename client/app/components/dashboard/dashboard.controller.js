@@ -9,6 +9,8 @@ class DashboardController {
     this._expirationModal = expirationModal;
 
     this._suscriptions = [];
+    
+    
   }
 
   expiration() {
@@ -34,6 +36,7 @@ class DashboardController {
       this._unsuscribe();
       this._state.go('login');
     }));
+    
   }
 
 }
