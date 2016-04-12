@@ -1,65 +1,43 @@
 @import '../../../../../common/common';
 
-ual-table { 
+//Layout
+ual-table {
   display: block;
   height: 100%;
   z-index: 98;
-   
+
   .table-header {
     pointer-events: null;
-    @include gridle(row);
-    background-color: $color07;;    
-    padding: 12px !important;      
-                  
-     .column-header {
-        display: inline;
-        text-align: left; 
-        white-space: nowrap; 
-        
-        &.columns-4 {
-            @include gridle( 3 );
-        }    
+    padding: 12px !important;
+    width: 100%;
+
+    .column-header {
+      display: inline-block;
+      text-align: left;
+      white-space: nowrap;
+
+      &.columns-4 {
+        width: 25%;
+      }
+    }
   }
-  
- }
- 
- .table-row{
-     > ual-table-row {
-        height: 50px;
-        width: 100%;
-        @include gridle(row);
-        padding-top: 12px;
-        padding-left: 12px !important;
-        padding-bottom: 12px;
-        
-        @include -ms-browser(){
-            padding-top: 16px;
-        }
-        
-        border-bottom: 1px solid $color08;
-        @include font-clanot-book(16);
-        
-        .column {
-            display: inline-block;
-            text-align: left;
-            color: $color07;
-            margin-top: 2px;
-            
-        }
-     }
- }
 }
 
-ual-table {    
+//Variations
+ual-table {
   .table-header {
+    background-color: $color07;
+     
     .column-header {
-       &.-order-by{
+      
+      &.-order-by {
         cursor: pointer;
-       }
-       &.-disabled {
-            pointer-events: none;
-            cursor: default;
-       }            
-    } 
-  }  
-}  
+      }
+
+      &.-disabled {
+        pointer-events: none;
+        cursor: default;
+      }
+    }
+  }
+}

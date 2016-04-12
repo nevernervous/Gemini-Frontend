@@ -1,7 +1,7 @@
 class UalReportListController {
   /*@ngInject*/
   constructor(Report) {       
-    this.reports = [];    
+    this.reports = null;    
     this._reportService = Report;
               
     this.predicate = 'lastModificationDate';
@@ -10,9 +10,7 @@ class UalReportListController {
   
   $onInit() {
     this._reportService.all()
-      .then(response => this.reports = _.chain(response.data)
-                                       .sortByOrder(['lastModificationDate'], ['desc'])
-                                       .value());                                           
+      .then(response => this.reports = response.data);                                           
   }  
 }
 

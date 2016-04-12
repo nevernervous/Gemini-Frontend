@@ -1,17 +1,18 @@
 class UalTableController {
   /*@ngInject*/
-  constructor() {  
+  constructor() {
+      this.isEnabled = true;  
   }
   
   $onInit(){
-      this.columns =  "columns-" + this.tableColumns.length;      
+      this.columns =  "columns-" + this.tableColumns.length;  
   }  
   
   contains(column){
       return this.predicate.indexOf(column) > -1;
   }
   
-  order(predicate) {      
+  order(predicate) {     
     this.predicate = predicate;
     this.reverse = (this.predicate === predicate) ? !this.reverse : false;  
     
