@@ -7,6 +7,7 @@ ual-dropdown-item {
     @include font-clanot-book(14);
     padding: 4px 1em;
     margin: 1px 0;
+    line-height: 1;
 }
 
 //Variations
@@ -15,6 +16,7 @@ ual-dropdown-item:not(.-disabled) {
         background-color: $others01;
         @include font-clanot-news(14);
         color: $color06;
+        cursor: pointer;
     }
 }
 

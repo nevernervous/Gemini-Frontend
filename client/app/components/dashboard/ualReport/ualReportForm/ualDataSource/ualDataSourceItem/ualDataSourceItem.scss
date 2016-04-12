@@ -4,6 +4,7 @@
 ual-data-source-item {
     display: block;
     cursor: pointer;
+    line-height: 1;
 
     > span{
         @include ellipses();

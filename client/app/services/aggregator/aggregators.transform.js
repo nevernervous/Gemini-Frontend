@@ -6,13 +6,13 @@ let aggregatorTransform = function() {
     let _transformation = {
         grouped: (response) => {
             let groups = _.chain(response.data)
-                .map('isDefaultAggregator')
+                .map('isRecomendid')
                 .uniq()
                 .map((isRecomend) => {
                     return {
                         name: isRecomend ? "Recommended aggregators" : "Others",
                         items: _.chain(response.data)
-                            .filter('isDefaultAggregator', isRecomend)
+                            .filter('isRecomendid', isRecomend)
                             .sortBy('order')
                             .value()
                     }

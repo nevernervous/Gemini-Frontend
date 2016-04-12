@@ -30,6 +30,9 @@ class UalVariablesController {
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
     this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
+    this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
+    this._suscriptions.push($rootScope.$on('DRAGGING.START', () => this.dragging = true));
+    this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
   }
 
   _closemodal(response) {
@@ -46,6 +49,7 @@ class UalVariablesController {
     this.isSelected(variable) ?
       _.remove(this.selecteds, { 'id': variable.id }) :
       this.selecteds.push(variable);
+      this.hideTooltip();
   }
 
   isSelectedGroup(group) {
@@ -64,14 +68,14 @@ class UalVariablesController {
   }
 
   selectAll(){
-    const filters = this._filter("filter")(this.variables.items, this.standardFilter);
+    const filters = this._filter("filterBy")(this.variables.items, this.standardFilter);
     this.selecteds = _.clone(filters);
   }
   deleteAll() {
     this._deleteallmodal.open()
     .then(response => {
       if (response) {
-        const filters = this._filter("filter")(this.selecteds, this.selectedFilter);
+        const filters = this._filter("filterBy")(this.selecteds, this.selectedFilter);
         const ids = _.map(filters, item => item.id);
         this.selecteds = _.reject(this.selecteds, item => _.includes(ids, item.id));
       }
@@ -145,6 +149,12 @@ class UalVariablesController {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
   showTooltip(e){
+    let id = parseInt(e.target.id.match("span_(.*)")[1]);
+    let isSelectedVariable = null;
+    
+    if (this.selecteds.length > 0)   
+      isSelectedVariable = _.find(this.selecteds, { 'id' : id } ); 
+    
     let span = $("#"+e.target.id);
     let checkboxItem = span.parent().parent();
     let offset = checkboxItem.offset();
@@ -153,8 +163,8 @@ class UalVariablesController {
     let tooltip = span.first().next();
 
     offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
-    offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
-    offset.top += window.isIE || window.isFirefox ? 7 : 5;
+    offset.top -= ((tooltip.height() / 2) - ((checkboxItem.height() / 2) ) );
+    offset.top = parseInt(offset.top) + 5;
 
     tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
     tooltip.css(offset);
