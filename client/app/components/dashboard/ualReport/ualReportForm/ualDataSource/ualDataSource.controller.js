@@ -19,7 +19,7 @@ class UalDataSourceController {
         this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
         this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
         this._suscriptions.push($rootScope.$on('RENDER.END', () => this.columnCount()));
-        ;
+        this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
     }
 
     _closemodal(response) {

@@ -4,9 +4,6 @@ import './ualMessageBanner.scss';
 
 let ualMessageBannerComponent = {
   restrict: 'E',
-  bindings: {
-      text: "<"
-  },
   transclude: true,
   template,
   controller,

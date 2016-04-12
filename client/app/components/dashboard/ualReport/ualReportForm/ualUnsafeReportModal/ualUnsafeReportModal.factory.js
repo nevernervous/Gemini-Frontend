@@ -8,12 +8,7 @@ let ualUnsafeReportModalService = function (ualModal) {
     return ualModal.open({
       template: '<ual-modal class="-yesno">' + template + '</ual-modal>',
       controller: controller,
-      controllerAs : 'vm',
-      inputs: {
-          toState: options.toState,
-          state: options.state,
-          report: options.report
-      },
+      controllerAs : 'vm'
     });
   }
 

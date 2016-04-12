@@ -49,7 +49,16 @@ class UalReportFormController {
     this._suscriptions.push(this._scope.$on('$stateChangeStart', ( event, toState, toParams, fromState, fromParams ) => {
         if(!this.report.exitConfirmed.get() && this.report.touched()){
             event.preventDefault();
-            this._ualUnsafeReportModal.open({state: this._state, toState: toState, report: this.report});
+            let _report = this.report;
+            let _state = this._state;
+            this._ualUnsafeReportModal.open({}).then(
+                function(response){
+                    if(response){
+                        _report.exitConfirmed.set(true);
+                        _state.go(toState.name);
+                    }
+                }
+            );
         }else{
             this.report.exitConfirmed.set(false);
             $( window ).unbind( "beforeunload", this.beforeClose);

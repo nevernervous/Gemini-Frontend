@@ -1,4 +1,5 @@
-<ual-message-banner ng-show="vm.messageDisplayed" class="-dashboard" ng-class="vm.saveResultMessages.get(vm.saveResult).msgClass" text="vm.saveResultMessages.get(vm.saveResult).msgText">
+<ual-message-banner ng-show="vm.messageDisplayed" class="-dashboard" ng-class="vm.saveResultMessages.get(vm.saveResult).msgClass">
+    {{vm.saveResultMessages.get(vm.saveResult).msgText}}
 </ual-message-banner>
 
 <div class="report-header">
