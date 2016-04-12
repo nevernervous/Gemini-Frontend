@@ -1,90 +1,96 @@
 @import '../../../../common/common';
 
-ual-report-list {   
-   display: block;
-   height: 100%;
-    
-  .header { 
+ual-report-list {
+  display: block;
+  height: 100%;
+
+  .header {
     @include gridle( row row-align right );
   }
-      
+
   .container {
     height: 100%;
     padding-top: 30px;
-    
+
     .content-list {
-        height: calc(100% - 100px);
-        
-        > .mCSB_inside > .mCSB_container {
-            margin-right:  15px;           
-            
-             > .ual-table {
-                .table-row {
-                   .column {
-                     &.columns-4{
-                      @include gridle( 3 );
-                    } 
-                    
-                    &.-link-report {
-                        margin-top: 2px;
-                        
-                      > a {                
-                        @include link();
-                      }
-                    }
-                    
-                    &.-right-actions {
-                        text-align: right;
-                        margin-top: 0px;
-                        
-                        > i {
-                        font-size: 22px;
-                        padding-left: 5px;
-                        display: none;
-                        height: 42px;
-                        vertical-align: middle;
-                                            
-                        opacity:0;
-                        opacity: 1 \9; /*just in case ie*/
-                        @include fadeIn();
-                        @include animation(fadeIn ease-in 1);
-                        @include animation-fill-mode(forwards);
-                        @include animation-duration(0.2s);
-                        @include animation-delay(1s);
-                        
-                        &.ion-ios-close-empty {
-                            cursor: pointer;
-                            font-size: 32px;
-                            margin-top: -10px;
-                        }
-                      }
-                    }               
-                   }  
-                
-                   .ual-table-row {
-                      &:hover{
-                        .-right-actions {
-                            > i {
-                            display: inline-block;                  
-                            visibility: visible;
-                            }
-                        }
-                    }
-               }       
-             }
-           }
-        }
-    
-       .empty-list {
-            @include gridle(row row-align middle center);
-            @include font-clanot-book(14);
-            color: $color07;
-            text-align: center;
-            height: 100%;
-            line-height: 1.5;
-            display: block;
-            margin-top: 42px;
-        }
+      height: calc(100% - 100px);
+
+      > .mCSB_inside > .mCSB_container {
+        margin-right: 15px;
+      }
     }
-  }  
-}  
+
+    .empty-list {
+      @include gridle(row row-align middle center);
+      @include font-clanot-book(14);
+      color: $color07;
+      text-align: center;
+      height: 100%;
+      line-height: 1.5;
+      display: block;
+      margin-top: 42px;
+    }
+  }
+}
+
+//VARIANTS
+
+ual-report-list {
+
+  .container {
+    .content-list {
+      > .mCSB_inside > .mCSB_container {
+        > .ual-table {
+          .table-row {
+            .ual-table-row {
+              width: 100%;
+              .column {
+                width: 25%;
+                padding-left: 12px;
+
+                &.-link-report > a {
+                  @include link();
+                }
+
+                &.-right-actions {
+                  text-align: right;
+                  margin-top: 0px;
+                  padding-right: 6px;
+
+                  > i {
+                    font-size: 22px;
+                    padding-left: 5px;
+                    display: none;
+                    height: 42px;
+                    vertical-align: middle;
+                    opacity: 0;
+                    opacity: 1 \9; /*just in case ie*/
+                    @include fadeIn();
+                    @include animation(fadeIn ease-in 1);
+                    @include animation-fill-mode(forwards);
+                    @include animation-duration(0.2s);
+                    @include animation-delay(1s);
+
+                    &.ion-ios-close-empty {
+                      cursor: pointer;
+                      font-size: 32px;
+                      margin-top: -10px;
+                    }
+                  }
+                }
+              }
+
+              &:hover {
+                .-right-actions {
+                  > i {
+                    display: inline-block;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

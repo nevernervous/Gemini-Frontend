@@ -30,12 +30,12 @@ ual-table {
         @include gridle(row);
         padding-top: 12px;
         padding-left: 12px !important;
+        padding-bottom: 12px;
         
         @include -ms-browser(){
             padding-top: 16px;
         }
         
-        padding-bottom: 12px;
         border-bottom: 1px solid $color08;
         @include font-clanot-book(16);
         
