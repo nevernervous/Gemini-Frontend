@@ -28,9 +28,9 @@ ual-report-list {
                     &.-link-report {
                         margin-top: 2px;
                         
-                        > a {                
+                      > a {                
                         @include link();
-                        }
+                      }
                     }
                     
                     &.-right-actions {
@@ -57,12 +57,12 @@ ual-report-list {
                             font-size: 32px;
                             margin-top: -10px;
                         }
-                        }
+                      }
                     }               
-                }  
+                   }  
                 
-                .ual-table-row {
-                    &:hover{
+                   .ual-table-row {
+                      &:hover{
                         .-right-actions {
                             > i {
                             display: inline-block;                  

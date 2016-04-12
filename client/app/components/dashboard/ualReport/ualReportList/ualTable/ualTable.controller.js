@@ -1,10 +1,9 @@
 class UalTableController {
   /*@ngInject*/
   constructor() {  
-    this._initialize();
   }
   
-  _initialize(){
+  $onInit(){
       this.columns =  "columns-" + this.tableColumns.length;      
   }  
   
