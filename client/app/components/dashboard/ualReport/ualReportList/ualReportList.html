@@ -13,7 +13,7 @@
             </div><div class="column">
                 {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm CT'}}
             </div><div class="column -right-actions">
-                &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-ios-close-empty"></i>
+                &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-ios-close-empty" ng-click="vm.deleteReport(item)" title="Delete"></i>
             </div>        
         </div>
       </ual-table>
