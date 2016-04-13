@@ -2,13 +2,35 @@ module.exports = {
   '/api/Reports': {
     POST: {
         //SUCCESS
-        data: {"reportId": 1},
-        code: 201,
+//        data: {"reportId": 1},
+//        code: 201,
         
         //REPORT NAME DUPLICATED
-//        data: ["There is already a report with the same name"],
-//        data: ["Custom error"],
+//        data:{
+//         "errorCode": 0,
+//         "errorTitle": null,
+//         "errorMessage": "Report name already exists. Please select another.",
+//         "errorMessages": [
+//           "Report name already exists. Please select another.",
+//         ]
+//        },
 //        code: 400,
+        
+        //ERROR DIFFERENT FROM DUPLICATED
+//        data:{
+//         "errorCode": 0,
+//         "errorTitle": null,
+//         "errorMessage": "Another plained message.",
+//         "errorMessages": [
+//           "Another plained message.",
+//         ]
+//        },
+//        code: 400,
+        
+        //SERVER ERROR GENERIC
+        code: 500,
+        data: {},
+
     },
     GET: {
       data: {
