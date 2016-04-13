@@ -1,9 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ualReportListComponent from './ualReportList.component';
+import ualTable from './ualTable/ualTable';
 
 let ualReportListModule = angular.module('ualReportList', [
-  uiRouter
+  uiRouter,
+  ualTable.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {

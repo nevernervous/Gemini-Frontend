@@ -1,0 +1,43 @@
+@import '../../../../../common/common';
+
+//Layout
+ual-table {
+  display: block;
+  height: 100%;
+  z-index: 98;
+
+  .table-header {
+    pointer-events: null;
+    padding: 12px !important;
+    width: 100%;
+
+    .column-header {
+      display: inline-block;
+      text-align: left;
+      white-space: nowrap;
+
+      &.columns-4 {
+        width: 25%;
+      }
+    }
+  }
+}
+
+//Variations
+ual-table {
+  .table-header {
+    background-color: $color07;
+     
+    .column-header {
+      
+      &.-order-by {
+        cursor: pointer;
+      }
+
+      &.-disabled {
+        pointer-events: none;
+        cursor: default;
+      }
+    }
+  }
+}
