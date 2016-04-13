@@ -145,10 +145,10 @@ class UalReportFormController {
     this.report.create();
     this.getReport(reportId)
       .then((reply) => {
-        let reportData = reply.data;
+        let reportData = reply.data[0];
 
         reportData.datasource = {
-          id: reportData.dataSourceId,
+          id: reportData.id,
           name: reportData.dataSource
         };
 
