@@ -10,6 +10,8 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
     });
   }
   let saveReport = (report) =>{
+        report.saving.setSaving(true);
+
         let dataSourceId = report.datasource.get().id;
         let variables = report.variables.get();
         let aggregators = report.aggregators.get();
@@ -32,7 +34,6 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
         if(report.reportId.get() === null){
             return $http.post(endpoint, data);
         }else{
-
             return $http.put( endpoint+"/"+report.reportId.get() , data );
         }
   }

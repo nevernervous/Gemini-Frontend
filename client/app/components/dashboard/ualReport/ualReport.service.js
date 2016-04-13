@@ -7,6 +7,7 @@ let ualReportService = function () {
   let aggregators = [];
   let reportId = null;
   var touched = false;
+  let saving = false;
   
   let exitConfirmed = false;
   
@@ -17,6 +18,7 @@ let ualReportService = function () {
     aggregators = [];
     reportId = null;
     touched = false;
+    saving = false;
   }
 
   let getDataSource = () => datasource;
@@ -48,6 +50,10 @@ let ualReportService = function () {
   
   let isExitComfirmed = () => exitConfirmed;
   let setExitConfirm = (value) => exitConfirmed = value;
+  
+  let isSaving = () => saving;
+  let setSaving = (value) => saving = value;
+  
   return {
     create,
     reportId: {
@@ -80,6 +86,10 @@ let ualReportService = function () {
       get: getAggregators,
       set: setAggregators
     },
+    saving: {
+        isSaving: isSaving,
+        setSaving: setSaving
+    }
   };
 };
 

@@ -51,6 +51,9 @@
   .-tooltip{
     margin-left: 10px;
     margin-top: 2px;
+    @include -ms-browser(){
+        margin-top: -2px;
+    }
   }
   .-error-tooltip{
       color: $alertHighColor;
