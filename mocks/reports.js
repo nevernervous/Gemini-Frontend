@@ -2,8 +2,8 @@ module.exports = {
   '/api/Reports': {
     POST: {
         //SUCCESS
-//        data: {"reportId": 1},
-//        code: 201,
+        data: {"reportId": 1},
+        code: 201,
         
         //REPORT NAME DUPLICATED
 //        data:{
@@ -28,8 +28,8 @@ module.exports = {
 //        code: 400,
         
         //SERVER ERROR GENERIC
-        code: 500,
-        data: {},
+//        code: 500,
+//        data: {},
 
     },
     GET: {
