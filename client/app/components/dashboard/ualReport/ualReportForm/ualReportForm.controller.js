@@ -149,7 +149,7 @@ class UalReportFormController {
         this._service.report.save(report).then(
             function(response){
                 form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-                report.reportId.set(response.data.reportId);
+                report.reportId.set(response.data.id);
                 form.messageDisplayed = true;
                 report.untouch();
                 form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
