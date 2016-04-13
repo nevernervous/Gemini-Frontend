@@ -183,9 +183,9 @@ module.exports = {
   '/api/Reports/1': {
     GET: {
       data: {
-        "data": {
+        "data": [{
           "name": "Report name",
-          "dataSourceId": 1,
+          "id": 1,
           "dataSource": "DataSource Name",
           "variables": [
             {
@@ -207,7 +207,7 @@ module.exports = {
               "Order": 3
             },
           ]
-        }
+        }]
       },
       code: 200
     }
