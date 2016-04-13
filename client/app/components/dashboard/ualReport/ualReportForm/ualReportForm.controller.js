@@ -50,14 +50,12 @@ class UalReportFormController {
             event.preventDefault();
             let _report = this.report;
             let _state = this._state;
-            this._ualUnsafeReportModal.open({}).then(
-                function(response){
-                    if(response){
-                        _report.exitConfirmed.set(true);
-                        _state.go(toState.name);
-                    }
+            this._ualUnsafeReportModal.open().then( response => {
+                if(response){
+                    _report.exitConfirmed.set(true);
+                    _state.go(toState.name);
                 }
-            );
+            });
         }else{
             this.report.exitConfirmed.set(false);
             $( window ).unbind( "beforeunload", this.beforeClose);
