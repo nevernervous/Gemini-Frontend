@@ -16,7 +16,7 @@ let dashboardModule = angular.module('dashboard', [
   LogoutModal.name,
   ExpirationModal.name,  
   // CONTENT
-  ualReport.name  
+  ualReport.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {

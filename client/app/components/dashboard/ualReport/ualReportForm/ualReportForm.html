@@ -1,10 +1,17 @@
+<ual-message-banner ng-show="vm.messageDisplayed" class="-dashboard" ng-class="vm.saveResult.msgClass">
+  {{vm.saveResult.msgText}}
+</ual-message-banner>
+
 <div class="report-header">
-  <div class="title">{{ vm.isNewReport ? 'Create' : 'Modify'}} Report</div>
-  <ual-button class="save-button -secondary">Save</ual-button>
+  <div class="title">
+    <span ng-hide="vm.report.reportId.get() ">Create </span>
+    <span ng-show="vm.report.reportId.get() ">Modify </span> Report
+  </div>
+  <ual-button class="save-button -secondary" ng-disabled="(vm.report.variables.get() | isEmpty)||(vm.report.datasource.get().name | isEmpty)" ng-click="vm.saveReport(vm.report)">Save</ual-button>
 </div>
 <div class="report-body">
   <div class="section report-name">
-    <div class="title">{{vm.isNewReport ? 'Insert a Report Name' : vm.report.get().name}}</div>
+    <ual-report-input report="vm.report" invalid-input="vm.duplicatedName"></ual-report-input>
   </div>
   <div class="section selected-parameters">
     <div class="selected-parameter">
