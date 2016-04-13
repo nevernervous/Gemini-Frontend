@@ -2,7 +2,7 @@
     <span id="datasourceItem_{{vm.datasourceItem.id}}">
     {{vm.datasourceItem.name}}
     </span>
-    <ual-tooltip class="-tooltip">
+    <ual-tooltip id="tooltip_{{vm.datasourceItem.id}}" class="-tooltip ng-scope" ng-disabled="true">
     {{vm.datasourceItem.description}}
     </ual-tooltip>
-</span> 
+</span>

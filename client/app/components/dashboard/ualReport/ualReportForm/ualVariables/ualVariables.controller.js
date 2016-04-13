@@ -16,6 +16,7 @@ class UalVariablesController {
     // VARS / PRIVATE
     this._datasource = datasource;
     this._selecteds = selecteds;
+    this._selectedTooltip = "";
 
     // VARS / PUBLIC
     this.variables = {items: []}
@@ -149,12 +150,6 @@ class UalVariablesController {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
   showTooltip(e){
-    let id = parseInt(e.target.id.match("span_(.*)")[1]);
-    let isSelectedVariable = null;
-    
-    if (this.selecteds.length > 0)   
-      isSelectedVariable = _.find(this.selecteds, { 'id' : id } ); 
-    
     let span = $("#"+e.target.id);
     let checkboxItem = span.parent().parent();
     let offset = checkboxItem.offset();
@@ -165,13 +160,14 @@ class UalVariablesController {
     offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
     offset.top -= ((tooltip.height() / 2) - ((checkboxItem.height() / 2) ) );
     offset.top = parseInt(offset.top) + 5;
-
-    tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
     tooltip.css(offset);
+    
+    this._selectedTooltip = tooltip.prop("id");
+    tooltip.prop("disabled", false);    
   }
 
   hideTooltip(){
-    $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
+    $("#"+this._selectedTooltip).prop("disabled", true);
   }
 
   apply() {

@@ -10,9 +10,14 @@ class ualTooltipDirective {
         this.scope = {};
     }
 
-    link(scope, element) { 
-      //let height =  $(element.parent()).height() + 100;
-      //element.css('top', `{height}px`);
+    link(scope, element, attrs, ctrl) {
+      scope.$watch(
+        () => element.prop('disabled'),
+        isDisabled => {
+              let action = !isDisabled ? 'addClass' : 'removeClass';
+              element[action]('-show-tooltip');
+        }
+      );
     }
 }
 
