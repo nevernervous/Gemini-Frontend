@@ -31,7 +31,7 @@ class UalReportFormController {
         this.saveResultMessages.set(1,{msgClass: {"-error": true}, msgText : "Report name already exists. Please select another." });
         this.saveResultMessages.set(2,{msgClass: {"-error": true}, msgText : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."});
         
-        this.duplicatedErrorResponse = "There is already a report with the same name";
+        this.duplicatedErrorResponse = "Report name already exists. Please select another.";
         this.duplicatedName = false;
         
         this._ualReportNameModal = ualReportNameModal;
@@ -50,14 +50,12 @@ class UalReportFormController {
             event.preventDefault();
             let _report = this.report;
             let _state = this._state;
-            this._ualUnsafeReportModal.open({}).then(
-                function(response){
-                    if(response){
-                        _report.exitConfirmed.set(true);
-                        _state.go(toState.name);
-                    }
+            this._ualUnsafeReportModal.open().then( response => {
+                if(response){
+                    _report.exitConfirmed.set(true);
+                    _state.go(toState.name);
                 }
-            );
+            });
         }else{
             this.report.exitConfirmed.set(false);
             $( window ).unbind( "beforeunload", this.beforeClose);
@@ -158,10 +156,17 @@ class UalReportFormController {
 //                form.initialReportHash = report.hash();
             },
             function(response){
-                if(response.data.indexOf(form.duplicatedErrorResponse) < 0){ 
-                    form.saveResult = form.saveResultMessages.has(1)? form.saveResultMessages.get(1) : form.saveResultMessages.get(null);
+                //UNEXPECTED ERROR
+                if(!response.data || !response.data.errorMessages){
+                    form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                    form.messageDisplayed = true;
+                }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){ 
+                //EXPECTED ERROR
+                    form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                    form.saveResult.msgText = response.data.errorMessage;
                     form.messageDisplayed = true;
                 }else{ 
+                //DUPLICATED NAME
                     form.duplicatedName = true;
                     form.messageDisplayed = false;
                 }
@@ -169,7 +174,7 @@ class UalReportFormController {
         ).catch(function(){
             form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
             form.messageDisplayed = true;
-        });
+        }).finally( () => {report.saving.setSaving(false);} );
     }
 }
 
