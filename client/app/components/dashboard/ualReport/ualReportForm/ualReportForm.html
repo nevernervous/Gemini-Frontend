@@ -7,11 +7,20 @@
     <span ng-hide="vm.report.reportId.get() ">Create </span>
     <span ng-show="vm.report.reportId.get() ">Modify </span> Report
   </div>
-  <ual-button class="save-button -secondary" ng-disabled="(vm.report.variables.get() | isEmpty)||(vm.report.datasource.get().name | isEmpty)" ng-click="vm.saveReport(vm.report)">Save</ual-button>
+  <ual-button class="save-button -secondary" ng-disabled="(vm.report.datasource.get().name | isEmpty)" ng-click="vm.saveReport(vm.report)">Save</ual-button>
 </div>
 <div class="report-body">
-  <div class="section report-name">
-    <ual-report-input report="vm.report" invalid-input="vm.duplicatedName"></ual-report-input>
+  <div class="section report-name" ng-if="vm.reportLoaded">
+    <ual-report-input report="vm.report" invalid-input="vm.duplicatedName || !vm.report.name.get()">
+      <ual-invalid-message>
+        <span ng-if="vm.duplicateName">
+            Report name already exists. Please select another.
+        </span>
+        <span ng-if="!vm.report.name.get() && !vm.duplicateName">
+            Report name must be entered in order to save.               
+        </span> 
+      </ual-invalid-message>
+    </ual-report-input>
   </div>
   <div class="section selected-parameters">
     <div class="selected-parameter">
@@ -25,9 +34,7 @@
       <span class="title">Variables:</span>
       <span class="value" ng-show="vm.report.variables.get() | isEmpty">No Variables Selected</span>
       <span class="value" ng-hide="vm.report.variables.get() | isEmpty">{{vm.report.variables.get().length}} Variables Selected</span>
-      <span ng-if="vm.isNewReport">
-        <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
-        </span>
+      <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
     </div>
   </div>
   <div class="section aggregations-values">
