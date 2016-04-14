@@ -36,7 +36,7 @@ module.exports = {
       data: {
         "data": [
           {
-            "id": 1,
+            "id": 190,
             "name": "My First Report 99",
             "dataSource": "Data Source Name 1",            
             "lastModificationDate": "2002-04-26T09:00:00",
@@ -120,7 +120,7 @@ module.exports = {
             "status": 1
               },
               {
-                "id": 13,
+                "id": 1,
                 "name": "My First Report 183",
             "dataSource": "Data Source Name 1",
             "lastModificationDate": "2016-10-21T10:00:09",
@@ -179,5 +179,38 @@ module.exports = {
       },
       code: 200
     }
-  }
+  },
+  '/api/Reports/1': {
+    GET: {
+      data: {
+        "data": [{
+          "name": "Report name",
+          "id": 1,
+          "dataSource": "DataSource Name",
+          "variables": [
+            {
+              "Id": 1,
+              "Order": 1
+            },
+          ],
+          "aggregators": [
+            {
+              "Id": 1,
+              "Order": 2
+            },
+            {
+              "Id": 2,
+              "Order": 1
+            },
+            {
+              "Id": 3,
+              "Order": 3
+            },
+          ]
+        }]
+      },
+      code: 200
+    }
+  } 
+  
 };

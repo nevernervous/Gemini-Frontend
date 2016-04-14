@@ -9,6 +9,7 @@
     "@iamadamjowett/angular-click-outside": "*",
     "angular-deferred-bootstrap": "^0.1.9",
     "angular-filter": "^0.5.8",
+    "angular-q-spread": "^1.1.0",
     "angular-modal-service": "^0.6.9",
     "angular-ui-router": "^0.2.15",
     "angular-uuid": "0.0.2",
