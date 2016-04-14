@@ -1,4 +1,4 @@
-<div class="report-form-input" ng-class="{'-invalid': (vm.checkEmptyName() || vm.invalidInput) }">
+<div class="report-form-input" ng-class="{'-invalid': (vm.checkEmptyName() || vm.invalidInput) && !vm.firstTime }">
     <label ng-hide="vm.visibleInput" ng-click="vm.displayInput(true)" for="{{vm.inputId}}">{{vm.labelText()}}</label>
     <div ng-show="vm.visibleInput || vm.errorThrown()">
         <input type="text" ng-model="vm.report._name" ng-model-options="{ getterSetter:true}" 

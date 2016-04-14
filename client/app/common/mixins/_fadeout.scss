@@ -1,0 +1,14 @@
+@mixin fadeOut(){
+    @-webkit-keyframes fadeOut { 
+        from { opacity:1; } to { opacity:0; } 
+        100% {display:none}
+    }
+    @-moz-keyframes fadeOut { 
+        from { opacity:1; } to { opacity:0; } 
+        100% {display:none}
+    }
+    @keyframes fadeOut { 
+        from { opacity:1; } to { opacity:0; } 
+        100% {display:none}
+    }
+}
