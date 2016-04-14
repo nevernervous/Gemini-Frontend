@@ -149,7 +149,7 @@ module.exports = {
                   {
                     "id": 14,
                     "name": "Data Source Name 14",
-                    "description": "Data Source Description 14",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
                     "group": {
                       "groupId": 4,
                       "groupName": "Group Name 2",

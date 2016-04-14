@@ -97,27 +97,16 @@ class UalDataSourceController {
     // }
 
     showTooltip(e){
-      let datasource = $("#"+e.target.id);
-      
+      let datasourceItem = $("#"+e.target.id);
       if (e.target.nodeName == 'UAL-DATA-SOURCE-ITEM') {
-        let span = datasource.find("span:eq(0)");
-        let offset = span.offset();
-        let parentWidth = span.width();
-        let childWidth = datasource.find("span:eq(1)").width();
-        let tooltip = datasource.find("ual-tooltip");
-
-        offset.left = (childWidth > parentWidth ?  (parentWidth + 5) : (childWidth + 10)) + offset.left;
-        offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
-        offset.top += window.isIE  ? 2 : 5;
-        tooltip.css(offset);
-        
+        let tooltip = datasourceItem.find("ual-tooltip");
+        tooltip.prop("ual-tooltip-show", true);
         this._selectedTooltip = tooltip.prop("id");
-        tooltip.prop("disabled", false);
       }
     }
 
     hideTooltip(){
-      $("#"+this._selectedTooltip).prop("disabled", true);
+      $("#"+this._selectedTooltip).prop("ual-tooltip-show", false);
     }
 
     _initialize() {

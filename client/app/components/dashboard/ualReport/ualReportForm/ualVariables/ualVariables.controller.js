@@ -149,25 +149,15 @@ class UalVariablesController {
   itemPosition(variable) {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
-  showTooltip(e){
-    let span = $("#"+e.target.id);
-    let checkboxItem = span.parent().parent();
-    let offset = checkboxItem.offset();
-    let parentWidth = checkboxItem.width();
-    let childWidth = span.width();
-    let tooltip = span.first().next();
-
-    offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
-    offset.top -= ((tooltip.height() / 2) - ((checkboxItem.height() / 2) ) );
-    offset.top = parseInt(offset.top) + 5;
-    tooltip.css(offset);
-    
+  showTooltip(e){     
+    console.log(e.target.id);   
+    let tooltip = $("#"+e.target.id).first().next();
+    tooltip.prop("ual-tooltip-show", true);
     this._selectedTooltip = tooltip.prop("id");
-    tooltip.prop("disabled", false);    
   }
 
   hideTooltip(){
-    $("#"+this._selectedTooltip).prop("disabled", true);
+    $("#"+this._selectedTooltip).prop("ual-tooltip-show", false);
   }
 
   apply() {

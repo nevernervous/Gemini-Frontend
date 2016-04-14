@@ -1,6 +1,7 @@
 class UalDataSourceItemController {
   /*@ngInject*/
   constructor() {
+    this.tooltipTop = (window.isIE  ? 2 : 5);
   }
   
   hideTooltip(){

@@ -11,21 +11,7 @@ ual-data-source-item {
         width: 100%;
         display: inline-block;
         padding: 8px;
-        pointer-events: none;
-        
-        > ual-tooltip {                                    
-            display: none;
-            margin-left: 15px;
-            margin-top: -7px;
-            
-            opacity:0;
-            opacity: 1 \9; /*just in case ie*/
-            @include fadeIn();
-            @include animation(fadeIn ease-in 1);
-            @include animation-fill-mode(forwards);
-            @include animation-duration(0.2s);
-            @include animation-delay(1s);                                                                                                      
-        }                               
+        pointer-events: none;       
     }    
 }
 
