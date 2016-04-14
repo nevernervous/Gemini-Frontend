@@ -145,10 +145,10 @@ class UalReportFormController {
     this.report.create();
     this.getReport(reportId)
       .then((reply) => {
-        let reportData = reply.data[0];
+        let reportData = reply.data;
 
         reportData.datasource = {
-          id: reportData.dataSourceId || 1,
+          id: reportData.dataSourceId,
           name: reportData.dataSource
         };
 
@@ -163,11 +163,11 @@ class UalReportFormController {
         let variables = replyVariables.data;
 
         let selectedAggregators = this.intersectWith(aggregators.items, reportData.aggregators, (matcher) => {
-          return { id: matcher.Id }
+          return { id: matcher.id }
         });
 
         let selectedVariables = this.intersectWith(variables.items, reportData.variables, (matcher) => {
-          return { id: matcher.Id };
+          return { id: matcher.id };
         });
         
         this.reportLoaded = true;
@@ -221,7 +221,7 @@ class UalReportFormController {
     this._service.report.save(report).then(
       function(response) {
         form.saveResult = form.saveResultMessages.has(0) ? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-        report.reportId.set(response.data.reportId);
+        report.reportId.set(response.data.id);
         form.messageDisplayed = true;
         report.untouch();
         form._state.go("dashboard.report-edit", { "id": report.reportId.get() }, { notify: false });
