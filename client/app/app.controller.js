@@ -1,16 +1,16 @@
-    // Opera 8.0+
+// Opera 8.0+
 window.isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-    // Firefox 1.0+
+// Firefox 1.0+
 window.isFirefox = typeof InstallTrigger !== 'undefined';
-    // At least Safari 3+: "[object HTMLElementConstructor]"
+// At least Safari 3+: "[object HTMLElementConstructor]"
 window.isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
-    // Internet Explorer 6-11
+// Internet Explorer 6-11
 window.isIE = /*@cc_on!@*/false || !!document.documentMode;
-    // Edge 20+
+// Edge 20+
 window.isEdge = !isIE && !!window.StyleMedia;
-    // Chrome 1+
+// Chrome 1+
 window.isChrome = !!window.chrome && !!window.chrome.webstore;
-    // Blink engine detection
+// Blink engine detection
 window.isBlink = (isChrome || isOpera) && !!window.CSS;
 
 class AppController {
@@ -26,7 +26,7 @@ class AppController {
   }
 
   _sessionWatcher() {
-    this._timeout( () => {
+    this._timeout(() => {
       this._onChangeState(this._state.current.name);
       this._sessionWatcher();
     }, 1000); // EACH 1 SECOND
@@ -38,13 +38,13 @@ class AppController {
   }
 
 
-  _onChangeState(next, prev = '', cancel = ()=>{}) {
-    if ( this._session.isLogged() ) {
-      if ( next === 'login' || next === '') {
+  _onChangeState(next, prev = '', cancel = () => { }) {
+    if (this._session.isLogged()) {
+      if (next === 'login') {
         this._state.go('dashboard.report-list');
       }
     } else {
-      if ( next !== 'login' ) {
+      if (next !== 'login') {
         this._state.go('login');
       }
     }
@@ -52,7 +52,7 @@ class AppController {
 
   $onInit() {
     this._startSessionWatcher();
-    this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) => this._onChangeState(toState.name, fromState.name, event.preventDefault) );
+    this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) => this._onChangeState(toState.name, fromState.name, event.preventDefault));
   }
 }
 

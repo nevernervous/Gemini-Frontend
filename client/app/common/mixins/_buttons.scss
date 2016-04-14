@@ -25,7 +25,7 @@
     @include ual-button(#81c4ea, white, $padding);
   }
   &.-disabled { 
-    @include ual-button(#b0d4f1, #b0d4f1, $padding);
+    @include ual-button(#b0d4f1, #deedf9, $padding);
     cursor: default;
   }     
 }

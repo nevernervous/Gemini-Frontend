@@ -3,10 +3,12 @@ let ualReportService = function () {
   
   let name = null
   let datasource = null;
+  let reportData = null;
   let variables = [];
   let aggregators = [];
   let reportId = null;
   var touched = false;
+  let saving = false;
   
   let exitConfirmed = false;
   
@@ -17,8 +19,15 @@ let ualReportService = function () {
     aggregators = [];
     reportId = null;
     touched = false;
+    saving = false;
   }
-
+  
+  let update = (reportData) => {
+    datasource = reportData.datasource;
+    variables = reportData.variables;
+    aggregators = reportData.aggregators;
+  };
+  
   let getDataSource = () => datasource;
   let setDataSource = value => datasource = value;
   let equalDataSource = newDataSource => {
@@ -32,10 +41,14 @@ let ualReportService = function () {
   }
 
   let getAggregators = () => aggregators;
+  
   let setAggregators = value => {
     touched = true;  
     aggregators = value;
   }
+  let getReportData = () => reportData;
+  let setReportData = value => reportData = value;
+  
 
   let getName = () => name;
   let setName = value =>{
@@ -48,8 +61,15 @@ let ualReportService = function () {
   
   let isExitComfirmed = () => exitConfirmed;
   let setExitConfirm = (value) => exitConfirmed = value;
+  
+  let isSaving = () => saving;
+  let setSaving = (value) => saving = value;
+  
   return {
+    update,
     create,
+    get: getReportData,
+    set: setReportData,
     reportId: {
       get: getReportId,  
       set: setReportId
@@ -80,6 +100,10 @@ let ualReportService = function () {
       get: getAggregators,
       set: setAggregators
     },
+    saving: {
+        isSaving: isSaving,
+        setSaving: setSaving
+    }
   };
 };
 
