@@ -1,4 +1,4 @@
-let reportService = function (Properties, ServicesTransform, $http, $q) {
+let reportService = function(Properties, ServicesTransform, $http, $q) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
 
@@ -9,6 +9,15 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
       transformResponse: ServicesTransform.generate(transformation)
     });
   }
+  
+  let getById = (reportId) => {
+    let transformation = [ServicesTransform.get('simple')];
+    return $http.get(`${endpoint}/${reportId}`, {
+      cache: Properties.cache,
+      transformResponse: ServicesTransform.generate(transformation)
+    });
+  };
+  
   let saveReport = (report) =>{
         report.saving.setSaving(true);
 
@@ -40,6 +49,7 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
   return {
       all,
       save: saveReport,
+      getById
   };
 };
 

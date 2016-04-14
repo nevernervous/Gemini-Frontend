@@ -1,5 +1,6 @@
 class UalReportListController {
   /*@ngInject*/
+
   constructor(Report) {       
     this.reports = null;    
     this._reportService = Report;
