@@ -3,7 +3,8 @@ class ualReportInputController {
   constructor() {
     this.name = 'ualReportInput';
     this.visibleInput = false;
-    this.inputId = "reportName";   
+    this.inputId = "reportName";
+    this.firstTime = true;
   }
   
   displayInput(val) {
@@ -13,6 +14,7 @@ class ualReportInputController {
       return this.report.name.get()?this.report.name.get():'Enter report name';
   }
   checkEnter(event){
+      this.firstTime = false;
       if( (event.which|event.keyCode) === 27 || (event.which|event.keyCode) === 13) { // 27 = esc key
         event.preventDefault();
         event.target.blur();
