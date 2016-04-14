@@ -164,7 +164,7 @@ class UalVariablesController {
 
     offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
     offset.top -= ((tooltip.height() / 2) - ((checkboxItem.height() / 2) ) );
-    offset.top = parseInt(offset.top) + 5;
+    offset.top = parseInt(offset.top) + (window.isIE ? 4 : 5);
 
     tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
     tooltip.css(offset);
