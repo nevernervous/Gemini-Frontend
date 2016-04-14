@@ -10,6 +10,7 @@ class UalDataSourceController {
         this.searchTerm = {};
 
         this._animate = $animate;
+        this._selectedTooltip = "";
 
         this.datasources;
         this.selected = selected;
@@ -97,7 +98,7 @@ class UalDataSourceController {
 
     showTooltip(e){
       let datasource = $("#"+e.target.id);
-
+      
       if (e.target.nodeName == 'UAL-DATA-SOURCE-ITEM') {
         let span = datasource.find("span:eq(0)");
         let offset = span.offset();
@@ -108,14 +109,15 @@ class UalDataSourceController {
         offset.left = (childWidth > parentWidth ?  (parentWidth + 5) : (childWidth + 10)) + offset.left;
         offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
         offset.top += window.isIE  ? 2 : 5;
-
-        tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
         tooltip.css(offset);
+        
+        this._selectedTooltip = tooltip.prop("id");
+        tooltip.prop("disabled", false);
       }
     }
 
     hideTooltip(){
-      $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
+      $("#"+this._selectedTooltip).prop("disabled", true);
     }
 
     _initialize() {

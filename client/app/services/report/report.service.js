@@ -30,18 +30,10 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
 
         let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
         if(report.reportId.get() === null){
-            return $http.post(endpoint, {
-                data: data,
-                cache: Properties.cache,
-                transformResponse: ServicesTransform.generate(transformation)
-            });
+            return $http.post(endpoint, data);
         }else{
 
-            return $http.put( endpoint+"/"+report.reportId.get() , {
-                data: data,
-                cache: Properties.cache,
-                transformResponse: ServicesTransform.generate(transformation)
-            });
+            return $http.put( endpoint+"/"+report.reportId.get() , data );
         }
   }
   return {

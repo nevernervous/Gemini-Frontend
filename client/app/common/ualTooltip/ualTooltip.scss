@@ -102,11 +102,6 @@ ual-tooltip.-tooltip {
 }
 
 ual-tooltip {
-    &.-hide-tooltip {
-        display: none;
-        visibility: hidden;
-    }
-
     &.-show-tooltip{
         position: fixed;
         display: inline;
