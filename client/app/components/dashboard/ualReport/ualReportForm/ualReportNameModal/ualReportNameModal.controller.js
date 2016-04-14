@@ -41,6 +41,9 @@ class ualReportNameModalController {
             if(!response.data || !response.data.errorMessages){
                 form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
                 form.messageDisplayed = true;
+                setTimeout(function(){
+                    form.messageDisplayed = false;
+                }, 5000);
                 this._closemodal(false);
             }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){ 
             //EXPECTED ERROR

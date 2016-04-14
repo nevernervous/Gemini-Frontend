@@ -25,6 +25,12 @@ ual-message-banner {
             padding-right: 8px;
             font-size: 26px;
         }
+        .-close-icon{
+            display: none;
+            position: absolute;
+            right: 0px;
+            top: 5px;
+        }
     }
 }
 
@@ -34,7 +40,7 @@ ual-message-banner {
 ual-message-banner{
   color: $warningHighColor;
   background: $warningLowColor;
-  i{
+  i.-message-icon{
     @include icon-warning(26);
   }
 }
@@ -43,7 +49,7 @@ ual-message-banner{
 ual-message-banner.-success{
   color: $successHighColor;
   background: $successLowColor;
-  i{
+  i.-message-icon{
       @extend .ion-ios-checkmark-outline;
   }
 }
@@ -52,7 +58,12 @@ ual-message-banner.-success{
 ual-message-banner.-error{
   color: $alertHighColor;
   background: $alertLowColor;
-  i{
+  i.-message-icon{
       @extend .ion-ios-close-outline;
   }
+}
+ual-message-banner.-closeable{
+    .-close-icon{
+        display: inline;
+    }
 }

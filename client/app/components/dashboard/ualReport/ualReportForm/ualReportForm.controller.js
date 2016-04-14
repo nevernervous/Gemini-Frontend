@@ -28,8 +28,8 @@ class UalReportFormController {
         this.saveResultMessages = new Map();
         this.saveResultMessages.set(null,{msgClass: {}, msgText : ""});
         this.saveResultMessages.set(0,{msgClass: {"-success": true}, msgText : "Report saved successfully."});
-        this.saveResultMessages.set(1,{msgClass: {"-error": true}, msgText : "Report name already exists. Please select another." });
-        this.saveResultMessages.set(2,{msgClass: {"-error": true}, msgText : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."});
+        this.saveResultMessages.set(1,{msgClass: {"-error": true, "-closeable": true}, msgText : "Report name already exists. Please select another." });
+        this.saveResultMessages.set(2,{msgClass: {"-error": true, "-closeable": true}, msgText : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."});
         
         this.duplicatedErrorResponse = "Report name already exists. Please select another.";
         this.duplicatedName = false;
@@ -151,6 +151,9 @@ class UalReportFormController {
                 form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
                 report.reportId.set(response.data.reportId);
                 form.messageDisplayed = true;
+                setTimeout(function(){
+                    form.messageDisplayed = false;
+                }, 5000);
                 report.untouch();
                 form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
 //                form.initialReportHash = report.hash();
