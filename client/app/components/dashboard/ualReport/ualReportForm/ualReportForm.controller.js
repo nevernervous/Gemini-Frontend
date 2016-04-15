@@ -1,25 +1,25 @@
 class UalReportFormController {
-    /*@ngInject*/
-    constructor($window, $state, ualReport, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, ualUnsafeReportModal, $q) {
-        this._state = $state;
-        this._window = $window;
-        this._datasourcemodal = ualDataSource;
-        this._variablesmodal = ualVariables;
-        this.maxAggregators = 10;
-        this._q = $q;
+  /*@ngInject*/
+  constructor($window, $state, ualReport, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, ualUnsafeReportModal, $q) {
+    this._state = $state;
+    this._window = $window;
+    this._datasourcemodal = ualDataSource;
+    this._variablesmodal = ualVariables;
+    this.maxAggregators = 10;
+    this._q = $q;
 
-        this._scope = $scope;
-        this._suscriptions = [];
-        
-        this._service = {
-            aggregator: Aggregator,
-            report: Report,
-            datasource: DataSource
-        };
-        
-        
-        this.dropDownStyle = {};
-        this.inputStyle = {};
+    this._scope = $scope;
+    this._suscriptions = [];
+
+    this._service = {
+      aggregator: Aggregator,
+      report: Report,
+      datasource: DataSource
+    };
+
+
+    this.dropDownStyle = {};
+    this.inputStyle = {};
 
         this.report = ualReport;
         
@@ -68,30 +68,30 @@ class UalReportFormController {
 
     this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
 
-    this._suscriptions.push(this._scope.$on('$stateChangeStart', ( event, toState, toParams, fromState, fromParams ) => {
-        if(!this.report.exitConfirmed.get() && this.report.touched()){
-            event.preventDefault();
-            let _report = this.report;
-            let _state = this._state;
-            this._ualUnsafeReportModal.open().then( response => {
-                if(response){
-                    _report.exitConfirmed.set(true);
-                    _state.go(toState.name);
-                }
-            });
-        }else{
-            this.report.exitConfirmed.set(false);
-            $( window ).unbind( "beforeunload", this.beforeClose);
-            this._unsuscribe()
-        }
+    this._suscriptions.push(this._scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
+      if (!this.report.exitConfirmed.get() && this.report.touched()) {
+        event.preventDefault();
+        let _report = this.report;
+        let _state = this._state;
+        this._ualUnsafeReportModal.open().then(response => {
+          if (response) {
+            _report.exitConfirmed.set(true);
+            _state.go(toState.name);
+          }
+        });
+      } else {
+        this.report.exitConfirmed.set(false);
+        $(window).unbind("beforeunload", this.beforeClose);
+        this._unsuscribe()
+      }
     }));
 
-    this.beforeClose =function(event) {
-        event.originalEvent.returnValue="Exit without saving?";
-        return "Exit without saving?";
+    this.beforeClose = function(event) {
+      event.originalEvent.returnValue = "Exit without saving?";
+      return "Exit without saving?";
     };
-    $(window).bind('beforeunload', this.beforeClose );
-   
+    $(window).bind('beforeunload', this.beforeClose);
+
   }
 
   _unsuscribe() {
@@ -145,10 +145,10 @@ class UalReportFormController {
     this.report.create();
     this.getReport(reportId)
       .then((reply) => {
-        let reportData = reply.data[0];
+        let reportData = reply.data;
 
         reportData.datasource = {
-          id: reportData.id,
+          id: reportData.dataSourceId,
           name: reportData.dataSource
         };
 
@@ -163,15 +163,18 @@ class UalReportFormController {
         let variables = replyVariables.data;
 
         let selectedAggregators = this.intersectWith(aggregators.items, reportData.aggregators, (matcher) => {
-          return { id: matcher.Id }
+          return { id: matcher.id }
         });
 
         let selectedVariables = this.intersectWith(variables.items, reportData.variables, (matcher) => {
-          return { id: matcher.Id };
+          return { id: matcher.id };
         });
-
+        
+        this.reportLoaded = true;
+        
         this.aggregators = aggregators;
-        this.report.set(reportData);
+        this.report.name.set(reportData.name);
+        this.report.reportId.set(reportData.id);
         this.report.datasource.set(reportData.datasource);
         this.report.aggregators.set(selectedAggregators);
         this.report.variables.set(selectedVariables);
@@ -203,7 +206,7 @@ class UalReportFormController {
     saveReport(){
         let report = this.report;
         let form = this;
-        if(!report.name.get()){
+        if(!report.name.get() && !report.reportId.get()){
             this._ualReportNameModal.open({
                 report: this.report,
                 reportForm: this,
@@ -217,8 +220,10 @@ class UalReportFormController {
         this._service.report.save(report).then(
             function(response){
                 form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-                report.reportId.set(response.data.reportId);
+                report.reportId.set(response.data.id);
                 form.messageDisplayed = true;
+                form.duplicatedName = false;
+
                 setTimeout(function(){
                     form.messageDisplayed = false;
                 }, 5000);

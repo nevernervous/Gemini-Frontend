@@ -13,6 +13,9 @@ let ualReportInputComponent = {
     isRequired: '=',
     invalidInput: '=',
   },
+  transclude: {
+    "invalidmessage": "?ualInvalidMessage"
+  },
   template,
   controller,
   controllerAs: 'vm'
