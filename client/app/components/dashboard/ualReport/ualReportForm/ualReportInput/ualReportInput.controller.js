@@ -4,7 +4,7 @@ class ualReportInputController {
     this.name = 'ualReportInput';
     this.visibleInput = false;
     this.inputId = "reportName";
-    this.firstTime = true;
+    this.firstTime = !this.report.name.get();
   }
   
   displayInput(val) {
@@ -21,7 +21,7 @@ class ualReportInputController {
       }
   }
   checkEmptyName(){
-      return (this.report.name.get()==false||this.report.name.get()==null);
+      return (!this.report.name.get());
   }
   errorThrown(){
       if(this.invalidInput){
