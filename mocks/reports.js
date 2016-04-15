@@ -2,7 +2,7 @@ module.exports = {
   '/api/Reports': {
     POST: {
       //SUCCESS
-      data: { "reportId": 1 },
+      data: { "id": 1 },
       code: 201,
 
       //REPORT NAME DUPLICATED

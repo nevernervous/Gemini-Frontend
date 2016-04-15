@@ -1,19 +1,25 @@
 @import '../common';
 @import '../ionicons/scss/ionicons';
 
+@mixin fadeHide(){
+    @-webkit-keyframes fadeHide { 
+        from { opacity:1; } to { opacity:0; } 
+        100% {height: 0px}
+    }
+    @-moz-keyframes fadeOut { 
+        from { opacity:1; } to { opacity:0; } 
+        100% {height: 0px}
+    }
+    @keyframes fadeOut { 
+        from { opacity:1; } to { opacity:0; } 
+        100% {height: 0px}
+    }
+}
 // LAYOUT
 ual-message-banner {
     @include gridle( 12 );
     width:100%;
     height: 52px;
-    
-    opacity:0;
-    opacity: 1 \9; /*just in case ie*/
-    @include fadeIn();
-    @include animation(fadeIn ease-in 1);
-    @include animation-fill-mode(forwards);
-    @include animation-duration(0.2s);
-    @include animation-delay(0s); 
     
     &.-dashboard{
         position: fixed;
@@ -24,7 +30,7 @@ ual-message-banner {
     }
     div{
         vertical-align: center;
-        height: 52px;
+        height: inherit;
         @include gridle( row row-align center middle );
         > span{
             vertical-align: super;
@@ -37,8 +43,17 @@ ual-message-banner {
         .-close-icon{
             display: none;
             position: absolute;
-            right: 0px;
-            top: 5px;
+            right: 5px;
+            top: 8px;
+            cursor: pointer;
+            span{
+                vertical-align: middle;
+                height: 30px;
+                @include -moz-browser(){
+                    height: 28px;
+                }
+                display: inline-block;
+            }
         }
     }
 }
@@ -61,11 +76,6 @@ ual-message-banner.-success{
   i.-message-icon{
       @extend .ion-ios-checkmark-outline;
   }
-  @include fadeOut();
-  @include animation(fadeOut ease-in 1);
-  @include animation-fill-mode(forwards);
-  @include animation-duration(4s);
-  @include animation-delay(1s); 
 }
 
 // VARIATION / ERROR
@@ -80,4 +90,17 @@ ual-message-banner.-closeable{
     .-close-icon{
         display: inline;
     }
+}
+
+// VARIATION / AUTOCLOSE
+ual-message-banner.-autoclose{
+  @include fadeHide();
+  @include animation(fadeOut ease-in 1);
+  @include animation-fill-mode(forwards);
+  @include animation-duration(3s);
+  @include animation-delay(2s); 
+/*  @include animation(fadeHide ease-in 1);
+  @include animation-fill-mode(forwards);*/
+/*  @include animation-duration(0s);
+  @include animation-delay(0s); */
 }
