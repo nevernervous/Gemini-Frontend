@@ -149,15 +149,21 @@ class UalVariablesController {
   itemPosition(variable) {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
-  showTooltip(e){     
-    console.log(e.target.id);   
+  showTooltip(e){
     let tooltip = $("#"+e.target.id).first().next();
     tooltip.prop("ual-tooltip-show", true);
     this._selectedTooltip = tooltip.prop("id");
   }
-
   hideTooltip(){
-    $("#"+this._selectedTooltip).prop("ual-tooltip-show", false);
+    $(".-tooltip").removeClass("-show-tooltip");
+    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+  }
+  datasourceContainer(id){
+    let container = $("#variable_" + id);
+    let sibling = $("#span_" + id);
+    console.log(sibling.width() , container.width());
+    return ( sibling.width() > container.width())
+      ? "variable_" + id : "span_" + id;
   }
 
   apply() {

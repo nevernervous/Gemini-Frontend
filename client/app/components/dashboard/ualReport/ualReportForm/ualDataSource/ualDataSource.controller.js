@@ -10,7 +10,6 @@ class UalDataSourceController {
         this.searchTerm = {};
 
         this._animate = $animate;
-        this._selectedTooltip = "";
 
         this.datasources;
         this.selected = selected;
@@ -94,19 +93,11 @@ class UalDataSourceController {
     //             });
 
     //     }
-    // }
-
-    showTooltip(e){
-      let datasourceItem = $("#"+e.target.id);
-      if (e.target.nodeName == 'UAL-DATA-SOURCE-ITEM') {
-        let tooltip = datasourceItem.find("ual-tooltip");
-        tooltip.prop("ual-tooltip-show", true);
-        this._selectedTooltip = tooltip.prop("id");
-      }
-    }
+  // }
 
     hideTooltip(){
-      $("#"+this._selectedTooltip).prop("ual-tooltip-show", false);
+      $(".-tooltip").removeClass("-show-tooltip");
+      $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
     }
 
     _initialize() {

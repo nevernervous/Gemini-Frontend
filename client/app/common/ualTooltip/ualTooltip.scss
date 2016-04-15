@@ -78,10 +78,11 @@ ual-tooltip.-tooltip {
     color: $color00;
     background-color: $color03;
     padding: 10px;
-    max-width: 250px;
+    min-width: 150px;
+    max-width: 280px;
     text-align: center;
     z-index: 99;
-    white-space: normal;      
+    white-space: normal;
 
     &::before {
         content: '';
@@ -105,7 +106,7 @@ ual-tooltip.-tooltip {
     display: none;
     margin-left: 15px;
     margin-top: -7px;
-        
+
     &.-show-tooltip{
         position: fixed;
         display: inline;
@@ -117,6 +118,28 @@ ual-tooltip.-tooltip {
         @include animation(fadeIn ease-in 1);
         @include animation-fill-mode(forwards);
         @include animation-duration(0.2s);
-        @include animation-delay(1s);  
+        @include animation-delay(1s);
+    }
+    &.-tooltip-left{
+      &::before{
+        content: none;
+        display: none;
+      }
+      &::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        left: 5px;
+        position: absolute;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        border-right: 5px solid $color03;
+
+        top: calc(50% - 3px);
+        @include -ms-browser() {
+          top: calc(50% - 2px);
+        }
+      }
     }
 }

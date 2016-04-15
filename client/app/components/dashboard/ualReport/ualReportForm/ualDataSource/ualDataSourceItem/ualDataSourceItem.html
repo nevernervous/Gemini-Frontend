@@ -1,9 +1,9 @@
-<span class="tooltip-wrapper">
-    <span class="tooltip-sibling" id="datasourceItem_{{vm.datasourceItem.id}}">
+<span id="datasourceContainer_{{vm.datasourceItem.id}}" class="tooltip-wrapper">
+    <span class="tooltip-sibling" id="datasourceItem_{{vm.datasourceItem.id}}" ng-mouseover="vm.showTooltip($event)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip($event)">
     {{vm.datasourceItem.name}}
     </span>
     <ual-tooltip id="tooltip_{{vm.datasourceItem.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
-    ual-tooltip-options="{ top: vm.tooltipTop, wrapperWidth: '5', siblingWidth: '10'}">
+    ual-tooltip-options="{ top: vm.tooltipTop, left: '5'}" ual-tooltip-container="vm.datasourceContainer()">
     {{vm.datasourceItem.description}}
     </ual-tooltip>
 </span>
