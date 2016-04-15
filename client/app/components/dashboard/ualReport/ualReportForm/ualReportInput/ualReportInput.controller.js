@@ -18,8 +18,6 @@ class ualReportInputController {
       if( (event.which|event.keyCode) === 27 || (event.which|event.keyCode) === 13) { // 27 = esc key
         event.preventDefault();
         event.target.blur();
-      }else{
-          this.invalidInput = false;
       }
   }
   checkEmptyName(){
