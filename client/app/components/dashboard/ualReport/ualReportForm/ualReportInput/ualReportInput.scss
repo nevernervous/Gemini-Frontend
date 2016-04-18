@@ -39,9 +39,6 @@
     input:read-only {
         border: 1px solid $color00;
     }
-    input.-label:hover {
-      border: 1px solid $color08;
-    }
     ::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
         line-height: 1.4;
