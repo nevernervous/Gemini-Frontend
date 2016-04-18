@@ -32,9 +32,6 @@ class ualReportNameModalController {
             form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
             report.reportId.set(response.data.id);
             form.messageDisplayed = true;
-            setTimeout(function(){
-                form.messageDisplayed = false;
-            }, 5000);
             report.untouch();
             
             modal._closemodal(true);

@@ -8,11 +8,20 @@
         <span ng-show="vm.report.reportId.get() ">Modify </span>
         Report
     </div>
-    <ual-button class="save-button -secondary" ng-disabled="vm.report.saving.isSaving() || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))" ng-click="vm.saveReport(vm.report)">Save</ual-button>
+    <ual-button class="save-button -secondary" ng-disabled="(vm.report.saving.isSaving() || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || (vm.report.reportId.get() && !vm.report.name.get())"  ng-click="vm.saveReport(vm.report)">Save</ual-button>
 </div>
 <div class="report-body">
-  <div class="section report-name">
-    <ual-report-input report="vm.report" invalid-input="vm.duplicatedName"></ual-report-input>
+  <div class="section report-name" ng-if="vm.isNewReport || (!vm.isNewReport && vm.reportLoaded)">
+    <ual-report-input report="vm.report" invalid-input="vm.duplicatedName || (!vm.isNewReport && !vm.report.name.get())">
+      <ual-invalid-message>
+        <span ng-if="vm.duplicatedName">
+            Report name already exists. Please select another.
+        </span>
+        <span ng-if="!vm.report.name.get() && !vm.duplicatedName">
+            Report name must be entered in order to save.
+        </span>
+      </ual-invalid-message>
+    </ual-report-input>
   </div>
   <div class="section selected-parameters">
     <div class="selected-parameter">

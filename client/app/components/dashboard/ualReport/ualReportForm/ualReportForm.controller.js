@@ -28,10 +28,10 @@ class UalReportFormController {
     this.saveResult = null;
 
     this.saveResultMessages = new Map();
-    this.saveResultMessages.set(null, { msgClass: {}, msgText: "" });
-    this.saveResultMessages.set(0, { msgClass: { "-success": true }, msgText: "Report saved successfully." });
-    this.saveResultMessages.set(1, { msgClass: { "-error": true, "-closeable": true }, msgText: "Report name already exists. Please select another." });
-    this.saveResultMessages.set(2, { msgClass: { "-error": true, "-closeable": true }, msgText: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator." });
+    this.saveResultMessages.set(null,{msgClass: {}, msgText : ""});
+    this.saveResultMessages.set(0,{msgClass: {"-success": true, "-autoclose": true}, msgText : "Report saved successfully."});
+    this.saveResultMessages.set(1,{msgClass: {"-error": true, "-closeable": true}, msgText : "Report name already exists. Please select another." });
+    this.saveResultMessages.set(2,{msgClass: {"-error": true, "-closeable": true}, msgText : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."});
 
     this.duplicatedErrorResponse = "Report name already exists. Please select another.";
     this.duplicatedName = false;
@@ -69,7 +69,7 @@ class UalReportFormController {
     this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
 
     this._suscriptions.push(this._scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (!this.report.exitConfirmed.get() && this.report.touched()) {
+      if (!this.report.exitConfirmed.get() && this.report.touched() && !toState.match(/\/login/)) {
         event.preventDefault();
         let _report = this.report;
         let _state = this._state;
@@ -86,7 +86,7 @@ class UalReportFormController {
       }
     }));
 
-    this.beforeClose = function (event) {
+    this.beforeClose = function(event) {
       event.originalEvent.returnValue = "Exit without saving?";
       return "Exit without saving?";
     };
@@ -145,10 +145,10 @@ class UalReportFormController {
     this.report.create();
     this.getReport(reportId)
       .then((reply) => {
-        let reportData = reply.data[0];
+        let reportData = reply.data;
 
         reportData.datasource = {
-          id: reportData.id,
+          id: reportData.dataSourceId,
           name: reportData.dataSource
         };
 
@@ -163,15 +163,18 @@ class UalReportFormController {
         let variables = replyVariables.data;
 
         let selectedAggregators = this.intersectWith(aggregators.items, reportData.aggregators, (matcher) => {
-          return { id: matcher.Id }
+          return { id: matcher.id }
         });
 
         let selectedVariables = this.intersectWith(variables.items, reportData.variables, (matcher) => {
-          return { id: matcher.Id };
+          return { id: matcher.id };
         });
 
+        this.reportLoaded = true;
+
         this.aggregators = aggregators;
-        this.report.set(reportData);
+        this.report.name.set(reportData.name);
+        this.report.reportId.set(reportData.id);
         this.report.datasource.set(reportData.datasource);
         this.report.aggregators.set(selectedAggregators);
         this.report.variables.set(selectedVariables);
@@ -200,52 +203,51 @@ class UalReportFormController {
     this.dropDownStyle.visibility = 'visible'
   }
 
-  saveReport() {
-    let report = this.report;
-    let form = this;
-    if (!report.name.get()) {
-      this._ualReportNameModal.open({
-        report: this.report,
-        reportForm: this,
-      }).then(
-        function (result) {
-          if (result) form._state.go("dashboard.report-edit", { "id": report.reportId.get() }, { notify: false });
-        }
-        );
-      return;
-    }
-    this._service.report.save(report).then(
-      function (response) {
-        form.saveResult = form.saveResultMessages.has(0) ? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-        report.reportId.set(response.data.reportId);
-        form.messageDisplayed = true;
-        setTimeout(function () {
-          form.messageDisplayed = false;
-        }, 5000);
-        report.untouch();
-        form._state.go("dashboard.report-edit", { "id": report.reportId.get() }, { notify: false });
-        //                form.initialReportHash = report.hash();
-      },
-      function (response) {
-        //UNEXPECTED ERROR
-        if (!response.data || !response.data.errorMessages) {
-          form.saveResult = form.saveResultMessages.has(2) ? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-          form.messageDisplayed = true;
-        } else if (response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0) {
-          //EXPECTED ERROR
-          form.saveResult = form.saveResultMessages.has(2) ? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-          form.saveResult.msgText = response.data.errorMessage;
-          form.messageDisplayed = true;
-        } else {
-          //DUPLICATED NAME
-          form.duplicatedName = true;
-          form.messageDisplayed = false;
-        }
+  saveReport(){
+      let report = this.report;
+      let form = this;
+      if(!report.name.get() && !report.reportId.get()){
+          this._ualReportNameModal.open({
+              report: this.report,
+              reportForm: this,
+          }).then(
+              function(result){
+                  if(result) form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
+              }
+          );
+          return ;
       }
-    ).catch(function () {
-      form.saveResult = form.saveResultMessages.has(2) ? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-      form.messageDisplayed = true;
-    }).finally(() => { report.saving.setSaving(false); });
+      this._service.report.save(report).then(
+          function(response){
+              form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
+              report.reportId.set(response.data.id);
+              form.messageDisplayed = true;
+              form.duplicatedName = false;
+
+              report.untouch();
+              form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
+//                form.initialReportHash = report.hash();
+          },
+          function(response){
+              //UNEXPECTED ERROR
+              if(!response.data || !response.data.errorMessages){
+                  form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                  form.messageDisplayed = true;
+              }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){
+              //EXPECTED ERROR
+                  form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                  form.saveResult.msgText = response.data.errorMessage;
+                  form.messageDisplayed = true;
+              }else{
+              //DUPLICATED NAME
+                  form.duplicatedName = true;
+                  form.messageDisplayed = false;
+              }
+          }
+      ).catch(function(){
+          form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+          form.messageDisplayed = true;
+      }).finally( () => {report.saving.setSaving(false);} );
   }
 }
 
