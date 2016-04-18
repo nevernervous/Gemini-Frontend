@@ -35,6 +35,9 @@ ual-message-banner {
         > span{
             vertical-align: super;
             @include font-clanot-bold(18);
+            @include gridle_state ( projector ) {
+                @include font-clanot-bold(14);
+            }
         }
         i{
             padding-right: 8px;
