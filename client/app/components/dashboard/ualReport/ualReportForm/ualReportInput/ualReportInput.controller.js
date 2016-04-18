@@ -6,7 +6,6 @@ class ualReportInputController {
         this.visibleInput = false;
         this.inputId = "reportName";
         this.firstTime = !this.report.name.get();
-        this.inactiveInputStyle = {};
     }
 
     displayInput(val, event) {
