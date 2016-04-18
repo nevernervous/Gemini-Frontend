@@ -31,12 +31,12 @@ class ualTooltipDirective {
            let isLeftTooltip = ((offset.left + container.width() + tooltip.width()) > window.innerWidth - 15);
 
            if (isLeftTooltip){
-             let leftAction = ualTooltipShow ? 'addClass' : 'removeClass';
-             elem[leftAction]('-tooltip-left');
-             console.log(offset.left, container.width(), tooltip.width());
-             offset.left = offset.left - tooltip.width() - 35; //O algún número
+             console.log(offset);
+             elem[action]('-tooltip-left');
+             offset.left = offset.left - tooltip.width(); // - tooltip.width(); //TODO: O algún número
            } else {
              offset.left = wrapperWidth + parseInt(scope.ualTooltipOptions.left) + offset.left;
+             elem[action]('-tooltip-right');
            }
 
            offset.top -= ((tooltip.height() / 2) - ((container.height() / 2)));
