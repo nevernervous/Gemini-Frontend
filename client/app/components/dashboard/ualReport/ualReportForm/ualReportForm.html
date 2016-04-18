@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <ual-message-banner ng-show="vm.messageDisplayed" change-display="vm.messageDisplayed" class="-dashboard" ng-class="vm.saveResult.msgClass">
     {{vm.saveResult.msgText}}
 </ual-message-banner>
@@ -67,3 +68,65 @@
     </div>
   </div>
 </div>
+=======
+<ual-message-banner ng-show="vm.messageDisplayed" change-display="vm.messageDisplayed" class="-dashboard" ng-class="vm.saveResult.msgClass">
+    {{vm.saveResult.msgText}}
+</ual-message-banner>
+
+<div class="report-header">
+    <div class="title">
+        <span ng-hide="vm.report.reportId.get() ">Create </span>
+        <span ng-show="vm.report.reportId.get() ">Modify </span>
+        Report
+    </div>
+    <ual-button class="save-button -secondary" ng-disabled="vm.report.saving.isSaving() || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))" ng-click="vm.saveReport(vm.report)">Save</ual-button>
+</div>
+<div class="report-body">
+  <div class="section report-name">
+    <ual-report-input report="vm.report" invalid-input="vm.duplicatedName"></ual-report-input>
+  </div>
+  <div class="section selected-parameters">
+    <div class="selected-parameter">
+      <span class="title">Data Source:</span>
+      <span class="value">{{vm.report.datasource.get().name}}</span>
+      <a class="action" ng-if="!!vm.isNewReport" href ng-click="vm.selectDataSource()">Change Data Source</a>
+    </div>
+    <div class="selected-parameter">
+      <span class="title">Variables:</span>
+      <span class="value" ng-show="vm.report.variables.get() | isEmpty">No Variables Selected</span>
+      <span class="value" ng-hide="vm.report.variables.get() | isEmpty">{{vm.report.variables.get().length}} Variables Selected</span>
+      <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
+    </div>
+  </div>
+  <div class="section aggregations-values">
+    <div class="aggregation-search">
+      <span class="-label">Aggregate by</span>
+      <ual-input on-focus="vm.showDropdown()" id="inputDropdown" ng-style="vm.inputStyle" value="vm.search.name" icon="ion-ios-search-strong">
+        <div ng-if="vm.aggregators">
+          <ual-dropdown filter='vm.search' ng-style="vm.dropDownStyle" click-outside="vm.hideDropdown()" outside-if-not="inputDropdown">
+            <ual-dropdown-messages>
+              <span class="-max-reached" ng-if="vm.report.aggregators.get().length >= vm.maxAggregators">
+                  <i class="-icon-warning"></i> <span>You have reached the limit of 10 aggregators</span>
+              </span>
+              <span class="-no-result" ng-if="vm.aggregators.items | filterBy: vm.search | isEmpty">
+                  No results match your search
+              </span>
+            </ual-dropdown-messages>
+            <ual-dropdown-items ual-scroll ual-scroll-options="{ theme:'dark' }" ng-if="vm.aggregators.groups" ng-class="{'-no-results': (vm.aggregators.items | filterBy: vm.search | isEmpty) }">
+              <ual-dropdown-group name="{{group.name}}" ng-repeat="group in vm.aggregators.groups" ng-if="!(group.items | filterBy: vm.search | isEmpty)">
+                <ual-dropdown-item ng-click="vm.addAggregator(item)" name="{{item.name}}" ng-repeat="item in group.items | filterBy: vm.search" ng-class="{'-disabled': vm.isAggregated(item)}">
+                </ual-dropdown-item>
+              </ual-dropdown-group>
+            </ual-dropdown-items>
+          </ual-dropdown>
+        </div>
+      </ual-input>
+    </div>
+    <div class="aggregation-items">
+      <div class="aggregated-container">
+        <ual-agregation-item ng-repeat="item in vm.report.aggregators.get()">{{$index+1}}. {{item.name}}</ual-agregation-item>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> 47a3f14f9a805708d8754297d6f0c4f60dd5a6e6

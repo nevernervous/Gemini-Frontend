@@ -449,7 +449,7 @@ module.exports = {
           },
           {
             "id": 2,
-            "name": "Variable name 2",
+            "name": "Variable name 2 with lorem ipsum dolor",
             "order": 2,
             "type": "Type",
             "description": "Variable Description 2",
@@ -464,7 +464,7 @@ module.exports = {
           },
           {
             "id": 3,
-            "name": "Variable name 3",
+            "name": "Variable name 3 this is another test",
             "order": 1,
             "type": "Type",
             "description": "Variable Description 3",
@@ -689,7 +689,7 @@ module.exports = {
           },
           {
             "id": 18,
-            "name": "Variable name 18",
+            "name": "Variable name 18 with a huge name",
             "order": 1,
             "type": "Type",
             "description": "Variable Description 18",
