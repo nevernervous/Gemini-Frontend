@@ -10,24 +10,17 @@ class ualReportInputController {
     }
 
     displayInput(val, event) {
-        event = event || window.event;
-        let $target = $(event.target)
-
         this.visibleInput = val;
-
-        if (val) {
-            this._timeout(() => {
-                if (!!$target)
-                    $target.parents(".report-form-input").find(".active-input").focus();
-            });
-        } else {
+        let $target = $(event.target);
+        
+        if (!val) {
             this.labelStyle["border-color"] = "#fff";
         }
 
     }
     
-    onBlur(val, event){
-        this.displayInput(val, event);
+    onBlur(event){
+        this.displayInput(false, event);
         this.onSave(this.report);
     }
 

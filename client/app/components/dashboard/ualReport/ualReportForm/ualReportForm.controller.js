@@ -170,7 +170,6 @@ class UalReportFormController {
           return { id: matcher.id };
         });
 
-        this.reportLoaded = true;
 
         this.aggregators = aggregators;
         this.report.name.set(reportData.name);
@@ -180,6 +179,7 @@ class UalReportFormController {
         this.report.variables.set(selectedVariables);
         this.report.untouch()
 
+        this.reportLoaded = true;
       });
   }
 
@@ -222,6 +222,7 @@ class UalReportFormController {
     if(!this.report.touched()){
       return;
     }
+    
     this._service.report.save(report).then(
       function (response) {
         form.saveResult = form.saveResultMessages.has(0) ? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
@@ -231,7 +232,6 @@ class UalReportFormController {
 
         report.untouch();
         form._state.go("dashboard.report-edit", { "id": report.reportId.get() }, { notify: false });
-        //                form.initialReportHash = report.hash();
       },
       function (response) {
         //UNEXPECTED ERROR
