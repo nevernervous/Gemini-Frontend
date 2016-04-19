@@ -26,16 +26,17 @@ class ualTooltipDirective {
            let tooltip = $("#"+elem.attr("id"));
            let container = $("#" + scope.ualTooltipContainer);
            let offset = container.offset();
-           let wrapperWidth = container.width();
+           let parent = container.closest("ual-data-source-item");
 
-           let isLeftTooltip = ((offset.left + container.width() + tooltip.width()) > window.innerWidth - 15);
+           let bigSum = (offset.left + container.width() + (tooltip.width() + 25)); //Real tooltip width = 20+5 padding, right/left
+           let isLeftTooltip = (bigSum > (window.innerWidth - 15)); //15 Scroll
 
            if (isLeftTooltip){
-             console.log(offset);
+             console.log(scope.ualTooltipContainer, offset.left, container.width(), container.outerWidth(), container.outerWidth(true), tooltip.width(), (tooltip.width() + 25), tooltip.outerWidth(), tooltip.outerWidth(true), bigSum, window.innerWidth);
+             offset.left = offset.left - (tooltip.width() + 25);
              elem[action]('-tooltip-left');
-             offset.left = offset.left - tooltip.width(); // - tooltip.width(); //TODO: O algún número
            } else {
-             offset.left = wrapperWidth + parseInt(scope.ualTooltipOptions.left) + offset.left;
+             offset.left = container.width() + parseInt(scope.ualTooltipOptions.left) + offset.left;
              elem[action]('-tooltip-right');
            }
 
