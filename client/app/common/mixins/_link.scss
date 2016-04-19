@@ -11,8 +11,8 @@
     color: $color03;
   }
 
-  &:active {
-    color: $color03;
+  &:visited:hover {
+    color: $other06;
   }
 
   &.-disabled {
