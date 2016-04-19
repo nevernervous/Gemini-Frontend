@@ -238,6 +238,9 @@ class UalReportFormController {
               report.reportId.set(response.data.id);
               form.messageDisplayed = true;
               form.duplicatedName = false;
+              
+              form.isNewReport = false;
+              form.reportLoaded = true;
 
               report.untouch();
               form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
