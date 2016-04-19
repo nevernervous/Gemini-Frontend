@@ -38,6 +38,7 @@
     }
     input.-label{
         pointer-events: none;
+        border: 1px solid $color00;
     }
     input:read-only {
         border: 1px solid $color00;

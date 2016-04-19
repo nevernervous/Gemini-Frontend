@@ -12,7 +12,6 @@ class ualReportInputController {
     displayInput(val, event) {
         this.visibleInput = val;
         let $target = $(event.target);
-        
         if (!val) {
             this.labelStyle["border-color"] = "#fff";
         } else{
@@ -27,7 +26,7 @@ class ualReportInputController {
     
     onBlur(event){
         this.displayInput(false, event);
-        this.onSave(this.report);
+        this.onSave();
     }
 
     onMouse(val) {
