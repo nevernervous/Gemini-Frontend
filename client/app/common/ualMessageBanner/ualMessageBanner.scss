@@ -2,16 +2,16 @@
 @import '../ionicons/scss/ionicons';
 
 @mixin fadeHide(){
-    @-webkit-keyframes fadeHide { 
-        from { opacity:1; } to { opacity:0; } 
+    @-webkit-keyframes fadeHide {
+        from { opacity:1; } to { opacity:0; }
         100% {height: 0px;}
     }
-    @-moz-keyframes fadeOut { 
-        from { opacity:1; } to { opacity:0; } 
+    @-moz-keyframes fadeOut {
+        from { opacity:1; } to { opacity:0; }
         100% {height: 0px;}
     }
-    @keyframes fadeOut { 
-        from { opacity:1; } to { opacity:0; } 
+    @keyframes fadeOut {
+        from { opacity:1; } to { opacity:0; }
         100% {height: 0px; opacity:0;}
     }
 }
@@ -20,7 +20,7 @@ ual-message-banner {
     @include gridle( 12 );
     width:100%;
     height: 52px;
-    
+
     &.-dashboard{
         position: fixed;
         width: 100%;
@@ -101,8 +101,8 @@ ual-message-banner.-autoclose{
   @include fadeHide();
   @include animation(fadeOut ease-in 1);
   @include animation-fill-mode(forwards);
-  @include animation-duration(3s);
-  @include animation-delay(2s); 
+  @include animation-duration(0.5s);
+  @include animation-delay(4.5s);
 /*  @include animation(fadeHide ease-in 1);
   @include animation-fill-mode(forwards);*/
 /*  @include animation-duration(0s);
