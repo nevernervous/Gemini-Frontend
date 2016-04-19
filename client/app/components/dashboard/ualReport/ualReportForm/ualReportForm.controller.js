@@ -70,7 +70,7 @@ class UalReportFormController {
     this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
 
     this._suscriptions.push(this._scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (!this.report.exitConfirmed.get() && this.report.touched() && !toState.match(/\/login/)) {
+      if (!this.report.exitConfirmed.get() && this.report.touched() && !toState.url.match(/\/login/)) {
         event.preventDefault();
         let _report = this.report;
         let _state = this._state;
@@ -238,6 +238,9 @@ class UalReportFormController {
               report.reportId.set(response.data.id);
               form.messageDisplayed = true;
               form.duplicatedName = false;
+              
+              form.isNewReport = false;
+              form.reportLoaded = true;
 
               report.untouch();
               form._state.go("dashboard.report-edit",{"id":report.reportId.get()},{notify:false});
