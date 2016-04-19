@@ -13,6 +13,8 @@ let ualInputComponent = {
         onKeyup: '&?',
         onFocus: '&?',
         onKeypress: '&?',
+        ualDebounce: '<',
+        onChange: '&?',
         ualDisabled: '<'
     },
     transclude: true,

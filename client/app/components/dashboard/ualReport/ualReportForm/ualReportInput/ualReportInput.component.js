@@ -12,6 +12,7 @@ let ualReportInputComponent = {
     onFocus: '&',
     isRequired: '=',
     invalidInput: '=',
+    onSave: "&"
   },
   transclude: {
     "invalidmessage": "?ualInvalidMessage"
