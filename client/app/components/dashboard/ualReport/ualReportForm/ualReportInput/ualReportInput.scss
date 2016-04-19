@@ -28,7 +28,9 @@
             @include input-invalid();
         }
     }
-
+    .wrap-label{
+        cursor: pointer;
+    }
     input {
         @include font-clanot-book(20);
         color: $color07;

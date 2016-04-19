@@ -1,5 +1,5 @@
 <div class="report-form-input" ng-class="{'-invalid': (vm.checkEmptyName() || vm.invalidInput) && !vm.firstTime }">
-    <div ng-hide="vm.visibleInput" ng-click="vm.displayInput(true, $event)" ng-mouseover="vm.onMouse(true)" ng-mouseleave="vm.onMouse(false)">
+    <div class="wrap-label" ng-hide="vm.visibleInput" ng-click="vm.displayInput(true, $event)" ng-mouseover="vm.onMouse(true)" ng-mouseleave="vm.onMouse(false)">
         <input class="-label" readonly for="{{vm.inputId}}" value="{{vm.labelText()}}" ng-style="vm.labelStyle"></input>
     </div>
     <div ng-if="vm.visibleInput || vm.errorThrown()">
