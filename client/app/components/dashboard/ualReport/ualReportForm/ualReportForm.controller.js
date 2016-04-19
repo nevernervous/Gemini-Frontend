@@ -69,7 +69,7 @@ class UalReportFormController {
     this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
 
     this._suscriptions.push(this._scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (!this.report.exitConfirmed.get() && this.report.touched() && !toState.match(/\/login/)) {
+      if (!this.report.exitConfirmed.get() && this.report.touched() && !toState.url.match(/\/login/)) {
         event.preventDefault();
         let _report = this.report;
         let _state = this._state;
