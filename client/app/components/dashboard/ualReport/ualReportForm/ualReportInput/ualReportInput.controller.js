@@ -46,7 +46,7 @@ class ualReportInputController {
     }
 
     checkEmptyName() {
-        return (this.report.name.get() == false || this.report.name.get() == null);
+        return (!this.report.name.get());
     }
     errorThrown() {
         if (this.invalidInput) {
