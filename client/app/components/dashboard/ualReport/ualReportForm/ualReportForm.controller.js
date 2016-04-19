@@ -28,6 +28,7 @@ class UalReportFormController {
     this.saveResult = null;
 
     this.saveResultMessages = new Map();
+
     this.saveResultMessages.set(null,{msgClass: {}, msgText : ""});
     this.saveResultMessages.set(0,{msgClass: {"-success": true, "-autoclose": true}, msgText : "Report saved successfully."});
     this.saveResultMessages.set(1,{msgClass: {"-error": true, "-closeable": true}, msgText : "Report name already exists. Please select another." });
@@ -86,7 +87,7 @@ class UalReportFormController {
       }
     }));
 
-    this.beforeClose = function(event) {
+    this.beforeClose = function (event) {
       event.originalEvent.returnValue = "Exit without saving?";
       return "Exit without saving?";
     };
@@ -170,7 +171,6 @@ class UalReportFormController {
           return { id: matcher.id };
         });
 
-        this.reportLoaded = true;
 
         this.aggregators = aggregators;
         this.report.name.set(reportData.name);
@@ -178,7 +178,9 @@ class UalReportFormController {
         this.report.datasource.set(reportData.datasource);
         this.report.aggregators.set(selectedAggregators);
         this.report.variables.set(selectedVariables);
+        this.report.untouch();
 
+        this.reportLoaded = true;
       });
   }
 
@@ -202,6 +204,10 @@ class UalReportFormController {
     this.inputStyle.position = 'relative';
     this.dropDownStyle.visibility = 'visible'
   }
+  
+  isDuplicatedName(){
+    return this.duplicatedName && (!!this.report.nameDuplicated.get() && this.report.nameDuplicated.get() == this.report.name.get());
+  }
 
   saveReport(){
       let report = this.report;
@@ -217,9 +223,18 @@ class UalReportFormController {
           );
           return ;
       }
+      
+      if(!this.report.touched()){
+        return;
+      }
+      
+      this.messageDisplayed = false;
+      this.saveResult = this.saveResultMessages.get(null);
+      
       this._service.report.save(report).then(
-          function(response){
+          function(response){    
               form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
+              
               report.reportId.set(response.data.id);
               form.messageDisplayed = true;
               form.duplicatedName = false;
@@ -240,6 +255,7 @@ class UalReportFormController {
                   form.messageDisplayed = true;
               }else{
               //DUPLICATED NAME
+                  form.report.nameDuplicated.set(_.clone(form.report.name.get()));
                   form.duplicatedName = true;
                   form.messageDisplayed = false;
               }

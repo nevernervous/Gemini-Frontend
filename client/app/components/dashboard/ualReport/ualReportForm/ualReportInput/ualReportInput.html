@@ -1,13 +1,14 @@
 <div class="report-form-input" ng-class="{'-invalid': (vm.checkEmptyName() || vm.invalidInput) && !vm.firstTime }">
-    <label ng-hide="vm.visibleInput" ng-click="vm.displayInput(true)" for="{{vm.inputId}}">{{vm.labelText()}}</label>
-    <div ng-show="vm.visibleInput || vm.errorThrown()">
-        <input type="text" ng-model="vm.report._name" ng-model-options="{ getterSetter:true }" ng-blur="vm.displayInput(false)" 
-               ng-keypress="vm.checkEnter($event)" id="{{vm.inputId}}" placeholder="Enter report name" ng-trim="true" 
-               maxlength="100" ng-maxlength="100">
+    <div ng-hide="vm.visibleInput" ng-click="vm.displayInput(true, $event)" ng-mouseover="vm.onMouse(true)" ng-mouseleave="vm.onMouse(false)">
+        <input class="-label" readonly for="{{vm.inputId}}" value="{{vm.labelText()}}" ng-style="vm.labelStyle"></input>
+    </div>
+    <div ng-if="vm.visibleInput || vm.errorThrown()">
+        <input type="text" class="active-input" ng-model="vm.report._name" ng-model-options="{ getterSetter:true }" 
+               ng-blur="vm.onBlur($event)" ng-keypress="vm.checkEnter($event)" id="{{vm.inputId}}" placeholder="Enter report name" ng-trim="true" maxlength="100" ng-maxlength="100">
         <i class="icon-warning ion-ios-close-outline"></i>
     </div>
-    <ual-tooltip class="-error-tooltip" ng-show="(vm.visibleInput && vm.invalidInput)">
+    <ual-tooltip class="-error-tooltip" ng-if="(vm.visibleInput && vm.invalidInput)">
         <span ng-transclude="invalidmessage"></span>
     </ual-tooltip>
-    <ual-tooltip class="-tooltip" ng-show="(vm.visibleInput && !vm.invalidInput)">Change name report</ual-tooltip>
+    <ual-tooltip class="-tooltip" ng-if="(!vm.visibleInput && vm.isOverInput)">Change name report</ual-tooltip>
 </div>
