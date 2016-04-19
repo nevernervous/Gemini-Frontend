@@ -24,7 +24,7 @@
 // VARIANTS
 .report-form-input {
     &.-invalid {
-        input {
+        input:not(.-label) {
             @include input-invalid();
         }
     }
@@ -44,11 +44,11 @@
     }
     ::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
-        line-height: 1;
+        line-height: 1.2;
     }
     ::-moz-placeholder {
         /* Firefox 19+ */
-        line-height: 1.3;
+        line-height: 1.1;
     }
     :-ms-input-placeholder {
         /* IE 10+ */
@@ -56,18 +56,21 @@
     }
     :-moz-placeholder {
         /* Firefox 18- */
-        line-height: 1.3;
+        line-height: 1;
     }
     .icon-warning {
         display: none;
         float: right;
         padding-right: 7px;
-        margin-top: -31px;
-        color: $alertHighColor;
-        font-size: 23px;
-        @include -ms-browser() {
+        margin-top: -33px;
+        @include -moz-browser(){
             margin-top: -30px;
         }
+        @include -ms-browser(){
+            margin-top: -28px;
+        }
+        color: $alertHighColor;
+        font-size: 23px;
     }
     .-tooltip {
         margin-left: 10px;

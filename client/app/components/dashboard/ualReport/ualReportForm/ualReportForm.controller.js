@@ -178,7 +178,7 @@ class UalReportFormController {
         this.report.datasource.set(reportData.datasource);
         this.report.aggregators.set(selectedAggregators);
         this.report.variables.set(selectedVariables);
-        this.report.untouch()
+        this.report.untouch();
 
         this.reportLoaded = true;
       });
@@ -204,7 +204,10 @@ class UalReportFormController {
     this.inputStyle.position = 'relative';
     this.dropDownStyle.visibility = 'visible'
   }
-
+  
+  isDuplicatedName(){
+    return this.duplicatedName && (!!this.report.nameDuplicated.get() && this.report.nameDuplicated.get() == this.report.name.get());
+  }
 
   saveReport(){
       let report = this.report;
@@ -252,6 +255,7 @@ class UalReportFormController {
                   form.messageDisplayed = true;
               }else{
               //DUPLICATED NAME
+                  form.report.nameDuplicated.set(_.clone(form.report.name.get()));
                   form.duplicatedName = true;
                   form.messageDisplayed = false;
               }

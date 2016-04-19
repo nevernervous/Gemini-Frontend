@@ -15,6 +15,12 @@ class ualReportInputController {
         
         if (!val) {
             this.labelStyle["border-color"] = "#fff";
+        } else{
+            this._timeout(() => {
+                if (!!$target){
+                    $target.parents(".report-form-input").find(".active-input").focus();
+                }
+            });
         }
 
     }
