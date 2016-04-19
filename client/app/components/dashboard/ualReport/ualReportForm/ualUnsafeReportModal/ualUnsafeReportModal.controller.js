@@ -7,7 +7,6 @@ class ualReportNameModalController {
     this._timeout = $timeout;
 
     this._suscriptions = [];
-    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
     this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
     this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
     

@@ -7,12 +7,12 @@
         Select Data Source
     </div>
     <div class="search-area">
-        <ual-input value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()"></ual-input>
+        <ual-input value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.columnCount()" ual-debounce="'500'"></ual-input>
         <ual-data-source-label datasource-selected="vm.selected"></ual-data-source-label>
     </div>
     <div class="loading-message" ng-show="!vm.datasources ">Loading ...</div>
     <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filterBy:vm.searchTerm | isEmpty)">No results match your search</div>
-    <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark', advanced:{ updateOnContentResize: true, updateOnSelectorChange: '#resizable-container' }, callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip }  }" ng-if="vm.datasources" id="content-list">
+    <div class="content-list" ng-class="{filtering: vm.filtering}" ual-scroll ual-scroll-options="{ theme:'dark', scrollEasing: 'linear', advanced:{ updateOnContentResize: true, updateOnSelectorChange: '#resizable-container' }, callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip }  }" ng-if="vm.datasources" id="content-list">
         <div class="data-source-list" id="data-source-list" ng-class="vm.columns">
             <ual-data-source-group id="datasource-group" datasource-group="group.data" ng-repeat-start="group in vm.datasources.groups | orderBy : 'data.order'" ng-show="vm.shouldShow(group)" class="data-source-group" ual-render></ual-data-source-group>
             <ual-data-source-item datasource-item="item" ng-repeat-end ng-repeat="item in group.items | filterBy:vm.searchTerm | orderBy : 'order'" ng-click="vm.toogleSelected(item)" ng-class="{'-selected': vm.isActive(item.id)}"
