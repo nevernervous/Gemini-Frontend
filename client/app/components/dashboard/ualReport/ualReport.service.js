@@ -9,6 +9,7 @@ let ualReportService = function() {
   let reportId = null;
   var touched = false;
   let saving = false;
+  let duplicatedName = null;
 
   let exitConfirmed = false;
 
@@ -27,6 +28,9 @@ let ualReportService = function() {
     variables = reportData.variables;
     aggregators = reportData.aggregators;
   };
+  
+  let getNameDuplicated = () => duplicatedName;
+  let setNameDuplicated = value => duplicatedName = value;
 
   let getDataSource = () => datasource;
   let setDataSource = value => datasource = value;
@@ -74,6 +78,10 @@ let ualReportService = function() {
     reportId: {
       get: getReportId,
       set: setReportId
+    },
+    nameDuplicated: {
+      get: getNameDuplicated,
+      set: setNameDuplicated
     },
     exitConfirmed: {
       get: isExitComfirmed,
