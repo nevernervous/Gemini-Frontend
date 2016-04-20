@@ -1,12 +1,15 @@
+import $ from 'jquery';
+
 class UalDataSourceController {
     /*@ngInject*/
-    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate) {
+    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate, $timeout) {
         this._close = close;
         this._datasource = DataSource;
         this._cancelmodal = ualDataSourceCancelModal;
         this._changemodal = ualDataSourceChangeModal;
         this._selected = selected;
         this._filter = $filter;
+        this._timeout = $timeout;
         this.searchTerm = {};
 
         this._animate = $animate;
@@ -63,11 +66,25 @@ class UalDataSourceController {
     }
 
     columnCount() {
-      let total = ( this.datasources.items.length + this.datasources.groups.length ) * 36;
+      if(this._columnCountPromise){
+        this._timeout.cancel(this._columnCountPromise);
+      }
+      this._columnCountPromise = this._timeout( () => {
+        let total_items = this._filter("filterBy")(this.datasources.items, this.searchTerm).length;
+        let total_groups = 0;
+
+        // NOTE: REMOVED FOR PERFORMANCE ISSUES
+        // let total_groups = _.reduce(this.datasources.groups, (total, group) => {
+        //   return total += this.shouldShow(group) ? 1 : 0
+        // }, 0 );
+
+        let total = ( total_items + total_groups ) * 36;
       let $container = angular.element(document.getElementById("content-list"))[0];
       let rows = Math.ceil(total / $container.clientHeight);
 
       this.columns = rows > 3 ? "columns-4" : "columns-" + rows;
+        $('content-list').mCustomScrollbar("update");
+      }, 750);
     }
 
     // checkOverflow() {
@@ -93,7 +110,26 @@ class UalDataSourceController {
     //             });
 
     //     }
-  // }
+    // }
+
+    showTooltip(e){
+      let datasource = $("#"+e.target.id);
+
+      if (e.target.nodeName == 'UAL-DATA-SOURCE-ITEM') {
+        let span = datasource.find("span:eq(0)");
+        let offset = span.offset();
+        let parentWidth = span.width();
+        let childWidth = datasource.find("span:eq(1)").width();
+        let tooltip = datasource.find("ual-tooltip");
+
+        offset.left = (childWidth > parentWidth ?  (parentWidth + 5) : (childWidth + 10)) + offset.left;
+        offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
+        offset.top += window.isIE  ? 2 : 5;
+
+        tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
+        tooltip.css(offset);
+      }
+    }
 
     hideTooltip(){
       $(".-tooltip").removeClass("-show-tooltip");
