@@ -35,15 +35,10 @@ class ualTooltipDirective {
            let bigSum = (offset.left + container.outerWidth(true) + tooltip.outerWidth(true));
            let isLeftTooltip = bigSum > window.innerWidth; //TODO: Have Scroll? + 15
 
-
-           console.log((scope.ualTooltipContainer)," . ", bigSum, ">", (window.innerWidth), offset.left, container.outerWidth(true), tooltip.outerWidth(true), (offset.left + container.outerWidth(true) + tooltip.outerWidth(true)) )
-
-
            if (isLeftTooltip){
              offset.left = offset.left - tooltip.outerWidth(true);
              elem[action]('-tooltip-left');
            } else {
-             console.log(scope.ualTooltipOptions.left);
              offset.left =  offset.left + container.outerWidth(true) + (parseInt(scope.ualTooltipOptions.left) ? parseInt(scope.ualTooltipOptions.left) : 0);
              elem[action]('-tooltip-right');
            }

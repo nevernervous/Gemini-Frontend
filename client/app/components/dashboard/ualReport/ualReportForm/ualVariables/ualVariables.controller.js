@@ -16,7 +16,6 @@ class UalVariablesController {
     // VARS / PRIVATE
     this._datasource = datasource;
     this._selecteds = selecteds;
-    this._selectedTooltip = "";
 
     // VARS / PUBLIC
     this.variables = {items: []}
@@ -150,31 +149,8 @@ class UalVariablesController {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
   showTooltip(e){
-<<<<<<< HEAD
     let tooltip = $("#"+e.target.id).first().next();
     tooltip.prop("ual-tooltip-show", true);
-    this._selectedTooltip = tooltip.prop("id");
-=======
-    let id = parseInt(e.target.id.match("span_(.*)")[1]);
-    let isSelectedVariable = null;
-    
-    if (this.selecteds.length > 0)   
-      isSelectedVariable = _.find(this.selecteds, { 'id' : id } ); 
-    
-    let span = $("#"+e.target.id);
-    let checkboxItem = span.parent().parent();
-    let offset = checkboxItem.offset();
-    let parentWidth = checkboxItem.width();
-    let childWidth = span.width();
-    let tooltip = span.first().next();
-
-    offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
-    offset.top -= ((tooltip.height() / 2) - ((checkboxItem.height() / 2) ) );
-    offset.top = parseInt(offset.top) + (window.isIE ? 4 : 5);
-
-    tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
-    tooltip.css(offset);
->>>>>>> d1c4fb959607ab84c154367cddf89877d41df327
   }
   hideTooltip(){
     $(".-tooltip").removeClass("-show-tooltip");
