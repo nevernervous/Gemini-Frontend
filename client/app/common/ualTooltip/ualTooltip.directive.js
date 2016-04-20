@@ -8,9 +8,10 @@ class ualTooltipDirective {
     this.transclude = true;
     this.template = template;
     this.scope = {
-      ualTooltipShow: '=',
-      ualTooltipOptions: '=',
-      ualTooltipContainer: '='
+      ualTooltipShow: '<',
+      ualTooltipOptions: '<',
+      ualTooltipContainer: '<',
+      ualTooltipHasEllipsis: '<'
     };
   }
 
@@ -24,16 +25,26 @@ class ualTooltipDirective {
          let tooltip = $("#"+elem.attr("id"));
          let container = $("#" + scope.ualTooltipContainer);
          let offset = container.offset();
+         elem['removeClass']('-tooltip-left');
+         elem['removeClass']('-tooltip-right');
+
+         let left = scope.ualTooltipHasEllipsis ? 4 : -2;
 
          if (ualTooltipShow) {
            //Cálculo de la posición
-           let isLeftTooltip = (offset.left + container.outerWidth(true) + tooltip.outerWidth(true)) > window.innerWidth; //TODO: Have Scroll? + 15
+           let bigSum = (offset.left + container.outerWidth(true) + tooltip.outerWidth(true));
+           let isLeftTooltip = bigSum > window.innerWidth; //TODO: Have Scroll? + 15
+
+
+           console.log((scope.ualTooltipContainer)," . ", bigSum, ">", (window.innerWidth), offset.left, container.outerWidth(true), tooltip.outerWidth(true), (offset.left + container.outerWidth(true) + tooltip.outerWidth(true)) )
+
 
            if (isLeftTooltip){
              offset.left = offset.left - tooltip.outerWidth(true);
              elem[action]('-tooltip-left');
            } else {
-             offset.left =  offset.left + container.outerWidth(true) + parseInt(scope.ualTooltipOptions.left);
+             console.log(scope.ualTooltipOptions.left);
+             offset.left =  offset.left + container.outerWidth(true) + (parseInt(scope.ualTooltipOptions.left) ? parseInt(scope.ualTooltipOptions.left) : 0);
              elem[action]('-tooltip-right');
            }
 
@@ -45,6 +56,7 @@ class ualTooltipDirective {
            offset.top = 0;
          }
 
+         offset.left += left;
          tooltip.css(offset);
          elem[action]('-show-tooltip');
 

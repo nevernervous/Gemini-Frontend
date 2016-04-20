@@ -19,7 +19,7 @@
                 <ual-checkbox class="tooltip-wrapper" ng-repeat="item in group.items | filterBy:vm.standardFilter | orderBy : 'order'" id="variable_{{item.id}}" on-click="vm.toggle(item)" item="item" is-checked="vm.isSelected(item)" >
                   <span class="tooltip-sibling" id="span_{{item.id}}" ng-mouseover="vm.showTooltip($event)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip($event)">{{item.name}}</span>
                   <ual-tooltip id="tooltip_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
-                    ual-tooltip-options="{ top: '0', left: vm.datasourceWidth(item)}" ual-tooltip-container="vm.datasourceContainer(item.id)">{{item.description}}</ual-tooltip>
+                    ual-tooltip-options="{ top: vm.datasourceOffsetTop(item.id), left: vm.datasourceOffsetLeft(item.id)}" ual-tooltip-container="vm.datasourceContainer(item.id)" ual-tooltip-has-ellipsis="vm.datasourceHasEllipsis(item.id)">{{item.description}}</ual-tooltip>
                 </ual-checkbox>
               </ual-variables-group>
             </div>

@@ -82,12 +82,13 @@ ual-tooltip.-tooltip {
   color: $color00;
   background-color: $color03;
   padding: 10px;
-  min-width: 150px;
+  min-width: 200px;
   max-width: 280px;
   text-align: center;
   z-index: 99;
   white-space: normal;
   display: none;
+  position: fixed;
   margin-top: -7px;
   top: 0;
   left: 0;

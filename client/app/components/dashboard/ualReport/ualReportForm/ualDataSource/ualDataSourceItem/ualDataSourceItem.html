@@ -3,7 +3,7 @@
     {{vm.datasourceItem.name}}
     </span>
     <ual-tooltip id="tooltip_{{vm.datasourceItem.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
-    ual-tooltip-options="{ top: vm.tooltipTop, left: '5'}" ual-tooltip-container="vm.datasourceContainer()">
+    ual-tooltip-options="{ top: vm.tooltipTop, left: '5'}" ual-tooltip-container="vm.datasourceContainer()" ual-tooltip-has-ellipsis="vm.hasEllipsis">
     {{vm.datasourceItem.description}}
     </ual-tooltip>
 </span>

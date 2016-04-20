@@ -7,8 +7,8 @@ class UalDataSourceItemController {
   datasourceContainer(){
     let container = $("#datasourceContainer_" + this.datasourceItem.id);
     let sibling = $("#datasourceItem_" + this.datasourceItem.id);
-    return ( sibling.width() > container.width())
-      ? "datasourceContainer_" + this.datasourceItem.id : "datasourceItem_" + this.datasourceItem.id;
+    this.hasEllipsis =  sibling.width() > container.width();
+    return (this.hasEllipsis) ? "datasourceContainer_" + this.datasourceItem.id : "datasourceItem_" + this.datasourceItem.id;
   }
 
   hideTooltip(){

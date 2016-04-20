@@ -325,7 +325,7 @@ module.exports = {
               },
               {
                 "id": 30,
-                "name": "Data Source Name 30 with long name for test",
+                "name": "Data Source Name X",
                 "description": "Data Source Description 30",
                 "group": {
                   "groupId": 6,
@@ -803,7 +803,7 @@ module.exports = {
       data: {
         "data": [
           {
-            "id": 300,
+            "id": 301,
             "name": "Variable name four",
             "order": 1,
             "type": "Type",

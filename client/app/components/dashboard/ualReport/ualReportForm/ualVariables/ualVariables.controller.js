@@ -158,12 +158,23 @@ class UalVariablesController {
     $(".-tooltip").removeClass("-show-tooltip");
     $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
-  datasourceContainer(id){
+
+  datasourceHasEllipsis(id){
     let container = $("#variable_" + id);
     let sibling = $("#span_" + id);
-    console.log(sibling.width() , container.width());
-    return ( sibling.width() > container.width())
-      ? "variable_" + id : "span_" + id;
+    return  sibling.width() > container.width();
+  }
+
+  datasourceContainer(id){
+    return ( this.datasourceHasEllipsis(id) ) ? "variable_" + id : "span_" + id;
+  }
+
+  datasourceOffsetLeft(id){
+    return  (this.datasourceHasEllipsis(id)) ? 0 : 15;
+  }
+
+  datasourceOffsetTop(id){
+    return  (this.datasourceHasEllipsis(id)) ? 4 : -3;
   }
 
   apply() {
