@@ -8,5 +8,9 @@ ual-dropdown-group {
       padding: 5px 1em;
       @include font-clanot-news(14);
       color: $color07;
+
+      @include -moz-browser(){
+        @include font-clanot-news(15);
+      }
   }
 }
