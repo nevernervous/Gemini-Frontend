@@ -10,6 +10,7 @@ let ualReportService = function() {
   var touched = false;
   let saving = false;
   let duplicatedName = null;
+  let unchangedName = null;
 
   let exitConfirmed = false;
 
@@ -21,6 +22,7 @@ let ualReportService = function() {
     reportId = null;
     touched = false;
     saving = false;
+    unchangedName = null;
   }
 
   let update = (reportData) => {
@@ -58,6 +60,7 @@ let ualReportService = function() {
 
   let getName = () => name;
   let setName = value => {
+    if(unchangedName === null) unchangedName = value;
     touched = true;
     name = value;
   }
@@ -87,11 +90,12 @@ let ualReportService = function() {
       get: isExitComfirmed,
       set: setExitConfirm,
     },
-    untouch: function() { touched = false; },
+    untouch: function() { touched = false; unchangedName = name; },
     touched: function() { return touched; },
     name: {
       get: getName,
-      set: setName
+      set: setName,
+      hasChange: () => { return unchangedName == name;},
     },
     _name: function(value) {
       return (angular.isDefined(value)) ? this.name.set(value) : this.name.get();
