@@ -5,6 +5,11 @@ ual-report-list {
     height: 100%;
     .header {
         @include gridle( row row-align between);
+
+        >.title {
+            @include font-clanot-bold(20);
+            color: $color06;
+        }
     }
     .container {
         height: 100%;
