@@ -9,7 +9,7 @@ let reportService = function(Properties, ServicesTransform, $http, $q) {
       transformResponse: ServicesTransform.generate(transformation)
     });
   }
-  
+
   let getById = (reportId) => {
     let transformation = [ServicesTransform.get('none')];
     return $http.get(`${endpoint}/${reportId}`, {
@@ -17,14 +17,14 @@ let reportService = function(Properties, ServicesTransform, $http, $q) {
       transformResponse: ServicesTransform.generate(transformation)
     });
   };
-  
+
   let saveReport = (report) =>{
         report.saving.setSaving(true);
 
         let dataSourceId = report.datasource.get().id;
         let variables = report.variables.get();
         let aggregators = report.aggregators.get();
-        console.log(report);
+        
         let data = {
             name: report.name.get(),
             dataSourceId: dataSourceId,
@@ -32,11 +32,12 @@ let reportService = function(Properties, ServicesTransform, $http, $q) {
             aggregators: [],
             slicers: []
         };
+        
         for(let i in variables){
-            data.variables.push({Id:variables[i].id,Order:variables[i].order})
+            data.variables.push({Id:variables[i].id,Order:i})
         }
         for(let i in aggregators){
-            data.aggregators.push({Id:aggregators[i].id,Order:aggregators[i].order})
+            data.aggregators.push({Id:aggregators[i].id,Order:i})
         }
 
         let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
