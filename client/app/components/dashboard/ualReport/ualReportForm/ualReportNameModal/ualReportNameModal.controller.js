@@ -8,7 +8,8 @@ class ualReportNameModalController {
     this._service = {
             report: Report
         };
-        
+    this.nameSelected = null;
+    
     this.duplicatedName = false;
     
     this._suscriptions = [];
@@ -27,16 +28,24 @@ class ualReportNameModalController {
     let report = this.report;
     let form = this.form;
     let modal = this;
+    
+    this.report.name.set(this.nameSelected);
     this._service.report.save(report).then(
         function(response){
             form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
+            
             report.reportId.set(response.data.id);
             form.messageDisplayed = true;
-            report.untouch();
             
+            form.isNewReport = false;
+            form.reportLoaded = true;
+            
+            report.untouch();
             modal._closemodal(true);
         },
         function(response){
+            report.name.set(null);
+            
             //UNEXPECTED ERROR
             if(!response.data || !response.data.errorMessages){
                 form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
