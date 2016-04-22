@@ -24,7 +24,7 @@ let reportService = function(Properties, ServicesTransform, $http, $q) {
         let dataSourceId = report.datasource.get().id;
         let variables = report.variables.get();
         let aggregators = report.aggregators.get();
-        console.log(report);
+        
         let data = {
             name: report.name.get(),
             dataSourceId: dataSourceId,
@@ -32,6 +32,7 @@ let reportService = function(Properties, ServicesTransform, $http, $q) {
             aggregators: [],
             slicers: []
         };
+        
         for(let i in variables){
             data.variables.push({Id:variables[i].id,Order:i})
         }
