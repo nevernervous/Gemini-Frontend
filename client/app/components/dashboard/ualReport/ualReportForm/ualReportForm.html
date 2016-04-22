@@ -4,9 +4,7 @@
 
 <div class="report-header">
     <div class="title">
-        <span ng-hide="vm.report.reportId.get() ">Create </span>
-        <span ng-show="vm.report.reportId.get() ">Modify </span>
-        Report
+        Create Report
     </div>
     <ual-button class="save-button -secondary" ng-disabled="(vm.report.saving.isSaving() || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"  ng-click="vm.saveReport(vm.report)">Save</ual-button>
 </div>
