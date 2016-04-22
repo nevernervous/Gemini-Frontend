@@ -1,4 +1,4 @@
-@import '../../../../../common/common';
+@import '../common';
 
 //Layout
 ual-table {
@@ -27,9 +27,9 @@ ual-table {
 ual-table {
   .table-header {
     background-color: $color07;
-     
+
     .column-header {
-      
+
       &.-order-by {
         cursor: pointer;
       }

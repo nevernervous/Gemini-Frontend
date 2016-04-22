@@ -13,6 +13,7 @@ import ualRender from './ualRender/ualRender';
 import ualMessageBanner from './ualMessageBanner/ualMessageBanner';
 import ualTab from './ualTab/ualTab';
 import ualTabs from './ualTabs/ualTabs';
+import ualTable from './ualTable/ualTable';
 
 let commonModule = angular.module('app.common', [
   ualModal.name,
@@ -28,7 +29,8 @@ let commonModule = angular.module('app.common', [
   ualRender.name,
   ualMessageBanner.name,
   ualTab.name,
-  ualTabs.name
+  ualTabs.name,
+  ualTable.name
 ]);
 
 export default commonModule;
