@@ -53,3 +53,12 @@
     cursor: default;
   } 
 }
+
+@mixin button-spinner(){
+   background-repeat: no-repeat;
+   background-size: auto 90%;
+   background-position: center; 
+   >span{
+     visibility: hidden;
+    }
+}
