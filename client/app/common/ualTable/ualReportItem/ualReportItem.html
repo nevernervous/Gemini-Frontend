@@ -1,11 +1,14 @@
-<div class="ual-table-row">
-  <div class="column -link-report">
+<tr class="ual-table-row">
+  <td class="column -link-report">
     <a ui-sref="dashboard.report-edit({id: vm.reportItem.id})">{{vm.reportItem.name}}</a>
-  </div><div class="column">
+  </td>
+  <td class="column">
     {{vm.reportItem.dataSource}}
-  </div><div class="column">
+  </td>
+  <td class="column">
     {{vm.reportItem.lastModification | date:'MM/dd/yy HH:mm CT'}}
-  </div><div class="column -right-actions">
+  </td>
+  <td class="column -right-actions">
     &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-ios-close-empty"></i>
-  </div>
-</div>
+  </td>
+</tr>
