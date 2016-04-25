@@ -42,6 +42,7 @@ let tokenService = function ($rootScope, $window, $timeout, Configuration) {
           expired = true;
           localStorage.removeItem('gemini.token.id');
           localStorage.removeItem('gemini.token.keepalive');
+          sessionStorage.removeItem('gemini.token.session');
           //localStorage.removeItem('gemini.token.updateAt');
           $rootScope.$broadcast('SESSION.EXPIRED');
         } else if ( is_expired && login ) {
@@ -52,6 +53,7 @@ let tokenService = function ($rootScope, $window, $timeout, Configuration) {
         }
 
         if ( !is_expired ) {
+          sessionStorage.setItem('gemini.token.session', true);
           localStorage.setItem('gemini.token.keepalive', new Date().getTime());
         }
 
@@ -71,7 +73,7 @@ let tokenService = function ($rootScope, $window, $timeout, Configuration) {
     if (!!localStorage.getItem('gemini.token.id') && !!localStorage.getItem('gemini.token.keepalive') && !!localStorage.getItem('gemini.token.updateAt') ) {
       let alive = remainingTime() > 0;
       let now = new Date().getTime();
-      let keepalive = (now - localStorage.getItem('gemini.token.keepalive')) < 240000 ; // 4 min
+      let keepalive = sessionStorage.getItem('gemini.token.session') || ((now - localStorage.getItem('gemini.token.keepalive')) < 3000); // LESS THAN 5 SECONDS
       // console.log("isExpired.alive: " + alive);
       // console.log("isExpired.keepalive: " + keepalive);
       // console.log("isExpired: " + !(alive && keepalive));
@@ -106,6 +108,8 @@ let tokenService = function ($rootScope, $window, $timeout, Configuration) {
     localStorage.setItem('gemini.token.id', token);
     localStorage.setItem('gemini.token.keepalive', now);
     localStorage.setItem('gemini.token.updateAt', now);
+    sessionStorage.setItem('gemini.token.session', true);
+
     $rootScope.$broadcast('SESSION.LOGIN');
   }
 
@@ -115,6 +119,7 @@ let tokenService = function ($rootScope, $window, $timeout, Configuration) {
     expired = false;
     localStorage.removeItem('gemini.token.id');
     localStorage.removeItem('gemini.token.keepalive');
+    sessionStorage.removeItem('gemini.token.session');
     //localStorage.removeItem('gemini.token.updateAt');
     $rootScope.$broadcast('SESSION.LOGOUT');
   };

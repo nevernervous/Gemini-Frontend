@@ -7,6 +7,7 @@ class UalReportListController {
     this._deletereportmodal = ualReportListDeleteReportModal;
               
     this.predicate = 'lastModificationDate';
+    this.reverse = true;
   }
   
   $onInit() {

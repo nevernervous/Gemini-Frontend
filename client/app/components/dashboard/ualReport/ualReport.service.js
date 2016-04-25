@@ -1,15 +1,19 @@
-let ualReportService = function () {
+let ualReportService = function() {
   "ngInject";
-  
+
   let name = null
   let datasource = null;
+  let reportData = null;
   let variables = [];
   let aggregators = [];
   let reportId = null;
   var touched = false;
-  
+  let saving = false;
+  let duplicatedName = null;
+  let unchangedName = null;
+
   let exitConfirmed = false;
-  
+
   let create = () => {
     name = null;
     datasource = null;
@@ -17,55 +21,84 @@ let ualReportService = function () {
     aggregators = [];
     reportId = null;
     touched = false;
+    saving = false;
+    unchangedName = null;
   }
+
+  let update = (reportData) => {
+    datasource = reportData.datasource;
+    variables = reportData.variables;
+    aggregators = reportData.aggregators;
+  };
+  
+  let getNameDuplicated = () => duplicatedName;
+  let setNameDuplicated = value => duplicatedName = value;
 
   let getDataSource = () => datasource;
   let setDataSource = value => datasource = value;
   let equalDataSource = newDataSource => {
-    return ( datasource && datasource.id === newDataSource.id );
+    return (datasource && datasource.id === newDataSource.id);
   }
 
   let getVariables = () => variables;
   let setVariables = value => {
-    touched = true;  
+    touched = true;
     variables = value;
   }
 
   let getAggregators = () => aggregators;
+
   let setAggregators = value => {
-    touched = true;  
+    touched = true;
     aggregators = value;
   }
+  
+  let isEmptyName = () => {
+    return !this.name || _.isEmpty(this.name);
+  }
+
 
   let getName = () => name;
-  let setName = value =>{
-    touched = true;  
+  let setName = value => {
+    if(unchangedName === null) unchangedName = value;
+    touched = true;
     name = value;
   }
-  
+
   let getReportId = () => reportId;
   let setReportId = value => reportId = value;
-  
+
   let isExitComfirmed = () => exitConfirmed;
   let setExitConfirm = (value) => exitConfirmed = value;
+
+  let isSaving = () => saving;
+  let setSaving = (value) => saving = value;
+
   return {
+    update,
     create,
+    isEmptyName: isEmptyName,
     reportId: {
-      get: getReportId,  
+      get: getReportId,
       set: setReportId
     },
-    exitConfirmed:{
-        get: isExitComfirmed,
-        set: setExitConfirm,
+    nameDuplicated: {
+      get: getNameDuplicated,
+      set: setNameDuplicated
     },
-    untouch: function(){ touched = false; },
+    exitConfirmed: {
+      get: isExitComfirmed,
+      set: setExitConfirm,
+    },
+    untouch: function() { touched = false; unchangedName = name; },
     touched: function() { return touched; },
     name: {
-        get: getName,
-        set: setName
+      get: getName,
+      set: setName,
+      hasChange: () => { return unchangedName == name;},
     },
-    _name: function(value){
-      return (angular.isDefined(value))? this.name.set(value): this.name.get();  
+    _name: function(value) {
+      return (angular.isDefined(value)) ? this.name.set(value) : this.name.get();
     },
     datasource: {
       get: getDataSource,
@@ -80,6 +113,10 @@ let ualReportService = function () {
       get: getAggregators,
       set: setAggregators
     },
+    saving: {
+      isSaving: isSaving,
+      setSaving: setSaving
+    }
   };
 };
 

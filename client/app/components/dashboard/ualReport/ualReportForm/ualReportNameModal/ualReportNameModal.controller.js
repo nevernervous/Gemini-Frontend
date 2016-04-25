@@ -8,7 +8,8 @@ class ualReportNameModalController {
     this._service = {
             report: Report
         };
-        
+    this.nameSelected = null;
+    
     this.duplicatedName = false;
     
     this._suscriptions = [];
@@ -27,25 +28,40 @@ class ualReportNameModalController {
     let report = this.report;
     let form = this.form;
     let modal = this;
+    
+    this.report.name.set(this.nameSelected);
     this._service.report.save(report).then(
         function(response){
             form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-            report.reportId.set(response.data.reportId);
-            form.messageDisplayed = true;
-            report.untouch();
             
+            report.reportId.set(response.data.id);
+            form.messageDisplayed = true;
+            
+            form.isNewReport = false;
+            form.reportLoaded = true;
+            
+            report.untouch();
             modal._closemodal(true);
         },
         function(response){
-            if(response.data.indexOf(form.duplicatedErrorResponse) < 0){ 
-                form.saveResult = form.saveResultMessages.has(1)? form.saveResultMessages.get(1) : form.saveResultMessages.get(null);
+            report.name.set(null);
+            
+            //UNEXPECTED ERROR
+            if(!response.data || !response.data.errorMessages){
+                form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                form.messageDisplayed = true;
+                this._closemodal(false);
+            }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){ 
+            //EXPECTED ERROR
+                form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                form.saveResult.msgText = response.data.errorMessage;
                 form.messageDisplayed = true;
                 
                 this._closemodal(false);
             }else{ 
+            //DUPLICATED NAME
                 modal.duplicatedName = true;
                 form.messageDisplayed = false;
-                //form.setMesage();
             }
         }
     ).catch(function(){
@@ -53,7 +69,7 @@ class ualReportNameModalController {
         form.messageDisplayed = true;
         
         modal._closemodal(false);
-    });
+    }).finally( () => {report.saving.setSaving(false);} );
   }
   cancel(){
     this._closemodal(false);

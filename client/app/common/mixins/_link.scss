@@ -1,14 +1,22 @@
 @mixin link() {
   text-decoration: none;
-  color: #62a9e3;
+  color: $color03;
   @include font-clanot-news(16);
 
   &:hover {
-    color: #81c4ea;
+    color: $other06;
+  }
+
+  &:visited {
+    color: $color03;
+  }
+
+  &:visited:hover {
+    color: $other06;
   }
 
   &.-disabled {
-    color: #b0d4f1;
+    color: $other07;
     cursor: default;
   }
 }
