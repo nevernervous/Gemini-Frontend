@@ -1,4 +1,4 @@
-let ualReportService = function() {
+let ualReportService = function(Report) {
   "ngInject";
 
   let name = null
@@ -30,7 +30,7 @@ let ualReportService = function() {
     variables = reportData.variables;
     aggregators = reportData.aggregators;
   };
-  
+
   let getNameDuplicated = () => duplicatedName;
   let setNameDuplicated = value => duplicatedName = value;
 
@@ -52,7 +52,7 @@ let ualReportService = function() {
     touched = true;
     aggregators = value;
   }
-  
+
   let isEmptyName = () => {
     return !this.name || _.isEmpty(this.name);
   }
@@ -63,6 +63,10 @@ let ualReportService = function() {
     if(unchangedName === null) unchangedName = value;
     touched = true;
     name = value;
+  }
+
+  let remove = (reportId) => {
+    return Report.remove(reportId);
   }
 
   let getReportId = () => reportId;
@@ -113,6 +117,7 @@ let ualReportService = function() {
       get: getAggregators,
       set: setAggregators
     },
+    remove,
     saving: {
       isSaving: isSaving,
       setSaving: setSaving
