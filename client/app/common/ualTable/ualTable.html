@@ -1,10 +1,8 @@
-<table class="table-header">
-  <thead>
-    <th ng-repeat="column in vm.tableColumns" class="column-header" ng-class="[vm.columns, (column.name == '') ? '-disabled' : '-order-by']" 
-      ng-click="vm.order(column.orderBy)">{{column.name}}&nbsp;
-      <i class="ion-ios-arrow-up" ng-if="((vm.predicate == column.orderBy) && vm.reverse && column.orderBy != '')"></i>
-      <i class="ion-ios-arrow-down" ng-if="((vm.predicate == column.orderBy) && !vm.reverse && column.orderBy != '')"></i>
-    </th>
-  </thead>  
-  <tbody ng-transclude></tbody>
-</table>
+<div class="table-header">
+  <div ng-repeat="column in vm.tableColumns" class="column-header" ng-class="[vm.columns, (column.name == '') ? '-disabled' : '-order-by']" 
+    ng-click="vm.order(column.orderBy)">{{column.name}}&nbsp;
+    <i class="ion-ios-arrow-up" ng-if="((vm.predicate == column.orderBy) && vm.reverse && column.orderBy != '')"></i>
+    <i class="ion-ios-arrow-down" ng-if="((vm.predicate == column.orderBy) && !vm.reverse && column.orderBy != '')"></i>
+  </div>
+</div>  
+<ng-transclude></ng-transclude>

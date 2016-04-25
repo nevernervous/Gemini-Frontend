@@ -10,8 +10,7 @@ let ualReportItemComponent = {
   template,
   controller,
   controllerAs: 'vm',
-  require: '^ualTable',
-  replace: true
+  require: '^ualTable'
 };
 
 export default ualReportItemComponent;

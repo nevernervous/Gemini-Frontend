@@ -8,8 +8,8 @@
       <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
         <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
         {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">
-          <ual-report-item report-item="item" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
-          </ual-report-item>
+            <ual-report-item report-item="item" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
+            </ual-report-item>
         </ual-table>
         <div class="empty-list" ng-hide="(vm.reports).length > 0">
           No report exists
