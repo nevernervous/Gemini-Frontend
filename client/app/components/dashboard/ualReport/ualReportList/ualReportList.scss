@@ -9,6 +9,20 @@ ual-report-list {
   .container {
     height: 100%;
     padding-top: 30px;
+    .toolbar-section{
+      .delete-multiple{
+        @include font-clanot-book(16);
+        i {
+          padding: 0 12px;
+          vertical-align: middle;
+          @include font-clanot-bold(32);
+          cursor: pointer;
+        }
+        .-selected-items{
+          @include font-clanot-bold(16);
+        }
+      }
+    }
     .content-list {
       height: calc(100% - 100px);
       > .mCSB_inside > .mCSB_container {
@@ -16,7 +30,7 @@ ual-report-list {
       }
     }
     .empty-list {
-      @include gridle(row row-align middle center);     
+      @include gridle(row row-align middle center);
       height: 100%;
       line-height: 1.5;
       display: block;
@@ -37,7 +51,7 @@ ual-report-list {
     @include font-clanot-book(14);
     color: $color07;
     text-align: center;
-  }  
+  }
   .ual-table-row {
     @include font-clanot-book(16);
     border-bottom: 1px solid $color08;
@@ -45,11 +59,14 @@ ual-report-list {
       display: inline-block;
       text-align: left;
       white-space: nowrap;
-      width: 25%;
+      width: 23%;
       color: $color07;
       line-height: 1;
       &.-link-report > a {
         @include link();
+      }
+      &.-checkbox{
+        width: 30px;
       }
       &.-right-actions {
         text-align: right;
@@ -58,15 +75,15 @@ ual-report-list {
         vertical-align: middle;
         > i {
           font-size: 22px;
-          padding-left: 5px;
+          padding-left: 10px;
           display: none;
           opacity: 0;
           opacity: 1 \9;/*just in case ie*/
           @include fadeIn();
           @include animation(fadeIn ease-in 1);
           @include animation-fill-mode(forwards);
-          @include animation-duration(0.2s);
-          @include animation-delay(1s);
+          @include animation-duration(0.5s);
+          @include animation-delay(0.5s);
           margin-top: -1px;
           vertical-align: middle;
           &.ion-ios-close-empty {
