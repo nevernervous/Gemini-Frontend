@@ -7,10 +7,12 @@ class DashboardController {
     this.mainMenu = ualMainMenu;
     this._session = Session;
     this._expirationModal = expirationModal;
-
     this._suscriptions = [];
-    
-    
+    this.msgText="";
+    this.msgClass="";
+    this.messageDisplayed2=false;
+
+
   }
 
   expiration() {
@@ -36,8 +38,27 @@ class DashboardController {
       this._unsuscribe();
       this._state.go('login');
     }));
-    
+    this._suscriptions.push(this._rootScope.$on('BANNER.SHOW', (event, data) => this.showMe(data)));
+    this._suscriptions.push(this._rootScope.$on('BANNER.HIDE', () => this.hideMe()));
   }
+
+  showMe(data) {
+    if(data){
+      if(data.saveResult==null){
+        hideMe();
+        return;
+      }
+      this.msgClass=data.saveResult.msgClass;
+      this.msgText=data.saveResult.msgText;
+      this.messageDisplayed = true;
+
+    }
+  }
+
+  hideMe() {
+    this.messageDisplayed = false;
+  }
+
 
 }
 

@@ -1,6 +1,6 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($window, $state, ualReport, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, ualUnsafeReportModal, $q) {
+  constructor($window, $state, ualReport, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope,$rootScope, ualUnsafeReportModal, $q) {
     this._state = $state;
     this._window = $window;
     this._datasourcemodal = ualDataSource;
@@ -9,6 +9,7 @@ class UalReportFormController {
     this._q = $q;
 
     this._scope = $scope;
+    this._rootScope=$rootScope;
     this._suscriptions = [];
 
     this._service = {
@@ -23,7 +24,7 @@ class UalReportFormController {
 
     this.report = ualReport;
 
-    this.messageDisplayed = false;
+    //this.messageDisplayed = false;
 
     this.saveResult = null;
 
@@ -204,7 +205,7 @@ class UalReportFormController {
     this.inputStyle.position = 'relative';
     this.dropDownStyle.visibility = 'visible'
   }
-  
+
   isDuplicatedName(){
     return this.duplicatedName && (!!this.report.nameDuplicated.get() && this.report.nameDuplicated.get() == this.report.name.get());
   }
@@ -223,22 +224,23 @@ class UalReportFormController {
           );
           return ;
       }
-      
+
       if(!this.report.touched()){
         return;
       }
-      
-      this.messageDisplayed = false;
+
+      //this.messageDisplayed = false;
       this.saveResult = this.saveResultMessages.get(null);
-      
+
       this._service.report.save(report).then(
-          function(response){    
+          function(response){
               form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-              
+
               report.reportId.set(response.data.id);
-              form.messageDisplayed = true;
+              //form.messageDisplayed = true;
+              form._rootScope.$broadcast('BANNER.SHOW',{saveResult:form.saveResult});
               form.duplicatedName = false;
-              
+
               form.isNewReport = false;
               form.reportLoaded = true;
 
@@ -250,22 +252,22 @@ class UalReportFormController {
               //UNEXPECTED ERROR
               if(!response.data || !response.data.errorMessages){
                   form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                  form.messageDisplayed = true;
+                  form._rootScope.$broadcast('BANNER.SHOW',{saveResult:form.saveResult});
               }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){
               //EXPECTED ERROR
                   form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
                   form.saveResult.msgText = response.data.errorMessage;
-                  form.messageDisplayed = true;
+                  form._rootScope.$broadcast('BANNER.SHOW',{saveResult:form.saveResult});
               }else{
               //DUPLICATED NAME
                   form.report.nameDuplicated.set(_.clone(form.report.name.get()));
                   form.duplicatedName = true;
-                  form.messageDisplayed = false;
+                  form._rootScope.$broadcast('BANNER.SHOW',{saveResult:null});
               }
           }
       ).catch(function(){
           form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-          form.messageDisplayed = true;
+          form._rootScope.$broadcast('BANNER.SHOW',{saveResult:form.saveResult});
       }).finally( () => {report.saving.setSaving(false);} );
   }
 }

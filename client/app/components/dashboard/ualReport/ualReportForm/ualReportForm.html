@@ -1,7 +1,3 @@
-<ual-message-banner ng-show="vm.messageDisplayed" change-display="vm.messageDisplayed" class="-dashboard" ng-class="vm.saveResult.msgClass">
-  {{vm.saveResult.msgText}}
-</ual-message-banner>
-
 <div class="report-header">
   <div class="title">Create Report</div>
   <ual-button class="save-button -secondary" ng-disabled="(vm.report.saving.isSaving() || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"

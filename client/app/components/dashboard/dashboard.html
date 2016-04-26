@@ -1,5 +1,8 @@
 <ual-nav-bar></ual-nav-bar>
 <div class="dashboard-container" ng-class="{'menu-open': vm.menuOpen}">
+  <ual-message-banner ng-show="vm.messageDisplayed" ng-class="vm.msgClass">
+    {{vm.msgText}}
+  </ual-message-banner>
   <ual-main-menu ng-class="{'-open': vm.mainMenu.isOpen()}"></ual-main-menu>
   <div class="dashboard-view" ui-view></div>
 </div>

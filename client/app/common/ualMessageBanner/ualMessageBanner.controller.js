@@ -1,12 +1,15 @@
 class UalMessageBannerController {
   /*@ngInject*/
-  constructor() {
+  constructor($scope) {
     this.name = 'UalMessageBanner';
+    this._scope = $scope;
+
   }
-  
-  hideMe(){
-      this.changeDisplay = false;
+
+  hideMe() {
+    this._scope.$emit('BANNER.HIDE');
   }
+
 }
 
 export default UalMessageBannerController;
