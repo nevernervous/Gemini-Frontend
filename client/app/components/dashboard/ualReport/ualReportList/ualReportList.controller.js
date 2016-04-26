@@ -60,6 +60,7 @@ class UalReportListController {
           this._reportService.remove(report.id)
             .then((reply) => {
               _.remove(this.reports, { id: report.id });
+              _.remove(this.selectedReports, { id: report.id });
             });
         }
       });
