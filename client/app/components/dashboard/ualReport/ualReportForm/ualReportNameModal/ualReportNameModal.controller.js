@@ -8,9 +8,10 @@ class ualReportNameModalController {
     this._service = {
             report: Report
         };
-        
+    this.nameSelected = null;
+
     this.duplicatedName = false;
-    
+
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
     this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
@@ -24,43 +25,43 @@ class ualReportNameModalController {
   }
 
   ok() {
+    let modal = this;
     let report = this.report;
     let form = this.form;
-    let modal = this;
-    this._service.report.save(report).then(
-        function(response){
-            form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-            report.reportId.set(response.data.id);
+
+    report.name.set(this.nameSelected);
+
+    form.messageDisplayed = false;
+    form.saveResult = form.saveResultMessages.get(null);
+
+
+    this.report.save().then(
+      result => {
+        modal._closemodal(true);
+      }
+      , result => {
+        switch(result){
+          case 'NONAMEASSIGNED':
+            break;
+          case 'NOCHANGES':
+            break;
+          case 'DUPLICATEDNAME':
+            report.nameDuplicated.set(_.clone(this.report.name.get()));
+            this.duplicatedName = true;
+            form.messageDisplayed = false;
+            break;
+          default:
+            form.saveResult = form.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(form.saveResultMessages.get(2))) : form.saveResultMessages.get(null);
+            if(result !== false) form.saveResult.msgText = result;
             form.messageDisplayed = true;
-            report.untouch();
-            
-            modal._closemodal(true);
-        },
-        function(response){
-            //UNEXPECTED ERROR
-            if(!response.data || !response.data.errorMessages){
-                form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                form.messageDisplayed = true;
-                this._closemodal(false);
-            }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){ 
-            //EXPECTED ERROR
-                form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                form.saveResult.msgText = response.data.errorMessage;
-                form.messageDisplayed = true;
-                
-                this._closemodal(false);
-            }else{ 
-            //DUPLICATED NAME
-                modal.duplicatedName = true;
-                form.messageDisplayed = false;
-            }
+
+            this._closemodal(false);
         }
-    ).catch(function(){
-        form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-        form.messageDisplayed = true;
-        
-        modal._closemodal(false);
-    }).finally( () => {report.saving.setSaving(false);} );
+      }
+    );
+
+    return;
+
   }
   cancel(){
     this._closemodal(false);
