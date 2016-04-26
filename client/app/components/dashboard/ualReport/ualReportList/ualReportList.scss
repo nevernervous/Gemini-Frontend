@@ -65,8 +65,12 @@ ual-report-list {
       &.-link-report > a {
         @include link();
       }
-      &.-checkbox{
+      &.-checkbox {
         width: 30px;
+        visibility: hidden;
+        input:checked {
+          visibility: visible;
+        }
       }
       &.-right-actions {
         text-align: right;
@@ -83,7 +87,7 @@ ual-report-list {
           @include animation(fadeIn ease-in 1);
           @include animation-fill-mode(forwards);
           @include animation-duration(0.5s);
-          @include animation-delay(0.5s);
+          @include animation-delay(0.2s);
           margin-top: -1px;
           vertical-align: middle;
           &.ion-ios-close-empty {
@@ -91,9 +95,24 @@ ual-report-list {
             font-size: 32px;
           }
         }
+        ual-tooltip {
+          display: none;
+          margin-left: 15px;
+          margin-top: -7px;
+          opacity:0;
+          opacity: 1 \9; /*just in case ie*/
+          @include fadeIn();
+          @include animation(fadeIn ease-in 1);
+          @include animation-fill-mode(forwards);
+          @include animation-duration(0.2s);
+          @include animation-delay(1s);
+        }
       }
     }
     &:hover {
+      .-checkbox {
+        visibility: visible;
+      }
       .-right-actions {
         > i {
           display: inline-block;

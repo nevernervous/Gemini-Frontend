@@ -12,7 +12,7 @@
         {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">
       <div class="ual-table-row" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
         <div class="column -checkbox">
-          <input type="checkbox" ng-click="vm.toggleReport(item.id)"/>
+          <input type="checkbox" ng-click="vm.toggleReport(item.id)" />
         </div>
         <div class="column -link-report">
           <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>
@@ -26,7 +26,10 @@
         <div class="column -right-actions">
           &nbsp;<i class="ion-android-person-add"></i>
           <i class="ion-ios-copy-outline"></i>
-          <i class="ion-ios-close-empty" ng-click="vm.deleteReport(item)" title="Delete"></i>
+          <i class="ion-ios-close-empty" ng-click="vm.deleteReport(item)" title="Delete" ng-mouseover="vm.showTooltip($event)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip($event)"></i>
+          <ual-tooltip class="-tooltip">
+            Delete
+          </ual-tooltip>
         </div>
       </div>
     </ual-table>
