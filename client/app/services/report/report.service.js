@@ -26,7 +26,6 @@ let reportService = function(Properties, ServicesTransform, $http, $q, ReportObj
       transformResponse: ServicesTransform.generate(transformation)
     });
   };
-
   return {
       all,
       create,

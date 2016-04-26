@@ -9,7 +9,11 @@ class ualReportNameModalController {
             report: Report
         };
     this.nameSelected = null;
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 9b30821c81c33f05a10dbc6ec2732b86a7ab6257
     this.duplicatedName = false;
 
     this._suscriptions = [];
@@ -51,6 +55,7 @@ class ualReportNameModalController {
             form.messageDisplayed = false;
             break;
           default:
+            report.name.set(null);
             form.saveResult = form.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(form.saveResultMessages.get(2))) : form.saveResultMessages.get(null);
             if(result !== false) form.saveResult.msgText = result;
             form.messageDisplayed = true;
