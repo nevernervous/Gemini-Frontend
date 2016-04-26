@@ -48,12 +48,27 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
     }
   }
 
-  let remove = (reportId) => {
+  let remove = (ids) => {
     let transformation = [ServicesTransform.get('none')];
-    return $http.delete(`${endpoint}/${reportId}`, {
-      cache: Properties.cache,
-      transformResponse: ServicesTransform.generate(transformation)
-    });
+    let request;
+    if (ids.length == 1) {
+      let [id] = ids;
+      request = $http.delete(`${endpoint}/${id}`, {
+        cache: Properties.cache,
+        transformResponse: ServicesTransform.generate(transformation)
+      });
+    } else{
+      request = $http.delete(`${endpoint}`, {
+        cache: Properties.cache,
+        data: ids,
+        headers : {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        transformResponse: ServicesTransform.generate(transformation)
+      });
+    }
+
+    return request;
   }
 
   return {

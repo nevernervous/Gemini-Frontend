@@ -39,16 +39,16 @@ class UalReportListController {
     this._deletereportmodal.open()
       .then(response => {
         if (response) {
-          if (this.selectedReports.length == 1) {
-            let report = _.head(this.selectedReports);
-            this._reportService.remove(report.id)
-              .then((reply) => {
-                _.remove(this.reports, { id: report.id });
-                this.selectedReports = [];
+          let ids = _.map(this.selectedReports, 'id');
+          this._reportService.remove(ids)
+            .then((reply) => {
+              _.remove(this.reports, (item) => {
+                return _.contains(ids, item.id);
               });
-          } else {
-            //TODO: Delete Multiple Reports
-          }
+              this.selectedReports = [];
+            }, (reply) => {
+                alert(reply.statusText);
+            });
         }
       });
   }

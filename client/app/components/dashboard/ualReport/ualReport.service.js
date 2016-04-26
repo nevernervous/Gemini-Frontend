@@ -65,8 +65,8 @@ let ualReportService = function(Report) {
     name = value;
   }
 
-  let remove = (reportId) => {
-    return Report.remove(reportId);
+  let remove = (ids) => {
+    return Report.remove(ids);
   }
 
   let getReportId = () => reportId;
