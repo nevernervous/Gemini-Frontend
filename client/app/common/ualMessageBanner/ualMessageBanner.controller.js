@@ -7,7 +7,8 @@ class UalMessageBannerController {
   }
 
   hideMe() {
-    this._scope.$emit('BANNER.HIDE');
+    this.bannerClass['banner-hide']=true;
+    this.bannerClass['banner-show']=false;
   }
 
 }

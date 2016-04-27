@@ -238,7 +238,7 @@ class UalReportFormController {
 
               report.reportId.set(response.data.id);
               //form.messageDisplayed = true;
-              form._rootScope.$broadcast('BANNER.SHOW',{saveResult:form.saveResult});
+              form._rootScope.$broadcast('BANNER.SHOW',form.saveResult);
               form.duplicatedName = false;
 
               form.isNewReport = false;
@@ -252,22 +252,21 @@ class UalReportFormController {
               //UNEXPECTED ERROR
               if(!response.data || !response.data.errorMessages){
                   form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                  form._rootScope.$broadcast('BANNER.SHOW',{saveResult:form.saveResult});
+                  form._rootScope.$broadcast('BANNER.SHOW',form.saveResult);
               }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){
               //EXPECTED ERROR
                   form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
                   form.saveResult.msgText = response.data.errorMessage;
-                  form._rootScope.$broadcast('BANNER.SHOW',{saveResult:form.saveResult});
+                  form._rootScope.$broadcast('BANNER.SHOW',form.saveResult);
               }else{
               //DUPLICATED NAME
                   form.report.nameDuplicated.set(_.clone(form.report.name.get()));
                   form.duplicatedName = true;
-                  form._rootScope.$broadcast('BANNER.SHOW',{saveResult:null});
               }
           }
       ).catch(function(){
           form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-          form._rootScope.$broadcast('BANNER.SHOW',{saveResult:form.saveResult});
+          form._rootScope.$broadcast('BANNER.SHOW',form.saveResult);
       }).finally( () => {report.saving.setSaving(false);} );
   }
 }

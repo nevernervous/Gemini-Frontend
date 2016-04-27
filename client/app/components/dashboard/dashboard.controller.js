@@ -10,9 +10,6 @@ class DashboardController {
     this._suscriptions = [];
     this.msgText="";
     this.msgClass="";
-    this.messageDisplayed2=false;
-
-
   }
 
   expiration() {
@@ -38,33 +35,18 @@ class DashboardController {
       this._unsuscribe();
       this._state.go('login');
     }));
-    this._suscriptions.push(this._rootScope.$on('BANNER.SHOW', (event, data) => this.showMe(data)));
-    this._suscriptions.push(this._rootScope.$on('BANNER.HIDE', () => this.hideMe()));
+    this._suscriptions.push(this._rootScope.$on('BANNER.SHOW', (event, data) => this.showBanner(data)));
   }
 
-  showMe(data) {
-    if(data){
-      if(data.saveResult==null){
-        hideMe();
-        return;
-      }
-      this.msgClass=data.saveResult.msgClass;
-      this.msgClass['banner-hide']=false;
-      if(!this.msgClass['-autoclose'])//no autoclose
-      {
-        this.msgClass['banner-show']=true;
-      }
-      this.msgText=data.saveResult.msgText;
-      this.messageDisplayed = true;
+  showBanner(data) {
+    this.msgClass=data.msgClass;
+    this.msgClass['banner-hide']=false;
+    if(!this.msgClass['-autoclose'])//no autoclose
+    {
+      this.msgClass['banner-show']=true;
     }
+    this.msgText=data.msgText;
   }
-
-  hideMe() {
-    this.messageDisplayed = false;
-    this.msgClass['banner-hide']=true;
-    this.msgClass['banner-show']=false;
-  }
-
 
 }
 

@@ -7,7 +7,7 @@ let ualMessageBannerComponent = {
   transclude: true,
   template,
   bindings:{
-      changeDisplay:"="
+      bannerClass:"="
   },
   controller,
   controllerAs: 'vm'

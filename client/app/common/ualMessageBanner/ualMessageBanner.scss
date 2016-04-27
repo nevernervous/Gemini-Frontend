@@ -54,6 +54,7 @@ ual-message-banner {
 ual-message-banner{
   color: $warningHighColor;
   background: $warningLowColor;
+  display: none;
   i.-message-icon{
     @include icon-warning(26);
   }
@@ -64,6 +65,7 @@ ual-message-banner.banner-show{
    @include animation(slideInDown);
    @include animation-fill-mode(forwards);
    @include animation-duration(0.5s);
+   display: block;
 }
 
 ual-message-banner.banner-hide{
@@ -71,6 +73,7 @@ ual-message-banner.banner-hide{
     @include animation(slideOutUp);
     @include animation-fill-mode(forwards);
     @include animation-duration(0.5s);
+    display: block;
 }
 
 .banner-login{
@@ -104,6 +107,7 @@ ual-message-banner.-autoclose{
   @include slideInDown();
   @include slideOutUp();
   @include animation(slideInDown 0.5s 0s forwards,slideOutUp 0.5s 4.5s forwards);
+  display: block;
   //@include animation-fill-mode(backwards);
   //@include animation-duration(0.5s);
  // @include animation-delay(10s,4.5s);
