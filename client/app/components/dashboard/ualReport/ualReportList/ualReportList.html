@@ -9,9 +9,25 @@
       <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
         <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
         {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">
-            <ual-report-item report-item="item" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
-            </ual-report-item>
         </ual-table>
+        <table class="table-reports">
+          <tbody>
+            <tr ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
+              <td class="-link-report">
+                  <div><a ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a></div>
+              </td>
+              <td>
+                <div>{{item.dataSource}}</div>
+              </td>
+              <td>
+                {{item.lastModification | date:'MM/dd/yy HH:mm CT'}}
+              </td>
+              <td class="-right-actions">
+                &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-ios-close-empty"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div class="empty-list" ng-hide="(vm.reports).length > 0">
           No report exists
         </div>
