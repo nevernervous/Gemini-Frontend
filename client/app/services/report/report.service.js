@@ -1,35 +1,41 @@
-let reportService = function(Properties, ServicesTransform, $http, $q, ReportObject) {
+let reportService = function (Properties, ServicesTransform, $http, $q, ReportObject) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
 
   let create = () => {
-      ReportObject.create();
-      return ReportObject;
+    ReportObject.create();
+    return ReportObject;
   };
 
   let currentReport = () => {
-      return ReportObject;
+    return ReportObject;
   };
 
   let all = () => {
     let transformation = [ServicesTransform.get('simple')];
+
     return $http.get(endpoint, {
-      cache: Properties.cache,
-      transformResponse: ServicesTransform.generate(transformation)
+      cache: Properties.cache
+      , transformResponse: ServicesTransform.generate(transformation)
     });
   }
 
   let getById = (reportId) => {
     let transformation = [ServicesTransform.get('none')];
     return $http.get(`${endpoint}/${reportId}`, {
-      cache: Properties.cache,
-      transformResponse: ServicesTransform.generate(transformation)
-    });
+      cache: Properties.cache
+      , transformResponse: ServicesTransform.generate(transformation)
+    }).then(
+      response => {
+        ReportObject.create();
+        ReportObject.load(response.data);
+        return ReportObject;
+      });
   };
   return {
-      all,
-      create,
-      getById
+    all
+    , create
+    , getById
   };
 };
 

@@ -37,6 +37,11 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
     unchangedName = null;
   }
 
+  let loadReportById = (reportId) => {
+    create();
+    Report.getById(reportId).then(
+    );
+  }
   let load = (reportData) => {
     object = reportData;
     initialHash = getReportHash();
@@ -69,35 +74,32 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
     var deferred = $q.defer();
     let reject = false;
     if (!getName() && !getReportId()) {
-      deferred.reject('NONAMEASSIGNED');
+      deferred.reject({code:1, msg: "No name assigned"});
       reject = true;
-    }
-    if (!touched) {
-      deferred.reject('NOCHANGES');
+    }else if (!touched) {
+      deferred.reject({code:0, msg: "No changes to save"});
       reject = true;
-    }
-
-    if (!reject) {
+    } else {
       saveRequest().then(
         response => {
           object.id = response.data.id;
           unchangedName = object.name;
-          deferred.resolve(object.id);
-
           touched = false;
 
           initialHash = getReportHash();
+
+          deferred.resolve(object.id);
         }
         , response => {
           //UNEXPECTED ERROR
           if (!response.data || !response.data.errorMessages) {
-            deferred.reject(false);
+            deferred.reject({code:3, msg: ""});
           } else if (response.data.errorMessages.indexOf(duplicatedErrorResponse) < 0) {
             //EXPECTED ERROR
-            deferred.reject(response.data.errorMessage);
+            deferred.reject({code:3, msg: response.data.errorMessage});
           } else {
             //DUPLICATED NAME
-            deferred.reject('DUPLICATEDNAME');
+            deferred.reject({code:2, msg: "Name already exists"});
           }
         }
       ).catch(() => {
@@ -133,7 +135,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
       })
     }
 
-    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
+//    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
     if (object.id === null) {
       return $http.post(endpoint, data);
     } else {
@@ -152,7 +154,8 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let setDataSource = value => {
     object.dataSourceId = value.id;
     object.dataSource = value.name;
-    if(hasReportChange()) touched = true;
+
+    touched = hasReportChange();
   }
   let equalDataSource = newDataSource => {
     return (object.dataSource && object.dataSourceId === newDataSource.id);
@@ -161,13 +164,13 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let getVariables = () => object.variables;
   let setVariables = value => {
     object.variables = value;
-    if(hasReportChange()) touched = true;
+    touched = hasReportChange();
   }
 
   let getAggregators = () => object.aggregators;
   let setAggregators = value => {
     object.aggregators = value;
-    if(hasReportChange()) touched = true;
+    touched = hasReportChange();
   }
 
   let isEmptyName = () => {
@@ -179,7 +182,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let setName = value => {
     if (unchangedName === null) unchangedName = value;
     object.name = value;
-    if(hasReportChange()) touched = true;
+    touched = hasReportChange();
   }
 
   let getReportId = () => object.id;

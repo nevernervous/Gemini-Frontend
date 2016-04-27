@@ -157,37 +157,24 @@ class UalReportFormController {
       .then(variables => this.report.variables.set(variables));
   }
 
-  getReport(reportId) {
-    return this._service.report.getById(reportId).then((reply) => {
-      return reply;
-    });
-  }
-
   openReport(reportId) {
-    this.report.create();
-    this.getReport(reportId)
+    this._service.report.getById(reportId)
       .then((reply) => {
-        let reportData = reply.data;
-        reportData.datasource = {
-          id: reportData.dataSourceId
-          , name: reportData.dataSource
-        };
+        let datasource = this.report.datasource.get();
 
         return this._q.all([
-          this._service.aggregator.groups(reportData.datasource)
+          this._service.aggregator.groups(datasource)
 
-          , this._service.datasource.variables(reportData.datasource)
 
-          , this._q.when(reportData)
+
+
+          , this._service.datasource.variables(datasource)
 
           ]);
       })
-      .spread((replyAggregators, replyVariables, reportData) => {
+      .spread((replyAggregators, replyVariables) => {
 
-
-        this.report.load(reportData);
         this.aggregators = replyAggregators.data;
-        this.report.untouch();
         this.reportLoaded = true;
       });
   }
@@ -238,6 +225,29 @@ class UalReportFormController {
         notify: false
       });
     }
+    let responseError = {
+      0: (msg) => {}
+      , 1: (msg) => {
+        this._ualReportNameModal.open({
+          report: this.report
+          , reportForm: this
+        }).then(
+          response => {
+            if (response) saveSuccess();
+          }
+        );
+      }
+      , 2: (msg) => {
+        this.report.nameDuplicated.set(_.clone(this.report.name.get()));
+        this.duplicatedName = true;
+        this.messageDisplayed = false;
+      }
+      , 3: (msg) => {
+        this.saveResult = this.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(this.saveResultMessages.get(2))) : this.saveResultMessages.get(null);
+        if (msg) this.saveResult.msgText = msg;
+        this.messageDisplayed = true;
+      }
+    };
 
     this.messageDisplayed = false;
     this.saveResult = this.saveResultMessages.get(null);
@@ -245,30 +255,7 @@ class UalReportFormController {
     this.report.save().then(
       saveSuccess
       , result => {
-        switch (result) {
-        case 'NONAMEASSIGNED':
-          this._ualReportNameModal.open({
-            report: this.report
-            , reportForm: this
-          }).then(
-            response => {
-              console.log(response);
-              if (response) saveSuccess();
-            }
-          );
-          break;
-        case 'NOCHANGES':
-          break;
-        case 'DUPLICATEDNAME':
-          this.report.nameDuplicated.set(_.clone(this.report.name.get()));
-          this.duplicatedName = true;
-          this.messageDisplayed = false;
-          break;
-        default:
-          this.saveResult = this.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(this.saveResultMessages.get(2))) : this.saveResultMessages.get(null);
-          if (result !== false) this.saveResult.msgText = result;
-          this.messageDisplayed = true;
-        }
+        responseError[result.code](result.msg);
       }
     );
 
