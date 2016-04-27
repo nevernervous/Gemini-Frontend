@@ -49,14 +49,20 @@ class DashboardController {
         return;
       }
       this.msgClass=data.saveResult.msgClass;
+      this.msgClass['banner-hide']=false;
+      if(!this.msgClass['-autoclose'])//no autoclose
+      {
+        this.msgClass['banner-show']=true;
+      }
       this.msgText=data.saveResult.msgText;
       this.messageDisplayed = true;
-
     }
   }
 
   hideMe() {
     this.messageDisplayed = false;
+    this.msgClass['banner-hide']=true;
+    this.msgClass['banner-show']=false;
   }
 
 

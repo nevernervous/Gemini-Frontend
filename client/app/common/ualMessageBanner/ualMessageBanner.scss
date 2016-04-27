@@ -57,26 +57,24 @@ ual-message-banner{
   i.-message-icon{
     @include icon-warning(26);
   }
-  @include slideInDown();
-  @include animation(slideInDown);
-  @include animation-fill-mode(both);
-  @include animation-duration(0.5s);
-  transition-property: all;
 }
 
-ual-message-banner.ng-hide{
-  @include slideOutUp();
-  @include animation(slideOutUp);
-  @include animation-fill-mode(both);
-  @include animation-duration(0.5s);
-  transition-property: all;
+ual-message-banner.banner-show{
+   @include slideInDown();
+   @include animation(slideInDown);
+   @include animation-fill-mode(forwards);
+   @include animation-duration(0.5s);
+}
 
+ual-message-banner.banner-hide{
+    @include slideOutUp();
+    @include animation(slideOutUp);
+    @include animation-fill-mode(forwards);
+    @include animation-duration(0.5s);
 }
 
 .banner-login{
   top:0px;
-  @include animation-delay(0.5s);
-
 }
 // VARIATION / SUCCESS
 ual-message-banner.-success{
@@ -103,5 +101,14 @@ ual-message-banner.-closeable{
 
 // VARIATION / AUTOCLOSE
 ual-message-banner.-autoclose{
-  @include animation(slideInDown 0.5s 0s backwards,slideOutUp 0.5s 4.5s forwards);
+  @include slideInDown();
+  @include slideOutUp();
+  @include animation(slideInDown 0.5s 0s forwards,slideOutUp 0.5s 4.5s forwards);
+  //@include animation-fill-mode(backwards);
+  //@include animation-duration(0.5s);
+ // @include animation-delay(10s,4.5s);
+/*  @include animation(fadeHide ease-in 1);
+  @include animation-fill-mode(forwards);*/
+/*  @include animation-duration(0s);
+  @include animation-delay(0s); */
 }
