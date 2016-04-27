@@ -32,13 +32,14 @@
         cursor: pointer;
     }
     input {
-        @include font-clanot-book(20);
+        @include font-clanot-book(18);
         color: $color07;
         border: 1px solid $color08;
         padding: 4px;
         line-height: 1;
     }
     input.-label{
+        @include font-clanot-book(20);
         pointer-events: none;
         border: 1px solid $color00;
     }
