@@ -168,7 +168,7 @@ class UalReportFormController {
     this.getReport(reportId)
       .then((reply) => {
         let reportData = reply.data;
-
+        console.log(reportData);
         reportData.datasource = {
           id: reportData.dataSourceId
           , name: reportData.dataSource
@@ -214,13 +214,13 @@ class UalReportFormController {
           };
         });
 
-
+        this.report.load(reportData);
         this.aggregators = aggregators;
-        this.report.name.set(reportData.name);
-        this.report.reportId.set(reportData.id);
-        this.report.datasource.set(reportData.datasource);
-        this.report.aggregators.set(selectedAggregators);
-        this.report.variables.set(selectedVariables);
+//        this.report.name.set(reportData.name);
+//        this.report.reportId.set(reportData.id);
+//        this.report.datasource.set(reportData.datasource);
+//        this.report.aggregators.set(selectedAggregators);
+//        this.report.variables.set(selectedVariables);
         this.report.untouch();
         this.reportLoaded = true;
       });
