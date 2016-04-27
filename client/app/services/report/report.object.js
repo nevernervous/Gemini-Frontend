@@ -11,12 +11,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
     , variables: []
     , aggregators: []
   };
-//  let name = null
-//  let datasource = null;
+  let initialHash = null;
+
   let reportData = null;
-//  let variables = [];
-//  let aggregators = [];
-//  let reportId = null;
   var touched = false;
   let saving = false;
   let duplicatedName = null;
@@ -34,11 +31,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
       , variables: []
       , aggregators: []
     };
-/*    name = null;
-    datasource = null;
-    variables = [];
-    aggregators = [];
-    reportId = null;*/
+    initialHash = getReportHash();
     touched = false;
     saving = false;
     unchangedName = null;
@@ -46,6 +39,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
   let load = (reportData) => {
     object = reportData;
+    initialHash = getReportHash();
   };
 
   let update = (reportData) => {
@@ -53,6 +47,23 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
     object.variables = reportData.variables;
     object.aggregators = reportData.aggregators;
   };
+
+  let hasReportChange = () => {
+    return getReportHash() != initialHash;
+  };
+
+  let getReportHash = () => {
+	let hash = 0;
+    let char = '';
+    let json = JSON.stringify(object);
+	if (json.length == 0) return hash;
+	for (let i = 0; i < json.length; i++) {
+		char = json.charCodeAt(i);
+		hash = ((hash<<5)-hash)+char;
+		hash = hash & hash; // Convert to 32bit integer
+	}
+	return hash;
+  }
 
   let save = () => {
     var deferred = $q.defer();
@@ -71,8 +82,11 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
         response => {
           object.id = response.data.id;
           unchangedName = object.name;
-          touched = false;
           deferred.resolve(object.id);
+
+          touched = false;
+
+          initialHash = getReportHash();
         }
         , response => {
           //UNEXPECTED ERROR
@@ -130,11 +144,15 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let getNameDuplicated = () => duplicatedName;
   let setNameDuplicated = value => duplicatedName = value;
   let getDataSource = () => {
-    return (object.dataSourceId)?{name: object.dataSource, id: object.dataSourceId}:null;
+    return (object.dataSourceId) ? {
+      name: object.dataSource
+      , id: object.dataSourceId
+    } : null;
   }
-  let setDataSource = value =>{
+  let setDataSource = value => {
     object.dataSourceId = value.id;
     object.dataSource = value.name;
+    if(hasReportChange()) touched = true;
   }
   let equalDataSource = newDataSource => {
     return (object.dataSource && object.dataSourceId === newDataSource.id);
@@ -142,14 +160,14 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
   let getVariables = () => object.variables;
   let setVariables = value => {
-    touched = true;
     object.variables = value;
+    if(hasReportChange()) touched = true;
   }
 
   let getAggregators = () => object.aggregators;
   let setAggregators = value => {
-    touched = true;
     object.aggregators = value;
+    if(hasReportChange()) touched = true;
   }
 
   let isEmptyName = () => {
@@ -160,8 +178,8 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let getName = () => object.name;
   let setName = value => {
     if (unchangedName === null) unchangedName = value;
-    touched = true;
     object.name = value;
+    if(hasReportChange()) touched = true;
   }
 
   let getReportId = () => object.id;

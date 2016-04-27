@@ -168,7 +168,6 @@ class UalReportFormController {
     this.getReport(reportId)
       .then((reply) => {
         let reportData = reply.data;
-        console.log(reportData);
         reportData.datasource = {
           id: reportData.dataSourceId
           , name: reportData.dataSource
@@ -177,50 +176,17 @@ class UalReportFormController {
         return this._q.all([
           this._service.aggregator.groups(reportData.datasource)
 
-
-
-
-
-
           , this._service.datasource.variables(reportData.datasource)
-
-
-
-
-
 
           , this._q.when(reportData)
 
-
-
-
-
-
-          , ]);
+          ]);
       })
       .spread((replyAggregators, replyVariables, reportData) => {
-        let aggregators = replyAggregators.data;
-        let variables = replyVariables.data;
 
-        let selectedAggregators = this.intersectWith(aggregators.items, reportData.aggregators, (matcher) => {
-          return {
-            id: matcher.id
-          }
-        });
-
-        let selectedVariables = this.intersectWith(variables.items, reportData.variables, (matcher) => {
-          return {
-            id: matcher.id
-          };
-        });
 
         this.report.load(reportData);
-        this.aggregators = aggregators;
-//        this.report.name.set(reportData.name);
-//        this.report.reportId.set(reportData.id);
-//        this.report.datasource.set(reportData.datasource);
-//        this.report.aggregators.set(selectedAggregators);
-//        this.report.variables.set(selectedVariables);
+        this.aggregators = replyAggregators.data;
         this.report.untouch();
         this.reportLoaded = true;
       });
@@ -287,7 +253,7 @@ class UalReportFormController {
           }).then(
             response => {
               console.log(response);
-              if(response) saveSuccess();
+              if (response) saveSuccess();
             }
           );
           break;
