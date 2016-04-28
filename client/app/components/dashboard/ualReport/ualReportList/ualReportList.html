@@ -1,6 +1,6 @@
 <div class="header">
-    <div class="title">Reports</div>
-    <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
+  <div class="title">Reports</div>
+  <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
 </div>
 <div class="container">
   <ual-tabs class="-tabs-report">
@@ -13,8 +13,13 @@
         <table class="table-reports">
           <tbody>
             <tr ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
-              <td class="-link-report">
-                  <div><a ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a></div>
+              <td id="reportNameContainer_{{item.id}}" class="-link-report tooltip-wrapper" ng-mouseover="vm.showTooltip($event)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip()">
+                <div id="reportNameItem_{{item.id}}" class="tooltip-sibling" ><a ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a></div>
+                <ual-tooltip id="tooltip_{{vm.datasourceItem.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
+                   ual-tooltip-options="{ top: vm.datasourceOffsetTop(), right: vm.datasourceOffsetRight(), left: vm.datasourceOffsetLeft() }"
+                   ual-tooltip-container="vm.datasourceContainer()">
+                  {{vm.datasourceItem.description}}
+                </ual-tooltip>
               </td>
               <td>
                 <div>{{item.dataSource}}</div>
