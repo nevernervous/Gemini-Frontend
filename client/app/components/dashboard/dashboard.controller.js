@@ -1,6 +1,6 @@
 class DashboardController {
   /*@ngInject*/
-  constructor($rootScope, $state, ualMainMenu, Session, expirationModal) {
+  constructor($rootScope, $state, ualMainMenu, Session, expirationModal,$scope,$timeout) {
     this.name = 'dashboard';
     this._rootScope = $rootScope;
     this._state = $state;
@@ -10,6 +10,8 @@ class DashboardController {
     this._suscriptions = [];
     this.msgText="";
     this.msgClass="";
+    this._scope=$scope;
+    this._timeout=$timeout;
   }
 
   expiration() {
@@ -44,6 +46,11 @@ class DashboardController {
     if(!this.msgClass['-autoclose'])//no autoclose
     {
       this.msgClass['banner-show']=true;
+    }else{
+      let tmp=this;
+      tmp._timeout(function() {
+        tmp.msgClass={};
+      }, 5000);//500ms(slideInDown)+4000ms(delay)+500ms(slideOutUp)
     }
     this.msgText=data.msgText;
   }
