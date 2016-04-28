@@ -1,14 +1,29 @@
 class UalDataSourceItemController {
   /*@ngInject*/
   constructor() {
-    this.tooltipTop = (window.isIE  ? 2 : 5);
+
+  }
+
+  datasourceHasEllipsis(){
+    let container = $("#datasourceContainer_" + this.datasourceItem.id);
+    let sibling = $("#datasourceItem_" + this.datasourceItem.id);
+    return (window.isIE) ? (((sibling.outerWidth(true) * 100.0) / container.width()) > 95) : (sibling.width() > container.width());
   }
 
   datasourceContainer(){
-    let container = $("#datasourceContainer_" + this.datasourceItem.id);
-    let sibling = $("#datasourceItem_" + this.datasourceItem.id);
-    this.hasEllipsis =  sibling.width() > container.width();
-    return (this.hasEllipsis) ? "datasourceContainer_" + this.datasourceItem.id : "datasourceItem_" + this.datasourceItem.id;
+    return (this.datasourceHasEllipsis()) ? "datasourceContainer_" + this.datasourceItem.id : "datasourceItem_" + this.datasourceItem.id;
+  }
+
+  datasourceOffsetLeft(){
+    return (this.datasourceHasEllipsis()) ? 2 : -4;
+  }
+
+  datasourceOffsetRight(){
+    return (this.datasourceHasEllipsis()) ? 0 : 10;
+  }
+
+  datasourceOffsetTop(){
+    return (window.isIE ? 2 : 5);
   }
 
   hideTooltip(){
@@ -16,7 +31,7 @@ class UalDataSourceItemController {
     $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
 
-  showTooltip(e){
+  showTooltip(){
     $("#tooltip_" + this.datasourceItem.id).prop("ual-tooltip-show", true);
   }
 

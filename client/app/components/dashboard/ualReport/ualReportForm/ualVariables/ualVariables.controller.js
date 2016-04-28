@@ -160,19 +160,19 @@ class UalVariablesController {
   datasourceHasEllipsis(id){
     let container = $("#variable_" + id);
     let sibling = $("#span_" + id);
-    return  sibling.width() > container.width();
+    return (window.isIE) ? ((((sibling.outerWidth(true)+30) * 100.0) / container.width()) > 95) : (sibling.width() > container.width());
   }
 
   datasourceContainer(id){
     return ( this.datasourceHasEllipsis(id) ) ? "variable_" + id : "span_" + id;
   }
 
-  datasourceOffsetLeft(id){
-    return  (this.datasourceHasEllipsis(id)) ? 0 : 15;
+  datasourceOffsetRight(id){
+    return 15;
   }
 
   datasourceOffsetTop(id){
-    return  (this.datasourceHasEllipsis(id)) ? 4 : -3;
+    return (this.datasourceHasEllipsis(id)) ? 4 : -3;
   }
 
   apply() {

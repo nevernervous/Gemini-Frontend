@@ -104,7 +104,7 @@ module.exports = {
           },
           {
             "id": 10,
-            "name": "Data Source Name 10",
+            "name": "Data Source !Name 10 with long name for testing the a",
             "description": "Data Source Description 10",
             "group": {
               "groupId": 1,
@@ -325,7 +325,7 @@ module.exports = {
               },
               {
                 "id": 30,
-                "name": "Data Source Name X",
+                "name": "Data Source Name X for long text description text and tooltip",
                 "description": "Data Source Description 30",
                 "group": {
                   "groupId": 6,
@@ -336,7 +336,7 @@ module.exports = {
               },
               {
                 "id": 31,
-                "name": "Data Source Name 31 with long name for testing",
+                "name": "Data Source Name 31 with long name for testing and more text",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
                 "group": {
                   "groupId": 6,
