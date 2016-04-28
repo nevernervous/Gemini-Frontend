@@ -75,8 +75,8 @@ ual-tooltip.-error {
 
 ual-tooltip.-tooltip {
     @include font-clanot-news(12);
-    color: $color00;
-    background-color: $color03;
+    color: $color06;
+    background-color: $color08;
     padding: 10px;
     max-width: 300px;
     text-align: center;
@@ -92,7 +92,7 @@ ual-tooltip.-tooltip {
         position: absolute;
         border-top: 3px solid transparent;
         border-bottom: 3px solid transparent;
-        border-right: 5px solid $color03;
+        border-right: 5px solid $color08;
 
         top: calc(50% - 3px);
         @include -ms-browser() {
