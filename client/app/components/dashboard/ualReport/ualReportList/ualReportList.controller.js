@@ -24,6 +24,10 @@ class UalReportListController {
     this._suscriptions.forEach(suscription => suscription());
     this._close(response);
   }
+  
+  isSelected(reportId){
+    return _.some(this.selectedReports, { id: reportId });
+  }
 
   toggleReport(reportId) {
     if (!_.some(this.selectedReports, { id: reportId })) {

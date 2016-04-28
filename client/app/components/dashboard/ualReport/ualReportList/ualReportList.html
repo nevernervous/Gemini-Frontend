@@ -5,29 +5,38 @@
   <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
     <div class="toolbar-section">
       <div class="delete-multiple" ng-style="{ 'visibility': (vm.selectedReports.length > 0 ? 'visible' : 'hidden')}">
-        <i class="ion-ios-close-empty" ng-click="vm.deleteSelected()"></i><span>  Delete <span id="-selected-items">{{vm.selectedReports.length}}</span> selected item </span>
+        <span class="-items-selected"> {{vm.selectedReports.length}} item selected </span>
+        <span class="-icon-option" ng-click="vm.deleteSelected()">
+          <i class="ion-ios-trash-outline"></i> <span>Delete</span>
+       </span>
+       <span class="-icon-option">
+          <i class="ion-ios-copy-outline"></i> <span>Copy</span> 
+       </span>
+       <span class="-icon-option">
+          <i class="ion-ios-download-outline"></i> <span>Export</span>
+       </span>
       </div>
     </div>
     <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
         {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">
       <div class="ual-table-row" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
-        <div class="column -checkbox">
-          <input type="checkbox" ng-click="vm.toggleReport(item.id)" />
-        </div>
-        <div class="column -link-report">
+        <span class="column -checkbox">
+          <ual-checkbox ng-click="vm.toggleReport(item.id)" is-checked="vm.isSelected(item.id)"></ual-checkbox>
+        </span>
+        <span class="column -link-report">
           <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>
-        </div>
-        <div class="column">
+        </span>
+        <span class="column">
           {{item.dataSource}}
-        </div>
-        <div class="column">
+        </span>
+        <span class="column">
           {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm CT'}}
-        </div>
-        <div class="column -right-actions">
+        </span>
+        <span class="column -right-actions">
           &nbsp;<i class="ion-android-person-add"></i>
           <i class="ion-ios-copy-outline"></i>
-          <i class="ion-ios-close-empty" ng-click="vm.deleteReport(item)" id="report_{{item.id}}"></i>
-        </div>
+          <i class="ion-android-close" ng-click="vm.deleteReport(item)" id="report_{{item.id}}"></i>
+        </span>
       </div>
     </ual-table>
     <div class="empty-list" ng-hide="(vm.reports).length > 0">

@@ -12,14 +12,23 @@ ual-report-list {
     .toolbar-section{
       .delete-multiple{
         @include font-clanot-book(16);
-        i {
-          padding: 0 12px;
-          vertical-align: middle;
-          @include font-clanot-bold(32);
-          cursor: pointer;
-        }
-        .-selected-items{
+        .-items-selected{
           @include font-clanot-bold(16);
+          padding-right: 4%;
+          padding-left: 10px;
+        }
+        .-icon-option{
+          i {
+            color: #8C9398;
+            padding-left: 14px;
+            padding-right: 6px;
+            vertical-align: middle;
+            @include font-clanot-book(32);
+          }
+          span{
+            @include link()
+          }
+          cursor: pointer;
         }
       }
     }
@@ -37,7 +46,7 @@ ual-report-list {
       margin-top: 42px;
     }
     .ual-table-row {
-      padding: 8px 12px !important;
+      padding: 8px 5px !important;
       width: 100%;
       height: 47px;
       vertical-align: middle;
@@ -47,7 +56,7 @@ ual-report-list {
 
 //Variations
 ual-report-list {
-    .empty-list {
+  .empty-list {
     @include font-clanot-book(14);
     color: $color07;
     text-align: center;
@@ -60,27 +69,28 @@ ual-report-list {
       text-align: left;
       white-space: nowrap;
       width: 23%;
+      height: 28px;
       color: $color07;
-      line-height: 1;
       &.-link-report > a {
         @include link();
       }
       &.-checkbox {
         width: 30px;
         visibility: hidden;
-        input:checked {
+        input:checked + label{
           visibility: visible;
         }
       }
       &.-right-actions {
         text-align: right;
         margin-top: 0px;
-        width: 22%;
-        height: 32px;
+        width: 26%;
+        height: 28px;
         vertical-align: middle;
         > i {
-          font-size: 22px;
-          padding-left: 10px;
+          font-size: 26px;
+          padding-left: 8px;
+          padding-right: 4px;
           display: none;
           opacity: 0;
           opacity: 1 \9;/*just in case ie*/
@@ -91,9 +101,9 @@ ual-report-list {
           @include animation-delay(0.2s);
           margin-top: -1px;
           vertical-align: middle;
-          &.ion-ios-close-empty {
+          &.ion-android-close {
             cursor: pointer;
-            font-size: 32px;
+            padding-left: 18px;
           }
         }
       }
