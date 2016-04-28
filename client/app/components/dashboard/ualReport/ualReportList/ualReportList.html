@@ -10,7 +10,7 @@
           <i class="ion-ios-trash-outline"></i> <span>Delete</span>
        </span>
        <span class="-icon-option">
-          <i class="ion-ios-copy-outline"></i> <span>Copy</span> 
+          <i class="ion-ios-copy-outline"></i> <span>Copy</span>
        </span>
        <span class="-icon-option">
           <i class="ion-ios-download-outline"></i> <span>Export</span>
@@ -19,7 +19,7 @@
     </div>
     <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
         {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">
-      <div class="ual-table-row" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
+      <div ng-class="{ '-selected': vm.isSelected(item.id)}" class="ual-table-row" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
         <span class="column -checkbox">
           <ual-checkbox ng-click="vm.toggleReport(item.id)" is-checked="vm.isSelected(item.id)"></ual-checkbox>
         </span>
