@@ -5,6 +5,7 @@ class ualReportNameModalController {
     this._close = close;
     this.report = report;
     this.form = reportForm;
+    this._rootScope = $rootScope;
     this._service = {
       report: Report
     };
@@ -30,8 +31,8 @@ class ualReportNameModalController {
 
     report.name.set(this.nameSelected);
 
-    form.messageDisplayed = false;
-    form.saveResult = form.saveResultMessages.get(null);
+//    form.messageDisplayed = false;
+//    form.saveResult = form.saveResultMessages.get(null);
 
     let responseError = {
       0: (msg) => {}
@@ -39,13 +40,14 @@ class ualReportNameModalController {
       , 2: (msg) => {
         report.nameDuplicated.set(_.clone(this.report.name.get()));
         this.duplicatedName = true;
-        form.messageDisplayed = false;
+//        form.messageDisplayed = false;
       }
       , 3: (msg) => {
         report.name.set(null);
         form.saveResult = form.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(form.saveResultMessages.get(2))) : form.saveResultMessages.get(null);
         if (msg !== false) form.saveResult.msgText = msg;
-        form.messageDisplayed = true;
+        this._rootScope.$broadcast('BANNER.SHOW', form.saveResult);
+//        form.messageDisplayed = true;
 
         this._closemodal(false);
       }

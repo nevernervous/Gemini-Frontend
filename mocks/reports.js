@@ -211,6 +211,10 @@ module.exports = {
 
       },
       code: 200
+    },
+    PUT:{
+      data:{ "id": 1, "name": "New name" },
+      code: 200
     }
   }
 
