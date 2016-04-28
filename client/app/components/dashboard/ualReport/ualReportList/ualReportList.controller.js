@@ -50,7 +50,6 @@ class UalReportListController {
               });
               this.selectedReports = [];
             }, (reply) => {
-              debugger;
               alert(reply.statusText);
             });
         }
