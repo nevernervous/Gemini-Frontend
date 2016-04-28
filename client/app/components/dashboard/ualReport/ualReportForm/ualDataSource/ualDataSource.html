@@ -16,7 +16,7 @@
         <div class="data-source-list" id="data-source-list" ng-class="vm.columns">
             <ual-data-source-group id="datasource-group" datasource-group="group.data" ng-repeat-start="group in vm.datasources.groups | orderBy : 'data.order'" ng-show="vm.shouldShow(group)" class="data-source-group" ual-render></ual-data-source-group>
             <ual-data-source-item datasource-item="item" ng-repeat-end ng-repeat="item in group.items | filterBy:vm.searchTerm | orderBy : 'order'" ng-click="vm.toogleSelected(item)" ng-class="{'-selected': vm.isActive(item.id)}"
-              id="datasource_{{item.id}}" ng-mouseover="vm.showTooltip($event)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip($event)">
+              id="datasource_{{item.id}}">
             </ual-data-source-item>
         </div>
     </div>
