@@ -64,6 +64,9 @@ ual-report-list {
   .ual-table-row {
     &.-selected{
         background-color: $color10;
+        .-link-report > a{
+          color: $color06 !important;
+        }
     }
     @include font-clanot-book(16);
     border-bottom: 1px solid $color08;
