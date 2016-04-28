@@ -51,8 +51,8 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
   let remove = (ids) => {
     let transformation = [ServicesTransform.get('none')];
     let request;
-    if (ids.length == 1) {
-      let [id] = ids;
+    if (!_.isArray(ids)) {
+      let id = ids;
       request = $http.delete(`${endpoint}/${id}`, {
         cache: Properties.cache,
         transformResponse: ServicesTransform.generate(transformation)

@@ -25,7 +25,7 @@ class UalReportListController {
     this._close(response);
   }
 
-  isSelected(reportId){
+  isSelected(reportId) {
     return _.some(this.selectedReports, { id: reportId });
   }
 
@@ -50,7 +50,8 @@ class UalReportListController {
               });
               this.selectedReports = [];
             }, (reply) => {
-                alert(reply.statusText);
+              debugger;
+              alert(reply.statusText);
             });
         }
       });
