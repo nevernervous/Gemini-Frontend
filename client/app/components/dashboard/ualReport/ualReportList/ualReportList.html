@@ -5,24 +5,32 @@
 <div class="container">
   <ual-tabs class="-tabs-report">
     <ual-tab ual-title="My Reports">
-      <ual-label-count total-rows="{{(vm.reports).length}}" label-text="reports saved"></ual-label-count>
-      <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
-        <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
-        {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">
+      <ual-label-count total-rows="{{(vm.reports).length}}" label-text="reports available"></ual-label-count>
+      <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" id="content-list">
+        <ual-table class="ual-table" table-columns="[{'name': 'Report name', 'orderBy': 'name'}, {'name': 'Data source', 'orderBy': 'dataSource'},
+        {'name': 'Last modification date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">
         </ual-table>
         <table class="table-reports">
           <tbody>
             <tr ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
-              <td id="reportNameContainer_{{item.id}}" class="-link-report tooltip-wrapper" ng-mouseover="vm.showTooltip($event)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip()">
-                <div id="reportNameItem_{{item.id}}" class="tooltip-sibling" ><a ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a></div>
-                <ual-tooltip id="tooltip_{{vm.datasourceItem.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
-                   ual-tooltip-options="{ top: vm.datasourceOffsetTop(), right: vm.datasourceOffsetRight(), left: vm.datasourceOffsetLeft() }"
-                   ual-tooltip-container="vm.datasourceContainer()">
-                  {{vm.datasourceItem.description}}
+              <td id="reportNameContainer_{{item.id}}" class="-link-report" ng-mouseover="vm.showTooltipName(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltipName(item.id)">
+                <div class="tooltip-sibling" ><a id="reportNameItem_{{item.id}}" ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a></div>
+                <ual-tooltip id="tooltipName_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
+                   ual-tooltip-options="{ top: vm.reportNameOffsetTop(item.id), right: vm.reportNameOffsetRight(item.id) }"
+                   ual-tooltip-container="vm.reportNameContainer(item.id)">
+                  {{item.name}}
                 </ual-tooltip>
               </td>
-              <td>
-                <div>{{item.dataSource}}</div>
+              <td id="reportDataSourceContainer_{{item.id}}" ng-mouseover="vm.showTooltipDataSource(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltipDataSource(item.id)">
+                <div><span id="reportDataSourceItem_{{item.id}}">{{item.dataSource}}</span></div>
+                <ual-tooltip id="tooltipDataSource_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
+                    ual-tooltip-options="{ top: vm.reportDataSourceOffsetTop(item.id), right: vm.reportDataSourceOffsetRight(item.id) }"
+                    ual-tooltip-container="vm.reportDataSourceContainer(item.id)">
+                  //TODO: Pedir la fecha a BE porque no viene en el endpoint
+                  <br />
+                  <span ng-show="vm.reportNameHasEllipsis(item.id)">
+                  {{item.dataSource}}</span>
+                </ual-tooltip>
               </td>
               <td>
                 {{item.lastModification | date:'MM/dd/yy HH:mm CT'}}
@@ -34,7 +42,7 @@
           </tbody>
         </table>
         <div class="empty-list" ng-hide="(vm.reports).length > 0">
-          No report exists
+          No reports created.
         </div>
       </div>
     </ual-tab>

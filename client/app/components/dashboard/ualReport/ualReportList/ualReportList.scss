@@ -18,8 +18,7 @@ ual-report-list {
               width: 100%;
 
               tr > td {
-                padding: 6px 12px;
-                width: 24.5%;
+                padding: 4px 12px;
                 vertical-align: middle;
                 display: inline-block;
 
@@ -35,7 +34,7 @@ ual-report-list {
     .empty-list {
       @include gridle(row row-align middle center);
       height: 100%;
-      margin-top: 50px;
+      margin-top: 175px;
     }
 }
 
@@ -56,20 +55,24 @@ ual-report-list {
         td {
           color: $color07;
           @include font-clanot-book(16);
+          width: 25%;
 
           &.-link-report {
+            width: 40%;
             color: $color03;
+
             > div > a {
               @include link();
             }
           }
 
           &.-right-actions {
-            text-align: right;
+            white-space: nowrap;
+            width: 10%;
             line-height: 1;
             > i {
               color: $color00;
-              padding-left: 10px;
+              padding-left: 5px;
               font-size: 22px;
               display: inline-block;
               opacity: 0;
@@ -91,7 +94,7 @@ ual-report-list {
 
         &:hover {
           cursor: pointer;
-          background-color: $color08;
+          //background-color: $color08;
           .-right-actions {
             > i {
               color: $color06;
