@@ -148,8 +148,8 @@ class UalVariablesController {
   itemPosition(variable) {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
-  showTooltip(e){
-    let tooltip = $("#"+e.target.id).first().next();
+  showTooltip(id){
+    let tooltip = $("#tooltip_"+id);
     tooltip.prop("ual-tooltip-show", true);
   }
   hideTooltip(){
@@ -157,10 +157,26 @@ class UalVariablesController {
     $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
 
+  //datasourceContainer(id) {
+  //  let container = $("#variable_" + id);
+  //  let sibling = $("#span_" + id);
+  //  let hasEllipsis = (window.isIE) ? ((sibling.outerWidth(true)+45) >= container.width()) : (sibling.width() > container.width());
+
+  //  this.tooltipOptions = {
+  //    container: (hasEllipsis ? "variable_" : "span_") + id,
+  //    left: hasEllipsis ? 2 : -4,
+  //    right: hasEllipsis ? (window.isIE ? 10 : 4) : 15,
+  //    top: hasEllipsis ? 4 : -3,
+  //    total: (sibling.outerWidth(true)+45) + " " + container.width()
+  //  }
+
+  //  console.log(this.tooltipOptions);
+  //}
+
   datasourceHasEllipsis(id){
     let container = $("#variable_" + id);
     let sibling = $("#span_" + id);
-    return (window.isIE) ? ((((sibling.outerWidth(true)+45) * 100.0) / container.width()) > 95) : (sibling.width() > container.width());
+    return (window.isIE) ? ((sibling.outerWidth(true)+45) >= container.width()) : (sibling.width() > container.width());
   }
 
   datasourceContainer(id){
