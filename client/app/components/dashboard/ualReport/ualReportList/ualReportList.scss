@@ -18,9 +18,9 @@ ual-report-list {
               width: 100%;
 
               tr > td {
-                padding: 4px 12px;
                 vertical-align: middle;
                 display: inline-block;
+                padding: 4px 12px;
 
                 > div {
                   display: block;
@@ -69,6 +69,12 @@ ual-report-list {
           &.-right-actions {
             white-space: nowrap;
             width: 10%;
+
+            @include -ms-browser(){
+              width: 5%;
+              padding: 4px 0 !important;
+            }
+
             line-height: 1;
             > i {
               color: $color00;
