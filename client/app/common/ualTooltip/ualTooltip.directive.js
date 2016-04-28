@@ -27,8 +27,6 @@ class ualTooltipDirective {
          elem['removeClass']('-tooltip-left');
          elem['removeClass']('-tooltip-right');
 
-         console.log("container: "+scope.ualTooltipContainer);
-
          if (ualTooltipShow) {
            //Cálculo de la posición
            let isLeftTooltip = ((offset.left + container.outerWidth(true) + tooltip.outerWidth(true)) > window.innerWidth);
