@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="header">
   <div class="title">Reports</div>
   <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
@@ -91,3 +92,29 @@
   </ual-tabs>
 
 </div>
+=======
+<div class="header">
+    <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
+</div>
+<div class="container">
+    <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
+      <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
+        {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">          
+         <div class="ual-table-row" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">    
+            <div class="column -link-report">
+                <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>
+            </div><div class="column">
+                {{item.dataSource}}
+            </div><div class="column">
+                {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm CT'}}
+            </div><div class="column -right-actions">
+                &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-ios-close-empty" ng-click="vm.deleteReport(item)" title="Delete"></i>
+            </div>        
+        </div>
+      </ual-table>
+      <div class="empty-list" ng-hide="(vm.reports).length > 0">
+        No report exists.
+      </div>
+    </div>    
+</div>
+>>>>>>> 83eb1d47c72147042cd3e6b6b3fe22ba1d67a335
