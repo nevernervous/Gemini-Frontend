@@ -154,7 +154,6 @@ class UalReportListController {
   }
 
   showDeleteTooltip(reportId) {
-    console.log(reportId);
     let tooltip = $("#delete_" + reportId);
     tooltip.addClass("-show-tooltip-delete");
 
