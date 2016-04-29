@@ -68,6 +68,9 @@ class UalReportListController {
         }
       });
   }
+  
+    
+
 }
 
 export default UalReportListController;
