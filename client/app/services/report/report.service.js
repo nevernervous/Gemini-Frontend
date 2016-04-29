@@ -35,6 +35,7 @@ let reportService = function (Properties, ServicesTransform, $http, $q, ReportOb
   return {
     all
     , create
+    , currentReport
     , getById
   };
 };

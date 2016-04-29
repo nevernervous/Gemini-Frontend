@@ -85,6 +85,7 @@ class UalReportFormController {
         let _state = this._state;
         this._ualUnsafeReportModal.open().then(response => {
           if (response) {
+            _report.untouch();
             _report.exitConfirmed.set(true);
             _state.go(toState.name);
           }

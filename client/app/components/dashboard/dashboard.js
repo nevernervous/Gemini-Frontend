@@ -14,7 +14,7 @@ let dashboardModule = angular.module('dashboard', [
   ualMainMenu.name,
   // MODALS
   LogoutModal.name,
-  ExpirationModal.name,  
+  ExpirationModal.name,
   // CONTENT
   ualReport.name
 ])

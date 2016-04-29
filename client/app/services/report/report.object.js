@@ -163,6 +163,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
   let getVariables = () => object.variables;
   let setVariables = value => {
+    console.log(value);
     object.variables = value;
     touched = hasReportChange();
   }
