@@ -1,64 +1,177 @@
 @import '../../../../common/common';
 //Layout
 ual-report-list {
-    display: block;
+  display: block;
+  height: 100%;
+
+  .header {
+    @include gridle( row row-align between);
+  }
+
+  .container {
     height: 100%;
-    .header {
-        @include gridle( row row-align between);
+    padding-top: 30px;
+
+    .toolbar-section {
+      @include gridle( row row-align between middle);
+
+      .row-options {
+        @include font-clanot-book(16);
+        @include gridle(8);
+
+        .-items-selected {
+          @include font-clanot-bold(16);
+          padding-right: 4%;
+          padding-left: 10px;
+        }
+
+        .-icon-option {
+          i {
+            color: $color07;
+            padding-left: 14px;
+            padding-right: 6px;
+            vertical-align: middle;
+            @include font-clanot-book(32);
+          }
+
+          span {
+            @include link()
+          }
+
+          cursor: pointer;
+        }
+      }
+
+      .row-count {
+        @include gridle(4);
+      }
     }
-    .container {
-      height: 100%;
-      padding-top: 30px;
-        .content-list {
-            height: calc(100% - 100px);
-            > .mCSB_inside > .mCSB_container {
-                margin-right: 15px;
+
+    .content-list {
+      height: calc(100% - 100px);
+
+      > .mCSB_inside > .mCSB_container {
+        margin-right: 15px;
+      }
+
+      .table-reports {
+        width: 100%;
+
+        thead {
+          border-top: 1px solid $color08;
+          border-bottom: 1px solid $color08;
+          padding: 12px;
+        }
+
+        tr {
+          th {
+            text-align: left;
+            white-space: nowrap;
+            width: 25%;
+            display: inline-block;
+            padding: 8px 12px;
+
+            &:first-child {
+              width: 3%;
             }
-            .table-reports {
-              width: 100%;
 
-              tr > td {
-                vertical-align: middle;
-                display: inline-block;
-                padding: 4px 12px;
+            &:nth-child(2) {
+              width: 37%;
+            }
 
-                > div {
-                  display: block;
-                  width: 100%;
-                  @include ellipses();
-                }
+            &.-modification-date {
+              width: 22%;
+            }
+
+            &:last-child {
+              width: 8%;
+            }
+
+            &.-sortable {
+              &:hover {
+                cursor: pointer !important;
+                background-color: $color08 !important;
               }
             }
+          }
+
+          td {
+            vertical-align: middle;
+            display: inline-block;
+            padding: 10px 12px;
+
+            &.-modification-date {
+              width: 20%;
+            }
+
+            &.-right-actions {
+              @media (max-width: 1024px) {
+                padding: 0;
+              }
+
+              ual-tooltip {
+                z-index: 10;
+                top: -40px;
+                left: -50px;
+                visibility: hidden;
+                position: relative;
+              }
+            }
+
+            > div {
+              display: block;
+              width: 100%;
+              @include ellipses();
+            }
+          }
         }
+      }
     }
-    .empty-list {
-      @include gridle(row row-align middle center);
-      height: 100%;
-      margin-top: 175px;
-    }
+  }
+
+  .empty-list {
+    @include gridle(row row-align middle center);
+    height: 100%;
+    margin-top: 175px;
+  }
 }
 
 //Variations
 ual-report-list {
-    .header {
-      @include gridle( row row-align between);
+  .header {
+    @include gridle( row row-align between);
 
-      >.title {
-        @include font-clanot-bold(20);
-        color: $color06;
-      }
+    > .title {
+      @include font-clanot-bold(20);
+      color: $color06;
     }
-    .table-reports {
+  }
+
+  .table-reports {
+    tbody {
       tr {
+        vertical-align: middle;
         border-bottom: 1px solid $color08;
+        &.-selected {
+          background-color: $color10;
+          border-bottom: 1px solid $color00;
+
+          .-link-report > div > a {
+            color: $color06 !important;
+          }
+        }
 
         td {
           color: $color07;
           @include font-clanot-book(16);
           width: 25%;
 
+          &:first-child {
+            width: 3%;
+          }
+
           &.-link-report {
-            width: 40%;
+            width: 37%;
             color: $color03;
 
             > div > a {
@@ -66,17 +179,33 @@ ual-report-list {
             }
           }
 
+          &.-checkbox {
+            padding-left: 10px;
+            padding-right: 2px;
+            width: 30px;
+            visibility: hidden;
+
+            input:checked + label {
+              visibility: visible;
+            }
+          }
+
           &.-right-actions {
             white-space: nowrap;
-            width: 5%;
+            width: 8%;
             padding: 4px 0 !important;
-
             line-height: 1;
+
             > i {
-              color: $color00;
-              padding-left: 5px;
-              font-size: 22px;
-              display: inline-block;
+              font-size: 24px;
+              padding-left: 8px;
+              padding-right: 4px;
+
+              @media (max-width: 1024px) {
+                padding-left: 4px;
+                padding-right: 2px;
+              }
+              visibility: hidden;
               opacity: 0;
               opacity: 1 \9;
               /*just in case ie*/
@@ -84,11 +213,14 @@ ual-report-list {
               @include animation(fadeIn ease-in 1);
               @include animation-fill-mode(forwards);
               @include animation-duration(0.2s);
-              margin-top: -1px;
               vertical-align: middle;
-              &.ion-ios-close-empty {
+
+              &.ion-android-close {
                 cursor: pointer;
-                font-size: 32px;
+                padding-left: 18px;
+                @media (max-width: 1024px) {
+                  padding-left: 10px;
+                }
               }
             }
           }
@@ -96,17 +228,28 @@ ual-report-list {
 
         &:hover {
           cursor: pointer;
-          //background-color: $color08;
+          background-color: $color10;
+          .-checkbox {
+            visibility: visible;
+          }
+
+          .-link-report > div > a {
+            color: $color06 !important;
+          }
+
           .-right-actions {
             > i {
-              color: $color06;
+              visibility: visible;
             }
           }
         }
       }
     }
-    .empty-list {
-        @include font-clanot-book(14);
-        color: $color07;
-    }
+  }
+
+  .empty-list {
+    @include font-clanot-book(14);
+    color: $color07;
+  }
 }
+

@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>&nbsp;</th>
       <th ng-repeat="column in vm.tableColumns" class="column-header" ng-class="[vm.columns, (column.name == '') ? '-disabled' : '-order-by']"
           ng-click="vm.order(column.orderBy)">
         {{column.name}}&nbsp;
