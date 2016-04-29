@@ -12,11 +12,10 @@ class UalReportListController {
 
     this.saveResult = null;
 
-    this.saveResultMessages = new Map();
-
-    this.saveResultMessages.set(null, { msgClass: {}, msgText: "" });
-    this.saveResultMessages.set(0, { msgClass: { "-success": true, "-autoclose": true }, msgText: "Report saved successfully." });
-    this.saveResultMessages.set(1, { msgClass: { "-error": true, "-closeable": true }, msgText: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator." });
+    this.saveResultMessages = [
+      { type: "-success", text : "Item(s) deleted successfully."},
+      { type: "-error", text : "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator."}
+    ];
   }
 
   $onInit() {
@@ -99,23 +98,16 @@ class UalReportListController {
   }
 
   onCatch() {
-    this.saveResult = this.saveResultMessages.has(1) ? this.saveResultMessages.get(1) : this.saveResultMessages.get(null);
-    this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
+   this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
   }
 
   onErrorResponse(response) {
     if (!response.data || !response.data.errorMessages) {
-      this.saveResult = this.saveResultMessages.has(1) ? this.saveResultMessages.get(1) : this.saveResultMessages.get(null);
+      this.saveResult = this.saveResultMessages[1];
     } else {
-      this.saveResult = {
-        msgClass: {
-          "-error": true,
-          "-closeable": true
-        },
-        msgText: response.data.errorMessage
-      };
+      this.saveResult = response.data.errorMessage;
     }
-    this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
+    this._rootScope.$broadcast('BANNER.SHOW', { type: "-error", text : this.saveResult });
   }
 
   deleteSelected() {
@@ -129,6 +121,7 @@ class UalReportListController {
                 return _.contains(ids, item.id);
               });
               this.selectedReports = [];
+              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, this.onErrorResponse)
             .catch(this.onCatch);
         }
@@ -143,6 +136,7 @@ class UalReportListController {
             .then((reply) => {
               _.remove(this.reports, { id: report.id });
               _.remove(this.selectedReports, { id: report.id });
+              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, this.onErrorResponse)
             .catch(this.onCatch);
         }
