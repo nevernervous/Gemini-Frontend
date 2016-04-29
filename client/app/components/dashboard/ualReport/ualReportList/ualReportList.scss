@@ -14,25 +14,28 @@ ual-report-list {
     .container {
         height: 100%;
         padding-top: 30px;
-        .content-list {
-            height: calc(100% - 100px);
-            > .mCSB_inside > .mCSB_container {
-                margin-right: 15px;
-            }
+        ual-clusterize-table {
+          height: calc(100% - 30px);
         }
-        .empty-list {
-            @include gridle(row row-align middle center);
-            height: 100%;
-            line-height: 1.5;
-            display: block;
-            margin-top: 42px;
-        }
-        .ual-table-row {
-            padding: 8px 12px !important;
-            width: 100%;
-            height: 47px;
-            vertical-align: middle;
-        }
+        // .content-list {
+        //     height: calc(100% - 100px);
+        //     > .mCSB_inside > .mCSB_container {
+        //         margin-right: 15px;
+        //     }
+        // }
+        // .empty-list {
+        //     @include gridle(row row-align middle center);
+        //     height: 100%;
+        //     line-height: 1.5;
+        //     display: block;
+        //     margin-top: 42px;
+        // }
+        // .ual-table-row {
+        //     padding: 8px 12px !important;
+        //     width: 100%;
+        //     height: 47px;
+        //     vertical-align: middle;
+        // }
     }
 }
 
