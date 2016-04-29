@@ -4,38 +4,21 @@
 
 // LAYOUT
 ual-message-banner {
-    @include gridle( 12 );
-    width:100%;
-    height: 52px;
-    color: #db8c0e;
-    background: #ffe0b2;
-    position: fixed;
     width: 100%;
-    margin: 0;
-    left: 0;
-    top: 52px;
-    div{
-        vertical-align: center;
+    height: 52px;
+
+    > .ual-message-banner {
         height: inherit;
         @include gridle( row row-align center middle );
-        > span{
-            vertical-align: super;
-            @include font-clanot-bold(18);
-            @include gridle_state ( projector ) {
-                @include font-clanot-bold(14);
-            }
-        }
-        i{
+        > .-message-icon {
             padding-right: 8px;
             padding-bottom: 4px;
-            font-size: 26px;
         }
         .-close-icon{
-            display: none;
             position: absolute;
             right: 10px;
             top: 8px;
-            cursor: pointer;
+
             span{
                 vertical-align: middle;
                 height: 30px;
@@ -49,26 +32,60 @@ ual-message-banner {
 }
 
 // VARIATIONS
-
-// VARIATION / DEFAULT (WARNING)
-ual-message-banner{
-  color: $warningHighColor;
-  background: $warningLowColor;
-  display: none;
-  i.-message-icon{
-    @include icon-warning(26);
-  }
-}
-
-ual-message-banner.banner-show{
+ual-message-banner {
    @include slideInDown();
    @include animation(slideInDown);
    @include animation-fill-mode(forwards);
    @include animation-duration(0.5s);
    display: block;
+
+  > .ual-message-banner {
+    > .-message-icon {
+      font-size: 26px;
+    }
+    > span {
+      vertical-align: super;
+      @include font-clanot-bold(18);
+      @include gridle_state ( projector ) {
+          @include font-clanot-bold(14);
+      }
+    }
+    > .-close-icon {
+      display: none;
+      cursor: pointer;
+    }
+  }
 }
 
-ual-message-banner.banner-hide{
+// VARIATION / SUCCESS
+ual-message-banner.-success{
+  color: $color15;
+  background: $color16;
+  i.-message-icon {
+    @extend .ion-ios-checkmark-outline;
+  }
+}
+
+// VARIATION / WARNING
+ual-message-banner.-warning{
+  color: $color13;
+  background: $color14;
+  i.-message-icon {
+    @include icon-warning(26);
+  }
+}
+
+// VARIATION / ERROR
+ual-message-banner.-error{
+  color: $color11;
+  background: $color12;
+  i.-message-icon{
+      @extend .ion-ios-close-outline;
+  }
+}
+
+// VARIATION / HIDE
+ual-message-banner.ng-hide{
     @include slideOutUp();
     @include animation(slideOutUp);
     @include animation-fill-mode(forwards);
@@ -76,43 +93,9 @@ ual-message-banner.banner-hide{
     display: block;
 }
 
-.banner-login{
-  top:0px;
-}
-// VARIATION / SUCCESS
-ual-message-banner.-success{
-  color: $successHighColor;
-  background: $successLowColor;
-  i.-message-icon{
-      @extend .ion-ios-checkmark-outline;
-  }
-}
-
-// VARIATION / ERROR
-ual-message-banner.-error{
-  color: $alertHighColor;
-  background: $alertLowColor;
-  i.-message-icon{
-      @extend .ion-ios-close-outline;
-  }
-}
 ual-message-banner.-closeable{
     .-close-icon{
         display: inline;
     }
 }
 
-// VARIATION / AUTOCLOSE
-ual-message-banner.-autoclose{
-  @include slideInDown();
-  @include slideOutUp();
-  @include animation(slideInDown 0.5s 0s forwards,slideOutUp 0.5s 4.5s forwards);
-  display: block;
-  //@include animation-fill-mode(backwards);
-  //@include animation-duration(0.5s);
- // @include animation-delay(10s,4.5s);
-/*  @include animation(fadeHide ease-in 1);
-  @include animation-fill-mode(forwards);*/
-/*  @include animation-duration(0s);
-  @include animation-delay(0s); */
-}
