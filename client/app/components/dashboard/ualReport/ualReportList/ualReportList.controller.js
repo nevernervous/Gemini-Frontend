@@ -20,77 +20,75 @@ class UalReportListController {
       .then(response => this.reports = response.data);
   }
   _closemodal(response) {
-      this._suscriptions.forEach(suscription => suscription());
-      this._close(response);
+    this._suscriptions.forEach(suscription => suscription());
+    this._close(response);
   }
 
   isSelected(reportId) {
-      return _.some(this.selectedReports, { id: reportId });
+    return _.some(this.selectedReports, { id: reportId });
   }
 
   toggleReport(reportId) {
-      if (!_.some(this.selectedReports, { id: reportId })) {
-          let selected = _.find(this.reports, { id: reportId });
-          this.selectedReports.push(selected);
-      } else {
-          _.remove(this.selectedReports, { id: reportId });
-      }
+    if (!_.some(this.selectedReports, { id: reportId })) {
+      let selected = _.find(this.reports, { id: reportId });
+      this.selectedReports.push(selected);
+    } else {
+      _.remove(this.selectedReports, { id: reportId });
+    }
   }
 
-  showTooltipName(id){
+  showTooltipName(id) {
     if (this.reportNameHasEllipsis(id)) {
-      let tooltip = $("#tooltipName_"+id);
+      let tooltip = $("#tooltipName_" + id);
       tooltip.prop("ual-tooltip-show", true);
     }
   }
 
-  showTooltipDataSource(id){
-    let tooltip = $("#tooltipDataSource_"+id);
+  showTooltipDataSource(id) {
+    let tooltip = $("#tooltipDataSource_" + id);
     tooltip.prop("ual-tooltip-show", true);
   }
 
-  hideTooltip(){
+  hideTooltip() {
     $(".-tooltip").removeClass("-show-tooltip");
     $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
 
-  reportNameHasEllipsis(id){
+  reportNameHasEllipsis(id) {
     let container = $("#reportNameContainer_" + id);
     let sibling = $("#reportNameItem_" + id);
-    return (window.isIE) ? ((sibling.outerWidth(true)+45) >= container.width()) : (sibling.width() > container.width());
+    return (window.isIE) ? ((sibling.outerWidth(true) + 45) >= container.width()) : (sibling.width() > container.width());
   }
 
-  reportNameContainer(id){
+  reportNameContainer(id) {
     return (this.reportNameHasEllipsis(id)) ? "reportNameContainer_" + id : "reportNameItem_" + id;
   }
 
-  reportNameOffsetRight(id){
+  reportNameOffsetRight(id) {
     return (this.reportNameHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
   }
 
-  reportNameOffsetTop(id){
+  reportNameOffsetTop(id) {
     return (this.reportNameHasEllipsis(id)) ? 0 : -3;
   }
 
-  reportDataSourceHasEllipsis(id){
+  reportDataSourceHasEllipsis(id) {
     let container = $("#reportDataSourceContainer_" + id);
     let sibling = $("#reportDataSourceItem_" + id);
-    return (window.isIE) ? ((sibling.outerWidth(true)+45) >= container.width()) : (sibling.width() > container.width());
+    return (window.isIE) ? ((sibling.outerWidth(true) + 45) >= container.width()) : (sibling.width() > container.width());
   }
 
-  reportDataSourceContainer(id){
+  reportDataSourceContainer(id) {
     return (this.reportDataSourceHasEllipsis(id)) ? "reportDataSourceContainer_" + id : "reportDataSourceItem_" + id;
   }
 
-  reportDataSourceOffsetRight(id){
+  reportDataSourceOffsetRight(id) {
     return (this.reportDataSourceHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
   }
 
-  reportDataSourceOffsetTop(id){
+  reportDataSourceOffsetTop(id) {
     return (this.reportDataSourceHasEllipsis(id)) ? 1 : -3;
   }
-}
-
   deleteSelected() {
     this._deletereportmodal.open()
       .then(response => {
@@ -132,9 +130,6 @@ class UalReportListController {
     tooltip.addClass("-show-tooltip");
 
   }
-
-
-
 }
 
 export default UalReportListController;
