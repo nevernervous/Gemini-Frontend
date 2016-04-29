@@ -56,13 +56,6 @@ ual-report-list {
 
       .table-reports {
         width: 100%;
-
-        thead {
-          border-top: 1px solid $color08;
-          border-bottom: 1px solid $color08;
-          padding: 12px;
-        }
-
         tr {
           th {
             text-align: left;
@@ -96,18 +89,11 @@ ual-report-list {
           }
 
           td {
-            vertical-align: middle;
             display: inline-block;
-            padding: 10px 12px;
 
-            &.-modification-date {
-              width: 20%;
-            }
 
             &.-right-actions {
-              @media (max-width: 1024px) {
-                padding: 0;
-              }
+
 
               ual-tooltip {
                 z-index: 10;
@@ -139,8 +125,6 @@ ual-report-list {
 //Variations
 ual-report-list {
   .header {
-    @include gridle( row row-align between);
-
     > .title {
       @include font-clanot-bold(20);
       color: $color06;
@@ -148,6 +132,12 @@ ual-report-list {
   }
 
   .table-reports {
+    thead {
+      border-top: 1px solid $color08;
+      border-bottom: 1px solid $color08;
+      padding: 12px;
+    }
+
     tbody {
       tr {
         vertical-align: middle;
@@ -165,7 +155,12 @@ ual-report-list {
           color: $color07;
           @include font-clanot-book(16);
           width: 25%;
+          padding: 10px 12px;
+          vertical-align: middle;
 
+          &.-modification-date {
+              width: 20%;
+            }
           &:first-child {
             width: 3%;
           }
@@ -191,7 +186,11 @@ ual-report-list {
           }
 
           &.-right-actions {
+            @media (max-width: 1024px) {
+              padding: 0;
+            }
             white-space: nowrap;
+            text-align: right;
             width: 8%;
             padding: 4px 0 !important;
             line-height: 1;
