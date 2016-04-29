@@ -143,14 +143,14 @@ ual-report-list {
   .table-reports {
     tbody {
       tr {
+        vertical-align: middle;
         border-bottom: 1px solid $color08;
-
+        height: 42px;
         &.-selected {
           background-color: $color10;
-          //border-top: 1px solid $color00;
           border-bottom: 1px solid $color00;
 
-          .-link-report > a {
+          .-link-report > div > a {
             color: $color06 !important;
           }
         }
@@ -198,7 +198,7 @@ ual-report-list {
                 padding-left: 4px;
                 padding-right: 2px;
               }
-              //visibility: hidden;
+              visibility: hidden;
               opacity: 0;
               opacity: 1 \9;
               /*just in case ie*/
@@ -211,7 +211,6 @@ ual-report-list {
               &.ion-android-close {
                 cursor: pointer;
                 padding-left: 18px;
-
                 @media (max-width: 1024px) {
                   padding-left: 10px;
                 }
@@ -223,13 +222,11 @@ ual-report-list {
         &:hover {
           cursor: pointer;
           background-color: $color10;
-          //border-bottom: 1px solid $color08;
-
           .-checkbox {
             visibility: visible;
           }
 
-          .-link-report > a {
+          .-link-report > div > a {
             color: $color06 !important;
           }
 
