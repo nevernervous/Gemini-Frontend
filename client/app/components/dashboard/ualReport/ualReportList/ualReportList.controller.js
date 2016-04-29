@@ -15,8 +15,8 @@ class UalReportListController {
     this.saveResultMessages = new Map();
 
     this.saveResultMessages.set(null, { msgClass: {}, msgText: "" });
-    this.saveResultMessages.set(0, { msgClass: { "-success": true, "-autoclose": true }, msgText: "Report saved successfully." });
-    this.saveResultMessages.set(1, { msgClass: { "-error": true, "-closeable": true }, msgText: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator." });
+    this.saveResultMessages.set(0, { msgClass: { "-success": true, "-autoclose": true }, msgText: "Report(s) deleted successfully." });
+    this.saveResultMessages.set(1, { msgClass: { "-error": true, "-closeable": true }, msgText: "The report(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator." });
   }
 
   $onInit() {
@@ -129,6 +129,8 @@ class UalReportListController {
                 return _.contains(ids, item.id);
               });
               this.selectedReports = [];
+              this.saveResult = this.saveResultMessages.has(0) ? this.saveResultMessages.get(0) : this.saveResultMessages.get(null);
+              this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
             }, this.onErrorResponse)
             .catch(this.onCatch);
         }
@@ -143,6 +145,8 @@ class UalReportListController {
             .then((reply) => {
               _.remove(this.reports, { id: report.id });
               _.remove(this.selectedReports, { id: report.id });
+              this.saveResult = this.saveResultMessages.has(0) ? this.saveResultMessages.get(0) : this.saveResultMessages.get(null);
+              this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
             }, this.onErrorResponse)
             .catch(this.onCatch);
         }
