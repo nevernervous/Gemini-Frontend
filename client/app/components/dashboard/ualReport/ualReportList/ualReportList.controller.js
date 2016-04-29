@@ -13,8 +13,8 @@ class UalReportListController {
     this.saveResult = null;
 
     this.saveResultMessages = [
-      { type: "-success", text : "Item(s) deleted successfully."},
-      { type: "-error", text : "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator."}
+      { type: "-success", text: "Item(s) deleted successfully." },
+      { type: "-error", text: "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator." }
     ];
   }
 
@@ -97,17 +97,14 @@ class UalReportListController {
     return window.isIE ? -3 : 7;
   }
 
-  onCatch() {
-   this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-  }
 
-  onErrorResponse(response) {
-    if (!response.data || !response.data.errorMessages) {
+  onErrorResponse(reply) {
+    if (!reply.data || !reply.data.errorMessages) {
       this.saveResult = this.saveResultMessages[1];
     } else {
-      this.saveResult = response.data.errorMessage;
+      this.saveResult = reply.data.errorMessage;
     }
-    this._rootScope.$broadcast('BANNER.SHOW', { type: "-error", text : this.saveResult });
+    this._rootScope.$broadcast('BANNER.SHOW', { type: "-error", text: this.saveResult });
   }
 
   deleteSelected() {
@@ -122,8 +119,15 @@ class UalReportListController {
               });
               this.selectedReports = [];
               this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, this.onErrorResponse)
-            .catch(this.onCatch);
+            }, (reply) => {
+              if (!reply.data || !reply.data.errorMessages) {
+                this.saveResult = this.saveResultMessages[1];
+              } else {
+                this.saveResult = reply.data.errorMessage;
+              }
+              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
+            })
+            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
       });
   }
@@ -137,8 +141,15 @@ class UalReportListController {
               _.remove(this.reports, { id: report.id });
               _.remove(this.selectedReports, { id: report.id });
               this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, this.onErrorResponse)
-            .catch(this.onCatch);
+            }, (reply) => {
+              if (!reply.data || !reply.data.errorMessages) {
+                this.saveResult = this.saveResultMessages[1];
+              } else {
+                this.saveResult = reply.data.errorMessage;
+              }
+              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
+            })
+            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
       });
   }
