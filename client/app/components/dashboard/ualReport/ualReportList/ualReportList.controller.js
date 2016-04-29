@@ -68,8 +68,19 @@ class UalReportListController {
         }
       });
   }
-  
-    
+
+  hideDeleteTooltip() {
+    $(".-tooltip").removeClass("-show-tooltip");
+    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+  }
+
+  showDeleteTooltip(reportId) {
+    let tooltip = $("#delete_" + reportId);
+    tooltip.addClass("-show-tooltip");
+
+  }
+
+
 
 }
 

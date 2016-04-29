@@ -35,7 +35,8 @@
         <span class="column -right-actions">
           &nbsp;<i class="ion-android-person-add"></i>
           <i class="ion-ios-copy-outline"></i>
-          <i class="ion-android-close" ng-click="vm.deleteReport(item)" id="report_{{item.id}}"></i>
+          <i class="ion-android-close" ng-click="vm.deleteReport(item)"  ng-mouseover="vm.showDeleteTooltip(item.id)" ng-mouseleave="vm.hideDeleteTooltip()" ng-mousemove="vm.showDeleteTooltip(item.id)"></i>
+          <ual-tooltip class="-delete-tooltip" id="delete_{{item.id}}">Delete</ual-tooltip>
         </span>
       </div>
     </ual-table>
