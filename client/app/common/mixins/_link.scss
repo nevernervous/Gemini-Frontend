@@ -1,10 +1,10 @@
 @mixin link() {
   text-decoration: none;
-  color: $color03;
+  color: $color02;
   @include font-clanot-news(16);
 
   &:hover {
-    color: $other06;
+    color: $other08;
   }
 
   &:visited {
@@ -16,7 +16,7 @@
   }
 
   &.-disabled {
-    color: $other07;
+    color: $other09;
     cursor: default;
   }
 }

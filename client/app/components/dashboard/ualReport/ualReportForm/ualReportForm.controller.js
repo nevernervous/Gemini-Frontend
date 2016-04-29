@@ -20,32 +20,13 @@ class UalReportFormController {
     this.report = Report.create();
 //    this.messageDisplayed = false;
     this.saveResult = null;
-    this.saveResultMessages = new Map();
-    this.saveResultMessages.set(null, {
-      msgClass: {}
-      , msgText: ""
-    });
-    this.saveResultMessages.set(0, {
-      msgClass: {
-        "-success": true
-        , "-autoclose": true
-      }
-      , msgText: "Report saved successfully."
-    });
-    this.saveResultMessages.set(1, {
-      msgClass: {
-        "-error": true
-        , "-closeable": true
-      }
-      , msgText: "Report name already exists. Please select another."
-    });
-    this.saveResultMessages.set(2, {
-      msgClass: {
-        "-error": true
-        , "-closeable": true
-      }
-      , msgText: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
-    });
+
+    this.saveResultMessages = [
+      { type: "-success", text : "Report saved successfully."},
+      { type: "-error", text : "Report name already exists. Please select another."},
+      { type: "-error", text : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."}
+    ];
+
     this.duplicatedErrorResponse = "Report name already exists. Please select another.";
     this.duplicatedName = false;
     this._ualReportNameModal = ualReportNameModal;
@@ -192,12 +173,9 @@ class UalReportFormController {
     return this.duplicatedName && (!!this.report.nameDuplicated.get() && this.report.nameDuplicated.get() == this.report.name.get());
   }
 
-
   saveReport() {
     let saveSuccess = () => {
-      this.saveResult = this.saveResultMessages.has(0) ? this.saveResultMessages.get(0) : this.saveResultMessages.get(null);
-//      this.messageDisplayed = true;
-      this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
+      this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
       this.duplicatedName = false;
       this.isNewReport = false;
       this.reportLoaded = true;
@@ -226,7 +204,11 @@ class UalReportFormController {
       }
       , 3: (msg) => {
         this.saveResult = this.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(this.saveResultMessages.get(2))) : this.saveResultMessages.get(null);
-        if (msg) this.saveResult.msgText = msg;
+        if (msg){
+          form._rootScope.$broadcast('BANNER.SHOW', {type: '-error', text: response.data.errorMessage});
+        }else{
+          form._rootScope.$broadcast('BANNER.SHOW',form.saveResultMessages[2]);
+        }
         this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
         this.messageDisplayed = true;
       }
@@ -244,3 +226,4 @@ class UalReportFormController {
 }
 
 export default UalReportFormController;
+

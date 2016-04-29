@@ -31,8 +31,6 @@ class ualReportNameModalController {
 
     report.name.set(this.nameSelected);
 
-//    form.messageDisplayed = false;
-//    form.saveResult = form.saveResultMessages.get(null);
 
     let responseError = {
       0: (msg) => {}
@@ -40,14 +38,14 @@ class ualReportNameModalController {
       , 2: (msg) => {
         report.nameDuplicated.set(_.clone(this.report.name.get()));
         this.duplicatedName = true;
-//        form.messageDisplayed = false;
       }
       , 3: (msg) => {
         report.name.set(null);
-        form.saveResult = form.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(form.saveResultMessages.get(2))) : form.saveResultMessages.get(null);
-        if (msg !== false) form.saveResult.msgText = msg;
-        this._rootScope.$broadcast('BANNER.SHOW', form.saveResult);
-//        form.messageDisplayed = true;
+        if (msg !== false){
+          form._rootScope.$broadcast('BANNER.SHOW', {type: '-error', text: response.data.errorMessage});
+        }else{
+          form._rootScope.$broadcast('BANNER.SHOW',form.saveResultMessages[2]);
+        }
 
         this._closemodal(false);
       }
@@ -75,3 +73,4 @@ class ualReportNameModalController {
 }
 
 export default ualReportNameModalController;
+
