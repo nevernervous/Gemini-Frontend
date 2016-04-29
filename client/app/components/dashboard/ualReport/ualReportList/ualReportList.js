@@ -23,3 +23,4 @@ let ualReportListModule = angular.module('ualReportList', [
 .component('ualReportList', ualReportListComponent);
 
 export default ualReportListModule;
+

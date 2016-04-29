@@ -6,3 +6,4 @@ let ualReportInputModule = angular.module('ualReportInput', [])
   .component('ualReportInput', ualReportInputComponent);
 
 export default ualReportInputModule;
+

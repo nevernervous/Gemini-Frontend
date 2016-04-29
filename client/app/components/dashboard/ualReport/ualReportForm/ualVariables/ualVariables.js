@@ -15,3 +15,4 @@ let ualVariablesModule = angular.module('ualVariables', [
 .factory('ualVariables', ualVariablesFactory);
 
 export default ualVariablesModule;
+

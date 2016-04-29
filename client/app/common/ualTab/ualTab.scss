@@ -1,3 +1,4 @@
+<<<<<<< HEAD:client/app/common/ualTab/ualTab.scss
 @import '../common';
 ual-tab {
     > div{
@@ -7,3 +8,14 @@ ual-tab {
         }
     }
 }
+=======
+@import '../../../../../../common/common';
+ual-tab { 
+    > div{
+        height: 100%;
+        > div{
+            height: calc(100% - 100px);
+        }
+    }
+}  
+>>>>>>> 83eb1d47c72147042cd3e6b6b3fe22ba1d67a335:client/app/components/dashboard/ualReport/ualReportForm/ualVariables/ualTab/ualTab.scss

@@ -6,3 +6,4 @@ let ualTableModule = angular.module('ualTable', [])
 .component('ualTable', ualTableComponent);
 
 export default ualTableModule;
+
