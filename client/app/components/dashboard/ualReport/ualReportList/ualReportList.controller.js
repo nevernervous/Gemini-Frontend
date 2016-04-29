@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class UalReportListController {
   /*@ngInject*/
   constructor(Report, $rootScope, ualReportListDeleteReportModal) {
@@ -162,23 +161,3 @@ class UalReportListController {
 }
 
 export default UalReportListController;
-=======
-class UalReportListController {
-  /*@ngInject*/
-
-  constructor(Report) {       
-    this.reports = null;    
-    this._reportService = Report;
-              
-    this.predicate = 'lastModificationDate';
-    this.reverse = true;
-  }
-  
-  $onInit() {
-    this._reportService.all()
-      .then(response => this.reports = response.data);                                           
-  }  
-}
-
-export default UalReportListController;
->>>>>>> 83eb1d47c72147042cd3e6b6b3fe22ba1d67a335
