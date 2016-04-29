@@ -148,8 +148,8 @@ class UalVariablesController {
   itemPosition(variable) {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
-  showTooltip(e){
-    let tooltip = $("#"+e.target.id).first().next();
+  showTooltip(id){
+    let tooltip = $("#tooltip_"+id);
     tooltip.prop("ual-tooltip-show", true);
   }
   hideTooltip(){
@@ -160,7 +160,7 @@ class UalVariablesController {
   datasourceHasEllipsis(id){
     let container = $("#variable_" + id);
     let sibling = $("#span_" + id);
-    return (window.isIE) ? ((((sibling.outerWidth(true)+45) * 100.0) / container.width()) > 95) : (sibling.width() > container.width());
+    return (window.isIE) ? ((sibling.outerWidth(true)+45) >= container.width()) : (sibling.width() > container.width());
   }
 
   datasourceContainer(id){

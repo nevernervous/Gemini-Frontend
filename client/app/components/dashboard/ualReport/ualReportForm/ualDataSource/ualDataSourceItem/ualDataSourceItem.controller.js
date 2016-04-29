@@ -4,26 +4,19 @@ class UalDataSourceItemController {
 
   }
 
-  datasourceHasEllipsis(){
-    let container = $("#datasourceContainer_" + this.datasourceItem.id);
-    let sibling = $("#datasourceItem_" + this.datasourceItem.id);
-    return (window.isIE) ? (((sibling.outerWidth(true) * 100.0) / container.width()) > 95) : (sibling.width() > container.width());
-  }
-
   datasourceContainer(){
-    return (this.datasourceHasEllipsis()) ? "datasourceContainer_" + this.datasourceItem.id : "datasourceItem_" + this.datasourceItem.id;
-  }
+    let id = this.datasourceItem.id;
+    let container = $("#datasourceContainer_" + id);
+    let sibling = $("#datasourceItem_" + id);
+    let hasEllipsis = (window.isIE) ? ((sibling.outerWidth(true) + 16) >= container.width()) : (sibling.width() > container.width());
 
-  datasourceOffsetLeft(){
-    return (this.datasourceHasEllipsis()) ? 2 : -4;
-  }
+    this.tooltipOptions = {
+      left: hasEllipsis ? 2 : -4,
+      right: hasEllipsis ? (window.isIE ? 3 : 4) : (window.isIE ? 10 : 15),
+      top: hasEllipsis ? 2 : (window.isIE ? 2 : 5)
+    }
 
-  datasourceOffsetRight(){
-    return (this.datasourceHasEllipsis()) ? 0 : 10;
-  }
-
-  datasourceOffsetTop(){
-    return (window.isIE ? 2 : 5);
+    return (hasEllipsis) ? "datasourceContainer_" + this.datasourceItem.id : "datasourceItem_" + this.datasourceItem.id;
   }
 
   hideTooltip(){

@@ -1,24 +1,24 @@
-import MessageBannerModule from './messageBanner'
-import MessageBannerController from './messageBanner.controller';
-import MessageBannerComponent from './messageBanner.component';
-import MessageBannerTemplate from './messageBanner.html';
+import UalLabelCountModule from './ualLabelCount'
+import UalLabelCountController from './ualLabelCount.controller';
+import UalLabelCountComponent from './ualLabelCount.component';
+import UalLabelCountTemplate from './ualLabelCount.html';
 
-describe('MessageBanner', () => {
+describe('UalLabelCount', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(MessageBannerModule.name));
+  beforeEach(window.module(UalLabelCountModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new MessageBannerController();
+      return new UalLabelCountController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
-      expect(MessageBannerModule).to.have.property('name');
-    });    
+    it('has a name property [REMOVE]', () => {
+      expect(UalLabelCountModule).to.have.property('name');
+    });          
   });
 
   describe('Controller', () => {
@@ -32,18 +32,18 @@ describe('MessageBanner', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<message-banner/>').html(MessageBannerTemplate);
-    it('has name in template [REMOVE]', () => {
+    const template = $('<ual-label-count/>').html(UalLabelCountTemplate);
+    it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
-    }); 
+    });
   });
 
   describe('Component', () => {
       // component/directive specs
-      let component = MessageBannerComponent;
+      let component = UalLabelCountComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(MessageBannerTemplate);
+        expect(component.template).to.equal(UalLabelCountTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('MessageBanner', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(MessageBannerController);
+        expect(component.controller).to.equal(UalLabelCountController);
       });
   });
 });
