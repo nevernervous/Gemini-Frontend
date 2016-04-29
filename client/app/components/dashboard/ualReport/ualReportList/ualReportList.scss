@@ -86,6 +86,13 @@ ual-report-list {
             &:last-child {
               width: 8%;
             }
+
+            &.-sortable {
+              &:hover {
+                cursor: pointer !important;
+                background-color: $color08 !important;
+              }
+            }
           }
 
           td {
@@ -189,6 +196,7 @@ ual-report-list {
             width: 8%;
             padding: 4px 0 !important;
             line-height: 1;
+
             > i {
               font-size: 24px;
               padding-left: 8px;
@@ -224,7 +232,6 @@ ual-report-list {
           cursor: pointer;
           background-color: $color10;
           //border-bottom: 1px solid $color08;
-
           .-checkbox {
             visibility: visible;
           }
