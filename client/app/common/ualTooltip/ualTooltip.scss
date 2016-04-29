@@ -11,6 +11,7 @@ ual-tooltip {
     display: none;
   }
 }
+
 ual-tooltip.-dropdown {
   right: 0px;
 
@@ -47,13 +48,16 @@ ual-tooltip.-error {
     font-size: 24px;
     margin-top: -3px;
     cursor: pointer;
+
     @include -ms-browser() {
       margin-left: -5px;
     }
   }
+
   ng-transclude {
     display: inline-flex;
     padding-left: 5px;
+
     @include -ms-browser() {
       padding-left: 15px;
     }
@@ -74,41 +78,63 @@ ual-tooltip.-error {
 }
 
 ual-tooltip.-tooltip {
-    @include font-clanot-news(12);
-    color: $color00;
-    background-color: $color03;
-    padding: 10px;
-    max-width: 300px;
-    text-align: center;
-    z-index: 99;
-    white-space: normal;
+  @include font-clanot-news(12);
+  color: $color00;
+  background-color: $color03;
+  padding: 10px;
+  min-width: 200px;
+  max-width: 280px;
+  text-align: center;
+  z-index: 99;
+  white-space: normal;
+  display: none;
+  position: fixed;
+  margin-top: -7px;
+  top: 0;
+  left: 0;
 
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: calc(50% - 3px);
+
+    @include -ms-browser() {
+      top: calc(50% - 2px);
+    }
+  }
+
+  &.-show-tooltip {
+    position: fixed;
+    display: inline;
+  }
+
+  &.-fade-in {
+    opacity: 0;
+    opacity: 1 \9; /*just in case ie*/
+    @include fadeIn();
+    @include animation(fadeIn ease-in 1);
+    @include animation-fill-mode(forwards);
+    @include animation-duration(0.2s);
+  }
+
+  &.-tooltip-right {
     &::before {
-        content: '';
-        display: block;
-        width: 0;
-        height: 0;
-        left: -5px;
-        position: absolute;
-        border-top: 3px solid transparent;
-        border-bottom: 3px solid transparent;
-        border-right: 5px solid $color03;
-
-        top: calc(50% - 3px);
-        @include -ms-browser() {
-          top: calc(50% - 2px);
-        }
+      left: -5px;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-right: 5px solid $color03;
     }
-}
+  }
 
-ual-tooltip {
-    &.-hide-tooltip {
-        display: none;
-        visibility: hidden;
+  &.-tooltip-left {
+    &::before {
+      right: -5px;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-left: 5px solid $color03;
     }
-
-    &.-show-tooltip{
-        position: fixed;
-        display: inline;
-    }
+  }
 }

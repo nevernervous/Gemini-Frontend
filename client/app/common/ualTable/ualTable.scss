@@ -2,22 +2,27 @@
 
 //Layout
 ual-table {
-  display: block;
+  width: 100%;
   height: 100%;
   z-index: 98;
 
-  .table-header {
-    pointer-events: null;
-    padding: 12px !important;
+  table {
     width: 100%;
 
-    .column-header {
-      display: inline-block;
-      text-align: left;
-      white-space: nowrap;
-
-      &.columns-4 {
+    tr {
+      th {
+        text-align: left;
+        white-space: nowrap;
         width: 25%;
+        display: inline-block;
+
+        &:first-child {
+          width: 40%;
+        }
+
+        &:last-child {
+          width: 5%;
+        }
       }
     }
   }
@@ -25,10 +30,15 @@ ual-table {
 
 //Variations
 ual-table {
-  .table-header {
-    background-color: $color07;
+  tr {
+    border-top: 1px solid $color08;
+    border-bottom: 1px solid $color08;
 
-    .column-header {
+    th {
+      padding: 10px 12px;
+      &:hover {
+        background-color: $color08;
+      }
 
       &.-order-by {
         cursor: pointer;

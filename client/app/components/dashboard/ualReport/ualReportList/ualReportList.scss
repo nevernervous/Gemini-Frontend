@@ -5,11 +5,6 @@ ual-report-list {
     height: 100%;
     .header {
         @include gridle( row row-align between);
-
-        >.title {
-            @include font-clanot-bold(20);
-            color: $color06;
-        }
     }
     .container {
         height: 100%;
@@ -41,56 +36,73 @@ ual-report-list {
 
 //Variations
 ual-report-list {
+    .header {
+      @include gridle( row row-align between);
+
+      >.title {
+        @include font-clanot-bold(20);
+        color: $color06;
+      }
+    }
+    .table-reports {
+      tr {
+        border-bottom: 1px solid $color08;
+
+        td {
+          color: $color07;
+          @include font-clanot-book(16);
+          width: 25%;
+
+          &.-link-report {
+            width: 40%;
+            color: $color03;
+
+            > div > a {
+              @include link();
+            }
+          }
+
+          &.-right-actions {
+            white-space: nowrap;
+            width: 5%;
+            padding: 4px 0 !important;
+
+            line-height: 1;
+            > i {
+              color: $color00;
+              padding-left: 5px;
+              font-size: 22px;
+              display: inline-block;
+              opacity: 0;
+              opacity: 1 \9;
+              /*just in case ie*/
+              @include fadeIn();
+              @include animation(fadeIn ease-in 1);
+              @include animation-fill-mode(forwards);
+              @include animation-duration(0.2s);
+              margin-top: -1px;
+              vertical-align: middle;
+              &.ion-ios-close-empty {
+                cursor: pointer;
+                font-size: 32px;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+          //background-color: $color08;
+          .-right-actions {
+            > i {
+              color: $color06;
+            }
+          }
+        }
+      }
+    }
     .empty-list {
         @include font-clanot-book(14);
         color: $color07;
-        text-align: center;
-    }
-    .ual-table-row {
-        @include font-clanot-book(16);
-        border-bottom: 1px solid $color08;
-        .column {
-            display: inline-block;
-            text-align: left;
-            white-space: nowrap;
-            width: 25%;
-            color: $color07;
-            line-height: 1;
-            &.-link-report > a {
-                @include link();
-            }
-            &.-right-actions {
-                text-align: right;
-                margin-top: 0px;
-                height: 32px;
-                vertical-align: middle;
-                > i {
-                    font-size: 22px;
-                    padding-left: 5px;
-                    display: none;
-                    opacity: 0;
-                    opacity: 1 \9;
-                    /*just in case ie*/
-                    @include fadeIn();
-                    @include animation(fadeIn ease-in 1);
-                    @include animation-fill-mode(forwards);
-                    @include animation-duration(0.2s);
-                    @include animation-delay(1s);
-                    margin-top: -1px;
-                    vertical-align: middle;
-                    &.ion-ios-close-empty {
-                        cursor: pointer;
-                        font-size: 32px;
-                    }
-                }
-            }
-        }
-        &:hover {
-            .-right-actions {
-                > i {
-                    display: inline-block;
-                }
-            }
-        }
     }
 }

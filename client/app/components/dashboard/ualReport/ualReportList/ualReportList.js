@@ -2,10 +2,12 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ualReportListComponent from './ualReportList.component';
 import ualReportListDeleteReportModal from './ualReportListDeleteReportModal/ualReportListDeleteReportModal';
+import ualLabelCount from './ualLabelCount/ualLabelCount';
 
 let ualReportListModule = angular.module('ualReportList', [
   uiRouter,
-  ualReportListDeleteReportModal.name
+  ualReportListDeleteReportModal.name,
+  ualLabelCount.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
