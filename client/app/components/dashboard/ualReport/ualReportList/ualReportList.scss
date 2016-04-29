@@ -68,12 +68,8 @@ ual-report-list {
 
           &.-right-actions {
             white-space: nowrap;
-            width: 10%;
-
-            @include -ms-browser(){
-              width: 5%;
-              padding: 4px 0 !important;
-            }
+            width: 5%;
+            padding: 4px 0 !important;
 
             line-height: 1;
             > i {

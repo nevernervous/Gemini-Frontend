@@ -26,7 +26,7 @@
                 <ual-tooltip id="tooltipDataSource_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
                     ual-tooltip-options="{ top: vm.reportDataSourceOffsetTop(item.id), right: vm.reportDataSourceOffsetRight(item.id) }"
                     ual-tooltip-container="vm.reportDataSourceContainer(item.id)">
-                  //TODO: Pedir la fecha a BE porque no viene en el endpoint
+                  {{item.lastModification | date:'MM/dd/yy HH:mm CT'}}
                   <br />
                   <span ng-show="vm.reportNameHasEllipsis(item.id)">
                   {{item.dataSource}}</span>
