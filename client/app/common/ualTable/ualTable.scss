@@ -17,11 +17,15 @@ ual-table {
         display: inline-block;
 
         &:first-child {
-          width: 40%;
+          width: 3%;
+        }
+
+        &:nth-child(2) {
+          width: 37%;
         }
 
         &:last-child {
-          width: 10%;
+          width: 5%;
         }
       }
     }
