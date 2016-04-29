@@ -79,6 +79,9 @@
     .-tooltip {
         margin-left: 10px;
         margin-top: 0px;
+        top: 135px;
+        left: 300px;
+        min-width: 150px !important;
         @include -ms-browser() {
             margin-top: -2px;
         }

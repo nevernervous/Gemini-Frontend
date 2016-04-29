@@ -46,25 +46,6 @@
                                 > span {
                                     background-color: transparent;
                                     line-height: 1;
-
-                                    &:hover ual-tooltip {
-                                        display: inline;
-                                        position: fixed;
-                                    }
-                                }
-
-                                ual-tooltip {
-                                    display: none;
-                                    margin-left: 15px;
-                                    margin-top: -7px;
-
-                                    opacity:0;
-                                    opacity: 1 \9; /*just in case ie*/
-                                    @include fadeIn();
-                                    @include animation(fadeIn ease-in 1);
-                                    @include animation-fill-mode(forwards);
-                                    @include animation-duration(0.2s);
-                                    @include animation-delay(1s);
                                 }
                             }
                         }

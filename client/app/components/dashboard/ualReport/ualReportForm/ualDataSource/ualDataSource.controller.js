@@ -79,35 +79,42 @@ class UalDataSourceController {
         // }, 0 );
 
         let total = ( total_items + total_groups ) * 36;
-        let $container = angular.element(document.getElementById("content-list"))[0];
-        let rows = Math.ceil(total / $container.clientHeight);
+      let $container = angular.element(document.getElementById("content-list"))[0];
+      let rows = Math.ceil(total / $container.clientHeight);
 
-        this.columns = rows > 3 ? "columns-4" : "columns-" + rows;
+      this.columns = rows > 3 ? "columns-4" : "columns-" + rows;
         $('content-list').mCustomScrollbar("update");
       }, 750);
     }
 
-    showTooltip(e){
-      let datasource = $("#"+e.target.id);
+    // checkOverflow() {
+    //     if (this.finishItemRender) {
+    //         let $marker = angular.element(document.getElementById("overflow-marker"))[0];
+    //         let $container = angular.element(document.getElementById("content-list"))[0];
+    //         let $resizableContainer = angular.element(document.getElementById("resizable-container"))[0];
+    //         let $dataSourceList = angular.element(document.getElementById("data-source-list"))[0];
 
-      if (e.target.nodeName == 'UAL-DATA-SOURCE-ITEM') {
-        let span = datasource.find("span:eq(0)");
-        let offset = span.offset();
-        let parentWidth = span.width();
-        let childWidth = datasource.find("span:eq(1)").width();
-        let tooltip = datasource.find("ual-tooltip");
+    //         if (!$marker || !$container) {
+    //             return;
+    //         }
 
-        offset.left = (childWidth > parentWidth ?  (parentWidth + 5) : (childWidth + 10)) + offset.left;
-        offset.top -= ((tooltip.height() / 2) - ((span.height() / 2) ) );
-        offset.top += window.isIE  ? 2 : 5;
+    //         let markerWidth = $marker.offsetLeft;
+    //         let containerWidth = $container.clientWidth;
 
-        tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
-        tooltip.css(offset);
-      }
-    }
+    //         let hasHorizontalOverflow = markerWidth > containerWidth;
+    //         let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
+    //         let action = (!(hasHorizontalOverflow || !needHorizontalFill)) ? "addClass" : "removeClass" ;
+
+    //         this._animate[action]($dataSourceList, '-horizontal-fill').then(() => {
+    //                 this.hasLoaded = true;
+    //             });
+
+    //     }
+    // }
 
     hideTooltip(){
-      $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
+      $(".-tooltip").removeClass("-show-tooltip");
+      $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
     }
 
     _initialize() {

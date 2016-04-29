@@ -29,15 +29,6 @@
                 }
                 // @include column-content(4);
                 // @include column-fill(auto);
-
-                .data-source-group {
-                    .data-source-item {
-                        &:hover > span > ual-tooltip {
-                            display: inline;
-                            position: fixed;
-                        }
-                    }
-                }
             }
         }
         .loading-message,
