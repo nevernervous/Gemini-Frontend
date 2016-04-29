@@ -1,6 +1,6 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($window, $state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, ualUnsafeReportModal, $q) {
+  constructor($window, $state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope,$rootScope, ualUnsafeReportModal, $q) {
     this._state = $state;
     this._window = $window;
     this._datasourcemodal = ualDataSource;
@@ -9,6 +9,7 @@ class UalReportFormController {
     this._q = $q;
 
     this._scope = $scope;
+    this._rootScope=$rootScope;
     this._suscriptions = [];
 
     this._service = {
@@ -23,7 +24,7 @@ class UalReportFormController {
 
     this.report = Report.create();
 
-    this.messageDisplayed = false;
+    //this.messageDisplayed = false;
 
     this.saveResult = null;
 
@@ -251,7 +252,7 @@ class UalReportFormController {
     this.dropDownStyle.visibility = 'visible'
   }
 
-  isDuplicatedName() {
+  isDuplicatedName(){
     return this.duplicatedName && (!!this.report.nameDuplicated.get() && this.report.nameDuplicated.get() == this.report.name.get());
   }
 

@@ -9,11 +9,6 @@ class ualReportNameModalController {
             report: Report
         };
     this.nameSelected = null;
-<<<<<<< HEAD
-
-=======
-
->>>>>>> 9b30821c81c33f05a10dbc6ec2732b86a7ab6257
     this.duplicatedName = false;
 
     this._suscriptions = [];
