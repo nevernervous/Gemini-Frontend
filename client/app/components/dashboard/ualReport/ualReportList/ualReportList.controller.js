@@ -77,7 +77,7 @@ class UalReportListController {
   }
 
   reportNameOffsetTop(id) {
-    return (this.reportNameHasEllipsis(id)) ? 0 : -3;
+    return (this.reportNameHasEllipsis(id)) ? 7 : -3;
   }
 
   reportDataSourceHasEllipsis(id) {
@@ -95,7 +95,7 @@ class UalReportListController {
   }
 
   reportDataSourceOffsetTop(id) {
-    return (this.reportDataSourceHasEllipsis(id)) ? 1 : -3;
+    return window.isIE ? -3 : 7;
   }
 
   onCatch() {
