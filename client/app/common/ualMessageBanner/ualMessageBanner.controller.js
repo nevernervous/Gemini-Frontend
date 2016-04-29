@@ -8,3 +8,4 @@ class UalMessageBannerController {
 }
 
 export default UalMessageBannerController;
+

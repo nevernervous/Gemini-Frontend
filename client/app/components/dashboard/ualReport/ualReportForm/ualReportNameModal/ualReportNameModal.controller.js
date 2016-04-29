@@ -84,3 +84,4 @@ class ualReportNameModalController {
 }
 
 export default ualReportNameModalController;
+
