@@ -121,13 +121,13 @@ class UalReportListController {
   }
 
   hideDeleteTooltip() {
-    $(".-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+    $(".-delete-tooltip").removeClass("-show-tooltip-delete");
   }
 
   showDeleteTooltip(reportId) {
+    console.log(reportId);
     let tooltip = $("#delete_" + reportId);
-    tooltip.addClass("-show-tooltip");
+    tooltip.addClass("-show-tooltip-delete");
 
   }
 }
