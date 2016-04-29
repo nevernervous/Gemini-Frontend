@@ -8,8 +8,7 @@ class DashboardController {
     this._session = Session;
     this._expirationModal = expirationModal;
     this._suscriptions = [];
-    this.msgText="";
-    this.msgClass="";
+    this.msg = {};
     this._scope=$scope;
     this._timeout=$timeout;
   }
@@ -41,18 +40,15 @@ class DashboardController {
   }
 
   showBanner(data) {
-    this.msgClass=data.msgClass;
-    this.msgClass['banner-hide']=false;
-    if(!this.msgClass['-autoclose'])//no autoclose
-    {
-      this.msgClass['banner-show']=true;
-    }else{
-      let tmp=this;
-      tmp._timeout(function() {
-        tmp.msgClass={};
-      }, 5000);//500ms(slideInDown)+4000ms(delay)+500ms(slideOutUp)
+    this.msg = data;
+    if ( this.msg.type !== '-error' ) {
+      this._timeout(
+        () => this.msg.hide = true,
+        5000);
     }
-    this.msgText=data.msgText;
+  }
+  hideBanner() {
+    this.msg.hide = true;
   }
 
 }

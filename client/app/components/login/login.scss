@@ -3,11 +3,12 @@
     height: 100vh; // fill 100% of screen
     @include linear-gradient(to top, $backgroundHighColor 0%, $backgroundLowColor 50%, $backgroundMediumColor 100%);
     @include gridle( row);
+    margin: 0;
 }
 
-.login > message-banner {
-    @include gridle( 12);
-    height: 52px;
+.login > ual-message-banner {
+    position: fixed;
+    top: 0;
 }
 
 .login > .login-container {

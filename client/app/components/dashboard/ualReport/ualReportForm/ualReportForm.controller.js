@@ -28,12 +28,11 @@ class UalReportFormController {
 
     this.saveResult = null;
 
-    this.saveResultMessages = new Map();
-
-    this.saveResultMessages.set(null,{msgClass: {}, msgText : ""});
-    this.saveResultMessages.set(0,{msgClass: {"-success": true, "-autoclose": true}, msgText : "Report saved successfully."});
-    this.saveResultMessages.set(1,{msgClass: {"-error": true, "-closeable": true}, msgText : "Report name already exists. Please select another." });
-    this.saveResultMessages.set(2,{msgClass: {"-error": true, "-closeable": true}, msgText : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."});
+    this.saveResultMessages = [
+      { type: "-success", text : "Report saved successfully."},
+      { type: "-error", text : "Report name already exists. Please select another."},
+      { type: "-error", text : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."}
+    ];
 
     this.duplicatedErrorResponse = "Report name already exists. Please select another.";
     this.duplicatedName = false;
@@ -230,15 +229,15 @@ class UalReportFormController {
       }
 
       //this.messageDisplayed = false;
-      this.saveResult = this.saveResultMessages.get(null);
+      //this.saveResult = this.saveResultMessages.get(null);
 
       this._service.report.save(report).then(
           function(response){
-              form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
+              //form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
 
               report.reportId.set(response.data.id);
               //form.messageDisplayed = true;
-              form._rootScope.$broadcast('BANNER.SHOW',form.saveResult);
+              form._rootScope.$broadcast('BANNER.SHOW', form.saveResultMessages[0]);
               form.duplicatedName = false;
 
               form.isNewReport = false;
@@ -251,13 +250,11 @@ class UalReportFormController {
           function(response){
               //UNEXPECTED ERROR
               if(!response.data || !response.data.errorMessages){
-                  form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                  form._rootScope.$broadcast('BANNER.SHOW',form.saveResult);
+                  //form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                  form._rootScope.$broadcast('BANNER.SHOW',form.saveResultMessages[2]);
               }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){
               //EXPECTED ERROR
-                  form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                  form.saveResult.msgText = response.data.errorMessage;
-                  form._rootScope.$broadcast('BANNER.SHOW',form.saveResult);
+                  form._rootScope.$broadcast('BANNER.SHOW', {type: '-error', text: response.data.errorMessage});
               }else{
               //DUPLICATED NAME
                   form.report.nameDuplicated.set(_.clone(form.report.name.get()));
@@ -265,8 +262,7 @@ class UalReportFormController {
               }
           }
       ).catch(function(){
-          form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-          form._rootScope.$broadcast('BANNER.SHOW',form.saveResult);
+          form._rootScope.$broadcast('BANNER.SHOW',form.saveResultMessages[2]);
       }).finally( () => {report.saving.setSaving(false);} );
   }
 }
