@@ -1,35 +1,26 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($window, $state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope,$rootScope, ualUnsafeReportModal, $q) {
+  constructor($window, $state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, $q) {
     this._state = $state;
     this._window = $window;
     this._datasourcemodal = ualDataSource;
     this._variablesmodal = ualVariables;
     this.maxAggregators = 10;
     this._q = $q;
-
     this._scope = $scope;
-    this._rootScope=$rootScope;
+    this._rootScope = $rootScope;
     this._suscriptions = [];
-
     this._service = {
       aggregator: Aggregator
       , report: Report
       , datasource: DataSource
     };
-
-
     this.dropDownStyle = {};
     this.inputStyle = {};
-
     this.report = Report.create();
-
-    //this.messageDisplayed = false;
-
+//    this.messageDisplayed = false;
     this.saveResult = null;
-
     this.saveResultMessages = new Map();
-
     this.saveResultMessages.set(null, {
       msgClass: {}
       , msgText: ""
@@ -55,13 +46,10 @@ class UalReportFormController {
       }
       , msgText: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
     });
-
     this.duplicatedErrorResponse = "Report name already exists. Please select another.";
     this.duplicatedName = false;
-
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
-
   }
 
   intersectWith(array, query, comparator) {
@@ -69,14 +57,14 @@ class UalReportFormController {
     _.forEach(query, (q) => {
       return _.some(array, (item) => {
         if (!_.isMatch(item, comparator(q))) {
-          return false
+          return false;
         }
         result.push(item);
         return true;
       });
     });
     return result;
-  };
+  }
 
   $onInit() {
     let reportId = this._state.params["id"];
@@ -90,7 +78,6 @@ class UalReportFormController {
     }
 
     this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
-
     this._suscriptions.push(this._scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (!this.report.exitConfirmed.get() && this.report.touched() && !toState.url.match(/\/login/)) {
         event.preventDefault();
@@ -108,13 +95,11 @@ class UalReportFormController {
         this._unsuscribe()
       }
     }));
-
     this.beforeClose = function (event) {
       event.originalEvent.returnValue = "Exit without saving?";
       return "Exit without saving?";
     };
     $(window).bind('beforeunload', this.beforeClose);
-
   }
 
   _unsuscribe() {
@@ -132,7 +117,6 @@ class UalReportFormController {
           this.report.datasource.set(datasource);
           this.report.variables.set([]);
           this.report.aggregators.set([]);
-
           this._service.aggregator.groups(datasource)
             .then((reply) => {
               this.aggregators = reply.data;
@@ -142,7 +126,6 @@ class UalReportFormController {
                 .value();
               this.report.aggregators.set(defaultAggregators);
             });
-
         } else if (!datasource) {
           this._state.go('dashboard.report-list');
         }
@@ -158,71 +141,23 @@ class UalReportFormController {
       .then(variables => this.report.variables.set(variables));
   }
 
-  getReport(reportId) {
-    return this._service.report.getById(reportId).then((reply) => {
-      return reply;
-    });
-  }
-
   openReport(reportId) {
-    this.report.create();
-    this.getReport(reportId)
+    this._service.report.getById(reportId)
       .then((reply) => {
-        let reportData = reply.data;
-
-        reportData.datasource = {
-          id: reportData.dataSourceId
-          , name: reportData.dataSource
-        };
-
+        let datasource = this.report.datasource.get();
         return this._q.all([
-          this._service.aggregator.groups(reportData.datasource)
+      this._service.aggregator.groups(datasource)
 
 
 
 
+          , this._service.datasource.variables(datasource)
 
-
-          , this._service.datasource.variables(reportData.datasource)
-
-
-
-
-
-
-          , this._q.when(reportData)
-
-
-
-
-
-
-          , ]);
+    ]);
       })
-      .spread((replyAggregators, replyVariables, reportData) => {
-        let aggregators = replyAggregators.data;
-        let variables = replyVariables.data;
+      .spread((replyAggregators, replyVariables) => {
 
-        let selectedAggregators = this.intersectWith(aggregators.items, reportData.aggregators, (matcher) => {
-          return {
-            id: matcher.id
-          }
-        });
-
-        let selectedVariables = this.intersectWith(variables.items, reportData.variables, (matcher) => {
-          return {
-            id: matcher.id
-          };
-        });
-
-
-        this.aggregators = aggregators;
-        this.report.name.set(reportData.name);
-        this.report.reportId.set(reportData.id);
-        this.report.datasource.set(reportData.datasource);
-        this.report.aggregators.set(selectedAggregators);
-        this.report.variables.set(selectedVariables);
-        this.report.untouch();
+        this.aggregators = replyAggregators.data;
         this.reportLoaded = true;
       });
   }
@@ -252,7 +187,7 @@ class UalReportFormController {
     this.dropDownStyle.visibility = 'visible'
   }
 
-  isDuplicatedName(){
+  isDuplicatedName() {
     return this.duplicatedName && (!!this.report.nameDuplicated.get() && this.report.nameDuplicated.get() == this.report.name.get());
   }
 
@@ -260,53 +195,49 @@ class UalReportFormController {
   saveReport() {
     let saveSuccess = () => {
       this.saveResult = this.saveResultMessages.has(0) ? this.saveResultMessages.get(0) : this.saveResultMessages.get(null);
-
-      this.messageDisplayed = true;
+//      this.messageDisplayed = true;
+      this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
       this.duplicatedName = false;
-
       this.isNewReport = false;
       this.reportLoaded = true;
-
       this._state.go("dashboard.report-edit", {
         "id": this.report.reportId.get()
       }, {
         notify: false
       });
     }
-
-    this.messageDisplayed = false;
-    this.saveResult = this.saveResultMessages.get(null);
-
+    let responseError = {
+      0: (msg) => {}
+      , 1: (msg) => {
+        this._ualReportNameModal.open({
+          report: this.report
+          , reportForm: this
+        }).then(
+          response => {
+            if (response) saveSuccess();
+          }
+        );
+      }
+      , 2: (msg) => {
+        this.report.nameDuplicated.set(_.clone(this.report.name.get()));
+        this.duplicatedName = true;
+//        this.messageDisplayed = false;
+      }
+      , 3: (msg) => {
+        this.saveResult = this.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(this.saveResultMessages.get(2))) : this.saveResultMessages.get(null);
+        if (msg) this.saveResult.msgText = msg;
+        this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
+        this.messageDisplayed = true;
+      }
+    };
+//    this.messageDisplayed = false;
+//    this.saveResult = this.saveResultMessages.get(null);
     this.report.save().then(
       saveSuccess
       , result => {
-        switch (result) {
-        case 'NONAMEASSIGNED':
-          this._ualReportNameModal.open({
-            report: this.report
-            , reportForm: this
-          }).then(
-            response => {
-              console.log(response);
-              if(response) saveSuccess();
-            }
-          );
-          break;
-        case 'NOCHANGES':
-          break;
-        case 'DUPLICATEDNAME':
-          this.report.nameDuplicated.set(_.clone(this.report.name.get()));
-          this.duplicatedName = true;
-          this.messageDisplayed = false;
-          break;
-        default:
-          this.saveResult = this.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(this.saveResultMessages.get(2))) : this.saveResultMessages.get(null);
-          if (result !== false) this.saveResult.msgText = result;
-          this.messageDisplayed = true;
-        }
+        responseError[result.code](result.msg);
       }
     );
-
     return;
   }
 }

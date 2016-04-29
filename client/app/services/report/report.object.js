@@ -3,12 +3,17 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
   const endpoint = Properties.endpoint + '/Reports';
 
-  let name = null
-  let datasource = null;
+  let object = {
+    id: null
+    , name: null
+    , dataSource: null
+    , dataSourceId: null
+    , variables: []
+    , aggregators: []
+  };
+  let initialHash = null;
+
   let reportData = null;
-  let variables = [];
-  let aggregators = [];
-  let reportId = null;
   var touched = false;
   let saving = false;
   let duplicatedName = null;
@@ -18,51 +23,83 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let duplicatedErrorResponse = "Report name already exists. Please select another.";
 
   let create = () => {
-    name = null;
-    datasource = null;
-    variables = [];
-    aggregators = [];
-    reportId = null;
+    object = {
+      id: null
+      , name: null
+      , dataSource: null
+      , dataSourceId: null
+      , variables: []
+      , aggregators: []
+    };
+    initialHash = getReportHash();
     touched = false;
     saving = false;
     unchangedName = null;
   }
 
-  let update = (reportData) => {
-    datasource = reportData.datasource;
-    variables = reportData.variables;
-    aggregators = reportData.aggregators;
+  let loadReportById = (reportId) => {
+    create();
+    Report.getById(reportId).then(
+    );
+  }
+  let load = (reportData) => {
+    object = reportData;
+    initialHash = getReportHash();
   };
+
+  let update = (reportData) => {
+    object.dataSource = reportData.datasource;
+    object.variables = reportData.variables;
+    object.aggregators = reportData.aggregators;
+  };
+
+  let hasReportChange = () => {
+    return getReportHash() != initialHash;
+  };
+
+  let getReportHash = () => {
+	let hash = 0;
+    let char = '';
+    let json = JSON.stringify(object);
+	if (json.length == 0) return hash;
+	for (let i = 0; i < json.length; i++) {
+		char = json.charCodeAt(i);
+		hash = ((hash<<5)-hash)+char;
+		hash = hash & hash; // Convert to 32bit integer
+	}
+	return hash;
+  }
 
   let save = () => {
     var deferred = $q.defer();
     let reject = false;
     if (!getName() && !getReportId()) {
-      deferred.reject('NONAMEASSIGNED');
+      deferred.reject({code:1, msg: "No name assigned"});
       reject = true;
-    }
-    if (!touched) {
-      deferred.reject('NOCHANGES');
+    }else if (!touched) {
+      deferred.reject({code:0, msg: "No changes to save"});
       reject = true;
-    }
-
-    if (!reject) {
+    } else {
       saveRequest().then(
         response => {
-          reportId = response.data.id;
+          object.id = response.data.id;
+          unchangedName = object.name;
           touched = false;
-          deferred.resolve(reportId);
+
+          initialHash = getReportHash();
+
+          deferred.resolve(object.id);
         }
         , response => {
           //UNEXPECTED ERROR
           if (!response.data || !response.data.errorMessages) {
-            deferred.reject(false);
+            deferred.reject({code:3, msg: ""});
           } else if (response.data.errorMessages.indexOf(duplicatedErrorResponse) < 0) {
             //EXPECTED ERROR
-            deferred.reject(response.data.errorMessage);
+            deferred.reject({code:3, msg: response.data.errorMessage});
           } else {
             //DUPLICATED NAME
-            deferred.reject('DUPLICATEDNAME');
+            deferred.reject({code:2, msg: "Name already exists"});
           }
         }
       ).catch(() => {
@@ -75,72 +112,81 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
   let saveRequest = () => {
     saving = true;
-    let dataSourceId = datasource.id;
 
     let data = {
-      name: name
-      , dataSourceId: dataSourceId
+      name: object.name
+      , dataSourceId: object.dataSourceId
       , variables: []
       , aggregators: []
       , slicers: []
     };
-    for (let i in variables) {
+    for (let i in object.variables) {
       data.variables.push({
-        Id: variables[i].id
-        , Name: variables[i].name
+        Id: object.variables[i].id
+        , Name: object.variables[i].name
         , Order: i
       })
     }
-    for (let i in aggregators) {
+    for (let i in object.aggregators) {
       data.aggregators.push({
-        Id: aggregators[i].id
-        , Name: aggregators[i].name
+        Id: object.aggregators[i].id
+        , Name: object.aggregators[i].name
         , Order: i
       })
     }
 
-    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
-    if (reportId === null) {
+//    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
+    if (object.id === null) {
       return $http.post(endpoint, data);
     } else {
-      return $http.put(endpoint + "/" + reportId, data);
+      return $http.put(endpoint + "/" + object.id, data);
     }
   };
 
   let getNameDuplicated = () => duplicatedName;
   let setNameDuplicated = value => duplicatedName = value;
-  let getDataSource = () => datasource;
-  let setDataSource = value => datasource = value;
+  let getDataSource = () => {
+    return (object.dataSourceId) ? {
+      name: object.dataSource
+      , id: object.dataSourceId
+    } : null;
+  }
+  let setDataSource = value => {
+    object.dataSourceId = value.id;
+    object.dataSource = value.name;
+
+    touched = hasReportChange();
+  }
   let equalDataSource = newDataSource => {
-    return (datasource && datasource.id === newDataSource.id);
+    return (object.dataSource && object.dataSourceId === newDataSource.id);
   }
 
-  let getVariables = () => variables;
+  let getVariables = () => object.variables;
   let setVariables = value => {
-    touched = true;
-    variables = value;
+    object.variables = value;
+    touched = hasReportChange();
   }
 
-  let getAggregators = () => aggregators;
+  let getAggregators = () => object.aggregators;
   let setAggregators = value => {
-    touched = true;
-    aggregators = value;
+    object.aggregators = value;
+    touched = hasReportChange();
   }
 
   let isEmptyName = () => {
-    return !this.name || _.isEmpty(this.name);
+    return !object.name || _.isEmpty(object.name);
   }
 
 
-  let getName = () => name;
+  let getName = () => object.name;
   let setName = value => {
     if (unchangedName === null) unchangedName = value;
-    touched = true;
-    name = value;
+    object.name = value;
+    touched = hasReportChange();
   }
 
-  let getReportId = () => reportId;
-  let setReportId = value => reportId = value;
+  let getReportId = () => object.id;
+  let setReportId = value => object.id = value;
   let isExitComfirmed = () => exitConfirmed;
   let setExitConfirm = (value) => exitConfirmed = value;
   let isSaving = () => saving;
@@ -148,6 +194,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   return {
     update
     , save
+    , load
     , create
     , isEmptyName: isEmptyName
       , reportId: {
@@ -164,7 +211,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
       , }
       , untouch: function () {
         touched = false;
-        unchangedName = name;
       }
       , touched: function () {
         return touched;

@@ -1,4 +1,5 @@
 import angular from 'angular';
+import ReportService from '../../../../../services/report/report';
 
 import ualUnsafeReportModalFactory from './ualUnsafeReportModal.factory';
 
