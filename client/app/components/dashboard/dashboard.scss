@@ -1,5 +1,6 @@
 @import '../../common/common';
 
+// LAYOUT
 dashboard {
   @include gridle( row );
   margin: 0;
@@ -21,8 +22,29 @@ dashboard > .dashboard-container {
   }
   > .dashboard-view {
     width: 100%;
-    @include gridle( gutter 60px 100px );
+    @include gridle( gutter 55px 90px );
     height: 100%;
+    .dashboard-header {
+      @include gridle( row row-align bottom between);
+      margin: 0;
+    }
+    .dashboard-body {
+      @include gridle( row );
+      margin: 0;
+    }
+  }
+}
+
+// VARIANT
+dashboard {
+  > .dashboard-container > .dashboard-view {
+    .dashboard-header {
+      >.title {
+        @include font-clanot-bold(20);
+        color: $color06;
+        height: 100%;
+      }
+    }
   }
 }
 

@@ -3,10 +3,8 @@
 ual-report-list {
     display: block;
     height: 100%;
-    .header {
-        @include gridle( row row-align between);
-    }
-    .container {
+
+    .dashboard-body {
         height: 100%;
         padding-top: 30px;
         ual-clusterize-table {
@@ -36,14 +34,11 @@ ual-report-list {
 
 //Variations
 ual-report-list {
-    .header {
-      @include gridle( row row-align between);
-
-      >.title {
-        @include font-clanot-bold(20);
-        color: $color06;
-      }
+  .dashboard-header {
+    > .button-create {
+      width: 200px;
     }
+  }
     .table-reports {
       tr {
         border-bottom: 1px solid $color08;

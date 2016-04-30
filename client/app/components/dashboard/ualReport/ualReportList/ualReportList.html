@@ -1,8 +1,8 @@
-<div class="header">
-  <div class="title">Reports</div>
-  <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
+<div class="dashboard-header">
+  <span class="title">Reports</span>
+  <ual-button class="-primary button-create" ui-sref="dashboard.report-new">Create New Report</ual-button>
 </div>
-<div class="container">
+<div class="dashboard-body">
   <ual-tabs class="-tabs-report">
     <ual-tab ual-title="My Reports">
       <ual-label-count total-rows="{{(vm.reports).length}}" label-text="reports available"></ual-label-count>
