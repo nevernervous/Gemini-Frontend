@@ -6,7 +6,8 @@ import './ualClusterizeTable.scss';
 class ualClusterizeTableDirective {
   /*@ngInject*/
   constructor() {
-    this.restrict = 'E';
+    this.restrict = 'A';
+    this.replace = true;
     this.transclude = true;
     this.template = template;
     this.controller = controller;
@@ -21,39 +22,31 @@ class ualClusterizeTableDirective {
       contentId: 'contentArea',
       callbacks: {
         clusterChanged: function() {
-          clusterize && recompile();
-        }
-      }
-    });
-    // REWRITE getClusterNum METHOD to support custom scrollbar
-    clusterize.getClusterNum = function () {
-      this.options.scroll_top = this.options.scroll_top || 0; //this.scroll_elem.scrollTop;
-      return Math.floor(this.options.scroll_top / (this.options.cluster_height - this.options.block_height)) || 0;
-    };
-
-    // INIT CUSTOM SCROLL
-    let scroll = $('#scrollArea').mCustomScrollbar({
-      theme:'dark',
-      callbacks:{
-        whileScrolling: function() {
-          // SCROLL POSITION
-          clusterize.options.scroll_top = parseInt(this.mcs.top) * -1;
-          trigger('scroll', clusterize.scroll_elem);
+          clusterize && refresh();
         }
       }
     });
 
-    // TRIGGER EVENT
-    let trigger = (evt, elem) => {
-      var evObj = document.createEvent('Events');
-      evObj.initEvent(evt, true, false);
-      elem.dispatchEvent(evObj);
+    // ADJUST COLUMNS HEADERS WIDTH
+    let header = $('#headersArea tr th.-shrink');
+    let shrinks = () => {
+      let row = $('#contentArea tr td.-shrink');
+      if ( row.outerWidth() ) {
+        let max = Math.max(header.outerWidth(), row.outerWidth());
+        header.css('min-width', max+'px');
+        row.css('min-width', max+'px');
+      }
     }
-
     // COMPILE ANGULAR ROWS
     let recompile = () => {
       let content_elem = angular.element(clusterize.content_elem);
       ctrl._compile(content_elem.contents())($scope);
+    }
+
+    // REFRESH
+    let refresh = () => {
+      recompile();
+      shrinks();
     }
 
     // WATCH ROWS CHANGES
@@ -64,8 +57,7 @@ class ualClusterizeTableDirective {
       clusterize.update($scope.vm.rows);
     });
 
-
-    recompile();
+    refresh();
   }
 
 }

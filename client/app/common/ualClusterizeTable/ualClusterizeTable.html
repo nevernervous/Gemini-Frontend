@@ -1,12 +1,12 @@
-<table>
-  <thead><tr ng-transclude></tr></thead>
-</table>
-<div id="scrollArea" class="clusterize-scroll">
-  <table>
-    <tbody id="contentArea" class="clusterize-content">
-      <tr class="clusterize-no-data">
-        <td>Loading data…</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="ual-clusterize-table">
+  <table id="headersArea" ng-transclude></table>
+  <div id="scrollArea" class="clusterize-scroll">
+    <table>
+      <tbody id="contentArea" class="clusterize-content">
+        <tr class="clusterize-no-data">
+          <td>Loading data…</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

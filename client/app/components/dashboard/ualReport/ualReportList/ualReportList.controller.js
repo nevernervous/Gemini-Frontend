@@ -1,28 +1,32 @@
+import myreports from './ualReportList._myreports.html';
+
 class UalReportListController {
   /*@ngInject*/
 
   constructor(Report) {
 
-    this.reports = null;
-    this._reportService = Report;
+    this._services = {
+      report: Report
+    };
 
-    this.predicate = 'lastModificationDate';
-    this.reverse = true;
-
+    this.reports = [];
     this.rows = [];
+
+    //this.predicate = 'lastModificationDate';
+    //this.reverse = true;
   }
 
   order(param) {
-    let rows = [];
-    for (var i = 50; i > 0; i--) {
-        rows.push('<tr><td ng-click="vm.clickme(' + i + ')">' + i + '</td></tr>');
-    }
-    console.log("REORDER: " + param);
-    this.rows = rows;
+    // let rows = [];
+    // for (var i = 50; i > 0; i--) {
+    //   rows.push('<tr><td ng-click="vm.clickme(' + i + ')">' + i + '</td></tr>');
+    // }
+    // console.log("REORDER: " + param);
+    // this.rows = rows;
   }
 
   clickme(i) {
-    console.log(i)
+    //console.log(i)
     // i ++;
     // let total = i + 10;
     // for (i; i < total; i++) {
@@ -31,60 +35,65 @@ class UalReportListController {
   }
 
   $onInit() {
-    this._reportService.all()
-      .then(response => this.reports = response.data);
+    this._services.report.all()
+      .then(response => {
+        this.reports = response.data
+        this.rows = _.map(this.reports, (item) => {
+          return eval('`'+myreports+'`');;
+        });
+      });
   }
 
-  showTooltipName(id){
+  showTooltipName(id) {
     if (this.reportNameHasEllipsis(id)) {
-      let tooltip = $("#tooltipName_"+id);
+      let tooltip = $("#tooltipName_" + id);
       tooltip.prop("ual-tooltip-show", true);
     }
   }
 
-  showTooltipDataSource(id){
-    let tooltip = $("#tooltipDataSource_"+id);
+  showTooltipDataSource(id) {
+    let tooltip = $("#tooltipDataSource_" + id);
     tooltip.prop("ual-tooltip-show", true);
   }
 
-  hideTooltip(){
+  hideTooltip() {
     $(".-tooltip").removeClass("-show-tooltip");
     $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
 
-  reportNameHasEllipsis(id){
+  reportNameHasEllipsis(id) {
     let container = $("#reportNameContainer_" + id);
     let sibling = $("#reportNameItem_" + id);
-    return (window.isIE) ? ((sibling.outerWidth(true)+45) >= container.width()) : (sibling.width() > container.width());
+    return (window.isIE) ? ((sibling.outerWidth(true) + 45) >= container.width()) : (sibling.width() > container.width());
   }
 
-  reportNameContainer(id){
+  reportNameContainer(id) {
     return (this.reportNameHasEllipsis(id)) ? "reportNameContainer_" + id : "reportNameItem_" + id;
   }
 
-  reportNameOffsetRight(id){
+  reportNameOffsetRight(id) {
     return (this.reportNameHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
   }
 
-  reportNameOffsetTop(id){
+  reportNameOffsetTop(id) {
     return (this.reportNameHasEllipsis(id)) ? 0 : -3;
   }
 
-  reportDataSourceHasEllipsis(id){
+  reportDataSourceHasEllipsis(id) {
     let container = $("#reportDataSourceContainer_" + id);
     let sibling = $("#reportDataSourceItem_" + id);
-    return (window.isIE) ? ((sibling.outerWidth(true)+45) >= container.width()) : (sibling.width() > container.width());
+    return (window.isIE) ? ((sibling.outerWidth(true) + 45) >= container.width()) : (sibling.width() > container.width());
   }
 
-  reportDataSourceContainer(id){
+  reportDataSourceContainer(id) {
     return (this.reportDataSourceHasEllipsis(id)) ? "reportDataSourceContainer_" + id : "reportDataSourceItem_" + id;
   }
 
-  reportDataSourceOffsetRight(id){
+  reportDataSourceOffsetRight(id) {
     return (this.reportDataSourceHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
   }
 
-  reportDataSourceOffsetTop(id){
+  reportDataSourceOffsetTop(id) {
     return (this.reportDataSourceHasEllipsis(id)) ? 1 : -3;
   }
 }

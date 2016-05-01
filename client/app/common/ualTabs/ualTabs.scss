@@ -52,9 +52,6 @@ ual-tabs {
   }
 }
 
-// LAYOUT / INLINE
-
-
 // VARIATIONS
 ual-tabs {
   > .tabs-container {
@@ -150,7 +147,7 @@ ual-tabs.-inline {
         }
       }
     }
-    > .extra-header {
+    > .tabs-extra {
       @include gridle( 4 );
       padding: 0;
     }
@@ -161,7 +158,8 @@ ual-tabs.-inline {
       padding: 0;
       height: 100%;
       border: none;
-      overflow: hidden;
+      overflow-y: hidden;
+      overflow-x: visible;
     }
   }
 }

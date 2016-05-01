@@ -1,0 +1,17 @@
+<tr>
+  <td class="-expand -link -left" >
+    <a ui-sref="dashboard.report-edit({id: ${item.id}})">${item.name}</a>
+  </td>
+  <td class="-shrink -left">
+    ${item.dataSource}
+  </td>
+  <td class="-date -left">
+    {{ '${item.lastModification}' | date:'MM/dd/yy HH:mm CT' }}
+  </td>
+  <td class="-actions -right">
+    <i class="ion-android-share-alt"></i>
+    <i class="ion-ios-download-outline"></i>
+    <i class="ion-ios-copy-outline"></i>
+    <i class="ion-ios-close-empty"></i>
+  </td>
+</tr>

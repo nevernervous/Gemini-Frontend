@@ -3,53 +3,25 @@
   <ual-button class="-primary button-create" ui-sref="dashboard.report-new">Create New Report</ual-button>
 </div>
 <div class="dashboard-body">
-  <ual-tabs class="-inline">
+  <ual-tabs class="reports-tabs -inline">
     <tabs-extra><ual-input value="vm.search" icon="ion-ios-search-strong" ual-disabled="true"></ual-input></tabs-extra>
     <tabs-content>
       <ual-tab ual-title="My Reports">
-        <ual-label-count total-rows="{{(vm.reports).length}}" label-text="reports available"></ual-label-count>
-        <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" id="content-list">
-          <ual-table class="ual-table" table-columns="[{'name': 'Report name', 'orderBy': 'name'}, {'name': 'Data source', 'orderBy': 'dataSource'},
-          {'name': 'Last modification date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">
-          </ual-table>
-          <table class="table-reports">
-            <tbody>
-              <tr ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
-                <td id="reportNameContainer_{{item.id}}" class="-link-report" ng-mouseover="vm.showTooltipName(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltipName(item.id)">
-                  <div class="tooltip-sibling" ><a id="reportNameItem_{{item.id}}" ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a></div>
-                  <ual-tooltip id="tooltipName_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
-                    ual-tooltip-options="{ top: vm.reportNameOffsetTop(item.id), right: vm.reportNameOffsetRight(item.id) }"
-                    ual-tooltip-container="vm.reportNameContainer(item.id)">
-                    {{item.name}}
-                  </ual-tooltip>
-                </td>
-                <td id="reportDataSourceContainer_{{item.id}}" ng-mouseover="vm.showTooltipDataSource(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltipDataSource(item.id)">
-                  <div><span id="reportDataSourceItem_{{item.id}}">{{item.dataSource}}</span></div>
-                  <ual-tooltip id="tooltipDataSource_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
-                      ual-tooltip-options="{ top: vm.reportDataSourceOffsetTop(item.id), right: vm.reportDataSourceOffsetRight(item.id) }"
-                      ual-tooltip-container="vm.reportDataSourceContainer(item.id)">
-                    {{item.lastModification | date:'MM/dd/yy HH:mm CT'}}
-                    <br />
-                    <span ng-show="vm.reportNameHasEllipsis(item.id)">
-                    {{item.dataSource}}</span>
-                  </ual-tooltip>
-                </td>
-                <td>
-                  {{item.lastModification | date:'MM/dd/yy HH:mm CT'}}
-                </td>
-                <td class="-right-actions">
-                  &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-ios-close-empty"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="empty-list" ng-hide="(vm.reports).length > 0">
-            No reports created.
-          </div>
+        <div class="list-info">
+          <label class="list-count">Reports: <strong>{{vm.reports.length}} Reports Available</strong></label>
         </div>
-        <!--ual-clusterize-table rows="vm.rows">
-          <div ng-click="vm.order('id')">ID</div>
-        </ual-clusterize-table-->
+        <div class="list-content">
+          <table ual-clusterize-table rows="vm.rows">
+            <thead>
+              <tr>
+                <th class="-expand -left" ng-click="vm.order('name')">Report name</th>
+                <th class="-shrink -left" ng-click="vm.order('datasource')">Data source</th>
+                <th class="-date -left" ng-click="vm.order('date')">Last modification date</th>
+                <th class="-actions"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </ual-tab>
       <ual-tab ual-title="Shared Reports" is-enabled="false">
 

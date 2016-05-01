@@ -23,13 +23,14 @@ dashboard > .dashboard-container {
   > .dashboard-view {
     width: 100%;
     @include gridle( gutter 55px 90px );
-    height: 100%;
+    height: calc(100% - 55px);
     .dashboard-header {
       @include gridle( row row-align bottom between);
       margin: 0;
     }
     .dashboard-body {
       @include gridle( row );
+      height: calc(100% - 27.5px);
       margin: 0;
     }
   }
