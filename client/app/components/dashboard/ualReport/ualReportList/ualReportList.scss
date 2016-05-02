@@ -1,25 +1,6 @@
 @import '../../../../common/common';
 //Layout
 ual-report-list {
-  @media (max-width: 1024px) {
-      .table-reports {
-         th, td {
-          :first-child {
-            width: 2%;
-          }
-         }
-      }
-      .-right-actions{
-        padding: 0;
-        > i {
-          padding-left: 4px;
-          padding-right: 2px;
-          .ion-android-close {
-            padding-left: 10px;
-          }
-        }
-      }
-  }
 
   display: block;
   height: 100%;
@@ -206,16 +187,24 @@ ual-report-list {
           }
 
           &.-right-actions {
+            @include gridle_state (projector) {
+              padding: 0;
+            }
             white-space: nowrap;
             text-align: right;
             width: 8%;
             line-height: 1;
 
             > i {
-              font-size: 24px;
+              font-size: 28px;
               padding-left: 8px;
               padding-right: 4px;
+              @include gridle_state (projector) {
+                padding-left: 4px;
+                padding-right: 2px;
+              }
               visibility: hidden;
+
               opacity: 0;
               opacity: 1 \9;
               /*just in case ie*/
@@ -228,6 +217,9 @@ ual-report-list {
               &.ion-android-close {
                 cursor: pointer;
                 padding-left: 18px;
+                @include gridle_state (projector) {
+                  padding-left: 10px;
+                }
               }
             }
           }
