@@ -41,6 +41,7 @@ class DashboardController {
 
   showBanner(data) {
     this.msg = data;
+    this.msg.hide = false;
     if ( this.msg.type !== '-error' ) {
       this._timeout(
         () => this.msg.hide = true,
