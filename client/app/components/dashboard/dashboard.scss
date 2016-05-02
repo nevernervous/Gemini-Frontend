@@ -29,9 +29,8 @@ dashboard > .dashboard-container {
       margin: 0;
     }
     .dashboard-body {
-      @include gridle( row );
+      width: 100%;
       height: calc(100% - 27.5px);
-      margin: 0;
     }
   }
 }

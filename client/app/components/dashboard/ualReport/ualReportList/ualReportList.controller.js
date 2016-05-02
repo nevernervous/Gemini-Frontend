@@ -40,7 +40,7 @@ class UalReportListController {
       .then(response => {
         this.reports = response.data
         this.rows = _.map(this.reports, (item) => {
-          return eval('`'+myreports+'`');;
+          return _.template(myreports)({item: item});
         });
       });
   }

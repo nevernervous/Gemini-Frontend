@@ -160,6 +160,16 @@ ual-tabs.-inline {
       border: none;
       overflow-y: hidden;
       overflow-x: visible;
+      tabs-content {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        // ual-tab {
+        //   position: absolute;
+        //   height: 100%;
+        //   width: 100%;
+        // }
+      }
     }
   }
 }
