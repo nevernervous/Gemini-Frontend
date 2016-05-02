@@ -19,29 +19,8 @@ class UalReportListController {
   }
 
   $onInit() {
-    this._suscriptions = [];
-    this._suscriptions.push(this._rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
-    this._suscriptions.push(this._rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
-
     this._reportService.all()
       .then(response => this.reports = response.data);
-  }
-  _closemodal(response) {
-    this._suscriptions.forEach(suscription => suscription());
-    this._close(response);
-  }
-
-  isSelected(reportId) {
-    return _.some(this.selectedReports, { id: reportId });
-  }
-
-  toggleReport(reportId) {
-    if (!_.some(this.selectedReports, { id: reportId })) {
-      let selected = _.find(this.reports, { id: reportId });
-      this.selectedReports.push(selected);
-    } else {
-      _.remove(this.selectedReports, { id: reportId });
-    }
   }
 
   showTooltipName(id) {
@@ -95,41 +74,6 @@ class UalReportListController {
 
   reportDataSourceOffsetTop(id) {
     return window.isIE ? -3 : 7;
-  }
-
-
-  onErrorResponse(reply) {
-    if (!reply.data || !reply.data.errorMessages) {
-      this.saveResult = this.saveResultMessages[1];
-    } else {
-      this.saveResult = reply.data.errorMessage;
-    }
-    this._rootScope.$broadcast('BANNER.SHOW', { type: "-error", text: this.saveResult });
-  }
-
-  deleteSelected() {
-    this._deletereportmodal.open()
-      .then(response => {
-        if (response) {
-          let ids = _.map(this.selectedReports, 'id');
-          this._reportService.remove(ids)
-            .then((reply) => {
-              _.remove(this.reports, (item) => {
-                return _.contains(ids, item.id);
-              });
-              this.selectedReports = [];
-              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
-        }
-      });
   }
 
   deleteReport(report) {
