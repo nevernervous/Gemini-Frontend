@@ -6,13 +6,16 @@ class ualTabsDirective {
     /*@ngInject*/
     constructor() {
         this.restrict = 'E';
-        this.transclude = true;
+        this.transclude = {
+          'extra': '?tabsExtra',
+          'content': 'tabsContent'
+        };
         this.template = template;
         this.scope = {};
         this.controller = controller;
         this.controllerAs = 'vm';
     }
-    
+
     link(scope, element, attrs, ctrl) {
         // set the first tab to show first
         ctrl.selectTab(attrs.active || 0);

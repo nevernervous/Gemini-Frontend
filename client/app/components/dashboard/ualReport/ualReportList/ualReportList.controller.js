@@ -1,47 +1,48 @@
+import $ from 'jquery';
+import myreports from './ualReportList._myreports.html';
+
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
-    this._rootScope = $rootScope;
+
+  constructor(Report) {
+
+    this._services = {
+      report: Report
+    };
+
     this.reports = [];
-    this.selectedReports = [];
-    this._reportService = Report;
-    this._deletereportmodal = ualReportListDeleteReportModal;
+    this.rows = [];
 
-    this.predicate = 'lastModificationDate';
-    this.reverse = true;
+    //this.predicate = 'lastModificationDate';
+    //this.reverse = true;
+  }
 
-    this.saveResult = null;
+  order(param) {
+    // let rows = [];
+    // for (var i = 50; i > 0; i--) {
+    //   rows.push('<tr><td ng-click="vm.clickme(' + i + ')">' + i + '</td></tr>');
+    // }
+    // console.log("REORDER: " + param);
+    // this.rows = rows;
+  }
 
-    this.saveResultMessages = [
-      { type: "-success", text : "Item(s) deleted successfully."},
-      { type: "-error", text : "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator."}
-    ];
+  tooltip(id) {
+    let tooltip = $(id + ' ual-tooltip');
+    let offset = $(id).offset();
+    offset.position = 'fixed';
+    offset.top -= 25;
+    offset.left -= (tooltip.outerWidth() / 2);
+    tooltip.css(offset);
   }
 
   $onInit() {
-    this._suscriptions = [];
-    this._suscriptions.push(this._rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
-    this._suscriptions.push(this._rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
-
-    this._reportService.all()
-      .then(response => this.reports = response.data);
-  }
-  _closemodal(response) {
-    this._suscriptions.forEach(suscription => suscription());
-    this._close(response);
-  }
-
-  isSelected(reportId) {
-    return _.some(this.selectedReports, { id: reportId });
-  }
-
-  toggleReport(reportId) {
-    if (!_.some(this.selectedReports, { id: reportId })) {
-      let selected = _.find(this.reports, { id: reportId });
-      this.selectedReports.push(selected);
-    } else {
-      _.remove(this.selectedReports, { id: reportId });
-    }
+    this._services.report.all()
+      .then(response => {
+        this.reports = response.data
+        this.rows = _.map(this.reports, (item) => {
+          return _.template(myreports)({item: item});
+        });
+      });
   }
 
   showTooltipName(id) {
@@ -76,7 +77,7 @@ class UalReportListController {
   }
 
   reportNameOffsetTop(id) {
-    return (this.reportNameHasEllipsis(id)) ? 7 : -3;
+    return (this.reportNameHasEllipsis(id)) ? 0 : -3;
   }
 
   reportDataSourceHasEllipsis(id) {
@@ -94,64 +95,9 @@ class UalReportListController {
   }
 
   reportDataSourceOffsetTop(id) {
-    return window.isIE ? -3 : 7;
-  }
-
-  onCatch() {
-   this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-  }
-
-  onErrorResponse(response) {
-    if (!response.data || !response.data.errorMessages) {
-      this.saveResult = this.saveResultMessages[1];
-    } else {
-      this.saveResult = response.data.errorMessage;
-    }
-    this._rootScope.$broadcast('BANNER.SHOW', { type: "-error", text : this.saveResult });
-  }
-
-  deleteSelected() {
-    this._deletereportmodal.open()
-      .then(response => {
-        if (response) {
-          let ids = _.map(this.selectedReports, 'id');
-          this._reportService.remove(ids)
-            .then((reply) => {
-              _.remove(this.reports, (item) => {
-                return _.contains(ids, item.id);
-              });
-              this.selectedReports = [];
-              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, this.onErrorResponse)
-            .catch(this.onCatch);
-        }
-      });
-  }
-
-  deleteReport(report) {
-    this._deletereportmodal.open()
-      .then(response => {
-        if (response) {
-          this._reportService.remove(report.id)
-            .then((reply) => {
-              _.remove(this.reports, { id: report.id });
-              _.remove(this.selectedReports, { id: report.id });
-              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, this.onErrorResponse)
-            .catch(this.onCatch);
-        }
-      });
-  }
-
-  hideDeleteTooltip() {
-    $(".-delete-tooltip").removeClass("-show-tooltip-delete");
-  }
-
-  showDeleteTooltip(reportId) {
-    let tooltip = $("#delete_" + reportId);
-    tooltip.addClass("-show-tooltip-delete");
-
+    return (this.reportDataSourceHasEllipsis(id)) ? 1 : -3;
   }
 }
 
 export default UalReportListController;
+

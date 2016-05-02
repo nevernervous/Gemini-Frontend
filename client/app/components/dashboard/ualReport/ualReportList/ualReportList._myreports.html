@@ -1,0 +1,26 @@
+<tr>
+  <td class="-expand -link -left" >
+    <a ui-sref="dashboard.report-edit({id: ${item.id}})">${item.name}</a>
+  </td>
+  <td class="-shrink -left">
+    ${item.dataSource}
+  </td>
+  <td class="-date -left">
+    {{ '${item.lastModification}' | date:'MM/dd/yy HH:mm CT' }}
+  </td>
+  <td class="-actions -right">
+    <div class="-action">
+      <i class="ion-android-share-alt"></i>
+    </div>
+    <div class="-action">
+      <i class="ion-ios-download-outline"></i>
+    </div>
+    <div class="-action">
+      <i class="ion-ios-copy-outline"></i>
+    </div>
+    <div id="delete_${item.id}" class="-action -delete" ng-mouseover="vm.tooltip('#delete_${item.id}')">
+      <ual-tooltip class="-top">Delete</ual-tooltip>
+      <i class="ion-ios-close-empty"></i>
+    </div>
+  </td>
+</tr>

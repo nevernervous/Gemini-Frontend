@@ -1,0 +1,96 @@
+@import '../common';
+
+// LAYOUT
+.ual-clusterize-table {
+  position: relative;
+  height: 100%;
+  overflow-y: hidden;
+
+  td, th {
+    padding: 0 35px;
+    height: 36px;
+    max-height: 36px;
+    &:last-child {
+      padding: 0 5px;
+    }
+
+    // TYPE
+    &.-expand {
+      width: 100%;
+    }
+    &.-shrink {
+      white-space: nowrap;
+    }
+    &.-date {
+      min-width: 250px;
+    }
+
+    // ALIGN
+    &.-right {
+      text-align: right;
+    }
+    &.-left {
+      text-align: left;
+    }
+
+  }
+  > .clusterize-scroll {
+    position: absolute;
+    height: 100%;
+    overflow: scroll;
+    padding-bottom: 1px; // SHOWS LAST ITEM LINE
+  }
+}
+
+// VARIANT
+.ual-clusterize-table {
+  td, th {
+    border-bottom: 1px solid $color08;
+
+    // STYLE
+    &.-link, &.-link a {
+      @include link();
+    }
+    &.-actions > .-action {
+      margin-left: 20px;
+      font-size: 20px;
+      display: inline-block;
+      &:last-child {
+        margin-left: 25px;
+        cursor: pointer;
+      }
+      ual-tooltip {
+        display: none;
+      }
+    }
+  }
+  th {
+    border-top: 1px solid $color08;
+    @include font-clanot-news(16);
+    color: $color06;
+    &:hover {
+      cursor: pointer;
+      background-color: $color08;
+    }
+    &.-actions:hover {
+      cursor: default;
+      background: none;
+    }
+  }
+  td {
+    @include font-clanot-book(14);
+    color: $color06;
+    &.-actions {
+      opacity: 0;
+    }
+  }
+  .clusterize-content tr:hover {
+    background-color: $other10;
+    .-actions {
+      opacity: 1;
+      .-action:hover ual-tooltip {
+        display: block;
+      }
+    }
+  }
+}

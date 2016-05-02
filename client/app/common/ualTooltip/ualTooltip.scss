@@ -77,6 +77,34 @@ ual-tooltip.-error {
   }
 }
 
+ual-tooltip.-top {
+  background-color: $color08;
+  color: $color06;
+  @include font-clanot-news(12);
+  display: flex;
+  text-align: center;
+  padding: 5px;
+  //width: 226px;
+  cursor: default;
+
+  ng-transclude {
+    margin: auto;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 41%;
+    bottom: -8px;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 8px solid $color08;
+  }
+}
+
 ual-tooltip.-tooltip {
   @include font-clanot-news(12);
   color: $color06;
