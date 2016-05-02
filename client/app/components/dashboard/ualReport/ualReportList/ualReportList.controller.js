@@ -36,6 +36,11 @@ class UalReportListController {
   }
 
   $onInit() {
+    let pageSize = 1,
+    pageNumber = 1,
+    sortColumn = 'lastModification',
+    sortDirection = 'Desc';
+    //this._services.report.query(pageSize, pageNumber, sortColumn, sortDirection)
     this._services.report.all()
       .then(response => {
         this.reports = response.data

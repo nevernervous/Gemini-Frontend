@@ -10,6 +10,14 @@ let reportService = function(Properties, ServicesTransform, $http, $q) {
     });
   }
 
+  let query = (pageSize, pageNumber, sortColumn, sortDirection) => {
+    let transformation = [ServicesTransform.get('simple')];
+    return $http.get(`${endpoint}/${pageSize}/${pageNumber}/${sortColumn}/${sortDirection}`, {
+      cache: Properties.cache,
+      transformResponse: ServicesTransform.generate(transformation)
+    });
+  }
+
   let getById = (reportId) => {
     let transformation = [ServicesTransform.get('none')];
     return $http.get(`${endpoint}/${reportId}`, {
@@ -24,7 +32,7 @@ let reportService = function(Properties, ServicesTransform, $http, $q) {
         let dataSourceId = report.datasource.get().id;
         let variables = report.variables.get();
         let aggregators = report.aggregators.get();
-        
+
         let data = {
             name: report.name.get(),
             dataSourceId: dataSourceId,
@@ -32,7 +40,7 @@ let reportService = function(Properties, ServicesTransform, $http, $q) {
             aggregators: [],
             slicers: []
         };
-        
+
         for(let i in variables){
             data.variables.push({Id:variables[i].id,Order:i})
         }
