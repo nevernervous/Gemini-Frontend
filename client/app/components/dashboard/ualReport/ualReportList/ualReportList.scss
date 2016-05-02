@@ -65,6 +65,9 @@ ual-report-list {
             padding: 8px 12px;
 
             &:first-child {
+              @media (min-width: 1024px) {
+                width: 2%;
+              }
               width: 3%;
             }
 
@@ -177,7 +180,7 @@ ual-report-list {
           &.-checkbox {
             padding-left: 10px;
             padding-right: 2px;
-            width: 30px;
+            width: 28px;
             visibility: hidden;
 
             input:checked + label {
