@@ -1,0 +1,159 @@
+@import '../common';
+
+// LAYOUT
+ual-tabs {
+  > .tabs-container {
+    @include gridle(row row-align between);
+    height: 100%;
+    margin: 0 10px 0 0;
+    padding: 0;
+
+    > .tabs-list {
+      @include gridle( 5 );
+      margin: 0;
+      padding: 0;
+
+      > li {
+        height: 45px;
+
+        > a {
+          display: block;
+          padding: 12px 5px 12px 20px;
+        }
+
+        &.active {
+          width: calc(100% + 2px); // remove border for selected
+          > a {
+            padding: 12px 5px 12px 15px;
+          }
+        }
+      }
+    }
+
+    > .tabs-content {
+      @include gridle( 7 );
+      margin: 0;
+      padding: 0 15px;
+      height: 100%;
+    }
+  }
+}
+// LAYOUT / PROJECTOR
+ual-tabs {
+  @include gridle_state ( projector ) {
+    > .tabs-container {
+      > .tabs-list {
+        @include gridle( 4 );
+      }
+
+      > .tabs-content {
+        @include gridle( 8 );
+      }
+    }
+  }
+}
+
+
+// VARIATIONS
+ual-tabs {
+  > .tabs-container {
+
+    > .tabs-list {
+      border-right: 1px solid $color08;
+      background-color: $other05;
+      list-style: none;
+
+      > li {
+        @include font-clanot-news(16);
+        border-top: 1px solid $color00;
+        background-color: $other05;
+        color: $color06;
+
+        > a {
+          @include ellipses();
+          color: $color06;
+          text-decoration: none;
+        }
+
+        &:first-child {
+          border-top: 0;
+        }
+
+        &:last-child {
+          border-bottom: 1px solid $color00;
+        }
+
+        &.active + li {
+          border-top: 0;
+        }
+
+        &.active {
+          border: 1px solid $color08;
+          border-left: 4px solid $color03;
+          border-right: 0;
+
+          @include font-clanot-bold(16);
+          color: $color06;
+          background-color: $color00;
+        }
+
+        &.disabled {
+          pointer-events: none;
+          cursor: default;
+        }
+      }
+    }
+
+    > .tabs-content {
+      border: 1px solid $color08;
+      border-left: 0;
+      overflow: hidden;
+      background-color: $color00;
+    }
+  }
+}
+
+// VARIATIONS
+ual-tabs.-tabs-report {
+  > .tabs-container {
+
+    > .tabs-list {
+      @include gridle( 12 );
+      margin: 0;
+      padding: 0;
+      border: none;
+      background-color: $color00;
+
+      > li {
+        display: inline-block;
+        width: 150px;
+        background-color: $color00;
+        margin-right: 50px;
+
+        > a {
+          padding: 12px 0;
+        }
+
+        &.active {
+          border: none;
+          border-bottom: 4px solid $color03;
+        }
+
+        &.disabled{
+          > a {
+            color: $color07;
+          }
+        }
+      }
+    }
+
+    > .tabs-content {
+      @include gridle( 12 );
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      border: none;
+      overflow: hidden;
+    }
+  }
+}
