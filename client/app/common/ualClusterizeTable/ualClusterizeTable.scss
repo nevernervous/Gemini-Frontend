@@ -50,12 +50,16 @@
     &.-link, &.-link a {
       @include link();
     }
-    &.-actions > i {
+    &.-actions > .-action {
       margin-left: 20px;
       font-size: 20px;
+      display: inline-block;
       &:last-child {
         margin-left: 25px;
         cursor: pointer;
+      }
+      ual-tooltip {
+        display: none;
       }
     }
   }
@@ -83,6 +87,9 @@
     background-color: $other10;
     .-actions {
       opacity: 1;
+      .-action:hover ual-tooltip {
+        display: block;
+      }
     }
   }
 }

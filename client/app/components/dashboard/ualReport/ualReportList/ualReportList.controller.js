@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import myreports from './ualReportList._myreports.html';
 
 class UalReportListController {
@@ -25,13 +26,13 @@ class UalReportListController {
     // this.rows = rows;
   }
 
-  clickme(i) {
-    //console.log(i)
-    // i ++;
-    // let total = i + 10;
-    // for (i; i < total; i++) {
-    //     this.rows.push('<tr><td ng-click="vm.clickme(' + i + ')">' + i + '</td></tr>');
-    // }
+  tooltip(id) {
+    let tooltip = $(id + ' ual-tooltip');
+    let offset = $(id).offset();
+    offset.position = 'fixed';
+    offset.top -= 25;
+    offset.left -= (tooltip.outerWidth() / 2);
+    tooltip.css(offset);
   }
 
   $onInit() {

@@ -1,5 +1,5 @@
 @import '../../../../common/common';
-//Layout
+// LAYOUT
 ual-report-list {
   position: relative;
   display: block;
@@ -50,6 +50,9 @@ ual-report-list {
         @include font-clanot-bold(16);
         color: $color06;
       }
+    }
+    .-action.-delete ual-tooltip {
+      width: 70px;
     }
   }
 }
