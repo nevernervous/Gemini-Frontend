@@ -60,7 +60,7 @@ class UalReportFormController {
 
     this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
     this._suscriptions.push(this._scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (!this.report.exitConfirmed.get() && this.report.touched() && !toState.url.match(/\/login/)) {
+      if (!this.report.exitConfirmed.get() && this.report.touched()) {
         event.preventDefault();
         let _report = this.report;
         let _state = this._state;
@@ -129,15 +129,9 @@ class UalReportFormController {
         let datasource = this.report.datasource.get();
         return this._q.all([
       this._service.aggregator.groups(datasource)
-
-
-
-
-          , this._service.datasource.variables(datasource)
-
     ]);
       })
-      .spread((replyAggregators, replyVariables) => {
+      .spread((replyAggregators) => {
 
         this.aggregators = replyAggregators.data;
         this.reportLoaded = true;

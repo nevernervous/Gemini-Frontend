@@ -1,4 +1,4 @@
-let reportService = function (Properties, ServicesTransform, $http, $q, ReportObject) {
+let reportService = function (Properties, ServicesTransform, $http, $q, ReportObject, ReportTransform) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
 
@@ -21,10 +21,10 @@ let reportService = function (Properties, ServicesTransform, $http, $q, ReportOb
   }
 
   let getById = (reportId) => {
-    let transformation = [ServicesTransform.get('none')];
+    let transformation = [ReportTransform.get('simple')];
     return $http.get(`${endpoint}/${reportId}`, {
       cache: Properties.cache
-      , transformResponse: ServicesTransform.generate(transformation)
+      , transformResponse: ReportTransform.generate(transformation)
     }).then(
       response => {
         ReportObject.create();

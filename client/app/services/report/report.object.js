@@ -6,8 +6,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let object = {
     id: null
     , name: null
-    , dataSource: null
-    , dataSourceId: null
+    , dataSource: {id: null,  name: null}
     , variables: []
     , aggregators: []
   };
@@ -26,8 +25,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
     object = {
       id: null
       , name: null
-      , dataSource: null
-      , dataSourceId: null
+      , dataSource: {id: null,  name: null}
       , variables: []
       , aggregators: []
     };
@@ -115,7 +113,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
     let data = {
       name: object.name
-      , dataSourceId: object.dataSourceId
+      , dataSourceId: object.dataSource.id
       , variables: []
       , aggregators: []
       , slicers: []
@@ -146,14 +144,10 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let getNameDuplicated = () => duplicatedName;
   let setNameDuplicated = value => duplicatedName = value;
   let getDataSource = () => {
-    return (object.dataSourceId) ? {
-      name: object.dataSource
-      , id: object.dataSourceId
-    } : null;
+    return (object.dataSource.id) ? object.dataSource : null;
   }
   let setDataSource = value => {
-    object.dataSourceId = value.id;
-    object.dataSource = value.name;
+    object.dataSource = value;
 
     touched = hasReportChange();
   }
