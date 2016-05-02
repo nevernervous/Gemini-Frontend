@@ -166,3 +166,30 @@ ual-tooltip.-tooltip {
     }
   }
 }
+
+ual-tooltip.-delete-tooltip {
+  background-color: $color08;
+  color: $color06;
+  @include font-clanot-news(12);
+  align-items: stretch;
+  padding: 13px 17px;
+  width: 100px;
+  cursor: default;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 50%;
+    bottom: -8px;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 8px solid $color08;
+  }
+
+  &.-show-tooltip-delete {
+    visibility: visible !important;
+  }
+}
