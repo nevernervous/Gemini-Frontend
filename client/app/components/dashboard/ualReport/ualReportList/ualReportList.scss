@@ -65,9 +65,6 @@ ual-report-list {
             padding: 8px 12px;
 
             &:first-child {
-              @media (min-width: 1024px) {
-                width: 2%;
-              }
               width: 3%;
             }
 
@@ -93,7 +90,9 @@ ual-report-list {
 
           td {
             display: inline-block;
-
+            &:first-child {
+              width: 3%;
+            }
 
             &.-right-actions {
 
@@ -149,7 +148,7 @@ ual-report-list {
           background-color: $color10;
           border-bottom: 1px solid $color00;
 
-          .-link-report > div > a {
+          .-link-report a {
             color: $color06 !important;
           }
         }
@@ -163,7 +162,7 @@ ual-report-list {
 
           &.-modification-date {
               width: 20%;
-            }
+          }
           &:first-child {
             width: 3%;
           }
@@ -171,8 +170,7 @@ ual-report-list {
           &.-link-report {
             width: 37%;
             color: $color03;
-
-            > div > a {
+            a {
               @include link();
             }
           }
@@ -189,21 +187,20 @@ ual-report-list {
           }
 
           &.-right-actions {
-            @media (max-width: 1024px) {
+            @include gridle_state (projector) {
               padding: 0;
             }
             white-space: nowrap;
             text-align: right;
             width: 8%;
-            padding: 4px 0 !important;
             line-height: 1;
 
             > i {
-              font-size: 24px;
+              font-size: 28px;
               padding-left: 8px;
               padding-right: 4px;
 
-              @media (max-width: 1024px) {
+              @include gridle_state (projector) {
                 padding-left: 4px;
                 padding-right: 2px;
               }
@@ -220,7 +217,7 @@ ual-report-list {
               &.ion-android-close {
                 cursor: pointer;
                 padding-left: 18px;
-                @media (max-width: 1024px) {
+                @include gridle_state (projector) {
                   padding-left: 10px;
                 }
               }
@@ -235,7 +232,7 @@ ual-report-list {
             visibility: visible;
           }
 
-          .-link-report > div > a {
+          .-link-report > a {
             color: $color06 !important;
           }
 
