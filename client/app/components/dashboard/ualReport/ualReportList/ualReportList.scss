@@ -1,6 +1,7 @@
 @import '../../../../common/common';
 //Layout
 ual-report-list {
+
   display: block;
   height: 100%;
 
@@ -95,8 +96,6 @@ ual-report-list {
             }
 
             &.-right-actions {
-
-
               ual-tooltip {
                 z-index: 10;
                 top: -40px;
