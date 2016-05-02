@@ -23,10 +23,19 @@ ual-report-list {
     }
     .list-content {
       //@include gridle( row row-align right);
+      width: 100%;
       position: absolute;
       margin: 15px 0 0;
       height: calc(100% - 100px);
       table {
+        width: 100%;
+        ual-checkbox {
+          visibility: hidden;
+
+          input:checked + label {
+            visibility: visible;
+          }
+        }
         .-actions {
           min-width: 200px;
         }

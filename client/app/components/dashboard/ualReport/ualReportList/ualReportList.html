@@ -14,13 +14,14 @@
           <table ual-clusterize-table rows="vm.rows">
             <thead>
               <tr>
+                <th class="-check"></th>
                 <th class="-expand -left" ng-click="vm.order('name')">Report name</th>
                 <th class="-shrink -left" ng-click="vm.order('datasource')">Data source</th>
                 <th class="-date -left" ng-click="vm.order('date')">Last modification date</th>
                 <th class="-actions"></th>
               </tr>
             </thead>
-          </table>
+          </table>          
         </div>
       </ual-tab>
       <ual-tab ual-title="Shared Reports" is-enabled="false">

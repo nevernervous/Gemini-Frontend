@@ -13,19 +13,31 @@
     padding: 0 35px;
     height: 36px;
     max-height: 36px;
+    width: auto;
     &:last-child {
       padding: 0 5px;
     }
 
     // TYPE
+    &.-check {
+      width: 30px;
+      padding-left: 10px;
+      padding-right: 0;
+    }
     &.-expand {
-      width: 100%;
+      width: 99%;
+      padding-top: 8px;
+      padding-left: 6px;
     }
     &.-shrink {
       white-space: nowrap;
     }
     &.-date {
-      min-width: 250px;
+      width: 250px;
+      white-space: nowrap;
+    }
+    &.-actions {
+      width: 250px;
     }
 
     // ALIGN
@@ -48,16 +60,28 @@
     overflow-y: scroll;
     padding-bottom: 1px; // SHOWS LAST ITEM LINE
   }
+  .clusterize-no-data {
+    text-align: center;
+    height: 300px;
+  }
 }
 
 // VARIANT
 .ual-clusterize-table {
-  td, th {
+  thead {
+    border-top: 1px solid $color08;
+  }
+  tr {
     border-bottom: 1px solid $color08;
-
+  }
+  td, th {
     // STYLE
     &.-link, &.-link a {
       @include link();
+    }
+    &.-ellipsis {
+      @include ellipses();
+      display: inline-block;
     }
     &.-actions > .-action {
       margin-left: 20px;
@@ -73,9 +97,17 @@
     }
   }
   th {
-    border-top: 1px solid $color08;
     @include font-clanot-news(16);
     color: $color06;
+    white-space: nowrap;
+    &.-check {
+      width: 29px;
+      display: inline-block;
+    }
+    &.-check:hover {
+      cursor: default;
+      background: none;
+    }
     &:hover {
       cursor: pointer;
       background-color: $color08;
@@ -99,6 +131,20 @@
       .-action:hover ual-tooltip {
         display: block;
       }
+    }
+    ual-checkbox {
+      visibility: visible;
+    }
+    .-link, .-link a {
+      color: $color06;
+    }
+  }
+  .clusterize-no-data {
+    @include font-clanot-book(14);
+    color: $color07;
+    border-bottom: none;
+    &:hover {
+      background-color: $color00; //TODO: No toma el background
     }
   }
 }

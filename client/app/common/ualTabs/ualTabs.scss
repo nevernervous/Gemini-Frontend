@@ -127,8 +127,9 @@ ual-tabs.-inline {
         display: inline-block;
         width: 150px;
         background-color: $color00;
-        margin-right: 50px;
+        margin-right: 20px;
         height: 100%;
+        text-align: center;
 
         > a {
           padding: 0 0 5px 0;
