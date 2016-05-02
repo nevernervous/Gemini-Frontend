@@ -21,7 +21,22 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
   let duplicatedErrorResponse = "Report name already exists. Please select another.";
 
-  let create = () => {
+  let saveResultMessages = [
+    {
+      type: "-success"
+      , text: "Report saved successfully."
+    }
+    , {
+      type: "-error"
+      , text: "Report name already exists. Please select another."
+    }
+    , {
+      type: "-error"
+      , text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
+    }
+  ];
+
+  let clean = () => {
     object = {
       id: null
       , name: null
@@ -35,21 +50,11 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
     unchangedName = null;
   }
 
-  let loadReportById = (reportId) => {
-    create();
-    Report.getById(reportId).then(
-    );
-  }
   let load = (reportData) => {
     object = reportData;
     initialHash = getReportHash();
   };
 
-  let update = (reportData) => {
-    object.dataSource = reportData.datasource;
-    object.variables = reportData.variables;
-    object.aggregators = reportData.aggregators;
-  };
 
   let hasReportChange = () => {
     return getReportHash() != initialHash;
@@ -70,13 +75,10 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
   let save = () => {
     var deferred = $q.defer();
-    let reject = false;
     if (!getName() && !getReportId()) {
       deferred.reject({code:1, msg: "No name assigned"});
-      reject = true;
     }else if (!touched) {
       deferred.reject({code:0, msg: "No changes to save"});
-      reject = true;
     } else {
       saveRequest().then(
         response => {
@@ -86,15 +88,17 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
           initialHash = getReportHash();
 
-          deferred.resolve(object.id);
+          deferred.resolve({result:object.id, msg: saveResultMessages[0]});
         }
         , response => {
           //UNEXPECTED ERROR
           if (!response.data || !response.data.errorMessages) {
-            deferred.reject({code:3, msg: ""});
+            deferred.reject({code:3, msg: saveResultMessages[2]});
           } else if (response.data.errorMessages.indexOf(duplicatedErrorResponse) < 0) {
             //EXPECTED ERROR
-            deferred.reject({code:3, msg: response.data.errorMessage});
+            let tmp = _.clone(saveResultMessages[2]);
+            tmp.msg = response.data.errorMessage;
+            deferred.reject({code:3, msg: tmp});
           } else {
             //DUPLICATED NAME
             deferred.reject({code:2, msg: "Name already exists"});
@@ -186,10 +190,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let isSaving = () => saving;
   let setSaving = (value) => saving = value;
   return {
-    update
-    , save
+    save
     , load
-    , create
+    , clean
     , isEmptyName: isEmptyName
       , reportId: {
         get: getReportId

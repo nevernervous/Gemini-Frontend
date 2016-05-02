@@ -1,12 +1,10 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($window, $state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, $q) {
+  constructor($state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal) {
     this._state = $state;
-    this._window = $window;
     this._datasourcemodal = ualDataSource;
     this._variablesmodal = ualVariables;
     this.maxAggregators = 10;
-    this._q = $q;
     this._scope = $scope;
     this._rootScope = $rootScope;
     this._suscriptions = [];
@@ -17,64 +15,55 @@ class UalReportFormController {
     };
     this.dropDownStyle = {};
     this.inputStyle = {};
-    this.report = Report.create();
-//    this.messageDisplayed = false;
+    this.report = null;
+
     this.saveResult = null;
 
-    this.saveResultMessages = [
-      { type: "-success", text : "Report saved successfully."},
-      { type: "-error", text : "Report name already exists. Please select another."},
-      { type: "-error", text : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."}
-    ];
+/*    this.saveResultMessages = [
+      {
+        type: "-success"
+        , text: "Report saved successfully."
+      }
+      , {
+        type: "-error"
+        , text: "Report name already exists. Please select another."
+      }
+      , {
+        type: "-error"
+        , text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
+      }
+    ];*/
 
-    this.duplicatedErrorResponse = "Report name already exists. Please select another.";
     this.duplicatedName = false;
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
   }
 
-  intersectWith(array, query, comparator) {
-    let result = [];
-    _.forEach(query, (q) => {
-      return _.some(array, (item) => {
-        if (!_.isMatch(item, comparator(q))) {
-          return false;
-        }
-        result.push(item);
-        return true;
-      });
-    });
-    return result;
-  }
 
   $onInit() {
     let reportId = this._state.params["id"];
     if (!reportId) {
-      this.report.create();
+      this.report = this._service.report.create();
       this.selectDataSource();
-      this.isNewReport = true;
     } else {
-      this.isNewReport = false;
       this.openReport(reportId);
     }
 
     this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
     this._suscriptions.push(this._scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (!this.report.exitConfirmed.get() && this.report.touched()) {
+      if (this.report.touched()) {
         event.preventDefault();
-        let _report = this.report;
-        let _state = this._state;
         this._ualUnsafeReportModal.open().then(response => {
           if (response) {
-            _report.untouch();
-            _report.exitConfirmed.set(true);
-            _state.go(toState.name);
+            this.report=null;
+            $(window).unbind("beforeunload", this.beforeClose);
+            this._unsuscribe();
+            this._state.go(toState.name);
           }
         });
       } else {
-        this.report.exitConfirmed.set(false);
         $(window).unbind("beforeunload", this.beforeClose);
-        this._unsuscribe()
+        this._unsuscribe();
       }
     }));
     this.beforeClose = function (event) {
@@ -126,15 +115,13 @@ class UalReportFormController {
   openReport(reportId) {
     this._service.report.getById(reportId)
       .then((reply) => {
+        this.report = reply;
         let datasource = this.report.datasource.get();
-        return this._q.all([
-      this._service.aggregator.groups(datasource)
-    ]);
+        return this._service.aggregator.groups(datasource);
       })
-      .spread((replyAggregators) => {
+      .then((replyAggregators) => {
 
         this.aggregators = replyAggregators.data;
-        this.reportLoaded = true;
       });
   }
 
@@ -168,20 +155,18 @@ class UalReportFormController {
   }
 
   saveReport() {
-    let saveSuccess = () => {
-      this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+    let saveSuccess = (msg) => {
+      this._rootScope.$broadcast('BANNER.SHOW', msg);
       this.duplicatedName = false;
-      this.isNewReport = false;
-      this.reportLoaded = true;
       this._state.go("dashboard.report-edit", {
         "id": this.report.reportId.get()
       }, {
         notify: false
       });
     }
-    let responseError = {
-      0: (msg) => {}
-      , 1: (msg) => {
+    let responseError = [
+      (msg) => {},
+      (msg) => {
         this._ualReportNameModal.open({
           report: this.report
           , reportForm: this
@@ -190,27 +175,18 @@ class UalReportFormController {
             if (response) saveSuccess();
           }
         );
-      }
-      , 2: (msg) => {
+      },
+      (msg) => {
         this.report.nameDuplicated.set(_.clone(this.report.name.get()));
         this.duplicatedName = true;
-//        this.messageDisplayed = false;
+        //        this.messageDisplayed = false;
+      },
+      (msg) => {
+        this._rootScrope.$broadcast('BANNER.SHOW', msg)
       }
-      , 3: (msg) => {
-        this.saveResult = this.saveResultMessages.has(2) ? JSON.parse(JSON.stringify(this.saveResultMessages.get(2))) : this.saveResultMessages.get(null);
-        if (msg){
-          form._rootScope.$broadcast('BANNER.SHOW', {type: '-error', text: response.data.errorMessage});
-        }else{
-          form._rootScope.$broadcast('BANNER.SHOW',form.saveResultMessages[2]);
-        }
-        this._rootScope.$broadcast('BANNER.SHOW', this.saveResult);
-        this.messageDisplayed = true;
-      }
-    };
-//    this.messageDisplayed = false;
-//    this.saveResult = this.saveResultMessages.get(null);
+    ];
     this.report.save().then(
-      saveSuccess
+      result => { saveSuccess(result.msg); }
       , result => {
         responseError[result.code](result.msg);
       }
@@ -220,4 +196,3 @@ class UalReportFormController {
 }
 
 export default UalReportFormController;
-

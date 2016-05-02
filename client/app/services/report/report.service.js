@@ -3,7 +3,7 @@ let reportService = function (Properties, ServicesTransform, $http, $q, ReportOb
   const endpoint = Properties.endpoint + '/Reports';
 
   let create = () => {
-    ReportObject.create();
+    ReportObject.clean();
     return ReportObject;
   };
 
@@ -27,7 +27,7 @@ let reportService = function (Properties, ServicesTransform, $http, $q, ReportOb
       , transformResponse: ReportTransform.generate(transformation)
     }).then(
       response => {
-        ReportObject.create();
+        ReportObject.clean();
         ReportObject.load(response.data);
         return ReportObject;
       });

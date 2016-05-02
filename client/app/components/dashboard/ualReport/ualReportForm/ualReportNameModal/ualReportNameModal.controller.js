@@ -31,30 +31,30 @@ class ualReportNameModalController {
 
     report.name.set(this.nameSelected);
 
-
-    let responseError = {
-      0: (msg) => {}
-      , 1: (msg) => {}
-      , 2: (msg) => {
+    let saveSuccess = (msg) => {
+      this._rootScope.$broadcast('BANNER.SHOW', msg);
+      this.duplicatedName = false;
+      this._state.go("dashboard.report-edit", {
+        "id": this.report.reportId.get()
+      }, {
+        notify: false
+      });
+    }
+    let responseError = [
+      (msg) => {},
+      (msg) => {},
+      (msg) => {
         report.nameDuplicated.set(_.clone(this.report.name.get()));
         this.duplicatedName = true;
-      }
-      , 3: (msg) => {
+      },
+      (msg) => {
         report.name.set(null);
-        if (msg !== false){
-          form._rootScope.$broadcast('BANNER.SHOW', {type: '-error', text: response.data.errorMessage});
-        }else{
-          form._rootScope.$broadcast('BANNER.SHOW',form.saveResultMessages[2]);
-        }
-
+        this._rootScrope.$broadcast('BANNER.SHOW', msg);
         this._closemodal(false);
       }
-    };
-
+    ];
     this.report.save().then(
-      result => {
-        modal._closemodal(true);
-      }
+      result => { saveSuccess(result.msg); }
       , result => {
         responseError[result.code](result.msg);
       }
