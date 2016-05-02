@@ -1,55 +1,24 @@
 @import '../common';
 @import '../ionicons/scss/ionicons';
 
-@mixin fadeHide(){
-    @-webkit-keyframes fadeHide {
-        from { opacity:1; } to { opacity:0; }
-        100% {height: 0px;}
-    }
-    @-moz-keyframes fadeOut {
-        from { opacity:1; } to { opacity:0; }
-        100% {height: 0px;}
-    }
-    @keyframes fadeOut {
-        from { opacity:1; } to { opacity:0; }
-        100% {height: 0px; opacity:0;}
-    }
-}
+
 // LAYOUT
 ual-message-banner {
-    @include gridle( 12 );
-    width:100%;
+    width: 100%;
     height: 52px;
 
-    &.-dashboard{
-        position: fixed;
-        width: 100%;
-        margin: 0;
-        left: 0;
-        top: 52px;
-    }
-    div{
-        vertical-align: center;
+    > .ual-message-banner {
         height: inherit;
         @include gridle( row row-align center middle );
-        > span{
-            vertical-align: super;
-            @include font-clanot-bold(18);
-            @include gridle_state ( projector ) {
-                @include font-clanot-bold(14);
-            }
-        }
-        i{
+        > .-message-icon {
             padding-right: 8px;
             padding-bottom: 4px;
-            font-size: 26px;
         }
         .-close-icon{
-            display: none;
             position: absolute;
             right: 10px;
             top: 8px;
-            cursor: pointer;
+
             span{
                 vertical-align: middle;
                 height: 30px;
@@ -63,48 +32,70 @@ ual-message-banner {
 }
 
 // VARIATIONS
+ual-message-banner {
+   @include slideInDown();
+   @include animation(slideInDown);
+   @include animation-fill-mode(forwards);
+   @include animation-duration(0.5s);
+   display: block;
 
-// VARIATION / DEFAULT (WARNING)
-ual-message-banner{
-  color: $warningHighColor;
-  background: $warningLowColor;
-  i.-message-icon{
-    @include icon-warning(26);
+  > .ual-message-banner {
+    > .-message-icon {
+      font-size: 26px;
+    }
+    > span {
+      vertical-align: super;
+      @include font-clanot-bold(18);
+      @include gridle_state ( projector ) {
+          @include font-clanot-bold(14);
+      }
+    }
+    > .-close-icon {
+      display: none;
+      cursor: pointer;
+    }
   }
 }
 
 // VARIATION / SUCCESS
 ual-message-banner.-success{
-  color: $successHighColor;
-  background: $successLowColor;
-  i.-message-icon{
-      @extend .ion-ios-checkmark-outline;
+  color: $color15;
+  background: $color16;
+  i.-message-icon {
+    @extend .ion-ios-checkmark-outline;
+  }
+}
+
+// VARIATION / WARNING
+ual-message-banner.-warning{
+  color: $color13;
+  background: $color14;
+  i.-message-icon {
+    @include icon-warning(26);
   }
 }
 
 // VARIATION / ERROR
 ual-message-banner.-error{
-  color: $alertHighColor;
-  background: $alertLowColor;
+  color: $color11;
+  background: $color12;
   i.-message-icon{
       @extend .ion-ios-close-outline;
   }
 }
+
+// VARIATION / HIDE
+ual-message-banner.ng-hide{
+    @include slideOutUp();
+    @include animation(slideOutUp);
+    @include animation-fill-mode(forwards);
+    @include animation-duration(0.5s);
+    display: block;
+}
+
 ual-message-banner.-closeable{
     .-close-icon{
         display: inline;
     }
 }
 
-// VARIATION / AUTOCLOSE
-ual-message-banner.-autoclose{
-  @include fadeHide();
-  @include animation(fadeOut ease-in 1);
-  @include animation-fill-mode(forwards);
-  @include animation-duration(0.5s);
-  @include animation-delay(4.5s);
-/*  @include animation(fadeHide ease-in 1);
-  @include animation-fill-mode(forwards);*/
-/*  @include animation-duration(0s);
-  @include animation-delay(0s); */
-}

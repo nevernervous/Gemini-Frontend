@@ -7,7 +7,7 @@ let ualTableComponent = {
   bindings: {
       tableColumns: '=',
       predicate: '=',
-      reverse: '=', 
+      reverse: '=',
   },
   transclude: true,
   template,
