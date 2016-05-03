@@ -1,6 +1,7 @@
 class UalDataSourceItemController {
   /*@ngInject*/
-  constructor() {
+  constructor(ualTooltipService) {
+    this._ualTooltipService=ualTooltipService;
 
   }
 
@@ -20,12 +21,16 @@ class UalDataSourceItemController {
   }
 
   hideTooltip(){
-    $(".-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+    this._ualTooltipService.hide();
   }
 
   showTooltip(){
-    $("#tooltip_" + this.datasourceItem.id).prop("ual-tooltip-show", true);
+    this._ualTooltipService.show({
+      container:this.datasourceContainer(),
+      text:this.datasourceItem.description,
+      adjust:this.tooltipOptions,
+      position:"right"
+    })
   }
 
 }
