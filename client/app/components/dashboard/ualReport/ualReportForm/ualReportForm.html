@@ -1,12 +1,12 @@
 <div class="report-header">
   <div class="title">Create Report</div>
-  <ual-button class="save-button -secondary" ng-disabled="(vm.report.saving.isSaving() || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
+  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
     ng-click="vm.saveReport(vm.report)">Save</ual-button>
 </div>
 <div class="report-body">
   <div class="section report-name" ng-if="vm.report">
-    <ual-report-input report="vm.report" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && !vm.report.name.hasChange() && vm.saveReport()"
-      invalid-input="vm.isDuplicatedName() || (!vm.report.id.get() && !vm.report.name.get())">
+    <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && !vm.report.name.hasChange() && vm.saveReport()"
+      invalid-input="vm.isDuplicatedName() || (!vm.report.id.get() && !vm.reportName)">
       <ual-invalid-message>
         <span ng-if="vm.isDuplicatedName()">
             Report name already exists. Please select another.

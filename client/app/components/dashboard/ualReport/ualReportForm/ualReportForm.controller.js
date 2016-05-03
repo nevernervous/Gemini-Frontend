@@ -18,21 +18,8 @@ class UalReportFormController {
     this.report = null;
 
     this.saveResult = null;
-
-/*    this.saveResultMessages = [
-      {
-        type: "-success"
-        , text: "Report saved successfully."
-      }
-      , {
-        type: "-error"
-        , text: "Report name already exists. Please select another."
-      }
-      , {
-        type: "-error"
-        , text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
-      }
-    ];*/
+    this.isSaving = false;
+    this.reportName = null;
 
     this.duplicatedName = false;
     this._ualReportNameModal = ualReportNameModal;
@@ -116,6 +103,7 @@ class UalReportFormController {
     this._service.report.getById(reportId)
       .then((reply) => {
         this.report = reply;
+        this.reportName = _.clone(this.report.name.get());
         let datasource = this.report.datasource.get();
         return this._service.aggregator.groups(datasource);
       })
@@ -155,14 +143,18 @@ class UalReportFormController {
   }
 
   saveReport() {
+    this.report.name.set(_.clone(this.reportName));
+    this.isSaving = true;
     let saveSuccess = (msg) => {
       this._rootScope.$broadcast('BANNER.SHOW', msg);
       this.duplicatedName = false;
+      this.reportName = _.clone(this.report.name.get());
       this._state.go("dashboard.report-edit", {
         "id": this.report.reportId.get()
       }, {
         notify: false
       });
+      this.isSaving = false;
     }
     let responseError = [
       (msg) => {},
@@ -182,13 +174,15 @@ class UalReportFormController {
         //        this.messageDisplayed = false;
       },
       (msg) => {
-        this._rootScrope.$broadcast('BANNER.SHOW', msg)
+        this.reportName = this.report.name.get();
+        this._rootScope.$broadcast('BANNER.SHOW', msg)
       }
     ];
     this.report.save().then(
       result => { saveSuccess(result.msg); }
       , result => {
         responseError[result.code](result.msg);
+        this.isSaving = false;
       }
     );
     return;

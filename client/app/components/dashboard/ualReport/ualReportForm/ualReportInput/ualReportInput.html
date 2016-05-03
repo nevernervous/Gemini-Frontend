@@ -3,7 +3,7 @@
         <input class="-label" readonly for="{{vm.inputId}}" value="{{vm.labelText()}}" ng-style="vm.labelStyle"></input>
     </div>
     <div ng-if="vm.visibleInput || vm.errorThrown()">
-        <input type="text" class="active-input" ng-model="vm.report._name" ng-model-options="{ getterSetter:true }"
+        <input type="text" class="active-input" ng-model="vm.value"
                ng-blur="vm.onBlur($event)" ng-keypress="vm.checkEnter($event)" id="{{vm.inputId}}" placeholder="Enter report name" ng-trim="true" maxlength="100" ng-maxlength="100">
         <i class="icon-warning ion-ios-close-outline"></i>
     </div>

@@ -29,17 +29,8 @@ class ualReportNameModalController {
     let report = this.report;
     let form = this.form;
 
-    report.name.set(this.nameSelected);
+    report.name.set(_.clone(this.nameSelected));
 
-    let saveSuccess = (msg) => {
-      this._rootScope.$broadcast('BANNER.SHOW', msg);
-      this.duplicatedName = false;
-      this._state.go("dashboard.report-edit", {
-        "id": this.report.reportId.get()
-      }, {
-        notify: false
-      });
-    }
     let responseError = [
       (msg) => {},
       (msg) => {},
@@ -54,9 +45,10 @@ class ualReportNameModalController {
       }
     ];
     this.report.save().then(
-      result => { saveSuccess(result.msg); }
+      result => { this._closemodal(true); }
       , result => {
         responseError[result.code](result.msg);
+        this.form.isSaving = false;
       }
     );
 

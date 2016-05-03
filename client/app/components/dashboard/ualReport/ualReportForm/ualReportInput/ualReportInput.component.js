@@ -5,7 +5,7 @@ import './ualReportInput.scss';
 let ualReportInputComponent = {
   restrict: 'E',
   bindings: {
-    report: '=',
+    value: "=",
     label: '@',
     type: '@',
     value: '=',

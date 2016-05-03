@@ -5,7 +5,7 @@ class ualReportInputController {
         this.name = 'ualReportInput';
         this.visibleInput = false;
         this.inputId = "reportName";
-        this.firstTime = !this.report.name.get();
+        this.firstTime = !this.value
         this.labelStyle = {};
     }
 
@@ -23,7 +23,7 @@ class ualReportInputController {
         }
 
     }
-    
+
     onBlur(event){
         this.displayInput(false, event);
         this.onSave();
@@ -35,7 +35,7 @@ class ualReportInputController {
     }
 
     labelText() {
-        return this.report.name.get() ? this.report.name.get() : 'Enter report name';
+        return this.value ? this.value : 'Enter report name';
     }
     checkEnter(event) {
         this.firstTime = false;
@@ -46,7 +46,7 @@ class ualReportInputController {
     }
 
     checkEmptyName() {
-        return (!this.report.name.get());
+        return (!this.value);
     }
     errorThrown() {
         if (this.invalidInput) {
