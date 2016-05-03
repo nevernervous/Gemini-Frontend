@@ -23,6 +23,19 @@ class UalReportListController {
       .then(response => this.reports = response.data);
   }
 
+  isSelected(reportId) {
+    return _.some(this.selectedReports, { id: reportId });
+  }
+
+  toggleReport(reportId) {
+    if (!_.some(this.selectedReports, { id: reportId })) {
+      let selected = _.find(this.reports, { id: reportId });
+      this.selectedReports.push(selected);
+    } else {
+      _.remove(this.selectedReports, { id: reportId });
+    }
+  }
+
   showTooltipName(id) {
     if (this.reportNameHasEllipsis(id)) {
       let tooltip = $("#tooltipName_" + id);
@@ -74,6 +87,31 @@ class UalReportListController {
 
   reportDataSourceOffsetTop(id) {
     return window.isIE ? -3 : 7;
+  }
+
+  deleteSelected() {
+    this._deletereportmodal.open()
+      .then(response => {
+        if (response) {
+          let ids = _.map(this.selectedReports, 'id');
+          this._reportService.remove(ids)
+            .then((reply) => {
+              _.remove(this.reports, (item) => {
+                return _.contains(ids, item.id);
+              });
+              this.selectedReports = [];
+              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+            }, (reply) => {
+              if (!reply.data || !reply.data.errorMessages) {
+                this.saveResult = this.saveResultMessages[1];
+              } else {
+                this.saveResult = reply.data.errorMessage;
+              }
+              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
+            })
+            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+        }
+      });
   }
 
   deleteReport(report) {
