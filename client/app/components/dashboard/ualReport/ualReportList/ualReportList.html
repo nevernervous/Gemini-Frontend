@@ -45,7 +45,7 @@
           <tbody>
             <tr ng-class="{ '-selected': vm.isSelected(item.id)}" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
               <td class="column -checkbox">
-                  <ual-checkbox></ual-checkbox>
+                  <ual-checkbox ng-click="vm.toggleReport(item.id)" is-checked="vm.isSelected(item.id)"></ual-checkbox>
               </td>
               <td id="reportNameContainer_{{item.id}}" class="-link-report" ng-mouseover="vm.showTooltipName(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltipName(item.id)">
                 <div class="tooltip-sibling"><a id="reportNameItem_{{item.id}}" ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a></div>
