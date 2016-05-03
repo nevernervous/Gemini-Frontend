@@ -218,8 +218,8 @@ ual-report-list {
 
           .-link-report {
             a {
-              color: $color06;
               @include link();
+              color: $color06;
               &:visited:hover, &:hover, &:visited {
                 color: $color06;
               }
