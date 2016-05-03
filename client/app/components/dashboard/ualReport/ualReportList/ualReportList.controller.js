@@ -100,14 +100,14 @@ class UalReportListController {
                 return _.contains(ids, item.id);
               });
               this.selectedReports = [];
-              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {
                 this.saveResult = this.saveResultMessages[1];
               } else {
                 this.saveResult = reply.data.errorMessage;
               }
-              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
             })
             .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
@@ -122,14 +122,14 @@ class UalReportListController {
             .then((reply) => {
               _.remove(this.reports, { id: report.id });
               _.remove(this.selectedReports, { id: report.id });
-              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {
                 this.saveResult = this.saveResultMessages[1];
               } else {
                 this.saveResult = reply.data.errorMessage;
               }
-              this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
             })
             .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
