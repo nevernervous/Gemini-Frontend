@@ -17,7 +17,6 @@ class UalReportFormController {
     this.inputStyle = {};
     this.report = null;
 
-    this.saveResult = null;
     this.isSaving = false;
     this.reportName = null;
 
@@ -138,12 +137,13 @@ class UalReportFormController {
     this.dropDownStyle.visibility = 'visible'
   }
 
-  isDuplicatedName() {
-    return this.duplicatedName && (!!this.report.nameDuplicated.get() && this.report.nameDuplicated.get() == this.report.name.get());
-  }
-
   saveReport() {
+    let oldName = _.clone(this.report.name.get());
     this.report.name.set(_.clone(this.reportName));
+
+
+
+    this.duplicatedName = false;
     this.isSaving = true;
     let saveSuccess = (msg) => {
       this._rootScope.$broadcast('BANNER.SHOW', msg);
@@ -164,17 +164,16 @@ class UalReportFormController {
           , reportForm: this
         }).then(
           response => {
-            if (response) saveSuccess();
+            if (response) saveSuccess(response);
           }
         );
       },
       (msg) => {
-        this.report.nameDuplicated.set(_.clone(this.report.name.get()));
+        this.reportName = oldName;
         this.duplicatedName = true;
-        //        this.messageDisplayed = false;
       },
       (msg) => {
-        this.reportName = this.report.name.get();
+        this.reportName = oldName;
         this._rootScope.$broadcast('BANNER.SHOW', msg)
       }
     ];

@@ -6,12 +6,12 @@
 <div class="report-body">
   <div class="section report-name" ng-if="vm.report">
     <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && !vm.report.name.hasChange() && vm.saveReport()"
-      invalid-input="vm.isDuplicatedName() || (!vm.report.id.get() && !vm.reportName)">
+      invalid-input="vm.duplicatedName || (!vm.report.id.get() && !vm.reportName)">
       <ual-invalid-message>
-        <span ng-if="vm.isDuplicatedName()">
+        <span ng-if="vm.duplicatedName">
             Report name already exists. Please select another.
         </span>
-        <span ng-if="vm.report.id.get() && !vm.report.name.get() && !vm.isDuplicatedName()">
+        <span ng-if="vm.report.id.get() && !vm.report.name.get() && !vm.duplicatedName">
             Report name must be entered in order to save.
         </span>
       </ual-invalid-message>

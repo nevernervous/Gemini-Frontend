@@ -25,27 +25,26 @@ class ualReportNameModalController {
   }
 
   ok() {
-    let modal = this;
     let report = this.report;
     let form = this.form;
-
+    let oldName = _.clone(report.name.get());
     report.name.set(_.clone(this.nameSelected));
 
     let responseError = [
       (msg) => {},
       (msg) => {},
       (msg) => {
-        report.nameDuplicated.set(_.clone(this.report.name.get()));
+        this.nameSelected = oldName;
         this.duplicatedName = true;
       },
       (msg) => {
-        report.name.set(null);
+        this.nameSelected = oldName;
         this._rootScrope.$broadcast('BANNER.SHOW', msg);
         this._closemodal(false);
       }
     ];
     this.report.save().then(
-      result => { this._closemodal(true); }
+      result => { this._closemodal(result.msg); }
       , result => {
         responseError[result.code](result.msg);
         this.form.isSaving = false;

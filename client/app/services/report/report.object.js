@@ -1,4 +1,4 @@
-let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
+let reportObjectService = function (Properties, ServicesTransform, $http, $q, ReportTransform) {
   "ngInject";
 
   const endpoint = Properties.endpoint + '/Reports';
@@ -14,8 +14,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
 
   let reportData = null;
   var touched = false;
-  let saving = false;
-  let duplicatedName = null;
   let unchangedName = null;
   let exitConfirmed = false;
 
@@ -46,12 +44,12 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
     };
     initialHash = getReportHash();
     touched = false;
-    saving = false;
     unchangedName = null;
   }
 
   let load = (reportData) => {
     object = reportData;
+    unchangedName = object.name;
     initialHash = getReportHash();
   };
 
@@ -93,9 +91,11 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
         , response => {
           //UNEXPECTED ERROR
           if (!response.data || !response.data.errorMessages) {
+            object.name = unchangedName;
             deferred.reject({code:3, msg: saveResultMessages[2]});
           } else if (response.data.errorMessages.indexOf(duplicatedErrorResponse) < 0) {
             //EXPECTED ERROR
+            object.name = unchangedName;
             let tmp = _.clone(saveResultMessages[2]);
             tmp.msg = response.data.errorMessage;
             deferred.reject({code:3, msg: tmp});
@@ -107,46 +107,20 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
       ).catch(() => {
         deferred.reject(false);
       });
-      saving = false;
     }
     return deferred.promise;
   };
 
   let saveRequest = () => {
-    saving = true;
 
-    let data = {
-      name: object.name
-      , dataSourceId: object.dataSource.id
-      , variables: []
-      , aggregators: []
-      , slicers: []
-    };
-    for (let i in object.variables) {
-      data.variables.push({
-        Id: object.variables[i].id
-        , Name: object.variables[i].name
-        , Order: i
-      })
-    }
-    for (let i in object.aggregators) {
-      data.aggregators.push({
-        Id: object.aggregators[i].id
-        , Name: object.aggregators[i].name
-        , Order: i
-      })
-    }
-
-//    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
+    let transformation = [ReportTransform.get('save')];
     if (object.id === null) {
-      return $http.post(endpoint, data);
+      return $http.post(endpoint, object, {transformRequest: ReportTransform.generate(transformation) });
     } else {
-      return $http.put(endpoint + "/" + object.id, data);
+      return $http.put(endpoint + "/" + object.id, object, {transformRequest: ReportTransform.generate(transformation)});
     }
   };
 
-  let getNameDuplicated = () => duplicatedName;
-  let setNameDuplicated = value => duplicatedName = value;
   let getDataSource = () => {
     return (object.dataSource.id) ? object.dataSource : null;
   }
@@ -187,8 +161,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
   let setReportId = value => object.id = value;
   let isExitComfirmed = () => exitConfirmed;
   let setExitConfirm = (value) => exitConfirmed = value;
-  let isSaving = () => saving;
-  let setSaving = (value) => saving = value;
   return {
     save
     , load
@@ -197,10 +169,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
       , reportId: {
         get: getReportId
         , set: setReportId
-      }
-      , nameDuplicated: {
-        get: getNameDuplicated
-        , set: setNameDuplicated
       }
       , exitConfirmed: {
         get: isExitComfirmed
@@ -219,9 +187,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
           return unchangedName == name;
         }
       }
-      , _name: function (value) {
-        return (angular.isDefined(value)) ? this.name.set(value) : this.name.get();
-      }
       , datasource: {
         get: getDataSource
         , set: setDataSource
@@ -234,10 +199,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q) {
       , aggregators: {
         get: getAggregators
         , set: setAggregators
-      }
-      , saving: {
-        isSaving: isSaving
-        , setSaving: setSaving
       }
   };
 };
