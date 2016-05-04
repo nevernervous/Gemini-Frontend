@@ -6,13 +6,8 @@ ual-tooltip {
 }
 
 // VARIANTS
-ual-tooltip {
-  i {
-    display: none;
-  }
-}
 
-ual-tooltip.-dropdown {
+.-tooltip.dropdown {
   right: 0px;
 
   &::before {
@@ -33,7 +28,7 @@ ual-tooltip.-dropdown {
   }
 }
 
-ual-tooltip.-error {
+.-tooltip.error {
   background-color: $color12;
   color: $color11;
   @include font-clanot-news(12);
@@ -54,7 +49,7 @@ ual-tooltip.-error {
     }
   }
 
-  ng-transclude {
+  span {
     display: inline-flex;
     padding-left: 5px;
 
@@ -63,18 +58,18 @@ ual-tooltip.-error {
     }
   }
 
-  &::before {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 50%;
-    bottom: -8px;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-top: 8px solid $color12;
-  }
+  // &::before {
+  //   content: '';
+  //   display: block;
+  //   width: 0;
+  //   height: 0;
+  //   position: absolute;
+  //   right: 50%;
+  //   bottom: -8px;
+  //   border-left: 3px solid transparent;
+  //   border-right: 3px solid transparent;
+  //   border-top: 8px solid $color12;
+  // }
 }
 
 .-tooltip {
@@ -92,6 +87,10 @@ ual-tooltip.-error {
   margin-top: -7px;
   top: 0;
   left: 0;
+
+  i{
+    display:none;
+  }
 
   &::before {
     content: '';
@@ -127,6 +126,9 @@ ual-tooltip.-error {
       border-bottom: 3px solid transparent;
       border-right: 5px solid $color08;
     }
+    &.error::before{
+      border-right: 5px solid $color12;
+    }
   }
 
   &.-tooltip-left {
@@ -136,14 +138,20 @@ ual-tooltip.-error {
       border-bottom: 3px solid transparent;
       border-left: 5px solid $color08;
     }
+    &.error::before{
+      border-left: 5px solid $color12;
+    }
   }
   &.-tooltip-top{
     &::before{
       top: 100%;
       border-left: 3px solid transparent;
       border-right: 3px solid transparent;
-      border-top: 5px solid #d4d4d4;
+      border-top: 5px solid $color08;
       right: 50%;
+    }
+    &.error::before{
+      border-top: 5px solid $color12;
     }
   }
   &.-tooltip-bottom{
@@ -151,8 +159,11 @@ ual-tooltip.-error {
       top: -5px;
       border-left: 3px solid transparent;
       border-right: 3px solid transparent;
-      border-bottom: 5px solid #d4d4d4;
+      border-bottom: 5px solid $color08;
       right: 50%;
+    }
+    &.error::before{
+      border-bottom: 5px solid $color12;
     }
   }
 }
