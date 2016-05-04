@@ -13,7 +13,7 @@ let socketService = function (ualHub, $rootScope) {
   };
 
   let stateSocketChange = (state) => {
-      console.log("New state" + state);
+      console.log("New state");
       console.dir(state);
     };
 

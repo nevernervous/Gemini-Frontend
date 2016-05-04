@@ -17,14 +17,14 @@ let UalHubFactory = function () {
     return connection;
   }
 
-  function getConnection(useSharedConnection, rootPath, logging = false) {
-    console.log(useSharedConnection);
-    var useSharedConnection = !(useSharedConnection === false);
+  function getConnection(useSharedConnection, rootPath, logging) {
     if (useSharedConnection) {
+      console.log("Shared connection");
       return typeof globalConnections[rootPath] === 'undefined' ?
         globalConnections[rootPath] = initNewConnection(rootPath, logging) :
         globalConnections[rootPath];
     } else {
+      console.log("New connection");
       return initNewConnection(rootPath, logging);
     }
   }
@@ -42,6 +42,7 @@ let UalHubFactory = function () {
     stateChanged,
     autoConnect
   }) {
+
     let Hub = {};
 
     Hub.connection = getConnection(useSharedConnection, rootPath, logging);
@@ -50,8 +51,7 @@ let UalHubFactory = function () {
     Hub.on = (event, fn) => {
       Hub.proxy.on(event, fn);
     };
-    Hub.invoke = function() {
-      console.dir(arguments);
+    Hub.invoke = function () {
       return Hub.proxy.invoke.apply(Hub.proxy, arguments)
     };
     Hub.disconnect = () => {
@@ -62,7 +62,6 @@ let UalHubFactory = function () {
       var startOptions = {};
       if (transport) startOptions.transport = transport;
       if (jsonp) startOptions.jsonp = jsonp;
-      // if (angular.isDefined(withCredentials)) startOptions.withCredentials = withCredentials;
       if (queryParams) Hub.connection.qs = queryParams;
       return Hub.connection.start(startOptions);
     };
@@ -78,7 +77,7 @@ let UalHubFactory = function () {
     }
     if (methods) {
       _.forEach(methods, (method) => {
-        Hub[method] = function() {
+        Hub[method] = function () {
           let args = _.toArray(arguments);
           args.unshift(method);
           return Hub.invoke.apply(Hub, args);
@@ -96,7 +95,6 @@ let UalHubFactory = function () {
     }
 
 
-    //Adding additional property of promise allows to access it in rest of the application.
     if (autoConnect === undefined || autoConnect) {
       Hub.onConnect = Hub.connect();
     }
