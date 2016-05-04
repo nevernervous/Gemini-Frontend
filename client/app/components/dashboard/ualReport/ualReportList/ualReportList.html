@@ -5,14 +5,6 @@
 <div class="container">
   <ual-tabs class="-tabs-report">
     <ual-tab ual-title="My Reports">
-      <div>
-        <label for="message">Message</label>
-        <input type="text" id="message">
-        <ualButton id="send">Send</ualButton>
-      </div>
-      <div id="messages">
-
-      </div>
       <div class="toolbar-section">
         <div class="row-options" ng-style="{ 'visibility': (vm.selectedReports.length > 0 ? 'visible' : 'hidden')}">
           <span class="-items-selected"> {{vm.selectedReports.length}} item(s) selected </span>
@@ -20,7 +12,7 @@
             <i class="ion-ios-trash-outline"></i> <span>Delete</span>
           </span>
           <span class="-icon-option">
-            <i class="ion-ios-copy-outline"></i> <span>Copy</span>
+            <i class="ion-ios-copy-outline" ng-click="vm.sendMessageSocket()"></i> <span>Copy</span>
           </span>
           <span class="-icon-option">
             <i class="ion-ios-download-outline"></i> <span>Export</span>

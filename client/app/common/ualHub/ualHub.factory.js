@@ -6,11 +6,13 @@ let UalHubFactory = function () {
   function initNewConnection(rootPath, logging) {
     var connection = null;
     if (rootPath) {
-      connection = $.hubConnection(rootPath, { useDefaultPath: false });
+      connection = $.hubConnection(rootPath, {
+        useDefaultPath: false
+      });
     } else {
       connection = $.hubConnection();
     }
-
+    console.dir("Logging " + logging);
     connection.logging = (logging ? true : false);
     return connection;
   }
@@ -22,25 +24,24 @@ let UalHubFactory = function () {
       return typeof globalConnections[rootPath] === 'undefined' ?
         globalConnections[rootPath] = initNewConnection(rootPath, logging) :
         globalConnections[rootPath];
-    }
-    else {
+    } else {
       return initNewConnection(rootPath, logging);
     }
   }
 
-  return function(hubName,
-                    { listeners,
-                      methods,
-                      rootPath,
-                      queryParams,
-                      errorHandler,
-                      logging = false,
-                      useSharedConnection = true,
-                      transport,
-                      jsonp = true,
-                      stateChanged,
-                      autoConnect
-                    }) {
+  return function (hubName, {
+    listeners,
+    methods,
+    rootPath,
+    queryParams,
+    errorHandler,
+    logging = false,
+    useSharedConnection = true,
+    transport,
+    jsonp = true,
+    stateChanged,
+    autoConnect
+  }) {
     let Hub = {};
 
     Hub.connection = getConnection(useSharedConnection, rootPath, logging);
@@ -49,7 +50,8 @@ let UalHubFactory = function () {
     Hub.on = (event, fn) => {
       Hub.proxy.on(event, fn);
     };
-    Hub.invoke = (method, args) => {
+    Hub.invoke = function() {
+      console.dir(arguments);
       return Hub.proxy.invoke.apply(Hub.proxy, arguments)
     };
     Hub.disconnect = () => {
@@ -75,9 +77,9 @@ let UalHubFactory = function () {
         });
     }
     if (methods) {
-      angular.forEach(methods, (method) => {
-        Hub[method] = () => {
-          var args = $.makeArray(arguments);
+      _.forEach(methods, (method) => {
+        Hub[method] = function() {
+          let args = _.toArray(arguments);
           args.unshift(method);
           return Hub.invoke.apply(Hub, args);
         };
@@ -90,12 +92,13 @@ let UalHubFactory = function () {
       Hub.connection.error(errorHandler);
     }
     if (stateChanged) {
-		    Hub.connection.stateChanged(stateChanged);
+      Hub.connection.stateChanged(stateChanged);
     }
+
 
     //Adding additional property of promise allows to access it in rest of the application.
     if (autoConnect === undefined || autoConnect) {
-      Hub.promise = Hub.connect();
+      Hub.onConnect = Hub.connect();
     }
 
     return Hub;

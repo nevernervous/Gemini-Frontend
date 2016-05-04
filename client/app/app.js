@@ -67,6 +67,7 @@ angular.module('app', [
   });
   ConfigurationProvider.load(parameters);
 
+
   // SETUP FALLBACK
   if ( Properties.fallback ) {
     $httpProvider.interceptors.push(Interceptor);

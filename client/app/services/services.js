@@ -6,6 +6,7 @@ import Configuration from './configuration/configuration';
 import Datasource from './datasource/datasource';
 import Aggregator from './aggregator/aggregator';
 import Report from './report/report';
+import Socket from './socket/socket';
 
 let sessionModule = angular.module('app.services', [
   Session.name,
@@ -14,6 +15,7 @@ let sessionModule = angular.module('app.services', [
   Datasource.name,
   Aggregator.name,
   Report.name,
+  Socket.name
 ])
 
 .factory('ServicesTransform', servicesTransform);

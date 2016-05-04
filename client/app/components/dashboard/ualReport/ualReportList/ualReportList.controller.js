@@ -1,6 +1,7 @@
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualHub) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, Socket) {
+    this._socket = Socket;
     this._rootScope = $rootScope;
     this.reports = [];
     this.selectedReports = [];
@@ -9,28 +10,6 @@ class UalReportListController {
 
     this.predicate = 'lastModificationDate';
     this.reverse = true;
-
-    let myHub = new ualHub("chat", {
-      listeners: {
-          sendReport: (message) => {
-            $('#messages').append('<li>' + message + '</li>');
-          },
-          joined: (message) => {
-            console.log("joined " + message)
-          }
-      },
-      rootPath: "http://localhost:8098/signalr",
-      methods: ["joinRoom", "updateReport", "updateReportToRoom"],
-      errorHandler: (error) => {
-        console.error("Error handled" + error);
-        console.dir(error);
-      },
-      transport: "longPolling",
-      stateChanged: (state) => {
-        console.log("New state" + state);
-        console.dir(state);
-      }
-    });
 
     this.saveResult = null;
 
@@ -43,6 +22,24 @@ class UalReportListController {
   $onInit() {
     this._reportService.all()
       .then(response => this.reports = response.data);
+  }
+
+  sendMessageSocket() {
+    let reportData = {
+      Name: "Something",
+      ReportId: 2,
+      Variables: [
+        {
+          VariableId: 1,
+          Name: "Variable 10"
+        },
+        {
+          VariableId: 10,
+          Name: "Variable 10"
+        }
+      ]
+    }
+    this._socket.notifySavedReport("Un Mensaje de lejos", reportData)
   }
 
   isSelected(reportId) {
