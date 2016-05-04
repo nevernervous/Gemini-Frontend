@@ -100,6 +100,7 @@
       &:last-child {
         margin-left: 25px;
         cursor: pointer;
+        margin-right: 10px;
       }
       ual-tooltip {
         display: none;
@@ -107,6 +108,7 @@
     }
   }
   th {
+    white-space: nowrap;
     i {
       margin-left: 10px;
     }
