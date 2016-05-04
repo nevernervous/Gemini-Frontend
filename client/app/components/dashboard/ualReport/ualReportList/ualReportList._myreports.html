@@ -1,4 +1,4 @@
-<tr>
+<tr ng-class="{'-selected': vm.isSelected(${item.id})}">
   <td id="reportNameContainer_${item.id}" class="-expand -check -link -left -ellipsis" ng-mouseover="vm.showTooltip('reportNameContainer_${item.id}', 'reportNameItem_${item.id}', 'tooltipName_${item.id}', false)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip('reportNameContainer_${item.id}', 'reportNameItem_${item.id}', 'tooltipName_${item.id}', false)">
     <div>
        <ual-checkbox ng-click="vm.toggleReport(${item.id})" is-checked="vm.isSelected(${item.id})"></ual-checkbox>

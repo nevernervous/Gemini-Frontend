@@ -16,7 +16,7 @@ ual-report-list {
       height: inherit;
       .tabs-extra {
         padding-top: 5px;
-        height: 36px;
+        height: 37px;
 
       }
       .toolbar-section {
@@ -46,18 +46,16 @@ ual-report-list {
           }
         }
       }
-      .list-count {
-      }
     }
     .list-info {
       @include gridle( row row-align between middle);
-      margin: 20px 0 0;
+      margin: 10px 0 0;
     }
     .list-content {
       //@include gridle( row row-align right);
       width: 100%;
       position: absolute;
-      margin: 15px 0 0;
+      margin: 10px 0 0;
       height: calc(100% - 100px);
       width: 100%;
       table {
