@@ -1,6 +1,6 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($window, $state, ualReport, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, ualUnsafeReportModal, $q) {
+  constructor($window, $state, ualReport, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope,$rootScope, ualUnsafeReportModal, $q) {
     this._state = $state;
     this._window = $window;
     this._datasourcemodal = ualDataSource;
@@ -9,6 +9,7 @@ class UalReportFormController {
     this._q = $q;
 
     this._scope = $scope;
+    this._rootScope=$rootScope;
     this._suscriptions = [];
 
     this._service = {
@@ -23,16 +24,15 @@ class UalReportFormController {
 
     this.report = ualReport;
 
-    this.messageDisplayed = false;
+    //this.messageDisplayed = false;
 
     this.saveResult = null;
 
-    this.saveResultMessages = new Map();
-
-    this.saveResultMessages.set(null,{msgClass: {}, msgText : ""});
-    this.saveResultMessages.set(0,{msgClass: {"-success": true, "-autoclose": true}, msgText : "Report saved successfully."});
-    this.saveResultMessages.set(1,{msgClass: {"-error": true, "-closeable": true}, msgText : "Report name already exists. Please select another." });
-    this.saveResultMessages.set(2,{msgClass: {"-error": true, "-closeable": true}, msgText : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."});
+    this.saveResultMessages = [
+      { type: "-success", text : "Report saved successfully."},
+      { type: "-error", text : "Report name already exists. Please select another."},
+      { type: "-error", text : "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."}
+    ];
 
     this.duplicatedErrorResponse = "Report name already exists. Please select another.";
     this.duplicatedName = false;
@@ -204,7 +204,7 @@ class UalReportFormController {
     this.inputStyle.position = 'relative';
     this.dropDownStyle.visibility = 'visible'
   }
-  
+
   isDuplicatedName(){
     return this.duplicatedName && (!!this.report.nameDuplicated.get() && this.report.nameDuplicated.get() == this.report.name.get());
   }
@@ -223,22 +223,23 @@ class UalReportFormController {
           );
           return ;
       }
-      
+
       if(!this.report.touched()){
         return;
       }
-      
-      this.messageDisplayed = false;
-      this.saveResult = this.saveResultMessages.get(null);
-      
+
+      //this.messageDisplayed = false;
+      //this.saveResult = this.saveResultMessages.get(null);
+
       this._service.report.save(report).then(
-          function(response){    
-              form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-              
+          function(response){
+              //form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
+
               report.reportId.set(response.data.id);
-              form.messageDisplayed = true;
+              //form.messageDisplayed = true;
+              form._rootScope.$broadcast('BANNER.SHOW', form.saveResultMessages[0]);
               form.duplicatedName = false;
-              
+
               form.isNewReport = false;
               form.reportLoaded = true;
 
@@ -249,25 +250,22 @@ class UalReportFormController {
           function(response){
               //UNEXPECTED ERROR
               if(!response.data || !response.data.errorMessages){
-                  form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                  form.messageDisplayed = true;
+                  //form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                  form._rootScope.$broadcast('BANNER.SHOW',form.saveResultMessages[2]);
               }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){
               //EXPECTED ERROR
-                  form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                  form.saveResult.msgText = response.data.errorMessage;
-                  form.messageDisplayed = true;
+                  form._rootScope.$broadcast('BANNER.SHOW', {type: '-error', text: response.data.errorMessage});
               }else{
               //DUPLICATED NAME
                   form.report.nameDuplicated.set(_.clone(form.report.name.get()));
                   form.duplicatedName = true;
-                  form.messageDisplayed = false;
               }
           }
       ).catch(function(){
-          form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-          form.messageDisplayed = true;
+          form._rootScope.$broadcast('BANNER.SHOW',form.saveResultMessages[2]);
       }).finally( () => {report.saving.setSaving(false);} );
   }
 }
 
 export default UalReportFormController;
+

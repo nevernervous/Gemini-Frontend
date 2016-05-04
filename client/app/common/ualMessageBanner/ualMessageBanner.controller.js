@@ -1,12 +1,11 @@
 class UalMessageBannerController {
   /*@ngInject*/
-  constructor() {
+  constructor($timeout) {
     this.name = 'UalMessageBanner';
+    this._timeout=$timeout;
   }
-  
-  hideMe(){
-      this.changeDisplay = false;
-  }
+
 }
 
 export default UalMessageBannerController;
+

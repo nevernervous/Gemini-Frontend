@@ -9,9 +9,9 @@ class ualReportNameModalController {
             report: Report
         };
     this.nameSelected = null;
-    
+
     this.duplicatedName = false;
-    
+
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
     this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
@@ -28,46 +28,49 @@ class ualReportNameModalController {
     let report = this.report;
     let form = this.form;
     let modal = this;
-    
+
     this.report.name.set(this.nameSelected);
     this._service.report.save(report).then(
         function(response){
-            form.saveResult = form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-            
+            form.saveResult = form.saveResultMessages[0]; form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
+
             report.reportId.set(response.data.id);
             form.messageDisplayed = true;
-            
+
             form.isNewReport = false;
             form.reportLoaded = true;
-            
+
             report.untouch();
             modal._closemodal(true);
         },
         function(response){
             report.name.set(null);
-            
+
             //UNEXPECTED ERROR
             if(!response.data || !response.data.errorMessages){
-                form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                form.saveResult = form.saveResultMessages[2];
+                //form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
                 form.messageDisplayed = true;
                 this._closemodal(false);
-            }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){ 
+            }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){
             //EXPECTED ERROR
-                form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                form.saveResult.msgText = response.data.errorMessage;
+                form.saveResult = form.saveResultMessages[2];
+                // form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+                // form.saveResult.msgText = response.data.errorMessage;
                 form.messageDisplayed = true;
-                
+
                 this._closemodal(false);
-            }else{ 
+            }else{
             //DUPLICATED NAME
                 modal.duplicatedName = true;
                 form.messageDisplayed = false;
             }
         }
     ).catch(function(){
-        form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
+        form.saveResult = form.saveResultMessages[2];
+        //form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
         form.messageDisplayed = true;
-        
+
         modal._closemodal(false);
     }).finally( () => {report.saving.setSaving(false);} );
   }
@@ -81,3 +84,4 @@ class ualReportNameModalController {
 }
 
 export default ualReportNameModalController;
+

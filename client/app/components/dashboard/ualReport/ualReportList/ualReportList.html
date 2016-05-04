@@ -1,24 +1,93 @@
 <div class="header">
-    <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
+  <div class="title">Reports</div>
+  <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
 </div>
 <div class="container">
-    <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
-      <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
-        {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">          
-         <div class="ual-table-row" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">    
-            <div class="column -link-report">
-                <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>
-            </div><div class="column">
-                {{item.dataSource}}
-            </div><div class="column">
-                {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm CT'}}
-            </div><div class="column -right-actions">
-                &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-ios-close-empty"></i>
-            </div>        
+  <ual-tabs class="-tabs-report">
+    <ual-tab ual-title="My Reports">
+      <div class="toolbar-section">
+        <div class="row-options" ng-style="{ 'visibility': (vm.selectedReports.length > 0 ? 'visible' : 'hidden')}">
+          <span class="-items-selected"> {{vm.selectedReports.length}} item selected </span>
+          <span class="-icon-option" ng-click="vm.deleteSelected()">
+            <i class="ion-ios-trash-outline"></i> <span>Delete</span>
+          </span>
+          <span class="-icon-option">
+            <i class="ion-ios-copy-outline"></i> <span>Copy</span>
+          </span>
+          <span class="-icon-option">
+            <i class="ion-ios-download-outline"></i> <span>Export</span>
+          </span>
         </div>
-      </ual-table>
-      <div class="empty-list" ng-hide="(vm.reports).length > 0">
-        No report exists
+        <div class="row-count">
+          <ual-label-count total-rows="{{(vm.reports).length}}" label-text="reports available"></ual-label-count>
+        </div>
       </div>
-    </div>    
+      <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" id="content-list">
+        <table class="table-reports">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th class="-sortable">
+                Report name <i class="ion-ios-arrow-up" ng-if="((vm.predicate == column.orderBy) && vm.reverse && column.orderBy != '')"></i>
+                <i class="ion-ios-arrow-down" ng-if="((vm.predicate == column.orderBy) && !vm.reverse && column.orderBy != '')"></i>
+              </th>
+              <th class="-sortable">
+                Data source <i class="ion-ios-arrow-up" ng-if="((vm.predicate == column.orderBy) && vm.reverse && column.orderBy != '')"></i>
+                <i class="ion-ios-arrow-down" ng-if="((vm.predicate == column.orderBy) && !vm.reverse && column.orderBy != '')"></i>
+              </th>
+              <th class="-modification-date -sortable">
+                Last modification date <i class="ion-ios-arrow-up" ng-if="((vm.predicate == column.orderBy) && vm.reverse && column.orderBy != '')"></i>
+                <i class="ion-ios-arrow-down" ng-if="((vm.predicate == column.orderBy) && !vm.reverse && column.orderBy != '')"></i>
+              </th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-class="{ '-selected': vm.isSelected(item.id)}" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">
+              <td class="column -checkbox">
+                  <ual-checkbox ng-click="vm.toggleReport(item.id)" is-checked="vm.isSelected(item.id)"></ual-checkbox>
+              </td>
+              <td id="reportNameContainer_{{item.id}}" class="-link-report" ng-mouseover="vm.showTooltipName(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltipName(item.id)">
+                <div class="tooltip-sibling"><a id="reportNameItem_{{item.id}}" ui-sref="dashboard.report-edit({id: item.id})">{{item.name}}</a></div>
+                <ual-tooltip id="tooltipName_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
+                             ual-tooltip-options="{ top: vm.reportNameOffsetTop(item.id), right: vm.reportNameOffsetRight(item.id) }"
+                             ual-tooltip-container="vm.reportNameContainer(item.id)">
+                  {{item.name}}
+                </ual-tooltip>
+              </td>
+              <td id="reportDataSourceContainer_{{item.id}}" ng-mouseover="vm.showTooltipDataSource(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltipDataSource(item.id)">
+                <div><span id="reportDataSourceItem_{{item.id}}">{{item.dataSource}}</span></div>
+                <ual-tooltip id="tooltipDataSource_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
+                             ual-tooltip-options="{ top: vm.reportDataSourceOffsetTop(item.id), right: vm.reportDataSourceOffsetRight(item.id) }"
+                             ual-tooltip-container="vm.reportDataSourceContainer(item.id)">
+                  {{item.lastModification | date:'MM/dd/yy HH:mm CT'}}
+                  <br />
+                  <span ng-show="vm.reportNameHasEllipsis(item.id)">
+                    {{item.dataSource}}
+                  </span>
+                </ual-tooltip>
+              </td>
+              <td class="-modification-date">
+                {{item.lastModification | date:'MM/dd/yy HH:mm CT'}}
+              </td>
+              <td class="-right-actions">
+                &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-android-close" ng-click="vm.deleteReport(item)" ng-mouseover="vm.showDeleteTooltip(item.id)" ng-mouseleave="vm.hideDeleteTooltip()" ng-mousemove="vm.showDeleteTooltip(item.id)"></i>
+                <ual-tooltip class="-delete-tooltip" id="delete_{{item.id}}">Delete</ual-tooltip>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="empty-list" ng-hide="(vm.reports).length > 0">
+          No reports created.
+        </div>
+      </div>
+    </ual-tab>
+    <ual-tab ual-title="Shared Reports" is-enabled="false">
+
+    </ual-tab>
+    <ual-tab ual-title="Public Reports" is-enabled="false">
+
+    </ual-tab>
+  </ual-tabs>
+
 </div>

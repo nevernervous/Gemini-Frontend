@@ -148,30 +148,31 @@ class UalVariablesController {
   itemPosition(variable) {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
-  showTooltip(e){
-    let id = parseInt(e.target.id.match("span_(.*)")[1]);
-    let isSelectedVariable = null;
-    
-    if (this.selecteds.length > 0)   
-      isSelectedVariable = _.find(this.selecteds, { 'id' : id } ); 
-    
-    let span = $("#"+e.target.id);
-    let checkboxItem = span.parent().parent();
-    let offset = checkboxItem.offset();
-    let parentWidth = checkboxItem.width();
-    let childWidth = span.width();
-    let tooltip = span.first().next();
-
-    offset.left = (childWidth > parentWidth ?  parentWidth : (childWidth + 23)) + offset.left;
-    offset.top -= ((tooltip.height() / 2) - ((checkboxItem.height() / 2) ) );
-    offset.top = parseInt(offset.top) + (window.isIE ? 4 : 5);
-
-    tooltip.removeClass("-hide-tooltip").addClass("-show-tooltip");
-    tooltip.css(offset);
+  showTooltip(id){
+    let tooltip = $("#tooltip_"+id);
+    tooltip.prop("ual-tooltip-show", true);
+  }
+  hideTooltip(){
+    $(".-tooltip").removeClass("-show-tooltip");
+    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
 
-  hideTooltip(){
-    $(".-show-tooltip").removeClass("-show-tooltip").addClass("-hide-tooltip");
+  datasourceHasEllipsis(id){
+    let container = $("#variable_" + id);
+    let sibling = $("#span_" + id);
+    return (window.isIE) ? ((sibling.outerWidth(true)+45) >= container.width()) : (sibling.width() > container.width());
+  }
+
+  datasourceContainer(id){
+    return (this.datasourceHasEllipsis(id)) ? "variable_" + id : "span_" + id;
+  }
+
+  datasourceOffsetRight(id){
+    return (this.datasourceHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
+  }
+
+  datasourceOffsetTop(id){
+    return (this.datasourceHasEllipsis(id)) ? 4 : -3;
   }
 
   apply() {
