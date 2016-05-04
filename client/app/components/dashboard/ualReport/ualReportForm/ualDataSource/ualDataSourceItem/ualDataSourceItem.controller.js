@@ -22,7 +22,7 @@ class UalDataSourceItemController {
     this._ualTooltipService.show({
       container:this.datasourceContainer(),
       text:this.datasourceItem.description,
-      position:"left",
+      position:"left"
     })
   }
 

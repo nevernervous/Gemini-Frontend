@@ -74,7 +74,7 @@ let ualTooltipService = function () {
     }
 
     //SHOW:
-    tooltip.css('display','block');
+    tooltip.css('display','flex');
 
   }
 
