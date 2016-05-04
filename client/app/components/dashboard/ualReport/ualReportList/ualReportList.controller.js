@@ -30,6 +30,11 @@ class UalReportListController {
       }
     }
     this.order = 'modificationDate';
+
+    this.saveResultMessages = [
+      { type: "-success", text: "Item(s) deleted successfully." },
+      { type: "-error", text: "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator." }
+    ];
   }
 
   orderBy(param) {
@@ -119,6 +124,70 @@ class UalReportListController {
 
   tooltipOffsetLeft() {
     return window.isIE ? 15 : -15;
+  }
+
+  reportDataSourceOffsetTop(id) {
+    return window.isIE ? -3 : 7;
+  }
+
+  isSelected(reportId) {
+    return _.some(this.selectedReports, { id: reportId });
+  }
+
+  toggleReport(reportId) {
+    if (!_.some(this.selectedReports, { id: reportId })) {
+      let selected = _.find(this.reports, { id: reportId });
+      this.selectedReports.push(selected);
+    } else {
+      _.remove(this.selectedReports, { id: reportId });
+    }
+  }
+
+  deleteSelected() {
+    this._deletereportmodal.open()
+      .then(response => {
+        if (response) {
+          let ids = _.map(this.selectedReports, 'id');
+          this._reportService.remove(ids)
+            .then((reply) => {
+              _.remove(this.reports, (item) => {
+                return _.contains(ids, item.id);
+              });
+              this.selectedReports = [];
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+            }, (reply) => {
+              if (!reply.data || !reply.data.errorMessages) {
+                this.saveResult = this.saveResultMessages[1];
+              } else {
+                this.saveResult = reply.data.errorMessage;
+              }
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
+            })
+            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+        }
+      });
+  }
+
+  deleteReport(report) {
+    this._deletereportmodal.open()
+      .then(response => {
+        if (response) {
+          this._reportService.remove(report.id)
+            .then((reply) => {
+              _.remove(this.reports, { id: report.id });
+              _.remove(this.selectedReports, { id: report.id });
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+            }, (reply) => {
+              if (!reply.data || !reply.data.errorMessages) {
+                this.saveResult = this.saveResultMessages[1];
+              } else {
+                this.saveResult = reply.data.errorMessage;
+              }
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
+            })
+            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+        }
+      });
   }
 
 }

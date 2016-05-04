@@ -8,6 +8,20 @@
     <tabs-content>
       <ual-tab ual-title="My Reports">
         <div class="list-info">
+          <div class="toolbar-section">
+            <div class="row-options" ng-style="{ 'visibility': (vm.selectedReports.length > 0 ? 'visible' : 'hidden')}">
+              <span class="-items-selected"> {{vm.selectedReports.length}} item(s) selected </span>
+              <span class="-icon-option" ng-click="vm.deleteSelected()">
+                <i class="ion-ios-trash-outline"></i> <span>Delete</span>
+              </span>
+              <span class="-icon-option -disabled">
+                <i class="ion-ios-copy-outline"></i> <span class="-disabled">Copy</span>
+              </span>
+              <span class="-icon-option -disabled">
+                <i class="ion-ios-download-outline"></i> <span class="-disabled">Export</span>
+              </span>
+            </div>
+          </div>
           <label class="list-count">Reports: <strong>{{vm.total}} Reports Available</strong></label>
         </div>
         <div class="list-content">
