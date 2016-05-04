@@ -1,6 +1,6 @@
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualHub) {
     this._rootScope = $rootScope;
     this.reports = [];
     this.selectedReports = [];
@@ -9,6 +9,28 @@ class UalReportListController {
 
     this.predicate = 'lastModificationDate';
     this.reverse = true;
+
+    let myHub = new ualHub("chat", {
+      listeners: {
+          sendReport: (message) => {
+            $('#messages').append('<li>' + message + '</li>');
+          },
+          joined: (message) => {
+            console.log("joined " + message)
+          }
+      },
+      rootPath: "http://localhost:8098/signalr",
+      methods: ["joinRoom", "updateReport", "updateReportToRoom"],
+      errorHandler: (error) => {
+        console.error("Error handled" + error);
+        console.dir(error);
+      },
+      transport: "longPolling",
+      stateChanged: (state) => {
+        console.log("New state" + state);
+        console.dir(state);
+      }
+    });
 
     this.saveResult = null;
 

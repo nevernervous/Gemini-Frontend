@@ -19,6 +19,7 @@ import 'lodash';
 import $ from 'jquery';
 import customScroll from './vendors/jquery.mCustomScrollbar.concat.min.js';
 import localStorage from './vendors/localStorage.js';
+import './vendors/jquery.signalr-2.2.0.js';
 import JtDro from './vendors/JtDro.js';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
