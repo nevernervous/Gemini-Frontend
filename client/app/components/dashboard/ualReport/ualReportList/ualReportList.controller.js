@@ -157,6 +157,7 @@ class UalReportListController {
                 return _.contains(ids, item.id);
               });
               this.selectedReports = [];
+              this.refresh();
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {
@@ -179,6 +180,7 @@ class UalReportListController {
             .then((reply) => {
               _.remove(this.reports, { id: reportId});
               _.remove(this.selectedReports, { id: reportId });
+              this.refresh();
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {

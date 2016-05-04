@@ -7,7 +7,7 @@
         Select Data Source
     </div>
     <div class="search-area">
-        <ual-input value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.columnCount()" ual-debounce="'500'"></ual-input>
+        <ual-input class="search-box" value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.columnCount()" ual-debounce="'500'"></ual-input>
         <ual-data-source-label datasource-selected="vm.selected"></ual-data-source-label>
     </div>
     <div class="loading-message" ng-show="!vm.datasources ">Loading ...</div>
