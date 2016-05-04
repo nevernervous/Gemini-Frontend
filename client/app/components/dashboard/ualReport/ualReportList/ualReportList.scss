@@ -27,11 +27,12 @@ ual-report-list {
         }
 
         .-icon-option {
-          &.-delete{
-            cursor: pointer;
-            span {
-              @include link()
-            }
+          cursor: pointer;
+          &.-disabled{
+            cursor: default;
+          }
+          span {
+            @include link();
           }
           i {
             color: $color07;
@@ -40,9 +41,6 @@ ual-report-list {
             vertical-align: middle;
             @include font-clanot-book(32);
           }
-
-
-
         }
       }
 
