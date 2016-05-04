@@ -66,12 +66,12 @@
         display: none;
         float: right;
         padding-right: 7px;
-        margin-top: -33px;
+        margin-top: -31px;
         @include -moz-browser(){
             margin-top: -30px;
         }
         @include -ms-browser(){
-            margin-top: -28px;
+            margin-top: -27px;
         }
         color: $alertHighColor;
         font-size: 23px;
