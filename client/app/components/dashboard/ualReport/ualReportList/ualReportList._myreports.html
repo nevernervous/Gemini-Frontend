@@ -1,9 +1,20 @@
 <tr>
-  <td class="-expand -link -left" >
-    <a ui-sref="dashboard.report-edit({id: ${item.id}})">${item.name}</a>
+  <td id="reportNameContainer_${item.id}" class="-expand -check -link -left -ellipsis" ng-mouseover="vm.showTooltip('reportNameContainer_${item.id}', 'reportNameItem_${item.id}', 'tooltipName_${item.id}', false)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip('reportNameContainer_${item.id}', 'reportNameItem_${item.id}', 'tooltipName_${item.id}', false)">
+    <ual-checkbox></ual-checkbox>
+    <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})">${item.name}</a>
+    <ual-tooltip id="tooltipName_${item.id}" class="-tooltip -fade-in" ual-tooltip-show="false"
+                 ual-tooltip-options="{ top: '0', right: vm.tooltipOffsetRight('reportNameContainer_${item.id}', 'reportNameItem_${item.id}') }"
+                 ual-tooltip-container="vm.tooltipContainer('reportNameContainer_${item.id}', 'reportNameItem_${item.id}')">
+      ${item.name}
+    </ual-tooltip>
   </td>
-  <td class="-shrink -left">
-    ${item.dataSource}
+  <td id="reportDataSourceContainer_${item.id}" class="-shrink -left" ng-mouseover="vm.showTooltip('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}', 'tooltipDataSource_${item.id}', true)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}', 'tooltipDataSource_${item.id}', true)">
+    <span id="reportDataSourceItem_${item.id}">${item.dataSource}</span>
+    <!--<ual-tooltip id="tooltipDataSource_${item.id}" class="-tooltip -fade-in" ual-tooltip-show="false"
+                 ual-tooltip-options="{ top: '-3', right: vm.tooltipOffsetRight('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}'), left: vm.tooltipOffsetLeft() }"
+                 ual-tooltip-container="vm.tooltipContainer('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}')">
+      {{ '${item.dataSourceRefreshDate}' | date:'MM/dd/yy HH:mm CT' }}
+    </ual-tooltip>-->
   </td>
   <td class="-date -left">
     {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm CT' }}

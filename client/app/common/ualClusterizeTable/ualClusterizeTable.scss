@@ -14,22 +14,27 @@
     padding: 0 35px;
     height: 36px;
     max-height: 36px;
+    width: auto;
     &:last-child {
       padding: 0 5px;
     }
 
     // TYPE
+    &.-check {
+      padding: 0 35px 0 10px;
+    }
     &.-expand {
-      width: 100%;
+      width: 99%;
     }
     &.-shrink {
       white-space: nowrap;
     }
     &.-date {
-      min-width: 270px;
-      @include -moz-browser() {
-        min-width: 295px;
-      }
+      min-width: 200px;
+    }
+    &.-ellipsis > * {
+      position: relative;
+      top: 8px;
     }
 
     // ALIGN
@@ -85,16 +90,17 @@
     &.-link, &.-link a {
       @include link();
     }
-    &.-actions {
-      opacity: 0;
-      > .-action {
-        margin-left: 20px;
-        font-size: 20px;
-        display: inline-block;
-        &:last-child {
-          margin-left: 25px;
-          cursor: pointer;
-        }
+    &.-ellipsis {
+      @include ellipses();
+      display: inline-block;
+    }
+    &.-actions > .-action {
+      margin-left: 20px;
+      font-size: 20px;
+      display: inline-block;
+      &:last-child {
+        margin-left: 25px;
+        cursor: pointer;
       }
       ual-tooltip {
         display: none;
@@ -136,11 +142,22 @@
   }
   .clusterize-content tr:hover {
     background-color: $other10;
-    .-actions {
-      opacity: 1;
-      .-action:hover ual-tooltip {
-        display: block;
-      }
+    .-actions .-action:hover ual-tooltip {
+      display: block;
+    }
+    ual-checkbox {
+      visibility: visible;
+    }
+    .-link, .-link a {
+      color: $color06;
+    }
+  }
+  .clusterize-no-data {
+    @include font-clanot-book(14);
+    color: $color07;
+    border-bottom: none;
+    &:hover {
+      background-color: $color00; //TODO: No toma el background
     }
   }
 }

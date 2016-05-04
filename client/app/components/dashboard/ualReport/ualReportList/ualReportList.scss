@@ -23,13 +23,32 @@ ual-report-list {
     }
     .list-content {
       //@include gridle( row row-align right);
+      width: 100%;
       position: absolute;
       margin: 15px 0 0;
       height: calc(100% - 100px);
       width: 100%;
       table {
+        width: 100%;
+        ual-checkbox {
+          visibility: hidden;
+
+          input:checked + label {
+            visibility: visible;
+          }
+        }
+        .-date {
+          min-width: 270px;
+          width: 270px;
+          @include -moz-browser() {
+            min-width: 295px;
+            width: 295px;
+          }
+        }
         .-actions {
           min-width: 200px;
+          //max-width: 200px;
+          width: 200px;
         }
       }
     }

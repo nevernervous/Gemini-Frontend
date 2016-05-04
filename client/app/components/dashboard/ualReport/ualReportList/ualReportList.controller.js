@@ -91,16 +91,11 @@ class UalReportListController {
     );
   }
 
-  showTooltipName(id) {
-    if (this.reportNameHasEllipsis(id)) {
-      let tooltip = $("#tooltipName_" + id);
+  showTooltip(container, sibling, tooltipName, validate) {
+    if (this.itemHasEllipsis(container, sibling) || validate) {
+      let tooltip = $("#" + tooltipName);
       tooltip.prop("ual-tooltip-show", true);
     }
-  }
-
-  showTooltipDataSource(id) {
-    let tooltip = $("#tooltipDataSource_" + id);
-    tooltip.prop("ual-tooltip-show", true);
   }
 
   hideTooltip() {
@@ -108,41 +103,24 @@ class UalReportListController {
     $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
 
-  reportNameHasEllipsis(id) {
-    let container = $("#reportNameContainer_" + id);
-    let sibling = $("#reportNameItem_" + id);
-    return (window.isIE) ? ((sibling.outerWidth(true) + 45) >= container.width()) : (sibling.width() > container.width());
+  itemHasEllipsis(container, sibling) {
+    let _container = $("#" + container);
+    let _sibling = $("#" + sibling);
+    return (window.isIE) ? ((_sibling.outerWidth(true) + 45) >= _container.width()) : (_sibling.width() > _container.width());
   }
 
-  reportNameContainer(id) {
-    return (this.reportNameHasEllipsis(id)) ? "reportNameContainer_" + id : "reportNameItem_" + id;
+  tooltipContainer(container, sibling) {
+    return (this.itemHasEllipsis(container, sibling)) ? container : sibling;
   }
 
-  reportNameOffsetRight(id) {
-    return (this.reportNameHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
+  tooltipOffsetRight(container, sibling) {
+    return (this.itemHasEllipsis(container, sibling)) ? (window.isIE ? -20 : -30) : 15;
   }
 
-  reportNameOffsetTop(id) {
-    return (this.reportNameHasEllipsis(id)) ? 0 : -3;
+  tooltipOffsetLeft() {
+    return window.isIE ? 15 : -15;
   }
 
-  reportDataSourceHasEllipsis(id) {
-    let container = $("#reportDataSourceContainer_" + id);
-    let sibling = $("#reportDataSourceItem_" + id);
-    return (window.isIE) ? ((sibling.outerWidth(true) + 45) >= container.width()) : (sibling.width() > container.width());
-  }
-
-  reportDataSourceContainer(id) {
-    return (this.reportDataSourceHasEllipsis(id)) ? "reportDataSourceContainer_" + id : "reportDataSourceItem_" + id;
-  }
-
-  reportDataSourceOffsetRight(id) {
-    return (this.reportDataSourceHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
-  }
-
-  reportDataSourceOffsetTop(id) {
-    return (this.reportDataSourceHasEllipsis(id)) ? 1 : -3;
-  }
 }
 
 export default UalReportListController;
