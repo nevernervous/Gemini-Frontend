@@ -4,16 +4,19 @@ import myreports from './ualReportList._myreports.html';
 class UalReportListController {
   /*@ngInject*/
 
-  constructor(Report) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
+    this._rootScope = $rootScope;
 
     this._services = {
       report: Report
     };
 
     this.reports = [];
+    this.selectedReports = [];
     this.rows = [];
     this.total = 0;
     this.loading = true;
+    this._deletereportmodal = ualReportListDeleteReportModal;
 
     this.orders = {
       'name': {
@@ -148,7 +151,7 @@ class UalReportListController {
       .then(response => {
         if (response) {
           let ids = _.map(this.selectedReports, 'id');
-          this._reportService.remove(ids)
+          this._services.report.remove(ids)
             .then((reply) => {
               _.remove(this.reports, (item) => {
                 return _.contains(ids, item.id);
@@ -168,14 +171,14 @@ class UalReportListController {
       });
   }
 
-  deleteReport(report) {
+  deleteReport(reportId) {
     this._deletereportmodal.open()
       .then(response => {
         if (response) {
-          this._reportService.remove(report.id)
+          this._services.report.remove(reportId)
             .then((reply) => {
-              _.remove(this.reports, { id: report.id });
-              _.remove(this.selectedReports, { id: report.id });
+              _.remove(this.reports, { id: reportId});
+              _.remove(this.selectedReports, { id: reportId });
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {

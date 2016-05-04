@@ -20,39 +20,37 @@ ual-report-list {
 
       }
       .toolbar-section {
-        @include gridle( row row-align between middle);
+        @include font-clanot-book(16);
+        white-space: nowrap;
 
-        .row-options {
-          @include font-clanot-book(16);
-          @include gridle(8);
+        .-items-selected {
+          @include font-clanot-bold(16);
+          padding-right: 4%;
+          padding-left: 10px;
+        }
 
-          .-items-selected {
-            @include font-clanot-bold(16);
-            padding-right: 4%;
-            padding-left: 10px;
+        .-icon-option {
+          cursor: pointer;
+          &.-disabled{
+            cursor: default;
           }
-
-          .-icon-option {
-            cursor: pointer;
-            &.-disabled{
-              cursor: default;
-            }
-            span {
-              @include link();
-            }
-            i {
-              color: $color07;
-              padding-left: 14px;
-              padding-right: 6px;
-              vertical-align: middle;
-              @include font-clanot-book(32);
-            }
+          span {
+            @include link();
+          }
+          i {
+            color: $color07;
+            padding-left: 14px;
+            padding-right: 6px;
+            vertical-align: middle;
+            @include font-clanot-book(32);
           }
         }
       }
+      .list-count {
+      }
     }
     .list-info {
-      @include gridle( row row-align right);
+      @include gridle( row row-align between middle);
       margin: 20px 0 0;
     }
     .list-content {
