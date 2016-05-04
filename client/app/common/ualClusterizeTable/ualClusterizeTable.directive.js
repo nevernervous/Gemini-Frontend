@@ -22,7 +22,7 @@ class ualClusterizeTableDirective {
       contentId: 'contentArea',
       callbacks: {
         clusterChanged: function() {
-          clusterize && refresh();
+          clusterize && recompile();
         }
       }
     });
@@ -31,25 +31,24 @@ class ualClusterizeTableDirective {
     $('.clusterize-scroll .empty').html(attr.emptyMessage);
 
     // ADJUST COLUMNS HEADERS WIDTH
-    let header = $('#headersArea tr th.-shrink');
-    let shrinks = () => {
-      let row = $('#contentArea tr td.-shrink');
+    let resize = (clazz, action) => {
+      let header = $('#headersArea tr th.' + clazz);
+      let style = (action === 'min') ? 'max-width' : 'min-width';
+
+      let row = $('#contentArea tr td.' + clazz);
       if ( row.outerWidth() ) {
-        let max = Math.max(header.outerWidth(), row.outerWidth());
-        header.css('min-width', max+'px');
-        row.css('min-width', max+'px');
+        let size = Math[action](header.outerWidth(), row.outerWidth());
+        header.css(style, size+'px');
+        row.css(style, size+'px');
       }
     }
+
     // COMPILE ANGULAR ROWS
     let recompile = () => {
       let content_elem = angular.element(clusterize.content_elem);
       ctrl._compile(content_elem.contents())($scope);
-    }
-
-    // REFRESH
-    let refresh = () => {
-      recompile();
-      shrinks();
+      resize('-shrink', 'max');
+      resize('-expand', 'min');
     }
 
     // WATCH ROWS CHANGES
@@ -60,7 +59,7 @@ class ualClusterizeTableDirective {
       clusterize.update($scope.vm.rows);
     });
 
-    refresh();
+    recompile();
   }
 
 }

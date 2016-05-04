@@ -32,10 +32,6 @@
     &.-date {
       min-width: 200px;
     }
-    &.-ellipsis > * {
-      position: relative;
-      top: 8px;
-    }
 
     // ALIGN
     &.-right {
@@ -58,6 +54,7 @@
     }
     height: calc(100% - 40px);
     overflow-y: scroll;
+    overflow-x: hidden;
     padding-bottom: 1px; // SHOWS LAST ITEM LINE
   }
   .loading {
@@ -91,8 +88,10 @@
       @include link();
     }
     &.-ellipsis {
-      @include ellipses();
-      display: inline-block;
+      div {
+        @include ellipses();
+      }
+
     }
     &.-actions > .-action {
       margin-left: 20px;
