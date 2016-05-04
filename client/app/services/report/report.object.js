@@ -186,7 +186,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
         , hasChange: () => {
           let _unchanged = (unchangedName) ? unchangedName.toLowerCase() : "";
           let _actual = (object.name) ? object.name.toLowerCase() : "";
-          console.log(_unchanged == _actual);
           return _unchanged == _actual;
         }
       }
