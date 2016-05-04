@@ -27,6 +27,12 @@ ual-report-list {
         }
 
         .-icon-option {
+          &.-delete{
+            cursor: pointer;
+            span {
+              @include link()
+            }
+          }
           i {
             color: $color07;
             padding-left: 14px;
@@ -35,11 +41,8 @@ ual-report-list {
             @include font-clanot-book(32);
           }
 
-          span {
-            @include link()
-          }
 
-          cursor: pointer;
+
         }
       }
 
@@ -235,7 +238,7 @@ ual-report-list {
         }
 
         &:hover {
-          cursor: pointer;
+          // cursor: pointer;
           background-color: $color10;
           .-checkbox {
             visibility: visible;
