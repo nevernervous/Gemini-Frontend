@@ -83,7 +83,7 @@ ual-tooltip.-top {
   @include font-clanot-news(12);
   display: flex;
   text-align: center;
-  padding: 5px;
+  padding: 13px 4px;
   //width: 226px;
   cursor: default;
 
@@ -98,10 +98,10 @@ ual-tooltip.-top {
     height: 0;
     position: absolute;
     right: 41%;
-    bottom: -8px;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-top: 8px solid $color08;
+    bottom: -6px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid $color08;
   }
 }
 
