@@ -1,4 +1,5 @@
 @import '../common';
+@import '../ionicons/scss/ionicons';
 
 // LAYOUT
 .ual-clusterize-table {
@@ -25,7 +26,10 @@
       white-space: nowrap;
     }
     &.-date {
-      min-width: 250px;
+      min-width: 270px;
+      @include -moz-browser() {
+        min-width: 295px;
+      }
     }
 
     // ALIGN
@@ -44,28 +48,53 @@
     @include -ms-browser() {
       padding-right: 0;
     }
+    @include -moz-browser() {
+      padding-right: 0;
+    }
     height: calc(100% - 40px);
     overflow-y: scroll;
     padding-bottom: 1px; // SHOWS LAST ITEM LINE
+  }
+  .loading {
+    height: 100%;
+  }
+  .empty {
+    position: relative;
+    text-align: center;
+    top: calc(50% - 14px);
   }
 }
 
 // VARIANT
 .ual-clusterize-table {
-  td, th {
+  thead tr {
+    border-top: 1px solid $color08;
+    @include font-clanot-news(16);
+    color: $color06;
+  }
+  tr {
     border-bottom: 1px solid $color08;
-
+    @include font-clanot-book(14);
+    color: $color06;
+    &.clusterize-no-data {
+      border: none;
+    }
+  }
+  td {
     // STYLE
     &.-link, &.-link a {
       @include link();
     }
-    &.-actions > .-action {
-      margin-left: 20px;
-      font-size: 20px;
-      display: inline-block;
-      &:last-child {
-        margin-left: 25px;
-        cursor: pointer;
+    &.-actions {
+      opacity: 0;
+      > .-action {
+        margin-left: 20px;
+        font-size: 20px;
+        display: inline-block;
+        &:last-child {
+          margin-left: 25px;
+          cursor: pointer;
+        }
       }
       ual-tooltip {
         display: none;
@@ -73,9 +102,16 @@
     }
   }
   th {
-    border-top: 1px solid $color08;
-    @include font-clanot-news(16);
-    color: $color06;
+    i {
+      margin-left: 10px;
+    }
+    &.-order.-asc i {
+      @extend .ion-ios-arrow-up;
+    }
+    &.-order.-desc i {
+      @extend .ion-ios-arrow-down;
+    }
+
     &:hover {
       cursor: pointer;
       background-color: $color08;
@@ -85,12 +121,18 @@
       background: none;
     }
   }
-  td {
+  .loading {
+    background:url(spinner_blue.gif) center center no-repeat;
+    background-size: 50px 50px;
+    display: none;
+  }
+  .empty {
     @include font-clanot-book(14);
-    color: $color06;
-    &.-actions {
-      opacity: 0;
-    }
+    color: $color07;
+    display: none;
+  }
+  .clusterize-no-data {
+    display: none;
   }
   .clusterize-content tr:hover {
     background-color: $other10;
@@ -100,5 +142,21 @@
         display: block;
       }
     }
+  }
+}
+// VARIANT / LOADING
+.ual-clusterize-table.-loading {
+  .loading {
+    display: block;
+    height: 70px;
+  }
+  &.-empty .loading {
+    height: 100%;
+  }
+}
+// VARIANT / EMPTY
+.ual-clusterize-table.-empty:not(.-loading) {
+  .empty {
+    display: block;
   }
 }

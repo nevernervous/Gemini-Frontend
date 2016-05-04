@@ -1,21 +1,33 @@
-let reportService = function (Properties, ServicesTransform, $http, $q) {
+let reportService = function (Properties, ServicesHelper, ServicesTransform, $http, $q) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
+  const pageSize = 50;
 
-  let all = () => {
-    let transformation = [ServicesTransform.get('simple')];
-    return $http.get(endpoint, {
-      cache: Properties.cache,
-      transformResponse: ServicesTransform.generate(transformation)
-    });
+  let all = (fromPage, total, sortColumn, sortDirection) => {
+    let requests = [];
+    let current = (fromPage - 1) * pageSize;
+    while ( current < total ) {
+      requests.push(_query(fromPage, sortColumn, sortDirection));
+      fromPage++;
+      current = (fromPage - 1) * pageSize;
+    }
+
+    return ServicesHelper.serialize(requests);
   }
 
-  let query = (pageSize, pageNumber, sortColumn, sortDirection) => {
-    let transformation = [ServicesTransform.get('simple')];
-    return $http.get(`${endpoint}/${pageSize}/${pageNumber}/${sortColumn}/${sortDirection}`, {
-      cache: Properties.cache,
+  let first = (sortColumn, sortDirection) => {
+    let request = _query(1, sortColumn, sortDirection);
+    return $http(request);
+  }
+
+  let _query = (pageNumber, sortColumn, sortDirection) => {
+    let transformation = [ServicesTransform.get('noop')];
+    return {
+      method: 'GET',
+      url: `${endpoint}?PageNumber=${pageNumber}&PageSize=${pageSize}&SortColumn=${sortColumn}&SortDirection=${sortDirection}`,
+      cache: false,
       transformResponse: ServicesTransform.generate(transformation)
-    });
+    }
   }
 
   let getById = (reportId) => {
@@ -57,6 +69,7 @@ let reportService = function (Properties, ServicesTransform, $http, $q) {
   }
   return {
     all,
+    first,
     save: saveReport,
     getById
   };

@@ -27,6 +27,9 @@ class ualClusterizeTableDirective {
       }
     });
 
+    // EMPTY DATA
+    $('.clusterize-scroll .empty').html(attr.emptyMessage);
+
     // ADJUST COLUMNS HEADERS WIDTH
     let header = $('#headersArea tr th.-shrink');
     let shrinks = () => {

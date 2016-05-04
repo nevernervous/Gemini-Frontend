@@ -12,18 +12,40 @@ class UalReportListController {
 
     this.reports = [];
     this.rows = [];
+    this.total = 0;
+    this.loading = true;
 
-    //this.predicate = 'lastModificationDate';
-    //this.reverse = true;
+    this.orders = {
+      'name': {
+        attributes: ['name'],
+        direction: ['desc']
+      },
+      'dataSource': {
+        attributes: ['dataSource', 'modificationDate'],
+        direction: ['desc', 'desc']
+      },
+      'modificationDate': {
+        attributes: ['modificationDate'],
+        direction: ['desc']
+      }
+    }
+    this.order = 'modificationDate';
   }
 
-  order(param) {
-    // let rows = [];
-    // for (var i = 50; i > 0; i--) {
-    //   rows.push('<tr><td ng-click="vm.clickme(' + i + ')">' + i + '</td></tr>');
-    // }
-    // console.log("REORDER: " + param);
-    // this.rows = rows;
+  orderBy(param) {
+    // IF IS THE SAME && IS 'DESC', SO CHANGE TO 'ASC'. ELSE, USE 'DESC'
+    let direction = (this.order === param && (this.orders[this.order].direction[0] === 'desc')) ? 'asc' : 'desc';
+    this.order = param;
+    this.orders[this.order].direction[0] = direction;
+
+    this.refresh();
+  }
+  refresh() {
+    let _order = this.orders[this.order];
+    let _reports = _.sortByOrder(this.reports, _order.attributes, _order.direction);
+    this.rows = _.map(_reports, (item) => {
+      return _.template(myreports)({ item: item });
+    });
   }
 
   tooltip(id) {
@@ -36,18 +58,37 @@ class UalReportListController {
   }
 
   $onInit() {
-    let pageSize = 1,
-    pageNumber = 1,
-    sortColumn = 'lastModification',
-    sortDirection = 'Desc';
-    //this._services.report.query(pageSize, pageNumber, sortColumn, sortDirection)
-    this._services.report.all()
-      .then(response => {
-        this.reports = response.data
-        this.rows = _.map(this.reports, (item) => {
-          return _.template(myreports)({item: item});
-        });
-      });
+    // LOAD REPORTS
+    this.loading = true;
+    let _order = this.orders[this.order];
+    // LOAD REPORTS / FIRST PAGE
+    this._services.report.first('modificationDate', 'desc').then(
+      response => {
+        this.reports = response.data.data;
+        this.total = response.data.totalCount;
+        this.refresh();
+
+        // LOAD REPORTS / NEXT PAGES
+        return this._services.report.all(2, this.total, 'modificationDate', 'desc');
+      },
+      reason => {
+        console.log('error');
+        this.loading = false;
+      }
+    ).then(
+      () => {
+        this.loading = false;
+      },
+      (reason) => {
+        console.log('error');
+        this.loading = false;
+        this.refresh();
+      },
+      (response) => {
+        this.reports = this.reports.concat(response.data.data);
+        this.refresh();
+      }
+    );
   }
 
   showTooltipName(id) {
