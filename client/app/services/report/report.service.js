@@ -67,10 +67,35 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
       return $http.put(endpoint + "/" + report.reportId.get(), data);
     }
   }
+
+  let remove = (ids) => {
+    let transformation = [ServicesTransform.get('none')];
+    let request;
+    if (!_.isArray(ids)) {
+      let id = ids;
+      request = $http.delete(`${endpoint}/${id}`, {
+        cache: Properties.cache,
+        transformResponse: ServicesTransform.generate(transformation)
+      });
+    } else{
+      request = $http.delete(`${endpoint}`, {
+        cache: Properties.cache,
+        data: ids,
+        headers : {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        transformResponse: ServicesTransform.generate(transformation)
+      });
+    }
+
+    return request;
+  }
+
   return {
     all,
     first,
     save: saveReport,
+    remove,
     getById
   };
 };
