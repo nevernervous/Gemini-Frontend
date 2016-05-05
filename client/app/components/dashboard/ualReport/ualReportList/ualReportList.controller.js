@@ -66,7 +66,7 @@ class UalReportListController {
   }
 
   onScroll() {
-    console.log('GROSO');
+    this.hideTooltip();
   }
 
   $onInit() {
@@ -111,7 +111,7 @@ class UalReportListController {
   }
 
   hideTooltip() {
-    $(".-tooltip").removeClass("-show-tooltip");
+    $("ual-tooltip").removeClass("-show-tooltip");
     $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
 
