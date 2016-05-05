@@ -160,34 +160,25 @@ class UalReportListController {
     // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
   }
 
-  deleteMultiple() {
-    let ids = _.map(this.selectedReports, 'id');
-    this.deleteReport.apply(this, ids)
+  delete(reportId) {
+    let ids = !reportId ? _.map(this.selectedReports, 'id') : [reportId];
+    let totalDelete = ids.length;
+    this.confirmDelete(ids)
       .then((reply) => {
+        _.remove(this.selectedReports, (item) => {
+          return _.contains(ids, item.id);
+        });
         _.remove(this.reports, (item) => {
           return _.contains(ids, item.id);
         });
-        this.selectedReports = [];
-        this.total -= ids.length;
         this.refresh();
+        this.total -= totalDelete;
         // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
       }, (reply) => this.showError(reply))
       .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
   }
 
-  deleteSingle(reportId) {
-    this.deleteReport(reportId)
-      .then((reply) => {
-        _.remove(this.reports, { id: reportId });
-        _.remove(this.selectedReports, { id: reportId });
-        this.refresh();
-        this.total -= 1;
-        // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-      }, (reply) => this.showError(reply))
-      .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
-  }
-
-  deleteReport(...ids) {
+  confirmDelete(ids) {
     return this._deletereportmodal.open()
       .then(response => {
         if (response) {
