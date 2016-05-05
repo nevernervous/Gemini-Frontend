@@ -22,33 +22,23 @@ class UalReportListController {
   $onInit() {
     this._reportService.all()
       .then(response => this.reports = response.data);
+    this._signalR.subscribe("report", "sendReport", (message, report) => {
+      let bannerData = { type: "-success", text: message };
+      console.dir(report);
+      this._rootScope.$broadcast('BANNER.SHOW', bannerData);
+    });
   }
 
-  unsubscribeEvent(){
+  $onDestroy() {
+    console.log("Destroing ReportList.Controller");
     this._signalR.unsubscribe("report", "sendReport");
   }
 
-  sendMessageSocket() {
-    let reportData = {
-      Name: "Something",
-      ReportId: 2,
-      Variables: [
-        {
-          VariableId: 1,
-          Name: "Variable 10"
-        },
-        {
-          VariableId: 10,
-          Name: "Variable 10"
-        }
-      ]
-    }
-    this._signalR.invoke("report", "updateReport", "Un Mensaje de lejos", reportData).done(() => {
-      this._signalR.subscribe("report", "sendReport", (message, report) => {
-        console.log("Received message");
-      })
-    })
+  sendMessage() {
+    this._signalR.notify("report", "updateReport", "Nuevo Reporte desde Gemini", {})
   }
+
+
 
   isSelected(reportId) {
     return _.some(this.selectedReports, { id: reportId });

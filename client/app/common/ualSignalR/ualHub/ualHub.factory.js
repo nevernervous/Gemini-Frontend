@@ -29,8 +29,6 @@ let UalHubFactory = function () {
   }
 
   return function (hubName, {
-    listeners,
-    methods,
     endpoint,
     queryParams,
     errorHandler,

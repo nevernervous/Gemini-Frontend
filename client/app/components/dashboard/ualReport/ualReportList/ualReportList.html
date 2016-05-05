@@ -12,14 +12,14 @@
             <i class="ion-ios-trash-outline"></i> <span>Delete</span>
           </span>
           <span class="-icon-option">
-            <i class="ion-ios-copy-outline" ng-click="vm.sendMessageSocket()"></i> <span>Copy</span>
+            <i class="ion-ios-copy-outline"></i> <span>Copy</span>
           </span>
           <span class="-icon-option">
-            <i class="ion-ios-download-outline" ng-click="vm.unsubscribeEvent()"></i> <span>Export</span>
+            <i class="ion-ios-download-outline"></i> <span>Export</span>
           </span>
         </div>
         <div class="row-count">
-          <ual-label-count total-rows="{{(vm.reports).length}}" label-text="reports available"></ual-label-count>
+          <ual-label-count total-rows="{{(vm.reports).length}}" ng-click="vm.sendMessage()" label-text="reports available"></ual-label-count>
         </div>
       </div>
       <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" id="content-list">

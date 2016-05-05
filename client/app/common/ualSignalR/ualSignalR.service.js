@@ -2,6 +2,10 @@ let UalSignalRService = function (Properties, ualHub) {
   "ngInject";
   let hubs = new Map();
 
+  let options = _.defaults(Properties["signalR"], {
+    errorHandler: _onError,
+    stateChanged: _onStateChanged
+  });
   let _onError = (error) => {
     console.log("On Error")
   }
@@ -9,11 +13,6 @@ let UalSignalRService = function (Properties, ualHub) {
   let _onStateChanged = (states) => {
     console.log("On State Changed");
   }
-
-  let options = _.defaults(Properties["setting.signalR"], {
-    errorHandler: _onError,
-    stateChanged: _onStateChanged
-  });
 
   let _createHub = (hubName) => {
     return new ualHub(hubName, _.defaults(options))
@@ -36,10 +35,6 @@ let UalSignalRService = function (Properties, ualHub) {
     hub.off(event);
   }
 
-  let getHub = (hubName) => {
-    return _getHubConnection(hubName);
-  }
-
   let invoke = (hubName, serverMethod, ...params) => {
     let hub = _getHubConnection(hubName);
     return hub.onConnect.then(() => {
@@ -52,8 +47,7 @@ let UalSignalRService = function (Properties, ualHub) {
   return {
     subscribe,
     unsubscribe,
-    invoke,
-    getHub
+    notify: invoke
   }
 }
 
