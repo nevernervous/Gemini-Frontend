@@ -31,6 +31,7 @@ import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
 import '@iamadamjowett/angular-click-outside/clickoutside.directive';
 import 'angular-q-spread/src/q-spread';
+import Clusterize from 'clusterize.js';
 
 import './common/fonts/clanot/clanot.scss';
 
@@ -38,6 +39,7 @@ import './app.scss';
 import 'normalize.css';
 
 window.$ = $;
+window.Clusterize = Clusterize;
 window.customScroll = customScroll;
 window.customScroll(window.$);
 console.log("JtDro: " + !!JtDro);

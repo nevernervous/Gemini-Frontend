@@ -33,7 +33,7 @@
   <div class="section aggregations-values">
     <div class="aggregation-search">
       <span class="-label">Aggregate by</span>
-      <ual-input on-focus="vm.showDropdown()" id="inputDropdown" ng-style="vm.inputStyle" value="vm.search.name" icon="ion-ios-search-strong">
+      <ual-input class="-dropdown" on-focus="vm.showDropdown()" id="inputDropdown" ng-style="vm.inputStyle" value="vm.search.name" icon="ion-ios-search-strong">
         <div ng-if="vm.aggregators">
           <ual-dropdown filter='vm.search' ng-style="vm.dropDownStyle" click-outside="vm.hideDropdown()" outside-if-not="inputDropdown">
             <ual-dropdown-messages>
