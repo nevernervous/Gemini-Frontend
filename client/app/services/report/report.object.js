@@ -184,7 +184,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
         get: getName
         , set: setName
         , hasChange: () => {
-          return unchangedName == name;
+          let _unchanged = (unchangedName) ? unchangedName.toLowerCase() : "";
+          let _actual = (object.name) ? object.name.toLowerCase() : "";
+          return _unchanged == _actual;
         }
       }
       , datasource: {
