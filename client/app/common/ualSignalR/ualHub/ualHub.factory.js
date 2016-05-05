@@ -3,10 +3,10 @@ let UalHubFactory = function () {
   let globalConnections = [];
 
 
-  function initNewConnection(rootPath, logging) {
+  function _initNewConnection(endpoint, logging) {
     var connection = null;
-    if (rootPath) {
-      connection = $.hubConnection(rootPath, {
+    if (endpoint) {
+      connection = $.hubConnection(endpoint, {
         useDefaultPath: false
       });
     } else {
@@ -17,22 +17,22 @@ let UalHubFactory = function () {
     return connection;
   }
 
-  function getConnection(useSharedConnection, rootPath, logging) {
+  function _getConnection(useSharedConnection, endpoint, logging) {
     if (useSharedConnection) {
       console.log("Shared connection");
-      return typeof globalConnections[rootPath] === 'undefined' ?
-        globalConnections[rootPath] = initNewConnection(rootPath, logging) :
-        globalConnections[rootPath];
+      return typeof globalConnections[endpoint] === 'undefined' ?
+        globalConnections[endpoint] = _initNewConnection(endpoint, logging) :
+        globalConnections[endpoint];
     } else {
       console.log("New connection");
-      return initNewConnection(rootPath, logging);
+      return _initNewConnection(endpoint, logging);
     }
   }
 
   return function (hubName, {
     listeners,
     methods,
-    rootPath,
+    endpoint,
     queryParams,
     errorHandler,
     logging = false,
@@ -40,22 +40,32 @@ let UalHubFactory = function () {
     transport,
     jsonp = true,
     stateChanged,
-    autoConnect
+    autoConnect = true
   }) {
 
     let Hub = {};
 
-    Hub.connection = getConnection(useSharedConnection, rootPath, logging);
+    Hub.connection = _getConnection(useSharedConnection, endpoint, logging);
     Hub.proxy = Hub.connection.createHubProxy(hubName);
 
     Hub.on = (event, fn) => {
-      Hub.proxy.on(event, fn);
+      return Hub.proxy.on(event, fn);
     };
+
+    Hub.off = (event, fn) => {
+      return Hub.proxy.off(event, fn);
+    }
+
     Hub.invoke = function () {
       return Hub.proxy.invoke.apply(Hub.proxy, arguments)
     };
+
     Hub.disconnect = () => {
-      Hub.connection.stop();
+      try {
+        Hub.connection.stop();
+      } catch (err) {
+        console.error(error);
+      }
     };
 
     Hub.connect = (queryParams) => {
@@ -66,24 +76,6 @@ let UalHubFactory = function () {
       return Hub.connection.start(startOptions);
     };
 
-    if (listeners) {
-      Object.getOwnPropertyNames(listeners)
-        .filter((propName) => {
-          return typeof listeners[propName] === 'function';
-        })
-        .forEach((propName) => {
-          Hub.on(propName, listeners[propName]);
-        });
-    }
-    if (methods) {
-      _.forEach(methods, (method) => {
-        Hub[method] = function () {
-          let args = _.toArray(arguments);
-          args.unshift(method);
-          return Hub.invoke.apply(Hub, args);
-        };
-      });
-    }
     if (queryParams) {
       Hub.connection.qs = queryParams;
     }

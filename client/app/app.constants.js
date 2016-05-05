@@ -6,6 +6,14 @@ module.exports = angular.module("app.constants", [])
 	"cache": false,
 	"fallback": {
 		"endpoint": "http://private-f47c4-ualgemini.apiary-mock.com/api"
+	},
+	"setting.signalR": {
+		"logging": true,
+		"endpoint": "http://localhost:8098/signalr",
+		"transport": [
+			"longPolling"
+		],
+		"autoConnect": true
 	}
 })
 

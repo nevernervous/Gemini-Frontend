@@ -1,7 +1,7 @@
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualReportListDeleteReportModal, Socket) {
-    this._socket = Socket;
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualSignalR) {
+    this._signalR = ualSignalR;
     this._rootScope = $rootScope;
     this.reports = [];
     this.selectedReports = [];
@@ -24,6 +24,10 @@ class UalReportListController {
       .then(response => this.reports = response.data);
   }
 
+  unsubscribeEvent(){
+    this._signalR.unsubscribe("report", "sendReport");
+  }
+
   sendMessageSocket() {
     let reportData = {
       Name: "Something",
@@ -39,7 +43,11 @@ class UalReportListController {
         }
       ]
     }
-    this._socket.notifySavedReport("Un Mensaje de lejos", reportData)
+    this._signalR.invoke("report", "updateReport", "Un Mensaje de lejos", reportData).done(() => {
+      this._signalR.subscribe("report", "sendReport", (message, report) => {
+        console.log("Received message");
+      })
+    })
   }
 
   isSelected(reportId) {
