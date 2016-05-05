@@ -167,7 +167,7 @@
     }
   }
   .clusterize-content tr:hover {
-    .-actions {
+    .-actions > * {
         visibility: visible;
     }
   }
