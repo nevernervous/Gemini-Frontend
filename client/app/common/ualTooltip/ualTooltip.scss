@@ -84,7 +84,6 @@ ual-tooltip.-top {
   display: flex;
   text-align: center;
   padding: 13px 4px;
-  //width: 226px;
   cursor: default;
 
   ng-transclude {
@@ -109,7 +108,7 @@ ual-tooltip.-tooltip {
   @include font-clanot-news(12);
   color: $color06;
   background-color: $color08;
-  padding: 10px;
+  padding: 15px;
   min-width: 200px;
   max-width: 280px;
   text-align: center;
@@ -117,7 +116,7 @@ ual-tooltip.-tooltip {
   white-space: normal;
   display: none;
   position: fixed;
-  margin-top: -7px;
+  margin-top: -10px;
   top: 0;
   left: 0;
 

@@ -60,9 +60,13 @@ class UalReportListController {
     let tooltip = $(id + ' ual-tooltip');
     let offset = $(id).offset();
     offset.position = 'fixed';
-    offset.top -= (window.isIE ? 43 : 40);
-    offset.left -= (tooltip.outerWidth() / 2) - 1;
+    offset.top -= (window.isIE ? 47 : 44);
+    offset.left -= (tooltip.outerWidth() / 2) - 3;
     tooltip.css(offset);
+  }
+
+  onScroll() {
+    this.hideTooltip();
   }
 
   $onInit() {
@@ -107,7 +111,7 @@ class UalReportListController {
   }
 
   hideTooltip() {
-    $(".-tooltip").removeClass("-show-tooltip");
+    $("ual-tooltip").removeClass("-show-tooltip");
     $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
   }
 
