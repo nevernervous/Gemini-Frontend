@@ -4,8 +4,9 @@ import myreports from './ualReportList._myreports.html';
 class UalReportListController {
   /*@ngInject*/
 
-  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, $q) {
     this._rootScope = $rootScope;
+    this._q = $q;
 
     this._services = {
       report: Report
@@ -100,7 +101,7 @@ class UalReportListController {
         this.reports = this.reports.concat(response.data.data);
         this.refresh();
       }
-    );
+      );
   }
 
   showTooltip(container, sibling, tooltipName, validate) {
@@ -150,52 +151,49 @@ class UalReportListController {
     }
   }
 
-  deleteSelected() {
-    this._deletereportmodal.open()
-      .then(response => {
-        if (response) {
-          let ids = _.map(this.selectedReports, 'id');
-          this._services.report.remove(ids)
-            .then((reply) => {
-              _.remove(this.reports, (item) => {
-                return _.contains(ids, item.id);
-              });
-              this.selectedReports = [];
-              this.refresh();
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
-        }
-      });
+  showError(reply) {
+    if (!reply.data || !reply.data.errorMessages) {
+      this.saveResult = this.saveResultMessages[1];
+    } else {
+      this.saveResult = reply.data.errorMessage;
+    }
+    // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
   }
 
-  deleteReport(reportId) {
-    this._deletereportmodal.open()
+  deleteMultiple() {
+    let ids = _.map(this.selectedReports, 'id');
+    this.deleteReport.apply(this, ids)
+      .then((reply) => {
+        _.remove(this.reports, (item) => {
+          return _.contains(ids, item.id);
+        });
+        this.selectedReports = [];
+        this.total -= ids.length;
+        this.refresh();
+        // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+      }, (reply) => this.showError(reply))
+      .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+  }
+
+  deleteSingle(reportId) {
+    this.deleteReport(reportId)
+      .then((reply) => {
+        _.remove(this.reports, { id: reportId });
+        _.remove(this.selectedReports, { id: reportId });
+        this.refresh();
+        this.total -= 1;
+        // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+      }, (reply) => this.showError(reply))
+      .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+  }
+
+  deleteReport(...ids) {
+    return this._deletereportmodal.open()
       .then(response => {
         if (response) {
-          this._services.report.remove(reportId)
-            .then((reply) => {
-              _.remove(this.reports, { id: reportId});
-              _.remove(this.selectedReports, { id: reportId });
-              this.refresh();
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+          return this._services.report.remove(ids);
         }
+        return this._q.reject("Canceled");
       });
   }
 
