@@ -45,6 +45,7 @@ let paths = {
   output: root,
   basePath: {
     common: resolveToApp('common'),
+    directive: resolveToApp('common'),
     component: resolveToComponents(),
     page: resolveToComponents(),
     service: resolveToServices(),
@@ -52,6 +53,7 @@ let paths = {
   },
   blankTemplates: {
     common: path.join(__dirname, 'generator', 'component/**/*.**'),
+    directive: path.join(__dirname, 'generator', 'directive/**/*.**'),
     component: path.join(__dirname, 'generator', 'component/**/*.**'),
     page: path.join(__dirname, 'generator', 'page/**/*.**'),
     service: path.join(__dirname, 'generator', 'service/**/*.**'),
@@ -166,3 +168,4 @@ gulp.task('component', () => {
 });
 
 gulp.task('default', ['constants', 'api', 'serve']);
+

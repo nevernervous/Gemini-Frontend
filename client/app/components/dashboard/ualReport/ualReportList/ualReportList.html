@@ -1,24 +1,48 @@
-<div class="header">
-    <ual-button class="-primary" ui-sref="dashboard.report-new">Create New Report</ual-button>
+<div class="dashboard-header">
+  <span class="title">Reports</span>
+  <ual-button class="-primary button-create" ui-sref="dashboard.report-new">Create New Report</ual-button>
 </div>
-<div class="container">
-    <div class="content-list" ual-scroll ual-scroll-options="{ theme:'dark' }" id="content-list">
-      <ual-table class="ual-table" table-columns="[{'name': 'Report Name', 'orderBy': 'name'}, {'name': 'DataSource', 'orderBy': 'dataSource'},
-        {'name': 'Last Modification Date', 'orderBy': 'lastModificationDate'}, {'name': '', 'orderBy': ''}]" predicate="vm.predicate" reverse="vm.reverse">          
-         <div class="ual-table-row" ng-repeat="item in vm.reports | orderBy: vm.predicate:vm.reverse">    
-            <div class="column -link-report">
-                <a href="#/dashboard/report/{{item.id}}">{{item.name}}</a>
-            </div><div class="column">
-                {{item.dataSource}}
-            </div><div class="column">
-                {{item.lastModificationDate | date:'MM/dd/yyyy HH:mm CT'}}
-            </div><div class="column -right-actions">
-                &nbsp;<i class="ion-android-person-add"></i><i class="ion-ios-copy-outline"></i><i class="ion-ios-close-empty" ng-click="vm.deleteReport(item)" title="Delete"></i>
-            </div>        
+<div class="dashboard-body">
+  <ual-tabs class="reports-tabs -inline">
+    <tabs-extra><ual-input value="vm.search" icon="ion-ios-search-strong" ual-disabled="true"></ual-input></tabs-extra>
+    <tabs-content>
+      <ual-tab ual-title="My Reports">
+        <div class="list-info">
+          <div class="toolbar-section" ng-style="{ 'visibility': (vm.selectedReports.length > 0 ? 'visible' : 'hidden')}">
+            <span class="-items-selected"> {{vm.selectedReports.length}} item(s) selected </span>
+            <span class="-icon-option" ng-click="vm.deleteSelected()">
+              <i class="ion-ios-trash-outline"></i> <span>Delete</span>
+            </span>
+            <span class="-icon-option -disabled">
+              <i class="ion-ios-copy-outline"></i> <span class="-disabled">Copy</span>
+            </span>
+            <span class="-icon-option -disabled">
+              <i class="ion-ios-download-outline"></i> <span class="-disabled">Export</span>
+            </span>
+          </div>
+          <label class="list-count"><strong>{{vm.total}} reports available</strong></label>
         </div>
-      </ual-table>
-      <div class="empty-list" ng-hide="(vm.reports).length > 0">
-        No report exists.
-      </div>
-    </div>    
+        <div class="list-content">
+          <table ual-clusterize-table ng-class="{'-loading': vm.loading, '-empty': (vm.rows.length == 0)}" rows="vm.rows" empty-message="No reports created." on-scroll="vm.onScroll()">
+            <thead>
+              <tr>
+                <th class="-expand -left -{{vm.orders[vm.order].direction[0]}}" ng-class="{'-order': (vm.order == 'name')}" ng-click="vm.orderBy('name')">Report name<i></i></th>
+                <th class="-shrink -left -{{vm.orders[vm.order].direction[0]}}" ng-class="{'-order': (vm.order == 'dataSource')}" ng-click="vm.orderBy('dataSource')">Data source<i></i></th>
+                <th class="-date -left -{{vm.orders[vm.order].direction[0]}}" ng-class="{'-order': (vm.order == 'modificationDate')}" ng-click="vm.orderBy('modificationDate')">Last modification date<i></i></th>
+                <th class="-actions"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </ual-tab>
+      <ual-tab ual-title="Shared Reports" is-enabled="false">
+
+      </ual-tab>
+      <ual-tab ual-title="Public Reports" is-enabled="false">
+
+      </ual-tab>
+    </tabs-content>
+  </ual-tabs>
+
 </div>
+

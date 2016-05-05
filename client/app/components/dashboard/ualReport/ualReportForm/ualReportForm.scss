@@ -48,16 +48,7 @@ ual-report-form {
                     width: 110px;
                 }
                 ual-input {
-                    position: relative;
-                    display: inline-block;
                     width: 350px;
-                    i {
-                        @include -ms-browser() {
-                            margin-top: 6px;
-                            vertical-align: middle;
-                            display: inline-block;
-                        }
-                    }
                     ual-dropdown {
                         width: 100%;
                         position: absolute;
@@ -81,7 +72,7 @@ ual-report-form {
                                     margin: auto 0;
                                 }
                                 > .-icon-warning {
-                                    vertical-align: middle; 
+                                    vertical-align: middle;
                                     @include -ms-browser {
                                         vertical-align: sub;
                                     }

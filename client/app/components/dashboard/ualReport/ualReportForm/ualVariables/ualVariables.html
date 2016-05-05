@@ -8,31 +8,33 @@
   <div class="content-list">
     <div class="variables">
       <ual-tabs class="tabs">
-        <ual-tab class="standard-variables" ual-title="Standard Variables">
-          <ual-pane ual-title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0 || ( vm.variables.items | filterBy:vm.standardFilter | isEmpty)">
-            <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()"  ual-disabled="vm.dragging"></ual-input>
-            <div class="group-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" ng-show="(vm.variables.items | filterBy:vm.standardFilter).length > 0">
-              <ual-variables-group ng-class="{no_scroll: (group.items | filterBy:vm.standardFilter).length < 12 }"group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filterBy:vm.standardFilter | isEmpty)">
-                <ual-checkbox id="group_{{group.data.groupId}}" on-click="vm.toggleGroup(group)" item="group" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name" class="-select-all">
-                  Select All
-                </ual-checkbox>
-                <ual-checkbox class="tooltip-wrapper" ng-repeat="item in group.items | filterBy:vm.standardFilter | orderBy : 'order' track by item.id" id="variable_{{item.id}}" on-click="vm.toggle(item)" item="item" is-checked="vm.isSelected(item)" >
-                  <span class="tooltip-sibling" id="span_{{item.id}}" ng-mouseover="vm.showTooltip(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip(item.id)">{{item.name}}</span>
-                  <ual-tooltip id="tooltip_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
-                    ual-tooltip-options="{ top: vm.datasourceOffsetTop(item.id), right: vm.datasourceOffsetRight(item.id)}" ual-tooltip-container="vm.datasourceContainer(item.id)">{{item.description}}</ual-tooltip>
-                </ual-checkbox>
-              </ual-variables-group>
-            </div>
-            <div class="empty-search" ng-hide="(vm.variables.items | filterBy:vm.standardFilter).length > 0 || !vm.standardFilter.name">
-              <div>No results match your search</div>
-            </div>
-          </ual-pane>
-        </ual-tab>
-        <ual-tab ual-title="Custom Variables" is-enabled="false">
-          <ual-pane ual-title="Custom Variables">
+        <tabs-content>
+          <ual-tab class="standard-variables" ual-title="Standard Variables">
+            <ual-pane ual-title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0 || ( vm.variables.items | filterBy:vm.standardFilter | isEmpty)">
+              <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()"  ual-disabled="vm.dragging"></ual-input>
+              <div class="group-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" ng-show="(vm.variables.items | filterBy:vm.standardFilter).length > 0">
+                <ual-variables-group ng-class="{no_scroll: (group.items | filterBy:vm.standardFilter).length < 12 }"group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filterBy:vm.standardFilter | isEmpty)">
+                  <ual-checkbox id="group_{{group.data.groupId}}" on-click="vm.toggleGroup(group)" item="group" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name" class="-select-all">
+                    Select All
+                  </ual-checkbox>
+                  <ual-checkbox class="tooltip-wrapper" ng-repeat="item in group.items | filterBy:vm.standardFilter | orderBy : 'order' track by item.id" id="variable_{{item.id}}" on-click="vm.toggle(item)" item="item" is-checked="vm.isSelected(item)" >
+                    <span class="tooltip-sibling" id="span_{{item.id}}" ng-mouseover="vm.showTooltip(item.id)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip(item.id)">{{item.name}}</span>
+                    <ual-tooltip id="tooltip_{{item.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
+                      ual-tooltip-options="{ top: vm.datasourceOffsetTop(item.id), right: vm.datasourceOffsetRight(item.id)}" ual-tooltip-container="vm.datasourceContainer(item.id)">{{item.description}}</ual-tooltip>
+                  </ual-checkbox>
+                </ual-variables-group>
+              </div>
+              <div class="empty-search" ng-hide="(vm.variables.items | filterBy:vm.standardFilter).length > 0 || !vm.standardFilter.name">
+                <div>No results match your search</div>
+              </div>
+            </ual-pane>
+          </ual-tab>
+          <ual-tab ual-title="Custom Variables" is-enabled="false">
+            <ual-pane ual-title="Custom Variables">
 
-          </ual-pane>
-        </ual-tab>
+            </ual-pane>
+          </ual-tab>
+        </tabs-content>
       </ual-tabs>
       <div class="selected-variables">
         <ual-pane ual-title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0 || (vm.selecteds && (vm.selecteds | filterBy:vm.selectedFilter | isEmpty))">
