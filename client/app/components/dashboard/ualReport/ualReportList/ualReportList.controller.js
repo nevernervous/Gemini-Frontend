@@ -4,9 +4,8 @@ import myreports from './ualReportList._myreports.html';
 class UalReportListController {
   /*@ngInject*/
 
-  constructor(Report, $rootScope, ualReportListDeleteReportModal, $q) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
     this._rootScope = $rootScope;
-    this._q = $q;
 
     this._services = {
       report: Report
@@ -160,31 +159,32 @@ class UalReportListController {
     // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
   }
 
-  delete(reportId) {
-    let ids = !reportId ? _.map(this.selectedReports, 'id') : [reportId];
-    let totalDelete = ids.length;
-    this.confirmDelete(ids)
-      .then((reply) => {
-        _.remove(this.selectedReports, (item) => {
-          return _.contains(ids, item.id);
-        });
-        _.remove(this.reports, (item) => {
-          return _.contains(ids, item.id);
-        });
-        this.refresh();
-        this.total -= totalDelete;
-        // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-      }, (reply) => this.showError(reply))
-      .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+  deleteReport(id) {
+    this.delete([id]);
+  }
+  deleteSelected() {
+    this.delete(_.map(this.selectedReports, 'id'));
   }
 
-  confirmDelete(ids) {
-    return this._deletereportmodal.open()
-      .then(response => {
+  delete(ids) {
+    let totalDelete = ids.length;
+    this._deletereportmodal.open()
+      .then((response) => {
         if (response) {
-          return this._services.report.remove(ids);
+          this._services.report.remove(ids)
+              .then((reply) => {
+                _.remove(this.selectedReports, (item) => {
+                  return _.contains(ids, item.id);
+                });
+                _.remove(this.reports, (item) => {
+                  return _.contains(ids, item.id);
+                });
+                this.refresh();
+                this.total -= totalDelete;
+                // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+              }, (reply) => this.showError(reply))
+              .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
-        return this._q.reject("Canceled");
       });
   }
 

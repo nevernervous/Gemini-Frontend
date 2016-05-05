@@ -10,7 +10,7 @@
         <div class="list-info">
           <div class="toolbar-section" ng-style="{ 'visibility': (vm.selectedReports.length > 0 ? 'visible' : 'hidden')}">
             <span class="-items-selected"> {{vm.selectedReports.length}} item(s) selected </span>
-            <span class="-icon-option" ng-click="vm.delete()">
+            <span class="-icon-option" ng-click="vm.deleteSelected()">
               <i class="ion-ios-trash-outline"></i> <span>Delete</span>
             </span>
             <span class="-icon-option -disabled">
