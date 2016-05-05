@@ -1,6 +1,6 @@
 <div class="report-form-input" ng-class="{'-invalid': (vm.invalidInput) && !vm.firstTime }">
     <div class="wrap-label" ng-hide="vm.visibleInput" ng-click="vm.displayInput(true, $event)" ng-mouseover="vm.onMouse(true)" ng-mouseleave="vm.onMouse(false)">
-        <input class="-label" readonly for="{{vm.inputId}}" value="{{vm.labelText()}}" ng-style="vm.labelStyle"></input>
+        <input id="ualReportInput" class="-label" readonly for="{{vm.inputId}}" value="{{vm.labelText()}}" ng-style="vm.labelStyle"></input>
     </div>
     <div ng-if="vm.visibleInput || vm.errorThrown()">
         <input type="text" class="active-input" ng-model="vm.report._name" ng-model-options="{ getterSetter:true }"
@@ -10,5 +10,5 @@
     <ual-tooltip class="-error-tooltip" ng-if="(vm.visibleInput && vm.invalidInput)">
         <span ng-transclude="invalidmessage"></span>
     </ual-tooltip>
-    <ual-tooltip class="-tooltip -tooltip-right" ng-class="{'-show-tooltip': (!vm.visibleInput && vm.isOverInput)}">Change name report</ual-tooltip>
+    <!--ual-tooltip class="-tooltip -tooltip-right" ng-class="{'-show-tooltip': (!vm.visibleInput && vm.isOverInput)}">Change name report</ual-tooltip-->
 </div>

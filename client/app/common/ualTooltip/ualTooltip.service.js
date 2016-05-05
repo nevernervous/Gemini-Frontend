@@ -11,7 +11,7 @@ let ualTooltipService = function () {
     let adjust = {
       left: hasEllipsis ? 2 : -4,
       right: hasEllipsis ? (window.isIE ? 3 : 4) : (window.isIE ? 10 : 15),
-      top: window.isIE ? 2 : 5,
+      top: 2,
       bottom:  window.isIE ? 2 : 5
     }
 
