@@ -125,6 +125,9 @@
     &:hover {
       cursor: pointer;
       background-color: $color08;
+      i {
+        @extend .ion-ios-arrow-down;
+      }
     }
     &.-actions:hover {
       cursor: default;
@@ -147,13 +150,18 @@
   .clusterize-content tr:hover, .clusterize-content tr.-selected {
     background-color: $other10;
     .-actions .-action:hover ual-tooltip {
-      display: block;
+        display: block;
     }
     ual-checkbox {
       visibility: visible;
     }
     .-link, .-link a {
       color: $color06;
+    }
+  }
+  .clusterize-content tr:hover, .clusterize-content tr.-selected:hover {
+    .-actions {
+        visibility: visible;
     }
   }
   .clusterize-no-data {

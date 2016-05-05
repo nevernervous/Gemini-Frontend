@@ -4,7 +4,7 @@
        <ual-checkbox ng-click="vm.toggleReport(${item.id})" is-checked="vm.isSelected(${item.id})"></ual-checkbox>
       <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})">${item.name}</a>
     </div>
-    <ual-tooltip id="tooltipName_${item.id}" class="-tooltip -fade-in" ual-tooltip-show="false"
+    <ual-tooltip id="tooltipName_${item.id}" class="-tooltip -fade-in -tooltip-big" ual-tooltip-show="false"
                  ual-tooltip-options="{ top: '-3', right: vm.tooltipOffsetRight('reportNameContainer_${item.id}', 'reportNameItem_${item.id}') }"
                  ual-tooltip-container="vm.tooltipContainer('reportNameContainer_${item.id}', 'reportNameItem_${item.id}')">
       ${item.name}

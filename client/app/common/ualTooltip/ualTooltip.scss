@@ -165,6 +165,10 @@ ual-tooltip.-tooltip {
       border-left: 5px solid $color08;
     }
   }
+
+  &.-tooltip-big {
+    max-width: none;
+  }
 }
 
 ual-tooltip.-delete-tooltip {
