@@ -119,6 +119,7 @@ ual-tooltip.-tooltip {
   margin-top: -10px;
   top: 0;
   left: 0;
+  word-wrap: break-word;
 
   &::before {
     content: '';
@@ -163,10 +164,6 @@ ual-tooltip.-tooltip {
       border-bottom: 3px solid transparent;
       border-left: 5px solid $color08;
     }
-  }
-
-  &.-tooltip-big {
-    max-width: none;
   }
 }
 
