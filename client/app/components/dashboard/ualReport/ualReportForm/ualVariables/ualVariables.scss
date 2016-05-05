@@ -15,7 +15,7 @@
                     @include gridle(7);
                     height: 100%;
                     margin: 0;
-                    padding: 0;
+                    padding: 0 10px 0 0;
                     .standard-variables {
                         .group-list {
                             overflow: auto;
@@ -29,14 +29,14 @@
                             }
                         }
                         ual-variables-group {
-                            ual-checkbox { 
-                                    
+                            ual-checkbox {
+
                                 &.-select-all {
                                   > span > span {
                                     @include font-clanot-news(14);
                                   }
                                 }
-                                                           
+
                                 @include ellipses();
                                 padding: 7px 0;
                                 display: list-item;
