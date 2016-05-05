@@ -11,7 +11,7 @@ let ualTooltipService = function () {
     let adjust = {
       left: hasEllipsis ? 2 : -4,
       right: hasEllipsis ? (window.isIE ? 3 : 4) : (window.isIE ? 10 : 15),
-      top: window.isIE ? 2 : 5,
+      top: window.isIE ? 2 : 4,
       bottom:  window.isIE ? 2 : 5
     }
 
@@ -23,6 +23,10 @@ let ualTooltipService = function () {
     tooltip.removeClass('-tooltip-top');
     tooltip.removeClass('-tooltip-bottom');
     tooltip.removeClass('error');
+
+    if(options.type){
+      tooltip.addClass(options.type);
+    }
 
     switch(options.position) {
       case "left":
@@ -45,13 +49,13 @@ let ualTooltipService = function () {
         offset.left = offset.left + adjust.left - tooltip.outerWidth(true);
         tooltip.addClass('-tooltip-left');
         offset.top -= ( (tooltip.height() / 2) - (container.height() / 2) );
-        offset.top += adjust.top;
+        offset.top -= adjust.top;
         break;
       case "right":
         offset.left =  offset.left + adjust.right + container.outerWidth(true) ;
         tooltip.addClass('-tooltip-right');
         offset.top -= ( (tooltip.height() / 2) - (container.height() / 2) );
-        offset.top += adjust.top;
+        offset.top -= adjust.top;
         break;
       case "top":
         offset.top =  offset.top - adjust.top - tooltip.outerHeight(true);
@@ -68,10 +72,6 @@ let ualTooltipService = function () {
      }
 
     tooltip.css(offset);
-
-    if(options.type){
-      tooltip.addClass(options.type);
-    }
 
     //SHOW:
     tooltip.css('display','flex');

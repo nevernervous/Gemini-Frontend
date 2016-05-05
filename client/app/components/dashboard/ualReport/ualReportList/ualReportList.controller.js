@@ -4,7 +4,7 @@ import myreports from './ualReportList._myreports.html';
 class UalReportListController {
   /*@ngInject*/
 
-  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService,$filter) {
     this._rootScope = $rootScope;
 
     this._services = {
@@ -17,6 +17,9 @@ class UalReportListController {
     this.total = 0;
     this.loading = true;
     this._deletereportmodal = ualReportListDeleteReportModal;
+    this._ualTooltipService=ualTooltipService;
+    this._filer=$filter;
+
 
     this.orders = {
       'name': {
@@ -56,13 +59,18 @@ class UalReportListController {
     });
   }
 
-  tooltip(id) {
-    let tooltip = $(id + ' ual-tooltip');
-    let offset = $(id).offset();
-    offset.position = 'fixed';
-    offset.top -= (window.isIE ? 47 : 44);
-    offset.left -= (tooltip.outerWidth() / 2) - 3;
-    tooltip.css(offset);
+  tooltip(container) {
+    // let tooltip = $(id + ' ual-tooltip');
+    // let offset = $(id).offset();
+    // offset.position = 'fixed';
+    // offset.top -= (window.isIE ? 47 : 44);
+    // offset.left -= (tooltip.outerWidth() / 2) - 3;
+    // tooltip.css(offset);
+    this._ualTooltipService.show({
+        container : container,
+        text: "Delete",
+        position:"top"
+      });
   }
 
   onScroll() {
@@ -101,16 +109,25 @@ class UalReportListController {
     );
   }
 
-  showTooltip(container, sibling, tooltipName, validate) {
-    if (this.itemHasEllipsis(container, sibling) || validate) {
-      let tooltip = $("#" + tooltipName);
-      tooltip.prop("ual-tooltip-show", true);
-    }
+  showTooltip(container, sibling, validate, text) {
+     if (this.itemHasEllipsis(container, sibling) || validate) {
+      //  let tooltip = $("#" + tooltipName);
+      //  tooltip.prop("ual-tooltip-show", true);
+      text=this._filer('date')(text, "MM/dd/yy HH:mm CT");
+       this._ualTooltipService.show({
+        container : this.itemHasEllipsis(container, sibling)?container:sibling,
+        text: text,
+        position:"right"
+      });
+
+     }
+
   }
 
   hideTooltip() {
-    $("ual-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+    // $("ual-tooltip").removeClass("-show-tooltip");
+    // $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+    this._ualTooltipService.hide();
   }
 
   itemHasEllipsis(container, sibling) {

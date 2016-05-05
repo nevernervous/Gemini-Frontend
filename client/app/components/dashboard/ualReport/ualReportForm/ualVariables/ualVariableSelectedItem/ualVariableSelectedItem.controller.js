@@ -4,7 +4,6 @@ class UalVariableSelectedItemController {
   /*@ngInject*/
   constructor(ualTooltipService) {
     this.name = 'ualVariableSelectedItem';
-    this.error = false;
     this._ualTooltipService=ualTooltipService;
   }
 
@@ -21,7 +20,6 @@ class UalVariableSelectedItemController {
   }
 
   onBlur(event, item, order) {
-    this.error = false;
     let position = _.parseInt(this.variableId.split('_')[0]);
     if ( position !== order && this.isValid(order)) {
       this.variableOrder = _.parseInt(order);
@@ -29,10 +27,10 @@ class UalVariableSelectedItemController {
     } else {
       this.variableOrder = position;
     }
+    this._ualTooltipService.hide();
   }
 
   onChange(order,id) {
-    this._ualTooltipService.hide();
     if ( !this.isValid(order) && order != "") {
       let container = id+"_variable-order";
       console.log(container);
@@ -42,7 +40,8 @@ class UalVariableSelectedItemController {
         position:"top",
         type:"error"
       });
-
+    }else{
+      this._ualTooltipService.hide();
     }
   }
 
