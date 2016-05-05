@@ -84,7 +84,6 @@ class UalReportListController {
         return this._services.report.all(2, this.total, 'modificationDate', 'desc');
       },
       reason => {
-        console.log('error');
         this.loading = false;
       }
     ).then(
@@ -92,7 +91,6 @@ class UalReportListController {
         this.loading = false;
       },
       (reason) => {
-        console.log('error');
         this.loading = false;
         this.refresh();
       },
