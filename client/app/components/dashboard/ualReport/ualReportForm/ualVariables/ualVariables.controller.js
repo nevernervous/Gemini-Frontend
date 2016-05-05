@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 class UalVariablesController {
   /*@ngInject*/
-  constructor(close, $timeout, $filter, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
+  constructor(close, $timeout, $filter, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds, ualTooltipService) {
     // SERVICES
     this._close = close;
     this._datasourceService = DataSourceService;
@@ -16,6 +16,7 @@ class UalVariablesController {
     // VARS / PRIVATE
     this._datasource = datasource;
     this._selecteds = selecteds;
+    this._ualTooltipService=ualTooltipService;
 
     // VARS / PUBLIC
     this.variables = {items: []}
@@ -148,13 +149,16 @@ class UalVariablesController {
   itemPosition(variable) {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
-  showTooltip(id){
-    let tooltip = $("#tooltip_"+id);
-    tooltip.prop("ual-tooltip-show", true);
+  showTooltip(id,description){
+    let containter = "span_"+id;
+    this._ualTooltipService.show({
+      container:containter,
+      text:description,
+      position:"right"
+    });
   }
   hideTooltip(){
-    $(".-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+    this._ualTooltipService.hide();
   }
 
   datasourceHasEllipsis(id){
