@@ -69,19 +69,26 @@
 
 // VARIANT
 .ual-clusterize-table {
-  thead tr {
+  thead > tr {
+    border-bottom: 1px solid $color08;
     border-top: 1px solid $color08;
     @include font-clanot-news(16);
     color: $color06;
   }
-  tr {
-    border-bottom: 1px solid $color08;
+  tbody > tr {
+    &:not(:first-child) {
+      border-top: 1px solid $color08;
+    }
+    &:last-child {
+      border-bottom: 1px solid $color08;
+    }
     @include font-clanot-book(14);
     color: $color06;
     &.clusterize-no-data {
       border: none;
     }
   }
+
   td {
     // STYLE
     &.-link, &.-link a {
@@ -156,6 +163,12 @@
       color: $color06;
     }
   }
+  .clusterize-content {
+    tr.-selected + tr.-selected, tr:hover + tr.-selected, tr.-selected + tr:hover {
+      border-top: 1px solid $color00;
+    }
+  }
+
   .clusterize-no-data {
     @include font-clanot-book(14);
     color: $color07;
