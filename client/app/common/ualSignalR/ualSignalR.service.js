@@ -27,12 +27,11 @@ let UalSignalRService = function (Properties, ualHub) {
   let subscribe = (hubName, event, fn) => {
     let hub = _getHubConnection(hubName);
     hub.disconnect();
-    let subscription = hub.on(event, fn);
+    hub.on(event, fn);
     hub.connect();
   }
 
   let unsubscribe = (hubName, event) => {
-    //These method is not secure
     let hub = _getHubConnection(hubName);
     hub.off(event);
   }

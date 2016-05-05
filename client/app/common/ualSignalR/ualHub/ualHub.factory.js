@@ -12,7 +12,6 @@ let UalHubFactory = function () {
     } else {
       connection = $.hubConnection();
     }
-    console.dir("Logging " + logging);
     connection.logging = (logging ? true : false);
     return connection;
   }
