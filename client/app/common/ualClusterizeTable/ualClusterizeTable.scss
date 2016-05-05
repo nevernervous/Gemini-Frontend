@@ -115,6 +115,9 @@
       ual-tooltip {
         display: none;
       }
+      i {
+        visibility: hidden;
+      }
     }
   }
   th {
@@ -132,6 +135,9 @@
     &:hover {
       cursor: pointer;
       background-color: $color08;
+      i {
+        @extend .ion-ios-arrow-down;
+      }
     }
     &.-actions:hover {
       cursor: default;
@@ -154,7 +160,7 @@
   .clusterize-content tr:hover, .clusterize-content tr.-selected {
     background-color: $other10;
     .-actions .-action:hover ual-tooltip {
-      display: block;
+        display: block;
     }
     ual-checkbox {
       visibility: visible;
@@ -163,12 +169,16 @@
       color: $color06;
     }
   }
+  .clusterize-content tr:hover {
+    .-actions i {
+        visibility: visible;
+    }
+  }
   .clusterize-content {
     tr.-selected + tr.-selected, tr:hover + tr.-selected, tr.-selected + tr:hover {
       border-top: 1px solid $color00;
     }
   }
-
   .clusterize-no-data {
     @include font-clanot-book(14);
     color: $color07;

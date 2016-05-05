@@ -119,6 +119,7 @@ ual-tooltip.-tooltip {
   margin-top: -10px;
   top: 0;
   left: 0;
+  word-wrap: break-word;
 
   &::before {
     content: '';
