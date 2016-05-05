@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 class UalDataSourceController {
     /*@ngInject*/
-    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate, $timeout) {
+    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate, $timeout,ualTooltipService) {
         this._close = close;
         this._datasource = DataSource;
         this._cancelmodal = ualDataSourceCancelModal;
@@ -10,6 +10,8 @@ class UalDataSourceController {
         this._selected = selected;
         this._filter = $filter;
         this._timeout = $timeout;
+        this._ualTooltipService=ualTooltipService;
+
         this.searchTerm = {};
 
         this._animate = $animate;
@@ -23,6 +25,8 @@ class UalDataSourceController {
         this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
         this._suscriptions.push($rootScope.$on('RENDER.END', () => this.columnCount()));
         this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
+
+        this.callbackHideTooltip = this.hideTooltip.bind(this);
     }
 
     _closemodal(response) {
@@ -113,9 +117,9 @@ class UalDataSourceController {
     // }
 
     hideTooltip(){
-      $(".-tooltip").removeClass("-show-tooltip");
-      $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+      this._ualTooltipService.hide();
     }
+
 
     _initialize() {
       this.columns = "columns-1";
