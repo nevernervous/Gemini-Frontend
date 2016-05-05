@@ -115,6 +115,9 @@
       ual-tooltip {
         display: none;
       }
+      i {
+        visibility: hidden;
+      }
     }
   }
   th {
@@ -167,7 +170,7 @@
     }
   }
   .clusterize-content tr:hover {
-    .-actions > * {
+    .-actions i {
         visibility: visible;
     }
   }
