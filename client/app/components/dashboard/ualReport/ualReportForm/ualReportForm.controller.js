@@ -41,7 +41,7 @@ class UalReportFormController {
         event.preventDefault();
         this._ualUnsafeReportModal.open().then(response => {
           if (response) {
-            this.report=null;
+            this.report = null;
             $(window).unbind("beforeunload", this.beforeClose);
             this._unsuscribe();
             this._state.go(toState.name);
@@ -137,6 +137,12 @@ class UalReportFormController {
     this.dropDownStyle.visibility = 'visible'
   }
 
+  reportNameChanged() {
+    let _reportName = this.report.name.get() ? this.report.name.get() : "";
+    let _formName = this.reportName ? this.reportName : "";
+    return _reportName.toLowerCase() != _formName.toLowerCase();
+  }
+
   saveReport() {
     let oldName = _.clone(this.report.name.get());
     this.report.name.set(_.clone(this.reportName));
@@ -157,8 +163,8 @@ class UalReportFormController {
       this.isSaving = false;
     }
     let responseError = [
-      (msg) => {},
-      (msg) => {
+      (msg) => {}
+      , (msg) => {
         this._ualReportNameModal.open({
           report: this.report
           , reportForm: this
@@ -167,18 +173,20 @@ class UalReportFormController {
             if (response) saveSuccess(response);
           }
         );
-      },
-      (msg) => {
+      }
+      , (msg) => {
         this.reportName = oldName;
         this.duplicatedName = true;
-      },
-      (msg) => {
+      }
+      , (msg) => {
         this.reportName = oldName;
         this._rootScope.$broadcast('BANNER.SHOW', msg)
       }
     ];
     this.report.save().then(
-      result => { saveSuccess(result.msg); }
+      result => {
+        saveSuccess(result.msg);
+      }
       , result => {
         responseError[result.code](result.msg);
         this.isSaving = false;

@@ -5,7 +5,7 @@
 </div>
 <div class="report-body">
   <div class="section report-name" ng-if="vm.report">
-    <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && !vm.report.name.hasChange() && vm.saveReport()"
+    <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && vm.reportNameChanged() && vm.saveReport()"
       invalid-input="vm.duplicatedName || (!vm.report.id.get() && !vm.reportName)">
       <ual-invalid-message>
         <span ng-if="vm.duplicatedName">
@@ -33,7 +33,7 @@
   <div class="section aggregations-values">
     <div class="aggregation-search">
       <span class="-label">Aggregate by</span>
-      <ual-input on-focus="vm.showDropdown()" id="inputDropdown" ng-style="vm.inputStyle" value="vm.search.name" icon="ion-ios-search-strong">
+      <ual-input class="-dropdown" on-focus="vm.showDropdown()" id="inputDropdown" ng-style="vm.inputStyle" value="vm.search.name" icon="ion-ios-search-strong">
         <div ng-if="vm.aggregators">
           <ual-dropdown filter='vm.search' ng-style="vm.dropDownStyle" click-outside="vm.hideDropdown()" outside-if-not="inputDropdown">
             <ual-dropdown-messages>
