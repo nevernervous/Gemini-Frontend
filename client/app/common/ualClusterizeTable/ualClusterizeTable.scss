@@ -1,0 +1,196 @@
+@import '../common';
+@import '../ionicons/scss/ionicons';
+
+// LAYOUT
+.ual-clusterize-table {
+  position: relative;
+  height: 100%;
+
+  > table {
+    padding-right: 17px;
+  }
+
+  td, th {
+    padding: 0 35px;
+    height: 36px;
+    max-height: 36px;
+    width: auto;
+    &:last-child {
+      padding: 0 5px;
+    }
+
+    // TYPE
+    &.-check {
+      padding: 0 35px 0 10px;
+    }
+    &.-expand {
+      width: 99%;
+    }
+    &.-shrink {
+      white-space: nowrap;
+    }
+    &.-date {
+      min-width: 200px;
+    }
+
+    // ALIGN
+    &.-right {
+      text-align: right;
+    }
+    &.-left {
+      text-align: left;
+    }
+
+  }
+  > .clusterize-scroll {
+    position: absolute;
+    width: calc(100% + 17px); //  SHOWS SCROLLBAR
+    padding-right: 17px;      //  OUT OF TABLE
+    @include -ms-browser() {
+      padding-right: 0;
+    }
+    @include -moz-browser() {
+      padding-right: 0;
+    }
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 1px; // SHOWS LAST ITEM LINE
+  }
+  .loading {
+    height: 100%;
+  }
+  .empty {
+    position: relative;
+    text-align: center;
+    top: calc(50% - 14px);
+  }
+}
+
+// VARIANT
+.ual-clusterize-table {
+  thead > tr {
+    border-bottom: 1px solid $color08;
+    border-top: 1px solid $color08;
+    @include font-clanot-news(16);
+    color: $color06;
+  }
+  tbody > tr {
+    &:not(:first-child) {
+      border-top: 1px solid $color08;
+    }
+    &:last-child {
+      border-bottom: 1px solid $color08;
+    }
+    @include font-clanot-book(14);
+    color: $color06;
+    &.clusterize-no-data {
+      border: none;
+    }
+  }
+
+  td {
+    // STYLE
+    &.-link, &.-link a {
+      @include link();
+    }
+    &.-ellipsis {
+      div {
+        @include ellipses();
+      }
+
+    }
+    &.-actions > .-action {
+      margin-left: 20px;
+      font-size: 20px;
+      display: inline-block;
+      &:last-child {
+        margin-left: 25px;
+        cursor: pointer;
+        margin-right: 10px;
+        @include -moz-browser() {
+          margin-right: 25px;
+        }
+      }
+      ual-tooltip {
+        display: none;
+      }
+    }
+  }
+  th {
+    white-space: nowrap;
+    i {
+      margin-left: 10px;
+    }
+    &.-order.-asc i {
+      @extend .ion-ios-arrow-up;
+    }
+    &.-order.-desc i {
+      @extend .ion-ios-arrow-down;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color08;
+    }
+    &.-actions:hover {
+      cursor: default;
+      background: none;
+    }
+  }
+  .loading {
+    background:url(spinner_blue.gif) center center no-repeat;
+    background-size: 50px 50px;
+    display: none;
+  }
+  .empty {
+    @include font-clanot-book(14);
+    color: $color07;
+    display: none;
+  }
+  .clusterize-no-data {
+    display: none;
+  }
+  .clusterize-content tr:hover, .clusterize-content tr.-selected {
+    background-color: $other10;
+    .-actions .-action:hover ual-tooltip {
+      display: block;
+    }
+    ual-checkbox {
+      visibility: visible;
+    }
+    .-link, .-link a {
+      color: $color06;
+    }
+  }
+  .clusterize-content {
+    tr.-selected + tr.-selected, tr:hover + tr.-selected, tr.-selected + tr:hover {
+      border-top: 1px solid $color00;
+    }
+  }
+
+  .clusterize-no-data {
+    @include font-clanot-book(14);
+    color: $color07;
+    border-bottom: none;
+    &:hover {
+      background-color: $color00; //TODO: No toma el background
+    }
+  }
+}
+// VARIANT / LOADING
+.ual-clusterize-table.-loading {
+  .loading {
+    display: block;
+    height: 70px;
+  }
+  &.-empty .loading {
+    height: 100%;
+  }
+}
+// VARIANT / EMPTY
+.ual-clusterize-table.-empty:not(.-loading) {
+  .empty {
+    display: block;
+  }
+}

@@ -1,23 +1,23 @@
-import UalLabelCountModule from './ualLabelCount'
-import UalLabelCountController from './ualLabelCount.controller';
-import UalLabelCountComponent from './ualLabelCount.component';
-import UalLabelCountTemplate from './ualLabelCount.html';
+import <%= upCaseName %>Module from './<%= name %>'
+import <%= upCaseName %>Controller from './<%= name %>.controller';
+import <%= upCaseName %>Component from './<%= name %>.component';
+import <%= upCaseName %>Template from './<%= name %>.html';
 
-describe('UalLabelCount', () => {
+describe('<%= upCaseName %>', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalLabelCountModule.name));
+  beforeEach(window.module(<%= upCaseName %>Module.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalLabelCountController();
+      return new <%= upCaseName %>Controller();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalLabelCountModule).to.have.property('name');
+      expect(<%= upCaseName %>Module).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalLabelCount', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-label-count/>').html(UalLabelCountTemplate);
+    const template = $('<<%= dashName %>/>').html(<%= upCaseName %>Template);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalLabelCount', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalLabelCountComponent;
+      let component = <%= upCaseName %>Component;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalLabelCountTemplate);
+        expect(component.template).to.equal(<%= upCaseName %>Template);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalLabelCount', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalLabelCountController);
+        expect(component.controller).to.equal(<%= upCaseName %>Controller);
       });
   });
 });
