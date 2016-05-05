@@ -31,9 +31,9 @@ class ualClusterizeTableDirective {
     $('.clusterize-scroll .empty').html(attr.emptyMessage);
 
     // let onScroll = ctrl._compile(onScroll)($scope);
-    // $('.clusterize-scroll') .on( "scroll", () => {
-    //   console.log(onScroll);
-    // });
+    $('.clusterize-scroll') .on( "scroll", () => {
+      $scope.$apply(attr.onScroll);
+    });
 
     // ADJUST COLUMNS HEADERS WIDTH
     let resize = (clazz, action) => {
