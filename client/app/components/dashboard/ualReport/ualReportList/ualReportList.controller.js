@@ -20,7 +20,7 @@ class UalReportListController {
 
     this.orders = {
       'name': {
-        attributes: ['name'],
+        attributes: [(item) => { return item.name.toLowerCase(); }],
         default: 'asc',
         direction: ['asc']
       },
