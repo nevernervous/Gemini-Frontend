@@ -65,11 +65,12 @@ class UalReportListController {
   }
 
   tooltip(id) {
+    console.log("Tooltip");
     let tooltip = $(id + ' ual-tooltip');
     let offset = $(id).offset();
-    offset.position = 'fixed';
     offset.top -= (window.isIE ? 47 : 44);
     offset.left -= (tooltip.outerWidth() / 2) - 3;
+    tooltip.addClass("-show-tooltip");
     tooltip.css(offset);
   }
 
@@ -109,8 +110,8 @@ class UalReportListController {
     );
   }
 
-  showTooltip(container, sibling, tooltipName, validate) {
-    if (this.itemHasEllipsis(container, sibling) || validate) {
+  showTooltip(container, sibling, tooltipName, noValidate) {
+    if (this.itemHasEllipsis(container, sibling) || noValidate) {
       let tooltip = $("#" + tooltipName);
       tooltip.prop("ual-tooltip-show", true);
     }
