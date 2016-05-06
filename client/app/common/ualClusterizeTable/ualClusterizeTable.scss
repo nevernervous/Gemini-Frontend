@@ -125,10 +125,14 @@
     i {
       margin-left: 10px;
     }
-    &.-order.-asc i {
+    &:hover {
+      cursor: pointer;
+      background-color: $color08;
+    }
+    &.-order.-asc i, &:hover.-asc i {
       @extend .ion-ios-arrow-up;
     }
-    &.-order.-desc i {
+    &.-order.-desc i, &:hover.-desc i {
       @extend .ion-ios-arrow-down;
     }
 
