@@ -32,7 +32,9 @@ class ualReportNameModalController {
     this.report.name.set(this.nameSelected);
     this._service.report.save(report).then(
         function(response){
-            form.saveResult = form.saveResultMessages[0]; form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
+            //form.saveResult = form.saveResultMessages[0];
+            //form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
+            form._rootScope.$broadcast('BANNER.SHOW', form.saveResultMessages[0]);
 
             report.reportId.set(response.data.id);
             form.messageDisplayed = true;
@@ -48,17 +50,18 @@ class ualReportNameModalController {
 
             //UNEXPECTED ERROR
             if(!response.data || !response.data.errorMessages){
-                form.saveResult = form.saveResultMessages[2];
+                //form.saveResult = form.saveResultMessages[2];
                 //form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
                 form.messageDisplayed = true;
+                form._rootScope.$broadcast('BANNER.SHOW', form.saveResultMessages[2]);
                 this._closemodal(false);
             }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){
             //EXPECTED ERROR
-                form.saveResult = form.saveResultMessages[2];
+                //form.saveResult = form.saveResultMessages[2];
                 // form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
                 // form.saveResult.msgText = response.data.errorMessage;
                 form.messageDisplayed = true;
-
+                form._rootScope.$broadcast('BANNER.SHOW', form.saveResultMessages[2]);
                 this._closemodal(false);
             }else{
             //DUPLICATED NAME
@@ -67,10 +70,10 @@ class ualReportNameModalController {
             }
         }
     ).catch(function(){
-        form.saveResult = form.saveResultMessages[2];
+        //form.saveResult = form.saveResultMessages[2];
         //form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
         form.messageDisplayed = true;
-
+        form._rootScope.$broadcast('BANNER.SHOW', form.saveResultMessages[2]);
         modal._closemodal(false);
     }).finally( () => {report.saving.setSaving(false);} );
   }
@@ -79,7 +82,7 @@ class ualReportNameModalController {
   }
 
   checkKey(event){
-          this.duplicatedName = false;
+    this.duplicatedName = false;
   }
 }
 
