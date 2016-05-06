@@ -53,7 +53,7 @@
       padding-right: 0;
     }
     height: calc(100% - 40px);
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     padding-bottom: 1px; // SHOWS LAST ITEM LINE
   }
