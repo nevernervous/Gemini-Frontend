@@ -15,11 +15,11 @@
     <ual-tooltip id="tooltipDataSource_${item.id}" class="-tooltip -fade-in" ual-tooltip-show="false"
                  ual-tooltip-options="{ top: '-3', right: vm.tooltipOffsetRight('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}'), left: vm.tooltipOffsetLeft() }"
                  ual-tooltip-container="vm.tooltipContainer('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}')">
-      Last updated {{ '${item.dataSourceRefreshDate}' | date:'MM/dd/yy HH:mm CT' }}
+      Last updated {{ '${item.dataSourceRefreshDate}' | date:'MM/dd/yy HH:mm' }} CT
     </ual-tooltip>
   </td>
   <td class="-date -left">
-    {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm CT' }}
+    {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm' }} CT
   </td>
   <td class="-actions -right">
     <div class="-action">
@@ -31,8 +31,8 @@
     <div class="-action">
       <i class="ion-ios-copy-outline"></i>
     </div>
-    <div id="delete_${item.id}" class="-action -delete" ng-mouseover="vm.tooltip('#delete_${item.id}')" ng-click="vm.deleteReport(${item.id})">
-      <ual-tooltip class="-top">Delete</ual-tooltip>
+    <div id="delete_${item.id}" class="-action -delete" ng-mouseover="vm.tooltip('#delete_${item.id}')" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.tooltip('#delete_${item.id}')" ng-click="vm.deleteReport(${item.id})">
+      <ual-tooltip class="-top -fade-in">Delete</ual-tooltip>
       <i class="ion-android-close"></i>
     </div>
   </td>
