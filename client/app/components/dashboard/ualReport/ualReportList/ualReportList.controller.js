@@ -106,7 +106,7 @@ class UalReportListController {
         this.reports = this.reports.concat(response.data.data);
         this.refresh();
       }
-    );
+      );
   }
 
   showTooltip(container, sibling, validate, text) {
@@ -165,51 +165,40 @@ class UalReportListController {
     }
   }
 
-  deleteSelected() {
-    this._deletereportmodal.open()
-      .then(response => {
-        if (response) {
-          let ids = _.map(this.selectedReports, 'id');
-          this._services.report.remove(ids)
-            .then((reply) => {
-              _.remove(this.reports, (item) => {
-                return _.contains(ids, item.id);
-              });
-              this.selectedReports = [];
-              this.refresh();
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
-        }
-      });
+  showError(reply) {
+    if (!reply.data || !reply.data.errorMessages) {
+      this.saveResult = this.saveResultMessages[1];
+    } else {
+      this.saveResult = reply.data.errorMessage;
+    }
+    // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
   }
 
-  deleteReport(reportId) {
+  deleteReport(id) {
+    this.delete([id]);
+  }
+  deleteSelected() {
+    this.delete(_.map(this.selectedReports, 'id'));
+  }
+
+  delete(ids) {
+    let totalDelete = ids.length;
     this._deletereportmodal.open()
-      .then(response => {
+      .then((response) => {
         if (response) {
-          this._services.report.remove(reportId)
-            .then((reply) => {
-              _.remove(this.reports, { id: reportId});
-              _.remove(this.selectedReports, { id: reportId });
-              this.refresh();
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+          this._services.report.remove(ids)
+              .then((reply) => {
+                _.remove(this.selectedReports, (item) => {
+                  return _.contains(ids, item.id);
+                });
+                _.remove(this.reports, (item) => {
+                  return _.contains(ids, item.id);
+                });
+                this.refresh();
+                this.total -= totalDelete;
+                // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+              }, (reply) => this.showError(reply))
+              .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
       });
   }
