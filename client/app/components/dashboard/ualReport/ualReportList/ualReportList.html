@@ -26,9 +26,9 @@
           <table ual-clusterize-table ng-class="{'-loading': vm.loading, '-empty': (vm.rows.length == 0)}" rows="vm.rows" empty-message="No reports created." on-scroll="vm.onScroll()">
             <thead>
               <tr>
-                <th class="-expand -left -{{vm.orders[vm.order].direction[0]}}" ng-class="{'-order': (vm.order == 'name')}" ng-click="vm.orderBy('name')">Report name<i></i></th>
-                <th class="-shrink -left -{{vm.orders[vm.order].direction[0]}}" ng-class="{'-order': (vm.order == 'dataSource')}" ng-click="vm.orderBy('dataSource')">Data source<i></i></th>
-                <th class="-date -left -{{vm.orders[vm.order].direction[0]}}" ng-class="{'-order': (vm.order == 'modificationDate')}" ng-click="vm.orderBy('modificationDate')">Last modification date<i></i></th>
+                <th class="-expand -left -{{vm.orders['name'].direction[0]}}" ng-class="{'-order': (vm.order == 'name')}" ng-click="vm.orderBy('name')">Report name<i></i></th>
+                <th class="-shrink -left -{{vm.orders['dataSource'].direction[0]}}" ng-class="{'-order': (vm.order == 'dataSource')}" ng-click="vm.orderBy('dataSource')">Data source<i></i></th>
+                <th class="-date -left -{{vm.orders['modificationDate'].direction[0]}}" ng-class="{'-order': (vm.order == 'modificationDate')}" ng-click="vm.orderBy('modificationDate')">Last modification date<i></i></th>
                 <th class="-actions"></th>
               </tr>
             </thead>
