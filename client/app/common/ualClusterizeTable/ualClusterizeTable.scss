@@ -112,9 +112,6 @@
           margin-right: 25px;
         }
       }
-      ual-tooltip {
-        display: none;
-      }
       i {
         visibility: hidden;
       }
@@ -163,9 +160,6 @@
   }
   .clusterize-content tr:hover, .clusterize-content tr.-selected {
     background-color: $other10;
-    .-actions .-action:hover ual-tooltip {
-        display: block;
-    }
     ual-checkbox {
       visibility: visible;
     }

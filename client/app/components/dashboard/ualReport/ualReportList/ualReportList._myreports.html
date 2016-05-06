@@ -31,8 +31,8 @@
     <div class="-action">
       <i class="ion-ios-copy-outline"></i>
     </div>
-    <div id="delete_${item.id}" class="-action -delete" ng-mouseover="vm.tooltip('#delete_${item.id}')" ng-click="vm.deleteReport(${item.id})">
-      <ual-tooltip class="-top">Delete</ual-tooltip>
+    <div id="delete_${item.id}" class="-action -delete" ng-mouseover="vm.tooltip('#delete_${item.id}')" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.tooltip('#delete_${item.id}')" ng-click="vm.deleteReport(${item.id})">
+      <ual-tooltip class="-top -fade-in">Delete</ual-tooltip>
       <i class="ion-android-close"></i>
     </div>
   </td>
