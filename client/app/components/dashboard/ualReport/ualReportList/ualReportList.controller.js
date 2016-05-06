@@ -65,7 +65,6 @@ class UalReportListController {
   }
 
   tooltip(id) {
-    console.log("Tooltip");
     let tooltip = $(id + ' ual-tooltip');
     let offset = $(id).offset();
     offset.top -= (window.isIE ? 47 : 44);
