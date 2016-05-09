@@ -9,7 +9,6 @@ class ualReportNameModalController {
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
     this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
-    
   }
 
   _closemodal(response) {
@@ -19,7 +18,6 @@ class ualReportNameModalController {
 
   ok() {
     this._closemodal(true);
-    
   }
   cancel(){
     this._closemodal(false);
