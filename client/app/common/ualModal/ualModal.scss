@@ -42,7 +42,7 @@ ual-modal.-yesno {
       margin-bottom: 20px;
       color: $color06;
       @include font-clanot-book(16);
-      line-height: 1.5;      
+      line-height: 1.5;
       > strong {
         @include font-clanot-bold(16);
       }
@@ -65,7 +65,7 @@ ual-modal.-yesno {
 
 ual-modal.-fullmodal {
   background:  rgba($color00, 0.95);
-  padding: 52px 40px;
+  padding: 52px 25px;
 
   > ng-transclude {
     @include gridle( row );
@@ -88,6 +88,7 @@ ual-modal.-fullmodal {
       width: 100%;
       height: 100%;
       margin: 0;
+      padding: 0 10px;
       > .title {
         @include font-clanot-bold(20);
         padding: 15px 10px;

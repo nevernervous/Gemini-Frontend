@@ -8,7 +8,6 @@ class ualRenderDirective {
 
     link(scope, element, attr) {
       if (scope.$last === true) {
-        console.log("attr.id: " + attr.id)
         scope.$emit('RENDER.END', attr.id);
       }
     }

@@ -20,15 +20,18 @@ class UalReportListController {
 
     this.orders = {
       'name': {
-        attributes: ['name'],
-        direction: ['desc']
+        attributes: [(item) => { return item.name.toLowerCase(); }],
+        default: 'asc',
+        direction: ['asc']
       },
       'dataSource': {
         attributes: ['dataSource', 'modificationDate'],
-        direction: ['desc', 'desc']
+        default: 'asc',
+        direction: ['asc', 'desc']
       },
       'modificationDate': {
         attributes: ['modificationDate'],
+        default: 'desc',
         direction: ['desc']
       }
     }
@@ -41,8 +44,13 @@ class UalReportListController {
   }
 
   orderBy(param) {
-    // IF IS THE SAME && IS 'DESC', SO CHANGE TO 'ASC'. ELSE, USE 'DESC'
-    let direction = (this.order === param && (this.orders[this.order].direction[0] === 'desc')) ? 'asc' : 'desc';
+    let direction = this.orders[param].default;
+    if ( this.order === param ) {
+      direction = (this.orders[this.order].direction[0] === 'desc') ? 'asc' : 'desc';
+    } else {
+      this.orders[this.order].direction[0] = this.orders[this.order].default;
+    }
+
     this.order = param;
     this.orders[this.order].direction[0] = direction;
 
@@ -59,9 +67,9 @@ class UalReportListController {
   tooltip(id) {
     let tooltip = $(id + ' ual-tooltip');
     let offset = $(id).offset();
-    offset.position = 'fixed';
     offset.top -= (window.isIE ? 47 : 44);
     offset.left -= (tooltip.outerWidth() / 2) - 3;
+    tooltip.addClass("-show-tooltip");
     tooltip.css(offset);
   }
 
@@ -101,8 +109,8 @@ class UalReportListController {
     );
   }
 
-  showTooltip(container, sibling, tooltipName, validate) {
-    if (this.itemHasEllipsis(container, sibling) || validate) {
+  showTooltip(container, sibling, tooltipName, noValidate) {
+    if (this.itemHasEllipsis(container, sibling) || noValidate) {
       let tooltip = $("#" + tooltipName);
       tooltip.prop("ual-tooltip-show", true);
     }
@@ -153,6 +161,7 @@ class UalReportListController {
       .then(response => {
         if (response) {
           let ids = _.map(this.selectedReports, 'id');
+          let totalDelete = ids.length;
           this._services.report.remove(ids)
             .then((reply) => {
               _.remove(this.reports, (item) => {
@@ -160,6 +169,7 @@ class UalReportListController {
               });
               this.selectedReports = [];
               this.refresh();
+              this.total -= totalDelete;
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {
@@ -183,6 +193,7 @@ class UalReportListController {
               _.remove(this.reports, { id: reportId});
               _.remove(this.selectedReports, { id: reportId });
               this.refresh();
+              this.total -= 1;
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {
