@@ -8,7 +8,6 @@ let ualReportInputComponent = {
     value: "=",
     label: '@',
     type: '@',
-    value: '=',
     onFocus: '&',
     isRequired: '=',
     invalidInput: '=',
