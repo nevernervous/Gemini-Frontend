@@ -188,7 +188,7 @@ class UalReportListController {
     this._deletereportmodal.open()
       .then(response => {
         if (response) {
-          this._services.report.remove(reportId)
+          this._services.report.remove([reportId])
             .then((reply) => {
               _.remove(this.reports, { id: reportId});
               _.remove(this.selectedReports, { id: reportId });
