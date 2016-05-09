@@ -161,6 +161,7 @@ class UalReportListController {
       .then(response => {
         if (response) {
           let ids = _.map(this.selectedReports, 'id');
+          let totalDelete = ids.length;
           this._services.report.remove(ids)
             .then((reply) => {
               _.remove(this.reports, (item) => {
@@ -168,6 +169,7 @@ class UalReportListController {
               });
               this.selectedReports = [];
               this.refresh();
+              this.total -= totalDelete;
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {
@@ -191,6 +193,7 @@ class UalReportListController {
               _.remove(this.reports, { id: reportId});
               _.remove(this.selectedReports, { id: reportId });
               this.refresh();
+              this.total -= 1;
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => {
               if (!reply.data || !reply.data.errorMessages) {
