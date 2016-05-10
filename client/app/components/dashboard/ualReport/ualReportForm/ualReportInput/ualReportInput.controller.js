@@ -1,12 +1,13 @@
 class ualReportInputController {
     /*@ngInject*/
-    constructor($timeout) {
+    constructor($timeout,ualTooltipService) {
         this._timeout = $timeout;
         this.name = 'ualReportInput';
         this.visibleInput = false;
         this.inputId = "reportName";
         this.firstTime = !this.report.name.get();
         this.labelStyle = {};
+        this._ualTooltipService=ualTooltipService;
     }
 
     displayInput(val, event) {
@@ -23,7 +24,7 @@ class ualReportInputController {
         }
 
     }
-    
+
     onBlur(event){
         this.displayInput(false, event);
         this.onSave();
@@ -31,7 +32,18 @@ class ualReportInputController {
 
     onMouse(val) {
         this.isOverInput = val;
+        console.log(val)
         this.labelStyle["border-color"] = this.isOverInput ? "#d4d4d4" : "#fff";
+        if(this.isOverInput && !this.visibleInput){ //showtooltip
+          this._ualTooltipService.show({
+            container:"ualReportInput",
+            text:"Change name report",
+            position:"right"
+          });
+        }
+        else{ //hidetooltip
+          this._ualTooltipService.hide();
+        }
     }
 
     labelText() {

@@ -4,6 +4,7 @@ import ualDataSourceCancelModal from './ualDataSourceCancelModal/ualDataSourceCa
 import ualDataSourceChangeModal from './ualDataSourceChangeModal/ualDataSourceChangeModal';
 import ualDataSourceGroup from './ualDataSourceGroup/ualDataSourceGroup';
 import ualDataSourceLabel from './ualDataSourceLabel/ualDataSourceLabel';
+import ualTooltipService from '../../../../../common/ualTooltip/ualTooltip.service';
 
 let ualDataSourceModule = angular.module('ualDataSource', [
   ualDataSourceCancelModal.name,
@@ -11,6 +12,7 @@ let ualDataSourceModule = angular.module('ualDataSource', [
   ualDataSourceGroup.name,
   ualDataSourceLabel.name
 ])
-.factory('ualDataSource', ualDataSourceFactory);
+.factory('ualDataSource', ualDataSourceFactory)
+.factory('ualTooltipService',ualTooltipService);
 
 export default ualDataSourceModule;

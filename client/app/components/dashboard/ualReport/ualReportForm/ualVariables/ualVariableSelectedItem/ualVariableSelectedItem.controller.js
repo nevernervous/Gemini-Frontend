@@ -2,9 +2,9 @@ import $ from 'jquery';
 
 class UalVariableSelectedItemController {
   /*@ngInject*/
-  constructor() {
+  constructor(ualTooltipService) {
     this.name = 'ualVariableSelectedItem';
-    this.error = false;
+    this._ualTooltipService=ualTooltipService;
   }
 
   isValid(order) {
@@ -20,7 +20,6 @@ class UalVariableSelectedItemController {
   }
 
   onBlur(event, item, order) {
-    this.error = false;
     let position = _.parseInt(this.variableId.split('_')[0]);
     if ( position !== order && this.isValid(order)) {
       this.variableOrder = _.parseInt(order);
@@ -28,19 +27,21 @@ class UalVariableSelectedItemController {
     } else {
       this.variableOrder = position;
     }
+    this._ualTooltipService.hide();
   }
 
-  onChange(order) {
+  onChange(order,id) {
     if ( !this.isValid(order) && order != "") {
-      let tooltip = $('#' + this.variableId + ' ual-tooltip');
-      let offset = $('#' + this.variableId).offset();
-      offset.position = 'fixed';
-      offset.top -= 95;
-      offset.left -= (isIE || isFirefox) ? 82 : 85;
-      tooltip.css(offset);
-      this.error = true;
-    } else {
-      this.error = false;
+      let container = id+"_variable-order";
+      console.log(container);
+      this._ualTooltipService.show({
+        container:container,
+        text:`Only numeric values between 1 and ${this.variableTotal} are allowed. Please re-enter a valid value.`,
+        position:"top",
+        type:"error"
+      });
+    }else{
+      this._ualTooltipService.hide();
     }
   }
 

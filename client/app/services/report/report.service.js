@@ -6,7 +6,7 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
   let all = (fromPage, total, sortColumn, sortDirection) => {
     let requests = [];
     let current = (fromPage - 1) * pageSize;
-    while ( current < total ) {
+    while (current < total) {
       requests.push(_query(fromPage, sortColumn, sortDirection));
       fromPage++;
       current = (fromPage - 1) * pageSize;
@@ -70,23 +70,15 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
 
   let remove = (ids) => {
     let transformation = [ServicesTransform.get('none')];
-    let request;
-    if (!_.isArray(ids)) {
-      let id = ids;
-      request = $http.delete(`${endpoint}/${id}`, {
-        cache: Properties.cache,
-        transformResponse: ServicesTransform.generate(transformation)
-      });
-    } else{
-      request = $http.delete(`${endpoint}`, {
-        cache: Properties.cache,
-        data: ids,
-        headers : {
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        transformResponse: ServicesTransform.generate(transformation)
-      });
-    }
+    let request = $http.delete(`${endpoint}`, {
+      cache: Properties.cache,
+      data: ids,
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      transformResponse: ServicesTransform.generate(transformation)
+    });
+
 
     return request;
   }

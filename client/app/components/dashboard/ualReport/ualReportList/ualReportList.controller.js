@@ -4,7 +4,7 @@ import myreports from './ualReportList._myreports.html';
 class UalReportListController {
   /*@ngInject*/
 
-  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService,$filter) {
     this._rootScope = $rootScope;
 
     this._services = {
@@ -17,6 +17,9 @@ class UalReportListController {
     this.total = 0;
     this.loading = true;
     this._deletereportmodal = ualReportListDeleteReportModal;
+    this._ualTooltipService=ualTooltipService;
+    this._filer=$filter;
+
 
     this.orders = {
       'name': {
@@ -64,13 +67,18 @@ class UalReportListController {
     });
   }
 
-  tooltip(id) {
-    let tooltip = $(id + ' ual-tooltip');
-    let offset = $(id).offset();
-    offset.top -= (window.isIE ? 47 : 44);
-    offset.left -= (tooltip.outerWidth() / 2) - 3;
-    tooltip.addClass("-show-tooltip");
-    tooltip.css(offset);
+  tooltip(container) {
+    // let tooltip = $(id + ' ual-tooltip');
+    // let offset = $(id).offset();
+    // offset.position = 'fixed';
+    // offset.top -= (window.isIE ? 47 : 44);
+    // offset.left -= (tooltip.outerWidth() / 2) - 3;
+    // tooltip.css(offset);
+    this._ualTooltipService.show({
+        container : container,
+        text: "Delete",
+        position:"top"
+      });
   }
 
   onScroll() {
@@ -106,19 +114,27 @@ class UalReportListController {
         this.reports = this.reports.concat(response.data.data);
         this.refresh();
       }
-    );
+      );
   }
 
-  showTooltip(container, sibling, tooltipName, noValidate) {
-    if (this.itemHasEllipsis(container, sibling) || noValidate) {
-      let tooltip = $("#" + tooltipName);
-      tooltip.prop("ual-tooltip-show", true);
-    }
+  showTooltip(container, sibling, validate, text) {
+     if (this.itemHasEllipsis(container, sibling) || validate) {
+      //  let tooltip = $("#" + tooltipName);
+      //  tooltip.prop("ual-tooltip-show", true);
+      text=this._filer('date')(text, "MM/dd/yy HH:mm CT");
+       this._ualTooltipService.show({
+        container : this.itemHasEllipsis(container, sibling)?container:sibling,
+        text: text,
+        position:"right"
+      });
+
+     }
   }
 
   hideTooltip() {
-    $("ual-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+    // $("ual-tooltip").removeClass("-show-tooltip");
+    // $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+    this._ualTooltipService.hide();
   }
 
   itemHasEllipsis(container, sibling) {
@@ -156,51 +172,40 @@ class UalReportListController {
     }
   }
 
-  deleteSelected() {
-    this._deletereportmodal.open()
-      .then(response => {
-        if (response) {
-          let ids = _.map(this.selectedReports, 'id');
-          this._services.report.remove(ids)
-            .then((reply) => {
-              _.remove(this.reports, (item) => {
-                return _.contains(ids, item.id);
-              });
-              this.selectedReports = [];
-              this.refresh();
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
-        }
-      });
+  showError(reply) {
+    if (!reply.data || !reply.data.errorMessages) {
+      this.saveResult = this.saveResultMessages[1];
+    } else {
+      this.saveResult = reply.data.errorMessage;
+    }
+    // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
   }
 
-  deleteReport(reportId) {
+  deleteReport(id) {
+    this.delete([id]);
+  }
+  deleteSelected() {
+    this.delete(_.map(this.selectedReports, 'id'));
+  }
+
+  delete(ids) {
+    let totalDelete = ids.length;
     this._deletereportmodal.open()
-      .then(response => {
+      .then((response) => {
         if (response) {
-          this._services.report.remove(reportId)
-            .then((reply) => {
-              _.remove(this.reports, { id: reportId});
-              _.remove(this.selectedReports, { id: reportId });
-              this.refresh();
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+          this._services.report.remove(ids)
+              .then((reply) => {
+                _.remove(this.selectedReports, (item) => {
+                  return _.contains(ids, item.id);
+                });
+                _.remove(this.reports, (item) => {
+                  return _.contains(ids, item.id);
+                });
+                this.refresh();
+                this.total -= totalDelete;
+                // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+              }, (reply) => this.showError(reply))
+              .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
       });
   }
