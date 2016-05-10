@@ -8,7 +8,6 @@ class ualReportInputController {
         this.firstTime = !this.value
         this.labelStyle = {};
         this.isOverInput = false;
-        this.invalidInput = false;
     }
 
     displayInput(val, event) {
