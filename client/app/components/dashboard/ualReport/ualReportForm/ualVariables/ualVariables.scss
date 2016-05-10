@@ -26,7 +26,8 @@
                         height: 100%;
                         .group-list {
                             overflow: auto;
-                            height: 100%;
+                            height: calc(100% - 100px);
+                            margin-right: -15px;
                             > .mCustomScrollBox {
                               padding-right: 15px;
                             }
@@ -127,7 +128,6 @@
                 > .selected-variables {
                   border: 1px solid $color08;
                   .selected-list {
-                    height: 100%;
                     .selected-container.over {
                       background-color: $color08;
                     }
