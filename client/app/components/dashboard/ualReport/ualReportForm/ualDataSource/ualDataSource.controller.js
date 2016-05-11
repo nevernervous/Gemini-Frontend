@@ -61,7 +61,7 @@ class UalDataSourceController {
     }
 
     toogleSelected(item) {
-        this.selected = this.isActive(item.id) ? null : item;
+        this.selected = item;
         this.hideTooltip();
     }
 

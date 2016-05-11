@@ -4,6 +4,8 @@
     </span>
   <ual-tooltip id="tooltip_{{vm.datasourceItem.id}}" class="-tooltip -fade-in" ual-tooltip-show="false"
     ual-tooltip-options="{ top: vm.tooltipOptions.top, right: vm.tooltipOptions.right, left: vm.tooltipOptions.left }" ual-tooltip-container="vm.datasourceContainer()">
+    <strong>Last updated date {{ '${item.dataSourceRefreshDate}' | date:'MM/dd/yy HH:mm':'-0500' }} CT</b><br />
+    {{vm.datasourceItem.name}}<br />
     {{vm.datasourceItem.description}}
   </ual-tooltip>
 </span>
