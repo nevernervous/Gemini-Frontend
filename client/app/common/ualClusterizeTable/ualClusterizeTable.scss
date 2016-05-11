@@ -22,6 +22,9 @@
     // TYPE
     &.-check {
       padding: 0 35px 0 10px;
+      ual-checkbox {
+        float: left;
+      }
     }
     &.-expand {
       width: 99%;
@@ -95,10 +98,10 @@
       @include link();
     }
     &.-ellipsis {
-      div {
-        @include ellipses();
+      a {
+        max-height: 21px;
+        display: block;
       }
-
     }
     &.-actions > .-action {
       margin-left: 20px;
