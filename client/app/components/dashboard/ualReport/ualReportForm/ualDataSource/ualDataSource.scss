@@ -15,20 +15,15 @@
             height: calc(100% - 120px);
             padding: 10px 0;
             .data-source-list {
-                &.columns-1 {
-                  @include column-content(1);
+                @include gridle(row);
+                overflow: auto;
+                height: 100%;
+                ual-data-source-group{
+                  width: 100%;
                 }
-                &.columns-2 {
-                  @include column-content(2);
+                ual-data-source-item{
+                  width: 25%;
                 }
-                &.columns-3 {
-                  @include column-content(3);
-                }
-                &.columns-4 {
-                  @include column-content(4);
-                }
-                // @include column-content(4);
-                // @include column-fill(auto);
             }
         }
         .loading-message,
@@ -36,23 +31,6 @@
             @include gridle(12);
             @include font-clanot-book(16);
             color: $color07;
-        }
-    }
-}
-
-// VARIATIONS
-.ual-data-source {
-    .container {
-        .content-list {
-            .mCS_no_scrollbar_y {
-                height: 100%;
-            }
-            .data-source-list {
-                &.-horizontal-fill {
-                    height: 100%;
-                    @include column-fill(auto);
-                }
-            }
         }
     }
 }
