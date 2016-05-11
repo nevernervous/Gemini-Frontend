@@ -1,5 +1,6 @@
 import angular from 'angular';
 import servicesTransform from './services.transform';
+import servicesHelper from './services.helper';
 import Session from './session/session';
 import User from './user/user';
 import Configuration from './configuration/configuration';
@@ -13,9 +14,10 @@ let sessionModule = angular.module('app.services', [
   Configuration.name,
   Datasource.name,
   Aggregator.name,
-  Report.name
+  Report.name,
 ])
 
-.factory('ServicesTransform', servicesTransform);
+.factory('ServicesTransform', servicesTransform)
+.factory('ServicesHelper', servicesHelper);
 
 export default sessionModule;
