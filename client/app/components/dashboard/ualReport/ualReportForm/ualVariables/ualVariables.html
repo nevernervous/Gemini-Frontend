@@ -65,7 +65,7 @@
   </div>
   <!-- new variables layout -->
   <div class="content-list">
-    <div class="variables" style="justify-content: space-between">
+    <div class="variables" >
 
       <div class="selected-variables">
         <ual-pane ual-title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0 || (vm.selecteds && (vm.selecteds | filterBy:vm.selectedFilter | isEmpty))">
@@ -76,21 +76,17 @@
           <div class="empty-list" ng-hide="(vm.selecteds).length > 0">
             <div>No variables have been selected yet. Please select variables from the left menu.</div>
           </div>
-          <ul id="selected-list" class="selected-list" ng-if="vm.selecteds.length > 0" ual-scroll
-              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-            <li class="selected-container" ng-repeat="item in vm.selecteds | filterBy:vm.selectedFilter track by item.id"
-                droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container"
-                drop="vm.onDrop" dragover="vm.scrollTo" bind="vm"  ual-disabled="vm.scrolling"
-                ng-class="{'last': $last, 'first': $first}">
-              <ual-variable-selected-item
-                variable-id="{{ vm.itemPosition(item) + 1 }}_selected_container" variable-total="vm.selecteds.length" variable-item="item" variable-order="vm.itemPosition(item) + 1"
-                on-delete="vm.toggle(item)" cb-change="vm.changeOrder" cb-bind="vm"
-                draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item" item="item"
-                ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}" >
-              </ual-variable-selected-item>
-            </li>
-          </ul>
+
         </ual-pane>
+      </div>
+
+      <div class="add-btns">
+        <div class="buttons">
+          <ual-button class="-primary" > > </ual-button>
+        </div>
+        <div class="buttons">
+          <ual-button class="-primary" > >> </ual-button>
+        </div>
       </div>
 
        <div class="selected-variables">
@@ -102,20 +98,7 @@
           <div class="empty-list" ng-hide="(vm.selecteds).length > 0">
             <div>No variables have been selected yet. Please select variables from the left menu.</div>
           </div>
-          <ul id="selected-list" class="selected-list" ng-if="vm.selecteds.length > 0" ual-scroll
-              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-            <li class="selected-container" ng-repeat="item in vm.selecteds | filterBy:vm.selectedFilter track by item.id"
-                droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container"
-                drop="vm.onDrop" dragover="vm.scrollTo" bind="vm"  ual-disabled="vm.scrolling"
-                ng-class="{'last': $last, 'first': $first}">
-              <ual-variable-selected-item
-                variable-id="{{ vm.itemPosition(item) + 1 }}_selected_container" variable-total="vm.selecteds.length" variable-item="item" variable-order="vm.itemPosition(item) + 1"
-                on-delete="vm.toggle(item)" cb-change="vm.changeOrder" cb-bind="vm"
-                draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item" item="item"
-                ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}" >
-              </ual-variable-selected-item>
-            </li>
-          </ul>
+
         </ual-pane>
       </div>
 
@@ -128,20 +111,7 @@
           <div class="empty-list" ng-hide="(vm.selecteds).length > 0">
             <div>No variables have been selected yet. Please select variables from the left menu.</div>
           </div>
-          <ul id="selected-list" class="selected-list" ng-if="vm.selecteds.length > 0" ual-scroll
-              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-            <li class="selected-container" ng-repeat="item in vm.selecteds | filterBy:vm.selectedFilter track by item.id"
-                droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container"
-                drop="vm.onDrop" dragover="vm.scrollTo" bind="vm"  ual-disabled="vm.scrolling"
-                ng-class="{'last': $last, 'first': $first}">
-              <ual-variable-selected-item
-                variable-id="{{ vm.itemPosition(item) + 1 }}_selected_container" variable-total="vm.selecteds.length" variable-item="item" variable-order="vm.itemPosition(item) + 1"
-                on-delete="vm.toggle(item)" cb-change="vm.changeOrder" cb-bind="vm"
-                draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item" item="item"
-                ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}" >
-              </ual-variable-selected-item>
-            </li>
-          </ul>
+
         </ual-pane>
       </div>
 
