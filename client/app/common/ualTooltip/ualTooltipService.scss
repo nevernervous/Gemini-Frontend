@@ -88,6 +88,20 @@ ual-tooltip {
   top: 0;
   left: 0;
 
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
   i{
     display:none;
   }
@@ -148,7 +162,7 @@ ual-tooltip {
       border-left: 3px solid transparent;
       border-right: 3px solid transparent;
       border-top: 5px solid $color08;
-      right: 50%;
+      right: calc(50% - 6px);
     }
     &.error::before{
       border-top: 5px solid $color12;

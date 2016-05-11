@@ -22,5 +22,5 @@
     </div>
 </div>
 <div class="buttons">
-    <ual-button class="-primary" ng-disabled="!vm.hasChange()" ng-click="vm.apply()">Apply</ual-button>
+    <ual-button class="-primary" ng-class="{spinner : vm.isLoading}" ng-disabled="!vm.hasChange()" ng-click="vm.apply()">Apply</ual-button>
 </div>

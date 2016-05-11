@@ -1,12 +1,16 @@
 <tr ng-class="{'-selected': vm.isSelected(${item.id})}">
-  <td id="reportNameContainer_${item.id}" class="-expand -check -link -left -ellipsis" ng-mouseover="vm.showTooltip('reportNameContainer_${item.id}', 'reportNameItem_${item.id}', false, '${item.name}' )" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip('reportNameContainer_${item.id}', 'reportNameItem_${item.id}',  false, '${item.name}')">
-    <div>
-       <ual-checkbox ng-click="vm.toggleReport(${item.id})" is-checked="vm.isSelected(${item.id})"></ual-checkbox>
-      <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})">${item.name}</a>
-    </div>
+  <td class="-expand -check -link -left -ellipsis" >
+    <ual-checkbox ng-click="vm.toggleReport(${item.id})" is-checked="vm.isSelected(${item.id})"></ual-checkbox>
+    <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})" ual-ellipsis
+       ng-mouseover="vm.showTruncateTooltip('reportNameItem_${item.id}', '${item.name}' )" ng-mouseleave="vm.hideTooltip()" >
+       ${item.name}
+    </a>
   </td>
-  <td id="reportDataSourceContainer_${item.id}" class="-shrink -left" ng-mouseover="vm.showTooltip('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}', true, '${item.dataSourceRefreshDate}' )" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}', true, 'Last updated {{ \'${item.dataSourceRefreshDate}\' | date:\'MM/dd/yy HH:mm\':\'-0500\' }} CT' )">
-    <span id="reportDataSourceItem_${item.id}">${item.dataSource}</span>
+  <td class="-shrink -left" >
+    <span id="reportDataSourceItem_${item.id}"
+          ng-mouseover="vm.showTooltip('reportDataSourceItem_${item.id}', '${item.dataSourceRefreshDate}' )" ng-mouseleave="vm.hideTooltip()" >
+      ${item.dataSource}
+    </span>
   </td>
   <td class="-date -left">
     {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm':'-0500'}} CT
@@ -21,7 +25,7 @@
     <div class="-action">
       <i class="ion-ios-copy-outline"></i>
     </div>
-    <div id="delete_${item.id}" class="-action -delete" ng-mouseover="vm.tooltip('delete_${item.id}')" ng-mouseleave="vm.hideTooltip()" ng-click="vm.deleteReport(${item.id})">
+    <div id="delete_${item.id}" class="-action -delete" ng-mouseover="vm.showTooltip('delete_${item.id}', 'Delete', 'top')" ng-mouseleave="vm.hideTooltip()" ng-click="vm.deleteReport(${item.id})">
       <i class="ion-android-close"></i>
     </div>
   </td>

@@ -67,18 +67,6 @@ class UalReportListController {
     });
   }
 
-  tooltip(container) {
-    this._ualTooltipService.show({
-      container: container,
-      text: "Delete",
-      position: "top"
-    });
-  }
-
-  onScroll() {
-    this.hideTooltip();
-  }
-
   $onInit() {
     // LOAD REPORTS
     this.loading = true;
@@ -111,46 +99,24 @@ class UalReportListController {
       );
   }
 
-  showTooltip(container, sibling, validate, text) {
-    if (this.itemHasEllipsis(container, sibling) || validate) {
-      //  let tooltip = $("#" + tooltipName);
-      //  tooltip.prop("ual-tooltip-show", true);
-      text = this._filer('date')(text, "MM/dd/yy HH:mm CT");
-      this._ualTooltipService.show({
-        container: this.itemHasEllipsis(container, sibling) ? container : sibling,
-        text: text,
-        position: "right"
-      });
-
-    }
+  // TOOLTIP
+  showTooltip(container, text, position = "right") {
+    this._ualTooltipService.show({
+      container: container,
+      text: text,
+      position: position
+    });
+  }
+  showTruncateTooltip(container, text, position = "right") {
+    $("#"+container).hasClass('is-truncated') && this.showTooltip(container, text, position);
   }
 
   hideTooltip() {
-    // $("ual-tooltip").removeClass("-show-tooltip");
-    // $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
     this._ualTooltipService.hide();
   }
 
-  itemHasEllipsis(container, sibling) {
-    let _container = $("#" + container);
-    let _sibling = $("#" + sibling);
-    return (window.isIE) ? ((_sibling.outerWidth(true) + 45) >= _container.width()) : (_sibling.width() > _container.width());
-  }
-
-  tooltipContainer(container, sibling) {
-    return (this.itemHasEllipsis(container, sibling)) ? container : sibling;
-  }
-
-  tooltipOffsetRight(container, sibling) {
-    return (this.itemHasEllipsis(container, sibling)) ? (window.isIE ? -20 : -30) : 15;
-  }
-
-  tooltipOffsetLeft() {
-    return window.isIE ? 15 : -15;
-  }
-
-  reportDataSourceOffsetTop(id) {
-    return window.isIE ? -3 : 7;
+  onScroll() {
+    this.hideTooltip();
   }
 
   isSelected(reportId) {
