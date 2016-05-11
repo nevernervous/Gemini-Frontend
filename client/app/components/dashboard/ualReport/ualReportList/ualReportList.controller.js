@@ -23,15 +23,18 @@ class UalReportListController {
 
     this.orders = {
       'name': {
-        attributes: ['name'],
-        direction: ['desc']
+        attributes: [(item) => { return item.name.toLowerCase(); }],
+        default: 'asc',
+        direction: ['asc']
       },
       'dataSource': {
         attributes: ['dataSource', 'modificationDate'],
-        direction: ['desc', 'desc']
+        default: 'asc',
+        direction: ['asc', 'desc']
       },
       'modificationDate': {
         attributes: ['modificationDate'],
+        default: 'desc',
         direction: ['desc']
       }
     }
@@ -44,8 +47,13 @@ class UalReportListController {
   }
 
   orderBy(param) {
-    // IF IS THE SAME && IS 'DESC', SO CHANGE TO 'ASC'. ELSE, USE 'DESC'
-    let direction = (this.order === param && (this.orders[this.order].direction[0] === 'desc')) ? 'asc' : 'desc';
+    let direction = this.orders[param].default;
+    if ( this.order === param ) {
+      direction = (this.orders[this.order].direction[0] === 'desc') ? 'asc' : 'desc';
+    } else {
+      this.orders[this.order].direction[0] = this.orders[this.order].default;
+    }
+
     this.order = param;
     this.orders[this.order].direction[0] = direction;
 
@@ -121,7 +129,6 @@ class UalReportListController {
       });
 
      }
-
   }
 
   hideTooltip() {

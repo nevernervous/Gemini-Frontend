@@ -10,45 +10,24 @@ describe('Dashboard', () => {
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new DashboardController();
+      return new DashboardController($rootScope);
     };
   }));
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-  });
 
   describe('Controller', () => {
     // controller specs
     it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
       let controller = makeController();
       expect(controller).to.have.property('name');
+      controller.$onInit();
+      console.log(controller._suscriptions.length)
+      expect(controller._suscriptions.length).to.equal(4);
+      //controller._suscriptions();
+      controller._unsuscribe();
+      console.log(controller._suscriptions.length);
+      expect(controller._suscriptions.length).to.equal(0);
     });
   });
 
-  describe('Template', () => {
-    const template = $('<dashboard/>').html(DashboardTemplate); 
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(template.children()).to.have.length(1);
-    });
-  });
-
-  describe('Component', () => {
-      // component/directive specs
-      let component = DashboardComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(DashboardTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(DashboardController);
-      });
-  });
 });

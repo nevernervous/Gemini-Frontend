@@ -53,7 +53,7 @@
       padding-right: 0;
     }
     height: calc(100% - 40px);
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     padding-bottom: 1px; // SHOWS LAST ITEM LINE
   }
@@ -112,9 +112,6 @@
           margin-right: 25px;
         }
       }
-      ual-tooltip {
-        display: none;
-      }
       i {
         visibility: hidden;
       }
@@ -125,10 +122,14 @@
     i {
       margin-left: 10px;
     }
-    &.-order.-asc i {
+    &:hover {
+      cursor: pointer;
+      background-color: $color08;
+    }
+    &.-order.-asc i, &:hover.-asc i {
       @extend .ion-ios-arrow-up;
     }
-    &.-order.-desc i {
+    &.-order.-desc i, &:hover.-desc i {
       @extend .ion-ios-arrow-down;
     }
 
@@ -159,9 +160,6 @@
   }
   .clusterize-content tr:hover, .clusterize-content tr.-selected {
     background-color: $other10;
-    .-actions .-action:hover ual-tooltip {
-        display: block;
-    }
     ual-checkbox {
       visibility: visible;
     }
