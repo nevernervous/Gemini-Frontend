@@ -70,3 +70,4 @@ class ualReportInputController {
 }
 
 export default ualReportInputController;
+

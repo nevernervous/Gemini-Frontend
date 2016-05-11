@@ -17,9 +17,16 @@
                     margin: 0;
                     padding: 0 10px 0 0;
                     .standard-variables {
+                        > div {
+                            height: 100%;
+                            > div{
+                              height: 100%;
+                            }
+                        }
+                        height: 100%;
                         .group-list {
                             overflow: auto;
-                            height: 100%;
+                            height: calc(100% - 100px);
                             margin-right: -15px;
                             > .mCustomScrollBox {
                               padding-right: 15px;

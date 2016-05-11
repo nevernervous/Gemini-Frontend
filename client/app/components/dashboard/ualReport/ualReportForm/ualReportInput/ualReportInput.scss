@@ -79,10 +79,15 @@
     .-tooltip {
         margin-left: 10px;
         margin-top: 0px;
-        top: 135px;
-        left: 300px;
+        top: 125px;
+        left: 290px;
         min-width: 150px !important;
+        @include -moz-browser() {
+            top: 125px;
+            left: 300px;
+        }
         @include -ms-browser() {
+            left: 280px;
             margin-top: -2px;
         }
     }

@@ -5,11 +5,11 @@
       <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})">${item.name}</a>
     </div>
   </td>
-  <td id="reportDataSourceContainer_${item.id}" class="-shrink -left" ng-mouseover="vm.showTooltip('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}', true, '${item.dataSourceRefreshDate}' )" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}', true, '${item.dataSourceRefreshDate}' )">
+  <td id="reportDataSourceContainer_${item.id}" class="-shrink -left" ng-mouseover="vm.showTooltip('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}', true, '${item.dataSourceRefreshDate}' )" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip('reportDataSourceContainer_${item.id}', 'reportDataSourceItem_${item.id}', true, 'Last updated {{ \'${item.dataSourceRefreshDate}\' | date:\'MM/dd/yy HH:mm\':\'-0500\' }} CT' )">
     <span id="reportDataSourceItem_${item.id}">${item.dataSource}</span>
   </td>
   <td class="-date -left">
-    {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm CT' }}
+    {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm':'-0500'}} CT
   </td>
   <td class="-actions -right">
     <div class="-action">

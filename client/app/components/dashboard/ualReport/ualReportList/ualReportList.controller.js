@@ -4,7 +4,7 @@ import myreports from './ualReportList._myreports.html';
 class UalReportListController {
   /*@ngInject*/
 
-  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService,$filter) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService, $filter) {
     this._rootScope = $rootScope;
 
     this._services = {
@@ -17,8 +17,8 @@ class UalReportListController {
     this.total = 0;
     this.loading = true;
     this._deletereportmodal = ualReportListDeleteReportModal;
-    this._ualTooltipService=ualTooltipService;
-    this._filer=$filter;
+    this._ualTooltipService = ualTooltipService;
+    this._filer = $filter;
 
 
     this.orders = {
@@ -48,7 +48,7 @@ class UalReportListController {
 
   orderBy(param) {
     let direction = this.orders[param].default;
-    if ( this.order === param ) {
+    if (this.order === param) {
       direction = (this.orders[this.order].direction[0] === 'desc') ? 'asc' : 'desc';
     } else {
       this.orders[this.order].direction[0] = this.orders[this.order].default;
@@ -68,17 +68,11 @@ class UalReportListController {
   }
 
   tooltip(container) {
-    // let tooltip = $(id + ' ual-tooltip');
-    // let offset = $(id).offset();
-    // offset.position = 'fixed';
-    // offset.top -= (window.isIE ? 47 : 44);
-    // offset.left -= (tooltip.outerWidth() / 2) - 3;
-    // tooltip.css(offset);
     this._ualTooltipService.show({
-        container : container,
-        text: "Delete",
-        position:"top"
-      });
+      container: container,
+      text: "Delete",
+      position: "top"
+    });
   }
 
   onScroll() {
@@ -118,17 +112,17 @@ class UalReportListController {
   }
 
   showTooltip(container, sibling, validate, text) {
-     if (this.itemHasEllipsis(container, sibling) || validate) {
+    if (this.itemHasEllipsis(container, sibling) || validate) {
       //  let tooltip = $("#" + tooltipName);
       //  tooltip.prop("ual-tooltip-show", true);
-      text=this._filer('date')(text, "MM/dd/yy HH:mm CT");
-       this._ualTooltipService.show({
-        container : this.itemHasEllipsis(container, sibling)?container:sibling,
+      text = this._filer('date')(text, "MM/dd/yy HH:mm CT");
+      this._ualTooltipService.show({
+        container: this.itemHasEllipsis(container, sibling) ? container : sibling,
         text: text,
-        position:"right"
+        position: "right"
       });
 
-     }
+    }
   }
 
   hideTooltip() {
@@ -194,18 +188,18 @@ class UalReportListController {
       .then((response) => {
         if (response) {
           this._services.report.remove(ids)
-              .then((reply) => {
-                _.remove(this.selectedReports, (item) => {
-                  return _.contains(ids, item.id);
-                });
-                _.remove(this.reports, (item) => {
-                  return _.contains(ids, item.id);
-                });
-                this.refresh();
-                this.total -= totalDelete;
-                // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-              }, (reply) => this.showError(reply))
-              .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+            .then((reply) => {
+              _.remove(this.selectedReports, (item) => {
+                return _.contains(ids, item.id);
+              });
+              _.remove(this.reports, (item) => {
+                return _.contains(ids, item.id);
+              });
+              this.refresh();
+              this.total -= totalDelete;
+              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
+            }, (reply) => this.showError(reply))
+            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
       });
   }

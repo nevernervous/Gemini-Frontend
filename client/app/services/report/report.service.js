@@ -1,7 +1,16 @@
-let reportService = function (Properties, ServicesHelper, ServicesTransform, $http, $q) {
+let reportService = function (Properties, ServicesHelper, ServicesTransform, $http, $q, ReportObject, ReportTransform) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
   const pageSize = 50;
+
+  let create = () => {
+    ReportObject.clean();
+    return ReportObject;
+  };
+
+  let currentReport = () => {
+    return ReportObject;
+  };
 
   let all = (fromPage, total, sortColumn, sortDirection) => {
     let requests = [];
@@ -31,42 +40,17 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
   }
 
   let getById = (reportId) => {
-    let transformation = [ServicesTransform.get('none')];
+    let transformation = [ReportTransform.get('simple')];
     return $http.get(`${endpoint}/${reportId}`, {
-      cache: Properties.cache,
-      transformResponse: ServicesTransform.generate(transformation)
-    });
+      cache: Properties.cache
+      , transformResponse: ReportTransform.generate(transformation)
+    }).then(
+      response => {
+        ReportObject.clean();
+        ReportObject.load(response.data);
+        return ReportObject;
+      });
   };
-
-  let saveReport = (report) => {
-    report.saving.setSaving(true);
-
-    let dataSourceId = report.datasource.get().id;
-    let variables = report.variables.get();
-    let aggregators = report.aggregators.get();
-
-    let data = {
-      name: report.name.get(),
-      dataSourceId: dataSourceId,
-      variables: [],
-      aggregators: [],
-      slicers: []
-    };
-
-    for (let i in variables) {
-      data.variables.push({ Id: variables[i].id, Order: i })
-    }
-    for (let i in aggregators) {
-      data.aggregators.push({ Id: aggregators[i].id, Order: i })
-    }
-
-    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
-    if (report.reportId.get() === null) {
-      return $http.post(endpoint, data);
-    } else {
-      return $http.put(endpoint + "/" + report.reportId.get(), data);
-    }
-  }
 
   let remove = (ids) => {
     let transformation = [ServicesTransform.get('none')];
@@ -79,18 +63,17 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
       transformResponse: ServicesTransform.generate(transformation)
     });
 
-
     return request;
   }
 
   return {
     all,
+    create,
+    currentReport,
     first,
-    save: saveReport,
     remove,
     getById
   };
 };
 
 export default reportService;
-
