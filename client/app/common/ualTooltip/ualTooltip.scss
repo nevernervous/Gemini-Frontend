@@ -10,6 +10,14 @@ ual-tooltip {
   i {
     display: none;
   }
+  &.-fade-in {
+    opacity: 0;
+    opacity: 1 \9; /*just in case ie*/
+    @include fadeIn();
+    @include animation(fadeIn ease-in 1);
+    @include animation-fill-mode(forwards);
+    @include animation-duration(0.2s);
+  }
 }
 
 ual-tooltip.-dropdown {
@@ -81,7 +89,7 @@ ual-tooltip.-top {
   background-color: $color08;
   color: $color06;
   @include font-clanot-news(12);
-  display: flex;
+  display: none;
   text-align: center;
   padding: 13px 4px;
   cursor: default;
@@ -101,6 +109,11 @@ ual-tooltip.-top {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
     border-top: 6px solid $color08;
+  }
+
+  &.-show-tooltip {
+    position: fixed;
+    display: block;
   }
 }
 
@@ -137,15 +150,6 @@ ual-tooltip.-tooltip {
   &.-show-tooltip {
     position: fixed;
     display: inline;
-  }
-
-  &.-fade-in {
-    opacity: 0;
-    opacity: 1 \9; /*just in case ie*/
-    @include fadeIn();
-    @include animation(fadeIn ease-in 1);
-    @include animation-fill-mode(forwards);
-    @include animation-duration(0.2s);
   }
 
   &.-tooltip-right {
