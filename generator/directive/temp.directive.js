@@ -1,15 +1,17 @@
 import template from './<%= name %>.html';
+import controller from './<%= name %>.controller';
 import './<%= name %>.scss';
+
 
 class <%= name %>Directive {
   /*@ngInject*/
   constructor() {
     this.restrict = 'E';
     this.template = template;
-    this.scope = {};
+    this.controller = controller;
   }
 
-  link(scope, element) {
+  link($scope, elem, attr, ctrl) {
 
   }
 }

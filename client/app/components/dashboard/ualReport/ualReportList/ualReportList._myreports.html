@@ -1,9 +1,7 @@
 <tr ng-class="{'-selected': vm.isSelected(${item.id})}">
   <td id="reportNameContainer_${item.id}" class="-expand -check -link -left -ellipsis" ng-mouseover="vm.showTooltip('reportNameContainer_${item.id}', 'reportNameItem_${item.id}', 'tooltipName_${item.id}', false)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip('reportNameContainer_${item.id}', 'reportNameItem_${item.id}', 'tooltipName_${item.id}', false)">
-    <div>
-       <ual-checkbox ng-click="vm.toggleReport(${item.id})" is-checked="vm.isSelected(${item.id})"></ual-checkbox>
-      <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})">${item.name}</a>
-    </div>
+      <ual-checkbox ng-click="vm.toggleReport(${item.id})" is-checked="vm.isSelected(${item.id})"></ual-checkbox>
+      <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})" ual-ellipsis >${item.name}</a>
     <ual-tooltip id="tooltipName_${item.id}" class="-tooltip -fade-in" ual-tooltip-show="false"
                  ual-tooltip-options="{ top: '-3', right: vm.tooltipOffsetRight('reportNameContainer_${item.id}', 'reportNameItem_${item.id}') }"
                  ual-tooltip-container="vm.tooltipContainer('reportNameContainer_${item.id}', 'reportNameItem_${item.id}')">
