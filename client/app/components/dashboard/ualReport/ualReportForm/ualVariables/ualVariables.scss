@@ -66,9 +66,13 @@
                     }
                 }
                 >.add-btns{
-                      margin: auto -45px;
+                      margin: auto -33px;
                       >.buttons{
                         margin: 5px 0;
+                        >button{
+                          width: 100%;
+                          padding: 10% 18%;
+                        }
                       }
                     }
                 > .selected-variables {
