@@ -1,0 +1,183 @@
+@import '../common';
+
+// LAYOUT
+ual-tooltip {
+  position: absolute;
+}
+
+// VARIANTS
+
+.-tooltip.dropdown {
+  right: 0px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 8px;
+    top: -10px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid $color03;
+
+    @include -ms-browser() {
+      padding-top: 2px;
+    }
+  }
+}
+
+.-tooltip.error {
+  background-color: $color12;
+  color: $color11;
+  @include font-clanot-news(12);
+  display: flex;
+  align-items: stretch;
+  padding: 9px 10px 9px 6px;
+  width: 226px;
+  cursor: default;
+
+  i {
+    display: inline-flex;
+    font-size: 24px;
+    margin-top: -5px;
+    cursor: pointer;
+    @include -ms-browser() {
+      margin-right: 5px;
+    }
+  }
+
+  span {
+    display: inline-flex;
+    padding-left: 5px;
+    text-align: left;
+
+    @include -ms-browser() {
+      padding-left: 15px;
+    }
+  }
+
+  // &::before {
+  //   content: '';
+  //   display: block;
+  //   width: 0;
+  //   height: 0;
+  //   position: absolute;
+  //   right: 50%;
+  //   bottom: -8px;
+  //   border-left: 3px solid transparent;
+  //   border-right: 3px solid transparent;
+  //   border-top: 8px solid $color12;
+  // }
+}
+
+.-tooltip {
+  @include font-clanot-news(12);
+  color: $color06;
+  background-color: $color08;
+  padding: 10px;
+ // min-width: 200px;
+  max-width: 280px;
+  text-align: center;
+  z-index: 1010;
+  white-space: normal;
+  display: none;
+  position: fixed;
+  //margin-top: -7px;
+  top: 0;
+  left: 0;
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  i{
+    display:none;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: calc(50% - 3px);
+
+    @include -ms-browser() {
+      top: calc(50% - 2px);
+    }
+  }
+
+  &.-show-tooltip {
+    position: fixed;
+    display: inline;
+  }
+
+  &.-fade-in {
+    opacity: 0;
+    opacity: 1 \9; /*just in case ie*/
+    @include fadeIn();
+    @include animation(fadeIn ease-in 1);
+    @include animation-fill-mode(forwards);
+    @include animation-duration(0.2s);
+  }
+
+  &.-tooltip-right {
+    &::before {
+      left: -5px;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-right: 5px solid $color08;
+    }
+    &.error::before{
+      border-right: 5px solid $color12;
+    }
+  }
+
+  &.-tooltip-left {
+    &::before {
+      right: -5px;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-left: 5px solid $color08;
+    }
+    &.error::before{
+      border-left: 5px solid $color12;
+    }
+  }
+  &.-tooltip-top{
+    &::before{
+      top: 100%;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-top: 5px solid $color08;
+      right: calc(50% - 6px);
+    }
+    &.error::before{
+      border-top: 5px solid $color12;
+    }
+  }
+  &.-tooltip-bottom{
+    &::before{
+      top: -5px;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-bottom: 5px solid $color08;
+      right: 50%;
+    }
+    &.error::before{
+      border-bottom: 5px solid $color12;
+    }
+  }
+}

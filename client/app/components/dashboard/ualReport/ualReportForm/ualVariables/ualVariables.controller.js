@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 class UalVariablesController {
   /*@ngInject*/
-  constructor(close, $timeout, $filter, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds) {
+  constructor(close, $timeout, $filter, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds, ualTooltipService) {
     // SERVICES
     this._close = close;
     this._datasourceService = DataSourceService;
@@ -16,6 +16,7 @@ class UalVariablesController {
     // VARS / PRIVATE
     this._datasource = datasource;
     this._selecteds = selecteds;
+    this._ualTooltipService=ualTooltipService;
 
     // VARS / PUBLIC
     this.variables = {items: []}
@@ -33,6 +34,8 @@ class UalVariablesController {
     this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
     this._suscriptions.push($rootScope.$on('DRAGGING.START', () => this.dragging = true));
     this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
+
+    this.callbackHideTooltip = this.hideTooltip.bind(this);
   }
 
   _closemodal(response) {
@@ -148,13 +151,16 @@ class UalVariablesController {
   itemPosition(variable) {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
-  showTooltip(id){
-    let tooltip = $("#tooltip_"+id);
-    tooltip.prop("ual-tooltip-show", true);
+  showTooltip(container, data, position = 'right') {
+    this._ualTooltipService.show({
+      container: container,
+      text: data.description,
+      position: position
+    });
   }
-  hideTooltip(){
-    $(".-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+
+  hideTooltip() {
+    this._ualTooltipService.hide();
   }
 
   datasourceHasEllipsis(id){
