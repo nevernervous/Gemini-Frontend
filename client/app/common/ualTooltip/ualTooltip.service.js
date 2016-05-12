@@ -9,7 +9,7 @@ let ualTooltipService = function () {
     let offset = container.offset();
     let adjust = {
       left: -4,
-      right: window.isIE ? 10 : 15,
+      right: window.isIE ? 0 : 15,
       top: window.isIE ? 4 : 2,
       bottom:  window.isIE ? 2 : 5
     }
@@ -47,13 +47,13 @@ let ualTooltipService = function () {
       case "left":
         offset.left = offset.left + adjust.left - tooltip.outerWidth(true);
         tooltip.addClass('-tooltip-left');
-        offset.top -= ( (tooltip.height() / 2) - (container.height() / 2) );
+        offset.top -= ( (tooltip.outerHeight(true) / 2) - (container.outerHeight(true) / 2) );
         offset.top -= adjust.top;
         break;
       case "right":
         offset.left =  offset.left + adjust.right + container.outerWidth(true) ;
         tooltip.addClass('-tooltip-right');
-        offset.top -= ( (tooltip.height() / 2) - (container.height() / 2) );
+        offset.top -= ( (tooltip.outerHeight() / 2) - (container.outerHeight(true) / 2) );
         offset.top -= adjust.top;
         break;
       case "top":
