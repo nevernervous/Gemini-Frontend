@@ -1,8 +1,7 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal) {
+  constructor($state, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal) {
     this._state = $state;
-    this._datasourcemodal = ualDataSource;
     this._variablesmodal = ualVariables;
     this.maxAggregators = 10;
     this._scope = $scope;
@@ -13,6 +12,8 @@ class UalReportFormController {
       , report: Report
       , datasource: DataSource
     };
+    this.selectedDataSource = {};
+
     this.dropDownStyle = {};
     this.inputStyle = {};
     this.report = null;
@@ -30,7 +31,6 @@ class UalReportFormController {
     let reportId = this._state.params["id"];
     if (!reportId) {
       this.report = this._service.report.create();
-      this.selectDataSource();
     } else {
       this.openReport(reportId);
     }

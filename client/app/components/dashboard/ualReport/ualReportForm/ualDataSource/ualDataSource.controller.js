@@ -2,33 +2,20 @@ import $ from 'jquery';
 
 class UalDataSourceController {
     /*@ngInject*/
-    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter) {
-        this._close = close;
+    constructor($rootScope, DataSource, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter) {
         this._datasource = DataSource;
         this._cancelmodal = ualDataSourceCancelModal;
         this._changemodal = ualDataSourceChangeModal;
-        this._selected = selected;
         this._filter = $filter;
         this.searchTerm = {};
 
         this.datasources;
-        this.selected = selected;
-        this._initialize();
 
-        this._suscriptions = [];
-        this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
-        this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
-        this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
-    }
-
-    _closemodal(response) {
-        this._suscriptions.forEach(suscription => suscription());
-        this._close(response);
     }
 
     apply() {
-        if (this._selected && this.hasChange()) { // FIRST TIME
-            this._changemodal.open({ oldDataSource: this._selected, newDataSource: this.selected })
+        if (this.selected && this.hasChange()) { // FIRST TIME
+            this._changemodal.open({ oldDataSource: this.selected, newDataSource: this.selected })
                 .then(response => response && this._closemodal(this.selected));
         } else {
             this._closemodal(this.selected);
@@ -38,14 +25,14 @@ class UalDataSourceController {
     cancel() {
         if (this.hasChange()) {
             this._cancelmodal.open()
-                .then(response => response && this._closemodal(this._selected));
+                .then(response => response && this._closemodal(this.selected));
         } else {
-            this._closemodal(this._selected);
+            this._closemodal(this.selected);
         }
     }
 
     hasChange() {
-        return (!this._selected && this.selected) || (this._selected && this.selected && (this._selected.id !== this.selected.id));
+        return (!this.selected && this.selected) || (this.selected && this.selected && (this.selected.id !== this.selected.id));
     }
 
     shouldShow(group) {
@@ -66,8 +53,7 @@ class UalDataSourceController {
       $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
     }
 
-    _initialize() {
-      // this.columns = "columns-1";
+    $onInit() {
       this._datasource.all('group')
       .then(response => {
         this.datasources = response.data;

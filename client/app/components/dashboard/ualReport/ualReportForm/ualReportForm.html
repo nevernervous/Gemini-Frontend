@@ -1,12 +1,10 @@
 <div class="report-header">
   <div class="title">Create Report</div>
-  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
-    ng-click="vm.saveReport(vm.report)">Save</ual-button>
+  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()" ng-click="vm.saveReport(vm.report)">Save</ual-button>
 </div>
 <div class="report-body">
   <div class="section report-name" ng-if="vm.report">
-    <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && vm.reportNameChanged() && vm.saveReport()"
-      invalid-input="vm.duplicatedName || (!vm.report.id.get() && !vm.reportName)">
+    <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && vm.reportNameChanged() && vm.saveReport()" invalid-input="vm.duplicatedName || (!vm.report.id.get() && !vm.reportName)">
       <ual-invalid-message>
         <span ng-if="vm.duplicatedName">
             Report name already exists. Please select another.
@@ -46,8 +44,7 @@
             </ual-dropdown-messages>
             <ual-dropdown-items ual-scroll ual-scroll-options="{ theme:'dark' }" ng-if="vm.aggregators.groups" ng-class="{'-no-results': (vm.aggregators.items | filterBy: vm.search | isEmpty) }">
               <ual-dropdown-group name="{{group.name}}" ng-repeat="group in vm.aggregators.groups" ng-if="!(group.items | filterBy: vm.search | isEmpty)">
-                <ual-dropdown-item ng-click="vm.addAggregator(item)" name="{{item.name}}" ng-repeat="item in group.items | filterBy: vm.search"
-                  ng-class="{'-disabled': vm.isAggregated(item)}">
+                <ual-dropdown-item ng-click="vm.addAggregator(item)" name="{{item.name}}" ng-repeat="item in group.items | filterBy: vm.search" ng-class="{'-disabled': vm.isAggregated(item)}">
                 </ual-dropdown-item>
               </ual-dropdown-group>
             </ual-dropdown-items>
@@ -60,5 +57,9 @@
         <ual-agregation-item ng-repeat="item in vm.report.aggregators.get()">{{$index+1}}. {{item.name}}</ual-agregation-item>
       </div>
     </div>
+  </div>
+  <div class="data-source-items">
+    <ual-data-source selected="vm.selectedDataSource">
+    </ual-data-source>
   </div>
 </div>
