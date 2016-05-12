@@ -11,6 +11,7 @@
         <tabs-content>
           <ual-tab class="standard-variables" ual-title="Standard Variables">
             <ual-pane ual-title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0 || ( vm.variables.items | filterBy:vm.standardFilter | isEmpty)">
+
               <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()"  ual-disabled="vm.dragging"></ual-input>
               <div class="group-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" ng-show="(vm.variables.items | filterBy:vm.standardFilter).length > 0">
                 <ual-variables-group ng-class="{no_scroll: (group.items | filterBy:vm.standardFilter).length < 12 }"group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filterBy:vm.standardFilter | isEmpty)">
