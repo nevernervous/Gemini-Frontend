@@ -6,8 +6,17 @@ ual-data-source {
     .search-area {
       @include gridle(row);
       ual-input{
-        @include gridle(6);
+        @include gridle(5);
+        padding-left: 24px;
       }
+    }
+    .empty-search{
+        min-height: 300px;
+        // text-align: center;
+        // vertical-align: middle;
+        span{
+            @include gridle(row row-alige middle center);
+        }
     }
     .content-list {
         @include gridle(row row-align middle);
