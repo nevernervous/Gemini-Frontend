@@ -8,7 +8,6 @@ class ualButtonDirective {
     this.replace = true;
     this.transclude = true;
     this.template = template;
-    this.scope = {};
   }
 
   link(scope, element) {
@@ -18,7 +17,7 @@ class ualButtonDirective {
         let action = newValue ? 'addClass' : 'removeClass';
         element[action]('-disabled');
       }
-      );
+      );    
   }
 }
 

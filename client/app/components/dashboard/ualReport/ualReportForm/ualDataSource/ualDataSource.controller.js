@@ -2,11 +2,14 @@ import $ from 'jquery';
 
 class UalDataSourceController {
     /*@ngInject*/
-    constructor($rootScope, DataSource, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter) {
+    constructor($rootScope, DataSource,  ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $timeout, ualTooltipService) {
         this._datasource = DataSource;
         this._cancelmodal = ualDataSourceCancelModal;
         this._changemodal = ualDataSourceChangeModal;
         this._filter = $filter;
+        this._timeout = $timeout;
+        this._ualTooltipService = ualTooltipService;
+
         this.searchTerm = {};
 
         this.datasources;
@@ -49,9 +52,9 @@ class UalDataSourceController {
     }
 
     hideTooltip(){
-      $(".-tooltip").removeClass("-show-tooltip");
-      $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+      this._ualTooltipService.hide();
     }
+
 
     $onInit() {
       this._datasource.all('group')

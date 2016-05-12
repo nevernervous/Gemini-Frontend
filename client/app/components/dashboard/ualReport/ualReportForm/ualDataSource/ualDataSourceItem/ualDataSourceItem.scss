@@ -1,48 +1,33 @@
 @import '../../../../../../common/common';
 
-//Layout
+// LAYOUT
 ual-data-source-item {
     display: inline-block;
     cursor: pointer;
     line-height: 1;
 
-    > span{
-        @include ellipses();
-        width: 100%;
-        display: inline-block;
-        padding: 8px;
-        pointer-events: none;
-
-        @include -ms-browser() {
-          pointer-events: all;
-        }
-
-        > span{
-          pointer-events: all;
-        }
+    > span {
+      display: inline-block;
+      pointer-events: all;
+      height: 100%;
+      padding: 8px;
+      margin-left: 8px;
     }
 }
 
 
-//Variations
+// VARIANT
 ual-data-source-item {
     > span{
-        @include font-clanot-book(14);
-
-        > span {
-          height: 100%;
-          padding: 8px;
-        }
+      @include font-clanot-book(14);
+      @include ellipses();
+      pointer-events: none;
+      pointer-events: all;
     }
     &.-selected{
         > span {
           @include font-clanot-bold(14);
-
-          >span {
-            background-color: $color10;
-            /*padding: 5px;
-            margin: 0 5px 0 -5px;*/
-          }
+          background-color: $color10;
         }
     }
 }

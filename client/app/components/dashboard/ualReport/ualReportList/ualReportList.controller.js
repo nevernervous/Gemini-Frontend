@@ -4,7 +4,7 @@ import myreports from './ualReportList._myreports.html';
 class UalReportListController {
   /*@ngInject*/
 
-  constructor(Report, $rootScope, ualReportListDeleteReportModal) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService, $filter) {
     this._rootScope = $rootScope;
 
     this._services = {
@@ -17,6 +17,8 @@ class UalReportListController {
     this.total = 0;
     this.loading = true;
     this._deletereportmodal = ualReportListDeleteReportModal;
+    this._ualTooltipService = ualTooltipService;
+    this._filer = $filter;
 
     this.orders = {
       'name': {
@@ -37,6 +39,15 @@ class UalReportListController {
     }
     this.order = 'modificationDate';
 
+    this.tooltips = {
+      'simple': (data) => {
+        return data.text;
+      },
+      'lastupdated': (data) => {
+        return 'Last updated ' + $filter('date')(data.text, 'MM/dd/yy HH:mm', '-0500') + ' CT';
+      }
+    }
+
     this.saveResultMessages = [
       { type: "-success", text: "Item(s) deleted successfully." },
       { type: "-error", text: "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator." }
@@ -45,7 +56,7 @@ class UalReportListController {
 
   orderBy(param) {
     let direction = this.orders[param].default;
-    if ( this.order === param ) {
+    if (this.order === param) {
       direction = (this.orders[this.order].direction[0] === 'desc') ? 'asc' : 'desc';
     } else {
       this.orders[this.order].direction[0] = this.orders[this.order].default;
@@ -62,19 +73,6 @@ class UalReportListController {
     this.rows = _.map(_reports, (item) => {
       return _.template(myreports)({ item: item });
     });
-  }
-
-  tooltip(id) {
-    let tooltip = $(id + ' ual-tooltip');
-    let offset = $(id).offset();
-    offset.top -= (window.isIE ? 47 : 44);
-    offset.left -= (tooltip.outerWidth() / 2) - 3;
-    tooltip.addClass("-show-tooltip");
-    tooltip.css(offset);
-  }
-
-  onScroll() {
-    this.hideTooltip();
   }
 
   $onInit() {
@@ -109,39 +107,23 @@ class UalReportListController {
     );
   }
 
-  showTooltip(container, sibling, tooltipName, noValidate) {
-    if (this.itemHasEllipsis(container, sibling) || noValidate) {
-      let tooltip = $("#" + tooltipName);
-      tooltip.prop("ual-tooltip-show", true);
-    }
+  // TOOLTIP
+  showTooltip(container, data, type = 'simple', position = 'right') {
+    let content = this.tooltips[type](data);
+    this._ualTooltipService.show({
+      container: container,
+      text: content,
+      position: position
+    });
+  }
+  showTruncateTooltip(container, text, type = 'simple', position = 'right') {
+    $("#"+container).hasClass('is-truncated') && this.showTooltip(container, text, type, position);
   }
 
   hideTooltip() {
-    $("ual-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+    this._ualTooltipService.hide();
   }
 
-  itemHasEllipsis(container, sibling) {
-    let _container = $("#" + container);
-    let _sibling = $("#" + sibling);
-    return (window.isIE) ? ((_sibling.outerWidth(true) + 45) >= _container.width()) : (_sibling.width() > _container.width());
-  }
-
-  tooltipContainer(container, sibling) {
-    return (this.itemHasEllipsis(container, sibling)) ? container : sibling;
-  }
-
-  tooltipOffsetRight(container, sibling) {
-    return (this.itemHasEllipsis(container, sibling)) ? (window.isIE ? -20 : -30) : 15;
-  }
-
-  tooltipOffsetLeft() {
-    return window.isIE ? 15 : -15;
-  }
-
-  reportDataSourceOffsetTop(id) {
-    return window.isIE ? -3 : 7;
-  }
 
   isSelected(reportId) {
     return _.some(this.selectedReports, { id: reportId });
@@ -156,53 +138,39 @@ class UalReportListController {
     }
   }
 
+  showError(reply) {
+    if (!reply.data || !reply.data.errorMessages) {
+      this.saveResult = this.saveResultMessages[1];
+    } else {
+      this.saveResult = reply.data.errorMessage;
+    }
+    // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
+  }
+
+  deleteReport(id) {
+    this.delete([id]);
+  }
   deleteSelected() {
+    this.delete(_.map(this.selectedReports, 'id'));
+  }
+
+  delete(ids) {
+    let totalDelete = ids.length;
     this._deletereportmodal.open()
-      .then(response => {
+      .then((response) => {
         if (response) {
-          let ids = _.map(this.selectedReports, 'id');
-          let totalDelete = ids.length;
           this._services.report.remove(ids)
             .then((reply) => {
+              _.remove(this.selectedReports, (item) => {
+                return _.contains(ids, item.id);
+              });
               _.remove(this.reports, (item) => {
                 return _.contains(ids, item.id);
               });
-              this.selectedReports = [];
               this.refresh();
               this.total -= totalDelete;
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
-        }
-      });
-  }
-
-  deleteReport(reportId) {
-    this._deletereportmodal.open()
-      .then(response => {
-        if (response) {
-          this._services.report.remove([reportId])
-            .then((reply) => {
-              _.remove(this.reports, { id: reportId});
-              _.remove(this.selectedReports, { id: reportId });
-              this.refresh();
-              this.total -= 1;
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
+            }, (reply) => this.showError(reply))
             .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
       });
