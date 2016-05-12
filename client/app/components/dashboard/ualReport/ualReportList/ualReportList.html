@@ -23,7 +23,7 @@
           <label class="list-count"><strong>{{vm.total}} reports available</strong></label>
         </div>
         <div class="list-content">
-          <table ual-clusterize-table ng-class="{'-loading': vm.loading, '-empty': (vm.rows.length == 0)}" rows="vm.rows" empty-message="No reports created." on-scroll="vm.onScroll()">
+          <table ual-clusterize-table ng-class="{'-loading': vm.loading, '-empty': (vm.rows.length == 0)}" rows="vm.rows" empty-message="No reports created." on-scroll="vm.hideTooltip()">
             <thead>
               <tr>
                 <th class="-expand -left -{{vm.orders['name'].direction[0]}}" ng-class="{'-order': (vm.order == 'name')}" ng-click="vm.orderBy('name')">Report name<i></i></th>

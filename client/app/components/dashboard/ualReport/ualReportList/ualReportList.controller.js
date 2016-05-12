@@ -20,7 +20,6 @@ class UalReportListController {
     this._ualTooltipService = ualTooltipService;
     this._filer = $filter;
 
-
     this.orders = {
       'name': {
         attributes: [(item) => { return item.name.toLowerCase(); }],
@@ -39,6 +38,15 @@ class UalReportListController {
       }
     }
     this.order = 'modificationDate';
+
+    this.tooltips = {
+      'simple': (data) => {
+        return data.text;
+      },
+      'lastupdated': (data) => {
+        return 'Last updated ' + $filter('date')(data.text, 'MM/dd/yy HH:mm', '-0500') + ' CT';
+      }
+    }
 
     this.saveResultMessages = [
       { type: "-success", text: "Item(s) deleted successfully." },
@@ -96,28 +104,26 @@ class UalReportListController {
         this.reports = this.reports.concat(response.data.data);
         this.refresh();
       }
-      );
+    );
   }
 
   // TOOLTIP
-  showTooltip(container, text, position = "right") {
+  showTooltip(container, data, type = 'simple', position = 'right') {
+    let content = this.tooltips[type](data);
     this._ualTooltipService.show({
       container: container,
-      text: text,
+      text: content,
       position: position
     });
   }
-  showTruncateTooltip(container, text, position = "right") {
-    $("#"+container).hasClass('is-truncated') && this.showTooltip(container, text, position);
+  showTruncateTooltip(container, text, type = 'simple', position = 'right') {
+    $("#"+container).hasClass('is-truncated') && this.showTooltip(container, text, type, position);
   }
 
   hideTooltip() {
     this._ualTooltipService.hide();
   }
 
-  onScroll() {
-    this.hideTooltip();
-  }
 
   isSelected(reportId) {
     return _.some(this.selectedReports, { id: reportId });

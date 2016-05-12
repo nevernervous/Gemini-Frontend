@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 class UalDataSourceController {
     /*@ngInject*/
-    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate, $timeout,ualTooltipService) {
+    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate, $timeout, ualTooltipService) {
         this._close = close;
         this._datasource = DataSource;
         this._cancelmodal = ualDataSourceCancelModal;
@@ -10,7 +10,7 @@ class UalDataSourceController {
         this._selected = selected;
         this._filter = $filter;
         this._timeout = $timeout;
-        this._ualTooltipService=ualTooltipService;
+        this._ualTooltipService = ualTooltipService;
 
         this.searchTerm = {};
 
@@ -90,31 +90,6 @@ class UalDataSourceController {
         $('content-list').mCustomScrollbar("update");
       }, 750);
     }
-
-    // checkOverflow() {
-    //     if (this.finishItemRender) {
-    //         let $marker = angular.element(document.getElementById("overflow-marker"))[0];
-    //         let $container = angular.element(document.getElementById("content-list"))[0];
-    //         let $resizableContainer = angular.element(document.getElementById("resizable-container"))[0];
-    //         let $dataSourceList = angular.element(document.getElementById("data-source-list"))[0];
-
-    //         if (!$marker || !$container) {
-    //             return;
-    //         }
-
-    //         let markerWidth = $marker.offsetLeft;
-    //         let containerWidth = $container.clientWidth;
-
-    //         let hasHorizontalOverflow = markerWidth > containerWidth;
-    //         let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
-    //         let action = (!(hasHorizontalOverflow || !needHorizontalFill)) ? "addClass" : "removeClass" ;
-
-    //         this._animate[action]($dataSourceList, '-horizontal-fill').then(() => {
-    //                 this.hasLoaded = true;
-    //             });
-
-    //     }
-    // }
 
     hideTooltip(){
       this._ualTooltipService.hide();
