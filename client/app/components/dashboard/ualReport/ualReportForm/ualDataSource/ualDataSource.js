@@ -12,7 +12,7 @@ let ualDataSourceModule = angular.module('ualDataSource', [
   ualDataSourceGroup.name,
   ualDataSourceLabel.name
 ])
-.component('ualDataSource', ualDataSourceComponent);
+.component('ualDataSource', ualDataSourceComponent)
 .factory('ualTooltipService',ualTooltipService);
 
 export default ualDataSourceModule;
