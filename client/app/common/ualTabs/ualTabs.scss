@@ -118,7 +118,7 @@ ual-tabs.-inline {
     > .tabs-list {
       @include gridle( 8 );
       margin: 0;
-      @include -ms-browser(){
+      @include -ms-browser() {
         margin-top: 5px;
       }
       padding: 5px 0 0;

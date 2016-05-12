@@ -15,7 +15,7 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
   let all = (fromPage, total, sortColumn, sortDirection) => {
     let requests = [];
     let current = (fromPage - 1) * pageSize;
-    while ( current < total ) {
+    while (current < total) {
       requests.push(_query(fromPage, sortColumn, sortDirection));
       fromPage++;
       current = (fromPage - 1) * pageSize;
@@ -62,6 +62,7 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
       },
       transformResponse: ServicesTransform.generate(transformation)
     });
+
     return request;
   }
 

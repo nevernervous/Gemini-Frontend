@@ -56,7 +56,7 @@
 
 @mixin button-spinner(){
    background-repeat: no-repeat;
-   background-size: auto 90%;
+   background-size: auto calc(100% - 20px);
    background-position: center;
    >span{
      visibility: hidden;

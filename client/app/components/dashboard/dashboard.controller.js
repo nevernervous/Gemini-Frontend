@@ -22,6 +22,7 @@ class DashboardController {
     }
   }
 
+
   _unsuscribe() {
     this._suscriptions.forEach(suscription => suscription());
   }
