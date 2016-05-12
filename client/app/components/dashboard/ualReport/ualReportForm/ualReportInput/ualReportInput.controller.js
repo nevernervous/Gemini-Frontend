@@ -1,13 +1,14 @@
 class ualReportInputController {
     /*@ngInject*/
-    constructor($timeout,ualTooltipService) {
+    constructor($timeout, ualTooltipService) {
         this._timeout = $timeout;
         this.name = 'ualReportInput';
         this.visibleInput = false;
         this.inputId = "reportName";
-        this.firstTime = !this.report.name.get();
+        this.firstTime = !this.value;
         this.labelStyle = {};
-        this._ualTooltipService=ualTooltipService;
+        this.isOverInput = false;
+        this._ualTooltipService = ualTooltipService;
     }
 
     displayInput(val, event) {
@@ -47,7 +48,7 @@ class ualReportInputController {
     }
 
     labelText() {
-        return this.report.name.get() ? this.report.name.get() : 'Enter report name';
+      return this.value ? this.value : 'Enter report name';
     }
     checkEnter(event) {
         this.firstTime = false;
@@ -58,7 +59,7 @@ class ualReportInputController {
     }
 
     checkEmptyName() {
-        return (!this.report.name.get());
+        return (!this.value);
     }
     errorThrown() {
         if (this.invalidInput) {
