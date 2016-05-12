@@ -1,0 +1,54 @@
+<div class="container">
+
+  <div class="selected-variables">
+    <ual-pane ual-title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0 || (vm.selecteds && (vm.selecteds | filterBy:vm.selectedFilter | isEmpty))">
+      <ual-input ual-id="selected-searchbox" class="search-box" value="vm.selectedFilter.name" min-chars="3" icon="ion-ios-search-strong"
+        ual-disabled="vm.dragging"></ual-input>
+      <div class="empty-search" ng-hide="true">
+        <div>No results match your search</div>
+      </div>
+      <div class="empty-list" ng-hide="false">
+        <div>No variables have been selected yet. Please select variables from the left menu.</div>
+      </div>
+
+    </ual-pane>
+  </div>
+
+  <div class="add-btns">
+    <div class="buttons">
+      <ual-button class="-secondary"> > </ual-button>
+    </div>
+    <div class="buttons">
+      <ual-button class="-secondary"> >> </ual-button>
+    </div>
+  </div>
+
+  <div class="selected-variables">
+    <ual-pane ual-title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0 || (vm.selecteds && (vm.selecteds | filterBy:vm.selectedFilter | isEmpty))">
+      <ual-input ual-id="selected-searchbox" class="search-box" value="vm.selectedFilter.name" min-chars="3" icon="ion-ios-search-strong"
+        ual-disabled="vm.dragging"></ual-input>
+      <div class="empty-search" ng-hide="true">
+        <div>No results match your search</div>
+      </div>
+      <div class="empty-list" ng-hide="false">
+        <div>No variables have been selected yet. Please select variables from the left menu.</div>
+      </div>
+
+    </ual-pane>
+  </div>
+
+  <div class="selected-variables">
+    <ual-pane ual-title="Selected Variables ({{vm.selecteds.length}})" action="Delete all" on-action="vm.deleteAll()" is-disabled="vm.selecteds.length == 0 || (vm.selecteds && (vm.selecteds | filterBy:vm.selectedFilter | isEmpty))">
+      <ual-input ual-id="selected-searchbox" class="search-box" value="vm.selectedFilter.name" min-chars="3" icon="ion-ios-search-strong"
+        ual-disabled="vm.dragging"></ual-input>
+      <div class="empty-search" ng-hide="true">
+        <div>No results match your search</div>
+      </div>
+      <div class="empty-list" ng-hide="false">
+        <div>No variables have been selected yet. Please select variables from the left menu.</div>
+      </div>
+
+    </ual-pane>
+  </div>
+
+</div>
