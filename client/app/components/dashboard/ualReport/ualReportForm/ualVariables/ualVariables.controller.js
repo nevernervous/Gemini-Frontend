@@ -34,6 +34,8 @@ class UalVariablesController {
     this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
     this._suscriptions.push($rootScope.$on('DRAGGING.START', () => this.dragging = true));
     this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
+
+    this.callbackHideTooltip = this.hideTooltip.bind(this);
   }
 
   _closemodal(response) {
@@ -149,15 +151,15 @@ class UalVariablesController {
   itemPosition(variable) {
     return _.findIndex(this.selecteds, { 'id': variable.id });
   }
-  showTooltip(id,description){
-    let containter = "span_"+id;
+  showTooltip(container, data, position = 'right') {
     this._ualTooltipService.show({
-      container:containter,
-      text:description,
-      position:"right"
+      container: container,
+      text: data.description,
+      position: position
     });
   }
-  hideTooltip(){
+
+  hideTooltip() {
     this._ualTooltipService.hide();
   }
 

@@ -9,7 +9,7 @@ let ualTooltipService = function () {
     let offset = container.offset();
     let adjust = {
       left: -4,
-      right: window.isIE ? 0 : 15,
+      right: window.isIE ? 10 : 15,
       top: window.isIE ? 4 : 2,
       bottom:  window.isIE ? 2 : 5
     }

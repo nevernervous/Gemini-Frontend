@@ -2,8 +2,10 @@ import $ from 'jquery';
 
 class UalVariablesGroupController {
   /*@ngInject*/
-  constructor() {
+  constructor(ualTooltipService) {
     this.open = false;
+    this._ualTooltipService = ualTooltipService;
+    this.callbackHideTooltip = this.hideTooltip.bind(this);
   }
 
   toggle() {
@@ -12,9 +14,8 @@ class UalVariablesGroupController {
     }
   }
 
-  hideTooltip(){
-    $(".-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
+  hideTooltip() {
+    this._ualTooltipService.hide();
   }
 
 }

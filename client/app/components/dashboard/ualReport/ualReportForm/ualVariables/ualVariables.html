@@ -12,13 +12,15 @@
           <ual-tab class="standard-variables" ual-title="Standard Variables">
             <ual-pane ual-title="Choose Variables" action="Select all" on-action="vm.selectAll()" is-disabled="!vm.loaded || vm.variables.items.length == 0 || ( vm.variables.items | filterBy:vm.standardFilter | isEmpty)">
               <ual-input class="search-box" value="vm.standardFilter.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()"  ual-disabled="vm.dragging"></ual-input>
-              <div class="group-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.hideTooltip, whileScrolling: vm.hideTooltip } }" ng-show="(vm.variables.items | filterBy:vm.standardFilter).length > 0">
+              <div class="group-list" ual-scroll ual-scroll-options="{ theme:'dark', callbacks: { onScrollStart: vm.callbackHideTooltip, whileScrolling: vm.callbackHideTooltip } }" ng-show="(vm.variables.items | filterBy:vm.standardFilter).length > 0">
                 <ual-variables-group ng-class="{no_scroll: (group.items | filterBy:vm.standardFilter).length < 12 }"group-name="{{group.data.groupName}}" ng-repeat="group in vm.variables.groups" ng-class="{'-loading': !group.items}" group-enabled="group.items" ng-hide="group.items && (group.items | filterBy:vm.standardFilter | isEmpty)">
                   <ual-checkbox id="group_{{group.data.groupId}}" on-click="vm.toggleGroup(group)" item="group" is-checked="vm.isSelectedGroup(group)" ng-hide="vm.standardFilter.name" class="-select-all">
                     Select All
                   </ual-checkbox>
                   <ual-checkbox class="tooltip-wrapper" ng-repeat="item in group.items | filterBy:vm.standardFilter | orderBy : 'order' track by item.id" id="variable_{{item.id}}" on-click="vm.toggle(item)" item="item" is-checked="vm.isSelected(item)" >
-                    <span class="tooltip-sibling" id="span_{{item.id}}" ng-mouseover="vm.showTooltip(item.id,item.description)" ng-mouseleave="vm.hideTooltip()" ng-mousemove="vm.showTooltip(item.id,item.description)">{{item.name}}</span>
+                    <span class="tooltip-sibling" id="span_{{item.id}}"
+                          ng-mouseover="vm.showTooltip('span_' + item.id, item )" ng-mouseleave="vm.hideTooltip()">
+                      {{item.name}}</span>
                   </ual-checkbox>
                 </ual-variables-group>
               </div>
