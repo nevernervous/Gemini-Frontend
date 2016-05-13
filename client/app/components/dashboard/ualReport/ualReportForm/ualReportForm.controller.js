@@ -30,7 +30,7 @@ class UalReportFormController {
     let reportId = this._state.params["id"];
     if (!reportId) {
       this.report = this._service.report.create();
-      this.selectDataSource();
+      // this.selectDataSource();
     } else {
       this.openReport(reportId);
     }
