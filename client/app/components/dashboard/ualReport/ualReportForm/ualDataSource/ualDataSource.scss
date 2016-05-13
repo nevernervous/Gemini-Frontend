@@ -23,10 +23,10 @@ ual-data-source {
         padding: 5px 0;
         max-height: 300px;
         ual-data-source-group {
-            width: 100%;
+            @include gridle(12);
         }
         ual-data-source-item {
-            width: 25%;
+            @include gridle(3);
         }
     }
 }
