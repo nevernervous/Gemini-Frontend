@@ -16,6 +16,7 @@ class UalReportFormController {
     this.dropDownStyle = {};
     this.inputStyle = {};
     this.report = null;
+    this.variables = null;
 
     this.isSaving = false;
     this.reportName = null;
@@ -57,6 +58,10 @@ class UalReportFormController {
       return "Exit without saving?";
     };
     $(window).bind('beforeunload', this.beforeClose);
+
+    this._suscriptions.push(this._scope.$on('UALACORDION.OPEN', (event,accord) => {
+      this["get"+accord.split("-")[1]] && this["get"+accord.split("-")[1]]();
+    }));
   }
 
   _unsuscribe() {
@@ -90,6 +95,17 @@ class UalReportFormController {
   }
 
   // STEP 2
+  getvariables (){
+    this._service.datasource.variables(this.report.datasource.get())
+    .then(variables => {
+      this.variables = variables.data;
+//      this.loaded = true;
+    },
+    error => console.error(error),
+    progress => this.variables = progress.data);
+
+  }
+
   selectVariables() {
     this._variablesmodal.open({
         datasource: this.report.datasource.get()
