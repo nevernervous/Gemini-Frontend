@@ -20,19 +20,19 @@
 
 @mixin button-secondary($padding: 6px 19px) {
   @include font-clanot-news(16);
-  @include ual-button($color03, white, $padding);
+  @include ual-button($color02, white, $padding);
   &:hover {
-    @include ual-button(#81c4ea, white, $padding);
+    @include ual-button(#6f9bc8, white, $padding);
   }
   &.-disabled {
-    @include ual-button(#b0d4f1, #deedf9, $padding);
+    @include ual-button(#84aad0, #ced9e9, $padding);
     cursor: default;
   }
 }
 
 @mixin button-terciary($padding: 6px 17px, $border: 2px) {
   @include font-clanot-news(16);
-  @include ual-button(white, $color03, $padding, $border solid $color03);
+  @include ual-button(white, $color02, $padding, $border solid $color02);
   &:hover {
     @include ual-button(white, #81c4ea, $padding, $border solid #81c4ea);
   }
@@ -41,6 +41,7 @@
     cursor: default;
   }
 }
+
 
 @mixin button-link($padding: 6px) {
   @include font-clanot-news(16);
@@ -56,7 +57,7 @@
 
 @mixin button-spinner(){
    background-repeat: no-repeat;
-   background-size: auto 90%;
+   background-size: auto calc(100% - 20px);
    background-position: center;
    >span{
      visibility: hidden;

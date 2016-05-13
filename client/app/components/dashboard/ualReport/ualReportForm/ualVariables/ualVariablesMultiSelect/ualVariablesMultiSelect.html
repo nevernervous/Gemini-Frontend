@@ -1,0 +1,8 @@
+<ual-pane ual-title="Available variables ({{vm.variables.length}})" on-action="vm.selectAll()" action="Select all" is-disabled="vm.variables.length == 0 || ( vm.variables | filterBy:vm.filterName | isEmpty)">
+  <ual-input class="search-box" value="vm.filterName.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
+  <select multiple="multiple" class="-avaiable-variables" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)">
+    <option ng-repeat="variable in ( vm.variables | filterBy:vm.filterName | orderBy : 'order')" value="{{variable.id}}">{{variable.name}}</option>
+  </select>
+  <hr />
+  <ual-button class="-secondary">Create custom variable</ual-button>
+</ual-pane>

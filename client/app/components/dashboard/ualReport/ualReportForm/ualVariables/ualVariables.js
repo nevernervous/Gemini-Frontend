@@ -5,17 +5,20 @@ import ualVariablesDeteleAllModal from './ualVariablesDeteleAllModal/ualVariable
 import ualVariableSelectedItem from './ualVariableSelectedItem/ualVariableSelectedItem';
 import ualVariablesGroup from './ualVariablesGroup/ualVariablesGroup';
 import ualVariablesLayout from './ualVariablesLayout/ualVariablesLayout';
-
+import ualVariablesMultiSelect from './ualVariablesMultiSelect/ualVariablesMultiSelect';
+import ualTooltipService from '../../../../../common/ualTooltip/ualTooltip.service';
 
 let ualVariablesModule = angular.module('ualVariables', [
   ualVariablesCancelModal.name,
   ualVariablesDeteleAllModal.name,
   ualVariableSelectedItem.name,
   ualVariablesGroup.name,
-  ualVariablesLayout.name
+  ualVariablesLayout.name,
+  ualVariablesMultiSelect.name
 ])
 
-.factory('ualVariables', ualVariablesFactory);
+.factory('ualVariables', ualVariablesFactory)
+.factory('ualTooltipService',ualTooltipService);
 
 export default ualVariablesModule;
 

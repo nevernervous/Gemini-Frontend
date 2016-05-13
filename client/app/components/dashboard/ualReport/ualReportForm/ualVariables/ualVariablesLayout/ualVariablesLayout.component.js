@@ -6,6 +6,9 @@ let ualVariablesLayoutComponent = {
   restrict: 'E',
   bindings: {},
   template,
+  transclude:{
+    ualVariablesLayoutFirst:'ualVariablesLayoutFirst'
+  },
   controller,
   controllerAs: 'vm'
 };
