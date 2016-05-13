@@ -12,6 +12,17 @@ ual-report-form {
         }
     }
     > .report-body {
+      .ual-accordion-group {
+        .ual-accordion .accordion-title {
+          strong {
+            @include font-clanot-bold(16);
+          }
+          small {
+            margin-left: 3px;
+            @include font-clanot-book(14);
+          }
+        }
+      }
         > .section {
             border-bottom: 1px solid $color08;
         }
