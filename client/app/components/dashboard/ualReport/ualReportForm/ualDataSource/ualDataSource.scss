@@ -10,6 +10,9 @@ ual-data-source {
         padding-left: 24px;
       }
     }
+    .loading-message {
+        padding: 15px 0 0 15px;
+    }
     .content-list {
         @include gridle(row row-align middle);
         overflow: auto;
