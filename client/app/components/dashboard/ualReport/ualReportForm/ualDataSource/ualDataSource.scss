@@ -6,7 +6,8 @@ ual-data-source {
     .search-area {
       @include gridle(row);
       ual-input{
-        @include gridle(6);
+        @include gridle(5);
+        padding-left: 24px;
       }
     }
     .content-list {
