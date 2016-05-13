@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 class UalDataSourceController {
     /*@ngInject*/
     constructor($rootScope, DataSource,  ualDataSourceChangeModal, ualDataSourceCancelModal, ualTooltipService) {
