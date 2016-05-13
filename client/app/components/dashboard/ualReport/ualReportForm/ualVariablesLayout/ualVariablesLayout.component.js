@@ -4,11 +4,13 @@ import './ualVariablesLayout.scss';
 
 let ualVariablesLayoutComponent = {
   restrict: 'E',
-  bindings: {},
-  template,
-  transclude:{
-    ualVariablesLayoutFirst:'ualVariablesLayoutFirst'
+  bindings: {
+    variables: "<"
   },
+  template,
+/*  transclude:{
+    ualVariablesLayoutFirst:'ualVariablesLayoutFirst'
+  },*/
   controller,
   controllerAs: 'vm'
 };

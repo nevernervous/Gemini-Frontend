@@ -1,9 +1,9 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal) {
+  constructor($state, ualDataSource, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal) {
     this._state = $state;
     this._datasourcemodal = ualDataSource;
-    this._variablesmodal = ualVariables;
+//    this._variablesmodal = ualVariables;
     this.maxAggregators = 10;
     this._scope = $scope;
     this._rootScope = $rootScope;
