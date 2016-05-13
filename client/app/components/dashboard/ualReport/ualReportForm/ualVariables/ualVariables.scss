@@ -10,7 +10,7 @@
                 height: 100%;
                 margin: 0;
                 padding: 0;
-
+                justify-content: space-between;
                 > .tabs {
                     @include gridle(7);
                     height: 100%;
@@ -65,8 +65,19 @@
                         height: 100%;
                     }
                 }
+                >.add-btns{
+                      margin: auto -33px;
+                      >.buttons{
+                        margin: 5px 0;
+                        >button{
+                          width: 100%;
+                          padding: 10% 18%;
+                        }
+                      }
+                    }
                 > .selected-variables {
-                    @include gridle(5);
+                    flex-basis: 30%;
+                    max-width: 30%;
                     height: 100%;
                     margin: 0;
                     padding: 0 15px;
