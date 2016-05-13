@@ -1,21 +1,12 @@
-<div class="report-header">
-  <div class="title">
-    <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && vm.reportNameChanged() && vm.saveReport()"
-      invalid-input="vm.duplicatedName || (!vm.report.id.get() && !vm.reportName)">
-      <ual-invalid-message>
-        <span ng-if="vm.duplicatedName">
-            Report name already exists. Please select another.
-        </span>
-        <span ng-if="vm.report.id.get() && !vm.report.name.get() && !vm.duplicatedName">
-            Report name must be entered in order to save.
-        </span>
-      </ual-invalid-message>
-    </ual-report-input>
-  </div>
-  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
+<div class="dashboard-header">
+  <div class="name">Untitled Report</div>
+  <div class="buttons-group">
+    <ual-button class="save-button -secondary" ng-disabled="true"
     ng-click="vm.saveReport(vm.report)">Save</ual-button>
+    <ual-button class="copy-button -secondary" ng-disabled="true">Create a copy</ual-button>
+  </div>
 </div>
-<div class="report-body">
+<div class="dashboard-body">
   <ual-accordion-group active="report-datasource">
     <ual-accordion id="report-datasource" ng-disabled="false">
       <ual-accordion-title>Data source: <strong>No data source</strong><small>selected</small></ual-accordion-title>
@@ -29,7 +20,6 @@
       <ual-accordion-title>Filters: <strong>No filters</strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>Filters una seccion muy importente del sistema</ual-accordion-content>
     </ual-accordion>
-
   </ual-accordion-group>
 
   <!--div class="section selected-parameters">
@@ -76,4 +66,7 @@
       </div>
     </div>
   </div-->
+</div>
+<div class="dashboard-footer">
+  <ual-button class="run-button -primary" ng-disabled="true">Run report</ual-button>
 </div>
