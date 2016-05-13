@@ -18,7 +18,8 @@ ual-data-source {
     }
     .content-list {
         @include gridle(row row-align middle);
-        overflow: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
         margin: 10px 0;
         padding: 5px 0;
         max-height: 300px;
