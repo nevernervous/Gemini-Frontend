@@ -3,9 +3,9 @@
 </div>
 <div class="loading-message" ng-show="!vm.datasources ">Loading ...</div>
 <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filterBy:vm.searchTerm | isEmpty)">
-  <span>
+  <div>
     No results match your search
-  </span>
+  </div>
 </div>
 <div class="content-list" ng-class="{filtering: vm.filtering}" ng-if="vm.datasources">
     <ual-data-source-group datasource-group="group.data" ng-repeat-start="group in vm.datasources.groups | orderBy : 'data.order'" ng-show="vm.shouldShow(group)" class="data-source-group"></ual-data-source-group>

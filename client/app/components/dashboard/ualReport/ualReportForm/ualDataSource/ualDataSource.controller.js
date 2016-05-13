@@ -16,24 +16,6 @@ class UalDataSourceController {
 
     }
 
-    apply() {
-        if (this.selected && this.hasChange()) { // FIRST TIME
-            this._changemodal.open({ oldDataSource: this.selected, newDataSource: this.selected })
-                .then(response => response && this._closemodal(this.selected));
-        } else {
-            this._closemodal(this.selected);
-        }
-
-    }
-    cancel() {
-        if (this.hasChange()) {
-            this._cancelmodal.open()
-                .then(response => response && this._closemodal(this.selected));
-        } else {
-            this._closemodal(this.selected);
-        }
-    }
-
     hasChange() {
         return (!this.selected && this.selected) || (this.selected && this.selected && (this.selected.id !== this.selected.id));
     }

@@ -10,13 +10,11 @@ ual-data-source {
         padding-left: 24px;
       }
     }
-    .empty-search{
+    .empty-search, .loading-message{
         min-height: 300px;
-        // text-align: center;
-        // vertical-align: middle;
-        span{
-            @include gridle(row row-alige middle center);
-        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .content-list {
         @include gridle(row row-align middle);
