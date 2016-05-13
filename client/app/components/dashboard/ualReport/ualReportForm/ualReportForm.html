@@ -1,10 +1,5 @@
 <div class="report-header">
-  <div class="title">Create Report</div>
-  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
-    ng-click="vm.saveReport(vm.report)">Save</ual-button>
-</div>
-<div class="report-body">
-  <div class="section report-name" ng-if="vm.report">
+  <div class="title">
     <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && vm.reportNameChanged() && vm.saveReport()"
       invalid-input="vm.duplicatedName || (!vm.report.id.get() && !vm.reportName)">
       <ual-invalid-message>
@@ -17,7 +12,27 @@
       </ual-invalid-message>
     </ual-report-input>
   </div>
-  <div class="section selected-parameters">
+  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
+    ng-click="vm.saveReport(vm.report)">Save</ual-button>
+</div>
+<div class="report-body">
+  <ual-accordion-group active="report-datasource">
+    <ual-accordion id="report-datasource" ng-disabled="false">
+      <ual-accordion-title>Data source: <strong>No data source</strong><small>selected</small></ual-accordion-title>
+      <ual-accordion-content>Datasource una seccion muy importente del sistema</ual-accordion-content>
+    </ual-accordion>
+    <ual-accordion id="report-variables" ng-disabled="false">
+      <ual-accordion-title>Variables: <strong>No variables and no aggregators</strong><small>selected</small></ual-accordion-title>
+      <ual-accordion-content>Variables una seccion muy importente del sistema</ual-accordion-content>
+    </ual-accordion>
+    <ual-accordion id="report-filters" ng-disabled="true">
+      <ual-accordion-title>Filters: <strong>No filters</strong><small>selected</small></ual-accordion-title>
+      <ual-accordion-content>Filters una seccion muy importente del sistema</ual-accordion-content>
+    </ual-accordion>
+
+  </ual-accordion-group>
+
+  <!--div class="section selected-parameters">
     <div class="selected-parameter">
       <span class="title">Data Source:</span>
       <span class="value">{{vm.report.datasource.get().name}}</span>
@@ -29,8 +44,8 @@
       <span class="value" ng-hide="vm.report.variables.get() | isEmpty">{{vm.report.variables.get().length}} Variables Selected</span>
       <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
     </div>
-  </div>
-  <div class="section aggregations-values">
+  </div-->
+  <!--div class="section aggregations-values">
     <div class="aggregation-search">
       <span class="-label">Aggregate by</span>
       <ual-input class="-dropdown" on-focus="vm.showDropdown()" id="inputDropdown" ng-style="vm.inputStyle" value="vm.search.name" icon="ion-ios-search-strong">
@@ -60,5 +75,5 @@
         <ual-agregation-item ng-repeat="item in vm.report.aggregators.get()">{{$index+1}}. {{item.name}}</ual-agregation-item>
       </div>
     </div>
-  </div>
+  </div-->
 </div>
