@@ -7,11 +7,12 @@ ual-data-source {
       @include gridle(row);
       ual-input{
         @include gridle(5);
-        padding-left: 24px;
+        padding-left: 34px;
       }
     }
     .empty-search, .loading-message{
         min-height: 300px;
+        height: 300px;
         display: flex;
         justify-content: center;
         align-items: center;
