@@ -16,7 +16,11 @@ class UalReportFormController {
     this.dropDownStyle = {};
     this.inputStyle = {};
     this.report = null;
-    this.variables = null;
+
+    this.variables = {
+      available: null,
+      selected: []
+    };
 
     this.isSaving = false;
     this.reportName = null;
@@ -96,9 +100,10 @@ class UalReportFormController {
 
   // STEP 2
   getvariables (){
-    this._service.datasource.variables(this.report.datasource.get())
+    if(!this.variables.available) this._service.datasource.variables(this.report.datasource.get())
     .then(variables => {
-      this.variables = variables.data;
+      this.variables.available = variables.data;
+      this.variables.selected = this.report.variables.get();
 //      this.loaded = true;
     },
     error => console.error(error),

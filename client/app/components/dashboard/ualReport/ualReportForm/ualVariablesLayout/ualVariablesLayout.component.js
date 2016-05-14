@@ -5,7 +5,8 @@ import './ualVariablesLayout.scss';
 let ualVariablesLayoutComponent = {
   restrict: 'E',
   bindings: {
-    variables: "<"
+    variables: "<",
+    selecteds: "="
   },
   template,
 /*  transclude:{

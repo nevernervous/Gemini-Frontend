@@ -12,7 +12,7 @@
       </ual-invalid-message>
     </ual-report-input>
   </div>
-  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
+  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (!vm.report.datasource.get()  || (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
     ng-click="vm.saveReport(vm.report)">Save</ual-button>
 </div>
 <div class="report-body">
@@ -21,10 +21,10 @@
       <ual-accordion-title>Data source: <strong>No data source</strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>Datasource una seccion muy importente del sistema</ual-accordion-content>
     </ual-accordion>
-    <ual-accordion id="report-variables" ng-disabled="false">
+    <ual-accordion id="report-variables" ng-disabled="(!vm.report.datasource.get())">
       <ual-accordion-title>Variables: <strong>No variables and no aggregators</strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-variables-layout class="ual-variables-layout" variables="vm.variables"></ual-variables-layout>
+        <ual-variables-layout class="ual-variables-layout" variables="vm.variables.available" selecteds="vm.variables.selected"></ual-variables-layout>
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="true">
