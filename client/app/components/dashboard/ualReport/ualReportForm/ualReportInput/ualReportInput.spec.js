@@ -1,23 +1,23 @@
-import UalReportInput2Module from './ualReportInput'
-import UalReportInput2Controller from './ualReportInput.controller';
-import UalReportInput2Component from './ualReportInput.component';
-import UalReportInput2Template from './ualReportInput.html';
+import UalReportInputModule from './ualReportInput'
+import UalReportInputController from './ualReportInput.controller';
+import UalReportInputComponent from './ualReportInput.component';
+import UalReportInputTemplate from './ualReportInput.html';
 
 describe('UalReportInput', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalReportInput2Module.name));
+  beforeEach(window.module(UalReportInputModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalReportInput2Controller();
+      return new UalReportInputController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalReportInput2Module).to.have.property('name');
+      expect(UalReportInputModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalReportInput', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-report-input/>').html(UalReportInput2Template);
+    const template = $('<ual-report-input/>').html(UalReportInputTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalReportInput', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalReportInput2Component;
+      let component = UalReportInputComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalReportInput2Template);
+        expect(component.template).to.equal(UalReportInputTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalReportInput', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalReportInput2Controller);
+        expect(component.controller).to.equal(UalReportInputController);
       });
   });
 });
