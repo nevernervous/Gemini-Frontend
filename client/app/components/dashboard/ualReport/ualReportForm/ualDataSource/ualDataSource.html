@@ -4,7 +4,7 @@
 <div class="loading-message" ng-show="!vm.datasources ">Loading ...</div>
 <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filterBy:vm.searchTerm | isEmpty )">
   <div>
-    No results match your search
+    No results found
   </div>
 </div>
 <div class="content-list" ng-class="{filtering: vm.filtering}" ng-if="vm.datasources">
