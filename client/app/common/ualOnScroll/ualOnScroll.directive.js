@@ -6,7 +6,7 @@ class UalOnScrollDirective {
 
   link(scope, element, attributes) {
     $(element).on("scroll", () => {
-      scope.$apply(attributes.ualScroll);
+      scope.$apply(attributes.ualOnScroll);
     });
   }
 }
