@@ -24,7 +24,10 @@ class DashboardController {
 
 
   _unsuscribe() {
-    this._suscriptions.forEach(suscription => suscription());
+    while ( this._suscriptions.length > 0 ) {
+      let suscription = this._suscriptions.pop();
+      suscription();
+    }
   }
 
   $onInit() {
