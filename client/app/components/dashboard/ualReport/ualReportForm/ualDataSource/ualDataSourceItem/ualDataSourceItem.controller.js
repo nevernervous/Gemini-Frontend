@@ -5,9 +5,10 @@ class UalDataSourceItemController {
   }
 
   showTooltip(container, data, position = 'right') {
+    let hasEllipsis = $("#"+container).hasClass("is-truncated");
     this._ualTooltipService.show({
       container: container,
-      text: data.description,
+      text: "<strong>Last updated date " + data.dataSourceRefreshDate + "</strong>" + (hasEllipsis ?  "<br />" + data.name : "") + "<br />" + data.description,
       position: position
     });
   }

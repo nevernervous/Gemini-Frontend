@@ -12,9 +12,14 @@ class ualEllipsisDirective {
   }
 
   link($scope, elem, attr, ctrl) {
-    $(elem).dotdotdot({
-      wrap: 'letter'
-    });
+    window.setTimeout(function () {
+      $(elem).dotdotdot({
+        wrap: 'letter',
+        height: 15,
+        ellipsis: '...'
+      });
+    }, 400);
+    
   }
 }
 
