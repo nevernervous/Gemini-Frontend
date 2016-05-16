@@ -1,82 +1,39 @@
-<div class="report-header">
-  <div class="title">
-    <ual-report-input report="vm.report" value="vm.reportName" on-save="!!vm.report.reportId.get() && !!vm.report.name.get() && vm.reportNameChanged() && vm.saveReport()"
-      invalid-input="vm.duplicatedName || (!vm.report.id.get() && !vm.reportName)">
-      <ual-invalid-message>
-        <span ng-if="vm.duplicatedName">
-            Report name already exists. Please select another.
-        </span>
-        <span ng-if="vm.report.id.get() && !vm.report.name.get() && !vm.duplicatedName">
-            Report name must be entered in order to save.
-        </span>
-      </ual-invalid-message>
-    </ual-report-input>
+<div class="dashboard-header">
+  <div class="name">
+    <ual-input id="report-name" class="name-input" ng-class="{'-noborder': !(vm.name.hover || vm.name.focus)}" placeholder="Enter report name"
+               ng-mouseover="vm.hoverName()" ng-mouseleave="vm.leaveName()"
+               on-focus="vm.focusName()" on-blur="vm.blurName()" value="vm.name.current"></ual-input>
   </div>
-  <ual-button class="save-button -secondary" ng-disabled="(vm.isSaving || (vm.report.datasource.get().name  && (vm.report.datasource.get().name | isEmpty))) || vm.report.reportId.get()"
-    ng-click="vm.saveReport(vm.report)">Save</ual-button>
+  <div class="buttons-group">
+    <ual-button class="save-button -secondary" ng-disabled="!vm.report.datasource.get()"
+    ng-click="vm.save()">Save</ual-button>
+    <ual-button class="copy-button -secondary" ng-disabled="true">Create a copy</ual-button>
+  </div>
 </div>
-<div class="report-body">
+<div class="dashboard-body">
   <ual-accordion-group active="report-datasource">
     <ual-accordion id="report-datasource" ng-disabled="false">
-      <ual-accordion-title>Data source: <strong>No data source</strong><small>selected</small></ual-accordion-title>
+      <ual-accordion-title>Data source:
+        <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source' }}</strong>
+        <small>{{ vm.report.datasource.get() ? (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
       <ual-accordion-content>
         <ual-data-source selected="vm.selectedDataSource">
         </ual-data-source>
       </ual-accordion-content>
     </ual-accordion>
-    <ual-accordion id="report-variables" ng-disabled="false">
+    <ual-accordion id="report-variables" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Variables: <strong>No variables and no aggregators</strong><small>selected</small></ual-accordion-title>
-      <ual-accordion-content>Variables una seccion muy importente del sistema</ual-accordion-content>
+      <ual-accordion-content>Variables Body</ual-accordion-content>
     </ual-accordion>
-    <ual-accordion id="report-filters" ng-disabled="true">
+    <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Filters: <strong>No filters</strong><small>selected</small></ual-accordion-title>
-      <ual-accordion-content>Filters una seccion muy importente del sistema</ual-accordion-content>
+      <ual-accordion-content>Filters Body</ual-accordion-content>
     </ual-accordion>
-
   </ual-accordion-group>
-
-  <!--div class="section selected-parameters">
-    <div class="selected-parameter">
-      <span class="title">Data Source:</span>
-      <span class="value">{{vm.report.datasource.get().name}}</span>
-      <a class="action" href ng-click="vm.selectDataSource()">Change Data Source</a>
-    </div>
-    <div class="selected-parameter">
-      <span class="title">Variables:</span>
-      <span class="value" ng-show="vm.report.variables.get() | isEmpty">No Variables Selected</span>
-      <span class="value" ng-hide="vm.report.variables.get() | isEmpty">{{vm.report.variables.get().length}} Variables Selected</span>
-      <a class="action" href ng-click="vm.selectVariables()">Manage Variables</a>
-    </div>
-  </div-->
-  <!--div class="section aggregations-values">
-    <div class="aggregation-search">
-      <span class="-label">Aggregate by</span>
-      <ual-input class="-dropdown" on-focus="vm.showDropdown()" id="inputDropdown" ng-style="vm.inputStyle" value="vm.search.name" icon="ion-ios-search-strong">
-        <div ng-if="vm.aggregators">
-          <ual-dropdown filter='vm.search' ng-style="vm.dropDownStyle" click-outside="vm.hideDropdown()" outside-if-not="inputDropdown">
-            <ual-dropdown-messages>
-              <span class="-max-reached" ng-if="vm.report.aggregators.get().length >= vm.maxAggregators">
-                  <i class="-icon-warning"></i> <span>You have reached the limit of 10 aggregators</span>
-              </span>
-              <span class="-no-result" ng-if="vm.aggregators.items | filterBy: vm.search | isEmpty">
-                  No results match your search
-              </span>
-            </ual-dropdown-messages>
-            <ual-dropdown-items ual-scroll ual-scroll-options="{ theme:'dark' }" ng-if="vm.aggregators.groups" ng-class="{'-no-results': (vm.aggregators.items | filterBy: vm.search | isEmpty) }">
-              <ual-dropdown-group name="{{group.name}}" ng-repeat="group in vm.aggregators.groups" ng-if="!(group.items | filterBy: vm.search | isEmpty)">
-                <ual-dropdown-item ng-click="vm.addAggregator(item)" name="{{item.name}}" ng-repeat="item in group.items | filterBy: vm.search"
-                  ng-class="{'-disabled': vm.isAggregated(item)}">
-                </ual-dropdown-item>
-              </ual-dropdown-group>
-            </ual-dropdown-items>
-          </ual-dropdown>
-        </div>
-      </ual-input>
-    </div>
-    <div class="aggregation-items">
-      <div class="aggregated-container">
-        <ual-agregation-item ng-repeat="item in vm.report.aggregators.get()">{{$index+1}}. {{item.name}}</ual-agregation-item>
-      </div>
+</div>
+<div class="dashboard-footer">
+  <ual-button class="run-button -primary" ng-disabled="true">Run report</ual-button>
+</div>
     </div>
   </div-->
 </div>

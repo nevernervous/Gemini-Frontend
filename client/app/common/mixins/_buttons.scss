@@ -13,19 +13,19 @@
     @include ual-button(#0a3d66, white, $padding);
   }
   &.-disabled {
-    @include ual-button(#99a7b4, #c2ccd3, $padding);
+    @include ual-button(#99a7b4, #d9e1e7, $padding);
     cursor: default;
   }
 }
 
 @mixin button-secondary($padding: 6px 19px) {
   @include font-clanot-news(16);
-  @include ual-button($color03, white, $padding);
+  @include ual-button($color02, white, $padding);
   &:hover {
-    @include ual-button(#81c4ea, white, $padding);
+    @include ual-button(#6f9bc8, white, $padding);
   }
   &.-disabled {
-    @include ual-button(#b0d4f1, #deedf9, $padding);
+    @include ual-button(#84aad0, #ced9e9, $padding);
     cursor: default;
   }
 }
