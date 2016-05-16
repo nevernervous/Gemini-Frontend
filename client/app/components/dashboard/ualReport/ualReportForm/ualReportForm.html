@@ -17,7 +17,7 @@
         <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source' }}</strong>
         <small>{{ vm.report.datasource.get() ? (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-data-source selected="vm.selectedDataSource">
+        <ual-data-source selected="vm.report.datasource">
         </ual-data-source>
       </ual-accordion-content>
     </ual-accordion>
