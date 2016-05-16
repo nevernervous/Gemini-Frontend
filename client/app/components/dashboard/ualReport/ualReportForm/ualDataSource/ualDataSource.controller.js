@@ -16,10 +16,6 @@ class UalDataSourceController {
 
     }
 
-    hasChange() {
-        return (!this.selected && this.selected) || (this.selected && this.selected && (this.selected.id !== this.selected.id));
-    }
-
     shouldShow(group) {
         return this._filter("filterBy")(group.items, this.searchTerm).length > 0;
     }
