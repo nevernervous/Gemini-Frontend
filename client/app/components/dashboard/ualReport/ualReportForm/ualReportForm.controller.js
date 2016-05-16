@@ -1,11 +1,10 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualDataSource, ualVariables, Report, DataSource, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, ualVariables, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
     this._rootScope = $rootScope;
 
     // MODALS
-    this._datasourcemodal = ualDataSource;
     this._variablesmodal = ualVariables;
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
@@ -13,10 +12,8 @@ class UalReportFormController {
     // SERVICES
     this._service = {
       report: Report,
-      datasource: DataSource,
       tooltip: ualTooltipService
     };
-
     // STATE
     this._suscriptions = [];
 
@@ -112,7 +109,6 @@ class UalReportFormController {
     let reportId = this._state.params["id"];
     if (!reportId) {
       this.report = this._service.report.create();
-      // this.selectDataSource();
     } else {
       this._service.report.getById(reportId)
       .then((reply) => {
@@ -123,7 +119,7 @@ class UalReportFormController {
     }
 
     this._suscribe();
-  }
+    }
 
   _suscribe() {
     this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
@@ -154,24 +150,6 @@ class UalReportFormController {
   }
 
   // TO DEPRECATE
-
-  // STEP 1
-  selectDataSource() {
-    this._datasourcemodal.open({
-        selected: this.report.datasource.get()
-      })
-      .then(datasource => {
-        if (datasource && !this.report.datasource.equal(datasource)) {
-
-          this.report.datasource.set(datasource);
-          this.report.variables.set([]);
-          this.report.aggregators.set([]);
-
-        } else if (!datasource) {
-          this._state.go('dashboard.report-list');
-        }
-      });
-  }
 
   // STEP 2
   selectVariables() {
