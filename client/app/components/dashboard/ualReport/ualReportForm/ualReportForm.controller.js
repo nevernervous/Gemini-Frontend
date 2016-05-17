@@ -150,25 +150,6 @@ class UalReportFormController {
     this._suscriptions.forEach(suscription => suscription());
   }
 
-  // TO DEPRECATE
-
-  // STEP 1
-  selectDataSource() {
-    this._datasourcemodal.open({
-        selected: this.report.datasource.get()
-      })
-      .then(datasource => {
-        if (datasource && !this.report.datasource.equal(datasource)) {
-
-          this.report.datasource.set(datasource);
-          this.report.variables.set([]);
-          this.report.aggregators.set([]);
-
-        } else if (!datasource) {
-          this._state.go('dashboard.report-list');
-        }
-      });
-  }
 
   // STEP 2
   selectVariables() {
