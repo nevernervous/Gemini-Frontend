@@ -1,32 +1,38 @@
 @import '../../../../../common/common';
 // LAYOUT
 ual-data-source {
+    margin-left: -23px;
+    margin-right: -12px;
     display: block;
     @include gridle(container);
     .search-area {
       @include gridle(row);
-        ual-input {
+      padding-top: 6px;
+      ual-input {
         @include gridle(5);
         padding-left: 34px;
       }
     }
-    .empty-search,
-    .loading-message {
-        min-height: 300px;
-        height: 300px;
-    }
-    .content-list {
-        @include gridle(row row-align middle);
-        max-height: 300px;
-        margin: 10px 0;
-        padding: 5px 0;
-        ual-data-source-group {
-            @include gridle(12);
-        }
-        ual-data-source-item {
-            @include gridle(3);
-        }
-    }
+  .content{
+      padding: 4px 0;
+      .empty-search,
+      .loading-message {
+          min-height: 300px;
+          height: 300px;
+      }
+      .content-list {
+          @include gridle(row row-align middle);
+          max-height: 300px;
+          margin: 5px 0;
+          padding: 5px 0;
+          ual-data-source-group {
+              @include gridle(12);
+          }
+          ual-data-source-item {
+              @include gridle(3);
+          }
+      }
+  }
 }
 
 //VARIANTS
