@@ -7,7 +7,7 @@ dashboard {
   height: 100%;
 }
 dashboard > ual-nav-bar {
-  z-index: 1;
+  z-index: 2000;
   margin: 0;
   width: 100%;
   height: 52px;
@@ -19,6 +19,7 @@ dashboard > .dashboard-container {
     position: fixed;
     top: 52px;
     left: 0;
+    z-index: 1000;
   }
   > .dashboard-view {
     width: 100%;

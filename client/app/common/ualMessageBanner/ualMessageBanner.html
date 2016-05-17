@@ -1,5 +1,5 @@
 <div class="ual-message-banner">
     <i class="-message-icon"></i>
     <span ng-transclude></span>
-    <a class="-close-icon"><i class="ion-close"></i><span>Close</span></a>
+    <i class="ion-ios-close-empty" ng-if="vm.onClose" ng-click="vm.onClose()"></i>
 </div>
