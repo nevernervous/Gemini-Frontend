@@ -33,9 +33,19 @@ ual-report-form {
 ual-report-form {
   > .dashboard-header {
     > .name {
-      .name-input input {
-        @include font-clanot-news(20);
-        color: $color06;
+      .name-input {
+        display: inline-block;
+        input {
+          @include font-clanot-bold(20);
+          color: $color06;
+        }
+        &.-empty input {
+          @include font-clanot-news(20);
+        }
+      }
+      .duplicate-error {
+        color: $color11;
+        display: inline-block;
       }
     }
   }

@@ -42,8 +42,8 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
   let getById = (reportId) => {
     let transformation = [ReportTransform.get('simple')];
     return $http.get(`${endpoint}/${reportId}`, {
-      cache: Properties.cache
-      , transformResponse: ReportTransform.generate(transformation)
+      cache: Properties.cache,
+      transformResponse: ReportTransform.generate(transformation)
     }).then(
       response => {
         ReportObject.clean();

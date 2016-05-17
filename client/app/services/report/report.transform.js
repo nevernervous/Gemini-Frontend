@@ -10,8 +10,9 @@ let reportTransform = function ($http) {
     , simple: (response) => {
       response = response.data ? response.data : response;
       response.dataSource = {
-        id: response.dataSourceId
-        , name: response.dataSource
+        id: response.dataSourceId,
+        name: response.dataSource,
+        refreshDate: response.dataSourceRefreshDate
       };
       delete response.dataSourceId;
       return response;

@@ -8,6 +8,6 @@
     <a href="mailto:{{vm.mailto}}" ng-class="{visible: vm.error.errorCode == 1}">Please click here to contact PDS.</a>
   </div>
   <div class="buttons">
-    <ual-button class="-primary login-form-submit" type="submit" ng-class="{spinner : vm.loading}" tabindex="3" ng-disabled="vm.loading">Login</ual-button>
+    <ual-button class="login-form-submit -primary" type="submit" tabindex="3" loading="{{vm.loading}}" ng-disabled="vm.loading">Login</ual-button>
   </div>
 </form>
