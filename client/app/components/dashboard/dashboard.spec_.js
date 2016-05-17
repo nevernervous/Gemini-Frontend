@@ -16,18 +16,21 @@ describe('Dashboard', () => {
 
 
   describe('Controller', () => {
-    // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
+
+    it('check initial state', () => { // erase if removing this.name from the controller
       let controller = makeController();
-      expect(controller).to.have.property('name');
       controller.$onInit();
-      console.log(controller._suscriptions.length)
+      expect(controller).to.have.property('name');
       expect(controller._suscriptions.length).to.equal(4);
-      //controller._suscriptions();
-      controller._unsuscribe();
-      console.log(controller._suscriptions.length);
-      expect(controller._suscriptions.length).to.equal(0);
     });
+
+    // it('unsuscribe all events', () => {
+    //   let controller = makeController();
+    //   controller.$onInit();
+    //   controller._unsuscribe();
+    //   expect(controller._suscriptions.length).to.equal(0);
+    // })
+
   });
 
 });

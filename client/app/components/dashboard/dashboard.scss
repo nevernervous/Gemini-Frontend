@@ -30,7 +30,10 @@ dashboard > .dashboard-container {
     }
     .dashboard-body {
       width: 100%;
-      height: calc(100% - 27.5px);
+    }
+    .dashboard-footer {
+      @include gridle( row row-align right);
+      margin: 0;
     }
   }
 }

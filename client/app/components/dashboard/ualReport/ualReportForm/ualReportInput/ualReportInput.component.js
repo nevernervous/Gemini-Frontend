@@ -4,18 +4,7 @@ import './ualReportInput.scss';
 
 let ualReportInputComponent = {
   restrict: 'E',
-  bindings: {
-    value: "=",
-    label: '@',
-    type: '@',
-    onFocus: '&',
-    isRequired: '=',
-    invalidInput: '=',
-    onSave: "&"
-  },
-  transclude: {
-    "invalidmessage": "?ualInvalidMessage"
-  },
+  bindings: {},
   template,
   controller,
   controllerAs: 'vm'
