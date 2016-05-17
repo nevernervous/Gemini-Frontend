@@ -14,9 +14,12 @@ class ualAccordionGroupDirective {
   }
 
   link(scope, element, attrs, ctrl) {
-    if (attrs.active) {
-      ctrl.open(attrs.active);
-    }
+    scope.$watch(
+      () => element.attr('active'),
+      newValue => {
+        ctrl.open(attrs.active);
+      }
+    );
   }
 
 };

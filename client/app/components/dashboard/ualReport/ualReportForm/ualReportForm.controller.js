@@ -1,7 +1,8 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualVariables, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, ualVariables, Report, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
+    this._scope = $scope;
     this._rootScope = $rootScope;
 
     // MODALS
@@ -33,6 +34,8 @@ class UalReportFormController {
       success: null,
       error: null
     };
+    
+    this.selectedTab = 'report-datasource';
   }
 
   // NAME INPUT
@@ -171,13 +174,29 @@ class UalReportFormController {
       return "Exit without saving?";
     };
     $(window).bind('beforeunload', this.beforeClose);
+    
+    this._suscriptions.push(this._scope.$on('UALACORDION.OPEN', (event,accord) => {
+      this["get"+accord.split("-")[1]] && this["get"+accord.split("-")[1]]();
+    }));
+    
+    this._suscriptions.push(this._scope.$on('UALDATASOURCE.TOGGLE', (event,datasource) => {
+      this.getvariables();
+    }));        
   }
 
   // UNLOAD
   _unsuscribe() {
     this._suscriptions.forEach(suscription => suscription());
   }
-
+  
+  getdatasource() {
+    this.selectedTab = 'report-datasource';
+  }
+  
+  getvariables() {
+    this.selectedTab = 'report-variables';
+  }
+  
   // TO DEPRECATE
 
   // STEP 2

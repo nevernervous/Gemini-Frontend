@@ -11,18 +11,20 @@ class UalDataSourceController {
 
     this.searchTerm = {};
     this.datasources;
+    this.rootScope = $rootScope;
   }
   shouldShow(group) {
     return this._filter("filterBy")(group.items, this.searchTerm).length > 0;
   }
 
   isActive(itemId) {
-    return (!!this.selected.get()) && this.selected.get().id === itemId;
+    return (!!this.selected && !!this.selected.get()) && this.selected.get().id === itemId;
   }
 
   toogleSelected(item) {
     this.selected.set(item);
     this.hideTooltip();
+    this.rootScope.$broadcast('UALDATASOURCE.TOGGLE','report-datasource');    
   }
 
   hideTooltip() {
