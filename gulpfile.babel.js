@@ -11,11 +11,13 @@ import yargs    from 'yargs';
 import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
+import git      from 'git-rev-sync';
 import ngConstant   from 'gulp-ng-constant';
 import restEmulator from 'gulp-rest-emulator';
 import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
+
 
 let root = 'client';
 
@@ -114,6 +116,10 @@ gulp.task('serve', () => {
 gulp.task('constants', () => {
   let env = yargs.argv.env || 'development';
   let envConfig = require('./config/' + env + '.json');
+  let configuration = require('./package.json');
+
+  envConfig.Properties.version = configuration.version + '-v' + git.short();
+  console.log(envConfig);
 
   return ngConstant({
       name: 'app.constants',

@@ -6,7 +6,8 @@ module.exports = angular.module("app.constants", [])
 	"cache": false,
 	"fallback": {
 		"endpoint": "http://localhost:8889/api"
-	}
+	},
+	"version": "0.0.5-v583a5c6"
 })
 
 ;
