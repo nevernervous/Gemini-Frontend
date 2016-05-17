@@ -9,7 +9,6 @@ ual-data-source-group {
 
 ual-data-source-group {
   display: inline-block;
-  // @include break-inside();
   .datasource-group{
     @include font-clanot-bold(16);
     color: $color06;

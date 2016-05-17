@@ -5,30 +5,42 @@ ual-data-source {
     @include gridle(container);
     .search-area {
       @include gridle(row);
-      ual-input{
+        ual-input {
         @include gridle(5);
         padding-left: 34px;
       }
     }
-    .empty-search, .loading-message{
+    .empty-search,
+    .loading-message {
         min-height: 300px;
         height: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
     .content-list {
         @include gridle(row row-align middle);
-        overflow-y: auto;
-        overflow-x: hidden;
+        max-height: 300px;
         margin: 10px 0;
         padding: 5px 0;
-        max-height: 300px;
         ual-data-source-group {
             @include gridle(12);
         }
         ual-data-source-item {
             @include gridle(3);
         }
+    }
+}
+
+//VARIANTS
+ual-data-source {
+    .empty-search,
+    .loading-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include font-clanot-book(16);
+        color: $color07;
+        }
+    .content-list {
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 }

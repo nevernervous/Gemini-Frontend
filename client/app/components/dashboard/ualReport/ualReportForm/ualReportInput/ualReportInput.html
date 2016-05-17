@@ -1,0 +1,8 @@
+<label class="ual-input">
+    <input id="{{vm.ualId}}" ng-model="vm.ualValue" ng-disabled="vm.ualDisabled" tabindex="-1" placeholder="{{vm.placeholder}}"
+          maxlength="100" ng-maxlength="100"
+          ng-blur="vm.onBlur({$event: $event})" ng-focus="vm.onFocus({$event: $event})"
+          ng-keyup="vm.onKeyup({$event: $event})" ng-keypress="vm.onKeypress({$event: $event})"
+          ng-change="vm.onChange()" />
+    <i></i>
+</label>

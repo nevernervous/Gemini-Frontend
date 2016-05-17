@@ -1,22 +1,20 @@
 class ualReportNameModalController {
   /*@ngInject*/
-  constructor($rootScope, close, report, reportForm, Report) {
+  constructor($rootScope, close, report) {
     this.name = 'ualReportNameModal';
     this._close = close;
     this.report = report;
-    this.form = reportForm;
     this._rootScope = $rootScope;
-    this._service = {
-      report: Report
-    };
-    this.nameSelected = null;
-    this.duplicatedName = false;
+
+    this.name = {
+      current: null,
+      duplicated: false
+    }
 
     this._suscriptions = [];
-    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
-    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
-    this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
-
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal({status: 'cancel'})));
+    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal({status: 'cancel'})));
+    this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal({status: 'cancel'})));
   }
 
   _closemodal(response) {
@@ -25,42 +23,28 @@ class ualReportNameModalController {
   }
 
   ok() {
-    let report = this.report;
-    let form = this.form;
-    let oldName = _.clone(report.name.get());
-    report.name.set(_.clone(this.nameSelected));
+    this.report.name.set(_.clone(this.name.current));
 
-    let responseError = [
-      (msg) => {},
-      (msg) => {},
-      (msg) => {
-        this.nameSelected = oldName;
-        this.duplicatedName = true;
-      },
-      (msg) => {
-        this.nameSelected = oldName;
-        this._rootScrope.$broadcast('BANNER.SHOW', msg);
-        this._closemodal(false);
-      }
-    ];
     this.report.save().then(
-      result => { this._closemodal(result.msg); }
-      , result => {
-        responseError[result.code](result.msg);
-        this.form.isSaving = false;
+      result => {
+        this._closemodal({status: 'success', msg: result.msg, name: this.name.current});
+      },
+      result => {
+        console.log(result);
+        if ( result.code === 2 ) {
+          this.name.duplicated = true;
+        } else if ( result.code === 0 ) {
+          this._closemodal({status: 'success', msg: result.msg, name: this.name.current});
+        } else {
+          this._closemodal({status: 'error', msg: result.msg, name: this.name.current});
+        }
       }
     );
-
-    return;
-
   }
   cancel() {
-    this._closemodal(false);
+    this._closemodal({status: 'cancel'});
   }
 
-  checkKey(event) {
-    this.duplicatedName = false;
-  }
 }
 
 export default ualReportNameModalController;

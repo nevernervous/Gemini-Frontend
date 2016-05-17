@@ -3,14 +3,14 @@
 </div>
 <div class="description">
     Enter report name to save.
-    <div ng-class="{'input-invalid':vm.duplicatedName}">
-        <input type="text" ng-model="vm.nameSelected" ng-model-options="{ getterSetter:true }"
-                maxlength="100" ng-maxlength="100" placeholder="Enter report name" ng-keypress="vm.checkKey($event)" ng-trim="true" />
+    <div ng-class="{'input-invalid': vm.name.duplicated}">
+        <input type="text" ng-model="vm.name.current" ng-model-options="{ getterSetter:true }"
+                maxlength="100" ng-maxlength="100" placeholder="Enter report name" ng-trim="true" />
         <i class="icon-warning ion-ios-close-outline"></i>
     </div>
-    <ual-tooltip class="-error-tooltip" ng-show="vm.duplicatedName">Report name already exists. Please select another.</ual-tooltip>
+    <ual-tooltip class="-error-tooltip" ng-show="vm.name.duplicated">Report name already exists. Please select another.</ual-tooltip>
 </div>
 <div class="buttons">
   <ual-button class="-link"  ng-click="vm.cancel()">Cancel</ual-button>
-  <ual-button class="-primary"  ng-click="vm.ok()" ng-disabled="(!vm.nameSelected) || vm.report.saving.isSaving()">Save</button>
+  <ual-button class="-primary"  ng-click="vm.ok()" ng-disabled="(!vm.name.current) || vm.report.saving.isSaving()">Save</button>
 </div>

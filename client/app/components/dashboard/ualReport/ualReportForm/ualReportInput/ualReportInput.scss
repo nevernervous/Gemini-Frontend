@@ -1,3 +1,66 @@
-ual-report-input { 
-  
-}  
+@import '../../../../../common/common';
+@import '../../../../../common/ionicons/scss/ionicons';
+
+// LAYOUT
+.ual-input {
+  padding: 5px 8px 7px 8px;
+
+  input {
+    width: calc(100% - 40px);
+    height: 28px;
+  }
+
+  i {
+    display: inline-block;
+
+    @include -ms-browser() {
+      margin-top: 6px;
+    }
+  }
+}
+
+// VARIATION
+ual-report-input {
+  .ual-input {
+    border: 1px solid $color08;
+    background-color: $color00;
+  }
+
+  input {
+    @include font-clanot-book(14);
+    border: 0;
+    color: $color06;
+    vertical-align: middle;
+
+    &:disabled {
+      background-color: $color00;
+    }
+  }
+
+  i {
+    font-size: 22px;
+    vertical-align: middle;
+    color: $color07;
+    display: none;
+  }
+}
+
+// VARIATION / NOBORDER
+ual-report-input.-noborder {
+  .ual-input {
+    border-color: transparent
+  }
+}
+
+// VARIATION / ERROR
+ual-report-input.-error {
+  .ual-input {
+    border-color: $color11;
+  }
+  i {
+    @extend .ion-ios-close-outline;
+    color: $color11;
+    position: relative;
+    line-height: 1;
+  }
+}
