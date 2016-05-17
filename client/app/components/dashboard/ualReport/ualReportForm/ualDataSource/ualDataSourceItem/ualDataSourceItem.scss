@@ -2,9 +2,7 @@
 
 // LAYOUT
 ual-data-source-item {
-    display: block;
-    cursor: pointer;
-    line-height: 1;
+    display: inline-block;
 
     > span {
       display: inline-block;
@@ -15,9 +13,10 @@ ual-data-source-item {
     }
 }
 
-
 // VARIANT
 ual-data-source-item {
+   cursor: pointer;
+   line-height: 1;
     > span{
       @include font-clanot-book(14);
       @include ellipses();

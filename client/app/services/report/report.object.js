@@ -77,7 +77,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   let save = () => {
     var deferred = $q.defer();
-    if (!getName() && !getReportId()) {
+    if (!getName() && !getId()) {
       deferred.reject({code:1, msg: "No name assigned"});
     }else if (!touched) {
       deferred.reject({code:0, msg: "No changes to save"});
@@ -161,8 +161,8 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     touched = hasReportChange();
   }
 
-  let getReportId = () => object.id;
-  let setReportId = value => object.id = value;
+  let getId = () => object.id;
+  let setId = value => object.id = value;
   let isExitComfirmed = () => exitConfirmed;
   let setExitConfirm = (value) => exitConfirmed = value;
   return {
@@ -170,9 +170,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     , load
     , clean
     , isEmptyName: isEmptyName
-      , reportId: {
-        get: getReportId
-        , set: setReportId
+      , id: {
+        get: getId
+        , set: setId
       }
       , exitConfirmed: {
         get: isExitComfirmed
