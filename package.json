@@ -1,6 +1,6 @@
 {
   "name": "ual-gemini",
-  "version": "0.0.5",
+  "version": "0.1.5",
   "description": "United Airlines - Gemini",
   "main": "index.js",
   "dependencies": {
