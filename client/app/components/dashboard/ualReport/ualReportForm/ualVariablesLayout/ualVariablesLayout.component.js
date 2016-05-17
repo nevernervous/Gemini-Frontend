@@ -6,7 +6,8 @@ let ualVariablesLayoutComponent = {
   restrict: 'E',
   bindings: {
     variables: "<",
-    selecteds: "="
+    selecteds: "=",
+    aggregators: "="
   },
   template,
 /*  transclude:{

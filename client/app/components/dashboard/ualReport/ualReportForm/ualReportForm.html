@@ -24,7 +24,7 @@
     <ual-accordion id="report-variables" ng-disabled="(!vm.report.datasource.get())">
       <ual-accordion-title>Variables: <strong>No variables and no aggregators</strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-variables-layout class="ual-variables-layout" variables="vm.variables.available" selecteds="vm.variables.selected"></ual-variables-layout>
+        <ual-variables-layout class="ual-variables-layout" variables="vm.variables.available" selecteds="vm.variables.selected" aggregators="vm.variables.aggregators"></ual-variables-layout>
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="true">

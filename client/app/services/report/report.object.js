@@ -38,8 +38,12 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     object = {
       id: null
       , name: null
-      , dataSource: {id: null,  name: null}
-      , variables: []
+      , dataSource: {id: 1,  name: "Flight Level Class Bookings"}
+      , variables: [
+        {id:1,name:"Fiii",order:1},
+        {id:2,name:"Faaa",order:2},
+        {id:3,name:"Fooo",order:3}
+      ]
       , aggregators: []
     };
     initialHash = getReportHash();

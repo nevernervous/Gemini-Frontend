@@ -19,7 +19,8 @@ class UalReportFormController {
 
     this.variables = {
       available: null,
-      selected: []
+      selected: [],
+      aggregators: []
     };
 
     this.isSaving = false;
@@ -104,9 +105,11 @@ class UalReportFormController {
     .then(variables => {
       this.variables.available = variables.data;
       this.variables.selected = this.report.variables.get();
+      this.variables.aggregators = this.report.aggregators.get();
+      console.log(this.variables);
 //      this.loaded = true;
     },
-    error => console.error(error),
+    error =>{ console.error(error) },
     progress => this.variables = progress.data);
 
   }

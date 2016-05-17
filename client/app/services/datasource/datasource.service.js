@@ -52,7 +52,7 @@ let datasourceService = function (Properties, ServicesTransform, $http, $q) {
         }
       }
       deferred.resolve(variables);
-    }
+    }, error => deferred.reject(error)
     );
 
     // groups(datasource)
