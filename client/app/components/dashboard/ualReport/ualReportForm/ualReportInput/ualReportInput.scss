@@ -30,6 +30,7 @@ ual-report-input {
     @include font-clanot-book(14);
     border: 0;
     color: $color06;
+    vertical-align: middle;
 
     &:disabled {
       background-color: $color00;

@@ -38,7 +38,6 @@ ual-report-form {
         input {
           @include font-clanot-bold(20);
           color: $color06;
-
         }
         &.-empty input {
           @include font-clanot-news(20);

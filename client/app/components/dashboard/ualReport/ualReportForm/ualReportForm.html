@@ -20,8 +20,8 @@
         <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source' }}</strong>
         <small>{{ vm.report.datasource.get() ? (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-button class="-terciary" ng-click="vm.selectDataSource()">Change Data source</ual-button>
-        Datasource Body
+        <ual-data-source>
+        </ual-data-source>
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-variables" ng-disabled="!vm.report.datasource.get()">
@@ -36,4 +36,7 @@
 </div>
 <div class="dashboard-footer">
   <ual-button class="run-button -primary" ng-disabled="true">Run report</ual-button>
+</div>
+    </div>
+  </div-->
 </div>

@@ -10,7 +10,7 @@ let ualTooltipService = function () {
     let adjust = {
       left: -4,
       right: window.isIE ? 10 : 15,
-      top: window.isIE ? 4 : 2,
+      top: window.isIE ? 1 : 2,
       bottom:  window.isIE ? 2 : 5
     }
 

@@ -8,8 +8,7 @@ ual-data-source-group {
 }
 
 ual-data-source-group {
-  display: block;
-  @include break-inside();
+  display: inline-block;
   .datasource-group{
     @include font-clanot-bold(16);
     color: $color06;
