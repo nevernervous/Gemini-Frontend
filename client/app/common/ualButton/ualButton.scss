@@ -1,46 +1,35 @@
 @import '../common';
 
 .ual-button {
-  cursor: pointer; 
+  cursor: pointer;
   text-align: center;
   @include button-primary();
-}  
+}
 
-.ual-button.-primary { 
+.ual-button.-primary {
   @include button-primary();
+  &.-spinner {
+    @include button-spinner();
+    background-image: url('spinner_white.gif');
+  }
 }
 
-.ual-button.-secondary { 
-  @include button-secondary();    
+.ual-button.-secondary {
+  @include button-secondary();
+  &.-spinner {
+    @include button-spinner();
+    background-image: url('spinner_white.gif');
+  }
 }
 
-.ual-button.-terciary { 
+.ual-button.-terciary {
   @include button-terciary();
+  &.-spinner {
+    @include button-spinner();
+    background-image: url('spinner_blue.gif');
+  }
 }
 
-.ual-button.-link { 
+.ual-button.-link {
   @include button-link();
-}
-.ual-button.login-form-submit.spinner{
-  @include button-spinner();
-  background-image: url('spinner_white.gif');
-}
-.ual-button.-primary.spinner{
-  @include button-spinner();
-  background-image: url('spinner_white.gif');
-}
-
-
-// VARIANTS
-.ual-button.login-form-submit { 
-  width: 100%;
-  @include button-primary(14px);
-  @include font-clanot-news(18);
-  > span { 
-    display: block;
-  }
-  &.spinner {
-   @include button-spinner();
-  background-image: url('spinner_white.gif');
-  }
 }
