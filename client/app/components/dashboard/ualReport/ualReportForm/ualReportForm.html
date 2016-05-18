@@ -3,7 +3,6 @@
     <ual-input id="report-name" class="name-input" ng-class="{'-noborder': !(vm.name.hover || vm.name.focus)}" placeholder="Enter report name"
                ng-mouseover="vm.hoverName()" ng-mouseleave="vm.leaveName()"
                on-focus="vm.focusName()" on-blur="vm.blurName()" value="vm.name.current"></ual-input>
-    {{vm.report.variables.get()}}
   </div>
   <div class="buttons-group">
     <ual-button class="save-button -secondary" ng-disabled="!vm.report.datasource.get()"
