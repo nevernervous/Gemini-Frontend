@@ -22,9 +22,11 @@ class UalDataSourceController {
     return !!this.selected && this.selected.id === itemId;
   }
 
-  toogleSelected(item) {
-    this.onChange({datasourceNew: item, datasourceOld: this.selected});
-    this.selected = item;
+  selectedDataSource(item) {
+    if (!this.selected || (!!this.selected && this.selected.id != item.id)) {
+      this.onChange({ datasourceNew: item, datasourceOld: this.selected });
+      this.selected = item;
+    }
     this.hideTooltip();
   }
 
