@@ -1,6 +1,6 @@
 class DashboardController {
   /*@ngInject*/
-  constructor($rootScope, $state, ualMainMenu, Session, expirationModal,$scope,$timeout) {
+  constructor($rootScope, $state, ualMainMenu, Session, expirationModal, $scope, $timeout) {
     this.name = 'dashboard';
     this._rootScope = $rootScope;
     this._state = $state;
