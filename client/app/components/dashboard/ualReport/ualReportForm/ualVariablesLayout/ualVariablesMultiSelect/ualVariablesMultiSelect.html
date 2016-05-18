@@ -4,5 +4,5 @@
     <option ng-repeat="variable in ( vm.variables | filterBy:vm.filterName | orderBy : 'order')" value="{{variable.id}}">{{variable.name}}</option>
   </select>
   <hr />
-  <ual-button class="-secondary">Create custom variable</ual-button>
+  <ual-button class="-secondary" ng-click="vm.getSelected()">Create custom variable</ual-button>
 </ual-pane>

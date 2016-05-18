@@ -3,6 +3,7 @@
     <ual-input id="report-name" class="name-input" ng-class="{'-noborder': !(vm.name.hover || vm.name.focus)}" placeholder="Enter report name"
                ng-mouseover="vm.hoverName()" ng-mouseleave="vm.leaveName()"
                on-focus="vm.focusName()" on-blur="vm.blurName()" value="vm.name.current"></ual-input>
+    {{vm.report.variables.get()}}
   </div>
   <div class="buttons-group">
     <ual-button class="save-button -secondary" ng-disabled="!vm.report.datasource.get()"
@@ -24,7 +25,7 @@
     <ual-accordion id="report-variables" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Variables: <strong>No variables and no aggregators</strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-variables-layout class="ual-variables-layout" variables="vm.variables.available" selecteds="vm.variables.selected" aggregators="vm.variables.aggregators"></ual-variables-layout>
+        <ual-variables-layout class="ual-variables-layout" variables="vm.variables.available" selecteds="vm.variables.selected" aggregators="vm.variables.aggregators" update-report-variables="vm.report.variables.set" update-report-aggregators="vm.report.aggregators.set"></ual-variables-layout>
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">

@@ -1,26 +1,35 @@
 class UalVariablesMultiSelectController {
   /*@ngInject*/
-  constructor() {
+  constructor($scope) {
     this.name = 'ualVariablesMultiSelect';
-    this.filterName = {name: ""};
+    this.filterName = {
+      name: ""
+    };
     this.ctrlDown = false;
+    this.scope = $scope;
   }
 
-  selectAll () {
-    $(".-avaiable-variables option").prop("selected",null);
-    $(".-avaiable-variables option").prop("selected",true);
+  $postLink() {
+    this.selectedReference = this.getSelected;
+  }
+  selectAll() {
+    $(".-avaiable-variables option").prop("selected", null);
+    $(".-avaiable-variables option").prop("selected", true);
   }
 
+  getSelected() {
+    let selectedsIds = {};
+    _.each($(".-avaiable-variables").val(), (_id) => { selectedsIds[_id] = true; });
+    return _.filter((this.variables.items?this.variables.items:this.variables), function (val) { return selectedsIds[val.id];}, selectedsIds);
+  }
 
-  keyUp(event){
-    console.log(event);
+  keyUp(event) {
     if ((event.which | event.keyCode) === 17) {
       this.ctrlDown = false;
     }
   }
 
-  keyDown(event){
-    console.log(event);
+  keyDown(event) {
     if ((event.which | event.keyCode) === 17) {
       this.ctrlDown = true;
       event.preventDefault();
