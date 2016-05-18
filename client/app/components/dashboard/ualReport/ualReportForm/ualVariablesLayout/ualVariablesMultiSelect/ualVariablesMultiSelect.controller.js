@@ -20,6 +20,7 @@ class UalVariablesMultiSelectController {
   getSelected() {
     let selectedsIds = {};
     _.each($(".-avaiable-variables").val(), (_id) => { selectedsIds[_id] = true; });
+    $(".-avaiable-variables option").prop("selected", null);
     return _.filter((this.variables.items?this.variables.items:this.variables), function (val) { return selectedsIds[val.id];}, selectedsIds);
   }
 
