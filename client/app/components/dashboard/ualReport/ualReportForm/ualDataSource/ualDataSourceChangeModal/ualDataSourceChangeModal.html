@@ -1,13 +1,13 @@
 <div class="title">
   Change Data Source
-</div>  
-<div class="description">
-  You are about to change "{{vm.oldDataSource.name}}" Data Source for "{{vm.newDataSource.name}}". By changing the Data Source all your selected information will be lost.
 </div>
 <div class="description">
-  Do you want to change your Data Source?
+  Data source will be updated to "{{vm.newDataSource.name}}"
 </div>
-<div class="buttons">  
-  <ual-button class="-link"  ng-click="vm.cancel()">Cancel</ual-button>
-  <ual-button class="-primary"  ng-click="vm.change()">Change Data Source</button>
-</div>  
+<div class="description">
+  All selected criteria will be lost. Continue?
+</div>
+<div class="buttons">
+  <ual-button class="-link" ng-click="vm.cancel()">Cancel</ual-button>
+  <ual-button class="-primary" ng-click="vm.change()">Change data source</button>
+</div>
