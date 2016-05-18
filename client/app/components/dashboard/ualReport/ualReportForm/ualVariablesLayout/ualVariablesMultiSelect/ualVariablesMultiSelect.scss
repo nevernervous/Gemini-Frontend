@@ -3,26 +3,35 @@
 
 //LAYOUT
 ual-variables-multi-select {
-  select[multiple].-avaiable-variables{
+  .-avaiable-variables{
     margin-top: 20px;
     //height: calc(70%);
+    overflow-y: scroll;
+    overflow-x: hidden;
     width: 100%;
-    option{
+    max-height:  200px;
+    li{
       padding: 5px 6px;
     }
   }
 }
 
+//VARIANTS
 ual-variables-multi-select {
-  select[multiple].-avaiable-variables{
-    border: none;
-    option{
-      &:checked{
-        outline: 1px solid $color00;
+  .-avaiable-variables{
+     -moz-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    .selected{
+        background-color: $color10;
         font-weight: bold;
+        outline: 1px solid $color00;
       }
-    }
   }
+}
+
+ual-variables-multi-select {
+
   hr{
     width: 95%;
     margin: 10px auto;

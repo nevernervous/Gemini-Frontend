@@ -33,6 +33,7 @@ import '@iamadamjowett/angular-click-outside/clickoutside.directive';
 import 'angular-q-spread/src/q-spread';
 import Clusterize from 'clusterize.js';
 import dotdotdot from 'jquery.dotdotdot';
+import selectionModel from 'selection-model';
 
 import './common/fonts/clanot/clanot.scss';
 
@@ -55,7 +56,8 @@ angular.module('app', [
   Components.name,
   Services.name,
   Filters.name,
-  'ngAnimate'
+  'ngAnimate',
+  'selectionModel'
 ])
 
 .config(($stateProvider, $httpProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS, Properties) => {
