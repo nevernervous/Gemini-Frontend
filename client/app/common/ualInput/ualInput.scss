@@ -42,3 +42,10 @@ ual-input {
     }
   }
 }
+
+// VARIATION / NOBORDER
+ual-input.-noborder {
+  .ual-input {
+    border-color: transparent
+  }
+}

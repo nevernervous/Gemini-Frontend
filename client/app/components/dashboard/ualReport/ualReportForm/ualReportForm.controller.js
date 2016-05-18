@@ -1,42 +1,155 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualDataSource, ualVariables, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal) {
+  constructor($state, ualVariables, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
-    this._datasourcemodal = ualDataSource;
-    this._variablesmodal = ualVariables;
-    this.maxAggregators = 10;
-    this._scope = $scope;
     this._rootScope = $rootScope;
-    this._suscriptions = [];
-    this._service = {
-      aggregator: Aggregator
-      , report: Report
-      , datasource: DataSource
-    };
-    this.dropDownStyle = {};
-    this.inputStyle = {};
-    this.report = null;
 
-    this.isSaving = false;
-    this.reportName = null;
-
-    this.duplicatedName = false;
+    // MODALS
+    this._variablesmodal = ualVariables;
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
+
+    // SERVICES
+    this._service = {
+      report: Report,
+      tooltip: ualTooltipService
+    };
+    // STATE
+    this.edit = false;
+    this._suscriptions = [];
+
+    this.report = null;
+    this.isSaving = false;
+
+    this.name = {
+      current: null,
+      hover: false,
+      focus: false,
+      duplicated: false
+    }
+
+    this.response = {
+      success: null,
+      error: null
+    };
   }
 
+  // NAME INPUT
+  hoverName() {
+    this.name.hover = true;
+    if ( !this.name.focus ) {
+      this._service.tooltip.show({
+        container: 'report-name .ual-input',
+        text: 'Change report name',
+        position: 'right'
+      });
+    }
+  }
 
+  leaveName() {
+    this.name.hover = false;
+    this._service.tooltip.hide();
+  }
+
+  focusName() {
+    this.name.focus = true;
+    this._service.tooltip.hide();
+  }
+
+  blurName() {
+    this.name.focus = false;
+    if ( this.edit && this.name.current.toLowerCase() != this.report.name.get().toLowerCase() ) {
+      this.save();
+    } else if ( !this.edit ) {
+      this.report.name.set(_.clone(this.name.current));
+    }
+  }
+
+  // SAVE
+  save() {
+    this.report.name.set(_.clone(this.name.current));
+
+    this.isSaving = true;
+
+    this.report.save().then(
+      result => {
+        this.response.success(result.msg);
+        this.isSaving = false;
+      },
+      result => {
+        this.response.error(result.code, result.msg);
+        this.isSaving = false;
+      }
+    );
+    return;
+  }
+
+  // INIT
   $onInit() {
     let reportId = this._state.params["id"];
     if (!reportId) {
       this.report = this._service.report.create();
-      this.selectDataSource();
     } else {
-      this.openReport(reportId);
+      this.edit = true;
+      this._service.report.getById(reportId)
+      .then((reply) => {
+        this.report = reply;
+        this.name.current = _.clone(this.report.name.get());
+      });
     }
 
-    this._suscriptions.push(this._scope.$on('UALMODAL.OPEN', () => this.hideDropdown()));
-    this._suscriptions.push(this._scope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
+    this._responses();
+    this._suscribe();
+  }
+  // INIT / RESPONSES
+  _responses() {
+    let error_actions = [
+      // ON ERROR: NO ERROR
+      (msg) => {},
+      // ON ERROR: EMPTY NAME
+      (msg) => {
+        this._ualReportNameModal.open({ report: this.report }).then(
+          response => {
+            if ( response.status === 'success' ) {
+              this.report.name.set(response.name);
+              this.response.success(response.msg);
+            } else if ( response.status === 'error' ) {
+              this.report.name.set(response.name);
+              this._rootScope.$broadcast('BANNER.SHOW', response.msg);
+            }
+          }
+        );
+      },
+      // ON ERROR: DUPLICATED NAME
+      (msg) => {
+        this.name.duplicated = true;
+      },
+      // ON ERROR: SAVING
+      (msg) => {
+        this._rootScope.$broadcast('BANNER.SHOW', msg);
+      }
+    ];
+
+    // ON ERROR
+    this.response.error = (code, msg) => {
+      this.name.duplicated = false;
+      error_actions[code](msg);
+    }
+
+    // ON SUCCESS
+    this.response.success = (msg) => {
+      this.name.duplicated = false;
+      this._rootScope.$broadcast('BANNER.SHOW', msg);
+      this.name.current = _.clone(this.report.name.get());
+      if ( !this.edit ) {
+        this.edit = true;
+        this._state.go("dashboard.report-edit", { "id": this.report.id.get() }, { notify: false });
+      }
+    };
+  }
+  // INIT / SUSCRIPTIONS
+  _suscribe() {
+    this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (this.report.touched()) {
         event.preventDefault();
         this._ualUnsafeReportModal.open().then(response => {
@@ -59,35 +172,12 @@ class UalReportFormController {
     $(window).bind('beforeunload', this.beforeClose);
   }
 
+  // UNLOAD
   _unsuscribe() {
     this._suscriptions.forEach(suscription => suscription());
   }
 
-  // STEP 1
-  selectDataSource() {
-    this._datasourcemodal.open({
-        selected: this.report.datasource.get()
-      })
-      .then(datasource => {
-        if (datasource && !this.report.datasource.equal(datasource)) {
-
-          this.report.datasource.set(datasource);
-          this.report.variables.set([]);
-          this.report.aggregators.set([]);
-          this._service.aggregator.groups(datasource)
-            .then((reply) => {
-              this.aggregators = reply.data;
-              let defaultAggregators = _.chain(reply.data.items)
-                .filter('isDefaultAggregator')
-                .sortBy('order')
-                .value();
-              this.report.aggregators.set(defaultAggregators);
-            });
-        } else if (!datasource) {
-          this._state.go('dashboard.report-list');
-        }
-      });
-  }
+  // TO DEPRECATE
 
   // STEP 2
   selectVariables() {
@@ -98,102 +188,6 @@ class UalReportFormController {
       .then(variables => this.report.variables.set(variables));
   }
 
-  openReport(reportId) {
-    this._service.report.getById(reportId)
-      .then((reply) => {
-        this.report = reply;
-        this.reportName = _.clone(this.report.name.get());
-        let datasource = this.report.datasource.get();
-        return this._service.aggregator.groups(datasource);
-      })
-      .then((replyAggregators) => {
-
-        this.aggregators = replyAggregators.data;
-      });
-  }
-
-  addAggregator(aggregator) {
-    let addedAggregators = this.report.aggregators.get();
-    if (!_.some(addedAggregators, {
-        id: aggregator.id
-      }) && addedAggregators.length < this.maxAggregators) {
-      addedAggregators.push(aggregator);
-    }
-  }
-
-  isAggregated(aggregator) {
-    return _.some(this.report.aggregators.get(), {
-      id: aggregator.id
-    });
-  }
-
-  hideDropdown() {
-    this.dropDownStyle.visibility = 'hidden';
-    this.inputStyle.position = 'static';
-  }
-
-  showDropdown() {
-    this.inputStyle.position = 'relative';
-    this.dropDownStyle.visibility = 'visible'
-  }
-
-  reportNameChanged() {
-    let _reportName = this.report.name.get() ? this.report.name.get() : "";
-    let _formName = this.reportName ? this.reportName : "";
-    return _reportName.toLowerCase() != _formName.toLowerCase();
-  }
-
-  saveReport() {
-    let oldName = _.clone(this.report.name.get());
-    this.report.name.set(_.clone(this.reportName));
-
-
-
-    this.duplicatedName = false;
-    this.isSaving = true;
-    let saveSuccess = (msg) => {
-      this._rootScope.$broadcast('BANNER.SHOW', msg);
-      this.duplicatedName = false;
-      this.reportName = _.clone(this.report.name.get());
-      this._state.go("dashboard.report-edit", {
-        "id": this.report.reportId.get()
-      }, {
-        notify: false
-      });
-      this.isSaving = false;
-    }
-    let responseError = [
-      (msg) => {}
-      , (msg) => {
-        this._ualReportNameModal.open({
-          report: this.report
-          , reportForm: this
-        }).then(
-          response => {
-            if (response) saveSuccess(response);
-          }
-        );
-      }
-      , (msg) => {
-        this.reportName = oldName;
-        this.duplicatedName = true;
-      }
-      , (msg) => {
-        this.reportName = oldName;
-        this._rootScope.$broadcast('BANNER.SHOW', msg)
-      }
-    ];
-    this.report.save().then(
-      result => {
-        saveSuccess(result.msg);
-      }
-      , result => {
-        responseError[result.code](result.msg);
-        this.isSaving = false;
-      }
-    );
-    return;
-  }
 }
 
 export default UalReportFormController;

@@ -4,6 +4,7 @@ import ualVariablesCancelModal from './ualVariablesCancelModal/ualVariablesCance
 import ualVariablesDeteleAllModal from './ualVariablesDeteleAllModal/ualVariablesDeteleAllModal';
 import ualVariableSelectedItem from './ualVariableSelectedItem/ualVariableSelectedItem';
 import ualVariablesGroup from './ualVariablesGroup/ualVariablesGroup';
+import ualTooltipService from '../../../../../common/ualTooltip/ualTooltip.service';
 
 let ualVariablesModule = angular.module('ualVariables', [
   ualVariablesCancelModal.name,
@@ -12,7 +13,8 @@ let ualVariablesModule = angular.module('ualVariables', [
   ualVariablesGroup.name
 ])
 
-.factory('ualVariables', ualVariablesFactory);
+.factory('ualVariables', ualVariablesFactory)
+.factory('ualTooltipService',ualTooltipService);
 
 export default ualVariablesModule;
 

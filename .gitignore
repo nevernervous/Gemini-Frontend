@@ -9,7 +9,8 @@ dist/
 reports/
 .vagrant/
 .vs
-*.sln 
+*.sln
 /gemini.sln
 nbproject/
 .project
+reports

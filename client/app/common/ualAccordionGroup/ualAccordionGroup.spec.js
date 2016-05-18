@@ -1,24 +1,24 @@
-import LoginFormSubmitModule from './loginFormSubmit'
-import LoginFormSubmitController from './loginFormSubmit.controller';
-import LoginFormSubmitComponent from './loginFormSubmit.component';
-import LoginFormSubmitTemplate from './loginFormSubmit.html';
+import UalAccordionGroupModule from './ualAccordionGroup'
+import UalAccordionGroupController from './ualAccordionGroup.controller';
+import UalAccordionGroupComponent from './ualAccordionGroup.component';
+import UalAccordionGroupTemplate from './ualAccordionGroup.html';
 
-describe('LoginFormSubmit', () => {
+describe('UalAccordionGroup', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(LoginFormSubmitModule.name));
+  beforeEach(window.module(UalAccordionGroupModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new LoginFormSubmitController();
+      return new UalAccordionGroupController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(LoginFormSubmitModule).to.have.property('name');
-    });     
+      expect(UalAccordionGroupModule).to.have.property('name');
+    });          
   });
 
   describe('Controller', () => {
@@ -32,18 +32,18 @@ describe('LoginFormSubmit', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<login-input-submit/>').html(LoginFormSubmitTemplate);
-    it('has name in template [REMOVE]', () => {
+    const template = $('<ual-accordion-group/>').html(UalAccordionGroupTemplate);
+    it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
-    }); 
+    });
   });
 
   describe('Component', () => {
       // component/directive specs
-      let component = LoginFormSubmitComponent;
+      let component = UalAccordionGroupComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(LoginFormSubmitTemplate);
+        expect(component.template).to.equal(UalAccordionGroupTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('LoginFormSubmit', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(LoginFormSubmitController);
+        expect(component.controller).to.equal(UalAccordionGroupController);
       });
   });
 });

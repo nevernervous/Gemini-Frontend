@@ -1,58 +1,52 @@
 @import '../../../../../common/common';
 // LAYOUT
-.ual-data-source > ng-transclude {
+ual-data-source {
+    margin-left: -23px;
+    margin-right: -12px;
+    display: block;
     @include gridle(container);
-    >.container {
-        .search-area {
-            @include gridle(row row-align middle);
-            margin: 0;
-            padding: 4px 0 25px 0;
-            > * {
-                @include gridle(6)
-            }
-        }
-        .content-list {
-            height: calc(100% - 120px);
-            padding: 10px 0;
-            .data-source-list {
-                &.columns-1 {
-                  @include column-content(1);
-                }
-                &.columns-2 {
-                  @include column-content(2);
-                }
-                &.columns-3 {
-                  @include column-content(3);
-                }
-                &.columns-4 {
-                  @include column-content(4);
-                }
-                // @include column-content(4);
-                // @include column-fill(auto);
-            }
-        }
-        .loading-message,
-        .empty-search {
-            @include gridle(12);
-            @include font-clanot-book(16);
-            color: $color07;
-        }
+    .search-area {
+      @include gridle(row);
+      padding-top: 6px;
+      ual-input {
+        @include gridle(5);
+        padding-left: 34px;
+      }
     }
+  .content{
+      padding: 4px 0;
+      .empty-search,
+      .loading-message {
+          min-height: 300px;
+          height: 300px;
+      }
+      .content-list {
+          @include gridle(row row-align middle);
+          max-height: 300px;
+          margin: 5px 0;
+          padding: 5px 0;
+          ual-data-source-group {
+              @include gridle(12);
+          }
+          ual-data-source-item {
+              @include gridle(3);
+          }
+      }
+  }
 }
 
-// VARIATIONS
-.ual-data-source {
-    .container {
-        .content-list {
-            .mCS_no_scrollbar_y {
-                height: 100%;
-            }
-            .data-source-list {
-                &.-horizontal-fill {
-                    height: 100%;
-                    @include column-fill(auto);
-                }
-            }
+//VARIANTS
+ual-data-source {
+    .empty-search,
+    .loading-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include font-clanot-book(16);
+        color: $color07;
         }
+    .content-list {
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 }

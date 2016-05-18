@@ -9,7 +9,6 @@
 }
 
 //  LAYOUT
-
 ual-modal.-yesno {
   > ng-transclude {
       > .description {
@@ -19,14 +18,14 @@ ual-modal.-yesno {
                 > input {
                     width: calc(100% - 45px);
                     @include font-clanot-book(16);
-                    color: $color07;
+                    color: $color06;
                     border: none;
                     padding: 10px;
                 }
                 .icon-warning {
                     display: none;
                     color: $alertHighColor;
-                    vertical-align: middle; 
+                    vertical-align: middle;
                     font-size: 28px;
                     margin: auto 7px;
                 }
@@ -34,12 +33,13 @@ ual-modal.-yesno {
             .-error-tooltip{
                 color: $alertHighColor;
                 margin-top: 10px;
+                @include font-clanot-news(16);
                 @include -ms-browser(){
                     position: relative;
                     top: 10px;
                 }
             }
-          
+
       }
   }
 }
@@ -47,7 +47,6 @@ ual-modal.-yesno {
 //VARIATION
 
 //VARIATION / INPUT INVALID
-
 ual-modal.-yesno > ng-transclude > .description > div.input-invalid {
     @include input-invalid();
 }

@@ -18,6 +18,17 @@
 .login-form {
   @include box-shadow(0, 15px, 15px, 0, rgba(0, 0, 0, 0.2));
   background-color:rgba(255, 255, 255, 0.75);
+
+  .buttons {
+    .ual-button.login-form-submit {
+      width: 100%;
+      @include font-clanot-news(18);
+      padding: 14px;
+      > span {
+        display: block;
+      }
+    }
+  }
 }
 
 // MESSAGE / VARIANTS
@@ -43,3 +54,5 @@
     }
   }
 }
+
+
