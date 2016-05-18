@@ -1,21 +1,24 @@
-import DashboardModule from './dashboard'
-import DashboardController from './dashboard.controller';
-import DashboardComponent from './dashboard.component';
-import DashboardTemplate from './dashboard.html';
+import UalEllipsisModule from './ualEllipsis'
+import UalEllipsisController from './ualEllipsis.controller';
+import UalEllipsisComponent from './ualEllipsis.component';
+import UalEllipsisTemplate from './ualEllipsis.html';
 
-describe('Dashboard', () => {
+describe('UalEllipsis', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(DashboardModule.name));
+  beforeEach(window.module(UalEllipsisModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new DashboardController();
+      return new UalEllipsisController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
+    it('has a name property [REMOVE]', () => {
+      expect(UalEllipsisModule).to.have.property('name');
+    });          
   });
 
   describe('Controller', () => {
@@ -27,20 +30,20 @@ describe('Dashboard', () => {
   });
 
   describe('Template', () => {
-    const template = $('<dashboard/>').html(DashboardTemplate); 
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(template.children()).to.have.length(1);
+    const template = $('<ual-ellipsis/>').html(UalEllipsisTemplate);
+    it('has at least one element [REMOVE]', () => {
+      expect(template.children()).to.have.length.of.at.least(1);
     });
   });
 
   describe('Component', () => {
       // component/directive specs
-      let component = DashboardComponent;
+      let component = UalEllipsisComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(DashboardTemplate);
+        expect(component.template).to.equal(UalEllipsisTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -48,7 +51,7 @@ describe('Dashboard', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(DashboardController);
+        expect(component.controller).to.equal(UalEllipsisController);
       });
   });
 });

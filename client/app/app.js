@@ -32,6 +32,7 @@ import AppComponent from './app.component';
 import '@iamadamjowett/angular-click-outside/clickoutside.directive';
 import 'angular-q-spread/src/q-spread';
 import Clusterize from 'clusterize.js';
+import dotdotdot from 'jquery.dotdotdot';
 
 import './common/fonts/clanot/clanot.scss';
 
@@ -39,10 +40,10 @@ import './app.scss';
 import 'normalize.css';
 
 window.$ = $;
+window.jQuery = $;
 window.Clusterize = Clusterize;
 window.customScroll = customScroll;
 window.customScroll(window.$);
-console.log("JtDro: " + !!JtDro);
 
 angular.module('app', [
   '$q-spread',
@@ -60,6 +61,9 @@ angular.module('app', [
 .config(($stateProvider, $httpProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS, Properties) => {
   "ngInject";
   $urlRouterProvider.otherwise('/login');
+
+  // SHOW VERSION
+  console.log('Gemini: ' + Properties.version);
 
   // LOAD SETTINGS
   let parameters = {};

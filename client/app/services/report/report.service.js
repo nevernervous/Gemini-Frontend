@@ -1,12 +1,21 @@
-let reportService = function (Properties, ServicesHelper, ServicesTransform, $http, $q) {
+let reportService = function (Properties, ServicesHelper, ServicesTransform, $http, $q, ReportObject, ReportTransform) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
   const pageSize = 50;
 
+  let create = () => {
+    ReportObject.clean();
+    return ReportObject;
+  };
+
+  let currentReport = () => {
+    return ReportObject;
+  };
+
   let all = (fromPage, total, sortColumn, sortDirection) => {
     let requests = [];
     let current = (fromPage - 1) * pageSize;
-    while ( current < total ) {
+    while (current < total) {
       requests.push(_query(fromPage, sortColumn, sortDirection));
       fromPage++;
       current = (fromPage - 1) * pageSize;
@@ -31,74 +40,40 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
   }
 
   let getById = (reportId) => {
-    let transformation = [ServicesTransform.get('none')];
+    let transformation = [ReportTransform.get('simple')];
     return $http.get(`${endpoint}/${reportId}`, {
       cache: Properties.cache,
-      transformResponse: ServicesTransform.generate(transformation)
-    });
+      transformResponse: ReportTransform.generate(transformation)
+    }).then(
+      response => {
+        ReportObject.clean();
+        ReportObject.load(response.data);
+        return ReportObject;
+      });
   };
-
-  let saveReport = (report) => {
-    report.saving.setSaving(true);
-
-    let dataSourceId = report.datasource.get().id;
-    let variables = report.variables.get();
-    let aggregators = report.aggregators.get();
-
-    let data = {
-      name: report.name.get(),
-      dataSourceId: dataSourceId,
-      variables: [],
-      aggregators: [],
-      slicers: []
-    };
-
-    for (let i in variables) {
-      data.variables.push({ Id: variables[i].id, Order: i })
-    }
-    for (let i in aggregators) {
-      data.aggregators.push({ Id: aggregators[i].id, Order: i })
-    }
-
-    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
-    if (report.reportId.get() === null) {
-      return $http.post(endpoint, data);
-    } else {
-      return $http.put(endpoint + "/" + report.reportId.get(), data);
-    }
-  }
 
   let remove = (ids) => {
     let transformation = [ServicesTransform.get('none')];
-    let request;
-    if (!_.isArray(ids)) {
-      let id = ids;
-      request = $http.delete(`${endpoint}/${id}`, {
-        cache: Properties.cache,
-        transformResponse: ServicesTransform.generate(transformation)
-      });
-    } else{
-      request = $http.delete(`${endpoint}`, {
-        cache: Properties.cache,
-        data: ids,
-        headers : {
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        transformResponse: ServicesTransform.generate(transformation)
-      });
-    }
+    let request = $http.delete(`${endpoint}`, {
+      cache: Properties.cache,
+      data: ids,
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      transformResponse: ServicesTransform.generate(transformation)
+    });
 
     return request;
   }
 
   return {
     all,
+    create,
+    currentReport,
     first,
-    save: saveReport,
     remove,
     getById
   };
 };
 
 export default reportService;
-

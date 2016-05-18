@@ -5,17 +5,16 @@ import './ualReportInput.scss';
 let ualReportInputComponent = {
   restrict: 'E',
   bindings: {
-    report: '=',
-    label: '@',
-    type: '@',
-    value: '=',
-    onFocus: '&',
-    isRequired: '=',
-    invalidInput: '=',
-    onSave: "&"
-  },
-  transclude: {
-    "invalidmessage": "?ualInvalidMessage"
+    ualId: '@',
+    ualValue: '=',
+    icon: '@',
+    onBlur: '&?',
+    onKeyup: '&?',
+    onFocus: '&?',
+    onKeypress: '&?',
+    onChange: '&?',
+    ualDisabled: '<',
+    placeholder: '@'
   },
   template,
   controller,

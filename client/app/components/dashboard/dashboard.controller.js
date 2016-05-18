@@ -1,6 +1,6 @@
 class DashboardController {
   /*@ngInject*/
-  constructor($rootScope, $state, ualMainMenu, Session, expirationModal,$scope,$timeout) {
+  constructor($rootScope, $state, ualMainMenu, Session, expirationModal, $scope, $timeout) {
     this.name = 'dashboard';
     this._rootScope = $rootScope;
     this._state = $state;
@@ -22,8 +22,12 @@ class DashboardController {
     }
   }
 
+
   _unsuscribe() {
-    this._suscriptions.forEach(suscription => suscription());
+    while ( this._suscriptions.length > 0 ) {
+      let suscription = this._suscriptions.pop();
+      suscription();
+    }
   }
 
   $onInit() {
@@ -37,6 +41,8 @@ class DashboardController {
       this._state.go('login');
     }));
     this._suscriptions.push(this._rootScope.$on('BANNER.SHOW', (event, data) => this.showBanner(data)));
+
+    this.hideBanner();
   }
 
   showBanner(data) {

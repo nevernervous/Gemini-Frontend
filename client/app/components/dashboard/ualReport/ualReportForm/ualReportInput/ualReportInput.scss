@@ -1,94 +1,66 @@
 @import '../../../../../common/common';
-// MIXIN
-@mixin input-invalid() {
-    border: 1px solid ;
-    border-color: $alertHighColor !important;
-    border-style: solid;
-    border-width: 1px;
-    padding: 4px;
-    & + .icon-warning {
-        display: block;
-    }
-}
+@import '../../../../../common/ionicons/scss/ionicons';
 
 // LAYOUT
-.report-form-input {
-    @include gridle(row);
-    padding: 20px 0;
-    input {
-        @include gridle(12);
-        min-width: 100%;
+.ual-input {
+  padding: 5px 8px 7px 8px;
+
+  input {
+    width: calc(100% - 40px);
+    height: 28px;
+  }
+
+  i {
+    display: inline-block;
+
+    @include -ms-browser() {
+      margin-top: 6px;
     }
+  }
 }
 
-// VARIANTS
-.report-form-input {
-    &.-invalid {
-        input:not(.-label) {
-            @include input-invalid();
-        }
+// VARIATION
+ual-report-input {
+  .ual-input {
+    border: 1px solid $color08;
+    background-color: $color00;
+  }
+
+  input {
+    @include font-clanot-book(14);
+    border: 0;
+    color: $color06;
+    vertical-align: middle;
+
+    &:disabled {
+      background-color: $color00;
     }
-    .wrap-label{
-        cursor: pointer;
-    }
-    input {
-        @include font-clanot-book(18);
-        color: $color07;
-        border: 1px solid $color08;
-        padding: 4px;
-        line-height: 1;
-    }
-    input.-label{
-        @include font-clanot-book(20);
-        pointer-events: none;
-        border: 1px solid $color00;
-    }
-    input:read-only {
-        border: 1px solid $color00;
-    }
-    ::-webkit-input-placeholder {
-        /* Chrome/Opera/Safari */
-        line-height: 1.2;
-    }
-    ::-moz-placeholder {
-        /* Firefox 19+ */
-        line-height: 1.1;
-    }
-    :-ms-input-placeholder {
-        /* IE 10+ */
-        line-height: 1;
-    }
-    :-moz-placeholder {
-        /* Firefox 18- */
-        line-height: 1;
-    }
-    .icon-warning {
-        display: none;
-        float: right;
-        padding-right: 7px;
-        margin-top: -31px;
-        @include -moz-browser(){
-            margin-top: -30px;
-        }
-        @include -ms-browser(){
-            margin-top: -27px;
-        }
-        color: $alertHighColor;
-        font-size: 23px;
-    }
-    .-tooltip {
-        margin-left: 10px;
-        margin-top: 0px;
-        top: 135px;
-        left: 300px;
-        min-width: 150px !important;
-        @include -ms-browser() {
-            margin-top: -2px;
-        }
-    }
-    .-error-tooltip {
-        color: $alertHighColor;
-        margin-top: 5px;
-        margin-left: 10px;
-    }
+  }
+
+  i {
+    font-size: 22px;
+    vertical-align: middle;
+    color: $color07;
+    display: none;
+  }
+}
+
+// VARIATION / NOBORDER
+ual-report-input.-noborder {
+  .ual-input {
+    border-color: transparent
+  }
+}
+
+// VARIATION / ERROR
+ual-report-input.-error {
+  .ual-input {
+    border-color: $color11;
+  }
+  i {
+    @extend .ion-ios-close-outline;
+    color: $color11;
+    position: relative;
+    line-height: 1;
+  }
 }

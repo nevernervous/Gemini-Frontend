@@ -7,5 +7,7 @@
     <span ng-class="{visible: vm.error }">{{vm.error.errorMessage || 'The userID or password are invalid'}}</span>
     <a href="mailto:{{vm.mailto}}" ng-class="{visible: vm.error.errorCode == 1}">Please click here to contact PDS.</a>
   </div>
-  <login-form-submit class="-primary" ng-class="{'-loading': vm.loading}" tabindex="3"></login-form-submit>
+  <div class="buttons">
+    <ual-button class="login-form-submit -primary" type="submit" tabindex="3" loading="{{vm.loading}}" ng-disabled="vm.loading">Login</ual-button>
+  </div>
 </form>
