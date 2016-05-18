@@ -14,7 +14,7 @@
   </div>
 </div>
 <div class="dashboard-body">
-  <ual-accordion-group active="{{vm.selectedTab}}">
+  <ual-accordion-group on-change="vm.collapseAccordion(indexTab)" active="{{vm.selectedTab}}">
     <ual-accordion id="report-datasource" ng-disabled="false">
       <ual-accordion-title>Data source:
         <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source' }}</strong>

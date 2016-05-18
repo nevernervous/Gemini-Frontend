@@ -25,14 +25,22 @@ class UalDataSourceController {
 
   toogleSelected(item) {
     this.hideTooltip();
-    this._changemodal.open({ oldDataSource: this.selected, newDataSource: item })
-      .then(response => {
-        if (response) {
-          this.onChange({ datasourceNew: item, datasourceOld: this.selected });
-          this.selected = item;
-        }
-      });
+    if (!!this.selected) {
+      this._changemodal.open({ oldDataSource: this.selected, newDataSource: item })
+        .then(response => {
+          if (response) {
+            this.setDatasource(item);
+          }
+        });
+    }else{
+      this.setDatasource(item);
+    }
 
+  }
+
+  setDatasource(item) {
+    this.onChange({ datasourceNew: item, datasourceOld: this.selected });
+    this.selected = item;
   }
 
   hideTooltip() {

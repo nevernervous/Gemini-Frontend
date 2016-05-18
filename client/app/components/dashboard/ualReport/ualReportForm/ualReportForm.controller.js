@@ -183,7 +183,12 @@ class UalReportFormController {
     this.selectedTab = 'report-variables';
     this.report.variables.set([]);
     this.report.aggregators.set([]);
+    this.selectedTab = 'report-variables';
     this.report.datasource.set(datasourceNew);
+  }
+
+  collapseAccordion(index) {
+    this.selectedTab = index;
   }
 
   // TO DEPRECATE
