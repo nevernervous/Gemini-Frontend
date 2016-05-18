@@ -5,7 +5,7 @@
 ual-variables-multi-select {
   select[multiple].-avaiable-variables{
     margin-top: 20px;
-    height: calc(70%);
+    //height: calc(70%);
     width: 100%;
     option{
       padding: 5px 6px;
@@ -31,5 +31,6 @@ ual-variables-multi-select {
   .ual-button{
     width: 80%;
     margin: 0px calc(10%);
+    margin-bottom: 15px;
   }
 }
