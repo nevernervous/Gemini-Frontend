@@ -28,6 +28,7 @@ class UalDataSourceController {
     this._changemodal.open({ oldDataSource: this.selected, newDataSource: item })
       .then(response => {
         if (response) {
+          this.onChange({ datasourceNew: item, datasourceOld: this.selected });
           this.selected = item;
         }
       });
