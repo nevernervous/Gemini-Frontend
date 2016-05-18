@@ -15,15 +15,13 @@ class ualEllipsisDirective {
   }
 
   link($scope, elem, attr, ctrl) {
-    if ($scope.ellipsisHeight){
-      window.setTimeout(function () {
-        $(elem).dotdotdot({
-          wrap: 'letter',
-          height: parseInt($scope.ellipsisHeight),
-          ellipsis: '...'
-        });
-      }, 400);
-    }
+    ctrl._timeout(function () {
+      $(elem).dotdotdot({
+        wrap: 'letter',
+        height: parseInt($scope.ellipsisHeight ? $scope.ellipsisHeight : 15),
+        ellipsis: '...'
+      });
+    }, 0);
   }
 }
 
