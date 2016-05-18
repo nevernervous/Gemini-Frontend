@@ -1,6 +1,7 @@
 <ual-nav-bar></ual-nav-bar>
 <div class="dashboard-container" ng-class="{'menu-open': vm.menuOpen}">
-  <ual-message-banner class="{{vm.msg.type}}" ng-hide="vm.msg.hide" ng-click="vm.hideBanner()">{{vm.msg.text}}</ual-message-banner>
+  <ual-message-banner class="{{vm.msg.type}}" ng-class="{'-closable': (vm.msg.type == '-error')}"
+                      ng-hide="vm.msg.hide" on-close="vm.hideBanner()">{{vm.msg.text}}</ual-message-banner>
   <ual-main-menu ng-class="{'-open': vm.mainMenu.isOpen()}"></ual-main-menu>
   <div class="dashboard-view" ui-view></div>
 </div>

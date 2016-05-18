@@ -1,7 +1,7 @@
 {
-  "name": "ng6-starter",
-  "version": "0.0.1",
-  "description": "Starter for Angular + ES6 + (Webpack or JSPM)",
+  "name": "ual-gemini",
+  "version": "0.1.5",
+  "description": "United Airlines - Gemini",
   "main": "index.js",
   "dependencies": {
     "@iamadamjowett/angular-click-outside": "*",
@@ -37,6 +37,7 @@
     "file-loader": "^0.8.5",
     "font-loader": "^0.1.2",
     "fs-walk": "0.0.1",
+    "git-rev-sync": "^1.6.0",
     "gulp": "^3.9.0",
     "gulp-ng-constant": "^1.1.0",
     "gulp-rename": "^1.2.2",
