@@ -21,7 +21,6 @@ class UalVariableSelectedItemController {
 
   onBlur(event, item, order) {
     let position = _.parseInt(this.variableId.split('_')[(this.prefix)?1:0]);
-    console.log(position);
     if ( position !== order && this.isValid(order)) {
       this.variableOrder = _.parseInt(order);
       this.cbChange.bind(this.cbBind)(item, order);
@@ -34,7 +33,6 @@ class UalVariableSelectedItemController {
   onChange(order,id) {
     if ( !this.isValid(order) && order != "") {
       let container = this.prefix+id+"_variable-order";
-      console.log(container);
       this._ualTooltipService.show({
         container:container,
         text:`Only numeric values between 1 and ${this.variableTotal} are allowed. Please re-enter a valid value.`,
