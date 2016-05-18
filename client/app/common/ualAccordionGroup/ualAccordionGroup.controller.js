@@ -10,6 +10,7 @@ class UalAccordionGroupController {
   };
 
   open(index) {
+    this.onChange({indexTab: index});
     this.close();
     this.accordions[index].status = 'open';
     this.active = index;
