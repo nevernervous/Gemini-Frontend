@@ -9,19 +9,17 @@ class ualAccordionGroupDirective {
     this.transclude = true;
     this.template = template;
     this.scope = {
-      onChange: '&'
+      selected: '='
     };
     this.controller = controller;
     this.controllerAs = 'vm';
   }
 
   link(scope, element, attrs, ctrl) {
-    //Hack for bind function to controller. I don't know why Directive doesn't work like as Component
-    ctrl.onChange = scope.onChange;
     scope.$watch(
-      () => element.attr('active'),
+      'selected',
       newValue => {
-        ctrl.open(attrs.active);
+        ctrl.open(newValue);
       }
     );
   }

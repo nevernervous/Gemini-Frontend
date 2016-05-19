@@ -1,8 +1,9 @@
 class UalAccordionGroupController {
   /*@ngInject*/
-  constructor() {
+  constructor($scope) {
     this.accordions = {};
     this.active = null;
+    this._scope = $scope;
   }
 
   add(key, accordion) {
@@ -10,10 +11,10 @@ class UalAccordionGroupController {
   };
 
   open(index) {
-    this.onChange({indexTab: index});
     this.close();
     this.accordions[index].status = 'open';
     this.active = index;
+    this._scope.selected = index;
   };
 
   close() {
