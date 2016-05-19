@@ -9,6 +9,9 @@ class ualEllipsisDirective {
     this.restrict = 'A';
     this.template = template;
     this.controller = controller;
+    this.scope = {
+      ellipsisHeight: '@'
+    }
   }
 
   link($scope, elem, attr, ctrl) {

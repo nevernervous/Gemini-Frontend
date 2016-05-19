@@ -192,9 +192,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       }
     }
     , datasource: {
-      get: getDataSource
-      , set: setDataSource
-      , equal: equalDataSource
+      get: getDataSource,
+      set: setDataSource,
+      equal: equalDataSource
     }
     , variables: {
       get: getVariables

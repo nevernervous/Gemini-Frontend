@@ -2,7 +2,7 @@
   <ual-input class="search-box" value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.columnCount()" ual-debounce="'500'"></ual-input>
 </div>
 <div class="content">
-  <div class="loading-message" ng-show="!vm.datasources ">Loading ...</div>
+  <div class="loading-message" ng-if="!vm.datasources ">Loading ...</div>
   <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filterBy:vm.searchTerm | isEmpty )">
     <div>
       No results found

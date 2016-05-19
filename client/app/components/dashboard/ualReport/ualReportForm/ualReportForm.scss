@@ -1,38 +1,37 @@
 @import '../../../../common/common';
-
 // LAYOUT
 ual-report-form {
-  @include gridle_container();
-  > .dashboard-header {
-    > .name {
-      margin-left: 15px;
+    @include gridle_container();
+    > .dashboard-header {
+        > .name {
+            margin-left: 15px;
+        }
+        .buttons-group {
+            button {
+                margin-left: 15px;
+                width: 155px;
+            }
+        }
     }
-    .buttons-group {
-      button {
-        margin-left: 15px;
-        width: 155px;
-      }
+    > .dashboard-body {
+        height: calc(100% - 120px);
+        margin-top: 30px;
+        margin-bottom: 30px;
+        .ual-accordion-group {
+            height: 100%;
+        }
     }
-  }
-  > .dashboard-body {
-    height: calc(100% - 120px);
-    margin-top: 30px;
-    margin-bottom: 30px;
-    .ual-accordion-group {
-      height: 100%;
+    > .dashboard-footer {
+        button {
+            width: 155px;
+        }
     }
-  }
-  > .dashboard-footer {
-    button {
-      width: 155px;
-    }
-  }
 }
 
 // VARIANT
 ual-report-form {
-  > .dashboard-header {
-    > .name {
+    > .dashboard-header {
+        > .name {
       .name-input {
         display: inline-block;
         input {
@@ -40,24 +39,24 @@ ual-report-form {
           color: $color06;
         }
         &.-empty input {
-          @include font-clanot-news(20);
+                @include font-clanot-news(20);
         }
       }
       .duplicate-error {
         color: $color11;
         display: inline-block;
-      }
+            }
+        }
     }
-  }
-  > .dashboard-body {
-    .ual-accordion-group .ual-accordion .accordion-title {
-      strong {
-        @include font-clanot-bold(16);
-      }
-      small {
-        margin-left: 3px;
-        @include font-clanot-book(14);
-      }
+    > .dashboard-body {
+        .ual-accordion-group .ual-accordion .accordion-title {
+            strong {
+                @include font-clanot-bold(16);
+            }
+            small {
+                margin-left: 3px;
+                @include font-clanot-book(16);
+            }
+        }
     }
-  }
 }

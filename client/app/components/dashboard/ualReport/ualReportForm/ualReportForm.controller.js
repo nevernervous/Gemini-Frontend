@@ -14,6 +14,7 @@ class UalReportFormController {
       report: Report,
       tooltip: ualTooltipService
     };
+
     // STATE
     this.edit = false;
     this._suscriptions = [];
@@ -180,12 +181,14 @@ class UalReportFormController {
   }
 
   onChangeDataSource(datasourceNew, datasourceOld) {
+    this.selectedTab = 'report-variables';
     this.report.variables.set([]);
     this.report.aggregators.set([]);
-    this.selectedTab = 'report-variables';
     this.report.datasource.set(datasourceNew);
   }
-
+  collapseAccordion(index) {
+    this.selectedTab = index;
+  }
   // TO DEPRECATE
 
   // STEP 2

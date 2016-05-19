@@ -11,19 +11,22 @@ class UalDataSourceController {
 
     this.searchTerm = {};
     this.datasources;
+    this.rootScope = $rootScope;
     this.selected;
-
   }
-
   shouldShow(group) {
     return this._filter("filterBy")(group.items, this.searchTerm).length > 0;
   }
 
   isActive(itemId) {
-    return (this.selected) && this.selected.id === itemId;
+    return !!this.selected && this.selected.id === itemId;
   }
 
   selectedDataSource(item) {
+    if (!this.selected || (!!this.selected && this.selected.id != item.id)) {
+      this.onChange({ datasourceNew: item, datasourceOld: this.selected });
+      this.selected = item;
+    }
     this.hideTooltip();
     if (!!this.selected) {
       if(this.selected.id == item.id){
@@ -49,7 +52,6 @@ class UalDataSourceController {
   hideTooltip() {
     this._ualTooltipService.hide();
   }
-
 
   $onInit() {
     this._datasource.all('group')
