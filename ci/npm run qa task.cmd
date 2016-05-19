@@ -1,1 +1,1 @@
-npm run qa
+npm run dev
