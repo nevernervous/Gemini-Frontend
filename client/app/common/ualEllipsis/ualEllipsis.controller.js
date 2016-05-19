@@ -1,7 +1,7 @@
 class ualEllipsisController {
   /*@ngInject*/
-  constructor() {
-
+  constructor($timeout) {
+    this._timeout = $timeout;
   }
 
 }
