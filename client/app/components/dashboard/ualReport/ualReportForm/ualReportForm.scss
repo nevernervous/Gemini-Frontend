@@ -33,6 +33,10 @@ ual-report-form {
 ual-report-form {
   > .dashboard-header {
     > .name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       .name-input {
         display: inline-block;
         input {
@@ -44,6 +48,7 @@ ual-report-form {
         }
       }
       .duplicate-error {
+        padding-left: 10px;
         color: $color11;
         display: inline-block;
       }
