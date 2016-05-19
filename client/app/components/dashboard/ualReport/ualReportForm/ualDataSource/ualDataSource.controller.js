@@ -23,9 +23,12 @@ class UalDataSourceController {
     return (this.selected) && this.selected.id === itemId;
   }
 
-  toogleSelected(item) {
+  selectedDataSource(item) {
     this.hideTooltip();
     if (!!this.selected) {
+      if(this.selected.id == item.id){
+        return;
+      }
       this._changemodal.open({ oldDataSource: this.selected, newDataSource: item })
         .then(response => {
           if (response) {
