@@ -177,7 +177,6 @@ class UalReportFormController {
       this.variables.available = variables.data;
       this.variables.selected = this.report.variables.get();
       this.variables.aggregators = this.report.aggregators.get();
-      console.log(this.variables);
 //      this.loaded = true;
     },
     error =>{ console.error(error) },

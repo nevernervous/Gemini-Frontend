@@ -1,20 +1,20 @@
 <div class="container">
 
   <div class="selected-variables">
-    <ual-variables-multi-select variables="vm.variables.items"></ual-variables-multi-select>
+    <ual-variables-multi-select variables="vm.variables.items" selected-reference="vm.getSelection"></ual-variables-multi-select>
   </div>
 
   <div class="add-btns">
     <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to aggregators')" data-ng-mouseleave="vm.hideTooltip()">
-      <ual-button class="-secondary"> > </ual-button>
+      <ual-button class="-secondary" ng-click="vm.addVariables('aggregators')"> > </ual-button>
     </div>
     <div id="btn-add-variables" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-variables','Add to selected variables')" data-ng-mouseleave="vm.hideTooltip()">
-      <ual-button class="-secondary"> » </ual-button>
+      <ual-button class="-secondary" ng-click="vm.addVariables('selecteds')"> » </ual-button>
     </div>
   </div>
 
   <div class="selected-variables">
-    <ual-pane ual-title="Selected Aggregators ({{vm.aggregators.length}})" action="Delete all" on-action="vm.deleteAll('aggregators', vm.aggregatorsFilter)" is-disabled="vm.selecteds.length == 0 || (vm.aggregators && (vm.aggregators | filterBy:vm.aggregatorsFilter | isEmpty))">
+    <ual-pane ual-title="Selected Aggregators ({{vm.aggregators.length}})" action="Delete all" on-action="vm.deleteAll('aggregators', vm.aggregatorsFilter)" is-disabled="vm.aggregators.length == 0 || (vm.aggregators && (vm.aggregators | filterBy:vm.aggregatorsFilter | isEmpty))">
       <ual-input ual-id="selected-searchbox" class="search-box" value="vm.aggregatorsFilter.name" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging"></ual-input>
       <div class="empty-search" ng-hide="vm.aggregators.length == 0 || (vm.aggregators | filterBy:vm.aggregatorsFilter).length > 0">
         <div>No results match your search</div>
@@ -22,9 +22,10 @@
       <div class="empty-list" ng-hide="(vm.aggregators).length > 0">
         <div>No aggregators have been selected yet. Please select variables from the left menu.</div>
       </div>
-      <ul id="aggregator-list" class="selected-list" ng-if="vm.aggregators.length > 0" ual-scroll ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-        <li class="selected-container" ng-repeat="item in vm.aggregators | filterBy:vm.aggregatorsFilter track by item.id" droppable id="agg_{{ vm.itemPosition(item, vm.aggregators) + 1 }}_selected_container" drop="vm.onAggregatorDrop" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
-          <ual-variable-selected-item prefix="agg_" variable-id="agg_{{ vm.itemPosition(item, vm.aggregators) + 1 }}_selected_container" variable-total="vm.aggregators.length" variable-item="item" variable-order="vm.itemPosition(item, vm.aggregators) + 1" on-delete="vm.toggle(item, vm.aggregators)" cb-change="vm.changeAggregatorOrder" cb-bind="vm" draggable id="agg_{{ vm.itemPosition(item, vm.aggregators) + 1 }}_selected_item" item="item" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
+      <ul id="aggregator-list" class="selected-list" ng-if="vm.aggregators.length > 0 && (vm.aggregators | filterBy:vm.aggregatorsFilter).length > 0" ual-scroll
+              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
+        <li class="selected-container" ng-repeat="item in vm.aggregators | filterBy:vm.aggregatorsFilter  track by item.order" droppable id="agg_{{ vm.itemPosition(item, vm.aggregators) + 1 }}_selected_container" drop="vm.onDrop('aggregators')" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
+          <ual-variable-selected-item prefix="agg_" variable-id="agg_{{ vm.itemPosition(item, vm.aggregators) + 1 }}_selected_container" variable-total="vm.aggregators.length" variable-item="item" variable-order="vm.itemPosition(item, vm.aggregators) + 1" on-delete="vm.toggle(item, 'aggregators')" cb-change="vm.changeAggregatorOrder" cb-bind="vm" draggable id="agg_{{ vm.itemPosition(item, vm.aggregators) + 1 }}_selected_item" item="item" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
           </ual-variable-selected-item>
         </li>
       </ul>
@@ -40,9 +41,10 @@
       <div class="empty-list" ng-hide="(vm.selecteds).length > 0">
         <div>No variables have been selected yet. Please select variables from the left menu.</div>
       </div>
-      <ul id="selected-list" class="selected-list" ng-if="vm.selecteds.length > 0" ual-scroll ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-        <li class="selected-container" ng-repeat="item in vm.selecteds | filterBy:vm.selectedFilter track by item.id" droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container" drop="vm.onDrop" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
-          <ual-variable-selected-item prefix="" variable-id="{{ vm.itemPosition(item) + 1 }}_selected_container" variable-total="vm.selecteds.length" variable-item="item" variable-order="vm.itemPosition(item) + 1" on-delete="vm.toggle(item)" cb-change="vm.changeOrder" cb-bind="vm" draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item" item="item" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
+      <ul id="selected-list" class="selected-list" ng-if="vm.selecteds.length > 0"  ual-scroll
+              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
+        <li class="selected-container" ng-repeat="item in vm.selecteds | filterBy:vm.selectedFilter track by item.order" droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container" drop="vm.onDrop('selecteds')" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
+          <ual-variable-selected-item prefix="" variable-id="{{ vm.itemPosition(item) + 1 }}_selected_container" variable-total="vm.selecteds.length" variable-item="item" variable-order="vm.itemPosition(item) + 1" on-delete="vm.toggle(item)" cb-change="vm.changeSelectedOrder" cb-bind="vm" draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item" item="item" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
           </ual-variable-selected-item>
         </li>
       </ul>

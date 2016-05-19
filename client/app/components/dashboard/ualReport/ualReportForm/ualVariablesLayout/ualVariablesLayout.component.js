@@ -7,7 +7,9 @@ let ualVariablesLayoutComponent = {
   bindings: {
     variables: "<",
     selecteds: "=",
-    aggregators: "="
+    aggregators: "=",
+    updateReportVariables: "=",
+    updateReportAggregators: "="
   },
   template,
 /*  transclude:{

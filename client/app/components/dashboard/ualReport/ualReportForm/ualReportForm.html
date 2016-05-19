@@ -30,7 +30,7 @@
         <small>selected</small>
       </ual-accordion-title>
       <ual-accordion-content>
-        <ual-variables-layout class="ual-variables-layout" variables="vm.variables.available" selecteds="vm.variables.selected" aggregators="vm.variables.aggregators"></ual-variables-layout>
+        <ual-variables-layout class="ual-variables-layout" variables="vm.variables.available" selecteds="vm.variables.selected" aggregators="vm.variables.aggregators" update-report-variables="vm.report.variables.set" update-report-aggregators="vm.report.aggregators.set"></ual-variables-layout>
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">

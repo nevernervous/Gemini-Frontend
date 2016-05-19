@@ -7,10 +7,11 @@
         <li ng-repeat="variable in vm.variables | filterBy:vm.filterName | orderBy : 'order'" onselectstart="return false;"
             selection-model
             selection-model-mode="'multiple'"
-            selection-model-selected-items="vm.avaliableVariablesSelected">
+            selection-model-selected-items="vm.avaliableVariablesSelected"
+            selection-model-cleanup-strategy="'deselect'">
           {{variable.name}}
         </li>
       </ul>
   <hr />
-  <ual-button class="-secondary">Create custom variable</ual-button>
+  <ual-button class="-secondary" ng-click="vm.getSelected()">Create custom variable</ual-button>
 </ual-pane>
