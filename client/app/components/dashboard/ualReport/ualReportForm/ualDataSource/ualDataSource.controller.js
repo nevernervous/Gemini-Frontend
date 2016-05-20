@@ -2,19 +2,18 @@ import $ from 'jquery';
 
 class UalDataSourceController {
   /*@ngInject*/
-  constructor($rootScope, DataSource, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $timeout, ualTooltipService) {
+  constructor($rootScope, DataSource, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, ualTooltipService) {
     this.name = 'ualDataSource';
     this._datasource = DataSource;
     this._cancelmodal = ualDataSourceCancelModal;
     this._changemodal = ualDataSourceChangeModal;
     this._filter = $filter;
-    this._timeout = $timeout;
     this._ualTooltipService = ualTooltipService;
 
     this.searchTerm = {};
-
     this.datasources;
-
+    this.rootScope = $rootScope;
+    this.selected;
   }
 
   shouldShow(group) {
@@ -22,18 +21,20 @@ class UalDataSourceController {
   }
 
   isActive(itemId) {
-    return (this.selected) && this.selected.id === itemId;
+    return !!this.selected && this.selected.id === itemId;
   }
 
-  toogleSelected(item) {
-    this.selected = item;
+  selectedDataSource(item) {
+    if (!this.selected || (!!this.selected && this.selected.id != item.id)) {
+      this.onChange({ datasourceNew: item, datasourceOld: this.selected });
+      this.selected = item;
+    }
     this.hideTooltip();
   }
 
   hideTooltip() {
     this._ualTooltipService.hide();
   }
-
 
   $onInit() {
     this._datasource.all('group')
