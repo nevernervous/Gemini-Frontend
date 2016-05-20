@@ -2,15 +2,15 @@
   <ual-input class="search-box" value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.columnCount()" ual-debounce="'500'"></ual-input>
 </div>
 <div class="content">
-  <div class="loading-message" ng-show="!vm.datasources ">Loading ...</div>
+  <div class="loading-message" ng-if="!vm.datasources ">Loading ...</div>
   <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources.items | filterBy:vm.searchTerm | isEmpty )">
     <div>
       No results found
     </div>
   </div>
-  <div class="content-list" ng-class="{filtering: vm.filtering}" ng-if="vm.datasources">
+  <div class="content-list" ng-if="vm.datasources" ual-on-scroll="vm.hideTooltip()">
     <ual-data-source-group datasource-group="group.data" ng-repeat-start="group in vm.datasources.groups | orderBy : 'data.order' track by group.data.groupId" ng-show="vm.shouldShow(group)" class="data-source-group"></ual-data-source-group>
-    <ual-data-source-item datasource-item="item" ng-repeat-end ng-repeat="item in group.items | filterBy:vm.searchTerm | orderBy : 'order' track by item.id" ng-click="vm.toogleSelected(item)" ng-class="{'-selected': vm.isActive(item.id)}" id="datasource_{{item.id}}">
+    <ual-data-source-item datasource-item="item" ng-repeat-end ng-repeat="item in group.items | filterBy:vm.searchTerm | orderBy : 'order' track by item.id" ng-click="vm.selectedDataSource(item)" ng-class="{'-selected': vm.isActive(item.id)}" id="datasource_{{item.id}}">
     </ual-data-source-item>
   </div>
 </div>

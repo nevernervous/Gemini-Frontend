@@ -1,5 +1,4 @@
 @import '../../../../common/common';
-
 // LAYOUT
 ual-report-form {
   @include gridle_container();
@@ -47,7 +46,7 @@ ual-report-form {
         }
       }
       .duplicate-error {
-        @include gridle_state(projector){
+        @include gridle_state(projector) {
           width: 300px;
         }
         padding-left: 10px;
@@ -63,7 +62,7 @@ ual-report-form {
       }
       small {
         margin-left: 3px;
-        @include font-clanot-book(14);
+        @include font-clanot-book(16);
       }
     }
   }
