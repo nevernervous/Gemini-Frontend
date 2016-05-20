@@ -1,9 +1,9 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualVariables, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, ualVariables, ualDataSourceChangeModal, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
     this._rootScope = $rootScope;
-
+    this._changemodal = ualDataSourceChangeModal;
     // MODALS
     this._variablesmodal = ualVariables;
     this._ualReportNameModal = ualReportNameModal;
@@ -181,8 +181,26 @@ class UalReportFormController {
   }
 
   onChangeDataSource(datasourceNew, datasourceOld) {
-      this.selectedTab = 'report-variables';
-      this.report.datasource.set(datasourceNew);
+    if (!!datasourceOld) {
+      if (!this.report.datasource.equal(datasourceNew) &&
+        (this.report.variables.hasValues() || this.report.filters.hasValues())) {
+        this._changemodal.open({ oldDataSource: datasourceOld, newDataSource: datasourceNew })
+          .then(response => {
+            if (response) {
+              this.setDatasource(datasourceNew);
+            }
+          });
+      } else {
+        this.setDatasource(datasourceNew);
+      }
+    } else {
+      this.setDatasource(datasourceNew);
+    }
+  }
+
+  setDatasource(datasource) {
+    this.selectedTab = 'report-variables';
+    this.report.datasource.set(datasource);
   }
   collapseAccordion(index) {
     this.selectedTab = index;

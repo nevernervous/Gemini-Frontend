@@ -1,6 +1,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ualDataSource from './ualDataSource/ualDataSource';
+import ualDataSourceChangeModal from './ualDataSourceChangeModal/ualDataSourceChangeModal';
 import ualVariables from './ualVariables/ualVariables';
 import ualReportFormComponent from './ualReportForm.component';
 import ualAgregationItem from './ualAgregationItem/ualAgregationItem';
@@ -15,6 +16,7 @@ let ualReportFormModule = angular.module('ualReportForm', [
   ualReportInput.name,
   // MODALS
   ualDataSource.name,
+  ualDataSourceChangeModal.name,
   ualAgregationItem.name,
   ualReportNameModal.name,
   ualUnsafeReportModal.name,
