@@ -30,18 +30,25 @@ class UalReportFormController {
       aggregators: []
     };
     // STATE
+    this.edit = false;
     this._suscriptions = [];
 
     this.report = null;
     this.isSaving = false;
 
     this.name = {
-      old: null,
       current: null,
       hover: false,
       focus: false,
       duplicated: false
     }
+
+    this.response = {
+      success: null,
+      error: null
+    };
+
+    this.selectedTab = 'report-datasource';
   }
 
   // NAME INPUT
@@ -68,51 +75,26 @@ class UalReportFormController {
 
   blurName() {
     this.name.focus = false;
-    if ( this.report.id && this.report.id.get() &&
-         this.name.current.toLowerCase() != this.report.name.get().toLowerCase() ) {
+    if ( this.edit && this.name.current.toLowerCase() != this.report.name.get().toLowerCase() ) {
       this.save();
+    } else if ( !this.edit ) {
+      this.report.name.set(_.clone(this.name.current));
     }
   }
 
   // SAVE
   save() {
-    this.name.old = _.clone(this.report.name.get());
     this.report.name.set(_.clone(this.name.current));
 
-    this.name.duplicated = false;
     this.isSaving = true;
 
-    let responseError = [
-      // NO ERROR
-      (msg) => {},
-      // ERROR: EMPTY NAME
-      (msg) => {
-        this._ualReportNameModal.open({ report: this.report, reportForm: this}).then(
-          response => {
-            if (response) saveSuccess(response);
-          }
-        );
-      },
-      // ERROR: DUPLICATED NAME
-      (msg) => {
-        this.name.current = this.name.old;
-        this.name.duplicated = true;
-      },
-      // ERROR: SAVING
-      (msg) => {
-        this.name.current = this.name.old;
-        this._rootScope.$broadcast('BANNER.SHOW', msg)
-      }
-    ];
     this.report.save().then(
       result => {
-        this._rootScope.$broadcast('BANNER.SHOW', result.msg);
-        this.name.current = _.clone(this.report.name.get());
-        this._state.go("dashboard.report-edit", { "id": this.report.id.get() }, { notify: false });
+        this.response.success(result.msg);
         this.isSaving = false;
       },
       result => {
-        responseError[result.code](result.msg);
+        this.response.error(result.code, result.msg);
         this.isSaving = false;
       }
     );
@@ -125,17 +107,64 @@ class UalReportFormController {
     if (!reportId) {
       this.report = this._service.report.create();
     } else {
+      this.edit = true;
       this._service.report.getById(reportId)
       .then((reply) => {
         this.report = reply;
         this.name.current = _.clone(this.report.name.get());
-        this.name.current = "Jeronimo";
       });
     }
 
+    this._responses();
     this._suscribe();
+  }
+  // INIT / RESPONSES
+  _responses() {
+    let error_actions = [
+      // ON ERROR: NO ERROR
+      (msg) => {},
+      // ON ERROR: EMPTY NAME
+      (msg) => {
+        this._ualReportNameModal.open({ report: this.report }).then(
+          response => {
+            if ( response.status === 'success' ) {
+              this.report.name.set(response.name);
+              this.response.success(response.msg);
+            } else if ( response.status === 'error' ) {
+              this.report.name.set(response.name);
+              this._rootScope.$broadcast('BANNER.SHOW', response.msg);
+            }
+          }
+        );
+      },
+      // ON ERROR: DUPLICATED NAME
+      (msg) => {
+        this.name.duplicated = true;
+      },
+      // ON ERROR: SAVING
+      (msg) => {
+        this._rootScope.$broadcast('BANNER.SHOW', msg);
+      }
+    ];
+
+    // ON ERROR
+    this.response.error = (code, msg) => {
+      this.name.duplicated = false;
+      error_actions[code](msg);
     }
 
+    // ON SUCCESS
+    this.response.success = (msg) => {
+      this.name.duplicated = false;
+      this._rootScope.$broadcast('BANNER.SHOW', msg);
+      this.name.current = _.clone(this.report.name.get());
+      if ( !this.edit ) {
+        this.edit = true;
+        this._state.go("dashboard.report-edit", { "id": this.report.id.get() }, { notify: false });
+      }
+    };
+  }
+  // INIT / SUSCRIPTIONS
   _suscribe() {
     this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (this.report.touched()) {
@@ -164,8 +193,18 @@ class UalReportFormController {
     }));
   }
 
+  // UNLOAD
   _unsuscribe() {
     this._suscriptions.forEach(suscription => suscription());
+  }
+
+  onChangeDataSource(datasourceNew, datasourceOld) {
+    this.selectedTab = 'report-variables';
+    this.report.datasource.set(datasourceNew);
+  }
+
+  collapseAccordion(index){
+    this.selectedTab = index;
   }
 
   // TO DEPRECATE

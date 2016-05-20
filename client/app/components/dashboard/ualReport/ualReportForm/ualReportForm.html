@@ -1,23 +1,26 @@
 <div class="dashboard-header">
   <div class="name">
-    <ual-input id="report-name" class="name-input" ng-class="{'-noborder': !(vm.name.hover || vm.name.focus)}" placeholder="Enter report name"
+    <ual-report-input id="report-name" class="name-input" ng-class="{'-noborder': !(vm.name.hover || vm.name.focus), '-empty': (!vm.name.current || !vm.report.name.get()), '-error': vm.name.duplicated}" placeholder="Enter report name"
                ng-mouseover="vm.hoverName()" ng-mouseleave="vm.leaveName()"
-               on-focus="vm.focusName()" on-blur="vm.blurName()" value="vm.name.current"></ual-input>
+               on-focus="vm.focusName()" on-blur="vm.blurName()" ual-value="vm.name.current"></ual-report-input>
+    <span class="duplicate-error" ng-show="vm.name.duplicated">Report name already exists. Please select another.</span>
   </div>
   <div class="buttons-group">
-    <ual-button class="save-button -secondary" ng-disabled="!vm.report.datasource.get()"
-    ng-click="vm.save()">Save</ual-button>
+    <ual-button class="save-button -secondary"
+                loading="{{vm.isSaving}}"
+                ng-disabled="!vm.report.datasource.get() || vm.isSaving"
+                ng-click="vm.save()">Save</ual-button>
     <ual-button class="copy-button -secondary" ng-disabled="true">Create a copy</ual-button>
   </div>
 </div>
 <div class="dashboard-body">
-  <ual-accordion-group active="report-datasource">
+  <ual-accordion-group selected="vm.selectedTab">
     <ual-accordion id="report-datasource" ng-disabled="false">
       <ual-accordion-title>Data source:
         <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source' }}</strong>
-        <small>{{ vm.report.datasource.get() ? (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
+        <small>{{ vm.report.datasource.get() ? 'Last updated date ' + (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-data-source>
+        <ual-data-source on-change="vm.onChangeDataSource(datasourceNew, datasourceOld)">
         </ual-data-source>
       </ual-accordion-content>
     </ual-accordion>
