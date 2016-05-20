@@ -40,8 +40,8 @@ class UalDataSourceController {
   }
 
   setDatasource(item) {
-    this.onChange({ datasourceNew: item, datasourceOld: this.selected });
     this.selected = item;
+    this.onChange({ datasourceNew: item, datasourceOld: this.selected });
   }
 
   hideTooltip() {

@@ -181,10 +181,11 @@ class UalReportFormController {
   }
 
   onChangeDataSource(datasourceNew, datasourceOld) {
-    this.selectedTab = 'report-variables';
-    this.report.variables.set([]);
-    this.report.aggregators.set([]);
-    this.report.datasource.set(datasourceNew);
+    if (this.report.datasource.equal(datasourceNew)) {
+      this.selectedTab = 'report-variables';
+      this.report.clean();
+      this.report.datasource.set(datasourceNew);
+    }
   }
   collapseAccordion(index) {
     this.selectedTab = index;
