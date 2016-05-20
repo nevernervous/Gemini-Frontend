@@ -1,7 +1,7 @@
 class ualEllipsisController {
   /*@ngInject*/
   constructor() {
-
+    this.name = 'ualEllipsis';
   }
 
 }

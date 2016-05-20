@@ -1,9 +1,9 @@
 class UalDataSourceGroupController {
-    /*@ngInject*/
-    constructor() {
-        
-    }
-   
+  /*@ngInject*/
+  constructor() {
+    this.name = 'ualDataSourceGroup';
+  }
+
 }
 
 export default UalDataSourceGroupController;

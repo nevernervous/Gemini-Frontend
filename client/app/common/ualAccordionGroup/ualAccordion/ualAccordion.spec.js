@@ -1,7 +1,5 @@
 import UalAccordionModule from './ualAccordion'
 import UalAccordionController from './ualAccordion.controller';
-import UalAccordionDirective from './ualAccordion.directive';
-import UalAccordionTemplate from './ualAccordion.html';
 
 describe('UalAccordion', () => {
   let $rootScope, makeController;

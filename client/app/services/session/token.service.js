@@ -1,4 +1,4 @@
-let tokenService = function ($rootScope, $window, $timeout, Configuration) {
+let tokenService = function (Configuration, $rootScope, $window, $timeout) {
   "ngInject";
   let _timer;
   let login = false;

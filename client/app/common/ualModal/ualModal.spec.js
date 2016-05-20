@@ -1,7 +1,5 @@
-import ModalModule from './modal'
-import ModalController from './modal.controller';
-import ModalComponent from './modal.component';
-import ModalTemplate from './modal.html';
+import ModalModule from './ualModal'
+import ModalController from './ualModal.controller';
 
 describe('Modal', () => {
   let $rootScope, makeController;
@@ -14,12 +12,6 @@ describe('Modal', () => {
     };
   }));
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-    it('has a name property [REMOVE]', () => {
-      expect(ModalModule).to.have.property('name');
-    });          
-  });
 
   describe('Controller', () => {
     // controller specs
@@ -29,29 +21,4 @@ describe('Modal', () => {
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<modal/>').html(ModalTemplate);
-    it('has at least one element [REMOVE]', () => {
-      expect(template.children()).to.have.length.of.at.least(1);
-    });
-  });
-
-  describe('Component', () => {
-      // component/directive specs
-      let component = ModalComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(ModalTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(ModalController);
-      });
-  });
 });

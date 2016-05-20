@@ -1,25 +1,23 @@
 import UalVariablesModule from './ualVariables'
 import UalVariablesController from './ualVariables.controller';
-import UalVariablesComponent from './ualVariables.component';
-import UalVariablesTemplate from './ualVariables.html';
+import DataSource from '~/services/datasource/datasource.service';
+import ServicesTransform from '~/services/services.transform';
+
+const Properties = {
+  endpoint: ''
+}
 
 describe('UalVariables', () => {
   let $rootScope, makeController;
 
   beforeEach(window.module(UalVariablesModule.name));
-  beforeEach(inject((_$rootScope_) => {
+  beforeEach(inject((_$rootScope_, $http, $q) => {
     $rootScope = _$rootScope_;
+    let Transform = ServicesTransform($http);
     makeController = () => {
-      return new UalVariablesController();
+      return new UalVariablesController(DataSource(Properties, $http, $q, Transform), $rootScope, {id: 1});
     };
   }));
-
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-    it('has a name property [REMOVE]', () => {
-      expect(UalVariablesModule).to.have.property('name');
-    });          
-  });
 
   describe('Controller', () => {
     // controller specs
@@ -29,29 +27,4 @@ describe('UalVariables', () => {
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-variables/>').html(UalVariablesTemplate);
-    it('has at least one element [REMOVE]', () => {
-      expect(template.children()).to.have.length.of.at.least(1);
-    });
-  });
-
-  describe('Component', () => {
-      // component/directive specs
-      let component = UalVariablesComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(UalVariablesTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalVariablesController);
-      });
-  });
 });

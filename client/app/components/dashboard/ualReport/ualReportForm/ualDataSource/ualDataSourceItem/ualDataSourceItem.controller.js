@@ -1,6 +1,7 @@
 class UalDataSourceItemController {
   /*@ngInject*/
   constructor(ualTooltipService) {
+    this.name = 'ualDataSourceItem';
     this._ualTooltipService = ualTooltipService;
   }
 

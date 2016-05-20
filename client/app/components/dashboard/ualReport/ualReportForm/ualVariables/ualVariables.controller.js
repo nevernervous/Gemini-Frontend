@@ -2,7 +2,8 @@ import $ from 'jquery';
 
 class UalVariablesController {
   /*@ngInject*/
-  constructor(close, $timeout, $filter, $q, $rootScope, DataSourceService, ualVariablesCancelModal, ualVariablesDeteleAllModal, datasource, selecteds, ualTooltipService) {
+  constructor(DataSourceService, $rootScope, datasource, close, $timeout, $filter, $q, ualVariablesCancelModal, ualVariablesDeteleAllModal, selecteds, ualTooltipService) {
+    this.name = 'ualVariables';
     // SERVICES
     this._close = close;
     this._datasourceService = DataSourceService;
