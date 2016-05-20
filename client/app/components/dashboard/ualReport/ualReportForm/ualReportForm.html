@@ -21,7 +21,9 @@
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-variables" ng-disabled="!vm.report.datasource.get()">
-      <ual-accordion-title>Variables: <strong>No variables and no aggregators</strong><small>selected</small></ual-accordion-title>
+      <ual-accordion-title>
+        Variables: <strong>{{vm.report.variables.hasValues() ? vm.report.variables.get().length : 'No variables and no aggregators'}}</strong><small>selected</small></ual-accordion-title>
+
       <ual-accordion-content>
         <ual-button ng-click="vm.selectVariables()">
           Add Variables
