@@ -126,9 +126,12 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     return (object.dataSource.id) ? object.dataSource : null;
   }
   let setDataSource = value => {
-    object.dataSource = value;
-
-    touched = hasReportChange();
+    if (!equalDataSource(value)) {
+      object.variables = [];
+      object.aggregators = [];
+      object.dataSource = value;
+      touched = hasReportChange();
+    }
   }
   let equalDataSource = newDataSource => {
     return (object.dataSource && object.dataSourceId === newDataSource.id);

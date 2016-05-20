@@ -23,11 +23,25 @@ class UalDataSourceController {
   }
 
   selectedDataSource(item) {
-    if (!this.selected || (!!this.selected && this.selected.id != item.id)) {
-      this.onChange({ datasourceNew: item, datasourceOld: this.selected });
-      this.selected = item;
-    }
     this.hideTooltip();
+    if (!!this.selected) {
+      if (this.selected.id != item.id) {
+        this._changemodal.open({ oldDataSource: this.selected, newDataSource: item })
+          .then(response => {
+            if (response) {
+              this.setDatasource(item);
+            }
+          });
+      }
+    } else {
+      this.setDatasource(item);
+    }
+
+  }
+
+  setDatasource(item) {
+    this.selected = item;
+    this.onChange({ datasourceNew: item, datasourceOld: this.selected });
   }
 
   hideTooltip() {
