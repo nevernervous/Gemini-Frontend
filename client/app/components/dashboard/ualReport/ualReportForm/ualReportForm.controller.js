@@ -2,22 +2,19 @@ class UalReportFormController {
   /*@ngInject*/
   constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
-//    this._datasourcemodal = ualDataSource;
-//    this._variablesmodal = ualVariables;
     this.maxAggregators = 10;
     this._scope = $scope;
     this._rootScope = $rootScope;
 
     // MODALS
-//    this._variablesmodal = ualVariables;
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
 
     // SERVICES
     this._service = {
-      report: Report,
-      datasource: DataSource,
-      tooltip: ualTooltipService
+      report: Report
+      , datasource: DataSource
+      , tooltip: ualTooltipService
     };
 
     this.dropDownStyle = {};
@@ -25,9 +22,9 @@ class UalReportFormController {
     this.report = null;
 
     this.variables = {
-      available: null,
-      selected: [],
-      aggregators: []
+      available: null
+      , selected: []
+      , aggregators: []
     };
     // STATE
     this.edit = false;
@@ -37,15 +34,15 @@ class UalReportFormController {
     this.isSaving = false;
 
     this.name = {
-      current: null,
-      hover: false,
-      focus: false,
-      duplicated: false
+      current: null
+      , hover: false
+      , focus: false
+      , duplicated: false
     }
 
     this.response = {
-      success: null,
-      error: null
+      success: null
+      , error: null
     };
 
     this.selectedTab = 'report-datasource';
@@ -56,9 +53,9 @@ class UalReportFormController {
     this.name.hover = true;
     if (!this.name.focus) {
       this._service.tooltip.show({
-        container: 'report-name .ual-input',
-        text: 'Change report name',
-        position: 'right'
+        container: 'report-name .ual-input'
+        , text: 'Change report name'
+        , position: 'right'
       });
     }
   }
@@ -92,8 +89,8 @@ class UalReportFormController {
       result => {
         this.response.success(result.msg);
         this.isSaving = false;
-      },
-      result => {
+      }
+      , result => {
         this.response.error(result.code, result.msg);
         this.isSaving = false;
       }
@@ -103,68 +100,74 @@ class UalReportFormController {
 
   // INIT
   $onInit() {
-    let reportId = this._state.params["id"];
-    if (!reportId) {
-      this.report = this._service.report.create();
-    } else {
-      this.edit = true;
-      this._service.report.getById(reportId)
-        .then((reply) => {
-          this.report = reply;
-          this.name.current = _.clone(this.report.name.get());
-        });
-    }
+      let reportId = this._state.params["id"];
+      if (!reportId) {
+        this.report = this._service.report.create();
+      } else {
+        this.edit = true;
+        this._service.report.getById(reportId)
+          .then((reply) => {
+            this.report = reply;
+            this.name.current = _.clone(this.report.name.get());
+          });
+      }
 
-    this._responses();
-    this._suscribe();
-  }
-  // INIT / RESPONSES
+      this._responses();
+      this._suscribe();
+    }
+    // INIT / RESPONSES
   _responses() {
-    let error_actions = [
+      let error_actions = [
       // ON ERROR: NO ERROR
-      (msg) => { },
-      // ON ERROR: EMPTY NAME
-      (msg) => {
-        this._ualReportNameModal.open({ report: this.report }).then(
-          response => {
-            if (response.status === 'success') {
-              this.report.name.set(response.name);
-              this.response.success(response.msg);
-            } else if (response.status === 'error') {
-              this.report.name.set(response.name);
-              this._rootScope.$broadcast('BANNER.SHOW', response.msg);
+        (msg) => {}
+      , // ON ERROR: EMPTY NAME
+        (msg) => {
+          this._ualReportNameModal.open({
+            report: this.report
+          }).then(
+            response => {
+              if (response.status === 'success') {
+                this.report.name.set(response.name);
+                this.response.success(response.msg);
+              } else if (response.status === 'error') {
+                this.report.name.set(response.name);
+                this._rootScope.$broadcast('BANNER.SHOW', response.msg);
+              }
             }
-          }
-        );
-      },
-      // ON ERROR: DUPLICATED NAME
-      (msg) => {
-        this.name.duplicated = true;
-      },
-      // ON ERROR: SAVING
-      (msg) => {
-        this._rootScope.$broadcast('BANNER.SHOW', msg);
+          );
+      }
+      , // ON ERROR: DUPLICATED NAME
+        (msg) => {
+          this.name.duplicated = true;
+      }
+      , // ON ERROR: SAVING
+        (msg) => {
+          this._rootScope.$broadcast('BANNER.SHOW', msg);
       }
     ];
 
-    // ON ERROR
-    this.response.error = (code, msg) => {
-      this.name.duplicated = false;
-      error_actions[code](msg);
-    }
-
-    // ON SUCCESS
-    this.response.success = (msg) => {
-      this.name.duplicated = false;
-      this._rootScope.$broadcast('BANNER.SHOW', msg);
-      this.name.current = _.clone(this.report.name.get());
-      if (!this.edit) {
-        this.edit = true;
-        this._state.go("dashboard.report-edit", { "id": this.report.id.get() }, { notify: false });
+      // ON ERROR
+      this.response.error = (code, msg) => {
+        this.name.duplicated = false;
+        error_actions[code](msg);
       }
-    };
-  }
-  // INIT / SUSCRIPTIONS
+
+      // ON SUCCESS
+      this.response.success = (msg) => {
+        this.name.duplicated = false;
+        this._rootScope.$broadcast('BANNER.SHOW', msg);
+        this.name.current = _.clone(this.report.name.get());
+        if (!this.edit) {
+          this.edit = true;
+          this._state.go("dashboard.report-edit", {
+            "id": this.report.id.get()
+          }, {
+            notify: false
+          });
+        }
+      };
+    }
+    // INIT / SUSCRIPTIONS
   _suscribe() {
     this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (this.report.touched()) {
@@ -188,9 +191,9 @@ class UalReportFormController {
     };
     $(window).bind('beforeunload', this.beforeClose);
 
-    this._suscriptions.push(this._scope.$on('UALACORDION.OPEN', (event,accord) => {
-      this["get"+accord.split("-")[1]] && this["get"+accord.split("-")[1]]();
-    }));
+    //    this._suscriptions.push(this._scope.$on('UALACORDION.OPEN', (event,accord) => {
+    //      this["get"+accord.split("-")[1]] && this["get"+accord.split("-")[1]]();
+    //    }));
   }
 
   // UNLOAD
@@ -199,34 +202,34 @@ class UalReportFormController {
   }
 
   onChangeDataSource(datasourceNew, datasourceOld) {
-      this.selectedTab = 'report-variables';
-      this.report.datasource.set(datasourceNew);
+    this.selectedTab = 'report-variables';
+    this.report.datasource.set(datasourceNew);
+    if (datasourceNew != datasourceOld) {
+      this.getvariables();
+    }
   }
   collapseAccordion(index) {
-    this.selectedTab = index;
-  }
-  // TO DEPRECATE
+      this.selectedTab = index;
+    }
+    // TO DEPRECATE
 
   // STEP 2
-  getvariables (){
-    if(!this.variables.available) this._service.datasource.variables(this.report.datasource.get())
-    .then(variables => {
-      this.variables.available = variables.data;
-      this.variables.selected = this.report.variables.get();
-      this.variables.aggregators = this.report.aggregators.get();
-//      this.loaded = true;
-    },
-    error =>{ console.error(error) },
-    progress => this.variables = progress.data);
+  getvariables() {
+    this._service.datasource.variables(this.report.datasource.get())
+      .then(variables => {
+          this.variables.available = variables.data;
+          this.variables.selected = [];
+          this.report.variables.set([]);
+          this.variables.aggregators = [];
+          this.report.aggregators.set([]);
+          //      this.variables.selected = this.report.variables.get();
+          //      this.variables.aggregators = this.report.aggregators.get();
+        }
+        , error => {
+          console.error(error)
+        }
+        , progress => this.variables = progress.data);
 
-  }
-
-  selectVariables() {
-    this._variablesmodal.open({
-      datasource: this.report.datasource.get()
-      , selecteds: this.report.variables.get()
-    })
-      .then(variables => this.report.variables.set(variables));
   }
 
 }
