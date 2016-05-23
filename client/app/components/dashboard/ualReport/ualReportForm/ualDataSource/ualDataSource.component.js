@@ -5,7 +5,9 @@ import './ualDataSource.scss';
 let ualDataSourceService = {
   restrict: 'E',
   bindings: {
-    onChange: '&'
+    onChange: '&',
+    hasVariables: '=',
+    selected: '='
   },
   template,
   controller,

@@ -2,11 +2,11 @@ import $ from 'jquery';
 
 class UalDataSourceController {
   /*@ngInject*/
-  constructor($rootScope, DataSource, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, ualTooltipService) {
+  constructor($rootScope,ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, $filter, ualTooltipService) {
     this._datasource = DataSource;
     this._cancelmodal = ualDataSourceCancelModal;
-    this._changemodal = ualDataSourceChangeModal;
     this._filter = $filter;
+    this._changemodal = ualDataSourceChangeModal;
     this._ualTooltipService = ualTooltipService;
 
     this.searchTerm = {};
@@ -19,30 +19,35 @@ class UalDataSourceController {
   }
 
   isActive(itemId) {
-    return !!this.selected && this.selected.id === itemId;
+    return !!this.selected.get() && this.selected.get().id === itemId;
   }
 
   selectedDataSource(item) {
     this.hideTooltip();
-    if (!!this.selected) {
-      if (this.selected.id != item.id) {
-        this._changemodal.open({ oldDataSource: this.selected, newDataSource: item })
+    var datasourceOld = this.selected.get();
+    var datasourceNew = item;
+    if (!!datasourceOld) {
+      if (!this.selected.equal(datasourceNew) && this.hasVariables) {
+        this._changemodal.open({ oldDataSource: datasourceOld, newDataSource: datasourceNew })
           .then(response => {
             if (response) {
-              this.setDatasource(item);
+              this.setDatasource(datasourceNew);
             }
           });
+      } else {
+        this.setDatasource(datasourceNew);
       }
     } else {
-      this.setDatasource(item);
+      this.setDatasource(datasourceNew);
     }
 
   }
 
   setDatasource(item) {
-    this.selected = item;
-    this.onChange({ datasourceNew: item, datasourceOld: this.selected });
+    this.onChange();
+    this.selected.set(item);
   }
+
 
   hideTooltip() {
     this._ualTooltipService.hide();
