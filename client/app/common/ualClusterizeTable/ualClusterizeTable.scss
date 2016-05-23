@@ -101,6 +101,7 @@
     &.-ellipsis {
       a {
         max-height: 21px;
+        overflow: hidden;
         display: block;
       }
     }
