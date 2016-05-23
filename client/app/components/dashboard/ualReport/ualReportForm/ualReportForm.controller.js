@@ -5,7 +5,6 @@ class UalReportFormController {
     this.maxAggregators = 10;
     this._scope = $scope;
     this._rootScope = $rootScope;
-
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
@@ -119,49 +118,49 @@ class UalReportFormController {
   _responses() {
       let error_actions = [
       // ON ERROR: NO ERROR
-        (msg) => {}
-      , // ON ERROR: EMPTY NAME
-        (msg) => {
-          this._ualReportNameModal.open({
-            report: this.report
-          }).then(
-            response => {
-              if (response.status === 'success') {
-                this.report.name.set(response.name);
-                this.response.success(response.msg);
-              } else if (response.status === 'error') {
-                this.report.name.set(response.name);
-                this._rootScope.$broadcast('BANNER.SHOW', response.msg);
-              }
+      (msg) => { },
+      // ON ERROR: EMPTY NAME
+      (msg) => {
+        this._ualReportNameModal.open({
+          report: this.report
+        }).then(
+          response => {
+            if (response.status === 'success') {
+              this.report.name.set(response.name);
+              this.response.success(response.msg);
+            } else if (response.status === 'error') {
+              this.report.name.set(response.name);
+              this._rootScope.$broadcast('BANNER.SHOW', response.msg);
             }
+          }
           );
-      }
-      , // ON ERROR: DUPLICATED NAME
-        (msg) => {
-          this.name.duplicated = true;
-      }
-      , // ON ERROR: SAVING
-        (msg) => {
-          this._rootScope.$broadcast('BANNER.SHOW', msg);
+      },
+      // ON ERROR: DUPLICATED NAME
+      (msg) => {
+        this.name.duplicated = true;
+      },
+      // ON ERROR: SAVING
+      (msg) => {
+        this._rootScope.$broadcast('BANNER.SHOW', msg);
       }
     ];
 
-      // ON ERROR
-      this.response.error = (code, msg) => {
-        this.name.duplicated = false;
-        error_actions[code](msg);
-      }
+    // ON ERROR
+    this.response.error = (code, msg) => {
+      this.name.duplicated = false;
+      error_actions[code](msg);
+    }
 
-      // ON SUCCESS
-      this.response.success = (msg) => {
-        this.name.duplicated = false;
-        this._rootScope.$broadcast('BANNER.SHOW', msg);
-        this.name.current = _.clone(this.report.name.get());
-        if (!this.edit) {
-          this.edit = true;
-          this._state.go("dashboard.report-edit", {
-            "id": this.report.id.get()
-          }, {
+    // ON SUCCESS
+    this.response.success = (msg) => {
+      this.name.duplicated = false;
+      this._rootScope.$broadcast('BANNER.SHOW', msg);
+      this.name.current = _.clone(this.report.name.get());
+      if (!this.edit) {
+        this.edit = true;
+        this._state.go("dashboard.report-edit", {
+          "id": this.report.id.get()
+        }, {
             notify: false
           });
         }
@@ -199,9 +198,11 @@ class UalReportFormController {
   }
 
   onChangeDataSource(datasourceNew, datasourceOld) {
+//    this.report.datasource.set(datasourceNew);
     this.selectedTab = 'report-variables';
-    this.report.datasource.set(datasourceNew);
+    console.log(this.selectedTab);
   }
+
   collapseAccordion(index) {
       this.selectedTab = index;
     }
