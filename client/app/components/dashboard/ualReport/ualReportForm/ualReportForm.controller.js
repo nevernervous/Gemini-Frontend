@@ -1,9 +1,8 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualVariables, ualDataSourceChangeModal, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, ualVariables, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
     this._rootScope = $rootScope;
-    this._changemodal = ualDataSourceChangeModal;
     // MODALS
     this._variablesmodal = ualVariables;
     this._ualReportNameModal = ualReportNameModal;
@@ -111,7 +110,9 @@ class UalReportFormController {
       (msg) => { },
       // ON ERROR: EMPTY NAME
       (msg) => {
-        this._ualReportNameModal.open({ report: this.report }).then(
+        this._ualReportNameModal.open({
+          report: this.report
+        }).then(
           response => {
             if (response.status === 'success') {
               this.report.name.set(response.name);
@@ -121,7 +122,7 @@ class UalReportFormController {
               this._rootScope.$broadcast('BANNER.SHOW', response.msg);
             }
           }
-        );
+          );
       },
       // ON ERROR: DUPLICATED NAME
       (msg) => {
@@ -146,7 +147,11 @@ class UalReportFormController {
       this.name.current = _.clone(this.report.name.get());
       if (!this.edit) {
         this.edit = true;
-        this._state.go("dashboard.report-edit", { "id": this.report.id.get() }, { notify: false });
+        this._state.go("dashboard.report-edit", {
+          "id": this.report.id.get()
+        }, {
+            notify: false
+          });
       }
     };
   }
@@ -181,21 +186,13 @@ class UalReportFormController {
   }
 
   onChangeDataSource(datasourceNew, datasourceOld) {
-    if (!!datasourceOld) {
-      if (!this.report.datasource.equal(datasourceNew) &&
-        (this.report.variables.hasValues() || this.report.filters.hasValues())) {
-        this._changemodal.open({ oldDataSource: datasourceOld, newDataSource: datasourceNew })
-          .then(response => {
-            if (response) {
-              this.setDatasource(datasourceNew);
-            }
-          });
-      } else {
-        this.setDatasource(datasourceNew);
-      }
-    } else {
-      this.setDatasource(datasourceNew);
-    }
+    this.selectedTab = 'report-variables';
+    this.report.datasource.set(datasourceNew);
+  }
+
+  hasChangedDatasource(datasourceNew, datasourceOld) {
+    return !this.report.datasource.equal(datasourceNew) &&
+      (this.report.variables.hasValues() || this.report.filters.hasValues());
   }
 
   setDatasource(datasource) {
@@ -210,8 +207,8 @@ class UalReportFormController {
   // STEP 2
   selectVariables() {
     this._variablesmodal.open({
-      datasource: this.report.datasource.get()
-      , selecteds: this.report.variables.get()
+      datasource: this.report.datasource.get(),
+      selecteds: this.report.variables.get()
     })
       .then(variables => this.report.variables.set(variables));
   }

@@ -2,10 +2,11 @@ import $ from 'jquery';
 
 class UalDataSourceController {
   /*@ngInject*/
-  constructor($rootScope, DataSource, ualDataSourceCancelModal, $filter, ualTooltipService) {
+  constructor($rootScope,ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, $filter, ualTooltipService) {
     this._datasource = DataSource;
     this._cancelmodal = ualDataSourceCancelModal;
     this._filter = $filter;
+    this._changemodal = ualDataSourceChangeModal;
     this._ualTooltipService = ualTooltipService;
 
     this.searchTerm = {};
@@ -23,9 +24,30 @@ class UalDataSourceController {
 
   selectedDataSource(item) {
     this.hideTooltip();
+    var datasourceOld = this.selected;
+    var datasourceNew = item;
+    if (!!datasourceOld) {
+      if (this.hasChange({ datasourceOld, datasourceNew })) {
+        this._changemodal.open({ oldDataSource: datasourceOld, newDataSource: datasourceNew })
+          .then(response => {
+            if (response) {
+              this.setDatasource(datasourceNew);
+            }
+          });
+      } else {
+        this.setDatasource(datasourceNew);
+      }
+    } else {
+      this.setDatasource(datasourceNew);
+    }
+
+  }
+
+  setDatasource(item) {
     this.onChange({ datasourceNew: item, datasourceOld: this.selected });
     this.selected = item;
   }
+
 
   hideTooltip() {
     this._ualTooltipService.hide();
