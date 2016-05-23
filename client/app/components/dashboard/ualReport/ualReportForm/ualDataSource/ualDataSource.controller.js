@@ -19,15 +19,15 @@ class UalDataSourceController {
   }
 
   isActive(itemId) {
-    return !!this.selected && this.selected.id === itemId;
+    return !!this.selected.get() && this.selected.get().id === itemId;
   }
 
   selectedDataSource(item) {
     this.hideTooltip();
-    var datasourceOld = this.selected;
+    var datasourceOld = this.selected.get();
     var datasourceNew = item;
     if (!!datasourceOld) {
-      if (this.hasChange({ datasourceOld, datasourceNew })) {
+      if (!this.selected.equal(datasourceNew) && this.hasVariables) {
         this._changemodal.open({ oldDataSource: datasourceOld, newDataSource: datasourceNew })
           .then(response => {
             if (response) {
@@ -44,8 +44,8 @@ class UalDataSourceController {
   }
 
   setDatasource(item) {
-    this.onChange({ datasourceNew: item, datasourceOld: this.selected });
-    this.selected = item;
+    this.onChange({ datasourceNew: item, datasourceOld: this.selected.get() });
+    this.selected.set(item);
   }
 
 

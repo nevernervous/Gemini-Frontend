@@ -6,7 +6,8 @@ let ualDataSourceService = {
   restrict: 'E',
   bindings: {
     onChange: '&',
-    hasChange: '&'
+    hasVariables: '=',
+    selected: '='
   },
   template,
   controller,

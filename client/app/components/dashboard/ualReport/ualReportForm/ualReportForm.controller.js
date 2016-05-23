@@ -190,9 +190,8 @@ class UalReportFormController {
     this.report.datasource.set(datasourceNew);
   }
 
-  hasChangedDatasource(datasourceNew, datasourceOld) {
-    return !this.report.datasource.equal(datasourceNew) &&
-      (this.report.variables.hasValues() || this.report.filters.hasValues());
+  hasVariables(datasourceNew) {
+    return (this.report.variables.hasValues() || this.report.filters.hasValues());
   }
 
   collapseAccordion(index) {
