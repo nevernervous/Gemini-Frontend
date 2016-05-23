@@ -191,9 +191,6 @@ class UalReportFormController {
     };
     $(window).bind('beforeunload', this.beforeClose);
 
-    //    this._suscriptions.push(this._scope.$on('UALACORDION.OPEN', (event,accord) => {
-    //      this["get"+accord.split("-")[1]] && this["get"+accord.split("-")[1]]();
-    //    }));
   }
 
   // UNLOAD
@@ -204,33 +201,10 @@ class UalReportFormController {
   onChangeDataSource(datasourceNew, datasourceOld) {
     this.selectedTab = 'report-variables';
     this.report.datasource.set(datasourceNew);
-    if (datasourceNew != datasourceOld) {
-      this.getvariables();
-    }
   }
   collapseAccordion(index) {
       this.selectedTab = index;
     }
-    // TO DEPRECATE
-
-  // STEP 2
-  getvariables() {
-    this._service.datasource.variables(this.report.datasource.get())
-      .then(variables => {
-          this.variables.available = variables.data;
-          this.variables.selected = [];
-          this.report.variables.set([]);
-          this.variables.aggregators = [];
-          this.report.aggregators.set([]);
-          //      this.variables.selected = this.report.variables.get();
-          //      this.variables.aggregators = this.report.aggregators.get();
-        }
-        , error => {
-          console.error(error)
-        }
-        , progress => this.variables = progress.data);
-
-  }
 
 }
 

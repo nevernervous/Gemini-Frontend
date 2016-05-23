@@ -1,11 +1,16 @@
 class UalVariablesLayoutController {
   /*@ngInject*/
-  constructor(ualTooltipService, $rootScope, $timeout, $filter, ualVariablesDeteleAllModal) {
+  constructor(ualTooltipService, $rootScope, $scope, DataSource, Report, $timeout, $filter, ualVariablesDeteleAllModal) {
     this.name = 'ualVariablesLayout';
     this._ualTooltipService = ualTooltipService;
     this._deleteallmodal = ualVariablesDeteleAllModal;
     this._filter = $filter;
     this._timeout = $timeout;
+    this._service = {
+      datasource: DataSource
+    };
+
+    this.report = Report.currentReport();
 
     this.selectedFilter = {
       name: ""
@@ -31,6 +36,30 @@ class UalVariablesLayoutController {
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('DRAGGING.START', () => this.dragging = true));
     this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
+    $scope.$watch( (scope) => { return scope.vm.datasource },
+      (newValue, oldValue) => {
+        if (newValue != oldValue) {
+          this.getvariables();
+        }
+      });
+
+  }
+
+
+  getvariables() {
+    this._service.datasource.variables(this.report.datasource.get())
+      .then(variables => {
+          this.variables = variables.data;
+          this.selecteds = [];
+          this.report.variables.set([]);
+          this.aggregators = [];
+          this.report.aggregators.set([]);
+        }
+        , error => {
+          console.error(error)
+        }
+        , progress => this.variables = progress.data);
+
   }
 
   showTooltip(container, description, position = 'top') {
@@ -52,8 +81,8 @@ class UalVariablesLayoutController {
     this.updateReport(container);
   }
 
-  updateReport(element){
-    (element=="aggregators")?this.updateReportAggregators(this[element]):this.updateReportVariables(this[element]);
+  updateReport(element) {
+    (element == "aggregators") ? this.report.aggregators.set(this[element]): this.report.variables.set(this[element]);
   }
   itemPosition(variable, container = this.selecteds) {
     return _.findIndex(container, {
@@ -90,9 +119,9 @@ class UalVariablesLayoutController {
   }
   onDrop(container) {
     return (id, binId) => {
-      if (((/agg\_/i).test(id) && !(/agg\_/i).test(binId))||(!(/agg\_/i).test(id) && (/agg\_/i).test(binId))) return false;
-      let from = _.parseInt(id.replace("agg_","").split('_')[0]) - 1;
-      let to = _.parseInt(binId.replace("agg_","").split('_')[0]) - 1;
+      if (((/agg\_/i).test(id) && !(/agg\_/i).test(binId)) || (!(/agg\_/i).test(id) && (/agg\_/i).test(binId))) return false;
+      let from = _.parseInt(id.replace("agg_", "").split('_')[0]) - 1;
+      let to = _.parseInt(binId.replace("agg_", "").split('_')[0]) - 1;
       let variable = _.clone(this[container][from]);
       this.changeOrder(container)(variable, to + 1);
     }

@@ -7,7 +7,7 @@ module.exports = angular.module("app.constants", [])
 	"fallback": {
 		"endpoint": "http://localhost:8889/api"
 	},
-	"version": "0.1.5-vac771fe"
+	"version": "0.1.5-vce49307"
 })
 
 ;

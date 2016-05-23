@@ -5,11 +5,9 @@ import './ualVariablesLayout.scss';
 let ualVariablesLayoutComponent = {
   restrict: 'E',
   bindings: {
-    variables: "<",
     selecteds: "=",
     aggregators: "=",
-    updateReportVariables: "=",
-    updateReportAggregators: "="
+    datasource: "<",
   },
   template,
 /*  transclude:{
