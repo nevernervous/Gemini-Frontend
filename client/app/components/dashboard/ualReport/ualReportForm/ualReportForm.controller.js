@@ -195,10 +195,6 @@ class UalReportFormController {
       (this.report.variables.hasValues() || this.report.filters.hasValues());
   }
 
-  setDatasource(datasource) {
-    this.selectedTab = 'report-variables';
-    this.report.datasource.set(datasource);
-  }
   collapseAccordion(index) {
     this.selectedTab = index;
   }
