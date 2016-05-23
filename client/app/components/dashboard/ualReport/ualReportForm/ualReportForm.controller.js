@@ -2,7 +2,6 @@ class UalReportFormController {
   /*@ngInject*/
   constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
-    this.maxAggregators = 10;
     this._scope = $scope;
     this._rootScope = $rootScope;
     // MODALS
@@ -17,13 +16,11 @@ class UalReportFormController {
     };
 
     this.dropDownStyle = {};
-    this.inputStyle = {};
     this.report = null;
 
     this.variables = {
-      available: null
-      , selected: []
-      , aggregators: []
+      selected: [],
+      aggregators: []
     };
     // STATE
     this.edit = false;
@@ -198,9 +195,7 @@ class UalReportFormController {
   }
 
   onChangeDataSource(datasourceNew, datasourceOld) {
-//    this.report.datasource.set(datasourceNew);
     this.selectedTab = 'report-variables';
-    console.log(this.selectedTab);
   }
 
   collapseAccordion(index) {
