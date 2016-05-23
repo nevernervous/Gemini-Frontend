@@ -1,7 +1,8 @@
 <tr ng-class="{'-selected': vm.isSelected(${item.id})}">
   <td class="-expand -check -link -left -ellipsis" >
     <ual-checkbox ng-click="vm.toggleReport(${item.id})" is-checked="vm.isSelected(${item.id})"></ual-checkbox>
-    <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})" ual-ellipsis
+    <a id="reportNameItem_${item.id}" ui-sref="dashboard.report-edit({id: ${item.id}})"
+       ual-ellipsis ellipsis-height="30"
        ng-mouseover="vm.showTruncateTooltip('reportNameItem_${item.id}', {text: '${item.name}'} )" ng-mouseleave="vm.hideTooltip()" >
        ${item.name}
     </a>

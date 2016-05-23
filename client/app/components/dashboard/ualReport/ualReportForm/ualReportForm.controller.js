@@ -190,7 +190,7 @@ class UalReportFormController {
   }
 
   hasVariables() {
-    return (this.report.variables.hasValues() || this.report.filters.hasValues());
+    return this.report && (this.report.variables.hasValues() || this.report.filters.hasValues());
   }
 
   collapseAccordion(index) {
