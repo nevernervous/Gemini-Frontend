@@ -3,7 +3,6 @@ class UalReportFormController {
   constructor($state, ualVariables, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
     this._rootScope = $rootScope;
-
     // MODALS
     this._variablesmodal = ualVariables;
     this._ualReportNameModal = ualReportNameModal;
@@ -111,7 +110,9 @@ class UalReportFormController {
       (msg) => { },
       // ON ERROR: EMPTY NAME
       (msg) => {
-        this._ualReportNameModal.open({ report: this.report }).then(
+        this._ualReportNameModal.open({
+          report: this.report
+        }).then(
           response => {
             if (response.status === 'success') {
               this.report.name.set(response.name);
@@ -121,7 +122,7 @@ class UalReportFormController {
               this._rootScope.$broadcast('BANNER.SHOW', response.msg);
             }
           }
-        );
+          );
       },
       // ON ERROR: DUPLICATED NAME
       (msg) => {
@@ -146,7 +147,11 @@ class UalReportFormController {
       this.name.current = _.clone(this.report.name.get());
       if (!this.edit) {
         this.edit = true;
-        this._state.go("dashboard.report-edit", { "id": this.report.id.get() }, { notify: false });
+        this._state.go("dashboard.report-edit", {
+          "id": this.report.id.get()
+        }, {
+            notify: false
+          });
       }
     };
   }
@@ -180,10 +185,14 @@ class UalReportFormController {
     this._suscriptions.forEach(suscription => suscription());
   }
 
-  onChangeDataSource(datasourceNew, datasourceOld) {
-      this.selectedTab = 'report-variables';
-      this.report.datasource.set(datasourceNew);
+  onChangeDataSource() {
+    this.selectedTab = 'report-variables';
   }
+
+  hasVariables() {
+    return this.report && (this.report.variables.hasValues() || this.report.filters.hasValues());
+  }
+
   collapseAccordion(index) {
     this.selectedTab = index;
   }
@@ -192,8 +201,8 @@ class UalReportFormController {
   // STEP 2
   selectVariables() {
     this._variablesmodal.open({
-      datasource: this.report.datasource.get()
-      , selecteds: this.report.variables.get()
+      datasource: this.report.datasource.get(),
+      selecteds: this.report.variables.get()
     })
       .then(variables => this.report.variables.set(variables));
   }
