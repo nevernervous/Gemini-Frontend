@@ -44,7 +44,7 @@ class UalDataSourceController {
   }
 
   setDatasource(item) {
-    this.onChange({ datasourceNew: item, datasourceOld: this.selected.get() });
+    this.onChange();
     this.selected.set(item);
   }
 

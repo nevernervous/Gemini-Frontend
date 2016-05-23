@@ -185,12 +185,11 @@ class UalReportFormController {
     this._suscriptions.forEach(suscription => suscription());
   }
 
-  onChangeDataSource(datasourceNew, datasourceOld) {
+  onChangeDataSource() {
     this.selectedTab = 'report-variables';
-    this.report.datasource.set(datasourceNew);
   }
 
-  hasVariables(datasourceNew) {
+  hasVariables() {
     return (this.report.variables.hasValues() || this.report.filters.hasValues());
   }
 
