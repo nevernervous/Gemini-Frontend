@@ -2,19 +2,25 @@
 @import '../../../../../common/ionicons/scss/ionicons';
 
 // LAYOUT
-.ual-input {
-  padding: 5px 8px 7px 8px;
-
-  input {
-    width: calc(100% - 40px);
-    height: 28px;
-  }
-
-  i {
-    display: inline-block;
+ual-report-input {
+  .ual-input {
+    display: flex;
+    padding: 5px 0px 5px 0px;
+    align-items: center;
+    justify-content: center;
+    input {
+      width: calc(100% - 14px);
+      height: 28px;
+    }
 
     @include -ms-browser() {
-      margin-top: 6px;
+      padding: 5px 0 0 0;
+      input{
+        height: 32px;
+      }
+      i {
+        margin-top: 0;
+      }
     }
   }
 }
@@ -39,7 +45,6 @@ ual-report-input {
 
   i {
     font-size: 22px;
-    vertical-align: middle;
     color: $color07;
     display: none;
   }
@@ -48,6 +53,7 @@ ual-report-input {
 // VARIATION / NOBORDER
 ual-report-input.-noborder {
   .ual-input {
+
     border-color: transparent
   }
 }
@@ -56,6 +62,9 @@ ual-report-input.-noborder {
 ual-report-input.-error {
   .ual-input {
     border-color: $color11;
+    input{
+      width: calc(100% - 32px);
+    }
   }
   i {
     @extend .ion-ios-close-outline;
