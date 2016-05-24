@@ -9,7 +9,7 @@
       justify-content: space-between;
       >.add-btns{
             display: flex;
-            margin: 0 -33px !important;
+            margin: 0 -3.3% !important;
             @include gridle(col row-align center);
             >.buttons{
               margin: 5px 0;
