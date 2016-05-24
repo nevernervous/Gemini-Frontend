@@ -190,6 +190,8 @@ class UalReportFormController {
   }
 
   onChangeDataSource() {
+    this.report.variables.set([]);
+    this.report.aggregators.set([]);
     this.selectedTab = 'report-variables';
   }
 
