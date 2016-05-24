@@ -1,6 +1,6 @@
 class UalVariablesLayoutController {
   /*@ngInject*/
-  constructor(ualTooltipService, $rootScope, $scope, DataSource, Report, $timeout, $filter, ualVariablesDeteleAllModal) {
+  constructor(ualTooltipService, $rootScope, $scope, DataSource, $timeout, $filter, ualVariablesDeteleAllModal) {
     this.name = 'ualVariablesLayout';
     this._ualTooltipService = ualTooltipService;
     this._deleteallmodal = ualVariablesDeteleAllModal;
@@ -10,7 +10,6 @@ class UalVariablesLayoutController {
       datasource: DataSource
     };
 
-    this.report = Report.currentReport();
 
     this.selectedFilter = {
       name: ""
@@ -20,83 +19,83 @@ class UalVariablesLayoutController {
     };
 
     // VARS / PUBLIC
-    this.variables = {
-        items: []
-      }
-      //    this.selecteds = _.clone(selecteds) || [];
+    this._variables = {
+      items: []
+    };
+
     this.loaded = false;
 
     this.scrolling = false;
 
-    this.getSelection = false;
+    this.selectedsVariables = [];
 
-    this.changeSelectedOrder = this.changeOrder('selecteds');
+    this.changeSelectedOrder = this.changeOrder('variables');
     this.changeAggregatorOrder = this.changeOrder('aggregators');
 
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('DRAGGING.START', () => this.dragging = true));
     this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
-    $scope.$watch( (scope) => { return scope.vm.datasource },
-      (newValue, oldValue) => {
-        if (newValue != oldValue) {
-          this.getvariables();
-        }
-      });
+    $scope.$watch((scope) => {
+      return scope.vm.datasource
+    }, (newValue, oldValue) => {
+      if (newValue != oldValue) {
+        this.getvariables();
+      }
+    });
 
   }
 
 
   getvariables() {
-    this._service.datasource.variables(this.report.datasource.get())
+    this._service.datasource.variables(this.datasource)
       .then(variables => {
-          this.variables = variables.data;
-          this.selecteds = [];
-          this.report.variables.set([]);
-          this.aggregators = [];
-          this.report.aggregators.set([]);
-        }
-        , error => {
+          this._variables = variables.data;
+          this.variables.set([]);
+          this.aggregators.set([]);
+        },
+        error => {
           console.error(error)
-        }
-        , progress => this.variables = progress.data);
+        });
 
   }
 
   showTooltip(container, description, position = 'top') {
     this._ualTooltipService.show({
-      container: container
-      , text: description
-      , position: position
+      container: container,
+      text: description,
+      position: position
     });
   }
   hideTooltip() {
     this._ualTooltipService.hide();
   }
 
-  addVariables(container = 'selecteds') {
-    let tmp = _.clone(this[container]);
-    let selection = this.getSelection();
-    if (selection.length > 0) _.each(selection, (item) => tmp.push(_.clone(item)));
-    this[container] = _.clone(this.rebaseOrder(tmp));
-    this.updateReport(container);
+  addVariables() { this.addSelection('variables') }
+  addAggregators() { this.addSelection('aggregators') }
+
+  addSelection(container) {
+    let tmp = _.clone(this[container].get());
+    let selection = this.selectedsVariables;
+    _.each(this.selectedsVariables, (item) => tmp.push(_.clone(item)));
+    this[container].set(_.clone(this.rebaseOrder(tmp)));
+    this.selectedsVariables = [];
   }
 
-  updateReport(element) {
-    (element == "aggregators") ? this.report.aggregators.set(this[element]): this.report.variables.set(this[element]);
-  }
-  itemPosition(variable, container = this.selecteds) {
+  itemPosition(variable, container = this.variables.get()) {
     return _.findIndex(container, {
       'order': variable.order
     });
   }
   changeOrder(container) {
     return (variable, order) => {
-      _.remove(this[container], {
+      let tmp = this[container].get();
+      _.remove(tmp, {
         'order': variable.order
       });
       $(".-hovered").removeClass("-hovered");
-      this[container].splice(order - 1, 0, variable);
-      this.updateReport(container);
+      tmp.splice(order - 1, 0, variable);
+      this[container].set(tmp);
+      tmp = null;
     };
   }
   isSelected(variable, container) {
@@ -110,10 +109,10 @@ class UalVariablesLayoutController {
       })
       .then(response => {
         if (response) {
-          const filters = this._filter("filterBy")(this[container], filter);
+          let tmp = this[container].get();
+          const filters = this._filter("filterBy")(tmp, filter);
           const ids = _.map(filters, item => item.id);
-          this[container] = _.reject(this[container], item => _.includes(ids, item.id));
-          this.updateReport(container);
+          this[container].set(_.reject(tmp, item => _.includes(ids, item.id)));
         }
       });
   }
@@ -122,19 +121,19 @@ class UalVariablesLayoutController {
       if (((/agg\_/i).test(id) && !(/agg\_/i).test(binId)) || (!(/agg\_/i).test(id) && (/agg\_/i).test(binId))) return false;
       let from = _.parseInt(id.replace("agg_", "").split('_')[0]) - 1;
       let to = _.parseInt(binId.replace("agg_", "").split('_')[0]) - 1;
-      let variable = _.clone(this[container][from]);
+      let variable = _.clone(this[container].get()[from]);
       this.changeOrder(container)(variable, to + 1);
     }
   }
 
-  toggle(variable, container = 'selecteds') {
-    this.isSelected(variable, this[container]) ?
-      _.remove(this[container], {
+  removeVariable(variable, container = 'variables') {
+    let tmp = this[container].get();
+    this.isSelected(variable, tmp) ?
+      _.remove(tmp, {
         'order': variable.order
       }) :
       this.hideTooltip();
-    this[container] = this.rebaseOrder(this[container]);
-    this.updateReport(container);
+    this[container].set(this.rebaseOrder(tmp));
   }
 
   rebaseOrder(container) {

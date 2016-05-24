@@ -19,7 +19,6 @@ class ualAccordionGroupDirective {
     scope.$watch(
       'selected',
       newValue => {
-        console.log(newValue);
         ctrl.open(newValue);
       }
     );

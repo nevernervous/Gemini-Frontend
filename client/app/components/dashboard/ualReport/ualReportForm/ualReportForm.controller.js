@@ -10,18 +10,13 @@ class UalReportFormController {
 
     // SERVICES
     this._service = {
-      report: Report
-      , datasource: DataSource
-      , tooltip: ualTooltipService
+      report: Report,
+      datasource: DataSource,
+      tooltip: ualTooltipService
     };
 
     this.dropDownStyle = {};
-    this.report = null;
 
-    this.variables = {
-      selected: [],
-      aggregators: []
-    };
     // STATE
     this.edit = false;
     this._suscriptions = [];
@@ -30,15 +25,15 @@ class UalReportFormController {
     this.isSaving = false;
 
     this.name = {
-      current: null
-      , hover: false
-      , focus: false
-      , duplicated: false
+      current: null,
+      hover: false,
+      focus: false,
+      duplicated: false
     }
 
     this.response = {
-      success: null
-      , error: null
+      success: null,
+      error: null
     };
 
     this.selectedTab = 'report-datasource';
@@ -49,9 +44,9 @@ class UalReportFormController {
     this.name.hover = true;
     if (!this.name.focus) {
       this._service.tooltip.show({
-        container: 'report-name .ual-input'
-        , text: 'Change report name'
-        , position: 'right'
+        container: 'report-name .ual-input',
+        text: 'Change report name',
+        position: 'right'
       });
     }
   }
@@ -85,8 +80,8 @@ class UalReportFormController {
       result => {
         this.response.success(result.msg);
         this.isSaving = false;
-      }
-      , result => {
+      },
+      result => {
         this.response.error(result.code, result.msg);
         this.isSaving = false;
       }
@@ -107,7 +102,7 @@ class UalReportFormController {
             this.name.current = _.clone(this.report.name.get());
           });
       }
-
+      console.log(this.report);
       this._responses();
       this._suscribe();
     }
@@ -194,7 +189,7 @@ class UalReportFormController {
     this._suscriptions.forEach(suscription => suscription());
   }
 
-  onChangeDataSource(datasourceNew, datasourceOld) {
+  onChangeDataSource() {
     this.selectedTab = 'report-variables';
   }
 

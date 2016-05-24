@@ -5,7 +5,7 @@ import './ualVariablesMultiSelect.scss';
 let ualVariablesMultiSelectComponent = {
   restrict: 'E',
   bindings: {
-    variables: '<',
+    avaiableVariables: '<',
     selectedReference: "="
   },
   template,
