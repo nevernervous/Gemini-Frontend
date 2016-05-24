@@ -158,7 +158,7 @@ class UalReportFormController {
   // INIT / SUSCRIPTIONS
   _suscribe() {
     this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (this.report.touched()) {
+      if (this.report.touched() && (toState.name !== 'login') ) {
         event.preventDefault();
         this._ualUnsafeReportModal.open().then(response => {
           if (response) {
