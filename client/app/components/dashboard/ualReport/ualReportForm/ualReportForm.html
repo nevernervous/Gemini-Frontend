@@ -22,14 +22,14 @@
     </ual-accordion>
     <ual-accordion id="report-variables" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Variables:
-        <strong ng-show="vm.variables.aggregators.length==0 && vm.variables.selected.length==0">No variables and no aggregators</strong>
-        <strong ng-show="vm.variables.aggregators.length>0 || vm.variables.selected.length>0">
-          {{vm.variables.aggregators.length}} aggregators  and {{vm.variables.selected.length}} variables
+        <strong ng-show="vm.report.aggregators.get().length==0 && vm.report.variables.get().length==0">No variables and no aggregators</strong>
+        <strong ng-show="vm.report.aggregators.get().length>0 || vm.report.variables.get().length>0">
+          {{vm.report.aggregators.get().length}} aggregators  and {{vm.report.variables.get().length}} variables
         </strong>
         <small>selected</small>
       </ual-accordion-title>
       <ual-accordion-content>
-        <ual-variables-layout class="ual-variables-layout" selecteds="vm.variables.selected" aggregators="vm.variables.aggregators" datasource="vm.report.datasource.get()"></ual-variables-layout>
+        <ual-variables-layout class="ual-variables-layout" variables="vm.report.variables" aggregators="vm.report.aggregators" datasource="vm.report.datasource.get()"></ual-variables-layout>
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
