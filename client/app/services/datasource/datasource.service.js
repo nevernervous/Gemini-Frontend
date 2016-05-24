@@ -18,31 +18,9 @@ let datasourceService = function (Properties, ServicesTransform, $http, $q) {
     });
   }
 
-  let _serialize = (requests, deferred = $q.defer()) => {
-
-    let head = _.head(requests);
-    if (head) {
-      $http(head).then(response => {
-        const tails = _.drop(requests);
-        if (_.isEmpty(tails)) {
-          deferred.resolve(response);
-        } else {
-          deferred.notify(response);
-          _serialize(tails, deferred)
-        }
-      });
-    } else {
-      deferred.resolve();
-    }
-
-    return deferred.promise;
-  }
-
   let variables = (datasource) => {
-    let deferred = $q.defer();
     let transformation = [ServicesTransform.get('simple')];
-
-    $http.get(`${endpoint}/${datasource.id}/Columns`, {
+    return $http.get(`${endpoint}/${datasource.id}/Columns`, {
       cache: Properties.cache,
       transformResponse: ServicesTransform.generate(transformation)
     }).then(response => {
@@ -51,11 +29,9 @@ let datasourceService = function (Properties, ServicesTransform, $http, $q) {
           items: response.data
         }
       }
-      deferred.resolve(variables);
-    }, error => deferred.reject(error)
-    );
+      return variables;
+    });
 
-    return deferred.promise;
   }
 
   return {
