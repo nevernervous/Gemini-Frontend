@@ -1,10 +1,12 @@
 @import '../../../../common/common';
-
 // LAYOUT
 ual-report-form {
   @include gridle_container();
   > .dashboard-header {
     > .name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-left: 15px;
     }
     .buttons-group {
@@ -18,13 +20,12 @@ ual-report-form {
     height: calc(100% - 120px);
     margin-top: 30px;
     margin-bottom: 30px;
-    .ual-accordion-group {
-      height: 100%;
-    }
-  }
-  > .dashboard-footer {
-    button {
-      width: 155px;
+    > .run-section {
+      @include gridle(row row-align right);
+      margin: 30px 0 0;
+      button {
+        width: 155px;
+      }
     }
   }
 }
@@ -44,6 +45,10 @@ ual-report-form {
         }
       }
       .duplicate-error {
+        @include gridle_state(projector) {
+          width: 300px;
+        }
+        padding-left: 10px;
         color: $color11;
         display: inline-block;
       }
@@ -56,7 +61,7 @@ ual-report-form {
       }
       small {
         margin-left: 3px;
-        @include font-clanot-book(14);
+        @include font-clanot-book(16);
       }
     }
   }

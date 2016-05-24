@@ -8,15 +8,20 @@ class ualAccordionGroupDirective {
     this.restrict = 'E';
     this.transclude = true;
     this.template = template;
-    this.scope = {};
+    this.scope = {
+      selected: '='
+    };
     this.controller = controller;
     this.controllerAs = 'vm';
   }
 
   link(scope, element, attrs, ctrl) {
-    if (attrs.active) {
-      ctrl.open(attrs.active);
-    }
+    scope.$watch(
+      'selected',
+      newValue => {
+        ctrl.open(newValue);
+      }
+    );
   }
 
 };

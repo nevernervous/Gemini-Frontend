@@ -26,8 +26,8 @@ class ualAccordionDirective {
         if ( scope.accordion.status == 'open' ) {
           ctrl.close();
         } else if (scope.accordion.status == 'close') {
-          ctrl.open(attrs.id)
-        }
+          ctrl.open(attrs.id);   
+         }
       }
     }
 
