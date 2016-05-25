@@ -3,26 +3,31 @@
 .ual-variables-layout
   > .container {
       @include gridle(row);
+      @include gridle_container();
       height: 100%;
       margin: 0;
       padding: 0;
       justify-content: space-between;
       >.add-btns{
             display: flex;
-            margin: 0 -3.3% !important;
             @include gridle(col row-align center);
+            @include gridle_grid(1);
             >.buttons{
+              @include gridle_grid_centered();
               margin: 5px 0;
               >.ual-button{
-                width: 100%;
+                width: 30px;
                 padding: 0 5px;
               }
             }
           }
       > .selected-variables {
-          @include gridle(3.6);
           margin: 0;
           padding: 0 15px;
+          @include gridle_grid(4);
+          &.first{
+            @include gridle_grid(3);
+          }
           .selected-list {
               height: calc(13em - 5px);
               margin-left: -7px;

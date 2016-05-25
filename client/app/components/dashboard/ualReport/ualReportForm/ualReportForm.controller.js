@@ -1,8 +1,7 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
-    this._scope = $scope;
     this._rootScope = $rootScope;
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
@@ -102,7 +101,6 @@ class UalReportFormController {
             this.name.current = _.clone(this.report.name.get());
           });
       }
-      console.log(this.report);
       this._responses();
       this._suscribe();
     }

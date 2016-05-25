@@ -15,10 +15,6 @@ class UalVariablesLayoutController {
     };
 
     // VARS / PUBLIC
-    this._variables = {
-      items: []
-    };
-
     this.loaded = false;
 
     this.scrolling = false;
@@ -49,10 +45,10 @@ class UalVariablesLayoutController {
   addAggregators() { this.addSelection('aggregators') }
 
   addSelection(container) {
-    let tmp = _.clone(this[container].get());
+    let tmp = this[container].get();
     let selection = this.selectedsVariables;
     _.each(this.selectedsVariables, (item) => tmp.push(_.clone(item)));
-    this[container].set(_.clone(this.rebaseOrder(tmp)));
+    this[container].set(this.rebaseOrder(tmp));
     this.selectedsVariables = [];
   }
 
@@ -80,7 +76,7 @@ class UalVariablesLayoutController {
   }
   deleteAll(container, filter) {
     this._deleteallmodal.open({
-        deleting: (container == 'aggregators') ? "Aggregators" : "Selected Variables"
+        deleting: (container == 'aggregators') ? "Selected Aggregators" : "Selected Variables"
       })
       .then(response => {
         if (response) {
