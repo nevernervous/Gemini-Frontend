@@ -1,7 +1,7 @@
 let reportService = function (Properties, ServicesHelper, ServicesTransform, $http, $q, ReportObject, ReportTransform) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
-  const pageSize = 1;
+  const pageSize = 50;
 
   let create = () => {
     ReportObject.clean();
