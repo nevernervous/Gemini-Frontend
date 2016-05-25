@@ -1,0 +1,35 @@
+@import '../../../../../../common/common';
+
+
+//LAYOUT
+ual-variables-multi-select {
+  select[multiple].-avaiable-variables{
+    margin-top: 20px;
+    width: 100%;
+    option{
+      padding: 5px 6px;
+    }
+  }
+}
+
+ual-variables-multi-select {
+  select[multiple].-avaiable-variables{
+    border: none;
+    option{
+      &:checked{
+        outline: 1px solid $color00;
+        font-weight: bold;
+      }
+    }
+  }
+  hr{
+    width: 95%;
+    margin: 10px auto;
+    border-color: $color08;
+  }
+  .ual-button{
+    width: 80%;
+    margin: 0px calc(10%);
+    margin-bottom: 15px;
+  }
+}
