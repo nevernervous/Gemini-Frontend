@@ -11,8 +11,7 @@ let ualVariableSelectedItemComponent = {
     variableTotal: '<',
     cbChange: '=',
     cbBind: '=',
-    onDelete: '&',
-    prefix: '@'
+    onDelete: '&'
   },
   template,
   controller,

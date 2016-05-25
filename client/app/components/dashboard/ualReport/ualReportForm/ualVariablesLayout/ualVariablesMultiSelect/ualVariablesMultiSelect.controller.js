@@ -33,7 +33,6 @@ class UalVariablesMultiSelectController {
         },
         error => {
           this.avaiableVariables = [];
-          console.error(error)
         });
   }
 
