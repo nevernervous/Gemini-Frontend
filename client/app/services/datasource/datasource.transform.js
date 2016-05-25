@@ -9,7 +9,7 @@ let datasourceTransform = function ($http) {
     },
     variables: (response) => {
       let variables = {
-        items: response.data
+        items: _.chain(response.data).sortBy("order").value()
       }
       return variables;
     }
