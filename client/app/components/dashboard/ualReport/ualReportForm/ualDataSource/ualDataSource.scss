@@ -27,11 +27,8 @@ ual-data-source {
           padding: 5px 0;
           .datasource-group {
             @include gridle(12);
-            @include font-clanot-bold(16);
-            color: $color06;
             > span{
                 padding: 12px 5px 2px 14px;
-                @include ellipses();
                 display: inline-block;
                 width: 100%;
             }
@@ -56,5 +53,12 @@ ual-data-source {
     .content-list {
         overflow-y: auto;
         overflow-x: hidden;
+        .datasource-group {
+          @include font-clanot-bold(16);
+          color: $color06;
+          > span {
+              @include ellipses();
+          }
+        }
     }
 }
