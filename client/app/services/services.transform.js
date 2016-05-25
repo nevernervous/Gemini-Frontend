@@ -18,9 +18,10 @@ let servicesTransform = function($http) {
                 .map(group => {
                     return {
                         data: group,
-                        items: _.filter(response, 'group.groupId', group.groupId)
+                        items: _.chain(response).filter('group.groupId', group.groupId).sortBy("order").value()
                     }
                 })
+                .sortBy("data.order")
                 .value();
 
             return {
