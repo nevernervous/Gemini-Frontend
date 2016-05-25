@@ -1,23 +1,23 @@
-import UalVariablesCancelModalModule from './ualVariablesCancelModal'
-import UalVariablesCancelModalController from './ualVariablesCancelModal.controller';
-import UalVariablesCancelModalComponent from './ualVariablesCancelModal.component';
-import UalVariablesCancelModalTemplate from './ualVariablesCancelModal.html';
+import UalVariablesLayoutModule from './ualVariablesLayout'
+import UalVariablesLayoutController from './ualVariablesLayout.controller';
+import UalVariablesLayoutComponent from './ualVariablesLayout.component';
+import UalVariablesLayoutTemplate from './ualVariablesLayout.html';
 
-describe('UalVariablesCancelModal', () => {
+describe('UalVariablesLayout', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalVariablesCancelModalModule.name));
+  beforeEach(window.module(UalVariablesLayoutModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalVariablesCancelModalController();
+      return new UalVariablesLayoutController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalVariablesCancelModalModule).to.have.property('name');
+      expect(UalVariablesLayoutModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalVariablesCancelModal', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-variables-cancel-modal/>').html(UalVariablesCancelModalTemplate);
+    const template = $('<ual-variables-layout/>').html(UalVariablesLayoutTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalVariablesCancelModal', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalVariablesCancelModalComponent;
+      let component = UalVariablesLayoutComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalVariablesCancelModalTemplate);
+        expect(component.template).to.equal(UalVariablesLayoutTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalVariablesCancelModal', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalVariablesCancelModalController);
+        expect(component.controller).to.equal(UalVariablesLayoutController);
       });
   });
 });
