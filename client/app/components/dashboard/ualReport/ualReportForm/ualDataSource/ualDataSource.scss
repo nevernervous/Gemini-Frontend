@@ -25,8 +25,16 @@ ual-data-source {
           max-height: 300px;
           margin: 5px 0;
           padding: 5px 0;
-          ual-data-source-group {
-              @include gridle(12);
+          .datasource-group {
+            @include gridle(12);
+            @include font-clanot-bold(16);
+            color: $color06;
+            > span{
+                padding: 12px 5px 2px 14px;
+                @include ellipses();
+                display: inline-block;
+                width: 100%;
+            }
           }
           ual-data-source-item {
               @include gridle(3);
