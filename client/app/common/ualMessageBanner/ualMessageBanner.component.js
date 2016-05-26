@@ -6,7 +6,9 @@ let ualMessageBannerComponent = {
   restrict: 'E',
   transclude: true,
   template,
-  bindings:{},
+  bindings:{
+    onClose: '&'
+  },
   controller,
   controllerAs: 'vm'
 };

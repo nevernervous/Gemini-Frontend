@@ -5,16 +5,11 @@ import './ualVariablesLayout.scss';
 let ualVariablesLayoutComponent = {
   restrict: 'E',
   bindings: {
-    variables: "<",
-    selecteds: "=",
+    variables: "=",
     aggregators: "=",
-    updateReportVariables: "=",
-    updateReportAggregators: "="
+    datasource: "<",
   },
   template,
-/*  transclude:{
-    ualVariablesLayoutFirst:'ualVariablesLayoutFirst'
-  },*/
   controller,
   controllerAs: 'vm'
 };

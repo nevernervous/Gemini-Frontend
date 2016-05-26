@@ -1,31 +1,39 @@
 class UalVariablesMultiSelectController {
   /*@ngInject*/
-  constructor($scope) {
+  constructor($scope, DataSource) {
     this.name = 'ualVariablesMultiSelect';
+
+    this._service = {
+      datasource: DataSource
+    };
+
     this.filterName = {
       name: ""
     };
     this.ctrlDown = false;
-    this.scope = $scope;
-    this.avaliableVariablesSelected=[];
+    $scope.$watch((scope) => {
+      return scope.vm.datasource
+    }, (newValue, oldValue) => {
+      if (newValue != oldValue) {
+        this.getvariables();
+      }
+    });
   }
 
-
-  $postLink() {
-    this.selectedReference = this.avaliableVariablesSelected;
-  }
   selectAll() {
-    this.avaliableVariablesSelected=this.variables;
-    angular.forEach(this.avaliableVariablesSelected, function(value, key) {
-      value.selected=true;
-    } );
+    this.selectedReference = this.avaiableVariables;
+    _.each(this.selectedReference, (item) => item.selected = true);
   }
 
-  getSelected() {
-    let selectedsIds = {};
-    _.each($(".-avaiable-variables").val(), (_id) => { selectedsIds[_id] = true; });
-    $(".-avaiable-variables option").prop("selected", null);
-    return _.filter((this.variables.items?this.variables.items:this.variables), function (val) { return selectedsIds[val.id];}, selectedsIds);
+
+  getvariables() {
+    this._service.datasource.variables(this.datasource)
+      .then(response => {
+        this.avaiableVariables = response.data.items;
+      },
+      error => {
+        this.avaiableVariables = [];
+      });
   }
 
 

@@ -9,12 +9,19 @@ class ualEllipsisDirective {
     this.restrict = 'A';
     this.template = template;
     this.controller = controller;
+    this.scope = {
+      ellipsisHeight: '@'
+    }
   }
 
   link($scope, elem, attr, ctrl) {
-    $(elem).dotdotdot({
-      wrap: 'letter'
-    });
+    ctrl._timeout(function () {
+      $(elem).dotdotdot({
+        wrap: 'letter',
+        height: parseInt($scope.ellipsisHeight ? $scope.ellipsisHeight : 15),
+        ellipsis: '...'
+      });
+    }, 0);
   }
 }
 

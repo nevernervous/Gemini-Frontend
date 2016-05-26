@@ -4,7 +4,18 @@ import './ualReportInput.scss';
 
 let ualReportInputComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    ualId: '@',
+    ualValue: '=',
+    icon: '@',
+    onBlur: '&?',
+    onKeyup: '&?',
+    onFocus: '&?',
+    onKeypress: '&?',
+    onChange: '&?',
+    ualDisabled: '<',
+    placeholder: '@'
+  },
   template,
   controller,
   controllerAs: 'vm'

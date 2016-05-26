@@ -6,9 +6,10 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   let object = {
     id: null
     , name: null
-    , dataSource: {id: null,  name: null}
+    , dataSource: { id: null, name: null }
     , variables: []
     , aggregators: []
+    , filters: []
   };
   let initialHash = null;
 
@@ -38,7 +39,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     object = {
       id: null
       , name: null
-      , dataSource: {id: null,  name: null}
+      , dataSource: { id: null, name: null }
       , variables: []
       , aggregators: []
     };
@@ -59,24 +60,24 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   };
 
   let getReportHash = () => {
-	let hash = 0;
+    let hash = 0;
     let char = '';
     let json = JSON.stringify(object);
-	if (json.length == 0) return hash;
-	for (let i = 0; i < json.length; i++) {
-		char = json.charCodeAt(i);
-		hash = ((hash<<5)-hash)+char;
-		hash = hash & hash; // Convert to 32bit integer
-	}
-	return hash;
+    if (json.length == 0) return hash;
+    for (let i = 0; i < json.length; i++) {
+      char = json.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
   }
 
   let save = () => {
     var deferred = $q.defer();
-    if (!getName() && !getId()) {
-      deferred.reject({code:1, msg: "No name assigned"});
-    }else if (!touched) {
-      deferred.reject({code:0, msg: "No changes to save"});
+    if (!getName()) {
+      deferred.reject({ code: 1, msg: "No name assigned" });
+    } else if (!touched) {
+      deferred.reject({ code: 0, msg: saveResultMessages[0] });
     } else {
       saveRequest().then(
         response => {
@@ -86,22 +87,23 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
           initialHash = getReportHash();
 
-          deferred.resolve({result:object.id, msg: saveResultMessages[0]});
+          deferred.resolve({ result: object.id, msg: saveResultMessages[0] });
         }
         , response => {
-          //UNEXPECTED ERROR
+          // TODO: REFACTOR THIS CODE. USE 'errorCode' instead of check 'errorMessages'
           if (!response.data || !response.data.errorMessages) {
+            //UNEXPECTED ERROR
             object.name = unchangedName;
-            deferred.reject({code:3, msg: saveResultMessages[2]});
+            deferred.reject({ code: 3, msg: saveResultMessages[2] });
           } else if (response.data.errorMessages.indexOf(duplicatedErrorResponse) < 0) {
             //EXPECTED ERROR
             object.name = unchangedName;
             let tmp = _.clone(saveResultMessages[2]);
             tmp.msg = response.data.errorMessage;
-            deferred.reject({code:3, msg: tmp});
+            deferred.reject({ code: 3, msg: tmp });
           } else {
             //DUPLICATED NAME
-            deferred.reject({code:2, msg: "Name already exists"});
+            deferred.reject({ code: 2, msg: "Name already exists" });
           }
         }
       ).catch(() => {
@@ -115,9 +117,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
     let transformation = [ReportTransform.get('save')];
     if (object.id === null) {
-      return $http.post(endpoint, object, {transformRequest: ReportTransform.generate(transformation) });
+      return $http.post(endpoint, object, { transformRequest: ReportTransform.generate(transformation) });
     } else {
-      return $http.put(endpoint + "/" + object.id, object, {transformRequest: ReportTransform.generate(transformation)});
+      return $http.put(endpoint + "/" + object.id, object, { transformRequest: ReportTransform.generate(transformation) });
     }
   };
 
@@ -125,9 +127,12 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     return (object.dataSource.id) ? object.dataSource : null;
   }
   let setDataSource = value => {
-    object.dataSource = value;
-
-    touched = hasReportChange();
+    if (!equalDataSource(value)) {
+      object.variables = [];
+      object.filters = [];
+      object.dataSource = value;
+      touched = hasReportChange();
+    }
   }
   let equalDataSource = newDataSource => {
     return (object.dataSource && object.dataSourceId === newDataSource.id);
@@ -138,12 +143,26 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     object.variables = value;
     touched = hasReportChange();
   }
+  let hasVariablesValues = () => {
+    return !!object.variables && object.variables.length > 0;
+  }
 
   let getAggregators = () => object.aggregators;
   let setAggregators = value => {
     object.aggregators = value;
     touched = hasReportChange();
   }
+
+  let getFilters = () => object.filters;
+  let setFilters = value => {
+    object.filters = value;
+    touched = hasReportChange();
+  }
+  let hasFilterValues = () => {
+    return !!object.filters && object.filters.length > 0;
+  }
+
+
 
   let isEmptyName = () => {
     return !object.name || _.isEmpty(object.name);
@@ -166,42 +185,49 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     , load
     , clean
     , isEmptyName: isEmptyName
-      , id: {
-        get: getId
-        , set: setId
+    , id: {
+      get: getId
+      , set: setId
+    }
+    , exitConfirmed: {
+      get: isExitComfirmed
+      , set: setExitConfirm
+      ,
+    }
+    , untouch: function () {
+      touched = false;
+    }
+    , touched: function () {
+      return touched;
+    }
+    , name: {
+      get: getName
+      , set: setName
+      , hasChange: () => {
+        let _unchanged = (unchangedName) ? unchangedName.toLowerCase() : "";
+        let _actual = (object.name) ? object.name.toLowerCase() : "";
+        return _unchanged == _actual;
       }
-      , exitConfirmed: {
-        get: isExitComfirmed
-        , set: setExitConfirm
-      , }
-      , untouch: function () {
-        touched = false;
-      }
-      , touched: function () {
-        return touched;
-      }
-      , name: {
-        get: getName
-        , set: setName
-        , hasChange: () => {
-          let _unchanged = (unchangedName) ? unchangedName.toLowerCase() : "";
-          let _actual = (object.name) ? object.name.toLowerCase() : "";
-          return _unchanged == _actual;
-        }
-      }
-      , datasource: {
-        get: getDataSource
-        , set: setDataSource
-        , equal: equalDataSource
-      }
-      , variables: {
-        get: getVariables
-        , set: setVariables
-      }
-      , aggregators: {
-        get: getAggregators
-        , set: setAggregators
-      }
+    }
+    , datasource: {
+      get: getDataSource,
+      set: setDataSource,
+      equal: equalDataSource
+    },
+    variables: {
+      get: getVariables,
+      set: setVariables,
+      hasValues: hasVariablesValues
+    },
+    aggregators: {
+      get: getAggregators,
+      set: setAggregators
+    },
+    filters: {
+      get: getFilters,
+      set: setFilters,
+      hasValues: hasFilterValues
+    }
   };
 };
 export default reportObjectService;

@@ -13,14 +13,14 @@ class UalVariableSelectedItemController {
   }
 
   onMouseover() {
-    $('#' + this.variableId).find('ual-variable-selected-item').attr("draggable", true);
+    $('#' + this.variableId+"_selected_container").find('ual-variable-selected-item').attr("draggable", true);
   }
   onMouseleave() {
-    $('#' + this.variableId).find('ual-variable-selected-item').attr("draggable", false);
+    $('#' + this.variableId+"_selected_container").find('ual-variable-selected-item').attr("draggable", false);
   }
 
   onBlur(event, item, order) {
-    let position = _.parseInt(this.variableId.split('_')[(this.prefix)?1:0]);
+    let position = _.parseInt(isNaN(this.variableId.split('_')[1])?this.variableId.split('_')[0]:this.variableId.split('_')[1]);
     if ( position !== order && this.isValid(order)) {
       this.variableOrder = _.parseInt(order);
       this.cbChange.bind(this.cbBind)(item, order);

@@ -64,6 +64,9 @@ angular.module('app', [
   "ngInject";
   $urlRouterProvider.otherwise('/login');
 
+  // SHOW VERSION
+  console.log('Gemini: ' + Properties.version);
+
   // LOAD SETTINGS
   let parameters = {};
   SETTINGS.data.forEach( item => {

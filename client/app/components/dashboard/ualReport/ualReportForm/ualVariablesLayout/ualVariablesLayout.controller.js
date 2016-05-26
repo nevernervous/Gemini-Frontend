@@ -15,17 +15,13 @@ class UalVariablesLayoutController {
     };
 
     // VARS / PUBLIC
-    this.variables = {
-        items: []
-      }
-      //    this.selecteds = _.clone(selecteds) || [];
     this.loaded = false;
 
     this.scrolling = false;
 
-    this.getSelection = false;
+    this.selectedsVariables = [];
 
-    this.changeSelectedOrder = this.changeOrder('selecteds');
+    this.changeSelectedOrder = this.changeOrder('variables');
     this.changeAggregatorOrder = this.changeOrder('aggregators');
 
     this._suscriptions = [];
@@ -33,44 +29,46 @@ class UalVariablesLayoutController {
     this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
   }
 
+
   showTooltip(container, description, position = 'top') {
     this._ualTooltipService.show({
-      container: container
-      , text: description
-      , position: position
+      container: container,
+      text: description,
+      position: position
     });
   }
   hideTooltip() {
     this._ualTooltipService.hide();
   }
 
-  addVariables(container = 'selecteds') {
-    let tmp = _.clone(this[container]);
-    let selection = this.getSelection;
-    if (selection.length > 0) _.each(selection, (item) => tmp.push(_.clone(item)));
-    this[container] = _.clone(this.rebaseOrder(tmp));
-    this.updateReport(container);
-    angular.forEach(this.getSelection, function(value, key) {
-       value.selected=false;
-     } );
+  addVariables() { this.addSelection('variables') }
+  addAggregators() { this.addSelection('aggregators') }
+
+  addSelection(container) {
+    let tmp = this[container].get();
+    _.each(this.selectedsVariables, (item) => {
+      if (item.selected)
+        tmp.push(_.clone(item));
+      item.selected = false;
+    });
+    this[container].set(this.rebaseOrder(tmp));
   }
 
-  updateReport(element){
-    (element=="aggregators")?this.updateReportAggregators(this[element]):this.updateReportVariables(this[element]);
-  }
-  itemPosition(variable, container = this.selecteds) {
+  itemPosition(variable, container = this.variables.get()) {
     return _.findIndex(container, {
       'order': variable.order
     });
   }
   changeOrder(container) {
     return (variable, order) => {
-      _.remove(this[container], {
+      let tmp = this[container].get();
+      _.remove(tmp, {
         'order': variable.order
       });
       $(".-hovered").removeClass("-hovered");
-      this[container].splice(order - 1, 0, variable);
-      this.updateReport(container);
+      tmp.splice(order - 1, 0, variable);
+      this[container].set(tmp);
+      tmp = null;
     };
   }
   isSelected(variable, container) {
@@ -80,35 +78,35 @@ class UalVariablesLayoutController {
   }
   deleteAll(container, filter) {
     this._deleteallmodal.open({
-        deleting: (container == 'aggregators') ? "Aggregators" : "Selected Variables"
-      })
+      deleting: (container == 'aggregators') ? "Selected Aggregators" : "Selected Variables"
+    })
       .then(response => {
         if (response) {
-          const filters = this._filter("filterBy")(this[container], filter);
+          let tmp = this[container].get();
+          const filters = this._filter("filterBy")(tmp, filter);
           const ids = _.map(filters, item => item.id);
-          this[container] = _.reject(this[container], item => _.includes(ids, item.id));
-          this.updateReport(container);
+          this[container].set(_.reject(tmp, item => _.includes(ids, item.id)));
         }
       });
   }
   onDrop(container) {
     return (id, binId) => {
-      if (((/agg\_/i).test(id) && !(/agg\_/i).test(binId))||(!(/agg\_/i).test(id) && (/agg\_/i).test(binId))) return false;
-      let from = _.parseInt(id.replace("agg_","").split('_')[0]) - 1;
-      let to = _.parseInt(binId.replace("agg_","").split('_')[0]) - 1;
-      let variable = _.clone(this[container][from]);
+      if (((/agg\_/i).test(id) && !(/agg\_/i).test(binId)) || (!(/agg\_/i).test(id) && (/agg\_/i).test(binId))) return false;
+      let from = _.parseInt(id.replace("agg_", "").split('_')[0]) - 1;
+      let to = _.parseInt(binId.replace("agg_", "").split('_')[0]) - 1;
+      let variable = _.clone(this[container].get()[from]);
       this.changeOrder(container)(variable, to + 1);
     }
   }
 
-  toggle(variable, container = 'selecteds') {
-    this.isSelected(variable, this[container]) ?
-      _.remove(this[container], {
+  removeVariable(variable, container = 'variables') {
+    let tmp = this[container].get();
+    this.isSelected(variable, tmp) ?
+      _.remove(tmp, {
         'order': variable.order
       }) :
       this.hideTooltip();
-    this[container] = this.rebaseOrder(this[container]);
-    this.updateReport(container);
+    this[container].set(this.rebaseOrder(tmp));
   }
 
   rebaseOrder(container) {
