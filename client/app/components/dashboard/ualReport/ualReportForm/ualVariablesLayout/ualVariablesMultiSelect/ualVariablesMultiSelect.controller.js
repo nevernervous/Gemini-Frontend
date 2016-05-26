@@ -21,8 +21,7 @@ class UalVariablesMultiSelectController {
   }
 
   selectAll() {
-    $(".-avaiable-variables option").prop("selected", null);
-    $(".-avaiable-variables option").prop("selected", true);
+    this.selectedReference = this.avaiableVariables;
   }
 
 
