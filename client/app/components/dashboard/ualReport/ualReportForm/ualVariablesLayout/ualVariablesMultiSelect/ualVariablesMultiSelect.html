@@ -1,6 +1,6 @@
 <ual-pane ual-title="Available variables ({{vm.avaiableVariables.length}})" on-action="vm.selectAll()" action="Select all" is-disabled="vm.avaiableVariables.length == 0 || ( vm.avaiableVariables | filterBy:vm.filterName | isEmpty)">
   <ual-input class="search-box" value="vm.filterName.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
-  <select multiple="multiple" class="-avaiable-variables" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)" ng-model="vm.selectedReference" ng-options="variable.name for variable in ( vm.avaiableVariables | filterBy:vm.filterName | orderBy : 'order')">
+  <select multiple="multiple" class="-avaiable-variables" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)" ng-model="vm.selectedReference" ng-options="variable.name for variable in ( vm.avaiableVariables | filterBy:vm.filterName)">
   </select>
 
   <hr />
