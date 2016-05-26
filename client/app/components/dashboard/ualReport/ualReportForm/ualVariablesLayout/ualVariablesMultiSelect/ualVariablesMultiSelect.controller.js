@@ -29,11 +29,11 @@ class UalVariablesMultiSelectController {
   getvariables() {
     this._service.datasource.variables(this.datasource)
       .then(response => {
-        this.avaiableVariables = response.data.items;
-      },
-      error => {
-        this.avaiableVariables = [];
-      });
+          this.avaiableVariables = response.data;
+        },
+        error => {
+          this.avaiableVariables = [];
+        });
   }
 
 

@@ -1,7 +1,7 @@
 let reportService = function (Properties, ServicesHelper, ServicesTransform, $http, $q, ReportObject, ReportTransform) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
-  const pageSize = 50;
+  const pageSize = 1;
 
   let create = () => {
     ReportObject.clean();
@@ -11,6 +11,24 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
   let currentReport = () => {
     return ReportObject;
   };
+
+  let pages = (sortColumn, sortDirection) => {
+    function* generator() {
+      let hasMore = true;
+      let page = 1;
+
+      while (hasMore) {
+        yield $http(_query(page, sortColumn, sortDirection))
+        .then( response => {
+          hasMore = (( response.data.pageNumber * pageSize ) <  response.data.totalCount );
+          return response;
+        });
+        page++;
+      }
+    }
+
+    return ServicesHelper.serialize(generator());
+  }
 
   let all = (fromPage, total, sortColumn, sortDirection) => {
     let requests = [];
@@ -71,6 +89,7 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
     create,
     currentReport,
     first,
+    pages,
     remove,
     getById
   };
