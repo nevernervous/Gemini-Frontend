@@ -11,16 +11,6 @@ let tokenService = function (Configuration, $rootScope, $window, $timeout) {
     if ( !_timer ) {
       _timer = $timeout( () => {
 
-        // console.log('---------------------------------')
-        // console.log('login: ' + login);
-        // console.log('isExpired: ' + isExpired());
-        // console.log('expiring: ' + expiring);
-        // console.log('remainingTime: ' + remainingTime());
-        // console.log('session_timeout: ' + session_timeout);
-        // console.log('session_warning: ' + session_warning);
-        // console.log('gemini.token.id: ' + localStorage.getItem('gemini.token.id'));
-        // console.log('gemini.token.keepalive: ' + localStorage.getItem('gemini.token.keepalive'));
-        // console.log('gemini.token.updateAt: ' + localStorage.getItem('gemini.token.updateAt'));
         let is_expired = isExpired();
         let remaining = remainingTime();
 

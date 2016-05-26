@@ -5,9 +5,9 @@ module.exports = angular.module("app.constants", [])
 	"endpoint": "http://vcld16gdgemap02.global.ual.com:8080/api",
 	"cache": false,
 	"fallback": {
-		"endpoint": "http://private-f47c4-ualgemini.apiary-mock.com/api"
+		"endpoint": "http://localhost:8889/api"
 	},
-	"version": "0.0.5-v50d1c05"
+	"version": "0.0.5-v82499a6"
 })
 
 ;

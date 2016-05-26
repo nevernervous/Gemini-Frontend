@@ -1,5 +1,5 @@
 <div class="variable-container" ng-class="{'error': vm.error}">
-  <input id="{{vm.variableItem.id}}_variable-order" class="variable-order" type="text" ng-model="vm.variableOrder" ng-trim="false"
+  <input id="{{vm.variableId}}_variable-order" class="variable-order" type="text" ng-model="vm.variableOrder" ng-trim="false"
     ng-blur="vm.onBlur($event, vm.variableItem, vm.variableOrder)"
     ng-keyup="$event.keyCode == 13 && vm.onBlur($event, vm.variableItem, vm.variableOrder)".
     ng-change="vm.onChange(vm.variableOrder,vm.variableItem.id)" ng-focus="vm.onFocus($event)" >

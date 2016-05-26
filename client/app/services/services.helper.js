@@ -3,17 +3,47 @@ import angular from 'angular';
 let servicesHelper = function ($http, $q) {
   "ngInject";
 
-  let serialize = (requests, deferred = $q.defer()) => {
+  let _strategy = (iterator) => {
+    if ( _.isArray(iterator) ) {
+      return {
+        _head(iterator) {  return _.head(iterator) },
+        _tail(iterator) {  return _.drop(iterator) },
+        _isDone(item)   {  return !item; },
+        _promise(item)  {  return $http(next); }
+      }
+    } else if ( iterator.next ) { // IS GENERATOR
+      return {
+        _head(iterator) {  return iterator.next(); },
+        _tail(iterator) {  return iterator; },
+        _isDone(item)   {  return item.done; },
+        _promise(item)  {  return item.value; }
+      }
+    }
+    return;
+  }
 
-    let head = _.head(requests);
-    if ( head ) {
-      $http(head).then( response => {
-        const tails = _.drop(requests);
-        deferred.notify(response);
-        _.isEmpty(tails) ? deferred.resolve() : serialize(tails, deferred)
-      });
+  let serialize = function(elements) {
+    let deferred = $q.defer();
+    let hooks = _strategy(elements);
+
+    if ( hooks ) {
+
+      function _serialize(elements, hooks, deferred) {
+        let next = hooks._head(elements);
+        if ( hooks._isDone(next) ) {
+          deferred.resolve();
+        } else {
+          hooks._promise(next).then( response => {
+            deferred.notify(response);
+            _serialize(hooks._tail(elements), hooks, deferred)
+          });
+        }
+      }
+
+      _serialize(elements, hooks, deferred);
+
     } else {
-      deferred.resolve();
+      deferred.reject();
     }
 
     return deferred.promise;
@@ -23,5 +53,7 @@ let servicesHelper = function ($http, $q) {
     serialize
   };
 };
+
+
 
 export default servicesHelper;

@@ -79,30 +79,16 @@ class UalReportListController {
   $onInit() {
     // LOAD REPORTS
     this.loading = true;
-    let _order = this.orders[this.order];
-    // LOAD REPORTS / FIRST PAGE
-    this._services.report.first('modificationDate', 'desc').then(
-      response => {
-        this.reports = response.data.data;
-        this.total = response.data.totalCount;
-        this.refresh();
-
-        // LOAD REPORTS / NEXT PAGES
-        return this._services.report.all(2, this.total, 'modificationDate', 'desc');
+    this._services.report.pages('modificationDate', 'desc')
+    .then(
+      done => {
+        this.loading = false;
       },
       reason => {
         this.loading = false;
-      }
-    ).then(
-      () => {
-        this.loading = false;
       },
-      (reason) => {
-        this.loading = false;
-        this.refresh();
-      },
-      (response) => {
-        this.reports = this.reports.concat(response.data.data);
+      progress => {
+        this.reports = this.reports.concat(progress.data.data);
         this.refresh();
       }
     );

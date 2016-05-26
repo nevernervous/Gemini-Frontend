@@ -1,16 +1,15 @@
-import UalVariablesGroupModule from './ualVariablesGroup'
-import UalVariablesGroupController from './ualVariablesGroup.controller';
-import UalVariablesGroupComponent from './ualVariablesGroup.component';
-import UalVariablesGroupTemplate from './ualVariablesGroup.html';
+import UalVariablesMultiSelectModule from './ualVariablesMultiSelect'
+import UalVariablesMultiSelectController from './ualVariablesMultiSelect.controller';
 
-describe('UalVariablesGroup', () => {
+
+describe('UalVariablesMultiSelect', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalVariablesGroupModule.name));
+  beforeEach(window.module(UalVariablesMultiSelectModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalVariablesGroupController();
+      return new UalVariablesMultiSelectController($rootScope);
     };
   }));
 
@@ -21,5 +20,6 @@ describe('UalVariablesGroup', () => {
       expect(controller).to.have.property('name');
     });
   });
+
 
 });

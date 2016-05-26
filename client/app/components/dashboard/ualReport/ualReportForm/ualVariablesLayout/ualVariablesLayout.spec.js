@@ -1,14 +1,14 @@
-import UalVariablesCancelModalModule from './ualVariablesCancelModal'
-import UalVariablesCancelModalController from './ualVariablesCancelModal.controller';
+import UalVariablesLayoutModule from './ualVariablesLayout'
+import UalVariablesLayoutController from './ualVariablesLayout.controller';
 
-describe('UalVariablesCancelModal', () => {
+describe('UalVariablesLayout', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalVariablesCancelModalModule.name));
+  beforeEach(window.module(UalVariablesLayoutModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalVariablesCancelModalController($rootScope);
+      return new UalVariablesLayoutController($rootScope);
     };
   }));
 

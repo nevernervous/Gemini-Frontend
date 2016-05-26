@@ -9,6 +9,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     , dataSource: { id: null, name: null }
     , variables: []
     , aggregators: []
+    , filters: []
   };
   let initialHash = null;
 
@@ -126,9 +127,12 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     return (object.dataSource.id) ? object.dataSource : null;
   }
   let setDataSource = value => {
-    object.dataSource = value;
-
-    touched = hasReportChange();
+    if (!equalDataSource(value)) {
+      object.variables = [];
+      object.filters = [];
+      object.dataSource = value;
+      touched = hasReportChange();
+    }
   }
   let equalDataSource = newDataSource => {
     return (object.dataSource && object.dataSourceId === newDataSource.id);
@@ -139,12 +143,26 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     object.variables = value;
     touched = hasReportChange();
   }
+  let hasVariablesValues = () => {
+    return !!object.variables && object.variables.length > 0;
+  }
 
   let getAggregators = () => object.aggregators;
   let setAggregators = value => {
     object.aggregators = value;
     touched = hasReportChange();
   }
+
+  let getFilters = () => object.filters;
+  let setFilters = value => {
+    object.filters = value;
+    touched = hasReportChange();
+  }
+  let hasFilterValues = () => {
+    return !!object.filters && object.filters.length > 0;
+  }
+
+
 
   let isEmptyName = () => {
     return !object.name || _.isEmpty(object.name);
@@ -195,14 +213,20 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       get: getDataSource,
       set: setDataSource,
       equal: equalDataSource
-    }
-    , variables: {
-      get: getVariables
-      , set: setVariables
-    }
-    , aggregators: {
-      get: getAggregators
-      , set: setAggregators
+    },
+    variables: {
+      get: getVariables,
+      set: setVariables,
+      hasValues: hasVariablesValues
+    },
+    aggregators: {
+      get: getAggregators,
+      set: setAggregators
+    },
+    filters: {
+      get: getFilters,
+      set: setFilters,
+      hasValues: hasFilterValues
     }
   };
 };
