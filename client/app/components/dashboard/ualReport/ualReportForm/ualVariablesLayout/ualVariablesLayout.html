@@ -5,7 +5,7 @@
   </div>
 
   <div class="add-btns">
-    <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to aggregators')" data-ng-mouseleave="vm.hideTooltip()">
+    <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to selected aggregators')" data-ng-mouseleave="vm.hideTooltip()">
       <ual-button class="-secondary" ng-click="vm.addAggregators()"> > </ual-button>
     </div>
     <div id="btn-add-variables" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-variables','Add to selected variables')" data-ng-mouseleave="vm.hideTooltip()">
@@ -20,7 +20,7 @@
         <div>No results match your search</div>
       </div>
       <div class="empty-list" ng-hide="(vm.aggregators.get()).length > 0">
-        <div>No aggregators have been selected yet. Please select variables from the left menu.</div>
+        <div>No aggregators selected yet.</div>
       </div>
       <ul id="aggregator-list" class="selected-list" ng-if="vm.aggregators.get().length > 0 && (vm.aggregators.get() | filterBy:vm.aggregatorsFilter).length > 0" ual-scroll
               ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
@@ -39,7 +39,7 @@
         <div>No results match your search</div>
       </div>
       <div class="empty-list" ng-hide="(vm.variables.get()).length > 0">
-        <div>No variables have been selected yet. Please select variables from the left menu.</div>
+        <div>No variables selected yet.</div>
       </div>
       <ul id="selected-list" class="selected-list" ng-if="vm.variables.get().length > 0"  ual-scroll
               ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
