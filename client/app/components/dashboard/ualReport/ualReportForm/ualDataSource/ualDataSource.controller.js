@@ -3,6 +3,7 @@ import $ from 'jquery';
 class UalDataSourceController {
   /*@ngInject*/
   constructor($rootScope, ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, $filter, ualTooltipService, $timeout) {
+    this.name = 'ualDataSource';
     this._datasource = DataSource;
     this._cancelmodal = ualDataSourceCancelModal;
     this._filter = $filter;

@@ -1,6 +1,6 @@
 class LoginController {
   /*@ngInject*/
-  constructor($location, Token) {
+  constructor(Token) {
     this.name = 'login';
     this.expired = Token.wasExpired();
   }

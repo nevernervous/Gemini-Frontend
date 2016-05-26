@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 class LoginFormController {
   /*@ngInject*/
-  constructor($state, Session, Configuration) {
+  constructor(Session, Configuration, $state) {
     this.name = 'loginForm';
     this.mailto = Configuration.get('login.contact');
     this._session = Session;

@@ -1,3 +1,8 @@
+var path = require('path');
+var webpack = require('webpack');
+
+const app_path = path.resolve(__dirname, 'client', 'app');
+
 var styleLoad = 'style!css?importLoaders=1!font?format[]=truetype&format[]=woff&format[]=embedded-opentype';
 var webpackConfig = {
   devtool: 'inline-source-map',
@@ -15,7 +20,17 @@ var webpackConfig = {
       loader: 'istanbul-instrumenter'
     }]
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      _: "lodash"
+    })
+  ],
   resolve: {
+    alias: {
+      '~': app_path
+    },
     modulesDirectories: [
       "",
       "client",
@@ -24,7 +39,7 @@ var webpackConfig = {
   }
 };
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     files: [
@@ -34,7 +49,7 @@ module.exports = function(config) {
     ],
 
     // frameworks to use
-    frameworks: [ 'chai', 'mocha' ],
+    frameworks: ['chai', 'mocha'],
 
     preprocessors: {
       // only specify one entry point
@@ -44,9 +59,12 @@ module.exports = function(config) {
 
     reporters: ['spec', 'coverage'],
 
+    // More info: https://github.com/karma-runner/karma-coverage/blob/master/docs/configuration.md
     coverageReporter: {
-      type: 'html',
-      dir: 'reports/coverage/'
+      reporters:[
+        {type: 'html', dir:'reports/coverage/'},
+        {type: 'text-summary'}
+      ]
     },
 
     webpack: webpackConfig,
@@ -68,10 +86,10 @@ module.exports = function(config) {
 
     // // start these browsers
     // // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome']
+    browsers: ['Chrome'],
 
     // if true, Karma runs tests once and exits
-    // singleRun: true
+    singleRun: true
 
   });
 };

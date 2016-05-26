@@ -1,4 +1,4 @@
-let datasourceService = function (Properties, ServicesTransform, DataSourceTransform, $http, $q) {
+let datasourceService = function (Properties, $http, $q, ServicesTransform, DataSourceTransform) {
   "ngInject";
   const endpoint = Properties.endpoint + '/DataSources';
 

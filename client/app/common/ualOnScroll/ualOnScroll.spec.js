@@ -1,7 +1,5 @@
 import UalOnScrollModule from './ualOnScroll'
 import UalOnScrollController from './ualOnScroll.controller';
-import UalOnScrollComponent from './ualOnScroll.component';
-import UalOnScrollTemplate from './ualOnScroll.html';
 
 describe('UalOnScroll', () => {
   let $rootScope, makeController;
@@ -14,12 +12,6 @@ describe('UalOnScroll', () => {
     };
   }));
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-    it('has a name property [REMOVE]', () => {
-      expect(UalOnScrollModule).to.have.property('name');
-    });          
-  });
 
   describe('Controller', () => {
     // controller specs
@@ -29,29 +21,4 @@ describe('UalOnScroll', () => {
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-on-scroll/>').html(UalOnScrollTemplate);
-    it('has at least one element [REMOVE]', () => {
-      expect(template.children()).to.have.length.of.at.least(1);
-    });
-  });
-
-  describe('Component', () => {
-      // component/directive specs
-      let component = UalOnScrollComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(UalOnScrollTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalOnScrollController);
-      });
-  });
 });

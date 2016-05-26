@@ -2,7 +2,6 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ualReportListComponent from './ualReportList.component';
 import ualReportListDeleteReportModal from './ualReportListDeleteReportModal/ualReportListDeleteReportModal';
-import ualTooltipService from '../../../../common/ualTooltip/ualTooltip.service';
 
 let ualReportListModule = angular.module('ualReportList', [
   uiRouter,
@@ -19,8 +18,7 @@ let ualReportListModule = angular.module('ualReportList', [
     });
 })
 
-.component('ualReportList', ualReportListComponent)
-.factory('ualTooltipService',ualTooltipService);
+.component('ualReportList', ualReportListComponent);
 
 export default ualReportListModule;
 

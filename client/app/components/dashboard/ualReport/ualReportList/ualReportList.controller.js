@@ -5,6 +5,7 @@ class UalReportListController {
   /*@ngInject*/
 
   constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService, $filter) {
+    this.name = 'ualReportList';
     this._rootScope = $rootScope;
 
     this._services = {
