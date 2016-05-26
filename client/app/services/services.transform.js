@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-let servicesTransform = function($http) {
+let servicesTransform = function($http, $filter) {
     "ngInject";
 
     let _transformation = {
@@ -11,23 +11,9 @@ let servicesTransform = function($http) {
             return response ? response.data : response;
         },
         group: (response) => {
+            let result = $filter("orderBy")(response, ['group.order', 'order']);
 
-            let groups = _.chain(response)
-                .map('group')
-                .uniq('groupId')
-                .map(group => {
-                    return {
-                        data: group,
-                        items: _.chain(response).filter('group.groupId', group.groupId).sortBy("order").value()
-                    }
-                })
-                .sortBy("data.order")
-                .value();
-
-            return {
-                groups: groups,
-                items: response
-            }
+            return result;
         }
 
     }

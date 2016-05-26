@@ -1,11 +1,8 @@
-import $ from 'jquery';
-
 class UalDataSourceController {
   /*@ngInject*/
-  constructor($rootScope,ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, $filter, ualTooltipService) {
+  constructor($rootScope,ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, ualTooltipService) {
     this._datasource = DataSource;
     this._cancelmodal = ualDataSourceCancelModal;
-    this._filter = $filter;
     this._changemodal = ualDataSourceChangeModal;
     this._ualTooltipService = ualTooltipService;
 
@@ -14,13 +11,22 @@ class UalDataSourceController {
     this.rootScope = $rootScope;
     this.selected;
   }
-  shouldShow(group) {
-    return this._filter("filterBy")(group.items, this.searchTerm).length > 0;
-  }
+
 
   isActive(itemId) {
     return !!this.selected.get() && this.selected.get().id === itemId;
   }
+
+  isFirstInGroup(index){
+    let result = false;
+    var previousItem = index >= 1 ? this.datasources[index -1] : undefined;
+    var currentItem = this.datasources[index];
+    if(!previousItem || previousItem.group.groupId != currentItem.group.groupId){
+      result = true;
+    }
+    return result;
+  }
+
 
   selectedDataSource(item) {
     this.hideTooltip();
