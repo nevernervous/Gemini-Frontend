@@ -68,11 +68,11 @@ ual-report-form {
 }
 
 #report-variables.open{
-  >div{
-    ual-accordion-content{
+  >.accordion-content{
+    >ual-accordion-content{
       >ual-variables-layout{
-        >div{
-          >div{
+        >.container{
+          >.selected-variables.first{
              >.add-btns{
               display: flex;
             }
