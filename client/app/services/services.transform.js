@@ -13,7 +13,7 @@ let servicesTransform = function ($http) {
     group: (response) => {
       var options = {
         attributes: ['group.order','group.groupId', 'order'],
-        direction: ['asc', 'asc']
+        direction: ['asc', 'asc', 'asc']
       };
       let result = _.sortByOrder(response, options.attributes, options.direction);
 

@@ -37,13 +37,19 @@ class UalDataSourceController {
         let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
         item.show = noFilter || hasMatch;
 
-        let sum = item.show ? 1 : 0;
         this.total  += sum;
-        let groupCount = this.groupsTotals[item.group.groupId] || 0;
-        this.groupsTotals[item.group.groupId] = groupCount + sum;
+        let groupId = item.group.groupId;
+
+        let sum = item.show ? 1 : 0;
+        let groupCount = this.groupsTotals[groupId] || 0;
+        this.groupsTotals[groupId] = groupCount + sum;
 
       });
     }, 0);
+  }
+
+  hasValuesGroup(groupId){
+    return this.groupsTotals[groupId] > 0;
   }
 
 
