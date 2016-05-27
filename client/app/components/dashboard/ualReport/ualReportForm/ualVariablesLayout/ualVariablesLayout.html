@@ -24,8 +24,8 @@
       </div>
       <ul id="aggregator-list" class="selected-list" ng-if="vm.aggregators.get().length > 0 && (vm.aggregators.get() | filterBy:vm.aggregatorsFilter).length > 0" ual-scroll
               ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-        <li class="selected-container" ng-repeat="item in vm.aggregators.get() | filterBy:vm.aggregatorsFilter  track by item.order" droppable id="agg_{{ vm.itemPosition(item, vm.aggregators.get()) + 1 }}_selected_container" drop="vm.onDrop('aggregators')" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
-          <ual-variable-selected-item variable-id="agg_{{ vm.itemPosition(item, vm.aggregators.get()) + 1 }}" variable-total="vm.aggregators.get().length" variable-item="item" variable-order="vm.itemPosition(item, vm.aggregators.get()) + 1" on-delete="vm.removeVariable(item, 'aggregators')" cb-change="vm.changeAggregatorOrder" cb-bind="vm" draggable id="agg_{{ vm.itemPosition(item, vm.aggregators.get()) + 1 }}_selected_item" item="item" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
+        <li class="selected-container" ng-repeat="item in vm.aggregators.get() | filterBy:vm.aggregatorsFilter  track by item.order" droppable id="{{ vm.itemPosition(item, vm.aggregators.get()) + 1 }}_selected_container-aggregator" drop="vm.onDrop('aggregators')" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
+          <ual-variable-selected-item variable-total="vm.aggregators.get().length" variable-item="item" variable-type="aggregator" variable-order="vm.itemPosition(item, vm.aggregators.get()) + 1" on-delete="vm.removeVariable(item, 'aggregators')" cb-change="vm.changeAggregatorOrder" draggable id="{{ vm.itemPosition(item, vm.aggregators.get()) + 1 }}_selected_item-aggregator" variable-type="aggregator" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
           </ual-variable-selected-item>
         </li>
       </ul>
@@ -41,10 +41,10 @@
       <div class="empty-list" ng-hide="(vm.variables.get()).length > 0">
         <div>No variables selected yet.</div>
       </div>
-      <ul id="selected-list" class="selected-list" ng-if="vm.variables.get().length > 0"  ual-scroll
+      <ul id="variable-list" class="selected-list" ng-if="vm.variables.get().length > 0"  ual-scroll
               ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-        <li class="selected-container" ng-repeat="item in vm.variables.get() | filterBy:vm.selectedFilter track by item.order" droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container" drop="vm.onDrop('variables')" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
-          <ual-variable-selected-item variable-id="{{ vm.itemPosition(item) + 1 }}" variable-total="vm.variables.get().length" variable-item="item" variable-order="vm.itemPosition(item) + 1" on-delete="vm.removeVariable(item)" cb-change="vm.changeSelectedOrder" cb-bind="vm" draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item" item="item" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
+        <li class="selected-container" ng-repeat="item in vm.variables.get() | filterBy:vm.selectedFilter track by item.order" droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container-variable" drop="vm.onDrop('variables')" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
+          <ual-variable-selected-item variable-total="vm.variables.get().length" variable-item="item" variable-order="vm.itemPosition(item) + 1" on-delete="vm.removeVariable(item)" cb-change="vm.changeSelectedOrder" draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item-variable" variable-type="variable" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
           </ual-variable-selected-item>
         </li>
       </ul>
