@@ -89,6 +89,7 @@ class UalReportListController {
       },
       progress => {
         this.reports = this.reports.concat(progress.data.data);
+        this.total = progress.data.totalCount;
         this.refresh();
       }
     );

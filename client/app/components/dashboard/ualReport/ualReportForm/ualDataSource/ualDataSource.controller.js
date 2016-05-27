@@ -19,7 +19,7 @@ class UalDataSourceController {
   }
 
   isActive(itemId) {
-    return !!this.selected.get() && this.selected.get().id === itemId;
+    return !!this.selected && !!this.selected.get() && this.selected.get().id === itemId;
   }
 
   selectedDataSource(item) {
