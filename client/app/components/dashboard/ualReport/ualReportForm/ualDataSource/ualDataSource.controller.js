@@ -11,8 +11,6 @@ class UalDataSourceController {
     this.datasources;
     this.rootScope = $rootScope;
     this.selected;
-
-   this.groupsTotals = [];
   }
 
 
@@ -22,8 +20,8 @@ class UalDataSourceController {
 
   isFirstInGroup(index) {
     let result = false;
-    var previousItem = index >= 1 ? this.datasources[index - 1] : undefined;
     var currentItem = this.datasources[index];
+    var previousItem = index >= 1 ? this.datasources[index - 1] : undefined;
     if (!previousItem || previousItem.group.groupId != currentItem.group.groupId) {
       result = true;
     }
@@ -33,14 +31,18 @@ class UalDataSourceController {
   filterData() {
     this._timeout(() => {
       this.total = 0;
-      const filtered = _.forEach(this.datasources, (item) => {
+      this.groupsTotals = [];
+      _.forEach(this.datasources, (item) => {
         let noFilter = !this.searchTerm || _.isEmpty(this.searchTerm);
         let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
         item.show = noFilter || hasMatch;
-        this.total  += item.show ? 1 : 0;
-        this.groupsTotals[item.group.groupId] = (this.groupsTotals[item.group.groupId] || 0) + 1 ;
+
+        let sum = item.show ? 1 : 0;
+        this.total  += sum;
+        let groupCount = this.groupsTotals[item.group.groupId] || 0;
+        this.groupsTotals[item.group.groupId] = groupCount + sum;
+
       });
-      return filtered;
     }, 0);
   }
 
@@ -80,6 +82,7 @@ class UalDataSourceController {
     this._datasource.all('group')
       .then(response => {
         this.datasources = response.data;
+        console.dir(this.datasources);
         this.filterData();
       });
   }

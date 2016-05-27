@@ -7,7 +7,7 @@ module.exports = angular.module("app.constants", [])
 	"fallback": {
 		"endpoint": "http://private-f47c4-ualgemini.apiary-mock.com/api"
 	},
-	"version": "0.1.5-v24eb959"
+	"version": "0.1.5-ve687816"
 })
 
 ;

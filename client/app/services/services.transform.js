@@ -11,7 +11,9 @@ let servicesTransform = function($http, $filter) {
             return response ? response.data : response;
         },
         group: (response) => {
-            let result = $filter("orderBy")(response, ['group.order', 'order']);
+            let result = response.sort((item1, item2) => {
+              return item1.group.groupId > item2.group.groupId ? 1 : (item1.group.groupId < item2.group.groupId ? -1 : 0);
+            })
 
             return result;
         }
