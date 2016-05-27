@@ -1,18 +1,18 @@
 <div class="search-area">
-  <ual-input class="search-box" value="vm.searchTerm.name" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.columnCount()" ual-debounce="'500'"></ual-input>
+  <ual-input class="search-box" value="vm.searchTerm" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.filterData()" ual-debounce="'200'"></ual-input>
 </div>
 <div class="content">
   <div class="loading-message" ng-if="!vm.datasources ">Loading ...</div>
-  <div class="empty-search" ng-show="vm.searchTerm.name && (vm.datasources | filter:vm.searchTerm | isEmpty )">
+  <div class="empty-search" ng-show="vm.searchTerm && vm.total == 0">
     <div>
       No results found
     </div>
   </div>
   <div class="content-list" ng-if="vm.datasources" ual-on-scroll="vm.hideTooltip()">
-    <div class="datasource-group" ng-repeat-start="item in vm.datasources | filter: vm.searchTerm" ng-if="vm.isFirstInGroup($index)">
-      <span>{{item.group.groupName}}</span>
+    <div class="datasource-group" ng-repeat-start="item in vm.datasources" ng-if="vm.isFirstInGroup($index)" ng-show="vm.groupsTotals[item.group.groupId] > 0">
+      <span>{{item.group.groupName}}</span> {{vm.groupsTotals[item.group.groupId]}}
     </div>
-    <ual-data-source-item ng-repeat-end datasource-item="item" ng-click="vm.selectedDataSource(item)" ng-class="{'-selected': vm.isActive(item.id)}" id="datasource_{{item.id}}">
+    <ual-data-source-item ng-repeat-end datasource-item="item" ng-click="vm.selectedDataSource(item)" ng-show="item.show" ng-class="{'-selected': vm.isActive(item.id)}" id="datasource_{{item.id}}">
     </ual-data-source-item>
   </div>
 </div>
