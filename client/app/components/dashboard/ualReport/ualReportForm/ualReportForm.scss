@@ -66,3 +66,19 @@ ual-report-form {
     }
   }
 }
+
+#report-variables.open{
+  >div{
+    ual-accordion-content{
+      >ual-variables-layout{
+        >div{
+          >div{
+             >.add-btns{
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+  }
+}

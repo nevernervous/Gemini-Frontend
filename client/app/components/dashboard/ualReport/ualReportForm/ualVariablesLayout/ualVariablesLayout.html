@@ -2,15 +2,17 @@
 
   <div class="selected-variables first">
     <ual-variables-multi-select datasource="vm.datasource" selected-reference="vm.selectedsVariables"></ual-variables-multi-select>
-  </div>
-  <div class="add-btns">
-    <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to selected aggregators')" data-ng-mouseleave="vm.hideTooltip()">
-      <ual-button class="-secondary" ng-click="vm.addAggregators()" ng-disabled="!vm.selectedsVariables.length"> > </ual-button>
+    <div class="add-btns">
+      <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to selected aggregators')" data-ng-mouseleave="vm.hideTooltip()">
+        <ual-button class="-secondary" ng-click="vm.addAggregators()" ng-disabled="!vm.selectedsVariables.length"> > </ual-button>
+      </div>
+      <div id="btn-add-variables" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-variables','Add to selected variables')" data-ng-mouseleave="vm.hideTooltip()">
+        <ual-button class="-secondary" ng-click="vm.addVariables()" ng-disabled="!vm.selectedsVariables.length"> » </ual-button>
+      </div>
     </div>
-    <div id="btn-add-variables" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-variables','Add to selected variables')" data-ng-mouseleave="vm.hideTooltip()">
-      <ual-button class="-secondary" ng-click="vm.addVariables()" ng-disabled="!vm.selectedsVariables.length"> » </ual-button>
-    </div>
   </div>
+
+
 
   <div class="selected-variables">
     <ual-pane ual-title="Selected Aggregators ({{vm.aggregators.get().length}})" action="Delete all" on-action="vm.deleteAll('aggregators', vm.aggregatorsFilter)" is-disabled="vm.aggregators.get().length == 0 || (vm.aggregators.get() && (vm.aggregators.get() | filterBy:vm.aggregatorsFilter | isEmpty))">
