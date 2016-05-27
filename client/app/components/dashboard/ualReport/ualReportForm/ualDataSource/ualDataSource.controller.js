@@ -82,7 +82,6 @@ class UalDataSourceController {
     this._datasource.all('group')
       .then(response => {
         this.datasources = response.data;
-        console.dir(this.datasources);
         this.filterData();
       });
   }
