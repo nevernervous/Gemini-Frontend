@@ -46,10 +46,12 @@ class UalVariablesLayoutController {
 
   addSelection(container) {
     let tmp = this[container].get();
-    let selection = this.selectedsVariables;
-    _.each(this.selectedsVariables, (item) => tmp.push(_.clone(item)));
+    _.each(this.selectedsVariables, (item) => {
+      if (item.selected)
+        tmp.push(_.clone(item));
+      item.selected = false;
+    });
     this[container].set(this.rebaseOrder(tmp));
-    this.selectedsVariables = [];
   }
 
   itemPosition(variable, container = this.variables.get()) {
@@ -76,8 +78,8 @@ class UalVariablesLayoutController {
   }
   deleteAll(container, filter) {
     this._deleteallmodal.open({
-        deleting: (container == 'aggregators') ? "Selected Aggregators" : "Selected Variables"
-      })
+      deleting: (container == 'aggregators') ? "Selected Aggregators" : "Selected Variables"
+    })
       .then(response => {
         if (response) {
           let tmp = this[container].get();

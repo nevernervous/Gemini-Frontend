@@ -22,6 +22,7 @@ class UalVariablesMultiSelectController {
 
   selectAll() {
     this.selectedReference = this.avaiableVariables;
+    _.each(this.selectedReference, (item) => item.selected = true);
   }
 
 
@@ -35,11 +36,13 @@ class UalVariablesMultiSelectController {
         });
   }
 
+
   keyUp(event) {
     if ((event.which | event.keyCode) === 17) {
       this.ctrlDown = false;
     }
   }
+
 
   keyDown(event) {
     if ((event.which | event.keyCode) === 17) {
