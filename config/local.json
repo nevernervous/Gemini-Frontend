@@ -1,9 +1,15 @@
 {
   "Properties": {
-    "endpoint": "http://vcld16gdgemap02.global.ual.com:8080/api",
+    "endpoint": "http://vcld16gdgemap01.global.ual.com:8080/api",
     "cache": false,
     "fallback": {
       "endpoint": "http://localhost:8889/api"
+    },
+    "signalR": {
+        "logging": true,
+        "endpoint": "http://localhost:8098/signalr",
+        "transport": ["longPolling"],
+        "autoConnect": true
     }
   }
 }

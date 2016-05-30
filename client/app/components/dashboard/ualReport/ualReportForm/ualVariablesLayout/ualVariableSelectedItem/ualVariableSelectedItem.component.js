@@ -5,12 +5,11 @@ import './ualVariableSelectedItem.scss';
 let ualVariableSelectedItemComponent = {
   restrict: 'E',
   bindings: {
-    variableId: '@',
+    variableType: '@',
     variableItem: '<',
     variableOrder: '<',
     variableTotal: '<',
     cbChange: '=',
-    cbBind: '=',
     onDelete: '&'
   },
   template,

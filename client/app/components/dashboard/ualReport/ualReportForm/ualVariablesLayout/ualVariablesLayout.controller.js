@@ -41,15 +41,17 @@ class UalVariablesLayoutController {
     this._ualTooltipService.hide();
   }
 
-  addVariables() { this.addSelection('variables') }
-  addAggregators() { this.addSelection('aggregators') }
+  addVariables() { this.addSelection.bind(this)('variables') }
+  addAggregators() { this.addSelection.bind(this)('aggregators') }
 
   addSelection(container) {
     let tmp = this[container].get();
-    let selection = this.selectedsVariables;
-    _.each(this.selectedsVariables, (item) => tmp.push(_.clone(item)));
+    _.each(this.selectedsVariables, (item) => {
+      if (item.selected)
+        tmp.push(_.clone(item));
+      item.selected = false;
+    });
     this[container].set(this.rebaseOrder(tmp));
-    this.selectedsVariables = [];
   }
 
   itemPosition(variable, container = this.variables.get()) {
@@ -76,8 +78,8 @@ class UalVariablesLayoutController {
   }
   deleteAll(container, filter) {
     this._deleteallmodal.open({
-        deleting: (container == 'aggregators') ? "Selected Aggregators" : "Selected Variables"
-      })
+      deleting: (container == 'aggregators') ? "Selected Aggregators" : "Selected Variables"
+    })
       .then(response => {
         if (response) {
           let tmp = this[container].get();
@@ -89,7 +91,7 @@ class UalVariablesLayoutController {
   }
   onDrop(container) {
     return (id, binId) => {
-      if (((/agg\_/i).test(id) && !(/agg\_/i).test(binId)) || (!(/agg\_/i).test(id) && (/agg\_/i).test(binId))) return false;
+      if(id.split("-")[1] != binId.split("-")[1]) return false;
       let from = _.parseInt(id.replace("agg_", "").split('_')[0]) - 1;
       let to = _.parseInt(binId.replace("agg_", "").split('_')[0]) - 1;
       let variable = _.clone(this[container].get()[from]);

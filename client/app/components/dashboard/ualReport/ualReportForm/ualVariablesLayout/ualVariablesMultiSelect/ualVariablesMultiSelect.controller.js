@@ -22,24 +22,27 @@ class UalVariablesMultiSelectController {
 
   selectAll() {
     this.selectedReference = this.avaiableVariables;
+    _.each(this.selectedReference, (item) => item.selected = true);
   }
 
 
   getvariables() {
     this._service.datasource.variables(this.datasource)
       .then(response => {
-          this.avaiableVariables = response.data.items;
+          this.avaiableVariables = response.data;
         },
         error => {
           this.avaiableVariables = [];
         });
   }
 
+
   keyUp(event) {
     if ((event.which | event.keyCode) === 17) {
       this.ctrlDown = false;
     }
   }
+
 
   keyDown(event) {
     if ((event.which | event.keyCode) === 17) {

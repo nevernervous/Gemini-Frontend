@@ -6,6 +6,7 @@ import ualDataSourceItem from './ualDataSourceItem/ualDataSourceItem';
 import ualDataSourceLabel from './ualDataSourceLabel/ualDataSourceLabel';
 
 let ualDataSourceModule = angular.module('ualDataSource', [
+
   ualDataSourceCancelModal.name,
   ualDataSourceItem.name,
   ualDataSourceLabel.name,

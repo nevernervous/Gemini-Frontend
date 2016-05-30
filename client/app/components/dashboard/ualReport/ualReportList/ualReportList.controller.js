@@ -3,7 +3,6 @@ import myreports from './ualReportList._myreports.html';
 
 class UalReportListController {
   /*@ngInject*/
-
   constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService, $filter) {
     this.name = 'ualReportList';
     this._rootScope = $rootScope;
@@ -112,7 +111,6 @@ class UalReportListController {
     this._ualTooltipService.hide();
   }
 
-
   isSelected(reportId) {
     return _.some(this.selectedReports, { id: reportId });
   }
@@ -163,7 +161,6 @@ class UalReportListController {
         }
       });
   }
-
 }
 
 export default UalReportListController;
