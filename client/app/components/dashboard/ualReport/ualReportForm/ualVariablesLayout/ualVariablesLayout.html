@@ -2,7 +2,9 @@
 
   <div class="selected-variables first">
     <ual-variables-multi-select datasource="vm.datasource" selected-reference="vm.selectedsVariables"></ual-variables-multi-select>
-    <div class="add-btns">
+  </div>
+
+  <div class="add-btns">
       <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to selected aggregators')" data-ng-mouseleave="vm.hideTooltip()">
         <ual-button class="-secondary" ng-click="vm.addAggregators()" ng-disabled="!vm.selectedsVariables.length"> > </ual-button>
       </div>
@@ -10,7 +12,6 @@
         <ual-button class="-secondary" ng-click="vm.addVariables()" ng-disabled="!vm.selectedsVariables.length"> » </ual-button>
       </div>
     </div>
-  </div>
 
 
 
