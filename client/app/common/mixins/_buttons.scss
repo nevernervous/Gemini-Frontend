@@ -32,7 +32,7 @@
 
 @mixin button-terciary($padding: 6px 17px, $border: 2px) {
   @include font-clanot-news(16);
-  @include ual-button(white, $color03, $padding, $border solid $color03);
+  @include ual-button(white, $color02, $padding, $border solid $color02);
   &:hover {
     @include ual-button(white, #81c4ea, $padding, $border solid #81c4ea);
   }
@@ -41,6 +41,7 @@
     cursor: default;
   }
 }
+
 
 @mixin button-link($padding: 6px) {
   @include font-clanot-news(16);

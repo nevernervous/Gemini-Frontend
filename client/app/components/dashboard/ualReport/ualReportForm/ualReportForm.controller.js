@@ -1,18 +1,20 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, ualVariables, Report, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
     this._state = $state;
     this._rootScope = $rootScope;
     // MODALS
-    this._variablesmodal = ualVariables;
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
 
     // SERVICES
     this._service = {
       report: Report,
+      datasource: DataSource,
       tooltip: ualTooltipService
     };
+
+    this.dropDownStyle = {};
 
     // STATE
     this.edit = false;
@@ -88,24 +90,23 @@ class UalReportFormController {
 
   // INIT
   $onInit() {
-    let reportId = this._state.params["id"];
-    if (!reportId) {
-      this.report = this._service.report.create();
-    } else {
-      this.edit = true;
-      this._service.report.getById(reportId)
-        .then((reply) => {
-          this.report = reply;
-          this.name.current = _.clone(this.report.name.get());
-        });
+      let reportId = this._state.params["id"];
+      if (!reportId) {
+        this.report = this._service.report.create();
+      } else {
+        this.edit = true;
+        this._service.report.getById(reportId)
+          .then((reply) => {
+            this.report = reply;
+            this.name.current = _.clone(this.report.name.get());
+          });
+      }
+      this._responses();
+      this._suscribe();
     }
-
-    this._responses();
-    this._suscribe();
-  }
-  // INIT / RESPONSES
+    // INIT / RESPONSES
   _responses() {
-    let error_actions = [
+      let error_actions = [
       // ON ERROR: NO ERROR
       (msg) => { },
       // ON ERROR: EMPTY NAME
@@ -152,10 +153,10 @@ class UalReportFormController {
         }, {
             notify: false
           });
-      }
-    };
-  }
-  // INIT / SUSCRIPTIONS
+        }
+      };
+    }
+    // INIT / SUSCRIPTIONS
   _suscribe() {
     this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (this.report.touched() && (toState.name !== 'login') ) {
@@ -178,6 +179,7 @@ class UalReportFormController {
       return "Exit without saving?";
     };
     $(window).bind('beforeunload', this.beforeClose);
+
   }
 
   // UNLOAD
@@ -186,26 +188,14 @@ class UalReportFormController {
   }
 
   onChangeDataSource() {
+    this.report.variables.set([]);
+    this.report.aggregators.set([]);
     this.selectedTab = 'report-variables';
   }
 
-  hasVariables() {
-    return this.report && (this.report.variables.hasValues() || this.report.filters.hasValues());
-  }
-
   collapseAccordion(index) {
-    this.selectedTab = index;
-  }
-  // TO DEPRECATE
-
-  // STEP 2
-  selectVariables() {
-    this._variablesmodal.open({
-      datasource: this.report.datasource.get(),
-      selecteds: this.report.variables.get()
-    })
-      .then(variables => this.report.variables.set(variables));
-  }
+      this.selectedTab = index;
+    }
 
 }
 
