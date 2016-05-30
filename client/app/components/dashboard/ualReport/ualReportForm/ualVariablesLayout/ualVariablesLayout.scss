@@ -16,7 +16,7 @@
             justify-content: center;
             position: absolute;
             top: 47%;
-            left: 32%;
+            left: 32.2%;
             >.buttons{
               margin: 5px 0;
               padding-top: 5px;
@@ -72,4 +72,20 @@
         }
       }
   }
+
+#report-variables.open{
+  >.accordion-content{
+    >ual-accordion-content{
+      >ual-variables-layout{
+        >.container{
+          >.selected-variables.first{
+             >.add-btns{
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 

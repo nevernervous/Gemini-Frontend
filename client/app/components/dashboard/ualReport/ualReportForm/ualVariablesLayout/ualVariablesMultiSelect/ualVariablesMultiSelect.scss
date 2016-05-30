@@ -31,15 +31,13 @@ ual-variables-multi-select {
 }
 
 ual-variables-multi-select {
-
-  hr{
-    width: 95%;
-    margin: 10px auto;
-    border-color: $color08;
+  .separator{
+    margin-top: 10px;
+    padding: 15px 0;
+    border-top: 1px solid $color08;
   }
   .ual-button{
     width: 80%;
     margin: 0px calc(10%);
-    margin-bottom: 15px;
   }
 }

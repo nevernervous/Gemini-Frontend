@@ -67,18 +67,3 @@ ual-report-form {
   }
 }
 
-#report-variables.open{
-  >.accordion-content{
-    >ual-accordion-content{
-      >ual-variables-layout{
-        >.container{
-          >.selected-variables.first{
-             >.add-btns{
-              display: flex;
-            }
-          }
-        }
-      }
-    }
-  }
-}
