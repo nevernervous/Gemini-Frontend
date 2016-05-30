@@ -11,11 +11,13 @@ import yargs    from 'yargs';
 import lodash   from 'lodash';
 import gutil    from 'gulp-util';
 import serve    from 'browser-sync';
+import git      from 'git-rev-sync';
 import ngConstant   from 'gulp-ng-constant';
 import restEmulator from 'gulp-rest-emulator';
 import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
+
 
 let root = 'client';
 
@@ -45,6 +47,7 @@ let paths = {
   output: root,
   basePath: {
     common: resolveToApp('common'),
+    directive: resolveToApp('common'),
     component: resolveToComponents(),
     page: resolveToComponents(),
     service: resolveToServices(),
@@ -52,6 +55,7 @@ let paths = {
   },
   blankTemplates: {
     common: path.join(__dirname, 'generator', 'component/**/*.**'),
+    directive: path.join(__dirname, 'generator', 'directive/**/*.**'),
     component: path.join(__dirname, 'generator', 'component/**/*.**'),
     page: path.join(__dirname, 'generator', 'page/**/*.**'),
     service: path.join(__dirname, 'generator', 'service/**/*.**'),
@@ -112,6 +116,10 @@ gulp.task('serve', () => {
 gulp.task('constants', () => {
   let env = yargs.argv.env || 'development';
   let envConfig = require('./config/' + env + '.json');
+  let configuration = require('./package.json');
+
+  envConfig.Properties.version = configuration.version + '-v' + git.short();
+  console.log(envConfig);
 
   return ngConstant({
       name: 'app.constants',
@@ -166,3 +174,4 @@ gulp.task('component', () => {
 });
 
 gulp.task('default', ['constants', 'api', 'serve']);
+

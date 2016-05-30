@@ -4,31 +4,41 @@
 
 // LAYOUT
 ual-message-banner {
-    width: 100%;
-    height: 52px;
+  width: 100%;
+  height: 52px;
 
-    > .ual-message-banner {
-        height: inherit;
-        @include gridle( row row-align center middle );
-        > .-message-icon {
-            padding-right: 8px;
-            padding-bottom: 4px;
-        }
-        .-close-icon{
-            position: absolute;
-            right: 10px;
-            top: 8px;
+  > .ual-message-banner {
+      height: inherit;
+      @include gridle( row row-align center middle );
+      > .-message-icon {
+          padding-right: 8px;
+          padding-bottom: 4px;
+      }
+      .-close-icon{
+          position: absolute;
+          right: 10px;
+          top: 8px;
 
-            span{
-                vertical-align: middle;
-                height: 30px;
-                @include -moz-browser(){
-                    height: 28px;
-                }
-                display: inline-block;
-            }
-        }
-    }
+          span{
+              vertical-align: middle;
+              height: 30px;
+              @include -moz-browser(){
+                  height: 28px;
+              }
+              display: inline-block;
+          }
+      }
+  }
+
+  i.ion-ios-close-empty {
+    font-size: 68px;
+    cursor: pointer;
+    position: absolute;
+    line-height: 1;
+    right: 10px;
+    top: -6px;
+    display: none;
+  }
 }
 
 // VARIATIONS
@@ -80,22 +90,28 @@ ual-message-banner.-error{
   color: $color11;
   background: $color12;
   i.-message-icon{
-      @extend .ion-ios-close-outline;
+    @extend .ion-ios-close-outline;
   }
 }
 
 // VARIATION / HIDE
 ual-message-banner.ng-hide{
-    @include slideOutUp();
-    @include animation(slideOutUp);
-    @include animation-fill-mode(forwards);
-    @include animation-duration(0.5s);
-    display: block;
+  @include slideOutUp();
+  @include animation(slideOutUp);
+  @include animation-fill-mode(forwards);
+  @include animation-duration(0.5s);
+  display: block;
 }
 
 ual-message-banner.-closeable{
-    .-close-icon{
-        display: inline;
-    }
+  .-close-icon{
+    display: inline;
+  }
 }
 
+// VARIATION / CLOSABLE
+ual-message-banner.-closable {
+  i.ion-ios-close-empty {
+    display: inline-block;
+  }
+}

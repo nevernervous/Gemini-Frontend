@@ -1,31 +1,21 @@
 class UalDataSourceItemController {
   /*@ngInject*/
-  constructor() {
-
+  constructor(ualTooltipService, $filter) {
+    this._ualTooltipService = ualTooltipService;
+    this._filter = $filter;
   }
 
-  datasourceContainer(){
-    let id = this.datasourceItem.id;
-    let container = $("#datasourceContainer_" + id);
-    let sibling = $("#datasourceItem_" + id);
-    let hasEllipsis = (window.isIE) ? ((sibling.outerWidth(true) + 16) >= container.width()) : (sibling.width() > container.width());
-
-    this.tooltipOptions = {
-      left: hasEllipsis ? 2 : -4,
-      right: hasEllipsis ? (window.isIE ? 3 : 4) : (window.isIE ? 10 : 15),
-      top: hasEllipsis ? 2 : (window.isIE ? 2 : 5)
-    }
-
-    return (hasEllipsis) ? "datasourceContainer_" + this.datasourceItem.id : "datasourceItem_" + this.datasourceItem.id;
+  showTooltip(container, data, position = 'right') {
+    let hasEllipsis = $("#"+container).hasClass("is-truncated");
+    this._ualTooltipService.show({
+      container: container,
+      text: "<strong>Last updated date " + this._filter('date')(data.refreshDate, 'MM/dd/yy HH:mm', '-0500') + " CT</strong>" + (hasEllipsis ?  "<br />" + data.name : "") + "<br />" + data.description,
+      position: position
+    });
   }
 
-  hideTooltip(){
-    $(".-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
-  }
-
-  showTooltip(){
-    $("#tooltip_" + this.datasourceItem.id).prop("ual-tooltip-show", true);
+  hideTooltip() {
+    this._ualTooltipService.hide();
   }
 
 }

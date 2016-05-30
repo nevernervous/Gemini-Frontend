@@ -1,14 +1,8 @@
-<div class="report-form-input" ng-class="{'-invalid': (vm.invalidInput) && !vm.firstTime }">
-    <div class="wrap-label" ng-hide="vm.visibleInput" ng-click="vm.displayInput(true, $event)" ng-mouseover="vm.onMouse(true)" ng-mouseleave="vm.onMouse(false)">
-        <input class="-label" readonly for="{{vm.inputId}}" value="{{vm.labelText()}}" ng-style="vm.labelStyle"></input>
-    </div>
-    <div ng-if="vm.visibleInput || vm.errorThrown()">
-        <input type="text" class="active-input" ng-model="vm.report._name" ng-model-options="{ getterSetter:true }"
-               ng-blur="vm.onBlur($event)" ng-keypress="vm.checkEnter($event)" id="{{vm.inputId}}" placeholder="Enter report name" ng-trim="true" maxlength="100" ng-maxlength="100">
-        <i class="icon-warning ion-ios-close-outline"></i>
-    </div>
-    <ual-tooltip class="-error-tooltip" ng-if="(vm.visibleInput && vm.invalidInput)">
-        <span ng-transclude="invalidmessage"></span>
-    </ual-tooltip>
-    <ual-tooltip class="-tooltip -tooltip-right" ng-class="{'-show-tooltip': (!vm.visibleInput && vm.isOverInput)}">Change name report</ual-tooltip>
-</div>
+<label class="ual-input">
+    <input id="{{vm.ualId}}" ng-model="vm.ualValue" ng-disabled="vm.ualDisabled" tabindex="-1" placeholder="{{vm.placeholder}}"
+          maxlength="100" ng-maxlength="100"
+          ng-blur="vm.onBlur({$event: $event})" ng-focus="vm.onFocus({$event: $event})"
+          ng-keyup="vm.onKeyup({$event: $event})" ng-keypress="vm.onKeypress({$event: $event})"
+          ng-change="vm.onChange()" />
+    <i></i>
+</label>

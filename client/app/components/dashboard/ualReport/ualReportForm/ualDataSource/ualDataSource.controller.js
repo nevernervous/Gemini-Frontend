@@ -1,129 +1,96 @@
-import $ from 'jquery';
-
 class UalDataSourceController {
-    /*@ngInject*/
-    constructor($rootScope, close, DataSource, selected, ualDataSourceChangeModal, ualDataSourceCancelModal, $filter, $animate, $timeout) {
-        this._close = close;
-        this._datasource = DataSource;
-        this._cancelmodal = ualDataSourceCancelModal;
-        this._changemodal = ualDataSourceChangeModal;
-        this._selected = selected;
-        this._filter = $filter;
-        this._timeout = $timeout;
-        this.searchTerm = {};
+  /*@ngInject*/
+  constructor($rootScope, ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, ualTooltipService, $timeout) {
+    this._datasource = DataSource;
+    this._cancelmodal = ualDataSourceCancelModal;
+    this._changemodal = ualDataSourceChangeModal;
+    this._ualTooltipService = ualTooltipService;
+    this._timeout = $timeout;
 
-        this._animate = $animate;
+    this.searchTerm;
+    this.datasources;
+    this.rootScope = $rootScope;
+    this.selected;
+  }
 
-        this.datasources;
-        this.selected = selected;
-        this._initialize();
 
-        this._suscriptions = [];
-        this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal(true)));
-        this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
-        this._suscriptions.push($rootScope.$on('RENDER.END', () => this.columnCount()));
-        this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
+  isActive(itemId) {
+    return !!this.selected.get() && this.selected.get().id === itemId;
+  }
+
+  isFirstInGroup(index) {
+    let result = false;
+    var currentItem = this.datasources[index];
+    var previousItem = index >= 1 ? this.datasources[index - 1] : undefined;
+    if (!previousItem || previousItem.group.groupId != currentItem.group.groupId) {
+      result = true;
     }
+    return result;
+  }
 
-    _closemodal(response) {
-        this._suscriptions.forEach(suscription => suscription());
-        this._close(response);
-    }
+  filterData() {
+    this._timeout(() => {
+      this.total = 0;
+      this.groupsTotals = [];
+      _.forEach(this.datasources, (item) => {
+        let noFilter = !this.searchTerm || _.isEmpty(this.searchTerm);
+        let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+        item.show = noFilter || hasMatch;
 
-    apply() {
-        if (this._selected && this.hasChange()) { // FIRST TIME
-            this._changemodal.open({ oldDataSource: this._selected, newDataSource: this.selected })
-                .then(response => response && this._closemodal(this.selected));
-        } else {
-            this._closemodal(this.selected);
-        }
+        this.total  += sum;
+        let groupId = item.group.groupId;
 
-    }
-    cancel() {
-        if (this.hasChange()) {
-            this._cancelmodal.open()
-                .then(response => response && this._closemodal(this._selected));
-        } else {
-            this._closemodal(this._selected);
-        }
-    }
+        let sum = item.show ? 1 : 0;
+        let groupCount = this.groupsTotals[groupId] || 0;
+        this.groupsTotals[groupId] = groupCount + sum;
 
-    hasChange() {
-        return (!this._selected && this.selected) || (this._selected && this.selected && (this._selected.id !== this.selected.id));
-    }
+      });
+    }, 0);
+  }
 
-    shouldShow(group) {
-        return this._filter("filterBy")(group.items, this.searchTerm).length > 0;
-    }
+  hasValuesGroup(groupId){
+    return this.groupsTotals[groupId] > 0;
+  }
 
-    isActive(itemId) {
-        return (this.selected) && this.selected.id === itemId;
-    }
 
-    toogleSelected(item) {
-        this.selected = this.isActive(item.id) ? null : item;
-        this.hideTooltip();
-    }
-
-    columnCount() {
-      if(this._columnCountPromise){
-        this._timeout.cancel(this._columnCountPromise);
+  selectedDataSource(item) {
+    this.hideTooltip();
+    var datasourceOld = this.selected.get();
+    var datasourceNew = item;
+    if (!!datasourceOld) {
+      if (!this.selected.equal(datasourceNew) && this.hasVariables) {
+        this._changemodal.open({ oldDataSource: datasourceOld, newDataSource: datasourceNew })
+          .then(response => {
+            if (response) {
+              this.setDatasource(datasourceNew);
+            }
+          });
+      } else {
+        this.setDatasource(datasourceNew);
       }
-      this._columnCountPromise = this._timeout( () => {
-        let total_items = this._filter("filterBy")(this.datasources.items, this.searchTerm).length;
-        let total_groups = 0;
-
-        // NOTE: REMOVED FOR PERFORMANCE ISSUES
-        // let total_groups = _.reduce(this.datasources.groups, (total, group) => {
-        //   return total += this.shouldShow(group) ? 1 : 0
-        // }, 0 );
-
-        let total = ( total_items + total_groups ) * 36;
-      let $container = angular.element(document.getElementById("content-list"))[0];
-      let rows = Math.ceil(total / $container.clientHeight);
-
-      this.columns = rows > 3 ? "columns-4" : "columns-" + rows;
-        $('content-list').mCustomScrollbar("update");
-      }, 750);
+    } else {
+      this.setDatasource(datasourceNew);
     }
 
-    // checkOverflow() {
-    //     if (this.finishItemRender) {
-    //         let $marker = angular.element(document.getElementById("overflow-marker"))[0];
-    //         let $container = angular.element(document.getElementById("content-list"))[0];
-    //         let $resizableContainer = angular.element(document.getElementById("resizable-container"))[0];
-    //         let $dataSourceList = angular.element(document.getElementById("data-source-list"))[0];
+  }
 
-    //         if (!$marker || !$container) {
-    //             return;
-    //         }
+  setDatasource(item) {
+    this.onChange();
+    this.selected.set(item);
+  }
 
-    //         let markerWidth = $marker.offsetLeft;
-    //         let containerWidth = $container.clientWidth;
 
-    //         let hasHorizontalOverflow = markerWidth > containerWidth;
-    //         let needHorizontalFill = $container.clientHeight > $resizableContainer.clientHeight;
-    //         let action = (!(hasHorizontalOverflow || !needHorizontalFill)) ? "addClass" : "removeClass" ;
+  hideTooltip() {
+    this._ualTooltipService.hide();
+  }
 
-    //         this._animate[action]($dataSourceList, '-horizontal-fill').then(() => {
-    //                 this.hasLoaded = true;
-    //             });
-
-    //     }
-    // }
-
-    hideTooltip(){
-      $(".-tooltip").removeClass("-show-tooltip");
-      $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
-    }
-
-    _initialize() {
-      this.columns = "columns-1";
-      this._datasource.all('group')
+  $onInit() {
+    this._datasource.all()
       .then(response => {
         this.datasources = response.data;
+        this.filterData();
       });
-    }
+  }
 }
 
 export default UalDataSourceController;

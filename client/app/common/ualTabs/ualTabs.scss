@@ -3,10 +3,9 @@
 // LAYOUT
 ual-tabs {
   > .tabs-container {
-    @include gridle(row row-align between);
+    @include gridle( row );
     height: 100%;
-    margin: 0 10px 0 0;
-    padding: 0;
+    margin: 0;
 
     > .tabs-list {
       @include gridle( 5 );
@@ -22,7 +21,7 @@ ual-tabs {
         }
 
         &.active {
-          width: calc(100% + 2px); // remove border for selected
+          width: calc(100% + 2px); // remove right border for selected
           > a {
             padding: 12px 5px 12px 15px;
           }
@@ -38,7 +37,7 @@ ual-tabs {
     }
   }
 }
-// LAYOUT / PROJECTOR
+// LAYOUT:PROJECTOR
 ual-tabs {
   @include gridle_state ( projector ) {
     > .tabs-container {
@@ -52,7 +51,6 @@ ual-tabs {
     }
   }
 }
-
 
 // VARIATIONS
 ual-tabs {
@@ -113,28 +111,36 @@ ual-tabs {
   }
 }
 
-// VARIATIONS
-ual-tabs.-tabs-report {
+// VARIATIONS / INLINE
+ual-tabs.-inline {
   > .tabs-container {
 
     > .tabs-list {
-      @include gridle( 12 );
+      @include gridle( 8 );
       margin: 0;
-      padding: 0;
+      @include -ms-browser() {
+        margin-top: 5px;
+      }
+      padding: 5px 0 0;
       border: none;
       background-color: $color00;
 
       > li {
+        @include font-clanot-book(16);
         display: inline-block;
         width: 150px;
         background-color: $color00;
-        margin-right: 50px;
+        margin-right: 20px;
+        height: 100%;
+        text-align: center;
+        height: 30px;
 
         > a {
-          padding: 12px 0;
+          padding: 0 0 5px 0;
         }
 
         &.active {
+          @include font-clanot-bold(16);
           border: none;
           border-bottom: 4px solid $color03;
         }
@@ -146,6 +152,10 @@ ual-tabs.-tabs-report {
         }
       }
     }
+    > .tabs-extra {
+      @include gridle( 4 );
+      padding: 0;
+    }
 
     > .tabs-content {
       @include gridle( 12 );
@@ -153,7 +163,19 @@ ual-tabs.-tabs-report {
       padding: 0;
       height: 100%;
       border: none;
-      overflow: hidden;
+      overflow-y: hidden;
+      overflow-x: visible;
+      tabs-content {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        // ual-tab {
+        //   position: absolute;
+        //   height: 100%;
+        //   width: 100%;
+        // }
+      }
     }
   }
 }
+

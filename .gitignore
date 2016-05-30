@@ -9,7 +9,9 @@ dist/
 reports/
 .vagrant/
 .vs
-*.sln 
+*.sln
 /gemini.sln
 nbproject/
 .project
+reports
+client/app/app.constants.js

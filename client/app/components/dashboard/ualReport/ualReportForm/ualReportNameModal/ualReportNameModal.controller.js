@@ -1,86 +1,49 @@
 class ualReportNameModalController {
   /*@ngInject*/
-  constructor($rootScope, close, report, reportForm, Report) {
+  constructor($rootScope, close, report) {
     this.name = 'ualReportNameModal';
     this._close = close;
     this.report = report;
-    this.form = reportForm;
-    this._service = {
-            report: Report
-        };
-    this.nameSelected = null;
+    this._rootScope = $rootScope;
 
-    this.duplicatedName = false;
+    this.name = {
+      current: null,
+      duplicated: false
+    }
 
     this._suscriptions = [];
-    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
-    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
-    this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal(false)));
-
+    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () => this._closemodal({status: 'cancel'})));
+    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal({status: 'cancel'})));
+    this._suscriptions.push($rootScope.$on('$stateChangeSuccess', () => this._closemodal({status: 'cancel'})));
   }
 
   _closemodal(response) {
-      this._suscriptions.forEach(suscription => suscription());
-      this._close(response);
+    this._suscriptions.forEach(suscription => suscription());
+    this._close(response);
   }
 
   ok() {
-    let report = this.report;
-    let form = this.form;
-    let modal = this;
+    this.report.name.set(_.clone(this.name.current));
 
-    this.report.name.set(this.nameSelected);
-    this._service.report.save(report).then(
-        function(response){
-            form.saveResult = form.saveResultMessages[0]; form.saveResultMessages.has(0)? form.saveResultMessages.get(0) : form.saveResultMessages.get(null);
-
-            report.reportId.set(response.data.id);
-            form.messageDisplayed = true;
-
-            form.isNewReport = false;
-            form.reportLoaded = true;
-
-            report.untouch();
-            modal._closemodal(true);
-        },
-        function(response){
-            report.name.set(null);
-
-            //UNEXPECTED ERROR
-            if(!response.data || !response.data.errorMessages){
-                form.saveResult = form.saveResultMessages[2];
-                //form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                form.messageDisplayed = true;
-                this._closemodal(false);
-            }else if(response.data.errorMessages.indexOf(form.duplicatedErrorResponse) < 0){
-            //EXPECTED ERROR
-                form.saveResult = form.saveResultMessages[2];
-                // form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-                // form.saveResult.msgText = response.data.errorMessage;
-                form.messageDisplayed = true;
-
-                this._closemodal(false);
-            }else{
-            //DUPLICATED NAME
-                modal.duplicatedName = true;
-                form.messageDisplayed = false;
-            }
+    this.report.save().then(
+      result => {
+        this._closemodal({status: 'success', msg: result.msg, name: this.name.current});
+      },
+      result => {
+        if ( result.code === 2 ) {
+          this.name.duplicated = true;
+        } else if ( result.code === 0 ) {
+          this._closemodal({status: 'success', msg: result.msg, name: this.name.current});
+        } else {
+          this._closemodal({status: 'error', msg: result.msg, name: this.name.current});
         }
-    ).catch(function(){
-        form.saveResult = form.saveResultMessages[2];
-        //form.saveResult = form.saveResultMessages.has(2)? form.saveResultMessages.get(2) : form.saveResultMessages.get(null);
-        form.messageDisplayed = true;
-
-        modal._closemodal(false);
-    }).finally( () => {report.saving.setSaving(false);} );
+      }
+    );
   }
-  cancel(){
-    this._closemodal(false);
+  cancel() {
+    this._closemodal({status: 'cancel'});
   }
 
-  checkKey(event){
-          this.duplicatedName = false;
-  }
 }
 
 export default ualReportNameModalController;

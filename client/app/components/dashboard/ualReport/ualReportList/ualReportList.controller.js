@@ -1,17 +1,52 @@
+import $ from 'jquery';
+import myreports from './ualReportList._myreports.html';
+
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualSignalR) {
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService, $filter, ualSignalR) {
     this._signalR = ualSignalR;
     this._rootScope = $rootScope;
+
+    this._services = {
+      report: Report
+    };
+
     this.reports = [];
     this.selectedReports = [];
-    this._reportService = Report;
+    this.rows = [];
+    this.total = 0;
+    this.loading = true;
     this._deletereportmodal = ualReportListDeleteReportModal;
+    this._ualTooltipService = ualTooltipService;
+    this._filer = $filter;
 
-    this.predicate = 'lastModificationDate';
-    this.reverse = true;
+    this.orders = {
+      'name': {
+        attributes: [(item) => { return item.name.toLowerCase(); }],
+        default: 'asc',
+        direction: ['asc']
+      },
+      'dataSource': {
+        attributes: ['dataSource', 'modificationDate'],
+        default: 'asc',
+        direction: ['asc', 'desc']
+      },
+      'modificationDate': {
+        attributes: ['modificationDate'],
+        default: 'desc',
+        direction: ['desc']
+      }
+    }
+    this.order = 'modificationDate';
 
-    this.saveResult = null;
+    this.tooltips = {
+      'simple': (data) => {
+        return data.text;
+      },
+      'lastupdated': (data) => {
+        return 'Last updated ' + $filter('date')(data.text, 'MM/dd/yy HH:mm', '-0500') + ' CT';
+      }
+    }
 
     this.saveResultMessages = [
       { type: "-success", text: "Item(s) deleted successfully." },
@@ -19,13 +54,24 @@ class UalReportListController {
     ];
   }
 
-  $onInit() {
-    this._reportService.all()
-      .then(response => this.reports = response.data);
-    this._signalR.subscribe("report", "sendReport", (message, report) => {
-      let bannerData = { type: "-success", text: message };
-      console.dir(report);
-      this._rootScope.$broadcast('BANNER.SHOW', bannerData);
+  orderBy(param) {
+    let direction = this.orders[param].default;
+    if (this.order === param) {
+      direction = (this.orders[this.order].direction[0] === 'desc') ? 'asc' : 'desc';
+    } else {
+      this.orders[this.order].direction[0] = this.orders[this.order].default;
+    }
+
+    this.order = param;
+    this.orders[this.order].direction[0] = direction;
+
+    this.refresh();
+  }
+  refresh() {
+    let _order = this.orders[this.order];
+    let _reports = _.sortByOrder(this.reports, _order.attributes, _order.direction);
+    this.rows = _.map(_reports, (item) => {
+      return _.template(myreports)({ item: item });
     });
   }
 
@@ -37,8 +83,46 @@ class UalReportListController {
   sendMessage() {
     this._signalR.notify("report", "updateReport", "Nuevo Reporte desde Gemini", {})
   }
+  $onInit() {
+    // LOAD REPORTS
+    this.loading = true;
+    this._services.report.pages('modificationDate', 'desc')
+    .then(
+      done => {
+        this.loading = false;
+      },
+      reason => {
+        this.loading = false;
+      },
+      progress => {
+        this.reports = this.reports.concat(progress.data.data);
+        this.refresh();
+      }
+    );
 
+    this._signalR.subscribe("report", "sendReport", (message, report) => {
+      let bannerData = { type: "-success", text: message };
+      console.dir(report);
+      this._rootScope.$broadcast('BANNER.SHOW', bannerData);
+    });
+  }
 
+  // TOOLTIP
+  showTooltip(container, data, type = 'simple', position = 'right') {
+    let content = this.tooltips[type](data);
+    this._ualTooltipService.show({
+      container: container,
+      text: content,
+      position: position
+    });
+  }
+  showTruncateTooltip(container, text, type = 'simple', position = 'right') {
+    $("#"+container).hasClass('is-truncated') && this.showTooltip(container, text, type, position);
+  }
+
+  hideTooltip() {
+    this._ualTooltipService.hide();
+  }
 
   isSelected(reportId) {
     return _.some(this.selectedReports, { id: reportId });
@@ -53,115 +137,44 @@ class UalReportListController {
     }
   }
 
-  showTooltipName(id) {
-    if (this.reportNameHasEllipsis(id)) {
-      let tooltip = $("#tooltipName_" + id);
-      tooltip.prop("ual-tooltip-show", true);
+  showError(reply) {
+    if (!reply.data || !reply.data.errorMessages) {
+      this.saveResult = this.saveResultMessages[1];
+    } else {
+      this.saveResult = reply.data.errorMessage;
     }
+    // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
   }
 
-  showTooltipDataSource(id) {
-    let tooltip = $("#tooltipDataSource_" + id);
-    tooltip.prop("ual-tooltip-show", true);
+  deleteReport(id) {
+    this.delete([id]);
   }
-
-  hideTooltip() {
-    $(".-tooltip").removeClass("-show-tooltip");
-    $("[ual-tooltip-show]").prop("ual-tooltip-show", false);
-  }
-
-  reportNameHasEllipsis(id) {
-    let container = $("#reportNameContainer_" + id);
-    let sibling = $("#reportNameItem_" + id);
-    return (window.isIE) ? ((sibling.outerWidth(true) + 45) >= container.width()) : (sibling.width() > container.width());
-  }
-
-  reportNameContainer(id) {
-    return (this.reportNameHasEllipsis(id)) ? "reportNameContainer_" + id : "reportNameItem_" + id;
-  }
-
-  reportNameOffsetRight(id) {
-    return (this.reportNameHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
-  }
-
-  reportNameOffsetTop(id) {
-    return (this.reportNameHasEllipsis(id)) ? 7 : -3;
-  }
-
-  reportDataSourceHasEllipsis(id) {
-    let container = $("#reportDataSourceContainer_" + id);
-    let sibling = $("#reportDataSourceItem_" + id);
-    return (window.isIE) ? ((sibling.outerWidth(true) + 45) >= container.width()) : (sibling.width() > container.width());
-  }
-
-  reportDataSourceContainer(id) {
-    return (this.reportDataSourceHasEllipsis(id)) ? "reportDataSourceContainer_" + id : "reportDataSourceItem_" + id;
-  }
-
-  reportDataSourceOffsetRight(id) {
-    return (this.reportDataSourceHasEllipsis(id)) ? (window.isIE ? 10 : 4) : 15;
-  }
-
-  reportDataSourceOffsetTop(id) {
-    return window.isIE ? -3 : 7;
-  }
-
   deleteSelected() {
+    this.delete(_.map(this.selectedReports, 'id'));
+  }
+
+  delete(ids) {
+    let totalDelete = ids.length;
     this._deletereportmodal.open()
-      .then(response => {
+      .then((response) => {
         if (response) {
-          let ids = _.map(this.selectedReports, 'id');
-          this._reportService.remove(ids)
+          this._services.report.remove(ids)
             .then((reply) => {
+              _.remove(this.selectedReports, (item) => {
+                return _.contains(ids, item.id);
+              });
               _.remove(this.reports, (item) => {
                 return _.contains(ids, item.id);
               });
-              this.selectedReports = [];
+              this.refresh();
+              this.total -= totalDelete;
               // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
+            }, (reply) => this.showError(reply))
             .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
       });
-  }
-
-  deleteReport(report) {
-    this._deletereportmodal.open()
-      .then(response => {
-        if (response) {
-          this._reportService.remove(report.id)
-            .then((reply) => {
-              _.remove(this.reports, { id: report.id });
-              _.remove(this.selectedReports, { id: report.id });
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
-            }, (reply) => {
-              if (!reply.data || !reply.data.errorMessages) {
-                this.saveResult = this.saveResultMessages[1];
-              } else {
-                this.saveResult = reply.data.errorMessage;
-              }
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
-            })
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
-        }
-      });
-  }
-
-  hideDeleteTooltip() {
-    $(".-delete-tooltip").removeClass("-show-tooltip-delete");
-  }
-
-  showDeleteTooltip(reportId) {
-    let tooltip = $("#delete_" + reportId);
-    tooltip.addClass("-show-tooltip-delete");
-
   }
 }
 
 export default UalReportListController;
+

@@ -3,53 +3,63 @@
   color: $font;
   background: $backgorund;
   border: $border;
-  padding: $padding;  
+  padding: $padding;
 }
 
-@mixin button-primary($padding: 7px 19px) { 
+@mixin button-primary($padding: 6px 19px) {
   @include font-clanot-news(16);
   @include ual-button($color01, white, $padding);
-  &:hover { 
+  &:hover {
     @include ual-button(#0a3d66, white, $padding);
   }
-  &.-disabled { 
-    @include ual-button(#99a7b4, #c2ccd3, $padding);
+  &.-disabled {
+    @include ual-button(#99a7b4, #d9e1e7, $padding);
     cursor: default;
-  }    
-}
-
-@mixin button-secondary($padding: 7px 19px) { 
-  @include font-clanot-news(16);
-  @include ual-button($color03, white, $padding);
-  &:hover { 
-    @include ual-button(#81c4ea, white, $padding);
   }
-  &.-disabled { 
-    @include ual-button(#b0d4f1, #deedf9, $padding);
-    cursor: default;
-  }     
 }
 
-@mixin button-terciary($padding: 5px 17px, $border: 2px) { 
+@mixin button-secondary($padding: 6px 19px) {
   @include font-clanot-news(16);
-  @include ual-button(white, $color03, $padding, $border solid $color03);
-  &:hover { 
+  @include ual-button($color02, white, $padding);
+  &:hover {
+    @include ual-button(#6f9bc8, white, $padding);
+  }
+  &.-disabled {
+    @include ual-button(#84aad0, #ced9e9, $padding);
+    cursor: default;
+  }
+}
+
+@mixin button-terciary($padding: 6px 17px, $border: 2px) {
+  @include font-clanot-news(16);
+  @include ual-button(white, $color02, $padding, $border solid $color02);
+  &:hover {
     @include ual-button(white, #81c4ea, $padding, $border solid #81c4ea);
-  }  
-  &.-disabled { 
+  }
+  &.-disabled {
     @include ual-button(white, #b0d4f1, $padding, $border solid #b0d4f1);
     cursor: default;
-  } 
+  }
 }
 
-@mixin button-link($padding: 7px) { 
+
+@mixin button-link($padding: 6px) {
   @include font-clanot-news(16);
   @include ual-button(white, $color06, $padding);
-  &:hover { 
+  &:hover {
     @include ual-button(white, $color07, $padding);
-  }  
-  &.-disabled { 
+  }
+  &.-disabled {
     @include ual-button(white, $color08, $padding);
     cursor: default;
-  } 
+  }
+}
+
+@mixin button-spinner(){
+   background-repeat: no-repeat;
+   background-size: auto calc(100% - 20px);
+   background-position: center;
+   >span{
+     visibility: hidden;
+    }
 }

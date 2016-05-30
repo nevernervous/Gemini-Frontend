@@ -2,12 +2,11 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ualReportListComponent from './ualReportList.component';
 import ualReportListDeleteReportModal from './ualReportListDeleteReportModal/ualReportListDeleteReportModal';
-import ualLabelCount from './ualLabelCount/ualLabelCount';
+import ualTooltipService from '../../../../common/ualTooltip/ualTooltip.service';
 
 let ualReportListModule = angular.module('ualReportList', [
   uiRouter,
-  ualReportListDeleteReportModal.name,
-  ualLabelCount.name
+  ualReportListDeleteReportModal.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
@@ -20,6 +19,8 @@ let ualReportListModule = angular.module('ualReportList', [
     });
 })
 
-.component('ualReportList', ualReportListComponent);
+.component('ualReportList', ualReportListComponent)
+.factory('ualTooltipService',ualTooltipService);
 
 export default ualReportListModule;
+

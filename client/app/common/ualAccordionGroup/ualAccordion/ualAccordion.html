@@ -1,0 +1,8 @@
+<li class="ual-accordion" ng-class="accordion.status">
+  <div class="accordion-title">
+    <span ng-transclude="title"></span><i ng-click="vm.toggle()"></i>
+  </div>
+  <div class="accordion-content" ng-transclude="content" ng-if="!vm.closed"></div>
+</li>
+
+
