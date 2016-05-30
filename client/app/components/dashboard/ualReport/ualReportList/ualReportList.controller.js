@@ -3,8 +3,7 @@ import myreports from './ualReportList._myreports.html';
 
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService, $filter, ualSignalR) {
-    this._signalR = ualSignalR;
+  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService, $filter) {
     this._rootScope = $rootScope;
 
     this._services = {
@@ -75,14 +74,6 @@ class UalReportListController {
     });
   }
 
-  $onDestroy() {
-    console.log("Destroing ReportList.Controller");
-    this._signalR.unsubscribe("report", "sendReport");
-  }
-
-  sendMessage() {
-    this._signalR.notify("report", "updateReport", "Nuevo Reporte desde Gemini", {})
-  }
   $onInit() {
     // LOAD REPORTS
     this.loading = true;
@@ -99,12 +90,6 @@ class UalReportListController {
         this.refresh();
       }
     );
-
-    this._signalR.subscribe("report", "sendReport", (message, report) => {
-      let bannerData = { type: "-success", text: message };
-      console.dir(report);
-      this._rootScope.$broadcast('BANNER.SHOW', bannerData);
-    });
   }
 
   // TOOLTIP
