@@ -20,7 +20,7 @@
               <i class="ion-ios-download-outline"></i> <span class="-disabled">Export</span>
             </span>
           </div>
-          <label class="list-count"><strong>{{vm.total}} reports available</strong></label>
+          <label class="list-count" ng-click="vm.sendMessage()"><strong>{{vm.total}} reports available</strong></label>
         </div>
         <div class="list-content">
           <table ual-clusterize-table ng-class="{'-loading': vm.loading, '-empty': (vm.rows.length == 0)}" rows="vm.rows" empty-message="No reports created." on-scroll="vm.hideTooltip()">
