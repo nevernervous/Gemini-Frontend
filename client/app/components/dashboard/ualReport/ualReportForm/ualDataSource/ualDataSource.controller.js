@@ -85,7 +85,7 @@ class UalDataSourceController {
   }
 
   $onInit() {
-    this._datasource.all('group')
+    this._datasource.all()
       .then(response => {
         this.datasources = response.data;
         this.filterData();

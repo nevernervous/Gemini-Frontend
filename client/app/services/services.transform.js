@@ -10,7 +10,7 @@ let servicesTransform = function ($http) {
     simple: (response) => {
       return response ? response.data : response;
     },
-    group: (response) => {
+    sort: (response) => {
       var options = {
         attributes: ['group.order','group.groupId', 'order'],
         direction: ['asc', 'asc', 'asc']
