@@ -1,6 +1,6 @@
 class UalVariablesLayoutController {
   /*@ngInject*/
-  constructor(ualTooltipService, $rootScope, $timeout, $filter, ualVariablesDeteleAllModal) {
+  constructor($rootScope, $timeout, $filter, ualVariablesDeteleAllModal, ualTooltipService) {
     this.name = 'ualVariablesLayout';
     this._ualTooltipService = ualTooltipService;
     this._deleteallmodal = ualVariablesDeteleAllModal;

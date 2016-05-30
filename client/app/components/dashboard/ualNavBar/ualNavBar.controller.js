@@ -3,7 +3,7 @@ import menu from './menu.png';
 
 class UalNavBarController {
   /*@ngInject*/
-  constructor(ualMainMenu, ualNavBar, Session, logoutModal, Report, ualUnsafeReportModal) {
+  constructor(Report, ualMainMenu, ualNavBar, Session, logoutModal, ualUnsafeReportModal) {
     this.name = 'ualNavBar';
     this.user = user;
     this.menu = menu;

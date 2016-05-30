@@ -1,6 +1,7 @@
 class UalAccordionGroupController {
   /*@ngInject*/
   constructor($scope) {
+    this.name = "ualAccordionGroup";
     this.accordions = {};
     this.active = null;
     this._scope = $scope;

@@ -19,7 +19,6 @@ let servicesTransform = function ($http) {
 
       return result;
     }
-
   }
 
   let get = (key) => {

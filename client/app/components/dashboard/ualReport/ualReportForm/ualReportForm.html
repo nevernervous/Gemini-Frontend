@@ -14,7 +14,7 @@
     <ual-accordion id="report-datasource" ng-disabled="false">
       <ual-accordion-title>Data source:
         <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source' }}</strong>
-        <small>{{ vm.report.datasource.get() ? 'Last updated date ' + (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
+        <small>{{ vm.report.datasource.get() ? 'Last updated ' + (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
       <ual-accordion-content>
         <ual-data-source on-change="vm.onChangeDataSource()" selected="vm.report.datasource" has-variables="vm.hasVariables()">
         </ual-data-source>
@@ -23,7 +23,8 @@
     <ual-accordion id="report-variables" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Variables:
         <strong>
-           {{vm.report.variables.get().length > 0? vm.report.variables.get().length: 'No'}} variables and {{vm.report.aggregators.get().length >0 ? vm.report.aggregators.get().length : 'no'}} aggregators
+          {{vm.report.aggregators.get().length >0 ? vm.report.aggregators.get().length : 'No'}} aggregators and
+          {{vm.report.variables.get().length > 0? vm.report.variables.get().length: 'no'}} variables
         </strong>
         <small>selected</small>
       </ual-accordion-title>

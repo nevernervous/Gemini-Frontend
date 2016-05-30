@@ -181,15 +181,15 @@ class UalReportFormController {
     $(window).bind('beforeunload', this.beforeClose);
 
   }
-
+  hasVariables() {
+    return (this.report.variables.hasValues() || this.report.filters.hasValues() || this.report.aggregators.hasValues());
+  }
   // UNLOAD
   _unsuscribe() {
     this._suscriptions.forEach(suscription => suscription());
   }
 
   onChangeDataSource() {
-    this.report.variables.set([]);
-    this.report.aggregators.set([]);
     this.selectedTab = 'report-variables';
   }
 

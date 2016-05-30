@@ -1,22 +1,28 @@
 class UalDataSourceController {
   /*@ngInject*/
+
   constructor($rootScope, ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, ualTooltipService, $timeout) {
+    this.name = 'ualDataSource';
+
     this._datasource = DataSource;
     this._cancelmodal = ualDataSourceCancelModal;
     this._changemodal = ualDataSourceChangeModal;
     this._ualTooltipService = ualTooltipService;
     this._timeout = $timeout;
 
+    this._timeout = $timeout;
+
     this.searchTerm;
     this.datasources;
     this.rootScope = $rootScope;
     this.selected;
+
     this.groupsTotals = [];
   }
 
 
   isActive(itemId) {
-    return !!this.selected.get() && this.selected.get().id === itemId;
+    return !!this.selected && !!this.selected.get() && this.selected.get().id === itemId;
   }
 
   isFirstInGroup(index) {
@@ -80,6 +86,26 @@ class UalDataSourceController {
     this.selected.set(item);
   }
 
+  filterData() {
+    this._timeout(() => {
+      this.total = 0;
+      this.groups = _.map(this.datasources.groups, (group) => {
+        let totalByGroup = 0;
+        const filtered = _.forEach(group.items, (item) => {
+          let noFilter = !this.searchTerm || _.isEmpty(this.searchTerm);
+          let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+          item.show = noFilter || hasMatch;
+          totalByGroup += item.show ? 1 : 0;
+        });
+        this.total += totalByGroup;
+        return {
+          data: group.data,
+          items: filtered,
+          total: totalByGroup
+        }
+      });
+    }, 0);
+  }
 
   hideTooltip() {
     this._ualTooltipService.hide();
