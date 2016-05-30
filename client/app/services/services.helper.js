@@ -3,7 +3,7 @@ import angular from 'angular';
 let servicesHelper = function ($http, $q) {
   "ngInject";
 
-  let _stratey = (iterator) => {
+  let _strategy = (iterator) => {
     if ( _.isArray(iterator) ) {
       return {
         _head(iterator) {  return _.head(iterator) },
@@ -24,7 +24,7 @@ let servicesHelper = function ($http, $q) {
 
   let serialize = function(elements) {
     let deferred = $q.defer();
-    let hooks = _stratey(elements);
+    let hooks = _strategy(elements);
 
     if ( hooks ) {
 

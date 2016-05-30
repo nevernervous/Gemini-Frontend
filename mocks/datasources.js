@@ -78,7 +78,7 @@ module.exports = {
               "groupName": "Group Name 3",
               "order": 1
             },
-            "order": 8
+            "order": 20
           },
           {
             "id": 8,
@@ -188,7 +188,7 @@ module.exports = {
                   "groupName": "Group Name 3",
                   "order": 1
                 },
-                "order": 20
+                "order": 1
               },
                   {
                     "id": 18,

@@ -41,8 +41,8 @@ class UalVariablesLayoutController {
     this._ualTooltipService.hide();
   }
 
-  addVariables() { this.addSelection('variables') }
-  addAggregators() { this.addSelection('aggregators') }
+  addVariables() { this.addSelection.bind(this)('variables') }
+  addAggregators() { this.addSelection.bind(this)('aggregators') }
 
   addSelection(container) {
     let tmp = this[container].get();
@@ -91,7 +91,7 @@ class UalVariablesLayoutController {
   }
   onDrop(container) {
     return (id, binId) => {
-      if (((/agg\_/i).test(id) && !(/agg\_/i).test(binId)) || (!(/agg\_/i).test(id) && (/agg\_/i).test(binId))) return false;
+      if(id.split("-")[1] != binId.split("-")[1]) return false;
       let from = _.parseInt(id.replace("agg_", "").split('_')[0]) - 1;
       let to = _.parseInt(binId.replace("agg_", "").split('_')[0]) - 1;
       let variable = _.clone(this[container].get()[from]);

@@ -5,6 +5,8 @@ class UalVariableSelectedItemController {
   constructor(ualTooltipService) {
     this.name = 'ualVariableSelectedItem';
     this._ualTooltipService=ualTooltipService;
+
+    this.variableId = this.variableOrder;
   }
 
   isValid(order) {
@@ -13,17 +15,17 @@ class UalVariableSelectedItemController {
   }
 
   onMouseover() {
-    $('#' + this.variableId+"_selected_container").find('ual-variable-selected-item').attr("draggable", true);
+    $('#' + this.variableOrder+"_selected_container-" + this.variableType ).find('ual-variable-selected-item').attr("draggable", true);
   }
   onMouseleave() {
-    $('#' + this.variableId+"_selected_container").find('ual-variable-selected-item').attr("draggable", false);
+    $('#' + this.variableOrder+"_selected_container-" + this.variableType ).find('ual-variable-selected-item').attr("draggable", false);
   }
 
   onBlur(event, item, order) {
-    let position = _.parseInt(isNaN(this.variableId.split('_')[1])?this.variableId.split('_')[0]:this.variableId.split('_')[1]);
+    let position = this.variableId;
     if ( position !== order && this.isValid(order)) {
       this.variableOrder = _.parseInt(order);
-      this.cbChange.bind(this.cbBind)(item, order);
+      this.cbChange(item, order);
     } else {
       this.variableOrder = position;
     }
@@ -32,7 +34,7 @@ class UalVariableSelectedItemController {
 
   onChange(order,id) {
     if ( !this.isValid(order) && order != "") {
-      let container = this.prefix+id+"_variable-order";
+      let container = this.variableId+"_variable-order-"+this.variableType;
       this._ualTooltipService.show({
         container:container,
         text:`Only numeric values between 1 and ${this.variableTotal} are allowed. Please re-enter a valid value.`,
