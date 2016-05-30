@@ -1,6 +1,7 @@
 class UalDataSourceChangeModalController {
   /*@ngInject*/
   constructor($rootScope, close, oldDataSource, newDataSource) {
+    this.name = 'ualDataSourceChangeModal';
     this._close = close;
     this.oldDataSource = oldDataSource;
     this.newDataSource = newDataSource;

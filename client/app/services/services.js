@@ -14,7 +14,7 @@ let sessionModule = angular.module('app.services', [
   Configuration.name,
   Datasource.name,
   Aggregator.name,
-  Report.name,
+  Report.name
 ])
 
 .factory('ServicesTransform', servicesTransform)

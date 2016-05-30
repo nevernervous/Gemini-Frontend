@@ -1,7 +1,5 @@
 import UalVariablesLayoutModule from './ualVariablesLayout'
 import UalVariablesLayoutController from './ualVariablesLayout.controller';
-import UalVariablesLayoutComponent from './ualVariablesLayout.component';
-import UalVariablesLayoutTemplate from './ualVariablesLayout.html';
 
 describe('UalVariablesLayout', () => {
   let $rootScope, makeController;
@@ -10,16 +8,9 @@ describe('UalVariablesLayout', () => {
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalVariablesLayoutController();
+      return new UalVariablesLayoutController($rootScope);
     };
   }));
-
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-    it('has a name property [REMOVE]', () => {
-      expect(UalVariablesLayoutModule).to.have.property('name');
-    });          
-  });
 
   describe('Controller', () => {
     // controller specs
@@ -29,29 +20,4 @@ describe('UalVariablesLayout', () => {
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-variables-layout/>').html(UalVariablesLayoutTemplate);
-    it('has at least one element [REMOVE]', () => {
-      expect(template.children()).to.have.length.of.at.least(1);
-    });
-  });
-
-  describe('Component', () => {
-      // component/directive specs
-      let component = UalVariablesLayoutComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(UalVariablesLayoutTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalVariablesLayoutController);
-      });
-  });
 });

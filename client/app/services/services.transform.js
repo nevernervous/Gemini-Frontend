@@ -10,23 +10,14 @@ let servicesTransform = function ($http) {
     simple: (response) => {
       return response ? response.data : response;
     },
-    group: (response) => {
+    sort: (response) => {
+      var options = {
+        attributes: ['group.order','group.groupId', 'order'],
+        direction: ['asc', 'asc', 'asc']
+      };
+      let result = _.sortByOrder(response, options.attributes, options.direction);
 
-      let groups = _.chain(response)
-        .map('group')
-        .uniq('groupId')
-        .map(group => {
-          return {
-            data: group,
-            items: _.filter(response, 'group.groupId', group.groupId)
-          }
-        })
-        .value();
-
-      return {
-        groups: groups,
-        items: response
-      }
+      return result;
     }
   }
 
