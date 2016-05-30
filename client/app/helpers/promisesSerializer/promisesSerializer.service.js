@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-let servicesHelper = function ($http, $q) {
+let promisesSerializer = function ($http, $q) {
   "ngInject";
 
   let _strategy = (iterator) => {
@@ -56,4 +56,4 @@ let servicesHelper = function ($http, $q) {
 
 
 
-export default servicesHelper;
+export default promisesSerializer;
