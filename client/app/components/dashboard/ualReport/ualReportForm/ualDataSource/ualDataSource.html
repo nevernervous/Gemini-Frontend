@@ -9,7 +9,6 @@
     </div>
   </div>
   <div class="content-list" ng-if="vm.datasources" ual-on-scroll="vm.hideTooltip()">
-     {{vm.groupsTotals[item.group.groupId]}}
     <div class="datasource-group" ng-repeat-start="item in vm.datasources" ng-if="vm.isFirstInGroup($index) && vm.hasValuesGroup(item.group.groupId)">
       <span>{{item.group.groupName}}</span>
     </div>
