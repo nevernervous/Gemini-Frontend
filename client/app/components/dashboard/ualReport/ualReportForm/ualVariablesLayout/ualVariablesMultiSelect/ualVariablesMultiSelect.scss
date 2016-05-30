@@ -19,13 +19,15 @@ ual-variables-multi-select {
 //VARIANTS
 ual-variables-multi-select {
   .-avaiable-variables{
-     -moz-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    @include font-clanot-book(14);
     .selected{
       background-color: $color10;
       font-weight: bold;
       outline: 1px solid $color00;
+      @include font-clanot-bold(14);
     }
   }
 }
