@@ -30,7 +30,6 @@ class ualReportNameModalController {
         this._closemodal({status: 'success', msg: result.msg, name: this.name.current});
       },
       result => {
-        console.log(result);
         if ( result.code === 2 ) {
           this.name.duplicated = true;
         } else if ( result.code === 0 ) {

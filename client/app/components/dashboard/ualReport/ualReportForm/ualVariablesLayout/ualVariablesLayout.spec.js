@@ -1,23 +1,23 @@
-import UalVariablesGroupModule from './ualVariablesGroup'
-import UalVariablesGroupController from './ualVariablesGroup.controller';
-import UalVariablesGroupComponent from './ualVariablesGroup.component';
-import UalVariablesGroupTemplate from './ualVariablesGroup.html';
+import UalVariablesLayoutModule from './ualVariablesLayout'
+import UalVariablesLayoutController from './ualVariablesLayout.controller';
+import UalVariablesLayoutComponent from './ualVariablesLayout.component';
+import UalVariablesLayoutTemplate from './ualVariablesLayout.html';
 
-describe('UalVariablesGroup', () => {
+describe('UalVariablesLayout', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalVariablesGroupModule.name));
+  beforeEach(window.module(UalVariablesLayoutModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalVariablesGroupController();
+      return new UalVariablesLayoutController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalVariablesGroupModule).to.have.property('name');
+      expect(UalVariablesLayoutModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalVariablesGroup', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-variables-group/>').html(UalVariablesGroupTemplate);
+    const template = $('<ual-variables-layout/>').html(UalVariablesLayoutTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalVariablesGroup', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalVariablesGroupComponent;
+      let component = UalVariablesLayoutComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalVariablesGroupTemplate);
+        expect(component.template).to.equal(UalVariablesLayoutTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalVariablesGroup', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalVariablesGroupController);
+        expect(component.controller).to.equal(UalVariablesLayoutController);
       });
   });
 });

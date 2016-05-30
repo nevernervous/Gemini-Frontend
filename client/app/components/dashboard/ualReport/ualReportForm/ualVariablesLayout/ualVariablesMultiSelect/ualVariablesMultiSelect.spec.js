@@ -1,23 +1,23 @@
-import UalDataSourceGroupModule from './ualDataSourceGroup'
-import UalDataSourceGroupController from './ualDataSourceGroup.controller';
-import UalDataSourceGroupComponent from './ualDataSourceGroup.component';
-import UalDataSourceGroupTemplate from './ualDataSourceGroup.html';
+import UalVariablesMultiSelectModule from './ualVariablesMultiSelect'
+import UalVariablesMultiSelectController from './ualVariablesMultiSelect.controller';
+import UalVariablesMultiSelectComponent from './ualVariablesMultiSelect.component';
+import UalVariablesMultiSelectTemplate from './ualVariablesMultiSelect.html';
 
-describe('UalDataSourceGroup', () => {
+describe('UalVariablesMultiSelect', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalDataSourceGroupModule.name));
+  beforeEach(window.module(UalVariablesMultiSelectModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalDataSourceGroupController();
+      return new UalVariablesMultiSelectController();
     };
   }));
 
   describe('Module', () => {
     // top-level specs: i.e., routes, injection, naming
     it('has a name property [REMOVE]', () => {
-      expect(UalDataSourceGroupModule).to.have.property('name');
+      expect(UalVariablesMultiSelectModule).to.have.property('name');
     });          
   });
 
@@ -32,7 +32,7 @@ describe('UalDataSourceGroup', () => {
   describe('Template', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-data-source-group/>').html(UalDataSourceGroupTemplate);
+    const template = $('<ual-variables-multi-select/>').html(UalVariablesMultiSelectTemplate);
     it('has at least one element [REMOVE]', () => {
       expect(template.children()).to.have.length.of.at.least(1);
     });
@@ -40,10 +40,10 @@ describe('UalDataSourceGroup', () => {
 
   describe('Component', () => {
       // component/directive specs
-      let component = UalDataSourceGroupComponent;
+      let component = UalVariablesMultiSelectComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(UalDataSourceGroupTemplate);
+        expect(component.template).to.equal(UalVariablesMultiSelectTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -51,7 +51,7 @@ describe('UalDataSourceGroup', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalDataSourceGroupController);
+        expect(component.controller).to.equal(UalVariablesMultiSelectController);
       });
   });
 });

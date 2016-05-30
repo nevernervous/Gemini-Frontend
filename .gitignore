@@ -14,3 +14,4 @@ reports/
 nbproject/
 .project
 reports
+client/app/app.constants.js

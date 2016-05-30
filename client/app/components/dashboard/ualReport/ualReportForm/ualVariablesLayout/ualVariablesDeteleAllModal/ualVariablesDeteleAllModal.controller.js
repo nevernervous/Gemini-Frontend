@@ -1,12 +1,14 @@
 class UalVariablesDeteleAllModalController {
   /*@ngInject*/
-  constructor($rootScope, close) {
+  constructor($rootScope, close, deleting) {
     this.name = 'ualVariablesDeteleAllModal';
     this._close = close;
 
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
     this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
+
+    this.deleting = deleting;
   }
 
   _closemodal(response) {

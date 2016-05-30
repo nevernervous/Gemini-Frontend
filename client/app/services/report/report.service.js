@@ -12,6 +12,24 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
     return ReportObject;
   };
 
+  let pages = (sortColumn, sortDirection) => {
+    function* generator() {
+      let hasMore = true;
+      let page = 1;
+
+      while (hasMore) {
+        yield $http(_query(page, sortColumn, sortDirection))
+        .then( response => {
+          hasMore = (( response.data.pageNumber * pageSize ) <  response.data.totalCount );
+          return response;
+        });
+        page++;
+      }
+    }
+
+    return ServicesHelper.serialize(generator());
+  }
+
   let all = (fromPage, total, sortColumn, sortDirection) => {
     let requests = [];
     let current = (fromPage - 1) * pageSize;
@@ -71,6 +89,7 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
     create,
     currentReport,
     first,
+    pages,
     remove,
     getById
   };
