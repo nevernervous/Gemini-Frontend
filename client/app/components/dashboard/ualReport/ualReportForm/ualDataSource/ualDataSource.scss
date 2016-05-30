@@ -35,23 +35,8 @@ ual-data-source {
           width: 100%;
         }
       }
-
-      .content-list {
-        @include gridle(row row-align middle);
-        max-height: 300px;
-        margin: 5px 0;
-        padding: 5px 0;
-        .datasource-group {
-          @include gridle(12);
-          > span{
-              padding: 12px 5px 2px 14px;
-              display: inline-block;
-              width: 100%;
-          }
-        }
-        ual-data-source-item {
-            @include gridle(3);
-        }
+      ual-data-source-item {
+        @include gridle(3);
       }
     }
   }

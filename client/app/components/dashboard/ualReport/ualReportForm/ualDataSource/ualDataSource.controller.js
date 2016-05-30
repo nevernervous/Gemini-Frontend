@@ -89,20 +89,16 @@ class UalDataSourceController {
   filterData() {
     this._timeout(() => {
       this.total = 0;
-      this.groups = _.map(this.datasources.groups, (group) => {
-        let totalByGroup = 0;
-        const filtered = _.forEach(group.items, (item) => {
-          let noFilter = !this.searchTerm || _.isEmpty(this.searchTerm);
-          let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
-          item.show = noFilter || hasMatch;
-          totalByGroup += item.show ? 1 : 0;
-        });
-        this.total += totalByGroup;
-        return {
-          data: group.data,
-          items: filtered,
-          total: totalByGroup
-        }
+      this.groupsTotals = [];
+      _.forEach(this.datasources, (item) => {
+        let noFilter = !this.searchTerm || _.isEmpty(this.searchTerm);
+        let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+        item.show = noFilter || hasMatch;
+        this.total  += sum;
+        let groupId = item.group.groupId;
+        let sum = item.show ? 1 : 0;
+        let groupCount = this.groupsTotals[groupId] || 0;
+        this.groupsTotals[groupId] = groupCount + sum;
       });
     }, 0);
   }
@@ -114,6 +110,7 @@ class UalDataSourceController {
   $onInit() {
     this._datasource.all()
       .then(response => {
+        console.log(response.data);
         this.datasources = response.data;
         this.filterData();
       });
