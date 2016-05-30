@@ -4,6 +4,12 @@
     "cache": false,
     "fallback": {
       "endpoint": "http://localhost:8889/api"
+    },
+    "signalR": {
+        "logging": true,
+        "endpoint": "http://localhost:8098/signalr",
+        "transport": ["longPolling"],
+        "autoConnect": true
     }
   }
 }
