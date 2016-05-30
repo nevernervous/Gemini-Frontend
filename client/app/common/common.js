@@ -13,6 +13,7 @@ import ualRender from './ualRender/ualRender';
 import ualMessageBanner from './ualMessageBanner/ualMessageBanner';
 import ualTabs from './ualTabs/ualTabs';
 import ualTable from './ualTable/ualTable';
+import ualSignalR from './ualSignalR/ualSignalR';
 import ualClusterizeTable from './ualClusterizeTable/ualClusterizeTable';
 import ualEllipsis from './ualEllipsis/ualEllipsis';
 import ualAccordionGroup from './ualAccordionGroup/ualAccordionGroup';
@@ -33,6 +34,7 @@ let commonModule = angular.module('app.common', [
   ualMessageBanner.name,
   ualTabs.name,
   ualTable.name,
+  ualSignalR.name,
   ualClusterizeTable.name,
   ualEllipsis.name,
   ualAccordionGroup.name,

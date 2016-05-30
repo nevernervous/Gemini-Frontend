@@ -11,6 +11,7 @@ class UalDataSourceController {
     this.datasources;
     this.rootScope = $rootScope;
     this.selected;
+    this.groupsTotals = [];
   }
 
 
