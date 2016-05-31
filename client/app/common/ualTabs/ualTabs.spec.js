@@ -1,7 +1,5 @@
 import UalTabsModule from './ualTabs'
 import UalTabsController from './ualTabs.controller';
-import UalTabsComponent from './ualTabs.component';
-import UalTabsTemplate from './ualTabs.html';
 
 describe('UalTabs', () => {
   let $rootScope, makeController;
@@ -14,13 +12,6 @@ describe('UalTabs', () => {
     };
   }));
 
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-    it('has a name property [REMOVE]', () => {
-      expect(UalTabsModule).to.have.property('name');
-    });          
-  });
-
   describe('Controller', () => {
     // controller specs
     it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
@@ -29,29 +20,4 @@ describe('UalTabs', () => {
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-tabs/>').html(UalTabsTemplate);
-    it('has at least one element [REMOVE]', () => {
-      expect(template.children()).to.have.length.of.at.least(1);
-    });
-  });
-
-  describe('Component', () => {
-      // component/directive specs
-      let component = UalTabsComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(UalTabsTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalTabsController);
-      });
-  });
 });

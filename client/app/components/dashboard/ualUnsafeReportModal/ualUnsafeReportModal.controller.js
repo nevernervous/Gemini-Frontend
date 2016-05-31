@@ -1,6 +1,6 @@
 class ualReportNameModalController {
   /*@ngInject*/
-  constructor($timeout, $q, $rootScope, close, $state) {
+  constructor($rootScope, $timeout, $q, close, $state) {
     this.name = 'ualReportNameModal';
     this._close = close;
     this._q = $q;

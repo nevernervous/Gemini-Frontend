@@ -1,25 +1,27 @@
 import LoginFormModule from './loginForm'
 import LoginFormController from './loginForm.controller';
-import LoginFormComponent from './loginForm.component';
-import LoginFormTemplate from './loginForm.html';
+import Session from '~/services/session/session.service';
+import TokenService from '~/services/session/token.service';
+
+const Configuration = {
+  get: () => {}
+}
+const Properties = {
+  endpoint: ''
+}
+
 
 describe('LoginForm', () => {
   let $rootScope, makeController;
 
   beforeEach(window.module(LoginFormModule.name));
-  beforeEach(inject((_$rootScope_) => {
+  beforeEach(inject((_$rootScope_, $window, $timeout) => {
     $rootScope = _$rootScope_;
+    let Token = TokenService(Configuration, $rootScope, $window, $timeout);
     makeController = () => {
-      return new LoginFormController();
+      return new LoginFormController(Session(Properties, Token), Configuration);
     };
   }));
-
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-    it('has a name property [REMOVE]', () => {
-      expect(LoginFormModule).to.have.property('name');
-    });          
-  });
 
   describe('Controller', () => {
     // controller specs
@@ -29,31 +31,4 @@ describe('LoginForm', () => {
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<login-form/>').html(LoginFormTemplate);
-    it('has name in template [REMOVE]', () => {
-      expect(template.children()).to.have.length(1);
-      template.should.have.descendants('login-form-input');
-      template.should.have.descendants('login-form-submit');
-    });    
-  });
-
-  describe('Component', () => {
-      // component/directive specs
-      let component = LoginFormComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(LoginFormTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(LoginFormController);
-      });
-  });
 });
