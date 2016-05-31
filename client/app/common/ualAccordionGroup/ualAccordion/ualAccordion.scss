@@ -5,7 +5,6 @@
 .ual-accordion {
   margin-top: 1px;
   position: relative;
-
   .accordion-title {
     padding: 10px 8px 10px 14px;
   }
@@ -31,7 +30,7 @@
 
 // VARIANT / OPEN
 .ual-accordion.open {
-
+  height: calc(100% - 70px);
   .accordion-title {
     background-color: $color03;
     border-left-color: $color02;
@@ -41,7 +40,11 @@
     @extend .ion-ios-arrow-up;
   }
   .accordion-content {
-    @include transition(all .5s ease-out);
+    @include transition(all .2s ease-out);
+    height: 100%;
+    .ual-accordion-content{
+      height: 100%;
+    }
   }
 }
 
@@ -61,6 +64,7 @@
     padding-top: 0;
     padding-bottom: 0;
     max-height: 0;
+    height: 0;
     overflow: hidden;
   }
 }
