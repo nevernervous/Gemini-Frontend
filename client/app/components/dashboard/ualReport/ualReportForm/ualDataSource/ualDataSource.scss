@@ -1,6 +1,7 @@
 @import '../../../../../common/common';
 // LAYOUT
 ual-data-source {
+  height: 100%;
   margin-left: -23px;
   margin-right: -12px;
   display: block;
@@ -14,17 +15,15 @@ ual-data-source {
     }
   }
   .content {
+    height: 89%;
     padding: 4px 0;
-    min-height: 310px;
-    height: 310px;
     .empty-search,
     .loading-message {
-      min-height: 300px;
-      height: 300px;
+      height: 100%;
     }
     .content-list {
       @include gridle(row row-align middle);
-      max-height: 300px;
+      height: 100%;
       margin: 5px 0;
       padding: 5px 0;
       .datasource-group {
@@ -32,7 +31,6 @@ ual-data-source {
         > span {
           padding: 12px 5px 2px 14px;
           display: inline-block;
-          width: 100%;
         }
       }
       ual-data-source-item {
