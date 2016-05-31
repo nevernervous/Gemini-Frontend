@@ -1,9 +1,11 @@
-let datasourceService = function (Properties, ServicesTransform, $http, $q) {
+
+let datasourceService = function (Properties, $http, $q, ServicesTransform) {
+
   "ngInject";
   const endpoint = Properties.endpoint + '/DataSources';
 
   let all = () => {
-    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('group')];
+    let transformation = [ServicesTransform.get('simple'), ServicesTransform.get('sort')];
     return $http.get(endpoint, {
       cache: Properties.cache,
       transformResponse: ServicesTransform.generate(transformation)

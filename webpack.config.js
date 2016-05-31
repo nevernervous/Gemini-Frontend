@@ -8,6 +8,8 @@ const styleLoad = [
   'font?format[]=truetype&format[]=woff&format[]=embedded-opentype'
 ];
 
+const client_path = path.resolve(__dirname, 'client');
+
 module.exports = {
   devtool: 'sourcemap',
   entry: {},
@@ -34,7 +36,8 @@ module.exports = {
 
     new webpack.ProvidePlugin({
         $: "jquery",
-        jQuery: "jquery"
+        jQuery: "jquery",
+        _: "lodash"
     }),
 
     // Automatically move all modules defined outside of application directory to vendor bundle.
@@ -42,7 +45,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
-        return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
+        return module.resource && module.resource.indexOf(client_path) === -1;
       }
     })
   ]

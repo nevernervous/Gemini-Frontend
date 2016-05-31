@@ -1,26 +1,64 @@
-import $ from 'jquery';
-
 class UalDataSourceController {
   /*@ngInject*/
-  constructor($rootScope,ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, $filter, ualTooltipService) {
+
+  constructor($rootScope, ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, ualTooltipService, $timeout) {
+    this.name = 'ualDataSource';
+
     this._datasource = DataSource;
     this._cancelmodal = ualDataSourceCancelModal;
-    this._filter = $filter;
     this._changemodal = ualDataSourceChangeModal;
     this._ualTooltipService = ualTooltipService;
+    this._timeout = $timeout;
 
-    this.searchTerm = {};
+    this._timeout = $timeout;
+
+    this.searchTerm;
     this.datasources;
     this.rootScope = $rootScope;
     this.selected;
-  }
-  shouldShow(group) {
-    return this._filter("filterBy")(group.items, this.searchTerm).length > 0;
+
+    this.groupsTotals = [];
   }
 
+
   isActive(itemId) {
-    return !!this.selected.get() && this.selected.get().id === itemId;
+    return !!this.selected && !!this.selected.get() && this.selected.get().id === itemId;
   }
+
+  isFirstInGroup(index) {
+    let result = false;
+    var currentItem = this.datasources[index];
+    var previousItem = index >= 1 ? this.datasources[index - 1] : undefined;
+    if (!previousItem || previousItem.group.groupId != currentItem.group.groupId) {
+      result = true;
+    }
+    return result;
+  }
+
+  filterData() {
+    this._timeout(() => {
+      this.total = 0;
+      this.groupsTotals = [];
+      _.forEach(this.datasources, (item) => {
+        let noFilter = !this.searchTerm || _.isEmpty(this.searchTerm);
+        let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+        item.show = noFilter || hasMatch;
+
+        this.total  += sum;
+        let groupId = item.group.groupId;
+
+        let sum = item.show ? 1 : 0;
+        let groupCount = this.groupsTotals[groupId] || 0;
+        this.groupsTotals[groupId] = groupCount + sum;
+
+      });
+    }, 0);
+  }
+
+  hasValuesGroup(groupId){
+    return this.groupsTotals[groupId] > 0;
+  }
+
 
   selectedDataSource(item) {
     this.hideTooltip();
@@ -48,15 +86,33 @@ class UalDataSourceController {
     this.selected.set(item);
   }
 
+  filterData() {
+    this._timeout(() => {
+      this.total = 0;
+      this.groupsTotals = [];
+      _.forEach(this.datasources, (item) => {
+        let noFilter = !this.searchTerm || _.isEmpty(this.searchTerm);
+        let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+        item.show = noFilter || hasMatch;
+        this.total  += sum;
+        let groupId = item.group.groupId;
+        let sum = item.show ? 1 : 0;
+        let groupCount = this.groupsTotals[groupId] || 0;
+        this.groupsTotals[groupId] = groupCount + sum;
+      });
+    }, 0);
+  }
 
   hideTooltip() {
     this._ualTooltipService.hide();
   }
 
   $onInit() {
-    this._datasource.all('group')
+    this._datasource.all()
       .then(response => {
+        console.log(response.data);
         this.datasources = response.data;
+        this.filterData();
       });
   }
 }

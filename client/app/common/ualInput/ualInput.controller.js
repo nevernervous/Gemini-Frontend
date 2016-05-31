@@ -1,6 +1,7 @@
 class UalInputController {
   /*@ngInject*/
   constructor() {
+    this.name = 'ualInput';
     this._value = this.value;
     this.debounce = parseInt(this.ualDebounce) || 0;
     this.options = { getterSetter: true, updateOn: 'default blur', debounce: { default: this.debounce, blur: 0 } }

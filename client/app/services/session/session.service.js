@@ -1,16 +1,10 @@
-let sessionService = function (Properties, $http, uuid, Token) {
+let sessionService = function (Properties, Token, $http, uuid) {
   "ngInject";
   const endpoint = Properties.endpoint + '/tokens';
 
   let isLogged = () => {
     return !Token.isExpired();
   }
-
-  // let isExpired = () => {
-  //   let expired = sessionStorage.getItem("gemini.expired");
-  //   sessionStorage.removeItem("gemini.expired");
-  //   return expired;
-  // }
 
   // DOC: http://docs.ualgemini.apiary.io/#reference/0/tokens/create-a-new-token
   let login = (user, pass) => {
@@ -23,7 +17,7 @@ let sessionService = function (Properties, $http, uuid, Token) {
 
     let promise = $http.post(endpoint, session);
 
-    promise.then( response => {
+    promise.then(response => {
       Token.create(response.data.authenticationToken);
     });
 
@@ -46,11 +40,11 @@ let sessionService = function (Properties, $http, uuid, Token) {
   let logout = () => {
     let promise = $http.delete(endpoint);
 
-    promise.finally( () => {
+    promise.finally(() => {
       Token.destroy();
     });
 
-    return  promise;
+    return promise;
   };
 
   return {

@@ -5,16 +5,18 @@
   </div>
 
   <div class="add-btns">
-    <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to selected aggregators')" data-ng-mouseleave="vm.hideTooltip()">
-      <ual-button class="-secondary" ng-click="vm.addAggregators()"> > </ual-button>
+      <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to selected aggregators')" data-ng-mouseleave="vm.hideTooltip()">
+        <ual-button class="-secondary" ng-click="vm.addAggregators()" ng-disabled="!vm.selectedsVariables.length"> > </ual-button>
+      </div>
+      <div id="btn-add-variables" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-variables','Add to selected variables')" data-ng-mouseleave="vm.hideTooltip()">
+        <ual-button class="-secondary" ng-click="vm.addVariables()" ng-disabled="!vm.selectedsVariables.length"> » </ual-button>
+      </div>
     </div>
-    <div id="btn-add-variables" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-variables','Add to selected variables')" data-ng-mouseleave="vm.hideTooltip()">
-      <ual-button class="-secondary" ng-click="vm.addVariables()"> » </ual-button>
-    </div>
-  </div>
+
+
 
   <div class="selected-variables">
-    <ual-pane ual-title="Selected Aggregators ({{vm.aggregators.get().length}})" action="Delete all" on-action="vm.deleteAll('aggregators', vm.aggregatorsFilter)" is-disabled="vm.aggregators.get().length == 0 || (vm.aggregators.get() && (vm.aggregators.get() | filterBy:vm.aggregatorsFilter | isEmpty))">
+    <ual-pane ual-title="Selected aggregators ({{vm.aggregators.get().length}})" action="Delete all" on-action="vm.deleteAll('aggregators', vm.aggregatorsFilter)" is-disabled="vm.aggregators.get().length == 0 || (vm.aggregators.get() && (vm.aggregators.get() | filterBy:vm.aggregatorsFilter | isEmpty))">
       <ual-input ual-id="selected-searchbox" class="search-box" value="vm.aggregatorsFilter.name" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging"></ual-input>
       <div class="empty-search" ng-hide="vm.aggregators.get().length == 0 || (vm.aggregators.get() | filterBy:vm.aggregatorsFilter).length > 0">
         <div>No results match your search</div>
@@ -33,7 +35,7 @@
   </div>
 
   <div class="selected-variables">
-    <ual-pane ual-title="Selected Variables ({{vm.variables.get().length}})" action="Delete all" on-action="vm.deleteAll('variables', vm.selectedFilter)" is-disabled="vm.variables.get().length == 0 || (vm.variables.get() && (vm.variables.get() | filterBy:vm.selectedFilter | isEmpty))">
+    <ual-pane ual-title="Selected variables ({{vm.variables.get().length}})" action="Delete all" on-action="vm.deleteAll('variables', vm.selectedFilter)" is-disabled="vm.variables.get().length == 0 || (vm.variables.get() && (vm.variables.get() | filterBy:vm.selectedFilter | isEmpty))">
       <ual-input ual-id="selected-searchbox" class="search-box" value="vm.selectedFilter.name" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging"></ual-input>
       <div class="empty-search" ng-hide="vm.variables.get().length == 0 || (vm.variables.get() | filterBy:vm.selectedFilter).length > 0">
         <div>No results match your search</div>

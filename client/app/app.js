@@ -17,6 +17,7 @@ import angular from 'angular';
 import angularAnimate from 'angular-animate';
 import 'lodash';
 import $ from 'jquery';
+import './vendors/jquery.signalr-2.2.0.js';
 import customScroll from './vendors/jquery.mCustomScrollbar.concat.min.js';
 import localStorage from './vendors/localStorage.js';
 import JtDro from './vendors/JtDro.js';
@@ -34,6 +35,7 @@ import '@iamadamjowett/angular-click-outside/clickoutside.directive';
 import 'angular-q-spread/src/q-spread';
 import Clusterize from 'clusterize.js';
 import dotdotdot from 'jquery.dotdotdot';
+import selectionModel from 'selection-model';
 
 import './common/fonts/clanot/clanot.scss';
 
@@ -57,7 +59,8 @@ angular.module('app', [
   Services.name,
   Helpers.name,
   Filters.name,
-  'ngAnimate'
+  'ngAnimate',
+  'selectionModel'
 ])
 
 .config(($stateProvider, $httpProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS, Properties) => {
@@ -73,6 +76,7 @@ angular.module('app', [
     parameters[item.name] = item.value;
   });
   ConfigurationProvider.load(parameters);
+
 
   // SETUP FALLBACK
   if ( Properties.fallback ) {
