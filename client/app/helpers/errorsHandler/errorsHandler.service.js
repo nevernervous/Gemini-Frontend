@@ -10,6 +10,12 @@ let errorsHandler = function ($rootScope, Messages) {
     $rootScope.$broadcast('BANNER.SHOW', message);
   }
 
+  // PARAM: error:
+  // {
+  //   errorCode: <string>,
+  //   errorMessage: <string>,
+  //   errorList: List<errorCode, errorMessage>
+  // }
   let handle = function(handler, error) {
     handler = handler(error) || defaultHandler(error);
     handler();
@@ -23,3 +29,6 @@ let errorsHandler = function ($rootScope, Messages) {
 
 
 export default errorsHandler;
+
+
+
