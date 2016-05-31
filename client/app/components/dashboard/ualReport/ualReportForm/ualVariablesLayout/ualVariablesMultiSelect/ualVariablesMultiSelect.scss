@@ -1,16 +1,17 @@
 @import '../../../../../../common/common';
-
-
 //LAYOUT
 ual-variables-multi-select {
   height: 100%;
-  .-avaiable-variables{
+  .-avaiable-variables {
     height: calc(100% - 164px);
+    @include gridle_state ( projector) {
+      height: calc(100% - 207px);
+    }
     margin-top: 20px;
     overflow-y: scroll;
     overflow-x: hidden;
     width: calc(100% + 17px);
-    li{
+    li {
       padding: 5px 6px;
       cursor: pointer;
     }
@@ -19,12 +20,12 @@ ual-variables-multi-select {
 
 //VARIANTS
 ual-variables-multi-select {
-  .-avaiable-variables{
+  .-avaiable-variables {
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
     @include font-clanot-book(14);
-    .selected{
+    .selected {
       background-color: $color10;
       font-weight: bold;
       outline: 1px solid $color00;
@@ -34,12 +35,12 @@ ual-variables-multi-select {
 }
 
 ual-variables-multi-select {
-  .separator{
+  .separator {
     margin-top: 10px;
     padding: 15px 0;
     border-top: 1px solid $color08;
   }
-  .ual-button{
+  .ual-button {
     width: 80%;
     margin: 0px calc(10%);
   }
