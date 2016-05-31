@@ -1,7 +1,6 @@
 import UalMainMenuModule from './ualMainMenu'
 import UalMainMenuController from './ualMainMenu.controller';
-import UalMainMenuComponent from './ualMainMenu.component';
-import UalMainMenuTemplate from './ualMainMenu.html';
+import UalMainMenuService from './ualMainMenu.service';
 
 describe('UalMainMenu', () => {
   let $rootScope, makeController;
@@ -10,16 +9,9 @@ describe('UalMainMenu', () => {
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalMainMenuController();
+      return new UalMainMenuController(UalMainMenuService);
     };
   }));
-
-  describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
-    it('has a name property [REMOVE]', () => {
-      expect(UalMainMenuModule).to.have.property('name');
-    });          
-  });
 
   describe('Controller', () => {
     // controller specs
@@ -29,29 +21,4 @@ describe('UalMainMenu', () => {
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    const template = $('<ual-main-menu/>').html(UalMainMenuTemplate);
-    it('has at least one element [REMOVE]', () => {
-      expect(template.children()).to.have.length.of.at.least(1);
-    });
-  });
-
-  describe('Component', () => {
-      // component/directive specs
-      let component = UalMainMenuComponent;
-
-      it('includes the intended template',() => {
-        expect(component.template).to.equal(UalMainMenuTemplate);
-      });
-
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
-      });
-
-      it('invokes the right controller', () => {
-        expect(component.controller).to.equal(UalMainMenuController);
-      });
-  });
 });

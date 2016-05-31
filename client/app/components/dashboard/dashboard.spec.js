@@ -24,12 +24,12 @@ describe('Dashboard', () => {
       expect(controller._suscriptions.length).to.equal(4);
     });
 
-    // it('unsuscribe all events', () => {
-    //   let controller = makeController();
-    //   controller.$onInit();
-    //   controller._unsuscribe();
-    //   expect(controller._suscriptions.length).to.equal(0);
-    // })
+    it('unsuscribe all events', () => {
+      let controller = makeController();
+      controller.$onInit();
+      controller._unsuscribe();
+      expect(controller._suscriptions.length).to.equal(0);
+    })
 
   });
 

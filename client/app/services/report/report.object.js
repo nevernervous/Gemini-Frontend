@@ -130,6 +130,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     if (!equalDataSource(value)) {
       object.variables = [];
       object.filters = [];
+      object.aggregators = [];
       object.dataSource = value;
       touched = hasReportChange();
     }
@@ -151,6 +152,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   let setAggregators = value => {
     object.aggregators = value;
     touched = hasReportChange();
+  }
+  let hasValuesAggregators = () => {
+    return !!object.aggregators && object.aggregators.length > 0;
   }
 
   let getFilters = () => object.filters;
@@ -221,7 +225,8 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     },
     aggregators: {
       get: getAggregators,
-      set: setAggregators
+      set: setAggregators,
+      hasValues: hasValuesAggregators
     },
     filters: {
       get: getFilters,

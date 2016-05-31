@@ -1,6 +1,6 @@
 {
   "name": "ual-gemini",
-  "version": "0.1.5",
+  "version": "0.0.5",
   "description": "United Airlines - Gemini",
   "main": "index.js",
   "dependencies": {
@@ -21,6 +21,7 @@
     "malihu-custom-scrollbar-plugin": "^3.1.3",
     "ngstorage": "^0.3.10",
     "normalize.css": "^3.0.3",
+    "selection-model": "^0.10.1",
     "ms-signalr-client": "^2.2.2"
   },
   "devDependencies": {
