@@ -3,12 +3,13 @@
 
 //LAYOUT
 ual-variables-multi-select {
+  height: 100%;
   .-avaiable-variables{
+    height: calc(100% - 164px);
     margin-top: 20px;
     overflow-y: scroll;
     overflow-x: hidden;
     width: calc(100% + 17px);
-    height:  200px;
     li{
       padding: 5px 6px;
       cursor: pointer;
