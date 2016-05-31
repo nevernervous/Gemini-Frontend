@@ -1,4 +1,4 @@
-let reportService = function (Properties, ServicesHelper, ServicesTransform, $http, $q, ReportObject, ReportTransform) {
+let reportService = function (Properties, PromisesSerializer, ServicesTransform, $http, $q, ReportObject, ReportTransform) {
   "ngInject";
   const endpoint = Properties.endpoint + '/Reports';
   const pageSize = 50;
@@ -27,7 +27,7 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
       }
     }
 
-    return ServicesHelper.serialize(generator());
+    return PromisesSerializer.serialize(generator());
   }
 
   let all = (fromPage, total, sortColumn, sortDirection) => {
@@ -39,7 +39,7 @@ let reportService = function (Properties, ServicesHelper, ServicesTransform, $ht
       current = (fromPage - 1) * pageSize;
     }
 
-    return ServicesHelper.serialize(requests);
+    return PromisesSerializer.serialize(requests);
   }
 
   let first = (sortColumn, sortDirection) => {
