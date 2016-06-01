@@ -48,12 +48,20 @@ class ualClusterizeTableDirective {
       }
     }
 
+    let scrollBarAdjust = () =>{
+      let tableHeight = $('#scrollArea > table').height();
+      let scrollAreaHeight = $('#scrollArea').height();
+      let scrollBarFix = tableHeight > scrollAreaHeight ? 'calc(100% + 20px)' : '100%';
+      $('#scrollArea').css('width',scrollBarFix);
+    }
+
     // COMPILE ANGULAR ROWS
     let recompile = () => {
       let content_elem = angular.element(clusterize.content_elem);
       ctrl._compile(content_elem.contents())($scope);
       resize('-shrink', 'max');
       resize('-expand', 'min');
+      scrollBarAdjust();
     }
 
     // WATCH ROWS CHANGES

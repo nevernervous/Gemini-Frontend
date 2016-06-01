@@ -48,7 +48,7 @@
   }
   > .clusterize-scroll {
     position: absolute;
-    width: calc(100% + 17px); //  SHOWS SCROLLBAR
+    width: calc(100%); //  SHOWS SCROLLBAR
     padding-right: 17px;      //  OUT OF TABLE
     @include -ms-browser() {
       padding-right: 0;
