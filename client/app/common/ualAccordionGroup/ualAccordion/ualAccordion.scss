@@ -1,11 +1,9 @@
 @import '../../common';
 @import '../../ionicons/scss/ionicons';
-
 // LAYOUT
 .ual-accordion {
   margin-top: 1px;
   position: relative;
-
   .accordion-title {
     padding: 10px 8px 10px 14px;
   }
@@ -31,7 +29,7 @@
 
 // VARIANT / OPEN
 .ual-accordion.open {
-
+  height: calc(100% - 70px);
   .accordion-title {
     background-color: $color03;
     border-left-color: $color02;
@@ -41,13 +39,16 @@
     @extend .ion-ios-arrow-up;
   }
   .accordion-content {
-    @include transition(all .5s ease-out);
+    @include transition(all .2s ease-out);
+    height: 100%;
+    .ual-accordion-content {
+      height: 100%;
+    }
   }
 }
 
 // VARIANT / CLOSE
 .ual-accordion.close {
-
   .accordion-title {
     background-color: $color03;
     border-left-color: $color10;
@@ -57,17 +58,17 @@
     @extend .ion-ios-arrow-down;
   }
   .accordion-content {
-    @include transition(all .5s ease-out);
+    @include transition(all .2s ease-out);
     padding-top: 0;
     padding-bottom: 0;
     max-height: 0;
+    height: 0;
     overflow: hidden;
   }
 }
 
 // VARIANT / DISABLE
 .ual-accordion.disable {
-
   .accordion-title {
     background-color: $other11;
     border-left-color: $other12;
@@ -76,7 +77,7 @@
     @extend .ion-ios-arrow-down;
   }
   .accordion-content {
-    @include transition(all .5s ease-out);
+    @include transition(all .2s ease-out);
     padding-top: 0;
     padding-bottom: 0;
     max-height: 0;
