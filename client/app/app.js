@@ -26,6 +26,7 @@ import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
 import Components from './components/components';
 import Services from './services/services';
+import Helpers from './helpers/helpers';
 import Filters from './filters/filters';
 import Constants from './app.constants';
 import Interceptor from './app.interceptor';
@@ -56,6 +57,7 @@ angular.module('app', [
   Common.name,
   Components.name,
   Services.name,
+  Helpers.name,
   Filters.name,
   'ngAnimate',
   'selectionModel'
