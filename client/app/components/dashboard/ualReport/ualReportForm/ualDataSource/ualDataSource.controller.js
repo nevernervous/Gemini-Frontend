@@ -94,9 +94,9 @@ class UalDataSourceController {
         let noFilter = !this.searchTerm || _.isEmpty(this.searchTerm);
         let hasMatch = (!!this.searchTerm && !!item) && item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
         item.show = noFilter || hasMatch;
-        this.total  += sum;
-        let groupId = item.group.groupId;
         let sum = item.show ? 1 : 0;
+        let groupId = item.group.groupId;
+        this.total  += sum;
         let groupCount = this.groupsTotals[groupId] || 0;
         this.groupsTotals[groupId] = groupCount + sum;
       });
