@@ -5,8 +5,12 @@
         selection-model
         selection-model-mode="'multiple'"
         selection-model-selected-items="vm.selectedReference"
+        data-ng-mouseover="vm.showTooltip('avaliable-variable_'+variable.id,variable.description)"
+        data-ng-mouseleave="vm.hideTooltip()"
         >
-      {{variable.name}}
+        <span id="avaliable-variable_{{variable.id}}">
+          {{variable.name}}
+        </span>
     </li>
   </ul>
   <div class="separator">
