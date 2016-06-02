@@ -1,6 +1,6 @@
 class UalVariablesLayoutController {
   /*@ngInject*/
-  constructor($rootScope, $timeout, $filter, ualVariablesDeteleAllModal, ualTooltipService) {
+  constructor($rootScope, $timeout, $filter, ualVariablesDeteleAllModal, ualTooltipService, $scope) {
     this.name = 'ualVariablesLayout';
     this._ualTooltipService = ualTooltipService;
     this._deleteallmodal = ualVariablesDeteleAllModal;
@@ -27,6 +27,15 @@ class UalVariablesLayoutController {
     this._suscriptions = [];
     this._suscriptions.push($rootScope.$on('DRAGGING.START', () => this.dragging = true));
     this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
+
+    $scope.$watch((scope) => {
+      return scope.vm.datasource
+    }, (newValue, oldValue) => {
+      if (newValue !== oldValue && newValue) {
+        this.selectedFilter.name = "";
+        this.aggregatorsFilter.name = "";
+      }
+    });
   }
 
 

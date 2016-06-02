@@ -15,6 +15,9 @@ class UalVariablesMultiSelectController {
       return scope.vm.datasource
     }, (newValue, oldValue) => {
       if (newValue !== oldValue && newValue) {
+        console.log(this.filterName);
+        this.filterName.name = "";
+        console.log(this.filterName);
         this.getvariables();
       }
     });
