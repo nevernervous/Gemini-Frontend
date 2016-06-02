@@ -29,6 +29,70 @@ class UalReportFormController {
       focus: false,
       duplicated: false
     }
+    this.selectedItem;
+
+    this.list = [
+      {
+        id: 1,
+        text: "Something Longkhdjs Lorem Ipsiskk askjdh"
+      },
+      {
+        id: 1,
+        text: "Something 2"
+      },
+      {
+        id: 1,
+        text: "Something 3"
+      },
+      {
+        id: 1,
+        text: "Something 4"
+      },
+      {
+        id: 1,
+        text: "Something 5"
+      },
+      {
+        id: 1,
+        text: "Something 6"
+      },
+      {
+        id: 1,
+        text: "Something 7"
+      },
+      {
+        id: 1,
+        text: "Something 8"
+      },
+      {
+        id: 1,
+        text: "Something 9"
+      },
+      {
+        id: 1,
+        text: "Something 10"
+      },
+      {
+        id: 1,
+        text: "Something 11"
+      },
+      {
+        id: 1,
+        text: "Something 12"
+      },
+      {
+        id: 1,
+        text: "Something 10"
+      },
+      {
+        id: 1,
+        text: "Something 11"
+      },
+      {
+        id: 1,
+        text: "Something 12"
+      }
+    ];
 
     this.response = {
       success: null,
@@ -90,23 +154,23 @@ class UalReportFormController {
 
   // INIT
   $onInit() {
-      let reportId = this._state.params["id"];
-      if (!reportId) {
-        this.report = this._service.report.create();
-      } else {
-        this.edit = true;
-        this._service.report.getById(reportId)
-          .then((reply) => {
-            this.report = reply;
-            this.name.current = _.clone(this.report.name.get());
-          });
-      }
-      this._responses();
-      this._suscribe();
+    let reportId = this._state.params["id"];
+    if (!reportId) {
+      this.report = this._service.report.create();
+    } else {
+      this.edit = true;
+      this._service.report.getById(reportId)
+        .then((reply) => {
+          this.report = reply;
+          this.name.current = _.clone(this.report.name.get());
+        });
     }
-    // INIT / RESPONSES
+    this._responses();
+    this._suscribe();
+  }
+  // INIT / RESPONSES
   _responses() {
-      let error_actions = [
+    let error_actions = [
       // ON ERROR: NO ERROR
       (msg) => { },
       // ON ERROR: EMPTY NAME
@@ -153,13 +217,13 @@ class UalReportFormController {
         }, {
             notify: false
           });
-        }
-      };
-    }
-    // INIT / SUSCRIPTIONS
+      }
+    };
+  }
+  // INIT / SUSCRIPTIONS
   _suscribe() {
     this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (this.report.touched() && (toState.name !== 'login') ) {
+      if (this.report.touched() && (toState.name !== 'login')) {
         event.preventDefault();
         this._ualUnsafeReportModal.open().then(response => {
           if (response) {
@@ -194,8 +258,8 @@ class UalReportFormController {
   }
 
   collapseAccordion(index) {
-      this.selectedTab = index;
-    }
+    this.selectedTab = index;
+  }
 
 }
 

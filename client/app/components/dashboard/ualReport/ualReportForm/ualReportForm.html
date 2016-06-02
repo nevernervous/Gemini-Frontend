@@ -34,10 +34,13 @@
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Filters: <strong>No filters</strong><small>selected</small></ual-accordion-title>
-      <ual-accordion-content>Filters Body</ual-accordion-content>
+      <ual-accordion-content>
+        <ual-dropdown placeholder="Select One..." list="vm.list" selected="vm.selectedItem" property="text">
+        </ual-dropdown>
+      </ual-accordion-content>
     </ual-accordion>
   </ual-accordion-group>
-  <div class="run-section" >
+  <div class="run-section">
     <ual-button class="run-button -primary" ng-disabled="true">Run report</ual-button>
   </div>
 </div>
