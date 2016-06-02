@@ -181,3 +181,11 @@ ual-tooltip {
     }
   }
 }
+
+.-tooltip{
+  >.container{
+    >.title{
+     @include font-clanot-bold(12);
+    }
+  }
+}
