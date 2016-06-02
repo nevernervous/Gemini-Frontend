@@ -56,10 +56,12 @@ class UalVariablesMultiSelectController {
     }
   }
 
-  showTooltip(container, description, position = 'right') {
+  showTooltip(container, name, description, position = 'right') {
+    let hasEllipsis = $("#"+container).hasClass("is-truncated");
+    let text = hasEllipsis ? "<strong>"+name+"</strong></br>"+description : description;
     this._ualTooltipService.show({
       container: container,
-      text: description,
+      text: text,
       position: position
     });
   }
