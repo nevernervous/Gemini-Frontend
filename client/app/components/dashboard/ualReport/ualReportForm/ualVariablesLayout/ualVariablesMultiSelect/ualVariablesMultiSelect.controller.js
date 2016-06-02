@@ -1,7 +1,8 @@
 class UalVariablesMultiSelectController {
   /*@ngInject*/
-  constructor($scope, DataSource) {
+  constructor($scope, DataSource, $filter) {
     this.name = 'ualVariablesMultiSelect';
+    this._filter = $filter;
 
     this._service = {
       datasource: DataSource
@@ -24,7 +25,10 @@ class UalVariablesMultiSelectController {
   }
 
   selectAll() {
-    this.selectedReference = this.avaiableVariables;
+//    this.selectedReference = this.avaiableVariables;
+    this.selectedReference = this._filter("filterBy")(this.avaiableVariables, this.filterName);
+//    const ids = _.map(filters, item => item.id);
+//    this[container].set(_.reject(tmp, item => _.includes(ids, item.id)));
     _.each(this.selectedReference, (item) => item.selected = true);
   }
 
