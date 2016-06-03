@@ -2,6 +2,7 @@
 ual-dropdown {
   .dropdown-container {
     max-width: 208px;
+    width: 100%;
     .dropdown-display {
       position: relative;
       width: 100%;
@@ -15,7 +16,7 @@ ual-dropdown {
       .placeholder{
         display: inline-block;
         @include ellipses();
-        width: 90%;
+        width: 87%;
         vertical-align: middle;
       }
       .icon {

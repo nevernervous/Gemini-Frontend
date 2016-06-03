@@ -20,6 +20,15 @@ ual-report-form {
     height: calc(100% - 120px);
     margin-top: 30px;
     margin-bottom: 30px;
+    .-row-condition{
+      display: flex;
+      ual-dropdown{
+        width: 208px;
+      }
+      ual-action-label{
+        width: 176px;
+      }
+    }
     > .run-section {
       @include gridle(row row-align right);
       margin: 30px 0 0;
@@ -27,6 +36,7 @@ ual-report-form {
         width: 155px;
       }
     }
+
   }
 }
 
