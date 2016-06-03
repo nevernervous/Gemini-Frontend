@@ -14,6 +14,9 @@ ual-variables-multi-select {
     li {
       padding: 5px 6px;
       cursor: pointer;
+      >div{
+        display: inline-block;
+      }
     }
   }
 }
