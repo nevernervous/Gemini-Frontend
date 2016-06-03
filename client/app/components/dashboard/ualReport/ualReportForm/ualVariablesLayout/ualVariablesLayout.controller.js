@@ -15,17 +15,6 @@ class UalVariablesLayoutController {
     this.selectedsVariables = [];
 
     this._suscriptions = [];
-    this._suscriptions.push($rootScope.$on('DRAGGING.START', () => this.dragging = true));
-    this._suscriptions.push($rootScope.$on('DRAGGING.END', () => this.dragging = false));
-
-    $scope.$watch((scope) => {
-      return scope.vm.datasource
-    }, (newValue, oldValue) => {
-      if (newValue !== oldValue && newValue) {
-        this.selectedFilter.name = "";
-        this.aggregatorsFilter.name = "";
-      }
-    });
   }
 
   $onInit() {
