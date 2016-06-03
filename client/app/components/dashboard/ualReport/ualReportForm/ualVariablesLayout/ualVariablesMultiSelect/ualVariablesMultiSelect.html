@@ -5,12 +5,12 @@
     selection-model
     selection-model-mode="'multiple'"
     selection-model-selected-items="vm.selectedReference">
-      <span id="available-variable{{variable.id}}"
+      <div id="available-variable{{variable.id}}"
       data-ng-mouseover="vm.showTooltip('available-variable'+variable.id,variable.name,variable.description)"
       data-ng-mouseleave="vm.hideTooltip()"
-      ual-ellipsis ellipsis-height="20">
+      ual-ellipsis ellipsis-height="25">
         {{variable.name}}
-      </span>
+      </div>
     </li>
   </ul>
   <div class="separator">
