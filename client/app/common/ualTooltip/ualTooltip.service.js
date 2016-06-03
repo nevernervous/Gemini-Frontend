@@ -8,9 +8,9 @@ let ualTooltipService = function () {
     let container = $("#" +options.container);
     let offset = container.offset();
     let adjust = {
-      left: -4,
+      left: -2,
       right: window.isIE ? 10 : 15,
-      top: window.isIE ? 1 : 2,
+      top: window.isIE ? 3 : 2,
       bottom:  window.isIE ? 2 : 5
     }
 
@@ -29,46 +29,46 @@ let ualTooltipService = function () {
 
     switch(options.position) {
       case "left":
-        options.position = ( offset.left - tooltip.outerWidth(true) ) < 0 ? "right" : "left";
-        break;
+      options.position = ( offset.left - tooltip.outerWidth(true) ) < 0 ? "right" : "left";
+      break;
       case "right":
-        options.position = ( offset.left + container.outerWidth(true) + tooltip.outerWidth(true) ) > window.innerWidth ? "left" : "right";
-        break;
+      options.position = ( offset.left + container.outerWidth(true) + tooltip.outerWidth(true) ) > window.innerWidth ? "left" : "right";
+      break;
       case "top":
-        options.position = ( offset.top - tooltip.outerHeight(true) ) > 0 ? "top" : "bottom";
-        break;
+      options.position = ( offset.top - tooltip.outerHeight(true) ) > 0 ? "top" : "bottom";
+      break;
       case "bottom":
-        options.position = ( offset.top + container.outerHeight(true) + tooltip.outerHeight(true) ) > window.innerHeight ? "top" : "bottom";
-        break;
+      options.position = ( offset.top + container.outerHeight(true) + tooltip.outerHeight(true) ) > window.innerHeight ? "top" : "bottom";
+      break;
     }
 
     //get of position
     switch (options.position) {
       case "left":
-        offset.left = offset.left + adjust.left - tooltip.outerWidth(true);
-        tooltip.addClass('-tooltip-left');
-        offset.top -= ( (tooltip.outerHeight(true) / 2) - (container.outerHeight(true) / 2) );
-        offset.top -= adjust.top;
-        break;
+      offset.left = offset.left + adjust.left - tooltip.outerWidth(true);
+      tooltip.addClass('-tooltip-left');
+      offset.top -= ( (tooltip.outerHeight(true) / 2) - (container.outerHeight(true) / 2) );
+      offset.top -= adjust.top;
+      break;
       case "right":
-        offset.left =  offset.left + adjust.right + container.outerWidth(true) ;
-        tooltip.addClass('-tooltip-right');
-        offset.top -= ( (tooltip.outerHeight() / 2) - (container.outerHeight(true) / 2) );
-        offset.top -= adjust.top;
-        break;
+      offset.left =  offset.left + adjust.right + container.outerWidth(true) ;
+      tooltip.addClass('-tooltip-right');
+      offset.top -= ( (tooltip.outerHeight() / 2) - (container.outerHeight(true) / 2) );
+      offset.top -= adjust.top;
+      break;
       case "top":
-        offset.top =  offset.top - adjust.top - tooltip.outerHeight(true);
-        tooltip.addClass('-tooltip-top');
-        offset.left -= ( (tooltip.outerWidth() / 2) - (container.width() / 2) );
-        offset.left += adjust.left
-        break;
+      offset.top =  offset.top - adjust.top - tooltip.outerHeight(true);
+      tooltip.addClass('-tooltip-top');
+      offset.left -= ( (tooltip.outerWidth() / 2) - (container.width() / 2) );
+      offset.left += adjust.left
+      break;
       case "bottom":
-        offset.top =  offset.top + adjust.bottom + container.outerHeight(true);
-        tooltip.addClass('-tooltip-bottom');
-        offset.left -= ( (tooltip.outerWidth() / 2) - (container.width() / 2) );
-        offset.left += adjust.left;
-        break;
-     }
+      offset.top =  offset.top + adjust.bottom + container.outerHeight(true);
+      tooltip.addClass('-tooltip-bottom');
+      offset.left -= ( (tooltip.outerWidth() / 2) - (container.width() / 2) );
+      offset.left += adjust.left;
+      break;
+    }
 
     tooltip.css(offset);
 
