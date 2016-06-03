@@ -31,16 +31,15 @@ class UalVariableSelectedItemController {
   }
 
   onMouseover() {
-    $('#' + this.identifier ).find('ual-variable-selected-item').attr("draggable", true);
+    $('#' + this.identifier ).closest('ual-variable-selected-item').attr("draggable", true);
   }
   onMouseleave() {
-    $('#' + this.identifier ).find('ual-variable-selected-item').attr("draggable", false);
+    $('#' + this.identifier ).closest('ual-variable-selected-item').attr("draggable", false);
   }
 
   onBlur() {
     if ( this.position.old != this.position.new && this.isValid(this.position.new)) {
       this.variableChange({
-        item: this.variableItem,
         oldOrder: this.position.old - 1,
         newOrder: this.position.new - 1
       });

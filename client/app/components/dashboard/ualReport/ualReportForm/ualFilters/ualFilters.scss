@@ -1,0 +1,23 @@
+@import '../../../../../common/common';
+
+ual-filters {
+  display: flex;
+  flex-direction: column;
+  height: 96%;
+  .-filter-container{
+    height: 80%;
+  }
+  .-condition-container{
+    background-color: $color08;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 20%;
+    .-code{
+      padding: 20px 15px;
+      line-height: 1.5em;
+      .-highlight{
+        @include font-clanot-bold(16);
+      }
+    }
+  }
+}

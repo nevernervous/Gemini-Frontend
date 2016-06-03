@@ -84,20 +84,15 @@ class UalVariablesLayoutController {
   deleteAggregator(index) { this.deleteItem(index, this.aggregators.get(), this._aggregators); }
 
   // ORDER
-  onDrop(container) {
-    return (id, binId) => {
-      if(id.split("-")[1] != binId.split("-")[1]) return false;
-      let from = _.parseInt(id.replace("agg_", "").split('_')[0]) - 1;
-      let to = _.parseInt(binId.replace("agg_", "").split('_')[0]) - 1;
-      let variable = _.clone(this[container].get()[from]);
-      this.changeOrder(container)(variable, to + 1);
-    }
-  }
-  changeOrder(container, item, oldOrder, newOrder) {
+  changeOrder(container, oldOrder, newOrder) {
+    const item = container[oldOrder];
     container.splice(oldOrder, 1);
     container.splice(newOrder, 0, item);
   }
-  changeVariablesOrder(item, oldOrder, newOrder) { this.changeOrder(this.variables.get(), item, oldOrder, newOrder); }
+  changeVariables(from, to)  { this.changeOrder(this.variables.get(), from, to); }
+  onDropVariables(id, binId) { this.changeOrder(this.variables.get(), id.split("_")[0], binId.split("_")[0]); }
+  changeAggregators(from, to)  { this.changeOrder(this.aggregators.get(), from, to); }
+  onDropAggregators(id, binId) { this.changeOrder(this.aggregators.get(), id.split("_")[0], binId.split("_")[0]); }
 
 }
 

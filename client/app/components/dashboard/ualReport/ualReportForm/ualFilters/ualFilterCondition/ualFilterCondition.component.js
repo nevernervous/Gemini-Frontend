@@ -4,9 +4,7 @@ import './ualFilterCondition.scss';
 
 let ualFilterConditionComponent = {
   restrict: 'E',
-  bindings: {
-     datasource: "<",
-  },
+  bindings: {},
   template,
   controller,
   controllerAs: 'vm'
