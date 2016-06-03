@@ -110,7 +110,6 @@ class UalDataSourceController {
   $onInit() {
     this._datasource.all()
       .then(response => {
-        console.log(response.data);
         this.datasources = response.data;
         this.filterData();
       });

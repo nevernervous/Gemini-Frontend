@@ -5,29 +5,29 @@
   </div>
 
   <div class="add-btns">
-      <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to selected aggregators')" data-ng-mouseleave="vm.hideTooltip()">
-        <ual-button class="-secondary" ng-click="vm.addAggregators()" ng-disabled="!vm.selectedsVariables.length"> > </ual-button>
-      </div>
-      <div id="btn-add-variables" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-variables','Add to selected variables')" data-ng-mouseleave="vm.hideTooltip()">
-        <ual-button class="-secondary" ng-click="vm.addVariables()" ng-disabled="!vm.selectedsVariables.length"> » </ual-button>
-      </div>
+    <div id="btn-add-aggregators" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-aggregators','Add to selected aggregators')" data-ng-mouseleave="vm.hideTooltip()">
+      <ual-button class="-secondary" ng-click="vm.addAggregators()" ng-disabled="!vm.selectedsVariables.length"> > </ual-button>
     </div>
-
-
+    <div id="btn-add-variables" class="buttons" data-ng-mouseover="vm.showTooltip('btn-add-variables','Add to selected variables')" data-ng-mouseleave="vm.hideTooltip()">
+      <ual-button class="-secondary" ng-click="vm.addVariables()" ng-disabled="!vm.selectedsVariables.length"> » </ual-button>
+    </div>
+  </div>
 
   <div class="selected-variables">
-    <ual-pane ual-title="Selected aggregators ({{(vm.aggregators.get() | filterBy:vm.aggregatorsFilter).length}})" action="Delete all" on-action="vm.deleteAll('aggregators', vm.aggregatorsFilter)" is-disabled="vm.aggregators.get().length == 0 || (vm.aggregators.get() && (vm.aggregators.get() | filterBy:vm.aggregatorsFilter | isEmpty))">
-      <ual-input ual-id="selected-searchbox" class="search-box" value="vm.aggregatorsFilter.name" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging || (vm.aggregators.get().length == 0)"></ual-input>
-      <div class="empty-search" ng-hide="vm.aggregators.get().length == 0 || (vm.aggregators.get() | filterBy:vm.aggregatorsFilter).length > 0">
+    <ual-pane ual-title="Selected aggregators ({{vm.aggregatorsFiltered.length}})" action="Delete all" on-action="vm.deleteAllAggregators()" is-disabled="(vm.aggregatorsFiltered = (vm.aggregators.get() | visible:'name':vm._aggregators.filter | filter:{'_visible': true} )) | isEmpty">
+      <ual-input ual-id="selected-searchbox" class="search-box" value="vm._aggregators.filter" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging"></ual-input>
+      <div class="empty-search" ng-if="!vm._aggregators.isempty" ng-show="vm.aggregatorsFiltered | isEmpty">
         <div>No results found.</div>
       </div>
-      <div class="empty-list" ng-hide="(vm.aggregators.get()).length > 0">
+      <div class="empty-list" ng-if="vm._aggregators.isempty">
         <div>No aggregators selected yet.</div>
       </div>
-      <ul id="aggregator-list" class="selected-list" ng-if="vm.aggregators.get().length > 0 && (vm.aggregators.get() | filterBy:vm.aggregatorsFilter).length > 0" ual-scroll
-              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-        <li class="selected-container" ng-repeat="item in vm.aggregators.get() | filterBy:vm.aggregatorsFilter  track by item.order" droppable id="{{ vm.itemPosition(item, vm.aggregators.get()) + 1 }}_selected_container-aggregator" drop="vm.onDrop('aggregators')" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
-          <ual-variable-selected-item variable-total="vm.aggregators.get().length" variable-item="item" variable-type="aggregator" variable-order="vm.itemPosition(item, vm.aggregators.get()) + 1" on-delete="vm.removeVariable(item, 'aggregators')" cb-change="vm.changeAggregatorOrder" draggable id="{{ vm.itemPosition(item, vm.aggregators.get()) + 1 }}_selected_item-aggregator" variable-type="aggregator" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
+      <ul id="aggregator-list" class="selected-list" ng-if="!vm._aggregators.isempty">
+        <li class="selected-container" ng-repeat="item in vm.aggregators.get()" droppable id="{{ $index }}_selected_container-aggregator" drop="vm.onDrop('variables')" >
+          <ual-variable-selected-item id="{{ $index }}_selected_item-aggregator" draggable ng-show="item._visible"
+            variable-total="vm._aggregators.total" variable-item="item" variable-order="$index" variable-type="aggregator"
+            on-delete="vm.deleteAggregator($index)" cb-change="vm.changeSelectedOrder"
+            ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
           </ual-variable-selected-item>
         </li>
       </ul>
@@ -35,18 +35,20 @@
   </div>
 
   <div class="selected-variables">
-    <ual-pane ual-title="Selected variables ({{(vm.variables.get() | filterBy:vm.selectedFilter).length}})" action="Delete all" on-action="vm.deleteAll('variables', vm.selectedFilter)" is-disabled="vm.variables.get().length == 0 || (vm.variables.get() && (vm.variables.get() | filterBy:vm.selectedFilter | isEmpty))">
-      <ual-input ual-id="selected-searchbox" class="search-box" value="vm.selectedFilter.name" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging|| (vm.variables.get().length == 0)"></ual-input>
-      <div class="empty-search" ng-hide="vm.variables.get().length == 0 || (vm.variables.get() | filterBy:vm.selectedFilter).length > 0">
+    <ual-pane ual-title="Selected variables ({{vm.variablesFiltered.length}})" action="Delete all" on-action="vm.deleteAllVariables()" is-disabled="(vm.variablesFiltered = (vm.variables.get() | visible:'name':vm._variables.filter | filter:{'_visible': true} )) | isEmpty">
+      <ual-input ual-id="selected-searchbox" class="search-box" value="vm._variables.filter" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging"></ual-input>
+      <div class="empty-search" ng-if="!vm._variables.isempty" ng-show="vm.variablesFiltered | isEmpty">
         <div>No results found.</div>
       </div>
-      <div class="empty-list" ng-hide="(vm.variables.get()).length > 0">
+      <div class="empty-list" ng-if="vm._variables.isempty">
         <div>No variables selected yet.</div>
       </div>
-      <ul id="variable-list" class="selected-list" ng-if="vm.variables.get().length > 0"  ual-scroll
-              ual-scroll-options="{ theme:'dark', callbacks:{ onScrollStart: vm.onScrollStart } }">
-        <li class="selected-container" ng-repeat="item in vm.variables.get() | filterBy:vm.selectedFilter track by item.order" droppable id="{{ vm.itemPosition(item) + 1 }}_selected_container-variable" drop="vm.onDrop('variables')" dragover="vm.scrollTo" bind="vm" ual-disabled="vm.scrolling" ng-class="{'last': $last, 'first': $first}">
-          <ual-variable-selected-item variable-total="vm.variables.get().length" variable-item="item" variable-order="vm.itemPosition(item) + 1" on-delete="vm.removeVariable(item)" cb-change="vm.changeSelectedOrder" draggable id="{{ vm.itemPosition(item) + 1 }}_selected_item-variable" variable-type="variable" ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
+      <ul id="variable-list" class="selected-list" ng-if="!vm._variables.isempty">
+        <li class="selected-container" ng-repeat="item in vm.variables.get()" droppable id="{{ $index }}_selected_container-variable" drop="vm.onDrop('variables')" >
+          <ual-variable-selected-item id="{{ $index }}_selected_item-variable" draggable ng-show="item._visible"
+            variable-total="vm._variables.total" variable-item="item" variable-order="$index" variable-type="variable"
+            on-delete="vm.deleteVariable($index)" variable-change="vm.changeVariablesOrder(item, oldOrder, newOrder)"
+            ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
           </ual-variable-selected-item>
         </li>
       </ul>
