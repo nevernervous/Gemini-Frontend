@@ -6,10 +6,10 @@ let ualVariableSelectedItemComponent = {
   restrict: 'E',
   bindings: {
     variableType: '@',
+    variableOrder: '=',
     variableItem: '<',
-    variableOrder: '<',
     variableTotal: '<',
-    cbChange: '=',
+    variableChange: '&',
     onDelete: '&'
   },
   template,

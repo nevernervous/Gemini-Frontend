@@ -5,9 +5,9 @@ import './ualVariablesLayout.scss';
 let ualVariablesLayoutComponent = {
   restrict: 'E',
   bindings: {
-    variables: "=",
-    aggregators: "=",
     datasource: "<",
+    variables: "<",
+    aggregators: "<"
   },
   template,
   controller,
