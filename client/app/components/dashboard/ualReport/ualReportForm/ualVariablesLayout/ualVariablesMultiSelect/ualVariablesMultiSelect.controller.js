@@ -40,7 +40,7 @@ class UalVariablesMultiSelectController {
       .then(response => {
           this.avaiableVariables = response.data;
           this._avaiable = {
-            isempty: (this.avaiableVariables.length<=0),
+            isempty: (this.avaiableVariables.length==0),
             total: this.avaiableVariables.length,
             filter: ''
           }
