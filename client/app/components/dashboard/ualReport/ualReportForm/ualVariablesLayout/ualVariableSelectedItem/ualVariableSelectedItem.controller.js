@@ -2,41 +2,58 @@ import $ from 'jquery';
 
 class UalVariableSelectedItemController {
   /*@ngInject*/
-  constructor(ualTooltipService) {
+  constructor($scope, ualTooltipService) {
     this.name = 'ualVariableSelectedItem';
     this._ualTooltipService=ualTooltipService;
+    this.$scope = $scope;
 
-    this.variableId = this.variableOrder;
+    // STATE
+    this.position = {};
+    this.identifier = null;
+  }
+
+  $onInit() {
+    // RESET
+    this.$scope.$watch((scope) => {
+      return scope.vm.variableOrder
+    }, (newValue, oldValue) => {
+      this.position = {
+        old: this.variableOrder + 1,
+        new: this.variableOrder + 1
+      }
+      this.identifier = this.variableOrder + "_item-order-" + this.variableType;
+    });
   }
 
   isValid(order) {
-    let num = _.parseInt(order);
+    const num = _.parseInt(order);
     return ( /^\d+$/.test(order) && !_.isNaN(num) && num > 0 && num <= this.variableTotal)
   }
 
   onMouseover() {
-    $('#' + this.variableOrder+"_selected_container-" + this.variableType ).find('ual-variable-selected-item').attr("draggable", true);
+    $('#' + this.identifier ).find('ual-variable-selected-item').attr("draggable", true);
   }
   onMouseleave() {
-    $('#' + this.variableOrder+"_selected_container-" + this.variableType ).find('ual-variable-selected-item').attr("draggable", false);
+    $('#' + this.identifier ).find('ual-variable-selected-item').attr("draggable", false);
   }
 
-  onBlur(event, item, order) {
-    let position = this.variableId;
-    if ( position !== order && this.isValid(order)) {
-      this.variableOrder = _.parseInt(order);
-      this.cbChange(item, order);
+  onBlur() {
+    if ( this.position.old != this.position.new && this.isValid(this.position.new)) {
+      this.variableChange({
+        item: this.variableItem,
+        oldOrder: this.position.old - 1,
+        newOrder: this.position.new - 1
+      });
     } else {
-      this.variableOrder = position;
+      this.position.new = this.position.old;
+      this._ualTooltipService.hide();
     }
-    this._ualTooltipService.hide();
   }
 
-  onChange(order,id) {
-    if ( !this.isValid(order) && order != "") {
-      let container = this.variableId+"_variable-order-"+this.variableType;
+  onChange() {
+    if ( !this.isValid(this.position.new) && this.position.new != "") {
       this._ualTooltipService.show({
-        container:container,
+        container: this.identifier,
         text:`Only numeric values between 1 and ${this.variableTotal} are allowed. Please re-enter a valid value.`,
         position:"top",
         type:"error"
