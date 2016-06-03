@@ -1,7 +1,8 @@
 class UalVariablesMultiSelectController {
   /*@ngInject*/
-  constructor($scope, DataSource) {
+  constructor($scope, DataSource,ualTooltipService) {
     this.name = 'ualVariablesMultiSelect';
+    this._ualTooltipService=ualTooltipService;
 
     this._service = {
       datasource: DataSource
@@ -53,6 +54,20 @@ class UalVariablesMultiSelectController {
       this.selectAll();
       event.preventDefault();
     }
+  }
+
+  showTooltip(container, name, description, position = 'right') {
+    let hasEllipsis = $("#"+container).hasClass("is-truncated");
+    let text = hasEllipsis ? "<span class='title'>"+name+"</span></br>"+description : description;
+    this._ualTooltipService.show({
+      container: container,
+      text: text,
+      position: position
+    });
+  }
+
+  hideTooltip() {
+    this._ualTooltipService.hide();
   }
 }
 

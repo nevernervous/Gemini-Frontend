@@ -2,11 +2,15 @@
   <ual-input class="search-box" value="vm.filterName.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
   <ul tabindex="0" class="unselectable -avaiable-variables" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)" >
     <li ng-repeat="variable in vm.avaiableVariables | filterBy:vm.filterName | orderBy : 'order'" onselectstart="return false;"
-        selection-model
-        selection-model-mode="'multiple'"
-        selection-model-selected-items="vm.selectedReference"
-        >
-      {{variable.name}}
+    selection-model
+    selection-model-mode="'multiple'"
+    selection-model-selected-items="vm.selectedReference">
+      <div id="available-variable{{variable.id}}"
+      data-ng-mouseover="vm.showTooltip('available-variable'+variable.id,variable.name,variable.description)"
+      data-ng-mouseleave="vm.hideTooltip()"
+      ual-ellipsis ellipsis-height="25">
+        {{variable.name}}
+      </div>
     </li>
   </ul>
   <div class="separator">
