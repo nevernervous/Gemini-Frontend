@@ -12,7 +12,7 @@ let reportTransform = function ($http) {
       response.dataSource = {
         id: response.dataSourceId,
         name: response.dataSource,
-        refreshDate: response.dataSourceRefreshDate
+        refreshDate: response.modificationDate
       };
       delete response.dataSourceId;
       return response;
