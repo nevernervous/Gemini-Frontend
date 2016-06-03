@@ -7,6 +7,7 @@ let ualGroupFilterComponent = {
   bindings: {},
   template,
   controller,
+  transclude: true,
   controllerAs: 'vm'
 };
 

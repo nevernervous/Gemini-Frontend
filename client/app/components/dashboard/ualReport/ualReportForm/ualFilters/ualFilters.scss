@@ -1,8 +1,6 @@
 @import '../../../../../common/common';
 
 ual-filters {
-  display: flex;
-  flex-direction: column;
   height: 96%;
   .-filter-container{
     height: 80%;
@@ -12,8 +10,9 @@ ual-filters {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 20%;
+    width: 100%;
     .-code{
-      padding: 20px 15px;
+      padding: 21px 15px;
       line-height: 1.5em;
       .-highlight{
         @include font-clanot-bold(16);
