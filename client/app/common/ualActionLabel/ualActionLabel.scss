@@ -12,8 +12,10 @@ ual-action-label {
     > i {
       padding: 5px;
       font-size: 22px;
+      line-height: 0;
     }
     > label {
+      line-height: 0;
       @include link();
       padding: 5px;
       cursor: pointer;
