@@ -7,17 +7,19 @@ import ualAgregationItem from './ualAgregationItem/ualAgregationItem';
 import ualReportInput from './ualReportInput/ualReportInput';
 import ualReportNameModal from './ualReportNameModal/ualReportNameModal';
 import ualUnsafeReportModal from '../../ualUnsafeReportModal/ualUnsafeReportModal';
+import ualConditionsGroup from './ualConditionsGroup/ualConditionsGroup';
 
 
 let ualReportFormModule = angular.module('ualReportForm', [
     uiRouter,
     ualVariables.name,
     ualReportInput.name,
+    ualConditionsGroup.name,
     // MODALS
     ualDataSource.name,
     ualAgregationItem.name,
     ualReportNameModal.name,
-    ualUnsafeReportModal.name,
+    ualUnsafeReportModal.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {

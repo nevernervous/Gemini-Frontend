@@ -34,7 +34,9 @@
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Filters: <strong>No filters</strong><small>selected</small></ual-accordion-title>
-      <ual-accordion-content>Filters Body</ual-accordion-content>
+      <ual-accordion-content>Filters Body
+        <ual-conditions-group items="vm.report._filters"></ual-conditions-group>
+      </ual-accordion-content>
     </ual-accordion>
   </ual-accordion-group>
   <div class="run-section" >

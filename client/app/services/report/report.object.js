@@ -4,12 +4,47 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   const endpoint = Properties.endpoint + '/Reports';
 
   let object = {
-    id: null
-    , name: null
-    , dataSource: { id: null, name: null }
-    , variables: []
-    , aggregators: []
-    , filters: []
+    id: null,
+    name: null,
+    dataSource: { id: null, name: null },
+    variables: [],
+    aggregators: [],
+    filters: {
+      not: false,
+      operator: "AND",
+//      children: []
+      children:   [{
+            "variable": "Booking",
+            "operator": "=",
+            "comparing": "value",
+            "value": "Lorem ipsum"
+          },
+          {
+            "variable": "Booking",
+            "operator": "!=",
+            "comparing": "variable",
+            "value": "Booking B"
+          },
+          {
+            "not": true,
+            "operator": "and",
+            "children": [
+                {
+                  "variable": "Booking B",
+                  "operator": "=",
+                  "comparing": "value",
+                  "value": "Lorem ipsum"
+                },
+                 {
+                  "not": true,
+                  "operator": "and",
+                  "children": [
+                  ]
+                }
+            ]
+          }
+        ]
+    }
   };
   let initialHash = null;
 
@@ -37,11 +72,43 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   let clean = () => {
     object = {
-      id: null
-      , name: null
-      , dataSource: { id: null, name: null }
-      , variables: []
-      , aggregators: []
+      id: null,
+      name: null,
+      dataSource: { id: null, name: null },
+      variables: [],
+      aggregators: [],
+      filters: {
+        not: false,
+        operator: "AND",
+//        children: []
+        children: [
+          {
+            "variable": "Booking",
+            "operator": "=",
+            "comparing": "value",
+            "value": "Lorem ipsum"
+          },
+          {
+            "variable": "Booking",
+            "operator": "!=",
+            "comparing": "variable",
+            "value": "Booking B"
+          },
+          {
+            "not": true,
+            "operator": "and",
+            "children": [
+                {
+                  "variable": "Booking B",
+                  "operator": "=",
+                  "comparing": "value",
+                  "value": "Lorem ipsum"
+                }
+            ]
+          }
+        ]
+      }
+
     };
     initialHash = getReportHash();
     touched = false;
@@ -232,7 +299,8 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       get: getFilters,
       set: setFilters,
       hasValues: hasFilterValues
-    }
+    },
+    _filters: object.filters
   };
 };
 export default reportObjectService;

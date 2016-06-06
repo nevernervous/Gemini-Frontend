@@ -1,0 +1,15 @@
+<span>{{vm.items.not}}</span>
+<span>{{vm.items.operator}}</span>
+<div ng-if="vm.items.children|isEmpty">
+  No sons
+</div>
+<ul ng-if="!(vm.items.children|isEmpty)">
+  <li ng-repeat="child in vm.items.children">
+    <div ng-if="child.children!==undefined">
+      <ual-conditions-group items="child"></ual-conditions-group>
+    </div>
+    <div ng-if="child.children===undefined">
+      {{child}}
+    </div>
+  </li>
+</ul>
