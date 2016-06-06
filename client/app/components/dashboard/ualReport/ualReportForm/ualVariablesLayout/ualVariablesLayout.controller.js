@@ -7,12 +7,12 @@ class UalVariablesLayoutController {
     this._ualTooltipService = ualTooltipService;
     this._deleteallmodal = ualVariablesDeteleAllModal;
 
-    this._suscriptions = [];
-
     // VARS / PUBLIC
     this._variables = {}
     this._aggregators = {}
     this.selectedsVariables = [];
+
+    this._suscriptions = [];
   }
 
   $onInit() {
