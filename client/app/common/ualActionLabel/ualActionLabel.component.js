@@ -6,7 +6,8 @@ let ualActionLabelComponent = {
   restrict: 'E',
   bindings: {
      label: "@",
-     icon: "@"
+     icon: "@",
+     disabled: '='
   },
   template,
   controller,

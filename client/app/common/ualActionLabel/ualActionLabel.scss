@@ -12,11 +12,20 @@ ual-action-label {
     > i {
       padding: 5px;
       font-size: 22px;
+      color: $color07;
     }
     > label {
       @include link();
       padding: 5px;
       cursor: pointer;
     }
+  }
+}
+
+
+ual-action-label {
+  .-container i.-disabled {
+    cursor: auto;
+    color: $color08;
   }
 }
