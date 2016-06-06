@@ -39,23 +39,17 @@ ual-tooltip {
   cursor: default;
 
   i {
-    display: inline-flex;
+    display: block;
+    position: absolute;
     font-size: 24px;
     margin-top: -5px;
     cursor: pointer;
-    @include -ms-browser() {
-      margin-right: 5px;
-    }
   }
 
   span {
     display: inline-flex;
-    padding-left: 5px;
+    padding-left: 25px;
     text-align: left;
-
-    @include -ms-browser() {
-      padding-left: 15px;
-    }
   }
 
   // &::before {
@@ -178,6 +172,14 @@ ual-tooltip {
     }
     &.error::before{
       border-bottom: 5px solid $color12;
+    }
+  }
+}
+
+.-tooltip{
+  >.container{
+    >.title{
+     @include font-clanot-bold(12);
     }
   }
 }

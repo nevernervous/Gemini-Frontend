@@ -48,14 +48,11 @@ app.directive('droppable', function() {
       dragover: '&',
       dragenter: '&',
       dragleave: '&',
-      ualDisabled: '=',
-      bind: '=',
-      bin: '='
+      ualDisabled: '='
     },
     link: function(scope, element) {
       // again we need the native object
-      var el = element[0],
-      owner =  scope.bind ? scope.bind : this;
+      var el = element[0];
 
       let dragover = function(e) {
         e.dataTransfer.dropEffect = 'move';
@@ -66,7 +63,7 @@ app.directive('droppable', function() {
         if ( scope.dragover() ) {
           var binId = this.id;
           scope.$apply(function(scope) {
-            var fn = scope.dragover().bind(owner);
+            var fn = scope.dragover();
             if ('undefined' !== typeof fn) {
               fn(binId);
             }
@@ -82,7 +79,7 @@ app.directive('droppable', function() {
         if ( scope.dragenter() ) {
           var binId = this.id;
           scope.$apply(function(scope) {
-            var fn = scope.dragenter().bind(owner);
+            var fn = scope.dragenter();
             if ('undefined' !== typeof fn) {
               fn(binId);
             }
@@ -102,9 +99,9 @@ app.directive('droppable', function() {
         // this.appendChild(item);
         // call the passed drop function
         scope.$apply(function(scope) {
-          var fn = scope.drop().bind(owner);
+          var fn = scope.drop;
           if ('undefined' !== typeof fn) {
-            fn(item.id, binId, scope.bin);
+            fn({ from: item.id, to: binId });
           }
         });
         return false;
@@ -117,7 +114,7 @@ app.directive('droppable', function() {
         if ( scope.dragleave() ) {
           var binId = this.id;
           scope.$apply(function(scope) {
-            var fn = scope.dragleave().bind(owner);
+            var fn = scope.dragleave();
             if ('undefined' !== typeof fn) {
               fn(binId);
             }

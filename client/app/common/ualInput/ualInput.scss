@@ -49,3 +49,10 @@ ual-input.-noborder {
     border-color: transparent
   }
 }
+
+// VARIATION / DISABLED
+ual-input.-noborder {
+  .ual-input {
+    border-color: transparent
+  }
+}
