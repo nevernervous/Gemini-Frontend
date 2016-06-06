@@ -10,7 +10,6 @@ ual-group-filter {
     vertical-align: middle;
     .-not-button {
       padding: 0 20px 0 0;
-      @include font-clanot-bold(16);
     }
     ual-dropdown {
       width: 100px;
@@ -30,6 +29,17 @@ ual-group-filter {
     height: calc(100% - 22px);
     align-items: center;
     justify-content: center;
+  }
+}
+
+//Variations
+ual-group-filter {
+  .-toolbar {
+    .-not-button {
+      @include font-clanot-bold(16);
+    }
+  }
+  .-no-conditions {
     color: $color07;
   }
 }
