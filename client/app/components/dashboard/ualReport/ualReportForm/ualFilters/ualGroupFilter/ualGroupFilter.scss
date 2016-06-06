@@ -1,0 +1,29 @@
+@import '../../../../../../common/common';
+
+ual-group-filter {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 15px 3px;
+  .-toolbar {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    .-not-button{
+      padding: 0 20px;
+      @include font-clanot-bold(16);
+    }
+    ual-dropdown {
+      width: 100px;
+    }
+    ual-action-label {
+      width: 170px;
+    }
+  }
+  .-conditions{
+    display: block;
+    height: calc(100% - 66px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}

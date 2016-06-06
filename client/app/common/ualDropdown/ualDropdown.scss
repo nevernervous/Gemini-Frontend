@@ -9,14 +9,14 @@ ual-dropdown {
       z-index: 91;
       @include font-clanot-book(14);
       color: $color07;
-      padding: 8px;
+      padding: 8px 8px 5px;
       border: solid 1px $color08;
       cursor: pointer;
       box-sizing: border-box;
       .placeholder{
         display: inline-block;
         @include ellipses();
-        width: 87%;
+        width: 85%;
         vertical-align: middle;
       }
       .icon {

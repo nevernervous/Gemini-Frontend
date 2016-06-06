@@ -35,16 +35,7 @@
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Filters: <strong>No filters</strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>
-        <div class="-row-condition">
-          <ual-dropdown placeholder="Select One..." list="vm.list" selected="vm.selectedItem" property="text">
-          </ual-dropdown>
-          <ual-action-label icon="ion-android-add" label="Add Condition">
-          </ual-action-label>
-          <ual-action-label icon="ion-android-add" label="Add Group">
-          </ual-action-label>
-          <ual-action-label icon="ion-android-close" label="Clear All">
-          </ual-action-label>
-        </div>
+        <ual-filters></ual-filters>
       </ual-accordion-content>
     </ual-accordion>
   </ual-accordion-group>
