@@ -1,10 +1,10 @@
 <ual-pane ual-title="Available variables ({{vm.variablesFiltered.length}})" on-action="vm.selectAll()" action="Select all"
           is-disabled="(vm.variablesFiltered = (vm.avaiableVariables | visible:'name':vm._avaiable.filter | filter:{'_visible': true} )) | isEmpty">
-  <ual-input class="search-box" value="vm._avaiable.filter" min-chars="3" icon="ion-ios-search-strong"></ual-input>
-  <div class="empty-search" ng-hide="vm.variablesFiltered.length > 0">
+  <ual-input class="search-box" value="vm._avaiable.filter" min-chars="2" icon="ion-ios-search-strong"></ual-input>
+  <div class="empty-search" ng-show="vm.variablesFiltered| isEmpty">
     <div>No results found.</div>
   </div>
-  <ul tabindex="0" class="unselectable -avaiable-variables" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)" ng-if="vm.avaiableVariables.length > 0 && vm.variablesFiltered.length > 0">
+  <ul tabindex="0" class="unselectable -avaiable-variables selected-list" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)" ng-if="vm.avaiableVariables.length > 0 && vm.variablesFiltered.length > 0">
     <li ng-repeat="variable in vm.avaiableVariables | filterBy:vm._avaiable.filter | orderBy : 'order'" onselectstart="return false;"
     selection-model
     selection-model-mode="'multiple'"
