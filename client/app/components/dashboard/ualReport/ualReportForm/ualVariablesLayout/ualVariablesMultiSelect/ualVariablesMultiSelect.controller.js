@@ -1,6 +1,6 @@
 class UalVariablesMultiSelectController {
   /*@ngInject*/
-  constructor($scope, DataSource,ualTooltipService) {
+  constructor($scope, DataSource, ualTooltipService) {
     this.name = 'ualVariablesMultiSelect';
     this._ualTooltipService=ualTooltipService;
 
@@ -11,18 +11,26 @@ class UalVariablesMultiSelectController {
     this.filterName = {
       name: ""
     };
+
+    this._avaiable = {};
+
     this.ctrlDown = false;
     $scope.$watch((scope) => {
       return scope.vm.datasource
     }, (newValue, oldValue) => {
       if (newValue !== oldValue && newValue) {
+        this._avaiable = {
+          isempty: true,
+          total: 0,
+          filter: ''
+        }
         this.getvariables();
       }
     });
   }
 
   selectAll() {
-    this.selectedReference = this.avaiableVariables;
+    this.selectedReference = _.filter(this.avaiableVariables, (variable)=>{return variable._visible;});
     _.each(this.selectedReference, (item) => item.selected = true);
   }
 
@@ -31,6 +39,11 @@ class UalVariablesMultiSelectController {
     this._service.datasource.variables(this.datasource)
       .then(response => {
           this.avaiableVariables = response.data;
+          this._avaiable = {
+            isempty: (this.avaiableVariables.length==0),
+            total: this.avaiableVariables.length,
+            filter: ''
+          }
         },
         error => {
           this.avaiableVariables = [];

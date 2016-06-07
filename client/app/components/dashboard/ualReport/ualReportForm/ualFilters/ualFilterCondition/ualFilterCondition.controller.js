@@ -13,14 +13,8 @@ class UalFilterConditionController {
         text: "Variable"
       }
       ];
-
-    this.operators=[
-      {text: "="}
-    ]
-
-    this.operator="AND";
-
   }
+
 }
 
 export default UalFilterConditionController;

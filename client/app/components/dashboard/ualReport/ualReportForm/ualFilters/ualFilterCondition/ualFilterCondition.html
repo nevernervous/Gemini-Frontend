@@ -1,17 +1,18 @@
 <div class="wrapper">
-  <div class="operator">{{vm.operator}}</div>
+  <div class="operator"  ng-class="{'hideOperator': vm.index==0}">{{vm.operator.text}}</div>
   <div class="section">
-    <ual-input class="search-box" placeholder="Search for a variable" value="vm.searchTerm" min-chars="3" icon="ion-ios-search-strong">
-    </ual-input>
-    <ual-dropdown placeholder="Select One..." list="vm.operators" selected="vm.selectedItem" property="text">
+    <ual-dropdown placeholder="Search for variables" list="vm.availableVariables" selected="vm.selectedVariable" property="name"><!--this component will change on US - CR1.24-->
+    </ual-dropdown>
+    <ual-dropdown placeholder="Select One..." list="vm.operatorsList" selected="vm.selectedOperator" property="text">
     </ual-dropdown>
   </div>
   <div class="section">
     <ual-dropdown placeholder="Select One..." list="vm.valueVariable" selected="vm.isVariable" property="text">
     </ual-dropdown>
-    <ual-input ng-show="!vm.isVariable.value" placeholder="Enter [variable name]" value="vm.searchTerm" min-chars="3" icon="ion-ios-search-strong">
+
+    <ual-input ng-show="!vm.isVariable.value" placeholder="Enter [variable name]" value="vm.value" min-chars="3" icon="ion-ios-search-strong">
     </ual-input>
-    <ual-dropdown ng-show="vm.isVariable.value" placeholder="Select One..." list="vm.variables" selected="vm.selectedItem" property="text">
+    <ual-dropdown ng-show="vm.isVariable.value" placeholder="Search for variables" list="vm.availableVariables" selected="vm.selectedVariable2" property="name"><!--this component will change on US - CR1.24-->
     </ual-dropdown>
     <ual-action-label icon="ion-android-close" label="">
     </ual-action-label>

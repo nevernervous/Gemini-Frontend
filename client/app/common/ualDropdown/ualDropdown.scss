@@ -6,10 +6,10 @@ ual-dropdown {
     .dropdown-display {
       position: relative;
       width: 100%;
-      z-index: 2000;
+      z-index: 91;
       @include font-clanot-book(14);
       color: $color07;
-      padding: 8px 8px 5px;
+      padding: 8px;
       border: solid 1px $color08;
       cursor: pointer;
       box-sizing: border-box;
@@ -33,7 +33,7 @@ ual-dropdown {
         background-color: $color00;
         vertical-align: middle;
         width: 101%;
-        z-index: 1000;
+        z-index: 90;
         @include box-shadow(3px, 0, 1px, 0, $color08);
         .dropdown-list {
           display: block;

@@ -2,12 +2,15 @@
 ual-filter-condition {
   padding: 20px;
   >.wrapper{
-    margin-left: 30px !important;
+    margin-left: 0px !important;
     @include gridle(row row-align center between);
     >.operator{
-      max-width: 3%;
+      max-width: 5%;
       display : flex;
       align-items: center;
+      &.hideOperator{
+        visibility: hidden;
+      }
     }
     >.section{
         @include gridle(6 row row-align center);

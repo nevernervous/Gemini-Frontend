@@ -1,10 +1,15 @@
-<ual-pane ual-title="Available variables ({{vm.avaiableVariables.length}})" on-action="vm.selectAll()" action="Select all" is-disabled="vm.avaiableVariables.length == 0 || ( vm.avaiableVariables | filterBy:vm.filterName | isEmpty)">
-  <ual-input class="search-box" value="vm.filterName.name" min-chars="3" icon="ion-ios-search-strong"></ual-input>
-  <ul tabindex="0" class="unselectable -avaiable-variables" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)" >
-    <li ng-repeat="variable in vm.avaiableVariables | filterBy:vm.filterName | orderBy : 'order'" onselectstart="return false;"
+<ual-pane ual-title="Available variables ({{vm.variablesFiltered.length}})" on-action="vm.selectAll()" action="Select all"
+          is-disabled="(vm.variablesFiltered = (vm.avaiableVariables | visible:'name':vm._avaiable.filter | filter:{'_visible': true} )) | isEmpty">
+  <ual-input class="search-box" value="vm._avaiable.filter" min-chars="3" icon="ion-ios-search-strong"></ual-input>
+  <div class="empty-search" ng-hide="vm.variablesFiltered.length > 0">
+    <div>No results found.</div>
+  </div>
+  <ul tabindex="0" class="unselectable -avaiable-variables" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)" ng-if="vm.avaiableVariables.length > 0 && vm.variablesFiltered.length > 0">
+    <li ng-repeat="variable in vm.avaiableVariables | filterBy:vm._avaiable.filter | orderBy : 'order'" onselectstart="return false;"
     selection-model
     selection-model-mode="'multiple'"
-    selection-model-selected-items="vm.selectedReference">
+    selection-model-selected-items="vm.selectedReference"
+    ng-show="variable._visible">
       <div id="available-variable{{variable.id}}"
       data-ng-mouseover="vm.showTooltip('available-variable'+variable.id,variable.name,variable.description)"
       data-ng-mouseleave="vm.hideTooltip()"
