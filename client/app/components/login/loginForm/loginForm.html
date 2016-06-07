@@ -1,4 +1,12 @@
-<form class="login-form" name="loginform" ng-submit="vm.submit()" novalidate autocomplete="off">
+<form class="login-form" name="loginform" ng-submit="vm.submit()"  autocomplete="off">
+  <md-input-container ual-input >
+    <label>User ID</label>
+    <input aria-label="title" type="text" ng-model="title" ng-required="true">
+  </md-input-container>
+  <md-input-container ual-input>
+    <label>Title</label>
+    <input aria-label="title" ng-model="title" ng-required="true">
+  </md-input-container>
   <login-form-input ng-class="{'-invalid': vm.error && loginform.$submitted}" label="User ID"  type="text"
                     value="vm.user" tabindex="1" on-focus="loginform.$setPristine()" is-required="true"></login-form-input>
   <login-form-input ng-class="{'-invalid': vm.error && loginform.$submitted}" label="Password" type="password"
@@ -8,6 +16,17 @@
     <a href="mailto:{{vm.mailto}}" ng-class="{visible: vm.error.errorCode == 1}">Please click here to contact PDS.</a>
   </div>
   <div class="buttons">
-    <ual-button class="login-form-submit -primary" type="submit" tabindex="3" loading="{{vm.loading}}" ng-disabled="vm.loading">Login</ual-button>
+    <md-button ual-button
+      class="login-form-submit md-primary"
+      type="submit"
+      tabindex="3"
+      ng-disabled="vm.loading">
+      <ual-loading
+        ual-loading-enable="vm.loading"
+        ual-loading-diameter="30">
+        Login
+      </ual-loading>
+    </md-button>
+    <!--ual-button class="login-form-submit -primary" type="submit" tabindex="3" loading="{{vm.loading}}" ng-disabled="vm.loading">Login</ual-button-->
   </div>
 </form>

@@ -1,0 +1,13 @@
+@import '../common';
+
+// VARIANT / BUTTON
+.ual-button ual-loading md-progress-circular {
+  bottom: ($loading-button-size / 2);
+  right: ($loading-button-size / 2);
+}
+// VARIANT / DISABLED
+[disabled] ual-loading md-progress-circular {
+  path {
+    stroke: $loading-disabled-color;
+  }
+}

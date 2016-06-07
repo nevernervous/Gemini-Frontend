@@ -60,3 +60,29 @@ $successHighColor: $color15;
 $successLowColor: $color16;
 $messageHighColor: $color03;
 $messageLowColor: $color00;
+
+
+// MATERIAL
+@function rem($multiplier) {
+  $font-size: 10px;
+  @return $multiplier * $font-size;
+}
+
+$font-disabled-color: #d9e1e7;
+
+$body-font-size-base: rem(1.600);
+
+// MATERIAL / BUTTON
+$button-font-size: $body-font-size-base;
+$button-line-height: rem(3.40) !default;
+$button-text-transform: capitalize;
+$button-disabled-color: $font-disabled-color;
+$button-disabled-bg-color: #99a7b4;
+
+// MATERIAL / PROGRESS
+$loading-disabled-color: $font-disabled-color;
+$loading-button-size: 20px;
+
+// MATERIAL / INPUT
+$input-border-width-default: 2px;
+$input-line-height: 42px;

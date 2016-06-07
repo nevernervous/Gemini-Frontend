@@ -5,6 +5,9 @@
   @include gridle( col );
   @include gridle( gutter 60px 0px );
 
+  > md-input-container {
+    padding: 0;
+  }
   > * {
     @include gridle( 12 );
     @include gridle( gutter 40px 100px );
@@ -20,12 +23,14 @@
   background-color:rgba(255, 255, 255, 0.75);
 
   .buttons {
-    .ual-button.login-form-submit {
+    .login-form-submit {
+      line-height: 50px;
+      min-height: 50px;
+      font-size: 18px;
       width: 100%;
-      @include font-clanot-news(18);
-      padding: 14px;
-      > span {
-        display: block;
+      md-progress-circular {
+        bottom: 15px;
+        right: 15px;
       }
     }
   }
@@ -54,5 +59,3 @@
     }
   }
 }
-
-

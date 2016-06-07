@@ -18,6 +18,7 @@ import ualClusterizeTable from './ualClusterizeTable/ualClusterizeTable';
 import ualEllipsis from './ualEllipsis/ualEllipsis';
 import ualAccordionGroup from './ualAccordionGroup/ualAccordionGroup';
 import ualOnScroll from './ualOnScroll/ualOnScroll';
+import ualLoading from './ualLoading/ualLoading';
 
 let commonModule = angular.module('app.common', [
   ualModal.name,
@@ -38,8 +39,8 @@ let commonModule = angular.module('app.common', [
   ualClusterizeTable.name,
   ualEllipsis.name,
   ualAccordionGroup.name,
-  ualOnScroll.name
+  ualOnScroll.name,
+  ualLoading.name
 ]);
 
 export default commonModule;
-
