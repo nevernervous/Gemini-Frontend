@@ -30,8 +30,7 @@ class UalVariablesMultiSelectController {
   }
 
   selectAll() {
-    this.selectedReference = _.filter(this.avaiableVariables, (variable)=>{return variable._visible;});
-    _.each(this.selectedReference, (item) => item.selected = true);
+    _.each(this.avaiableVariables, (item) => { item.selected = item._visible;});
   }
 
 

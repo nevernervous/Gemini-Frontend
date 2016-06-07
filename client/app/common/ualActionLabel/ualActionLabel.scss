@@ -1,0 +1,38 @@
+@import '../common';
+//Layout
+ual-action-label {
+  .-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 4px;
+    height: 36px;
+    > i {
+      padding: 5px;
+    }
+    > a {
+      padding: 5px;
+    }
+  }
+}
+//Variant
+ual-action-label {
+  .-container {
+    cursor: pointer;
+    @include font-clanot-book(14);
+    > i {
+      font-size: 22px;
+      color: $color07;
+    }
+    > a {
+      @include link();
+    }
+  }
+}
+
+//Action Disabled
+ual-action-label[disabled] {
+  .-container i {
+    cursor: auto;
+    color: $color08;
+  }
+}
