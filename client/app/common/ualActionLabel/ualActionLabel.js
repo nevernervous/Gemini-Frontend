@@ -1,8 +1,8 @@
 import angular from 'angular';
-import ualActionLabelComponent from './ualActionLabel.component';
+import ualActionLabelDirective from './ualActionLabel.directive';
 
 let ualActionLabelModule = angular.module('ualActionLabel', [])
 
-.component('ualActionLabel', ualActionLabelComponent);
+.directive('ualActionLabel', () => new ualActionLabelDirective());
 
 export default ualActionLabelModule;
