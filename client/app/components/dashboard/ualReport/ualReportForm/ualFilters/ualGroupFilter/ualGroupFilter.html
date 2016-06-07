@@ -1,21 +1,21 @@
- <div class="-toolbar">
-          <span class="-not-button">
-            <ual-checkbox is-checked="false"></ual-checkbox>
-            Not
-          </span>
-          <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.selectedItem" property="text">
-          </ual-dropdown>
-          <ual-action-label icon="ion-android-add" label="Add Condition">
-          </ual-action-label>
-          <ual-action-label icon="ion-android-add" label="Add Group">
-          </ual-action-label>
-          <ual-action-label disabled="true" icon="ion-android-close" label="Clear All">
-          </ual-action-label>
+<div class="-toolbar">
+  <span class="-not-button">
+    <ual-checkbox is-checked="false"></ual-checkbox>
+    Not
+  </span>
+  <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.selectedItem" property="text">
+  </ual-dropdown>
+  <ual-action-label icon="ion-android-add" label="Add Condition">
+  </ual-action-label>
+  <ual-action-label icon="ion-android-add" label="Add Group">
+  </ual-action-label>
+  <ual-action-label disabled="true" icon="ion-android-close" label="Clear All">
+  </ual-action-label>
 </div>
 <div class="-conditions" ng-show="!!vm.collection && vm.collection > 0" ng-transclude>
 </div>
 <div class="-no-conditions" ng-hide="!vm.collection && vm.collection == 0">
-    <div>
-      No limit applied
-    </div>
+  <div>
+    No limit applied
+  </div>
 </div>
