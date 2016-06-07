@@ -30,7 +30,7 @@ class UalVariablesMultiSelectController {
   }
 
   selectAll() {
-    _.each(this.avaiableVariables, (item,idx) => { item.selected = item._visible;});
+    _.each(this.avaiableVariables, (item) => { item.selected = item._visible;});
   }
 
 
