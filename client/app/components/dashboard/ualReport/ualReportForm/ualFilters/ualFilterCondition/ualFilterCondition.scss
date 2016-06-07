@@ -1,29 +1,32 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  @include gridle(row row-align center between);
   padding: 20px;
   >.wrapper{
-    width: 100%;
     margin-left: 0px !important;
-    @include gridle(row row-align center between);
-    >.operator{
-      max-width: 3%;
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
-      &.hideOperator{
-        visibility: hidden;
-      }
-    }
+    @include gridle(row row-align);
     >.section{
-        @include gridle(6 row row-align center);
+        @include gridle(6 row row-align);
         display : flex;
         padding: 0 10px;
-       >ual-input{
+         >.operator{
+            margin-left: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include gridle(1);
+            &.hideOperator{
+              visibility: hidden;
+            }
+          }
+      >ual-input{
         @include gridle(5);
-        }
+      }
       >ual-dropdown{
         @include gridle(5);
+      }
+      >.close-btn{
+        display: flex;
+        align-items: center;
       }
     }
   }

@@ -4,6 +4,7 @@ class UalFiltersController {
     this.name = 'ualFilters';
     this.collection = [];
     this._datasourceService = DataSource;
+    this.availableVariables=[];
     this.operatorsList=[
       {text: "="},
       {text: "<"},
@@ -43,7 +44,6 @@ class UalFiltersController {
   }
 
   removeCondition(id){
-    console.log("remove condition ",id)
     this.collection.splice(id,1);
   }
 }
