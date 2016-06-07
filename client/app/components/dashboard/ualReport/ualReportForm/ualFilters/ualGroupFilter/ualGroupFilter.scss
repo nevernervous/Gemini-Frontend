@@ -15,7 +15,19 @@ ual-group-filter {
       width: 100px;
     }
     ual-action-label {
-      width: 170px;
+      &.-condition-label {
+        padding-left: 15px;
+        width: 165px;
+      }
+      &.-clear-label {
+        width: 112px;
+      }
+      &.-group-label {
+        width: 128px;
+      }
+      &.-remove-label {
+        width: 134px;
+      }
     }
   }
   .-conditions {

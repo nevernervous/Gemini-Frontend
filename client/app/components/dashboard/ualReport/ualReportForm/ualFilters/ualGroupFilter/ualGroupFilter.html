@@ -5,11 +5,13 @@
   </span>
   <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.selectedItem" property="text">
   </ual-dropdown>
-  <ual-action-label icon="ion-android-add" label="Add Condition">
+  <ual-action-label class="-condition-label" icon="ion-android-add" label="Add Condition">
   </ual-action-label>
-  <ual-action-label icon="ion-android-add" label="Add Group">
+  <ual-action-label class="-group-label" icon="ion-android-add" label="Add Group">
   </ual-action-label>
-  <ual-action-label ng-disabled="true" icon="ion-android-close" label="Clear All">
+  <ual-action-label class="-remove-label" ng-disabled="true" icon="ion-android-close" label="Remove All">
+  </ual-action-label>
+  <ual-action-label class="-clear-label" ng-disabled="true" icon="ion-android-close" label="Clear All">
   </ual-action-label>
 </div>
 <div class="-conditions" ng-show="!!vm.collection && vm.collection > 0" ng-transclude>
