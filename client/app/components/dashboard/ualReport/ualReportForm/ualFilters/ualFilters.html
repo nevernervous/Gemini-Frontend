@@ -1,6 +1,6 @@
 <div class="-filter-container">
-  <ual-group-filter add-condition="vm.addCondition()" operator="vm.operator">
-        <ual-filter-condition ng-repeat="condition in vm.conditions track by $index" datasource="vm.datasource" available-variables="vm.availableVariables" operators-list="vm.operatorsList" operator="vm.operator" index="$index">
+  <ual-group-filter add-condition="vm.addCondition()" operator-group="vm.operatorGroup" collection="vm.collection">
+        <ual-filter-condition ng-repeat="condition in vm.collection track by $index" condition="condition" available-variables="vm.availableVariables" operators-list="vm.operatorsList" operator-group="vm.operatorGroup" index="$index" remove-condition="vm.removeCondition($index)">
         </ual-filter-condition>
   </ual-group-filter>
 </div>

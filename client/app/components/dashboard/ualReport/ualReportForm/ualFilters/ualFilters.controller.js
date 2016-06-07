@@ -2,7 +2,7 @@ class UalFiltersController {
   /*@ngInject*/
   constructor($scope, DataSource) {
     this.name = 'ualFilters';
-    this.conditions = [];
+    this.collection = [];
     this._datasourceService = DataSource;
     this.operatorsList=[
       {text: "="},
@@ -16,6 +16,7 @@ class UalFiltersController {
     }, (newValue, oldValue) => {
       if (newValue !== oldValue && newValue) {
         this.getVariables();
+        this.collection=[];
       }
     });
   }
@@ -31,7 +32,19 @@ class UalFiltersController {
   }
 
   addCondition() {
-    this.conditions.push({});
+    this.collection.push({
+      id:this.collection.length,
+      selectedOperator : {text: "="},
+      isVariable:{
+         value:true,
+         text: "Variable"
+      }
+    });
+  }
+
+  removeCondition(id){
+    console.log("remove condition ",id)
+    this.collection.splice(id,1);
   }
 }
 

@@ -1,5 +1,5 @@
 @import '../../../../../common/common';
-
+//Layout
 ual-filters {
   display: block;
   height: 96%;
@@ -8,12 +8,21 @@ ual-filters {
   overflow-x: hidden;
   .-filter-container{
     min-height: 80%;
+    height: 80%;
   }
   .-condition-container{
-    background-color: $color08;
     width: 100%;
     .-code{
       padding: 21px 15px;
+    }
+  }
+}
+
+//Variations
+ual-filters {
+  .-condition-container{
+    background-color: $color08;
+    .-code{
       line-height: 1.5em;
       .-highlight{
         @include font-clanot-bold(16);
@@ -21,3 +30,4 @@ ual-filters {
     }
   }
 }
+

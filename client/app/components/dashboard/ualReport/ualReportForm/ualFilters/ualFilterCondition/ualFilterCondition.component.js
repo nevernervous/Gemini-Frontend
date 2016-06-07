@@ -5,11 +5,12 @@ import './ualFilterCondition.scss';
 let ualFilterConditionComponent = {
   restrict: 'E',
   bindings: {
-     datasource : "<",
-     operator : "=",
+     condition : "=",
+     operatorGroup : "=",
      index : "=",
      availableVariables : "<",
-     operatorsList :"<" 
+     operatorsList :"<",
+     removeCondition:"&"
   },
   template,
   controller,

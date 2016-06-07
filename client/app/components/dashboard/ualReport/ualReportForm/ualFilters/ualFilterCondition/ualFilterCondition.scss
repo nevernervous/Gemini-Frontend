@@ -1,13 +1,16 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
+  @include gridle(row row-align center between);
   padding: 20px;
   >.wrapper{
+    width: 100%;
     margin-left: 0px !important;
     @include gridle(row row-align center between);
     >.operator{
-      max-width: 5%;
-      display : flex;
+      max-width: 3%;
+      display: flex;
       align-items: center;
+      padding-left: 10px;
       &.hideOperator{
         visibility: hidden;
       }

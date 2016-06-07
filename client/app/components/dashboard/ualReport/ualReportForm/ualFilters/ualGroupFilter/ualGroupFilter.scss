@@ -1,5 +1,4 @@
 @import '../../../../../../common/common';
-
 ual-group-filter {
   display: block;
   width: 100%;
@@ -9,9 +8,8 @@ ual-group-filter {
     display: flex;
     align-items: center;
     vertical-align: middle;
-    .-not-button{
+    .-not-button {
       padding: 0 20px 0 0;
-      @include font-clanot-bold(16);
     }
     ual-dropdown {
       width: 100px;
@@ -20,11 +18,29 @@ ual-group-filter {
       width: 170px;
     }
   }
-  .-conditions{
+  .-conditions {
     display: block;
     min-height: 300px;
     height: calc(100% - 66px);
     overflow-y: hidden;
     overflow-x: hidden;
+  }
+  .-no-conditions {
+    display: flex;
+    height: calc(100% - 22px);
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+//Variations
+ual-group-filter {
+  .-toolbar {
+    .-not-button {
+      @include font-clanot-bold(16);
+    }
+  }
+  .-no-conditions {
+    color: $color07;
   }
 }

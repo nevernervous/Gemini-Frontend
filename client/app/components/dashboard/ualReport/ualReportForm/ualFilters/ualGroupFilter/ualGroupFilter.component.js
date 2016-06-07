@@ -6,7 +6,8 @@ let ualGroupFilterComponent = {
   restrict: 'E',
   bindings: {
     addCondition:"&",
-    operator:"="
+    operatorGroup:"=",
+    collection: "="
   },
   template,
   transclude : true,

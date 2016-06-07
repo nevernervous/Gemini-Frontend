@@ -1,20 +1,20 @@
 <div class="wrapper">
-  <div class="operator"  ng-class="{'hideOperator': vm.index==0}">{{vm.operator.text}}</div>
+  <div class="operator"  ng-class="{'hideOperator': vm.index==0}">{{vm.operatorGroup.text}}</div>
   <div class="section">
-    <ual-dropdown placeholder="Search for variables" list="vm.availableVariables" selected="vm.selectedVariable" property="name"><!--this component will change on US - CR1.24-->
+    <ual-dropdown placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.selectedVariable" property="name"><!--this component will change on US - CR1.24-->
     </ual-dropdown>
-    <ual-dropdown placeholder="Select One..." list="vm.operatorsList" selected="vm.selectedOperator" property="text">
+    <ual-dropdown placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.selectedOperator" property="text">
     </ual-dropdown>
   </div>
   <div class="section">
-    <ual-dropdown placeholder="Select One..." list="vm.valueVariable" selected="vm.isVariable" property="text">
+    <ual-dropdown placeholder="Select One..." list="vm.valueVariable" selected="vm.condition.isVariable" property="text">
     </ual-dropdown>
 
-    <ual-input ng-show="!vm.isVariable.value" placeholder="Enter [variable name]" value="vm.value" min-chars="3" icon="ion-ios-search-strong">
+    <ual-input ng-show="!vm.condition.isVariable.value" placeholder="Enter [variable name]" value="vm.condition.valueText" min-chars="3" icon="ion-ios-search-strong">
     </ual-input>
-    <ual-dropdown ng-show="vm.isVariable.value" placeholder="Search for variables" list="vm.availableVariables" selected="vm.selectedVariable2" property="name"><!--this component will change on US - CR1.24-->
+    <ual-dropdown ng-show="vm.condition.isVariable.value" placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.selectedVariable2" property="name"><!--this component will change on US - CR1.24-->
     </ual-dropdown>
-    <ual-action-label icon="ion-android-close" label="">
+    <ual-action-label icon="ion-android-close" label="" ng-click="vm.removeCondition()">
     </ual-action-label>
   </div>
 </div>
