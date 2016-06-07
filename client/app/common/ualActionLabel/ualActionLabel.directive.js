@@ -22,8 +22,8 @@ class ualActionLabelComponent {
       () => element.attr('disabled'),
       newValue => {
         let action = newValue ? 'addClass' : 'removeClass';
+        element[action]('-disabled');
         let anchor = element.find('a')[action]('-disabled');
-        let icon = element.find('i')[action]('-disabled');
       }
     );
   }

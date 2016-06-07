@@ -63,7 +63,7 @@ ual-dropdown {
         visibility: hidden;
         background-color: $color00;
         z-index: 90;
-        @include box-shadow(3px, 0, 1px, 0, $color08);
+        @include box-shadow(2px, 2px, 1px, 0, $color08);
         .dropdown-list{
             border: 1px solid $color08;
         }

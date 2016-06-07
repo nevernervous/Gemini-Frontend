@@ -6,22 +6,32 @@ ual-action-label {
     align-items: center;
     padding: 10px 4px;
     height: 36px;
-    cursor: pointer;
-    @include font-clanot-book(14);
     > i {
       padding: 5px;
-      font-size: 22px;
-      color: $color07;
     }
     > a {
-      @include link();
       padding: 5px;
     }
   }
 }
 //Variant
 ual-action-label {
-  .-container i.-disabled {
+  .-container {
+    cursor: pointer;
+    @include font-clanot-book(14);
+    > i {
+      font-size: 22px;
+      color: $color07;
+    }
+    > a {
+      @include link();
+    }
+  }
+}
+
+//Action Disabled
+ual-action-label.-disabled {
+  .-container i {
     cursor: auto;
     color: $color08;
   }
