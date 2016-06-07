@@ -1,21 +1,14 @@
 @import '../common';
 ual-dropdown {
   .dropdown-container {
-    max-width: 208px;
     width: 100%;
     .dropdown-display {
       position: relative;
       width: 100%;
-      z-index: 2000;
-      @include font-clanot-book(14);
-      color: $color07;
-      padding: 8px 8px 5px;
-      border: solid 1px $color08;
-      cursor: pointer;
+      padding: 8px;
       box-sizing: border-box;
-      .placeholder{
+      .placeholder {
         display: inline-block;
-        @include ellipses();
         width: 85%;
         vertical-align: middle;
       }
@@ -27,19 +20,14 @@ ual-dropdown {
       .float-container {
         display: inline-block;
         position: absolute;
-        visibility: hidden;
         top: 35px;
         left: -1px;
-        background-color: $color00;
         vertical-align: middle;
         width: 101%;
-        z-index: 1000;
-        @include box-shadow(3px, 0, 1px, 0, $color08);
         .dropdown-list {
           display: block;
           width: 100%;
           box-sizing: border-box;
-          border: 1px solid $color08;
           .list-options {
             display: block;
             margin: 0;
@@ -48,6 +36,13 @@ ual-dropdown {
             list-style: none;
             overflow-y: auto;
             max-height: 250px;
+            .dropdown-item {
+              display: inline-block;
+              width: 100%;
+              padding: 4px 8px 4px 8px;
+              margin: 1px 0;
+              line-height: 1;
+            }
           }
         }
       }
@@ -56,13 +51,52 @@ ual-dropdown {
 }
 
 //Variations
-//Visible
+ual-dropdown {
+  .dropdown-container {
+    .dropdown-display {
+      z-index: 91;
+      @include font-clanot-book(14);
+      border: solid 1px $color08;
+      color: $color07;
+      cursor: pointer;
+      .float-container {
+        visibility: hidden;
+        background-color: $color00;
+        z-index: 90;
+        @include box-shadow(2px, 2px, 1px, 0, $color08);
+        .dropdown-list{
+            border: 1px solid $color08;
+        }
+      }
+    }
+  }
+}
+
+
+//Dropdown Visible
 ual-dropdown {
   .dropdown-container {
     &.show {
       .float-container {
         visibility: visible;
       }
+    }
+  }
+}
+
+//Dropdown Item states
+ual-dropdown {
+  .dropdown-container {
+    .dropdown-item:not(.-disabled) {
+      &:hover {
+        background-color: $others01;
+        @include font-clanot-news(14);
+        color: $color06;
+        cursor: pointer;
+      }
+    }
+    .dropdown-item.-disabled {
+      color: $color07;
     }
   }
 }

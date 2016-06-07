@@ -15,7 +15,8 @@
     color: $other08;
   }
 
-  &.-disabled, &.-disabled:hover, &.-disabled:visited:hover {
+
+  &.-disabled, &.-disabled:hover, &.-disabled:visited:hover, &[disabled]  {
     color: $other09;
     cursor: default;
   }
