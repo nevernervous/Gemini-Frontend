@@ -30,7 +30,7 @@ ual-action-label {
 }
 
 //Action Disabled
-ual-action-label.-disabled {
+ual-action-label[disabled] {
   .-container i {
     cursor: auto;
     color: $color08;

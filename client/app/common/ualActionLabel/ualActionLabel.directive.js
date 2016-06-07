@@ -21,9 +21,7 @@ class ualActionLabelComponent {
     scope.$watch(
       () => element.attr('disabled'),
       newValue => {
-        let action = newValue ? 'addClass' : 'removeClass';
-        element[action]('-disabled');
-        let anchor = element.find('a')[action]('-disabled');
+        ctrl.disabled = !!newValue;
       }
     );
   }
