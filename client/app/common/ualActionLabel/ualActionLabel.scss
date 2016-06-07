@@ -1,9 +1,8 @@
 @import '../common';
+//Layout
 ual-action-label {
   .-container {
     display: flex;
-    max-width: 208px;
-    justify-content: center;
     align-items: center;
     padding: 10px 4px;
     height: 36px;
@@ -14,15 +13,13 @@ ual-action-label {
       font-size: 22px;
       color: $color07;
     }
-    > label {
+    > a {
       @include link();
       padding: 5px;
-      cursor: pointer;
     }
   }
 }
-
-
+//Variant
 ual-action-label {
   .-container i.-disabled {
     cursor: auto;

@@ -1,7 +1,6 @@
 @import '../common';
 ual-dropdown {
   .dropdown-container {
-    max-width: 208px;
     width: 100%;
     .dropdown-display {
       position: relative;
@@ -15,7 +14,6 @@ ual-dropdown {
       box-sizing: border-box;
       .placeholder{
         display: inline-block;
-        @include ellipses();
         width: 85%;
         vertical-align: middle;
       }

@@ -31,69 +31,6 @@ class UalReportFormController {
     }
     this.selectedItem;
 
-    this.list = [
-      {
-        id: 1,
-        text: "Something Longkhdjs Lorem Ipsiskk askjdh"
-      },
-      {
-        id: 1,
-        text: "Something 2"
-      },
-      {
-        id: 1,
-        text: "Something 3"
-      },
-      {
-        id: 1,
-        text: "Something 4"
-      },
-      {
-        id: 1,
-        text: "Something 5"
-      },
-      {
-        id: 1,
-        text: "Something 6"
-      },
-      {
-        id: 1,
-        text: "Something 7"
-      },
-      {
-        id: 1,
-        text: "Something 8"
-      },
-      {
-        id: 1,
-        text: "Something 9"
-      },
-      {
-        id: 1,
-        text: "Something 10"
-      },
-      {
-        id: 1,
-        text: "Something 11"
-      },
-      {
-        id: 1,
-        text: "Something 12"
-      },
-      {
-        id: 1,
-        text: "Something 10"
-      },
-      {
-        id: 1,
-        text: "Something 11"
-      },
-      {
-        id: 1,
-        text: "Something 12"
-      }
-    ];
-
     this.response = {
       success: null,
       error: null
