@@ -7,12 +7,12 @@ class UalVariablesLayoutController {
     this._ualTooltipService = ualTooltipService;
     this._deleteallmodal = ualVariablesDeteleAllModal;
 
-    this._suscriptions = [];
-
     // VARS / PUBLIC
     this._variables = {}
     this._aggregators = {}
     this.selectedsVariables = [];
+
+    this._suscriptions = [];
   }
 
   $onInit() {
@@ -73,7 +73,7 @@ class UalVariablesLayoutController {
     });
   }
   deleteAllVariables()   { this.deleteAll("Selected Variables",   this.variables.get(),   this._variables);   }
-  deleteAllAggregators() { this.deleteAll("Selected Aggregatros", this.aggregators.get(), this._aggregators); }
+  deleteAllAggregators() { this.deleteAll("Selected Aggregators", this.aggregators.get(), this._aggregators); }
 
   deleteItem(index, container, state) {
     container.splice(index, 1);
