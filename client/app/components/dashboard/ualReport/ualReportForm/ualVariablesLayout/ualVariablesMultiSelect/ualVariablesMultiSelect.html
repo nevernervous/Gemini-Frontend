@@ -1,7 +1,7 @@
 <ual-pane ual-title="Available variables ({{vm.variablesFiltered.length}})" on-action="vm.selectAll()" action="Select all"
           is-disabled="(vm.variablesFiltered = (vm.avaiableVariables | visible:'name':vm._avaiable.filter | filter:{'_visible': true} )) | isEmpty">
   <ual-input class="search-box" value="vm._avaiable.filter" min-chars="2" icon="ion-ios-search-strong"></ual-input>
-  <div class="empty-search" ng-show="vm.variablesFiltered| isEmpty">
+  <div class="empty-search" ng-if="vm.variablesFiltered| isEmpty">
     <div>No results found.</div>
   </div>
   <ul tabindex="0" class="unselectable -avaiable-variables selected-list" ng-keydown="vm.keyDown($event)" ng-keyup="vm.keyUp($event)" ng-if="vm.avaiableVariables.length > 0 && vm.variablesFiltered.length > 0">
