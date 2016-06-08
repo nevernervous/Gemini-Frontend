@@ -2,7 +2,6 @@
 ual-group-filter {
   display: block;
   width: 100%;
-  height: 100%;
   padding: 15px 5px;
   .-toolbar {
     display: flex;
@@ -32,13 +31,11 @@ ual-group-filter {
   }
   .-conditions {
     display: block;
-    height: calc(100% - 66px);
-    overflow-y: auto;
-    overflow-x: hidden;
+    min-height: 265px;
   }
   .-no-conditions {
     display: flex;
-    height: calc(100% - 22px);
+    min-height: 265px;
     align-items: center;
     justify-content: center;
   }
