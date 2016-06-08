@@ -34,7 +34,6 @@ class UalFiltersController {
 
   addCondition() {
     this.collection.push({
-      id:this.collection.length,
       selectedOperator : {text: "="},
       isVariable:{
          value:true,
