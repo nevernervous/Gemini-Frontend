@@ -15,7 +15,7 @@
 
   <div class="selected-variables">
     <ual-pane ual-title="Selected aggregators ({{vm.aggregatorsFiltered.length}})" action="Delete all" on-action="vm.deleteAllAggregators()" is-disabled="(vm.aggregatorsFiltered = (vm.aggregators.get() | visible:'name':vm._aggregators.filter | filter:{'_visible': true} )) | isEmpty">
-      <ual-input ual-id="selected-searchbox" class="search-box" value="vm._aggregators.filter" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging || vm._aggregators.isempty"></ual-input>
+      <ual-input ual-id="selected-searchbox" class="search-box" value="vm._aggregators.filter" min-chars="2" icon="ion-ios-search-strong" ual-disabled="vm.dragging || vm._aggregators.isempty"></ual-input>
       <div class="empty-search" ng-if="!vm._aggregators.isempty" ng-show="vm.aggregatorsFiltered | isEmpty">
         <div>No results found.</div>
       </div>
@@ -36,7 +36,7 @@
 
   <div class="selected-variables">
     <ual-pane ual-title="Selected variables ({{vm.variablesFiltered.length}})" action="Delete all" on-action="vm.deleteAllVariables()" is-disabled="(vm.variablesFiltered = (vm.variables.get() | visible:'name':vm._variables.filter | filter:{'_visible': true} )) | isEmpty">
-      <ual-input ual-id="selected-searchbox" class="search-box" value="vm._variables.filter" min-chars="3" icon="ion-ios-search-strong" ual-disabled="vm.dragging || vm._variables.isempty"></ual-input>
+      <ual-input ual-id="selected-searchbox" class="search-box" value="vm._variables.filter" min-chars="2" icon="ion-ios-search-strong" ual-disabled="vm.dragging || vm._variables.isempty"></ual-input>
       <div class="empty-search" ng-if="!vm._variables.isempty" ng-show="vm.variablesFiltered | isEmpty">
         <div>No results found.</div>
       </div>

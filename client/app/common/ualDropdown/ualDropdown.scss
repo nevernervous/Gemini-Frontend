@@ -20,10 +20,13 @@ ual-dropdown {
       .float-container {
         display: inline-block;
         position: absolute;
-        top: 35px;
+        top: 34px;
+        @include -ms-browser() {
+          top: 30px;
+        }
         left: -1px;
         vertical-align: middle;
-        width: 101%;
+        width: 102%;
         .dropdown-list {
           display: block;
           width: 100%;
