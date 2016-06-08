@@ -1,14 +1,16 @@
-import UalDropdownGroupModule from './ualDropdownGroup'
-import UalDropdownGroupController from './ualDropdownGroup.controller';
+import UalFiltersModule from './ualFilters'
+import UalFiltersController from './ualFilters.controller';
+import UalFiltersComponent from './ualFilters.component';
+import UalFiltersTemplate from './ualFilters.html';
 
-describe('UalDropdownGroup', () => {
+describe('UalFilters', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalDropdownGroupModule.name));
+  beforeEach(window.module(UalFiltersModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalDropdownGroupController();
+      return new UalFiltersController();
     };
   }));
 

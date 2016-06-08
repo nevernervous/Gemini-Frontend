@@ -8,6 +8,7 @@ import ualReportInput from './ualReportInput/ualReportInput';
 import ualReportNameModal from './ualReportNameModal/ualReportNameModal';
 import ualUnsafeReportModal from '../../ualUnsafeReportModal/ualUnsafeReportModal';
 import ualConditionsGroup from './ualConditionsGroup/ualConditionsGroup';
+import ualFilters from './ualFilters/ualFilters';
 
 
 let ualReportFormModule = angular.module('ualReportForm', [
@@ -15,6 +16,7 @@ let ualReportFormModule = angular.module('ualReportForm', [
     ualVariables.name,
     ualReportInput.name,
     ualConditionsGroup.name,
+    ualFilters.name,
     // MODALS
     ualDataSource.name,
     ualAgregationItem.name,
