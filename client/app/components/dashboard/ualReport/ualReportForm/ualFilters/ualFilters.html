@@ -1,9 +1,9 @@
 <div class="-filter-container">
   <ual-group-filter add-condition="vm.addCondition()" operator-group="vm.operatorGroup" collection="vm.collection">
-        <ual-filter-condition ng-if="false" ng-repeat="condition in vm.collection track by $index" condition="condition" available-variables="vm.availableVariables" operators-list="vm.operatorsList" operator-group="vm.operatorGroup" index="$index" remove-condition="vm.removeCondition($index)">
+        <ual-filter-condition ng-if="vm.collection.length > 0" ng-repeat="condition in vm.collection track by $index" condition="condition" available-variables="vm.availableVariables" operators-list="vm.operatorsList" operator-group="vm.operatorGroup" index="$index" remove-condition="vm.removeCondition($index)">
         </ual-filter-condition>
   </ual-group-filter>
-  <div class="-no-conditions" ng-hide="false">
+  <div class="-no-conditions" ng-hide="vm.collection.length > 0">
     <div>
       No limit applied
     </div>
