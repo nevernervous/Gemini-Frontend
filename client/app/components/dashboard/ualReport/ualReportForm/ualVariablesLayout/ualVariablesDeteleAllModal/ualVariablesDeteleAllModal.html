@@ -1,10 +1,7 @@
 <div class="title">
-  Delete All {{vm.deleting}}
-</div>
-<div class="description">
-  Are you sure you want to delete all your {{vm.deleting.toLowerCase()}}?
+  Delete all {{vm.deleting.toLowerCase()}}?
 </div>
 <div class="buttons">
-  <ual-button class="-link"  ng-click="vm.cancel()">Cancel</ual-button>
-  <ual-button class="-primary"  ng-click="vm.delete()">Delete</button>
+  <ual-button class="-link"  ng-click="vm.cancel()">No</ual-button>
+  <ual-button class="-primary"  ng-click="vm.delete()">Yes</button>
 </div>

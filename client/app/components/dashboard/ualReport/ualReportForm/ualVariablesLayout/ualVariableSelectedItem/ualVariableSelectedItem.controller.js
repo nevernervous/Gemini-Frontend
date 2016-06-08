@@ -53,7 +53,7 @@ class UalVariableSelectedItemController {
     if ( !this.isValid(this.position.new) && this.position.new != "") {
       this._ualTooltipService.show({
         container: this.identifier,
-        text:`Only numeric values between 1 and ${this.variableTotal} are allowed. Please re-enter a valid value.`,
+        text:`Only numeric values between 1 and ${this.variableTotal} are allowed. Please try again.`,
         position:"top",
         type:"error"
       });
