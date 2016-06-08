@@ -14,10 +14,5 @@
   <ual-action-label class="-clear-label" ng-disabled="vm.collection.length == 0" icon="ion-android-close" label="Clear All">
   </ual-action-label>
 </div>
-<div class="-conditions" ng-show="vm.collection.length > 0" ng-transclude>
-</div>
-<div class="-no-conditions" ng-hide="vm.collection.length > 0">
-  <div>
-    No limit applied
-  </div>
+<div class="-conditions" ng-transclude>
 </div>
