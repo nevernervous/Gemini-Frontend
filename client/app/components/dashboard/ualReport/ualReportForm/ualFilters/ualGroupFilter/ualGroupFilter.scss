@@ -16,27 +16,40 @@ ual-group-filter {
     ual-action-label {
       &.-condition-label {
         padding-left: 15px;
-        width: 165px;
       }
       &.-clear-label {
-        width: 112px;
+        padding-left: 8px;
       }
       &.-group-label {
-        width: 128px;
+        padding-left: 8px;
       }
       &.-remove-label {
-        width: 134px;
+        padding-left: 8px;
       }
     }
   }
   .-conditions {
     display: block;
     min-height: 265px;
+    @include gridle_state(desktop){
+      min-height: 265px;
+    }
+    @include gridle_state(undocked){
+      min-height: 550px;
+    }
   }
   .-no-conditions {
     display: flex;
     min-height: 265px;
     height: 265px;
+    @include gridle_state(undocked){
+      min-height: 550px;
+      height: 550px;
+    }
+    @include gridle_state(desktop){
+      min-height: 265px;
+      height: 265px;
+    }
     align-items: center;
     justify-content: center;
   }
