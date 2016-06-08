@@ -12,7 +12,7 @@ class UalDropdownController {
     this.isVisible = false;
   }
 
-  getText(item){
+  getText(item) {
     return !this.property ? item : item[this.property];
   }
 

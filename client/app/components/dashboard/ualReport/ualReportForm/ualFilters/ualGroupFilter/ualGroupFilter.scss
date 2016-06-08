@@ -14,17 +14,9 @@ ual-group-filter {
       width: 100px;
     }
     ual-action-label {
-      &.-condition-label {
+      padding-left: 8px;
+      &:first-child {
         padding-left: 15px;
-      }
-      &.-clear-label {
-        padding-left: 8px;
-      }
-      &.-group-label {
-        padding-left: 8px;
-      }
-      &.-remove-label {
-        padding-left: 8px;
       }
     }
   }
@@ -39,8 +31,5 @@ ual-group-filter {
     .-not-button {
       @include font-clanot-bold(16);
     }
-  }
-  .-no-conditions {
-    color: $color07;
   }
 }

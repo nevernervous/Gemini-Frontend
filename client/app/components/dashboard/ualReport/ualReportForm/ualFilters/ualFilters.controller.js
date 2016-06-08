@@ -34,12 +34,14 @@ class UalFiltersController {
 
   addCondition() {
     this.collection.push({
-      id:this.collection.length,
+      selectedVariable:{},
       selectedOperator : {text: "="},
       isVariable:{
          value:true,
          text: "Variable"
-      }
+      },
+      valueText:"",
+      selectedVariable2:{}
     });
   }
 

@@ -11,8 +11,7 @@
   <div class="section">
     <ual-dropdown placeholder="Select One..." list="vm.valueVariable" selected="vm.condition.isVariable" property="text">
     </ual-dropdown>
-
-    <ual-input ng-show="!vm.condition.isVariable.value" placeholder="Enter [variable name]" value="vm.condition.valueText" min-chars="3" icon="ion-ios-search-strong">
+    <ual-input ng-show="!vm.condition.isVariable.value" placeholder="Enter [variable name]" value="vm.condition.valueText" min-chars="3">
       <div class="-invalid-value" ng-if="!vm.isValid()">{{vm.getVariableName()}}</div>
     </ual-input>
     <ual-dropdown ng-show="vm.condition.isVariable.value" placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.selectedVariable2" property="name">
