@@ -7,6 +7,11 @@ class UalGroupFilterController {
         text: 'AND'
       };
 
+    this.selectedItem = {
+      value: '&',
+      text: 'AND'
+    };
+
     this.conditionList = [
       {
         value: '&',
