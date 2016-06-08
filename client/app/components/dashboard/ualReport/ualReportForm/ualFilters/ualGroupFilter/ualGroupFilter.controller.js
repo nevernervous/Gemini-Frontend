@@ -2,6 +2,10 @@ class UalGroupFilterController {
   /*@ngInject*/
   constructor() {
     this.name = 'ualGroupFilter';
+    this.operatorGroup={
+        value: '&',
+        text: 'AND'
+      };
 
     this.conditionList = [
       {

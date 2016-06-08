@@ -4,10 +4,14 @@ import './ualGroupFilter.scss';
 
 let ualGroupFilterComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    addCondition:"&",
+    operatorGroup:"=",
+    collection: "="
+  },
   template,
+  transclude : true,
   controller,
-  transclude: true,
   controllerAs: 'vm'
 };
 

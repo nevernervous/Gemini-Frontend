@@ -3,18 +3,18 @@
     <ual-checkbox is-checked="false"></ual-checkbox>
     Not
   </span>
-  <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.selectedItem" property="text">
+  <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.operatorGroup" property="text">
   </ual-dropdown>
-  <ual-action-label icon="ion-android-add" label="Add Condition">
+  <ual-action-label icon="ion-android-add" label="Add Condition" ng-click="vm.addCondition()">
   </ual-action-label>
   <ual-action-label icon="ion-android-add" label="Add Group">
   </ual-action-label>
-  <ual-action-label ng-disabled="true" icon="ion-android-close" label="Clear All">
+  <ual-action-label ng-disabled="vm.collection.length == 0" icon="ion-android-close" label="Clear All">
   </ual-action-label>
 </div>
-<div class="-conditions" ng-show="!!vm.collection && vm.collection > 0" ng-transclude>
+<div class="-conditions" ng-show="vm.collection.length > 0" ng-transclude>
 </div>
-<div class="-no-conditions" ng-hide="!vm.collection && vm.collection == 0">
+<div class="-no-conditions" ng-hide="vm.collection.length > 0">
   <div>
     No limit applied
   </div>

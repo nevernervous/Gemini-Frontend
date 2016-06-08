@@ -1,6 +1,7 @@
 <div class="-filter-container">
-  <ual-group-filter>
-    <!--Here goes conditions-->
+  <ual-group-filter add-condition="vm.addCondition()" operator-group="vm.operatorGroup" collection="vm.collection">
+        <ual-filter-condition ng-repeat="condition in vm.collection track by $index" condition="condition" available-variables="vm.availableVariables" operators-list="vm.operatorsList" operator-group="vm.operatorGroup" index="$index" remove-condition="vm.removeCondition($index)">
+        </ual-filter-condition>
   </ual-group-filter>
 </div>
 <div class="-condition-container">
@@ -14,3 +15,4 @@
       <span class="-highlight">OR</span> [variable]=[value])
   </div>
 </div>
+

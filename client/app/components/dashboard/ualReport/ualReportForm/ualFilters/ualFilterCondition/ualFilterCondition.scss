@@ -1,0 +1,33 @@
+@import '../../../../../../common/common';
+ual-filter-condition {
+  padding: 20px;
+  >.wrapper{
+    margin-left: 0px !important;
+    @include gridle(row row-align);
+    >.section{
+        @include gridle(6 row row-align);
+        display : flex;
+        padding: 0 10px;
+         >.operator{
+            margin-left: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include gridle(1);
+            &.hideOperator{
+              visibility: hidden;
+            }
+          }
+      >ual-input{
+        @include gridle(5);
+      }
+      >ual-dropdown{
+        @include gridle(5);
+      }
+      >.close-btn{
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

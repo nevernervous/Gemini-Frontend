@@ -20,8 +20,9 @@ ual-group-filter {
   }
   .-conditions {
     display: block;
+    min-height: 300px;
     height: calc(100% - 66px);
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
   }
   .-no-conditions {

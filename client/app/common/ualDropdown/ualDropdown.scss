@@ -54,7 +54,7 @@ ual-dropdown {
 ual-dropdown {
   .dropdown-container {
     .dropdown-display {
-      z-index: 91;
+      //z-index: 91;
       @include font-clanot-book(14);
       border: solid 1px $color08;
       color: $color07;
