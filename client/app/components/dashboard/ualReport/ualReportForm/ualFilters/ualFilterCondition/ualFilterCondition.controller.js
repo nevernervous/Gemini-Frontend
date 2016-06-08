@@ -19,12 +19,7 @@ class UalFilterConditionController {
     let regex = '[a-zA-Z]+';//Hardcode, change with regex in this.variable.validation.regex
     let patt = new RegExp(regex);
     let hasError = patt.test(value);
-    let response = {
-      ReturnObject: { "Id": 1, "Value": "Input Value", "Type": "String" },
-      HasError: hasError,
-      Errors: [""]
-    };
-    return response.HasError;
+    return this.condition.selectedVariable == undefined || !hasError;
   }
 
   getVariableName() {
