@@ -1,6 +1,7 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 20px;
+  padding: 20px 20px 0;
+  display: block;
   >.wrapper{
     margin-left: 0px !important;
     @include gridle(row row-align);
@@ -20,6 +21,11 @@ ual-filter-condition {
           }
       >ual-input{
         @include gridle(5);
+        .-invalid-value{
+            padding: 10px 10px 0;
+            @include font-clanot-book(14);
+            color: $color11;
+        }
       }
       >ual-dropdown{
         @include gridle(5);
