@@ -13,7 +13,7 @@
     </ual-dropdown>
 
     <ual-input ng-show="!vm.condition.isVariable.value" placeholder="Enter [variable name]" value="vm.condition.valueText" min-chars="3" icon="ion-ios-search-strong">
-      <div class="-invalid-value" ng-if="!vm.isValid()">Enter {{vm.getVariableName()}}</div>
+      <div class="-invalid-value" ng-if="!vm.isValid()">{{vm.getVariableName()}}</div>
     </ual-input>
     <ual-dropdown ng-show="vm.condition.isVariable.value" placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.selectedVariable2" property="name">
       <!--this component will change on US - CR1.24-->
