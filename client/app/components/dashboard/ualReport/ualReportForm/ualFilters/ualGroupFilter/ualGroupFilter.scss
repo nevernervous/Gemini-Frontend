@@ -30,28 +30,6 @@ ual-group-filter {
   }
   .-conditions {
     display: block;
-    min-height: 265px;
-    @include gridle_state(desktop){
-      min-height: 265px;
-    }
-    @include gridle_state(undocked){
-      min-height: 550px;
-    }
-  }
-  .-no-conditions {
-    display: flex;
-    min-height: 265px;
-    height: 265px;
-    @include gridle_state(undocked){
-      min-height: 550px;
-      height: 550px;
-    }
-    @include gridle_state(desktop){
-      min-height: 265px;
-      height: 265px;
-    }
-    align-items: center;
-    justify-content: center;
   }
 }
 

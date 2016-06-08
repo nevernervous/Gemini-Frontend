@@ -3,6 +3,11 @@
         <ual-filter-condition ng-repeat="condition in vm.collection track by $index" condition="condition" available-variables="vm.availableVariables" operators-list="vm.operatorsList" operator-group="vm.operatorGroup" index="$index" remove-condition="vm.removeCondition($index)">
         </ual-filter-condition>
   </ual-group-filter>
+  <div class="-no-conditions"  ng-hide="vm.collection.length > 0">
+    <div>
+      No limit applied
+    </div>
+  </div>
   <div class="-condition-container">
     <div class="-code">
       <span class="-highlight">WHERE</span> ([variable]=[value]
