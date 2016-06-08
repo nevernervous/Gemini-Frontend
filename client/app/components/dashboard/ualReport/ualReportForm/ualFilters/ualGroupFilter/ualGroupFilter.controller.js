@@ -3,6 +3,11 @@ class UalGroupFilterController {
   constructor() {
     this.name = 'ualGroupFilter';
 
+    this.selectedItem = {
+      value: '&',
+      text: 'AND'
+    };
+
     this.conditionList = [
       {
         value: '&',

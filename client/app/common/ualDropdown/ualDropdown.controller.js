@@ -3,7 +3,7 @@ class UalDropdownController {
   constructor() {
     this.name = 'ualDropdown';
     this.isVisible = false;
-    this.isPlaceholder = true;
+    this.isPlaceholder = !this.selected;
   }
   select($event, item) {
     $event.stopPropagation();
@@ -12,7 +12,7 @@ class UalDropdownController {
     this.isVisible = false;
   }
 
-  getText(item){
+  getText(item) {
     return !this.property ? item : item[this.property];
   }
 
