@@ -1,5 +1,7 @@
-<span>{{vm.items.not}}</span>
+<input type="checkbox" ng-check={{vm.items.not}} ng-model="vm.items.not" /><label>{{vm.items.not}}</label>
 <span>{{vm.items.operator}}</span>
+<ual-button ng-click="vm.addChildren()">+ Add limit</ual-button>
+<ual-button ng-click="vm.addGroup()">+ Add group</ual-button>
 <div ng-if="vm.items.children|isEmpty">
   No sons
 </div>
@@ -11,5 +13,6 @@
     <div ng-if="child.children===undefined">
       {{child}}
     </div>
+    <ual-button ng-click="vm.remove(child)">- Remove me</ual-button>
   </li>
 </ul>

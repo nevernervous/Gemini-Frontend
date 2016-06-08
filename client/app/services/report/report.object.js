@@ -12,38 +12,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     filters: {
       not: false,
       operator: "AND",
-//      children: []
-      children:   [{
-            "variable": "Booking",
-            "operator": "=",
-            "comparing": "value",
-            "value": "Lorem ipsum"
-          },
-          {
-            "variable": "Booking",
-            "operator": "!=",
-            "comparing": "variable",
-            "value": "Booking B"
-          },
-          {
-            "not": true,
-            "operator": "and",
-            "children": [
-                {
-                  "variable": "Booking B",
-                  "operator": "=",
-                  "comparing": "value",
-                  "value": "Lorem ipsum"
-                },
-                 {
-                  "not": true,
-                  "operator": "and",
-                  "children": [
-                  ]
-                }
-            ]
-          }
-        ]
+      children: []
     }
   };
   let initialHash = null;
@@ -80,33 +49,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       filters: {
         not: false,
         operator: "AND",
-//        children: []
-        children: [
-          {
-            "variable": "Booking",
-            "operator": "=",
-            "comparing": "value",
-            "value": "Lorem ipsum"
-          },
-          {
-            "variable": "Booking",
-            "operator": "!=",
-            "comparing": "variable",
-            "value": "Booking B"
-          },
-          {
-            "not": true,
-            "operator": "and",
-            "children": [
-                {
-                  "variable": "Booking B",
-                  "operator": "=",
-                  "comparing": "value",
-                  "value": "Lorem ipsum"
-                }
-            ]
-          }
-        ]
+        children: []
       }
 
     };
