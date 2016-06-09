@@ -23,6 +23,26 @@ class UalGroupFilterController {
       }
     ];
   }
+
+  addCondition() {
+    this.collection.push({
+      selectedVariable:{},
+      selectedOperator : {text: "="},
+      isVariable:{
+         value:true,
+         text: "Variable"
+      },
+      valueText:"",
+      selectedVariable2:{}
+    });
+  }
+
+  removeCondition(id){
+    this.collection.splice(id,1);
+  }
+  removeAll(){
+    this.collection=[];
+  }
 }
 
 export default UalGroupFilterController;

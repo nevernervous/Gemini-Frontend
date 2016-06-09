@@ -6,10 +6,9 @@ let ualFilterConditionComponent = {
   restrict: 'E',
   bindings: {
      condition : "=",
-     operatorGroup : "=",
-     index : "=",
-     availableVariables : "<",
-     operatorsList :"<",
+     operatorGroup : "<",
+     index : "<",
+     datasource : "<",
      removeCondition:"&"
   },
   template,

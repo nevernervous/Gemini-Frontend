@@ -1,23 +1,23 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 20px;
+  padding: 0 20px;
   >.wrapper{
     margin-left: 0px !important;
     @include gridle(row row-align);
     >.section{
-        @include gridle(6 row row-align);
-        display : flex;
-        padding: 0 10px;
-         >.operator{
-            margin-left: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            @include gridle(1);
-            &.hideOperator{
-              visibility: hidden;
-            }
+      @include gridle(6);
+      display: flex;
+      @include gridle(row row-align center middle);
+      padding: 0 10px;
+        >.operator{
+          margin-left: 22px;
+          display: flex;
+          align-items: center;
+          @include gridle(1);
+          &.hideOperator{
+            visibility: hidden;
           }
+        }
       >ual-input{
         @include gridle(5);
         >.ual-input{
