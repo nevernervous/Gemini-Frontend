@@ -7,6 +7,9 @@ class UalDropdownController {
   }
   select($event, item) {
     $event.stopPropagation();
+    if(_.isEqual(this.selected, item)){
+      this.onChange(item);
+    }
     this.selected = item;
     this.isPlaceholder = false;
     this.isVisible = false;

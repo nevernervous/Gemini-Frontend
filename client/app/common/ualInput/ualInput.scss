@@ -56,3 +56,10 @@ ual-input.-noborder {
     border-color: transparent
   }
 }
+
+// VARIATION / DISABLED
+ual-input.-error {
+  .ual-input {
+    border-color:$color11;
+  }
+}
