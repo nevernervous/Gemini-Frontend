@@ -6,28 +6,36 @@ ual-filters {
   margin-right: -12px;
   overflow-y: auto;
   overflow-x: hidden;
-  .-filter-container{
+  .-filter-container {
     min-height: 80%;
     height: 80%;
-  }
-  .-condition-container{
-    width: 100%;
-    .-code{
-      padding: 21px 15px;
+    .-condition-container {
+      width: 100%;
+      .-code {
+        padding: 21px 15px;
+      }
+    }
+    .-no-conditions {
+      display: flex;
+      height: calc(100% - 80px);
+      align-items: center;
+      justify-content: center;
     }
   }
 }
 
 //Variations
 ual-filters {
-  .-condition-container{
+  .-condition-container {
     background-color: $color08;
-    .-code{
+    .-code {
       line-height: 1.5em;
-      .-highlight{
+      .-highlight {
         @include font-clanot-bold(16);
       }
     }
   }
+  .-no-conditions {
+    color: $color07;
+  }
 }
-
