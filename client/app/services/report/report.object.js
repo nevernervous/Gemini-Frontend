@@ -11,7 +11,10 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     aggregators: [],
     filters: {
       not: false,
-      operator: "AND",
+      operator: {
+        value: '&',
+        text: 'AND'
+      },
       children: []
     }
   };

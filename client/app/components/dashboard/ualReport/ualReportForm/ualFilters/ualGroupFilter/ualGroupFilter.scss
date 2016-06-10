@@ -22,6 +22,11 @@ ual-group-filter {
   }
   .-conditions {
     display: block;
+    ul {
+      border-left: $others01 solid 2px;
+      margin-left: 10px;
+      padding-left: 10px;
+    }
   }
 }
 
