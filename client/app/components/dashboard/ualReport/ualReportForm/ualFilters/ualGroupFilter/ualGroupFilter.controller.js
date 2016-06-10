@@ -2,6 +2,10 @@ class UalGroupFilterController {
   /*@ngInject*/
   constructor() {
     this.name = 'ualGroupFilter';
+    this.operatorGroup={
+        value: '&',
+        text: 'AND'
+      };
 
     this.selectedItem = {
       value: '&',
@@ -25,11 +29,11 @@ class UalGroupFilterController {
   }
   addChildren() {
     this.items.children.push({
-      "variable": "",
+      "variable": null,
       "operator": "=",
-      "comparing": "value",
-      "value": ""
-    })
+      "comparing": "Value",
+      "value": null
+    });
   }
   addGroup() {
     this.items.children.push({
@@ -44,10 +48,23 @@ class UalGroupFilterController {
   cleanGroup(){
     this.items.children = [];
   }
-  remove(item) {
-    console.log(item);
-    let i = this.items.children.indexOf(item);
-    if (i >= 0) this.items.children.splice(i, 1);
+  remove(id) {
+    this.items.children.splice(id, 1);
+  }
+  addCondition() {
+    this.collection.push({
+      variable:null,
+      operator : "=",
+      type:"Value",
+      value:null
+    });
+  }
+
+  removeCondition(id){
+    this.collection.splice(id,1);
+  }
+  removeAll(){
+    this.collection=[];
   }
 }
 

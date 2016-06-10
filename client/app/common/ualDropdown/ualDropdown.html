@@ -1,7 +1,7 @@
 <div class="dropdown-container" ng-class="{ show: vm.isVisible }">
   <div class="dropdown-display" ng-click="vm.toogle()" id="thisDropdown">
-    <span class="placeholder" ng-if="!vm.isPlaceholder">{{vm.getText(vm.selected)}}</span>
-    <span class="placeholder" ng-if="!vm.selected && vm.isPlaceholder">{{vm.placeholder || "Selected"}}</span>
+    <span class="placeholder" ng-if="!vm.selected">{{vm.placeholder || "Selected"}}</span>
+    <span class="placeholder" ng-if="vm.selected">{{vm.getText(vm.selected)}}</span>
     <span class="icon">
       <i class="ion-chevron-down"></i>
     </span>

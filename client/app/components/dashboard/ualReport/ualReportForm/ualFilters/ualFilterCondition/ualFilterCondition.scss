@@ -1,0 +1,41 @@
+@import '../../../../../../common/common';
+ual-filter-condition {
+  padding: 0 20px;
+  >.wrapper{
+    margin-left: 0px !important;
+    @include gridle(row row-align);
+    >.section{
+      @include gridle(6);
+      display: flex;
+      @include gridle(row row-align center middle);
+      padding: 0 10px;
+        >.operator{
+          margin-left: 22px;
+          display: flex;
+          align-items: center;
+          @include gridle(1);
+        }
+      >ual-input{
+        @include gridle(5);
+        >.ual-input{
+          padding:6px 4px 10px 8px;
+          >input{
+            height: 34px;
+            width: calc(100% - 15px);
+          }
+        }
+      }
+      >ual-dropdown{
+        @include gridle(5);
+      }
+      >.close-btn{
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+ual-filter-condition:first-child .operator {
+  visibility: hidden;
+}
+

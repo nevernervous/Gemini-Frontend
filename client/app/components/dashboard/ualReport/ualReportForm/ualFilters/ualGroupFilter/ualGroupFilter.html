@@ -5,13 +5,14 @@
   </span>
   <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.items.operator" property="text">
   </ual-dropdown>
-  <ual-action-label icon="ion-android-add" label="Add Condition" ng-click="vm.addChildren()">
+  <ual-action-label class="-condition-label" icon="ion-android-add" label="Add Condition" ng-click="vm.addChildren()">
   </ual-action-label>
   <ual-action-label icon="ion-android-add" label="Add Group" ng-click="vm.addGroup()">
   </ual-action-label>
-  <ual-action-label ng-if="vm.depth!=0" icon="ion-android-close" label="Remove All" ng-click="vm.removeParent()">
+  <ual-action-label  class="-remove-label" ng-if="vm.depth!=0" icon="ion-android-close" label="Remove All" ng-click="vm.removeParent()">
+<!--  <ual-action-label class="-remove-label" ng-disabled="vm.collection.length == 0" icon="ion-android-close" label="Remove All" ng-click="vm.removeAll()">-->
   </ual-action-label>
-  <ual-action-label ng-disabled="vm.items.children|isEmpty" icon="ion-android-close" label="Clear All" ng-click="vm.cleanGroup()">
+  <ual-action-label ng-disabled="vm.items.children|isEmpty" icon="ion-android-close" icon="ion-android-close" label="Remove All" ng-click="vm.cleanGroup()">
   </ual-action-label>
 </div>
 <div class="-conditions">
@@ -21,13 +22,13 @@
     </div>
   </div>
   <ul ng-if="!(vm.items.children|isEmpty)">
-    <li ng-repeat="child in vm.items.children">
+    <li ng-repeat="child in vm.items.children track by $index">
       <div ng-if="child.children!==undefined">
-        <ual-group-filter items="child" depth="vm.depth+1" remove-parent="vm.remove(child)"></ual-group-filter>
+        <ual-group-filter items="child" depth="vm.depth+1" remove-parent="vm.remove($index)"></ual-group-filter>
       </div>
       <div ng-if="child.children===undefined">
-        {{vm.items.operator.text}}{{child}}
-        <ual-button ng-click="vm.remove(child)">- Remove me</ual-button>
+        <ual-filter-condition datasource="vm.datasource" condition="child"  operator-group="vm.items.operator.text" remove-condition="vm.remove($index)">
+        </ual-filter-condition>
       </div>
     </li>
   </ul>
