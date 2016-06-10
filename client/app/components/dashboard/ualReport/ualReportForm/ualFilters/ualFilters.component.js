@@ -5,7 +5,8 @@ import './ualFilters.scss';
 let ualFiltersComponent = {
   restrict: 'E',
   bindings: {
-     datasource: "<"
+     datasource: "<",
+     collection:"="
   },
   template,
   controller,

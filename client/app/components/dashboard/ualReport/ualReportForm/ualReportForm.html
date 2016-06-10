@@ -33,9 +33,9 @@
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
-      <ual-accordion-title>Limits: <strong>No limits</strong><small>selected</small></ual-accordion-title>
+      <ual-accordion-title>Limits: <strong><span ng-show="vm.collection.length==0">No limits</span> <span ng-show="vm.collection.length>0">Limits</span> </strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-filters datasource="vm.report.datasource.get()"></ual-filters>
+        <ual-filters datasource="vm.report.datasource.get()" collection="vm.collection"></ual-filters>
       </ual-accordion-content>
     </ual-accordion>
   </ual-accordion-group>

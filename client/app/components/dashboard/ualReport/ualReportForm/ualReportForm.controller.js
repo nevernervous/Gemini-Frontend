@@ -37,6 +37,7 @@ class UalReportFormController {
     };
 
     this.selectedTab = 'report-datasource';
+    this.collection=[];//on integration change with filters
   }
 
   // NAME INPUT
