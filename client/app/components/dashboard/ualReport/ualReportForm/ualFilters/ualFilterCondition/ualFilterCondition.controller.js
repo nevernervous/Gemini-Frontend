@@ -30,7 +30,7 @@ class UalFilterConditionController {
       let variable = !!this.condition && !_.isEmpty(this.condition.selectedVariable) ? this.condition.selectedVariable : undefined;
 
       //Non selected variable
-      if (variable == undefined) {
+      if (variable == undefined && this.isFirstFocus) {
         this.errorMessage = undefined;
         return;
       }
