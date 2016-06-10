@@ -23,13 +23,6 @@ class UalFilterConditionController {
     this.getVariables();
   }
 
-  IsNullOrEmpty(value) {
-    if (typeof (value) === 'undefined' || value === null)
-      return true;
-    if (value === "")
-      return true;
-    return false;
-  }
 
   valid() {
     this._timeout(() => {
