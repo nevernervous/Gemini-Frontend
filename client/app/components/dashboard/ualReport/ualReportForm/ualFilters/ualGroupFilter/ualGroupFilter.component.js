@@ -9,7 +9,6 @@ let ualGroupFilterComponent = {
     datasource : "<",
   },
   template,
-  transclude : true,
   controller,
   controllerAs: 'vm'
 };

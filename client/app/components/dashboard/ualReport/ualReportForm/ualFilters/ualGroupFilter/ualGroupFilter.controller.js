@@ -26,14 +26,10 @@ class UalGroupFilterController {
 
   addCondition() {
     this.collection.push({
-      selectedVariable:{},
-      selectedOperator : {text: "="},
-      isVariable:{
-         value:true,
-         text: "Variable"
-      },
-      valueText:"",
-      selectedVariable2:{}
+      variable:null,
+      operator : "=",
+      type:"Value",
+      value:null
     });
   }
 

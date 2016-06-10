@@ -7,7 +7,6 @@ let ualFilterConditionComponent = {
   bindings: {
      condition : "=",
      operatorGroup : "<",
-     index : "<",
      datasource : "<",
      removeCondition:"&"
   },

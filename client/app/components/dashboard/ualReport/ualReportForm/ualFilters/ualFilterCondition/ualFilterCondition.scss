@@ -14,9 +14,6 @@ ual-filter-condition {
           display: flex;
           align-items: center;
           @include gridle(1);
-          &.hideOperator{
-            visibility: hidden;
-          }
         }
       >ual-input{
         @include gridle(5);
@@ -38,3 +35,7 @@ ual-filter-condition {
     }
   }
 }
+ual-filter-condition:first-child .operator {
+  visibility: hidden;
+}
+

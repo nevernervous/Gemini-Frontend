@@ -4,22 +4,8 @@ class UalFilterConditionController {
     this.name = 'ualFilterCondition';
     this.availableVariables;
     this._datasourceService = DataSource;
-    this.valueVariable = [
-      {
-        value:false,
-        text: "Value"
-      },
-      {
-        value:true,
-        text: "Variable"
-      }
-    ];
-    this.operatorsList=[
-      {text: "="},
-      {text: "<"},
-      {text: ">"},
-      {text: "<>"}
-    ];
+    this.types = ["Value","Variable"];
+    this.operatorsList=["=","<",">","<>"];
 
     $scope.$watch((scope) => {
       return scope.vm.datasource
@@ -43,6 +29,10 @@ class UalFilterConditionController {
       error => {
         this.availableVariables = [];
       });
+  }
+
+  reset(){
+    this.condition.value=null;
   }
 
 }
