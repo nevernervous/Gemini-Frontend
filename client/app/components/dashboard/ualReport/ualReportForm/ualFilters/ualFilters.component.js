@@ -4,7 +4,9 @@ import './ualFilters.scss';
 
 let ualFiltersComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+     datasource: "<"
+  },
   template,
   controller,
   controllerAs: 'vm'
