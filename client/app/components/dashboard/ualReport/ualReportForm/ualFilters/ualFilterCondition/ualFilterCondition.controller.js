@@ -52,7 +52,7 @@ class UalFilterConditionController {
       if(value.indexOf(',') != -1){
         let values = value.split(',');
         isInvalidFormat = _.reduce(values, (sum, item) => {
-          return sum = sum || pattern.test(_.trim(item));
+          return sum = sum || pattern.test(item);
         }, false);
       }else{
         isInvalidFormat = pattern.test(value);
