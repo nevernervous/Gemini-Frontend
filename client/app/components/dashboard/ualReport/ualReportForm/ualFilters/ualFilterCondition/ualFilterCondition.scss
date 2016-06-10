@@ -27,6 +27,9 @@ ual-filter-condition {
             height: 34px;
             width: calc(100% - 15px);
           }
+          >i {
+            display: none;
+          }
         }
         .-invalid-value {
           padding: 10px 10px 0;
@@ -40,6 +43,24 @@ ual-filter-condition {
       >.close-btn {
         display: flex;
         align-items: center;
+      }
+    }
+  }
+}
+
+//VARIATION Error Input
+ual-filter-condition {
+  .section {
+    >ual-input.-error {
+      >.ual-input {
+        border-color: $color11;
+        >input {
+          width: calc(100% - 37px);
+        }
+        >i {
+          display: inline-block;
+          color: $color11;
+        }
       }
     }
   }

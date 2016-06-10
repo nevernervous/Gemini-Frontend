@@ -31,17 +31,15 @@ class UalFilterConditionController {
 
       //Non selected variable
       if (variable == undefined) {
-        this.isValid = true;
+        this.errorMessage = undefined;
         return;
       }
 
       //Empty value on Second Focus
-      console.log(this);
       this.isFirstFocus = this.isFirstFocus == undefined ? true : false;
       let isEmpty = this.IsNullOrEmpty(value) && !this.isFirstFocus;
 
       if (isEmpty) {
-        this.isValid = false;
         this.errorMessage = this.getNullValueError(variable);
         return;
       }
@@ -52,13 +50,11 @@ class UalFilterConditionController {
       let isInvalidFormat = pattern.test(value);
 
       if (isInvalidFormat) {
-        this.isValid = false;
         this.errorMessage = this.getInvalidFormatError(variable);
         return;
       }
 
-      this.isValid = true;
-      this.errorMessage = "";
+      this.errorMessage = undefined;
     }, 0)
 
   }

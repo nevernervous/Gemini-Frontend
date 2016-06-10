@@ -1,8 +1,8 @@
-<label class="ual-input">
+<label class="ual-input"  ng-class="{'-no-icon': !vm.icon }">
     <input id="{{vm.ualId}}" ng-model="vm.newvalue" ng-blur="vm.onBlur({$event: $event})" ng-focus="vm.onFocus({$event: $event})" ng-keyup="vm.onKeyup({$event: $event})" ng-keypress="vm.onKeypress({$event: $event})"
            placeholder="{{vm.placeholder}}"
            ng-model-options="vm.options"
            ng-change="vm.onChange()" ng-disabled="vm.ualDisabled" tabindex="-1"/>
-    <i ng-show="!!vm.icon" ng-class="vm.icon"></i>
+    <i ng-class="vm.icon"></i>
 </label>
 <span ng-transclude></span>
