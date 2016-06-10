@@ -35,7 +35,7 @@
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Limits: <strong>No limits</strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-filters></ual-filters>
+        <ual-filters datasource="vm.report.datasource.get()"></ual-filters>
       </ual-accordion-content>
     </ual-accordion>
   </ual-accordion-group>

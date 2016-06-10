@@ -1,9 +1,7 @@
 <div class="-filter-container">
-  <ual-group-filter>
-    <ual-filter-condition ng-if="false">
-    </ual-filter-condition>
+  <ual-group-filter collection="vm.collection" datasource="vm.datasource">
   </ual-group-filter>
-  <div class="-no-conditions" ng-hide="false">
+  <div class="-no-conditions"  ng-hide="vm.collection.length > 0">
     <div>
       No limit applied
     </div>
@@ -20,3 +18,4 @@
     </div>
   </div>
 </div>
+
