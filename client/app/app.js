@@ -36,6 +36,7 @@ import 'angular-q-spread/src/q-spread';
 import Clusterize from 'clusterize.js';
 import dotdotdot from 'jquery.dotdotdot';
 import selectionModel from 'selection-model';
+import xRegExp from 'xregexp';
 
 import './common/fonts/clanot/clanot.scss';
 
@@ -62,7 +63,9 @@ angular.module('app', [
   'ngAnimate',
   'selectionModel'
 ])
-
+.factory("xRegExp", function(){
+  return xRegExp;
+})
 .config(($stateProvider, $httpProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS, Properties) => {
   "ngInject";
   $urlRouterProvider.otherwise('/login');

@@ -2,7 +2,8 @@
 
   <div class="section">
     <div class="operator">{{vm.operatorGroup.text}}</div>
-    <ual-dropdown placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.variable" property="name"><!--this component will change on US - CR1.24-->
+    <ual-dropdown on-change="vm.valid()" placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.variable" property="name">
+      <!--this component will change on US - CR1.24-->
     </ual-dropdown>
     <ual-dropdown placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator">
     </ual-dropdown>
@@ -10,10 +11,11 @@
   <div class="section">
     <ual-dropdown placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
     </ual-dropdown>
-
-    <ual-input ng-show="vm.condition.type == 'Value'" placeholder="Enter [variable name]" value="vm.condition.value" min-chars="3">
+    <ual-input ng-class="{'-error': vm.isFirstFocus === false && vm.errorMessage}" ng-show="vm.condition.type == 'Value'" on-change="vm.valid()" placeholder="Enter [variable name]" value="vm.condition.value" icon="ion-ios-close-outline" ual-debounce="'500'">
+      <div class="-error" ng-if="vm.isFirstFocus === false && vm.errorMessage">{{vm.errorMessage}}</div>
     </ual-input>
-    <ual-dropdown ng-show="vm.condition.type == 'Variable'" placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.value" property="name"><!--this component will change on US - CR1.24-->
+    <ual-dropdown ng-show="vm.condition.type == 'Variable'" placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.value" property="name">
+      <!--this component will change on US - CR1.24-->
     </ual-dropdown>
     <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
     </ual-action-label>
