@@ -1,27 +1,28 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 0 20px;
+  padding: 20px 20px 0;
   display: block;
   >.wrapper {
     margin-left: 0px !important;
     @include gridle(row row-align);
-    >.section{
+    >.section {
       @include gridle(6);
       display: flex;
-      @include gridle(row row-align center middle);
+      @include gridle(row row-align center);
       padding: 0 10px;
-        >.operator{
-          margin-left: 22px;
-          display: flex;
-          align-items: center;
-          @include gridle(1);
-        }
+      >.operator {
+        margin-left: 22px;
+        height: 37px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include gridle(1);
       }
       >ual-input {
         @include gridle(5);
         >.ual-input {
           height: 37px;
-          @include -ms-browser(){
+          @include -ms-browser() {
             height: 32px;
           }
           >input {
@@ -31,7 +32,7 @@ ual-filter-condition {
             display: none;
           }
         }
-        .-invalid-value {
+        .-error {
           padding: 10px 10px 0;
           @include font-clanot-book(12);
           color: $color11;
@@ -47,6 +48,7 @@ ual-filter-condition {
     }
   }
 }
+
 ual-filter-condition:first-child .operator {
   visibility: hidden;
 }

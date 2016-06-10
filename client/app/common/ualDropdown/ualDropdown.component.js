@@ -9,8 +9,7 @@ let ualDropdownComponent = {
     placeholder: "@?",
     selected: "=",
     property: "@?",
-    list: '=',
-    onChange:"&?"
+    list: '='
   },
   template,
   controller,

@@ -33,8 +33,8 @@ class UalFilterConditionController {
 
   valid() {
     this._timeout(() => {
-      let value = this.condition.valueText;
-      let variable = !!this.condition && !_.isEmpty(this.condition.selectedVariable) ? this.condition.selectedVariable : undefined;
+      let value = this.condition.value;
+      let variable = !!this.condition && !_.isEmpty(this.condition.variable) ? this.condition.variable : undefined;
 
       //Non selected variable
       if (variable == undefined && this.isFirstFocus) {
