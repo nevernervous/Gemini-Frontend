@@ -22,9 +22,11 @@ ual-filter-condition {
       >ual-input {
         @include gridle(5);
         >.ual-input {
-          padding: 6px 4px 10px 8px;
+          height: 37px;
+          @include -ms-browser(){
+            height: 32px;
+          }
           >input {
-            height: 34px;
             width: calc(100% - 15px);
           }
           >i {
