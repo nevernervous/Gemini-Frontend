@@ -1,19 +1,26 @@
 class UalFilterConditionController {
   /*@ngInject*/
-  constructor(xRegExp, $timeout) {
+  constructor($scope, DataSource, xRegExp, $timeout) {
     this.name = 'ualFilterCondition';
     this._regex = xRegExp;
     this._timeout = $timeout;
-    this.valueVariable = [
-      {
-        value: false,
-        text: "Value"
-      },
-      {
-        value: true,
-        text: "Variable"
+
+    this.availableVariables;
+    this._datasourceService = DataSource;
+    this.types = ["Value", "Variable"];
+    this.operatorsList = ["=", "<", ">", "<>"];
+
+    $scope.$watch((scope) => {
+      return scope.vm.datasource
+    }, (newValue, oldValue) => {
+      if (newValue !== oldValue && newValue) {
+        this.getVariables();
       }
-    ];
+    });
+  }
+
+  $onInit() {
+    this.getVariables();
   }
 
   IsNullOrEmpty(value) {
@@ -49,12 +56,12 @@ class UalFilterConditionController {
       let pattern = this._regex(regex, 'i');
 
       let isInvalidFormat = false;
-      if(value.indexOf(',') != -1){
+      if (value.indexOf(',') != -1) {
         let values = value.split(',');
         isInvalidFormat = _.reduce(values, (sum, item) => {
           return sum = sum || pattern.test(item);
         }, false);
-      }else{
+      } else {
         isInvalidFormat = pattern.test(value);
       }
 
@@ -74,6 +81,20 @@ class UalFilterConditionController {
   }
   getInvalidFormatError(variable) {
     return "Invalid " + variable.name + " format";
+  }
+
+  getVariables() {
+    this._datasourceService.variables(this.datasource)
+      .then(response => {
+        this.availableVariables = response.data;
+      },
+      error => {
+        this.availableVariables = [];
+      });
+  }
+
+  reset() {
+    this.condition.value = null;
   }
 
 }

@@ -5,12 +5,10 @@ import './ualGroupFilter.scss';
 let ualGroupFilterComponent = {
   restrict: 'E',
   bindings: {
-    addCondition:"&",
-    operatorGroup:"=",
-    collection: "="
+    collection: "=",
+    datasource : "<",
   },
   template,
-  transclude : true,
   controller,
   controllerAs: 'vm'
 };
