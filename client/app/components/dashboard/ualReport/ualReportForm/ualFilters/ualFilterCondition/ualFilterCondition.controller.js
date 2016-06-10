@@ -46,7 +46,7 @@ class UalFilterConditionController {
 
       //Invalid Format
       let regex = variable.regex || '[\´\'\"\\\%]';
-      let pattern = this._regex(regex);
+      let pattern = this._regex(regex, 'i');
       let isInvalidFormat = pattern.test(value);
 
       if (isInvalidFormat) {
@@ -60,8 +60,8 @@ class UalFilterConditionController {
   }
 
   getNullValueError(variable) {
-    let variableName = !_.isEmpty(variable) ? variable.name : "variable name";
-    return "Enter [" + variableName + "]";
+    let variableName = !_.isEmpty(variable) ? variable.name : "[variable name]";
+    return "Enter " + variableName;
   }
   getInvalidFormatError(variable) {
     return "Invalid " + variable.name + " format";
