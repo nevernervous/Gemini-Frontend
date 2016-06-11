@@ -37,7 +37,7 @@ class UalGroupFilterController {
   }
   addGroup() {
     this.items.children.push({
-      "not": true,
+      "not": false,
       "operator": {
         value: '&',
         text: 'AND'

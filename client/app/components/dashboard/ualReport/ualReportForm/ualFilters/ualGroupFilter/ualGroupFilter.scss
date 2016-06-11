@@ -20,21 +20,29 @@ ual-group-filter {
       }
     }
   }
-  .-conditions {
+  .-conditions{
     display: block;
-    ul {
-      border-left: $others01 solid 2px;
-      margin-left: 10px;
-      padding-left: 10px;
+    ual-group-filter{
+      margin-left: 22px;
     }
   }
 }
 
 //Variations
 ual-group-filter {
+  .tree {
+      border-left: $others01 solid 2px;
+      padding-left: 10px;
+  }
   .-toolbar {
     .-not-button {
       @include font-clanot-bold(16);
     }
   }
+  .-iterative-container:first-child{
+    > ual-filter-condition .operator {
+        visibility: hidden;
+    }
+  }
 }
+
