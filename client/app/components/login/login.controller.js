@@ -5,7 +5,7 @@ class LoginController {
   constructor(Token, ualToast) {
     this.name = 'login';
     this.logo = logo;
-    this.expired = true; //Token.wasExpired();
+    this.expired = Token.wasExpired();
 
     this.service = {
       toast: ualToast
@@ -14,7 +14,7 @@ class LoginController {
 
   $postLink() {
     if ( this.expired ) {
-      this.service.toast.error('Simple Toast!', false);
+      this.service.toast.warning('Due to inactivity, your session has expired', false);
     }
   }
 }
