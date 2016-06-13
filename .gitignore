@@ -15,3 +15,4 @@ nbproject/
 .project
 reports
 client/app/app.constants.js
+.nvmrc
