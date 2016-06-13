@@ -19,10 +19,10 @@ ual-group-filter {
       width: 20px;
       border-top: 15px solid transparent;
       border-bottom: 15px solid transparent;
-      border-left: 15px solid #333;
+      border-left: 15px solid;
       position: relative;
       top: 9px;
-      @include -ms-browser(){
+      @include -ms-browser() {
         top: 11px;
       }
     }
@@ -45,11 +45,17 @@ ual-group-filter {
           padding-left: 15px;
         }
       }
+      .-remove-label{
+        display: none;
+      }
     }
     .-conditions {
       display: block;
       ual-group-filter {
         margin-left: 22px;
+        .-remove-label{
+          display: inherit;
+        }
       }
     }
   }
@@ -57,32 +63,30 @@ ual-group-filter {
 
 //Variations
 ual-group-filter {
-  .tree {
-    &.or {
-      > .-group-operator {
-        > .-group-operator-text {
-          background: $other07;
-        }
-        > .-group-operator-arrow {
-          border-left-color: $other07;
-        }
+  .or {
+    > .-group-operator {
+      > .-group-operator-text {
+        background: $other07;
       }
-      > .-tree-container {
-        border-left: $other07 solid 2px;
+      > .-group-operator-arrow {
+        border-left-color: $other07;
       }
     }
-    &.and {
-      > .-group-operator {
-        > .-group-operator-text {
-          background: $other08;
-        }
-        > .-group-operator-arrow {
-          border-left-color: $other08;
-        }
+    > .-tree-container {
+      border-left: $other07 solid 2px;
+    }
+  }
+  .and {
+    > .-group-operator {
+      > .-group-operator-text {
+        background: $other08;
       }
-      > .-tree-container {
-        border-left: $other08 solid 2px;
+      > .-group-operator-arrow {
+        border-left-color: $other08;
       }
+    }
+    > .-tree-container {
+      border-left: $other08 solid 2px;
     }
   }
   .-toolbar {

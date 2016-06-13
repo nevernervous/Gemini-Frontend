@@ -5,9 +5,8 @@ import './ualGroupFilter.scss';
 let ualGroupFilterComponent = {
   restrict: 'E',
   bindings: {
-    items: "=",
+    filters: "=",
     removeParent: '&',
-    depth: "<",
     datasource : "<",
     parentOperator: "<"
   },

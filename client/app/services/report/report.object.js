@@ -11,10 +11,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     aggregators: [],
     filters: {
       not: false,
-      operator: {
-        value: '&',
-        text: 'AND'
-      },
+      operator: 'AND',
       children: []
     }
   };
@@ -51,10 +48,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       aggregators: [],
       filters: {
         not: false,
-        operator: {
-          value: '&',
-          text: 'AND'
-        },
+        operator: 'AND',
         children: []
       }
 
@@ -255,8 +249,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       get: getFilters,
       set: setFilters,
       hasValues: hasFilterValues
-    },
-    _filters: object.filters
+    }
   };
 };
 export default reportObjectService;

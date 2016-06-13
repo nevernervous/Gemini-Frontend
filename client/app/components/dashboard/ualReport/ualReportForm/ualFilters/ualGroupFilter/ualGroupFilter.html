@@ -1,35 +1,35 @@
-<div ng-class="{and: vm.parentOperator.value=='&', or: vm.parentOperator.value=='|', tree: vm.depth>0}">
+<div ng-class="vm.parentOperator.toLowerCase()">
   <div class="-group-operator" ng-if="vm.parentOperator">
-    <span class="-group-operator-text">{{vm.parentOperator.text}}</span><span class="-group-operator-arrow"></span>
+    <span class="-group-operator-text">{{vm.parentOperator}}</span><span class="-group-operator-arrow"></span>
   </div>
   <div class="-tree-container">
     <div class="-toolbar">
       <span class="-not-button">
-    <ual-checkbox on-click="vm.toggle()" is-checked="vm.items.not"></ual-checkbox>
-    Not
-  </span>
-      <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.items.operator" property="text">
+      <ual-checkbox on-click="vm.toggle()" is-checked="vm.filters.not"></ual-checkbox>
+        Not
+      </span>
+      <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.filters.operator">
       </ual-dropdown>
       <ual-action-label class="-condition-label" icon="ion-android-add" label="Add Condition" ng-click="vm.addChildren()">
       </ual-action-label>
       <ual-action-label icon="ion-android-add" label="Add Group" ng-click="vm.addGroup()">
       </ual-action-label>
-      <ual-action-label class="-remove-label" ng-if="vm.depth!=0" icon="ion-android-close" label="Remove Group" ng-click="vm.removeParent()">
+      <ual-action-label class="-remove-label" icon="ion-android-close" label="Remove Group" ng-click="vm.removeParent()">
       </ual-action-label>
-      <ual-action-label ng-disabled="vm.items.children|isEmpty" icon="ion-android-close" icon="ion-android-close" label="Clear All" ng-click="vm.cleanGroup()">
+      <ual-action-label ng-disabled="vm.filters.children|isEmpty" icon="ion-android-close" icon="ion-android-close" label="Clear All" ng-click="vm.cleanGroup()">
       </ual-action-label>
     </div>
     <div class="-conditions">
-      <div class="-no-conditions" ng-if="vm.items.children|isEmpty">
+      <div class="-no-conditions" ng-if="vm.filters.children|isEmpty">
         <div>
           No limit applied
         </div>
       </div>
-      <div ng-if="!(vm.items.children|isEmpty)">
-        <ul ng-if="!(vm.items.children|isEmpty)">
-          <li ng-repeat="child in vm.items.children track by $index" class="-iterative-container">
-            <ual-group-filter ng-if="child.children!==undefined" items="child" depth="vm.depth+1" remove-parent="vm.remove($index)" parent-operator="vm.items.operator" datasource="vm.datasource"></ual-group-filter>
-            <ual-filter-condition ng-if="child.children===undefined" datasource="vm.datasource" condition="child" operator-group="vm.items.operator" remove-condition="vm.remove($index)">
+      <div ng-if="!(vm.filters.children|isEmpty)">
+        <ul ng-if="!(vm.filters.children|isEmpty)">
+          <li ng-repeat="child in vm.filters.children track by $index" class="-iterative-container">
+            <ual-group-filter ng-if="child.children!==undefined" filters="child" remove-parent="vm.remove($index)" parent-operator="vm.filters.operator" datasource="vm.datasource"></ual-group-filter>
+            <ual-filter-condition ng-if="child.children===undefined" datasource="vm.datasource" condition="child" operator-group="vm.filters.operator" remove-condition="vm.remove($index)">
             </ual-filter-condition>
           </li>
         </ul>
