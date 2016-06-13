@@ -1,10 +1,10 @@
 class UalFilterConditionController {
   /*@ngInject*/
-  constructor($scope, DataSource, xRegExp, $timeout) {
+  constructor($scope, DataSource, $timeout, Validator) {
     this.name = 'ualFilterCondition';
-    this._regex = xRegExp;
     this._timeout = $timeout;
 
+    this._validator = Validator;
     this.availableVariables;
     this._datasourceService = DataSource;
     this.types = ["Value", "Variable"];
@@ -28,6 +28,8 @@ class UalFilterConditionController {
     this._timeout(() => {
       let value = this.condition.value;
       let variable = !!this.condition && !_.isEmpty(this.condition.variable) ? this.condition.variable : undefined;
+      let errorMessage = undefined;
+
 
       //Non selected variable
       if (variable == undefined && this.isFirstFocus) {
@@ -37,33 +39,21 @@ class UalFilterConditionController {
 
       //Empty value on Second Focus
       this.isFirstFocus = this.isFirstFocus == undefined ? true : false;
-      let isEmpty = this.IsNullOrEmpty(value) && !this.isFirstFocus;
 
-      if (isEmpty) {
-        this.errorMessage = this.getNullValueError(variable);
-        return;
+      let options = {
+        required: true,
+        regex: {
+          pattern: variable.RegEx || '^-?[0-9]\d*(\.\d+)?$',
+          denyPattern: true,
+          flags: 'i'
+        }
       }
 
-      //Invalid Format
-      let regex = variable.regex || '[\´\'\"\\\%]';
-      let pattern = this._regex(regex, 'i');
+      let validation = this._validator.isValid(value, variable.DataType || "number", options);
 
-      let isInvalidFormat = false;
-      if (value.indexOf(',') != -1) {
-        let values = value.split(',');
-        isInvalidFormat = _.reduce(values, (sum, item) => {
-          return sum = sum || pattern.test(item);
-        }, false);
-      } else {
-        isInvalidFormat = pattern.test(value);
+      if (!validation.isValid && !this.isFirstFocus) {
+        this.errorMessage = validation.getMessage(variable.name);
       }
-
-      if (isInvalidFormat) {
-        this.errorMessage = this.getInvalidFormatError(variable);
-        return;
-      }
-
-      this.errorMessage = undefined;
     }, 0)
 
   }

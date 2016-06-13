@@ -1,51 +1,120 @@
-let validatorService = function() {
+import ValidationResult from './validationResult';
+
+let validatorService = function (xRegExp) {
   "ngInject";
 
-  const types {
-    String = "string",
-    Number = "number",
+  const types = {
+    String: "string",
+    Number: "number",
   };
 
   let IsNullOrEmpty = (value) => {
-    if (typeof(value) === 'undefined' || value === null)
+    if (typeof (value) === 'undefined' || value === null)
       return true;
     if (value === "")
       return true;
     return false;
   };
 
-
-  let isValid = (value, options = {
-    required = true,
-    regex = {
-      pattern,
-      flags : 'i'
+  let validations = {
+    required: (value, option, type) => {
+      let result = new ValidationResult();
+      if (IsNullOrEmpty(value)) {
+        result.setError("Enter {0}");
+      }
+      return result;
     },
+    regex: (value, option, type) => {
+      let result = new ValidationResult();
+      let pattern = option.pattern || '[\´\'\"\\\%]';
+      let flags = option.flags;
+      let regex = xRegExp(pattern, flags);
+
+      let isInvalid = option.denyPattern ? !regex.test(value) : regex.test(value);
+
+      if (isInvalid) {
+        switch (type) {
+          case types.String:
+            result.setError('Invalid {0} format', value);
+            break;
+          case types.Number:
+            result.setError("Enter numeric value", value);
+            break;
+          default:
+            result.setError("Invalid value", value);
+        }
+
+      }
+      return result;
+    },
+    min: (value, option, type) => {
+      return new ValidationResult();
+    },
+    max: (value, option, type) => {
+      return new ValidationResult();
+    },
+    type: (value, option) => {
+      let result = new ValidationResult();
+      switch (option) {
+        case types.String:
+          if (!_.isString(value)) {
+            result.setError('Invalid {0} format', value)
+          }
+          break;
+        case types.Number:
+          let isNumber = true;
+          try {
+            let numberValue = +value;
+            isNumber = _.isNumber(numberValue);
+          } catch (err) {
+            isNumber = false;
+          }
+          if (!isNumber) {
+            result.setError("Numeric value expected", value);
+          }
+          break;
+      }
+      return result;
+    }
+  }
+
+  let isValid = (value, type, options = {
+    required: false,
     min,
     max,
-    type
+    regex: {
+      pattern,
+      flags: 'i'
+    }
   }) => {
-      let result = {
-          isValid: true,
-          errors
-      };
+    if (!type) {
+      throw new Error("Type was not provided for the value");
+    }
+    let result = validations.required(value, options.required, type);
 
-      options[Symbol.iterator] = function() {
-        let validations = Object.keys(this);
-        let count = 0;
-        let isDone = false;
+    if (result.isValid) {
+      options.type = type;
 
-        let next = () => {
-
-            return {done: isDone, value: errorObj }
+      _.forEach(options, (option, key) => {
+        console.log(key);
+        if (!result.isValid) {
+          return false;
         }
-
-        return {
-          next
+        //Multiple Values
+        if (value.indexOf(',') != -1) {
+          let values = value.split(',');
+          _.forEach(values, (item) => {
+            if (!result.isValid) {
+              return false;
+            }
+            result = validations[key](item, option, type)
+          }, false);
+        } else {
+          result = validations[key](value, option, type);
         }
-      }
-
-      return result;
+      });
+    }
+    return result;
   };
 
   return {
