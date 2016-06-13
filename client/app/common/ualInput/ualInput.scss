@@ -110,3 +110,10 @@ md-input-container.ual-input.ual-input-large {
     }
   }
 }
+
+// VARIATION / DISABLED
+ual-input.-noborder {
+  .ual-input {
+    border-color: transparent
+  }
+}

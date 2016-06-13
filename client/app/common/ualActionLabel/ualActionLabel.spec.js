@@ -1,14 +1,16 @@
-import UalDropdownItemModule from './ualDropdownItem'
-import UalDropdownItemController from './ualDropdownItem.controller';
+import UalActionLabelModule from './ualActionLabel'
+import UalActionLabelController from './ualActionLabel.controller';
+import UalActionLabelComponent from './ualActionLabel.component';
+import UalActionLabelTemplate from './ualActionLabel.html';
 
-describe('UalDropdownItem', () => {
+describe('UalActionLabel', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalDropdownItemModule.name));
+  beforeEach(window.module(UalActionLabelModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalDropdownItemController();
+      return new UalActionLabelController();
     };
   }));
 
