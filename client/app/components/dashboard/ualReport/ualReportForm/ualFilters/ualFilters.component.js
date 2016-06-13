@@ -4,7 +4,10 @@ import './ualFilters.scss';
 
 let ualFiltersComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+     datasource: "<",
+     collection:"="
+  },
   template,
   controller,
   controllerAs: 'vm'
