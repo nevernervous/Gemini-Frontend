@@ -29,6 +29,7 @@ class UalReportFormController {
       focus: false,
       duplicated: false
     }
+    this.selectedItem;
 
     this.response = {
       success: null,
@@ -36,6 +37,7 @@ class UalReportFormController {
     };
 
     this.selectedTab = 'report-datasource';
+    this.collection=[];//on integration change with filters
   }
 
   // NAME INPUT
@@ -90,23 +92,23 @@ class UalReportFormController {
 
   // INIT
   $onInit() {
-      let reportId = this._state.params["id"];
-      if (!reportId) {
-        this.report = this._service.report.create();
-      } else {
-        this.edit = true;
-        this._service.report.getById(reportId)
-          .then((reply) => {
-            this.report = reply;
-            this.name.current = _.clone(this.report.name.get());
-          });
-      }
-      this._responses();
-      this._suscribe();
+    let reportId = this._state.params["id"];
+    if (!reportId) {
+      this.report = this._service.report.create();
+    } else {
+      this.edit = true;
+      this._service.report.getById(reportId)
+        .then((reply) => {
+          this.report = reply;
+          this.name.current = _.clone(this.report.name.get());
+        });
     }
-    // INIT / RESPONSES
+    this._responses();
+    this._suscribe();
+  }
+  // INIT / RESPONSES
   _responses() {
-      let error_actions = [
+    let error_actions = [
       // ON ERROR: NO ERROR
       (msg) => { },
       // ON ERROR: EMPTY NAME
@@ -153,13 +155,13 @@ class UalReportFormController {
         }, {
             notify: false
           });
-        }
-      };
-    }
-    // INIT / SUSCRIPTIONS
+      }
+    };
+  }
+  // INIT / SUSCRIPTIONS
   _suscribe() {
     this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (this.report.touched() && (toState.name !== 'login') ) {
+      if (this.report.touched() && (toState.name !== 'login')) {
         event.preventDefault();
         this._ualUnsafeReportModal.open().then(response => {
           if (response) {
@@ -194,8 +196,8 @@ class UalReportFormController {
   }
 
   collapseAccordion(index) {
-      this.selectedTab = index;
-    }
+    this.selectedTab = index;
+  }
 
 }
 
