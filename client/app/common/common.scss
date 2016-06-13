@@ -61,28 +61,85 @@ $successLowColor: $color16;
 $messageHighColor: $color03;
 $messageLowColor: $color00;
 
+// COLOR
+$color-cardinal: #CD202C;
+$color-mine-shaft: #333333;
+$color-geyser: #D9E1E7;
+$color-gull-gray: #99A7B4;
+$color-white: #FFFFFF;
+$color-goblin: #44883E;
+$color-chrome-white: #D7EDC8;
+$color-golden-bell: #DB8C0E;
+$color-frangipani: #FFE0B2;
+$color-cupid: #FAC6CA;
+
+// COLOR / STATUS
+$color-success-dark:  $color-goblin;
+$color-success-light: $color-chrome-white;
+$color-warning-dark:  $color-golden-bell;
+$color-warning-light: $color-frangipani;
+$color-error-dark:  $color-cardinal;
+$color-error-light: $color-cupid;
 
 // MATERIAL
 @function rem($multiplier) {
   $font-size: 10px;
   @return $multiplier * $font-size;
 }
+@mixin rtl($prop, $ltr-value, $rtl-value) {
+  #{$prop}: $ltr-value;
+  [dir=rtl] & {
+    #{$prop}: $rtl-value;
+  }
+}
 
-$font-disabled-color: #d9e1e7;
-
-$body-font-size-base: rem(1.600);
+// MATERIAL / FONTS
+$font-family: 'ClanOT', sans-serif;
+$font-size:   10px;
+$font-weight-light: 200;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+$font-defaut-color: $color-mine-shaft;
+$font-disabled-color: $color-geyser;
+$font-error-color: $color-error-dark;
 
 // MATERIAL / BUTTON
-$button-font-size: $body-font-size-base;
-$button-line-height: rem(3.40) !default;
+$button-margin: 0;
+$button-font-size: rem(1.6);
+$button-line-height: rem(3.4);
 $button-text-transform: capitalize;
 $button-disabled-color: $font-disabled-color;
-$button-disabled-bg-color: #99a7b4;
+$button-disabled-bg-color: $color-gull-gray;
+$button-loading-size: rem(2.0);
+// MATERIAL / BUTTON
+$button-large-font-size: rem(1.8);
+$button-large-line-height: rem(5.0);
+$button-large-loading-size: rem(3.0);
 
 // MATERIAL / PROGRESS
 $loading-disabled-color: $font-disabled-color;
-$loading-button-size: 20px;
 
 // MATERIAL / INPUT
-$input-border-width-default: 2px;
-$input-line-height: 42px;
+$input-padding: 6px;
+$input-border: 1px;
+$input-line-height: rem(3.2);
+$input-font-size: rem(1.6);
+$input-font-color: $font-defaut-color;
+// MATERIAL / INPUT / LARGE
+$input-large-border: 2px;
+$input-large-line-height: rem(4.2);
+
+// MATERIAL / TOAST
+$toast-margin: 0;
+$toast-border-radius: 0;
+$toast-height: rem(5.2);
+$toast-font-size: rem(1.8);
+$toast-font-weight: $font-weight-bold;
+$md-toast-content-padding: 0;
+
+$toast-success-bg-color: $color-success-light;
+$toast-success-color: $color-success-dark;
+$toast-warning-bg-color: $color-warning-light;
+$toast-warning-color: $color-warning-dark;
+$toast-error-bg-color: $color-error-light;
+$toast-error-color: $color-error-dark;

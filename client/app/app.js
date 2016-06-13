@@ -43,7 +43,7 @@ import ngMaterial from 'angular-material';
 
 import './common/fonts/clanot/clanot.scss';
 import './app.scss';
-import 'normalize.css';
+//import 'normalize.css';
 
 window.$ = $;
 window.jQuery = $;
@@ -127,7 +127,7 @@ angular.module('app', [
     'A100': '#82b1ff',
     'A200': '#448aff',
     'A400': '#2979ff',
-    'A700': '#2962ff',
+    'A700': '#cd202c',
     'contrastDefaultColor': 'light',
     'contrastDarkColors': '50 100 200 300 400 A100',
     'contrastStrongLightColors': '500 600 700 A200 A400 A700'
@@ -138,6 +138,7 @@ angular.module('app', [
 
   $mdThemingProvider.theme('secondary')
   .primaryPalette('secondary')
+  .warnPalette('secondary');
 
 })
 .component('app', AppComponent)

@@ -13,4 +13,22 @@
       background-color: $button-disabled-bg-color;
     }
   }
+
+  // LOADING
+  ual-loading md-progress-circular {
+    bottom: ($button-loading-size / 2);
+    right: ($button-loading-size / 2);
+  }
+}
+
+// SIZE / LARGE
+.ual-button.ual-button-large.md-button {
+  font-size: $button-large-font-size;
+  line-height: $button-large-line-height;
+  min-height: $button-large-line-height;
+  // LOADING
+  ual-loading md-progress-circular {
+    bottom: ($button-large-loading-size / 2);
+    right: ($button-large-loading-size / 2);
+  }
 }

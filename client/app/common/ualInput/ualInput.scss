@@ -1,23 +1,112 @@
 @import '../common';
 
+$input-label-font-size: $input-font-size * 1.25;
+$input-diff-padding-border: $input-padding - $input-border;
+$input-icon-font-size: $input-font-size * 1.5;
+
 md-input-container.ual-input {
-  margin-top: 30px;
+  font-size: $input-font-size;
+  color: $input-font-color;
+  margin-top: ($input-label-font-size * 2);
+
+  // LABEL
+  label:not(._md-container-ignore){
+    font-size: $input-label-font-size;
+    margin-bottom: .75em;
+    line-height: 1em;
+    color: $input-font-color !important; //NOTE: important! is for override all input states
+    &.md-required:after {
+      content: none;
+    }
+  }
+  // INPUT
   .md-input {
     background: white;
-    border-width: 0;
+    border-color: rgba(0,0,0,0);
+    @include box-shadow(0, 0, 2px, 1px, rgba(0, 0, 0, 0.1));
+    font-weight: $font-weight-light;
+    padding: $input-diff-padding-border $input-padding;
+    border-width: $input-border;
+  }
+  &.md-input-focused .md-input,
+  & .md-input.ng-invalid.ng-dirty {
+    padding: $input-diff-padding-border $input-padding;
+    border-width: $input-border;
+  }
+  // ICON RIGHT
+  &.md-icon-right {
+    padding-right: 0;
+
+    .md-input {
+      padding-right: ($input-icon-font-size + $input-padding);
+    }
+    > md-icon:last-of-type {
+      display: block;
+      top: $input-border;
+      right: $input-border;
+      font-size: $input-icon-font-size;
+
+      &:before {
+        line-height: $input-line-height;
+      }
+    }
+
+    // NOT ICON
+    &:not(.ual-input-icon) {
+      .md-input {
+        padding-right: $input-padding;
+      }
+      > md-icon:last-of-type {
+        display: none;
+      }
+    }
+    // ERROR ICON
+    &.md-input-invalid, &.md-input-invalid.md-input-focused {
+      .md-input {
+        padding-right: ($input-icon-font-size + $input-padding);
+      }
+      > md-icon:last-of-type {
+        display: block;
+        color: $font-error-color;
+      }
+    }
+  }
+  &.md-input-focused:not(.md-input-invalid) > md-icon {
+    color: $input-font-color;
   }
 }
 
-// FOCUS
-md-input-container.ual-input.md-input-focused {
+// SIZE / LARGE
+md-input-container.ual-input.ual-input-large {
+  $input-border: $input-large-border;
+  $input-line-height: $input-large-line-height;
+
+  $input-diff-padding-border: $input-padding - $input-border;
+  $input-icon-font-size: $input-line-height - ($input-diff-padding-border * 2);
+
   .md-input {
-    border-width: $input-border-width-default;
-  }
-}
+    box-shadow: none;
+    padding: $input-diff-padding-border $input-padding;
+    border-width: $input-border;
 
-// ERROR
-md-input-container.ual-input {
-  .md-input.ng-invalid.ng-dirty, .md-input.ng-invalid.ng-touched  {
-    border-width: $input-border-width-default;
+    line-height: $input-line-height;
+    height: $input-line-height;
+    -ms-flex-preferred-size: $input-line-height; //IE fix
+  }
+  &.md-input-focused .md-input,
+  & .md-input.ng-invalid.ng-dirty {
+    padding: $input-diff-padding-border $input-padding;
+    border-width: $input-border;
+  }
+
+  // ICON RIGHT
+  &.md-icon-right {
+    > md-icon:last-of-type {
+      top: $input-border;
+      right: $input-border;
+      &:before {
+        line-height: $input-line-height;
+      }
+    }
   }
 }

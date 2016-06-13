@@ -1,0 +1,48 @@
+@import '../common';
+
+md-toast.ual-toast {
+  width: 100%;
+  .md-toast-content {
+    border-radius: $toast-border-radius;
+    font-size: $toast-font-size;
+    font-weight: $toast-font-weight;
+    @include rtl(justify-content, center, center);
+    md-icon {
+      color: inherit;
+      margin: 0 5px 0 0;
+    }
+    .message md-icon {
+      font-size: 1.45em;
+    }
+    .close {
+      .md-button.md-icon-button {
+        color: inherit;
+        margin: 0;
+        height: $toast-height;
+        line-height: $toast-height;
+        padding: 0;
+        width: $toast-height;
+        md-icon {
+          font-size: $toast-height;
+          line-height: $toast-height;
+          height: $toast-height;
+        }
+      }
+    }
+  }
+}
+
+md-toast.ual-toast.success .md-toast-content {
+  background-color: $toast-success-bg-color;
+  color: $toast-success-color;
+}
+
+md-toast.ual-toast.warning .md-toast-content {
+  background-color: $toast-warning-bg-color;
+  color: $toast-warning-color;
+}
+
+md-toast.ual-toast.error .md-toast-content {
+  background-color: $toast-error-bg-color;
+  color: $toast-error-color;
+}

@@ -1,12 +1,10 @@
 import angular from 'angular';
 import ualModal from './ualModal/ualModal';
-import ualButton from './ualButton/ualButton';
 import ualCheckbox from './ualCheckbox/ualCheckbox';
 import ualMenu from './ualMenu/ualMenu';
 import ualPane from './ualPane/ualPane';
 import ualTooltip from './ualTooltip/ualTooltip';
 import ualScroll from './ualScroll/ualScroll';
-import ualInput from './ualInput/ualInput';
 import ualDropdown from './ualDropdown/ualDropdown';
 import ualResize from './ualResize/ualResize';
 import ualRender from './ualRender/ualRender';
@@ -18,18 +16,21 @@ import ualClusterizeTable from './ualClusterizeTable/ualClusterizeTable';
 import ualEllipsis from './ualEllipsis/ualEllipsis';
 import ualAccordionGroup from './ualAccordionGroup/ualAccordionGroup';
 import ualOnScroll from './ualOnScroll/ualOnScroll';
+
+// MATERIAL
 import ualLoading from './ualLoading/ualLoading';
+import ualToast from './ualToast/ualToast';
+import ualButton from './ualButton/ualButton';
+import ualInput from './ualInput/ualInput';
 
 let commonModule = angular.module('app.common', [
   ualModal.name,
-  ualButton.name,
   ualCheckbox.name,
   ualMenu.name,
   ualPane.name,
   ualTooltip.name,
   ualDropdown.name,
   ualScroll.name,
-  ualInput.name,
   ualResize.name,
   ualRender.name,
   ualMessageBanner.name,
@@ -40,7 +41,12 @@ let commonModule = angular.module('app.common', [
   ualEllipsis.name,
   ualAccordionGroup.name,
   ualOnScroll.name,
-  ualLoading.name
+  
+  // MATERIAL
+  ualButton.name,
+  ualInput.name,
+  ualLoading.name,
+  ualToast.name
 ]);
 
 export default commonModule;

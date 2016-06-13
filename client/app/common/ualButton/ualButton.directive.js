@@ -9,7 +9,8 @@ class ualButtonDirective {
   compile() {
     return {
       pre: function(scope, el, attr){
-        el.addClass('ual-button md-raised md-cornered');
+        const sizeClass = attr.ualButtonSize ? ' ual-button-' + attr.ualButtonSize : '';
+        el.addClass('ual-button md-raised md-cornered' + sizeClass);
       }
     }
   }

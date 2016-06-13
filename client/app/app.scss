@@ -9,50 +9,54 @@
 @import '~angular-material/angular-material';
 @import '~malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
 
-@include keyframes-spin();
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-*:focus {
-    outline: 0;
-}
 
 html {
-    box-sizing: border-box;
+  font-size: $font-size;
 }
+//@include keyframes-spin();
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-}
-
-.app-view {
-    height: 100vh;
-    @include gridle( container );
-    @include font-clanot-news();
-}
-
-ng-outlet {
-    > div {
-        height: 100%;
-    }
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-input::-ms-clear {
-    display: none;
-}
-
-input::-ms-reveal {
-    display: none;
-}
+// *,
+// *::before,
+// *::after {
+//     box-sizing: inherit;
+// }
+//
+// *:focus {
+//     outline: 0;
+// }
+//
+// html {
+//     box-sizing: border-box;
+// }
+//
+// html, body {
+//     margin: 0;
+//     padding: 0;
+//     height: 100%;
+//     overflow: hidden;
+// }
+//
+// .app-view {
+//     height: 100vh;
+//     @include gridle( container );
+//     @include font-clanot-news();
+// }
+//
+// ng-outlet {
+//     > div {
+//         height: 100%;
+//     }
+// }
+//
+// ul {
+//     list-style-type: none;
+//     padding: 0;
+// }
+//
+// input::-ms-clear {
+//     display: none;
+// }
+//
+// input::-ms-reveal {
+//     display: none;
+// }

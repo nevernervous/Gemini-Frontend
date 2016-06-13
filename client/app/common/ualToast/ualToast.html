@@ -1,0 +1,32 @@
+<md-toast
+  class="ual-toast"
+  ng-class="vm.type">
+  <div
+    flex="70"
+    flex-offset="15"
+    layout="row"
+    layout-align="center center"
+    class="message">
+    <md-icon
+      md-font-icon="Ionicons"
+      ng-class="vm.icon">
+    </md-icon>
+    {{vm.text}}
+  </div>
+  <div
+    flex="15"
+    layout="row"
+    layout-align="end center"
+    class="close">
+    <md-button
+      ng-if="vm.closable"
+      class="md-icon-button"
+      aria-label="Close"
+      ng-click="vm.close()">
+      <md-icon
+       md-font-icon="Ionicons"
+       class="ion-ios-close-empty">
+      </md-icon>
+    </md-button>
+  </div>
+</md-toast>

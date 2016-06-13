@@ -1,0 +1,11 @@
+@import '../common/common';
+@function rem($multiplier) {
+  $font-size: 10px;
+  @return $multiplier * $font-size;
+}
+
+// LOGIN
+$login-header-font-size: rem(4.6);
+$login-header-font-weight: $font-weight-light;
+$login-header-color: $color-white;
+$login-message-font-size: rem(1.6);

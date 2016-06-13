@@ -6,8 +6,8 @@ let ualLoadingComponent = {
   restrict: 'E',
   transclude: true,
   bindings: {
-    ualLoadingDiameter: '@',
-    ualLoadingEnable: '='
+    diameter: '@ualLoadingDiameter',
+    loading: '=ualLoadingEnable'
   },
   template,
   controller,
