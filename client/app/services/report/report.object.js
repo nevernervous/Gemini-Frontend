@@ -26,16 +26,16 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   let saveResultMessages = [
     {
-      type: "-success"
-      , text: "Report saved successfully."
-    }
-    , {
-      type: "-error"
-      , text: "Report name already exists. Please select another."
-    }
-    , {
-      type: "-error"
-      , text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
+      type: "-success",
+      text: "Report saved successfully."
+    },
+    {
+      type: "-error",
+      text: "Report name already exists. Please select another."
+    },
+    {
+      type: "-error",
+      text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
     }
   ];
 
@@ -98,8 +98,8 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
           initialHash = getReportHash();
 
           deferred.resolve({ result: object.id, msg: saveResultMessages[0] });
-        }
-        , response => {
+        },
+        response => {
           // TODO: REFACTOR THIS CODE. USE 'errorCode' instead of check 'errorMessages'
           if (!response.data || !response.data.errorMessages) {
             //UNEXPECTED ERROR
@@ -202,35 +202,34 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   let isExitComfirmed = () => exitConfirmed;
   let setExitConfirm = (value) => exitConfirmed = value;
   return {
-    save
-    , load
-    , clean
-    , isEmptyName: isEmptyName
-    , id: {
-      get: getId
-      , set: setId
-    }
-    , exitConfirmed: {
-      get: isExitComfirmed
-      , set: setExitConfirm
-      ,
-    }
-    , untouch: function () {
+    save,
+    load,
+    clean,
+    isEmptyName: isEmptyName,
+    id: {
+      get: getId,
+      set: setId
+    },
+    exitConfirmed: {
+      get: isExitComfirmed,
+      set: setExitConfirm
+    },
+    untouch: function () {
       touched = false;
-    }
-    , touched: function () {
+    },
+    touched: function () {
       return touched;
-    }
-    , name: {
-      get: getName
-      , set: setName
-      , hasChange: () => {
+    },
+    name: {
+      get: getName,
+      set: setName,
+      hasChange: () => {
         let _unchanged = (unchangedName) ? unchangedName.toLowerCase() : "";
         let _actual = (object.name) ? object.name.toLowerCase() : "";
         return _unchanged == _actual;
       }
-    }
-    , datasource: {
+    },
+    datasource: {
       get: getDataSource,
       set: setDataSource,
       equal: equalDataSource
