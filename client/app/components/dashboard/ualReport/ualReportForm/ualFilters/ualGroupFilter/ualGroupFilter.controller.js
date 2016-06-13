@@ -27,11 +27,12 @@ class UalGroupFilterController {
   toggle(){
     this.items.not = !this.items.not;
   }
+
   addChildren() {
     this.items.children.push({
       "variable": null,
       "operator": "=",
-      "comparing": "Value",
+      "type": "Value",
       "value": null
     });
   }
@@ -50,21 +51,6 @@ class UalGroupFilterController {
   }
   remove(id) {
     this.items.children.splice(id, 1);
-  }
-  addCondition() {
-    this.collection.push({
-      variable:null,
-      operator : "=",
-      type:"Value",
-      value:null
-    });
-  }
-
-  removeCondition(id){
-    this.collection.splice(id,1);
-  }
-  removeAll(){
-    this.collection=[];
   }
 }
 

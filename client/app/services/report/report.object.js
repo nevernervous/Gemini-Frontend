@@ -51,7 +51,10 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       aggregators: [],
       filters: {
         not: false,
-        operator: "AND",
+        operator: {
+          value: '&',
+          text: 'AND'
+        },
         children: []
       }
 
@@ -142,7 +145,14 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   let setDataSource = value => {
     if (!equalDataSource(value)) {
       object.variables = [];
-      object.filters = [];
+      object.filters = {
+        not: false,
+        operator: {
+            value: '&',
+            text: 'AND'
+          },
+        children: []
+      };
       object.aggregators = [];
       object.dataSource = value;
       touched = hasReportChange();
@@ -176,7 +186,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     touched = hasReportChange();
   }
   let hasFilterValues = () => {
-    return !!object.filters && object.filters.length > 0;
+    return !!object.filters && object.filters.children.length > 0;
   }
 
 

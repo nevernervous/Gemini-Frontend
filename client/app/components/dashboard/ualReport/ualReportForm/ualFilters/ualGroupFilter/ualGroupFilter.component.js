@@ -8,7 +8,6 @@ let ualGroupFilterComponent = {
     items: "=",
     removeParent: '&',
     depth: "<",
-    collection: "=",
     datasource : "<",
     parentOperator: "<"
   },
