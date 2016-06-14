@@ -43,17 +43,29 @@ class UalFilterConditionController {
       let options = {
         required: true,
         regex: {
-          pattern: variable.RegEx || '^-?[0-9]\d*(\.\d+)?$',
-          denyPattern: true,
+          pattern: variable.Regex,
+          exclusive: variable.exclusive,
           flags: 'i'
         }
       }
+      let validation;
+      //Multiple Values
+      if (!!value && value.indexOf(',') != -1) {
+        let values = value.split(',');
+        _.forEach(values, (item) => {
+          if (!validation.isValid) {
+            return false;
+          }
+          validation = this._validator.isValid(item, variable.DataType, options);
+        });
+      } else {
+        validation = this._validator.isValid(value, variable.DataType, options);
+      }
 
-      let validation = this._validator.isValid(value, variable.DataType || "number", options);
 
       if (!validation.isValid && !this.isFirstFocus) {
         this.errorMessage = validation.getMessage(variable.name);
-      }else{
+      } else {
         this.errorMessage = undefined;
       }
     }, 0)

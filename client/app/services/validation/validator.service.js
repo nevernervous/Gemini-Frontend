@@ -26,11 +26,11 @@ let validatorService = function (xRegExp) {
     },
     regex: (value, option, type) => {
       let result = new ValidationResult();
-      let pattern = option.pattern || '[\´\'\"\\\%]';
+      let pattern = option.pattern;
       let flags = option.flags;
       let regex = xRegExp(pattern, flags);
 
-      let isInvalid = option.denyPattern ? !regex.test(value) : regex.test(value);
+      let isInvalid = !!option.exclusive ? regex.test(value) : !regex.test(value);
 
       if (isInvalid) {
         switch (type) {
@@ -84,6 +84,7 @@ let validatorService = function (xRegExp) {
     max,
     regex: {
       pattern,
+      exclusive: true,
       flags: 'i'
     }
   }) => {
@@ -96,22 +97,10 @@ let validatorService = function (xRegExp) {
       options.type = type;
 
       _.forEach(options, (option, key) => {
-        console.log(key);
         if (!result.isValid) {
           return false;
         }
-        //Multiple Values
-        if (value.indexOf(',') != -1) {
-          let values = value.split(',');
-          _.forEach(values, (item) => {
-            if (!result.isValid) {
-              return false;
-            }
-            result = validations[key](item, option, type)
-          }, false);
-        } else {
-          result = validations[key](value, option, type);
-        }
+        result = validations[key](value, option, type);
       });
     }
     return result;
