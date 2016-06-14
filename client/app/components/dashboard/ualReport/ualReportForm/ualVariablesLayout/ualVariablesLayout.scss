@@ -34,7 +34,8 @@
       }
 
       margin-left: -7px;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       margin-right: -15px;
       .selected-container {
         padding-right: 17px;
