@@ -78,8 +78,10 @@ let validatorService = function (xRegExp) {
     let result = validations.required(value, options.required, type);
 
     if (result.isValid) {
-      options.type = type;
+      result = validations.type(value, type);
+    }
 
+    if (result.isValid) {
       _.forEach(options, (option, key) => {
         if (!result.isValid) {
           return false;
