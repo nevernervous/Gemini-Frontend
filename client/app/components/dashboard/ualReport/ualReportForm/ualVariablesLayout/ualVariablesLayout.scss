@@ -25,11 +25,11 @@
     height: calc(100% - 30px);
     @include gridle_grid(3.6);
     .selected-list {
-      height: calc(90% - 115px);
+      height: calc(100% - 100px);
       @include gridle_state ( projector ) {
-        height: calc(80% - 110px);
-        @include -moz-browser(){
-          height: calc(70% - 110px);
+        height: calc(100% - 115px);
+        @include -moz-browser() {
+          height: calc(100% - 115px);
         }
       }
 
@@ -46,11 +46,11 @@
       @include font-clanot-book(14);
       color: $color07;
       text-align: center;
-      height: calc(90% - 105px);
+      height: calc(100% - 100px);
       @include gridle_state ( projector ) {
-        height: calc(80% - 100px);
+        height: calc(100% - 115px);
         @include -moz-browser(){
-          height: calc(70% - 100px);
+          height: calc(100% - 115px);
         }
       }
       line-height: 1.5;
@@ -60,11 +60,11 @@
     }
     .empty-search {
       @include gridle(row row-align middle center);
-      height: calc(90% - 105px);
+      height: calc(100% - 100px);
       @include gridle_state ( projector ) {
-        height: calc(80% - 100px);
+        height: calc(100% - 115px);
         @include -moz-browser(){
-          height: calc(70% - 100px);
+          height: calc(100% - 115px);
         }
       }
       @include font-clanot-book(14);
