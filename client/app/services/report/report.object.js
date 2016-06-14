@@ -3,24 +3,13 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   const endpoint = Properties.endpoint + '/Reports';
 
-  let object = {
-    id: null,
-    name: null,
-    dataSource: { id: null, name: null },
-    variables: [],
-    aggregators: [],
-    filters: {
-      not: false,
-      operator: 'AND',
-      children: []
-    }
-  };
   let initialHash = null;
+
+  let object = {};
 
   let reportData = null;
   var touched = false;
   let unchangedName = null;
-  let exitConfirmed = false;
 
   let duplicatedErrorResponse = "Report name already exists. Please select another.";
 
@@ -141,10 +130,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       object.variables = [];
       object.filters = {
         not: false,
-        operator: {
-            value: '&',
-            text: 'AND'
-          },
+        operator: 'AND',
         children: []
       };
       object.aggregators = [];
@@ -199,8 +185,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   let getId = () => object.id;
   let setId = value => object.id = value;
-  let isExitComfirmed = () => exitConfirmed;
-  let setExitConfirm = (value) => exitConfirmed = value;
+
   return {
     save,
     load,
@@ -209,10 +194,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     id: {
       get: getId,
       set: setId
-    },
-    exitConfirmed: {
-      get: isExitComfirmed,
-      set: setExitConfirm
     },
     untouch: function () {
       touched = false;
