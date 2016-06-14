@@ -26,16 +26,19 @@ let validatorService = function (xRegExp) {
     },
     regex: (value, option, type) => {
       let result = new ValidationResult();
-      let pattern = option.pattern || '[\´\'\"\\\%]';
+      let pattern = option.pattern;
       let flags = option.flags;
       let regex = xRegExp(pattern, flags);
 
-      let isInvalid = option.denyPattern ? !regex.test(value) : regex.test(value);
+      let isInvalid = !!option.exclusive ? regex.test(value) : !regex.test(value);
 
       if (isInvalid) {
         switch (type) {
           case types.String:
             result.setError('Invalid {0} format', value);
+            break;
+          case types.Number:
+            result.setError("Enter numeric value", value);
             break;
           default:
             result.setError("Invalid value", value);
@@ -44,12 +47,30 @@ let validatorService = function (xRegExp) {
       }
       return result;
     },
+    min: (value, option, type) => {
+      return new ValidationResult();
+    },
+    max: (value, option, type) => {
+      return new ValidationResult();
+    },
     type: (value, option) => {
       let result = new ValidationResult();
       switch (option) {
         case types.String:
           if (!_.isString(value)) {
             result.setError('Invalid {0} format', value)
+          }
+          break;
+        case types.Number:
+          let isNumber = true;
+          try {
+            let numberValue = +value;
+            isNumber = _.isNumber(numberValue);
+          } catch (err) {
+            isNumber = false;
+          }
+          if (!isNumber) {
+            result.setError("Numeric value expected", value);
           }
           break;
       }
@@ -63,6 +84,7 @@ let validatorService = function (xRegExp) {
     max,
     regex: {
       pattern,
+      exclusive: true,
       flags: 'i'
     }
   }) => {
@@ -75,22 +97,10 @@ let validatorService = function (xRegExp) {
       options.type = type;
 
       _.forEach(options, (option, key) => {
-        console.log(key);
         if (!result.isValid) {
           return false;
         }
-        //Multiple Values
-        if (value.indexOf(',') != -1) {
-          let values = value.split(',');
-          _.forEach(values, (item) => {
-            if (!result.isValid) {
-              return false;
-            }
-            result = validations[key](item, option, type)
-          }, false);
-        } else {
-          result = validations[key](value, option, type);
-        }
+        result = validations[key](value, option, type);
       });
     }
     return result;
