@@ -1,6 +1,6 @@
 <div class="-toolbar">
   <span class="-not-button">
-    <ual-checkbox is-checked="false"></ual-checkbox>
+    <ual-checkbox is-checked="vm.notQuery" ng-click="vm.notQuery=!vm.notQuery"></ual-checkbox>
     Not
   </span>
   <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.operatorGroup" property="text">
