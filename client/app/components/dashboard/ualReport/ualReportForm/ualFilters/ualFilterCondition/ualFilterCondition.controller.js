@@ -53,6 +53,8 @@ class UalFilterConditionController {
 
       if (!validation.isValid && !this.isFirstFocus) {
         this.errorMessage = validation.getMessage(variable.name);
+      }else{
+        this.errorMessage = undefined;
       }
     }, 0)
 
