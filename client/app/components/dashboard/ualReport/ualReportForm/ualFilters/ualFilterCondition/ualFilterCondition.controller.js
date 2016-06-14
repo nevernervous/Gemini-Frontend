@@ -72,14 +72,6 @@ class UalFilterConditionController {
 
   }
 
-  getNullValueError(variable) {
-    let variableName = !_.isEmpty(variable) ? variable.name : "[variable name]";
-    return "Enter " + variableName;
-  }
-  getInvalidFormatError(variable) {
-    return "Invalid " + variable.name + " format";
-  }
-
   getVariables() {
     this._datasourceService.variables(this.datasource)
       .then(response => {
