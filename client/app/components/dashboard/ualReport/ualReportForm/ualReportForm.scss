@@ -23,6 +23,7 @@ ual-report-form {
     > .run-section {
       @include gridle(row row-align right);
       margin: 30px 0 0;
+      width: 100%;
       button {
         width: 155px;
       }
