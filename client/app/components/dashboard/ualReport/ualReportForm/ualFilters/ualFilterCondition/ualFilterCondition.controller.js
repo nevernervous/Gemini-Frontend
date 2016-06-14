@@ -43,13 +43,13 @@ class UalFilterConditionController {
       let options = {
         required: true,
         regex: {
-          pattern: variable.RegEx || '^-?[0-9]\d*(\.\d+)?$',
-          denyPattern: true,
+          pattern: variable.RegEx,
+          denyPattern: false,
           flags: 'i'
         }
       }
 
-      let validation = this._validator.isValid(value, variable.DataType || "number", options);
+      let validation = this._validator.isValid(value, variable.DataType || "string", options);
 
       if (!validation.isValid && !this.isFirstFocus) {
         this.errorMessage = validation.getMessage(variable.name);
