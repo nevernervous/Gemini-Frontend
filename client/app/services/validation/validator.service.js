@@ -56,7 +56,7 @@ let validatorService = function (xRegExp) {
           let isNumber = true;
           try {
             let numberValue = +value;
-            isNumber = _.isNumber(numberValue);
+            isNumber = !_.isNaN(numberValue) && _.isNumber(numberValue);
           } catch (err) {
             isNumber = false;
           }
@@ -84,9 +84,11 @@ let validatorService = function (xRegExp) {
     }
     let result = validations.required(value, options.required, type);
 
-    if (result.isValid) {
-      options.type = type;
+    if(result.isValid){
+      result = validations.type(value, type);
+    }
 
+    if (result.isValid) {
       _.forEach(options, (option, key) => {
         if (!result.isValid) {
           return false;

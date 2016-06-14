@@ -470,7 +470,7 @@ module.exports = {
             },
             "id": 93,
             "DataType": "number",
-            "Regex": '^-?[0-9]\\d*(\\.\\d+)?$',
+            "Regex": '^[0-9]\\d*(\\.\\d+)?$',
             "name": "C642",
             "order": 0,
             "type": "Standard"
