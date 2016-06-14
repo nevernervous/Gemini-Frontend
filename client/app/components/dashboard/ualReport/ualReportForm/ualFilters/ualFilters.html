@@ -1,11 +1,6 @@
 <div class="-filter-container">
-  <ual-group-filter collection="vm.collection" datasource="vm.datasource">
+  <ual-group-filter filters="vm._filters" datasource="vm.datasource">
   </ual-group-filter>
-  <div class="-no-conditions" ng-hide="vm.collection.length > 0">
-    <div>
-      No limit applied
-    </div>
-  </div>
   <div class="-condition-container">
     <div class="-code">
       <span class="-highlight">WHERE</span> ([variable]=[value]

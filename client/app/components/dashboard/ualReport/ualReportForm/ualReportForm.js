@@ -19,7 +19,7 @@ let ualReportFormModule = angular.module('ualReportForm', [
     ualDataSource.name,
     ualAgregationItem.name,
     ualReportNameModal.name,
-    ualUnsafeReportModal.name,
+    ualUnsafeReportModal.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
