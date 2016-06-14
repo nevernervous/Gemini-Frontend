@@ -4,7 +4,7 @@ let validatorService = function (xRegExp) {
   "ngInject";
 
   const types = {
-    Number: "number"
+    String: "string"
   };
 
   let IsNullOrEmpty = (value) => {
@@ -33,8 +33,8 @@ let validatorService = function (xRegExp) {
 
       if (isInvalid) {
         switch (type) {
-          case types.Number:
-            result.setError("Enter numeric value", value);
+          case types.String:
+            result.setError('Invalid {0} format', value);
             break;
           default:
             result.setError("Invalid value", value);
@@ -52,16 +52,9 @@ let validatorService = function (xRegExp) {
     type: (value, option) => {
       let result = new ValidationResult();
       switch (option) {
-        case types.Number:
-          let isNumber = true;
-          try {
-            let numberValue = +value;
-            isNumber = _.isNumber(numberValue);
-          } catch (err) {
-            isNumber = false;
-          }
-          if (!isNumber) {
-            result.setError("Numeric value expected", value);
+        case types.String:
+          if (!_.isString(value)) {
+            result.setError('Invalid {0} format', value)
           }
           break;
       }
