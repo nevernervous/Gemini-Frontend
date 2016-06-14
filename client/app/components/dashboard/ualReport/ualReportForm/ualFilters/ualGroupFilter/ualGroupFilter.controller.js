@@ -2,42 +2,37 @@ class UalGroupFilterController {
   /*@ngInject*/
   constructor() {
     this.name = 'ualGroupFilter';
-    this.operatorGroup={
-        value: '&',
-        text: 'AND'
-      };
+    this.operatorGroup='AND';
 
-    this.selectedItem = {
-      value: '&',
-      text: 'AND'
-    };
+    this.selectedItem = 'AND';
 
-    this.conditionList = [
-      {
-        value: '&',
-        text: 'AND'
-      },
-      {
-        value: '|',
-        text: 'OR'
-      }
-    ];
+    this.conditionList = ['AND', 'OR'];
   }
 
-  addCondition() {
-    this.collection.push({
-      variable:null,
-      operator : "=",
-      type:"Value",
-      value:null
+  toggle(){
+    this.filters.not = !this.filters.not;
+  }
+
+  addChildren() {
+    this.filters.children.push({
+      "variable": null,
+      "operator": "=",
+      "type": "Value",
+      "value": null
     });
   }
-
-  removeCondition(id){
-    this.collection.splice(id,1);
+  addGroup() {
+    this.filters.children.push({
+      "not": false,
+      "operator": 'AND',
+      "children": []
+    });
   }
-  removeAll(){
-    this.collection=[];
+  cleanGroup(){
+    this.filters.children = [];
+  }
+  remove(id) {
+    this.filters.children.splice(id, 1);
   }
 }
 
