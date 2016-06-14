@@ -51,8 +51,11 @@ class UalFilterConditionController {
 
       let validation = this._validator.isValid(value, variable.DataType || "string", options);
 
+      console.log(this.errorMessage);
       if (!validation.isValid && !this.isFirstFocus) {
         this.errorMessage = validation.getMessage(variable.name);
+      }else{
+        this.errorMessage = undefined;
       }
     }, 0)
 
