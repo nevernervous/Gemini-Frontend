@@ -1,7 +1,7 @@
 <label class="ual-input">
     <input id="{{vm.ualId}}" ng-model="vm.newvalue" ng-blur="vm.onBlur({$event: $event})" ng-focus="vm.onFocus({$event: $event})" ng-keyup="vm.onKeyup({$event: $event})" ng-keypress="vm.onKeypress({$event: $event})"
            placeholder="{{vm.placeholder}}"
-           ng-model-options="vm.options"
+           ng-model-options="vm.options" droppable ual-disabled="vm.ualDisabled"
            ng-change="vm.onChange()" ng-disabled="vm.ualDisabled" tabindex="-1"/>
     <i ng-show="!!vm.icon" ng-class="vm.icon"></i>
 </label>
