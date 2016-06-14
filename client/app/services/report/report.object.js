@@ -3,45 +3,44 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   const endpoint = Properties.endpoint + '/Reports';
 
-  let object = {
-    id: null
-    , name: null
-    , dataSource: { id: null, name: null }
-    , variables: []
-    , aggregators: []
-    , filters: []
-  };
   let initialHash = null;
+
+  let object = {};
 
   let reportData = null;
   var touched = false;
   let unchangedName = null;
-  let exitConfirmed = false;
 
   let duplicatedErrorResponse = "Report name already exists. Please select another.";
 
   let saveResultMessages = [
     {
-      type: "-success"
-      , text: "Report saved successfully."
-    }
-    , {
-      type: "-error"
-      , text: "Report name already exists. Please select another."
-    }
-    , {
-      type: "-error"
-      , text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
+      type: "-success",
+      text: "Report saved successfully."
+    },
+    {
+      type: "-error",
+      text: "Report name already exists. Please select another."
+    },
+    {
+      type: "-error",
+      text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
     }
   ];
 
   let clean = () => {
     object = {
-      id: null
-      , name: null
-      , dataSource: { id: null, name: null }
-      , variables: []
-      , aggregators: []
+      id: null,
+      name: null,
+      dataSource: { id: null, name: null },
+      variables: [],
+      aggregators: [],
+      filters: {
+        not: false,
+        operator: 'AND',
+        children: []
+      }
+
     };
     initialHash = getReportHash();
     touched = false;
@@ -88,8 +87,8 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
           initialHash = getReportHash();
 
           deferred.resolve({ result: object.id, msg: saveResultMessages[0] });
-        }
-        , response => {
+        },
+        response => {
           // TODO: REFACTOR THIS CODE. USE 'errorCode' instead of check 'errorMessages'
           if (!response.data || !response.data.errorMessages) {
             //UNEXPECTED ERROR
@@ -129,7 +128,11 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   let setDataSource = value => {
     if (!equalDataSource(value)) {
       object.variables = [];
-      object.filters = [];
+      object.filters = {
+        not: false,
+        operator: 'AND',
+        children: []
+      };
       object.aggregators = [];
       object.dataSource = value;
       touched = hasReportChange();
@@ -163,7 +166,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     touched = hasReportChange();
   }
   let hasFilterValues = () => {
-    return !!object.filters && object.filters.length > 0;
+    return !!object.filters && object.filters.children.length > 0;
   }
 
 
@@ -182,38 +185,32 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   let getId = () => object.id;
   let setId = value => object.id = value;
-  let isExitComfirmed = () => exitConfirmed;
-  let setExitConfirm = (value) => exitConfirmed = value;
+
   return {
-    save
-    , load
-    , clean
-    , isEmptyName: isEmptyName
-    , id: {
-      get: getId
-      , set: setId
-    }
-    , exitConfirmed: {
-      get: isExitComfirmed
-      , set: setExitConfirm
-      ,
-    }
-    , untouch: function () {
+    save,
+    load,
+    clean,
+    isEmptyName: isEmptyName,
+    id: {
+      get: getId,
+      set: setId
+    },
+    untouch: function () {
       touched = false;
-    }
-    , touched: function () {
+    },
+    touched: function () {
       return touched;
-    }
-    , name: {
-      get: getName
-      , set: setName
-      , hasChange: () => {
+    },
+    name: {
+      get: getName,
+      set: setName,
+      hasChange: () => {
         let _unchanged = (unchangedName) ? unchangedName.toLowerCase() : "";
         let _actual = (object.name) ? object.name.toLowerCase() : "";
         return _unchanged == _actual;
       }
-    }
-    , datasource: {
+    },
+    datasource: {
       get: getDataSource,
       set: setDataSource,
       equal: equalDataSource
