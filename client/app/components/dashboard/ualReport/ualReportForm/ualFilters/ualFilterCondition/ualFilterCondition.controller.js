@@ -43,30 +43,32 @@ class UalFilterConditionController {
       let options = {
         required: true,
         regex: {
-          pattern: variable.RegEx,
-          denyPattern: false,
+          pattern: variable.Regex,
+          exclusive: variable.exclusive,
           flags: 'i'
         }
       }
+      let validation;
+      //Multiple Values
+      if (!!value && value.indexOf(',') != -1) {
+        let values = value.split(',');
+        _.forEach(values, (item) => {
+          if (!validation.isValid) {
+            return false;
+          }
+          validation = this._validator.isValid(item, variable.DataType, options);
+        });
+      } else {
+        validation = this._validator.isValid(value, variable.DataType, options);
+      }
 
-      let validation = this._validator.isValid(value, variable.DataType || "string", options);
-
-      console.log(this.errorMessage);
       if (!validation.isValid && !this.isFirstFocus) {
         this.errorMessage = validation.getMessage(variable.name);
-      }else{
+      } else {
         this.errorMessage = undefined;
       }
     }, 0)
 
-  }
-
-  getNullValueError(variable) {
-    let variableName = !_.isEmpty(variable) ? variable.name : "[variable name]";
-    return "Enter " + variableName;
-  }
-  getInvalidFormatError(variable) {
-    return "Invalid " + variable.name + " format";
   }
 
   getVariables() {
