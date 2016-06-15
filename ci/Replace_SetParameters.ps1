@@ -19,7 +19,7 @@ $contents | % {
     if ($_ -match "__(\w+)__") {
         $setting = gci -path env:* | ? { $_.Name -eq $Matches[1]  }
         if ($setting) {
-            Write-Verbose -Verbose ("Replacing key {0} with value from environment" -f $setting.Name)
+            Write-Verbose -Verbose ("Replacing key {0} with value from environment with value {1}" -f $setting.Name, $setting.Value)
             $line = $_ -replace "__(\w+)__", $setting.Value
         }
     }
