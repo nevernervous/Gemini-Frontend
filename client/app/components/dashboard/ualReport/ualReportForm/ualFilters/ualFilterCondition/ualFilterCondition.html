@@ -11,7 +11,7 @@
     <ual-dropdown placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
     </ual-dropdown>
 
-    <ual-input ng-show="vm.condition.type == 'Value'" placeholder="Enter [variable name]" value="vm.condition.value" min-chars="3">
+    <ual-input ng-show="vm.condition.type == 'Value'" placeholder="Enter {{!vm.condition.variable.name ? '[variable name]' : vm.condition.variable.name}}" value="vm.condition.value" min-chars="3">
     </ual-input>
     <ual-dropdown ng-show="vm.condition.type == 'Variable'" placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.value" property="name"><!--this component will change on US - CR1.24-->
     </ual-dropdown>
