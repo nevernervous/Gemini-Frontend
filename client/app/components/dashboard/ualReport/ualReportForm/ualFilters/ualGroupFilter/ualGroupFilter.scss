@@ -56,6 +56,9 @@ ual-group-filter {
         .-remove-label{
           display: inherit;
         }
+        .-no-conditions{
+          display: none;
+        }
       }
     }
   }
@@ -91,7 +94,10 @@ ual-group-filter {
   }
   .-toolbar {
     .-not-button {
-      @include font-clanot-bold(16);
+      @include font-clanot-book(16);
+      &.checked {
+        @include font-clanot-bold(16);
+      }
     }
   }
   .-iterative-container:first-child {
