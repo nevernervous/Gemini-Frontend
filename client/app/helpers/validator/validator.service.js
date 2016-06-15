@@ -1,14 +1,16 @@
-let validatorService = function(xRegExp, Formater) {
+let validatorService = function (xRegExp, Formater) {
   "ngInject";
 
   const flags = "i";
+  const inClause = "in";
 
   const errorMessages = {
-    'number': {
-      regex: "Enter numeric value",
-      type: "Numeric value expected"
+    'string': {
+      regex: "Invalid {0} format",
+      type: "Invalid {0} format",
+      operator: "Not allowed multiple values"
     },
-    "default":{
+    "default": {
       regex: "Invalid value",
       type: "Invalid {0}",
       required: "Enter {0}"
@@ -20,29 +22,22 @@ let validatorService = function(xRegExp, Formater) {
   }
 
   let typeValidations = {
-    'number': (value, type) => {
-      let isNumber;
-      try {
-        let numberValue = +value;
-        isNumber = !_.isNaN(numberValue) && _.isNumber(numberValue);
-      } catch (err) {
-        isNumber = false;
-      }
-      var messages = getErrorMessages(type);
-      return !isNumber ? messages.type : null;
+    'string': (value, type) => {
+      let messages = getErrorMessages(type);
+      return !_.isString(value) ? messages.type : null;
     }
   }
 
   let validations = {
     required: (value, type, variable) => {
-      var messages = getErrorMessages("default");
+      let messages = getErrorMessages("default");
       let result = !value ? messages.required : null;
       return Formater.format(result, variable.name)
     },
     regex: (value, type, variable) => {
       let pattern = variable.Regex;
       let regex = xRegExp(pattern, flags);
-      var messages = getErrorMessages(type);
+      let messages = getErrorMessages(type);
 
       let isInvalid = !regex.test(value);
       let result = isInvalid ? messages.regex : null;
@@ -53,6 +48,12 @@ let validatorService = function(xRegExp, Formater) {
       let typeFunc = typeValidations[type] || _.noop;
       let result = typeFunc(value, type);
       return Formater.format(result, type);
+    },
+    operator: (value, type, variable) => {
+        let hasMultipleValues = value.indexOf(',') !== -1;
+        let isInvalid = variable.operator !== inClause && hasMultipleValues;
+        let messages = getErrorMessages(type);
+        return isInvalid ? Formater.format(messages.operator, variable.name) : null;
     }
   }
 
@@ -64,10 +65,10 @@ let validatorService = function(xRegExp, Formater) {
       message = "Type was not provided for the value";
     }
 
-    var options = ["required", "type", "regex"];
+    var options = ["required", "type", "operator", "regex"];
 
     _.forEach(options, (item) => {
-      if(!!message){
+      if (!!message) {
         return false;
       }
       let validFun = validations[item] || _.noop;

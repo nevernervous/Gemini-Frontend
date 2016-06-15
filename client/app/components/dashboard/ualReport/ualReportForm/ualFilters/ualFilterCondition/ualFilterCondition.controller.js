@@ -37,9 +37,10 @@ class UalFilterConditionController {
         this.errorMessage = null;
         return;
       }
-
-      this.isFirstFocus = this.isFirstFocus == null ? true : false;
       this.variableName = variable.name;
+      this.isFirstFocus = this.isFirstFocus == null ? true : false;
+
+      variable.operator = operator;
 
       let validation = this._validator.isValid(value, variable);
 

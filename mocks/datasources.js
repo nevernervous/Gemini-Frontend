@@ -441,7 +441,7 @@ module.exports = {
             },
             "id": 91,
             "DataType": "string",
-            "Regex": '^[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/]+(?:,[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/]*)*$',
+            "Regex": '^[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]+(?:,[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]*)*$',
             "name": "Extract Date",
             "order": 0,
             "type": "Standard"
@@ -497,7 +497,7 @@ module.exports = {
             },
             "id": 95,
             "DataType": "string",
-            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@./]',
+            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
             "name": "Leg Origin",
             "order": 0,
             "type": "Standard"
@@ -511,7 +511,7 @@ module.exports = {
             },
             "id": 96,
             "DataType": "string",
-            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@./]',
+            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
             "name": "Leg Destination",
             "order": 0,
             "type": "Standard"
@@ -525,7 +525,7 @@ module.exports = {
             },
             "id": 97,
             "DataType": "string",
-            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@./]',
+            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
             "name": "Leg Miles",
             "order": 0,
             "type": "Standard"

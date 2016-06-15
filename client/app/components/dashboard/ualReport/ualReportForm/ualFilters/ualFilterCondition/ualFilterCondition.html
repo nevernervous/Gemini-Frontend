@@ -5,7 +5,7 @@
     <ual-dropdown on-change="vm.valid()" placeholder="Search for variables" list="vm.availableVariables" selected="vm.condition.variable" property="name">
       <!--this component will change on US - CR1.24-->
     </ual-dropdown>
-    <ual-dropdown placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator">
+    <ual-dropdown on-change="vm.valid()" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator">
     </ual-dropdown>
   </div>
   <div class="section">
