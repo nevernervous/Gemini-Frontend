@@ -1,0 +1,6 @@
+{
+  "Properties": {
+    "endpoint": "__GeminiWeApiEndpoint__",
+    "cache": true
+  }
+}
