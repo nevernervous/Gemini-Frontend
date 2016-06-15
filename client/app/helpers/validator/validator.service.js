@@ -40,7 +40,7 @@ let validatorService = function(xRegExp, Formater) {
       return Formater.format(result, variable.name)
     },
     regex: (value, type, variable) => {
-      let pattern = variables.GroupRegex || variable.Regex;
+      let pattern = variable.Regex;
       let regex = xRegExp(pattern, flags);
       var messages = getErrorMessages(type);
 
