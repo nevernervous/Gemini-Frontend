@@ -6,7 +6,6 @@ import Configuration from './configuration/configuration';
 import Datasource from './datasource/datasource';
 import Aggregator from './aggregator/aggregator';
 import Report from './report/report';
-import Validator from './validation/validator';
 
 let sessionModule = angular.module('app.services', [
   Session.name,
@@ -14,8 +13,7 @@ let sessionModule = angular.module('app.services', [
   Configuration.name,
   Datasource.name,
   Aggregator.name,
-  Report.name,
-  Validator.name
+  Report.name
 ])
 
 .factory('ServicesTransform', servicesTransform);
