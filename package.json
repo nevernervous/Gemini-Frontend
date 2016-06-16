@@ -84,7 +84,8 @@
     "local": "gulp --env=local",
     "vagrant": "gulp --env=vagrant",
     "dev": "gulp constants --env=development && gulp webpack",
-    "qa": "gulp constants --env=qa && gulp webpack"
+    "qa": "gulp constants --env=qa && gulp webpack",
+    "release": "gulp constants --env=release && gulp webpack"
   },
   "keywords": [
     "angular",
