@@ -18,9 +18,7 @@ import angularAnimate from 'angular-animate';
 import 'lodash';
 import $ from 'jquery';
 import './vendors/jquery.signalr-2.2.0.js';
-import customScroll from './vendors/jquery.mCustomScrollbar.concat.min.js';
 import localStorage from './vendors/localStorage.js';
-import JtDro from './vendors/JtDro.js';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
@@ -45,12 +43,9 @@ import 'normalize.css';
 window.$ = $;
 window.jQuery = $;
 window.Clusterize = Clusterize;
-window.customScroll = customScroll;
-window.customScroll(window.$);
 
 angular.module('app', [
   '$q-spread',
-  'dragDrop',
   'angular-click-outside',
   uiRouter,
   Constants.name,
