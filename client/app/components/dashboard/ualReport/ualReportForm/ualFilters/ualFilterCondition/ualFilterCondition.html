@@ -25,7 +25,7 @@
 	        <i class="ion-ios-close-outline"></i>
         </label>
       <ng-messages for="filterConditionForm.value.$error" ng-if="filterConditionForm.value.$dirty">
-        <div ng-if="!!vm.condition.variable && vm.condition.variable.DataType === 'text'" ng-messages-include="text-messages"></div>
+        <div ng-if="!!vm.condition.variable && vm.condition.variable.DataType === 'string'" ng-messages-include="text-messages"></div>
       </ng-messages>
     </div>
     <ual-dropdown ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.value" property="name">
