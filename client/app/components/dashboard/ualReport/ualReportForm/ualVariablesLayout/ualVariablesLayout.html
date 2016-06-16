@@ -23,8 +23,8 @@
         <div>No aggregators selected yet.</div>
       </div>
       <ul id="aggregator-list" class="selected-list" ng-if="!vm._aggregators.isempty">
-        <li class="selected-container" ng-repeat="item in vm.aggregators.get()" droppable id="{{ $index }}_selected_container-aggregator" drop="vm.onDropAggregators(from, to)" >
-          <ual-variable-selected-item id="{{ $index }}_selected_item-aggregator" draggable ng-show="item._visible"
+        <li class="selected-container" ng-repeat="item in vm.aggregators.get()" ual-droppable id="{{ $index }}_selected_container-aggregator" drop="vm.onDropAggregators(from, to)" >
+          <ual-variable-selected-item id="{{ $index }}_selected_item-aggregator" ual-draggable ng-show="item._visible"
             variable-total="vm._aggregators.total" variable-item="item" variable-order="$index" variable-type="aggregator"
             on-delete="vm.deleteAggregator($index)" variable-change="vm.changeAggregators(oldOrder, newOrder)"
             ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
@@ -44,8 +44,8 @@
         <div>No variables selected yet.</div>
       </div>
       <ul id="variable-list" class="selected-list" ng-if="!vm._variables.isempty">
-        <li class="selected-container" ng-repeat="item in vm.variables.get()" droppable id="{{ $index }}_selected_container-variable" drop="vm.onDropVariables(from, to)" >
-          <ual-variable-selected-item id="{{ $index }}_selected_item-variable" draggable ng-show="item._visible"
+        <li class="selected-container" ng-repeat="item in vm.variables.get()" ual-droppable id="{{ $index }}_selected_container-variable" drop="vm.onDropVariables(from, to)" >
+          <ual-variable-selected-item id="{{ $index }}_selected_item-variable" ual-draggable ng-show="item._visible"
             variable-total="vm._variables.total" variable-item="item" variable-order="$index" variable-type="variable"
             on-delete="vm.deleteVariable($index)" variable-change="vm.changeVariables(oldOrder, newOrder)"
             ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">

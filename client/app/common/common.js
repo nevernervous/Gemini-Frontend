@@ -19,6 +19,8 @@ import ualEllipsis from './ualEllipsis/ualEllipsis';
 import ualAccordionGroup from './ualAccordionGroup/ualAccordionGroup';
 import ualOnScroll from './ualOnScroll/ualOnScroll';
 import ualActionLabel from './ualActionLabel/ualActionLabel';
+import ualDraggable from './ualDraggable/ualDraggable';
+import ualDroppable from './ualDroppable/ualDroppable';
 
 let commonModule = angular.module('app.common', [
   ualModal.name,
@@ -40,8 +42,9 @@ let commonModule = angular.module('app.common', [
   ualEllipsis.name,
   ualAccordionGroup.name,
   ualOnScroll.name,
-  ualActionLabel.name
+  ualActionLabel.name,
+  ualDraggable.name,
+  ualDroppable.name
 ]);
 
 export default commonModule;
-
