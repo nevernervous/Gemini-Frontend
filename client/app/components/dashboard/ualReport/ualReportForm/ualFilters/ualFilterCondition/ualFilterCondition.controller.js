@@ -1,11 +1,8 @@
 class UalFilterConditionController {
   /*@ngInject*/
-  constructor($scope, DataSource, $timeout, Validator) {
+  constructor($scope, DataSource) {
     this.name = 'ualFilterCondition';
-    this._timeout = $timeout;
-    this.isFirstFocus = null;
 
-    this._validator = Validator;
     this.availableVariables;
     this._datasourceService = DataSource;
     this.types = ["Value", "Variable"];
@@ -22,35 +19,6 @@ class UalFilterConditionController {
 
   $onInit() {
     this.getVariables();
-  }
-
-
-  valid() {
-    this._timeout(() => {
-      let value = this.condition.value;
-      let variable = !!this.condition && !_.isEmpty(this.condition.variable) ? this.condition.variable : null;
-      let operator = this.condition.operator;
-      let errorMessage = null;
-
-      //Non selected variable
-      if (!variable && !!this.isFirstFocus) {
-        this.errorMessage = null;
-        return;
-      }
-      this.variableName = variable.name;
-      this.isFirstFocus = this.isFirstFocus == null ? true : false;
-
-      variable.operator = operator;
-
-      let validation = this._validator.isValid(value, variable);
-
-      if (!validation.isValid && !this.isFirstFocus) {
-        this.errorMessage = validation.message;
-      } else {
-        this.errorMessage = null;
-      }
-    }, 0)
-
   }
 
   getVariables() {
