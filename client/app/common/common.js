@@ -5,7 +5,6 @@ import ualCheckbox from './ualCheckbox/ualCheckbox';
 import ualMenu from './ualMenu/ualMenu';
 import ualPane from './ualPane/ualPane';
 import ualTooltip from './ualTooltip/ualTooltip';
-import ualScroll from './ualScroll/ualScroll';
 import ualInput from './ualInput/ualInput';
 import ualDropdown from './ualDropdown/ualDropdown';
 import ualResize from './ualResize/ualResize';
@@ -30,7 +29,6 @@ let commonModule = angular.module('app.common', [
   ualPane.name,
   ualTooltip.name,
   ualDropdown.name,
-  ualScroll.name,
   ualInput.name,
   ualResize.name,
   ualRender.name,
