@@ -5,18 +5,18 @@ ual-filter-condition {
     margin-left: 0px !important;
     @include gridle(row row-align);
     >.section{
-      @include gridle(6);
+      @include gridle(5);
       display: flex;
-      @include gridle(row row-align center middle);
+      @include gridle(row row-align start middle);
       padding: 0 10px;
         >.operator{
-          margin-left: 22px;
+          margin : 0 16px;
           display: flex;
           align-items: center;
           @include gridle(1);
         }
       >ual-input{
-        @include gridle(5);
+        @include gridle(6);
         >.ual-input{
           padding:6px 4px 10px 8px;
           >input{
@@ -26,7 +26,10 @@ ual-filter-condition {
         }
       }
       >ual-dropdown{
-        @include gridle(5);
+        @include gridle(6);
+        &.short-field{
+          @include gridle(3);
+        }
       }
       >.close-btn{
         display: flex;
