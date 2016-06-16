@@ -4,7 +4,7 @@
   </div>
   <div class="-tree-container">
     <div class="-toolbar">
-      <span class="-not-button">
+      <span class="-not-button" ng-class="{checked:vm.filters.not}">
       <ual-checkbox on-click="vm.toggle()" is-checked="vm.filters.not"></ual-checkbox>
         Not
       </span>
