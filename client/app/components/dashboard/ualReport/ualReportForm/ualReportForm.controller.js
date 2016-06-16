@@ -62,7 +62,7 @@ class UalReportFormController {
     this._service.tooltip.hide();
   }
 
-  blurName() {
+  saveName() {
     this.name.focus = false;
     if (this.edit && this.name.current.toLowerCase() != this.report.name.get().toLowerCase()) {
       this.save();

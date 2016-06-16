@@ -5,13 +5,13 @@ ual-filter-condition {
   >.wrapper {
     margin-left: 0px !important;
     @include gridle(row row-align);
-    >.section {
-      @include gridle(6);
+    >.section{
+      @include gridle(5);
       display: flex;
-      @include gridle(row row-align center);
+      @include gridle(row row-align start middle);
       padding: 0 10px;
-      >.operator {
-        margin-left: 22px;
+        >.operator{
+          margin : 0 16px;
         height: 37px;
         display: flex;
         align-items: center;
@@ -44,13 +44,11 @@ ual-filter-condition {
               margin-top: 5px;
             }
           }
-        }
-        .-error {
-          padding: 10px 10px 0;
-        }
-      }
-      >ual-dropdown {
-        @include gridle(5);
+        }      
+>ual-dropdown{
+        @include gridle(6);
+        &.short-field{
+
       }
       >.close-btn {
         display: flex;

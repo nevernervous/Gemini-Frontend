@@ -2,20 +2,36 @@
 //LAYOUT
 ual-variables-multi-select {
   height: 100%;
-  .-avaiable-variables {
-    height: calc(100% - 164px);
-    @include gridle_state ( projector) {
-      height: calc(100% - 207px);
+  > ual-pane .pane-body  {
+    > .empty-variables {
+      @include gridle(row row-align middle center);
+      height: calc(100% - 164px);
+      @include gridle_state ( projector ) {
+        height: calc(100% - 207px);
+        @include -moz-browser(){
+          height: calc(100% - 207px);
+        }
+      }
+      @include font-clanot-book(14);
+      margin-top: 20px;
+      color: $color07;
+      text-align: center;
     }
-    margin-top: 20px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: calc(100% + 17px);
-    li {
-      padding: 5px 6px;
-      cursor: pointer;
-      >div{
-        display: inline-block;
+    > .-avaiable-variables {
+      height: calc(100% - 164px);
+      @include gridle_state ( projector) {
+        height: calc(100% - 207px);
+      }
+      margin-top: 20px;
+      width: calc(100% + 17px);
+      overflow-y: scroll;
+      li {
+        padding: 5px 6px;
+        cursor: pointer;
+        >div{
+          display: inline-block;
+          max-width: 100%;
+        }
       }
     }
   }
