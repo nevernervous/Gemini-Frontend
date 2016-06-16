@@ -14,13 +14,13 @@ let sessionInterceptor = function (Token, $rootScope) {
     return response;
   }
 
-  let reponseError = (response) => {
+  let responseError = (response) => {
     if (response.status === 401) {
       _token.destroy();
     }
   }
 
-  return { request, response, reponseError };
+  return { request, response, responseError };
 };
 
 export default sessionInterceptor;
