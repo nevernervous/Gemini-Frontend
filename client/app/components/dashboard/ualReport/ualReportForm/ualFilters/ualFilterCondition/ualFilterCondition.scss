@@ -24,8 +24,6 @@ ual-filter-condition {
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 1px solid $color08;
-          background-color: $color00;
           padding: 5px 2px 5px 2px;
           @include -ms-browser() {
             padding: 1px 2px;
@@ -35,20 +33,13 @@ ual-filter-condition {
             height: 32px;
           }
           >input {
-            @include font-clanot-book(14);
-            width: calc(100% - 15px);
-            border: 0;
             height: 28px;
             @include -ms-browser() {
               height: 23px;
             }
-            color: $color06;
           }
           >i {
-            display: none;
-            font-size: 22px;
             vertical-align: middle;
-            color: $color07;
             @include -ms-browser() {
               margin-top: 5px;
             }
@@ -56,8 +47,6 @@ ual-filter-condition {
         }
         .-error {
           padding: 10px 10px 0;
-          @include font-clanot-book(12);
-          color: $color11;
         }
       }
       >ual-dropdown {
@@ -70,8 +59,36 @@ ual-filter-condition {
     }
   }
 }
+//VARIATIONS
+ual-filter-condition {
+  >.wrapper {
+    >.section {
+      >.value {
+        >.-input {
+          border: 1px solid $color08;
+          background-color: $color00;
+          >input {
+            @include font-clanot-book(14);
+            width: calc(100% - 15px);
+            border: 0;
+            color: $color06;
+          }
+          >i {
+            display: none;
+            font-size: 22px;
+            color: $color07;
+          }
+        }
+        .-error {
+          @include font-clanot-book(12);
+          color: $color11;
+        }
+      }
+    }
+  }
+}
 
-//VARIATION Error Input
+//VARIATION Error Form
 ual-filter-condition {
   >.wrapper.-error {
       .value {
