@@ -1,35 +1,33 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 20px 20px 0;
+  padding: 20px 0 0;
   display: block;
   >.wrapper {
     margin-left: 0px !important;
     @include gridle(row row-align);
-    >.section{
-      @include gridle(5);
+    >.section {
+      @include gridle(6);
       display: flex;
-      @include gridle(row row-align start middle);
+      @include gridle(row row-align start);
       padding: 0 10px;
-        >.operator{
-          margin : 0 16px;
+      >.operator {
+        // margin : 0 16px;
         height: 37px;
         display: flex;
         align-items: center;
         justify-content: center;
-        @include gridle(1);
+        width: 72px;
       }
       >.value {
-        @include gridle(5);
+        @include gridle(6);
         >.-input {
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 5px 2px 5px 2px;
-          @include -ms-browser() {
-            padding: 1px 2px;
-          }
           height: 37px;
           @include -ms-browser() {
+            padding: 1px 2px;
             height: 32px;
           }
           >input {
@@ -44,11 +42,16 @@ ual-filter-condition {
               margin-top: 5px;
             }
           }
-        }      
->ual-dropdown{
+        }
+        .-error {
+          padding: 10px 10px 0;
+        }
+      }
+      >ual-dropdown {
         @include gridle(6);
-        &.short-field{
-
+        &.short-field {
+          @include gridle(3);
+        }
       }
       >.close-btn {
         display: flex;
@@ -57,6 +60,7 @@ ual-filter-condition {
     }
   }
 }
+
 //VARIATIONS
 ual-filter-condition {
   >.wrapper {
@@ -89,17 +93,17 @@ ual-filter-condition {
 //VARIATION Error Form
 ual-filter-condition {
   >.wrapper.-error {
-      .value {
-        >.-input {
-          border-color: $color11;
-          >input {
-            width: calc(100% - 37px);
-          }
-          >i {
-            display: inline-block;
-            color: $color11;
-          }
+    .value {
+      >.-input {
+        border-color: $color11;
+        >input {
+          width: calc(100% - 37px);
+        }
+        >i {
+          display: inline-block;
+          color: $color11;
         }
       }
     }
+  }
 }

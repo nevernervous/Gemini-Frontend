@@ -10,6 +10,12 @@ ual-dropdown {
       .placeholder {
         display: inline-block;
         width: 85%;
+        @include gridle_state ( projector ) {
+          width: 75%;
+        }
+        @include gridle_state ( desktop ) {
+          width: 80%;
+        }
         vertical-align: middle;
       }
       .icon {
