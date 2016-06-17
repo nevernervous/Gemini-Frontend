@@ -440,8 +440,8 @@ module.exports = {
               "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/91"
             },
             "id": 91,
-            "DataType": "string",
-            "Regex": '^[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]+(?:,[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]*)*$',
+            "dataType": "String",
+            "regEx": '^[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]+(?:,[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]*)*$',
             "name": "Extract Date",
             "order": 0,
             "type": "Standard"
@@ -454,8 +454,8 @@ module.exports = {
               "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/92"
             },
             "id": 92,
-            "DataType": "number",
-            "Regex": '^-?[0-9]\\d*(\\.\\d+)?$',
+            "dataType": "Number",
+            "regEx": '^-?[0-9]\\d*(\\.\\d+)?$',
             "name": "C643",
             "order": 0,
             "type": "Standard"
@@ -468,8 +468,8 @@ module.exports = {
               "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/93"
             },
             "id": 93,
-            "DataType": "number",
-            "Regex": '^[0-9]\\d*(\\.\\d+)?$',
+            "dataType": "Number",
+            "regEx": '^[0-9]\\d*(\\.\\d+)?$',
             "name": "C642",
             "order": 0,
             "type": "Standard"
@@ -482,8 +482,8 @@ module.exports = {
               "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/94"
             },
             "id": 94,
-            "DataType": "number",
-            "Regex": '^-?[0-9]\\d*(\\.\\d+)?$',
+            "dataType": "Number",
+            "regEx": '^-?[0-9]\\d*(\\.\\d+)?$',
             "name": "C641",
             "order": 0,
             "type": "Standard"
@@ -496,8 +496,8 @@ module.exports = {
               "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/95"
             },
             "id": 95,
-            "DataType": "string",
-            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
+            "dataType": "String",
+            "regEx": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
             "name": "Leg Origin",
             "order": 0,
             "type": "Standard"
@@ -510,8 +510,8 @@ module.exports = {
               "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/96"
             },
             "id": 96,
-            "DataType": "string",
-            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
+            "dataType": "String",
+            "regEx": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
             "name": "Leg Destination",
             "order": 0,
             "type": "Standard"
@@ -524,8 +524,8 @@ module.exports = {
               "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/97"
             },
             "id": 97,
-            "DataType": "string",
-            "Regex": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
+            "dataType": "String",
+            "regEx": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
             "name": "Leg Miles",
             "order": 0,
             "type": "Standard"
