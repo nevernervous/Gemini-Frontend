@@ -2,6 +2,9 @@
   <div class="-error" ng-message="required">Enter {{!!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }}</div>
   <div class="-error" ng-message="pattern">Invalid {{!!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }} format</div>
 </script>
+<script type="text/ng-template" id="number-messages">
+  <div class="-error" ng-message="required">Enter numeric value</div>
+  <div class="-error" ng-message="pattern">Numeric value expected</div>
 <script type="text/ng-template" id="default-messages">
   <div class="-error" ng-message="required">Select variable</div>
   <div class="-error" ng-message="pattern">Invalid</div>
