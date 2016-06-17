@@ -64,28 +64,24 @@ ual-filter-condition {
 //VARIATIONS
 ual-filter-condition {
   >.wrapper {
-    >.section {
-      >.value {
-        >.-input {
-          border: 1px solid $color08;
-          background-color: $color00;
-          >input {
-            @include font-clanot-book(14);
-            width: calc(100% - 15px);
-            border: 0;
-            color: $color06;
-          }
-          >i {
-            display: none;
-            font-size: 22px;
-            color: $color07;
-          }
-        }
-        .-error {
-          @include font-clanot-book(12);
-          color: $color11;
-        }
+    .-input {
+      border: 1px solid $color08;
+      background-color: $color00;
+      >input {
+        @include font-clanot-book(14);
+        width: calc(100% - 15px);
+        border: 0;
+        color: $color06;
       }
+      >i {
+        display: none;
+        font-size: 22px;
+        color: $color07;
+      }
+    }
+    .-error {
+      @include font-clanot-book(12);
+      color: $color11;
     }
   }
 }
