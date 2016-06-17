@@ -5,6 +5,7 @@
 <script type="text/ng-template" id="number-messages">
   <div class="-error" ng-message="required">Enter numeric value</div>
   <div class="-error" ng-message="pattern">Numeric value expected</div>
+</script>
 <script type="text/ng-template" id="default-messages">
   <div class="-error" ng-message="required">Select variable</div>
   <div class="-error" ng-message="pattern">Invalid</div>
@@ -31,10 +32,13 @@
                   placeholder="Enter {{ !!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }}">
 	        <i class="ion-ios-close-outline"></i>
         </label>
-        {{vm.condition.variable.regEx}}
       <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterConditionForm.value.$dirty"
               for="filterConditionForm.value.$error">
         <div ng-messages-include="text-messages"></div>
+      </ng-messages>
+      <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.value.$dirty"
+              for="filterConditionForm.value.$error">
+        <div ng-messages-include="number-messages"></div>
       </ng-messages>
       <ng-messages ng-if="!vm.condition.variable  && filterConditionForm.value.$dirty"
               for="filterConditionForm.value.$error">
