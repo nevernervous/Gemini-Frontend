@@ -24,13 +24,17 @@
                   ng-model="vm.condition.value"
                   name="value"
                   required
-                  ng-pattern="vm.condition.variable.Regex"
+                  ng-pattern="vm.condition.variable.regEx"
                   placeholder="Enter {{ !!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }}">
 	        <i class="ion-ios-close-outline"></i>
         </label>
-      <ng-messages for="filterConditionForm.value.$error" ng-if="filterConditionForm.value.$dirty">
-        <div ng-if="!!vm.condition.variable && vm.condition.variable.DataType === 'number'" ng-messages-include="number-messages"></div>
-        <div ng-if="!vm.condition.variable" ng-messages-include="default-messages"></div>
+      <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.value.$dirty"
+              for="filterConditionForm.value.$error">
+        <div ng-messages-include="number-messages"></div>
+      </ng-messages>
+      <ng-messages ng-if="!vm.condition.variable  && filterConditionForm.value.$dirty"
+              for="filterConditionForm.value.$error">
+        <div ng-messages-include="default-messages"></div>
       </ng-messages>
     </div>
     <ual-dropdown ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.value" property="name">
