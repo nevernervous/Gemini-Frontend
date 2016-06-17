@@ -5,7 +5,6 @@ import ualCheckbox from './ualCheckbox/ualCheckbox';
 import ualMenu from './ualMenu/ualMenu';
 import ualPane from './ualPane/ualPane';
 import ualTooltip from './ualTooltip/ualTooltip';
-import ualScroll from './ualScroll/ualScroll';
 import ualInput from './ualInput/ualInput';
 import ualDropdown from './ualDropdown/ualDropdown';
 import ualResize from './ualResize/ualResize';
@@ -19,6 +18,8 @@ import ualEllipsis from './ualEllipsis/ualEllipsis';
 import ualAccordionGroup from './ualAccordionGroup/ualAccordionGroup';
 import ualOnScroll from './ualOnScroll/ualOnScroll';
 import ualActionLabel from './ualActionLabel/ualActionLabel';
+import ualDraggable from './ualDraggable/ualDraggable';
+import ualDroppable from './ualDroppable/ualDroppable';
 
 let commonModule = angular.module('app.common', [
   ualModal.name,
@@ -28,7 +29,6 @@ let commonModule = angular.module('app.common', [
   ualPane.name,
   ualTooltip.name,
   ualDropdown.name,
-  ualScroll.name,
   ualInput.name,
   ualResize.name,
   ualRender.name,
@@ -40,8 +40,9 @@ let commonModule = angular.module('app.common', [
   ualEllipsis.name,
   ualAccordionGroup.name,
   ualOnScroll.name,
-  ualActionLabel.name
+  ualActionLabel.name,
+  ualDraggable.name,
+  ualDroppable.name
 ]);
 
 export default commonModule;
-
