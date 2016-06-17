@@ -2,10 +2,11 @@ class UalFilterConditionController {
   /*@ngInject*/
   constructor($scope, DataSource) {
     this.name = 'ualFilterCondition';
+
     this.availableVariables;
     this._datasourceService = DataSource;
-    this.types = ["Value","Variable"];
-    this.operatorsList=["=","<",">","<>"];
+    this.types = ["Value", "Variable"];
+    this.operatorsList = ["=", "<", ">", "<>", "in"];
 
     $scope.$watch((scope) => {
       return scope.vm.datasource
@@ -14,7 +15,6 @@ class UalFilterConditionController {
         this.getVariables();
       }
     });
-
   }
 
   $onInit() {
@@ -31,8 +31,8 @@ class UalFilterConditionController {
       });
   }
 
-  reset(){
-    this.condition.value=null;
+  reset() {
+    this.condition.value = null;
   }
 
 }
