@@ -20,11 +20,6 @@
       </ual-action-label>
     </div>
     <div class="-conditions">
-      <div class="-no-conditions" ng-if="vm.filters.children|isEmpty">
-        <div>
-          No limit applied
-        </div>
-      </div>
       <div ng-if="!(vm.filters.children|isEmpty)">
         <ul ng-if="!(vm.filters.children|isEmpty)">
           <li ng-repeat="child in vm.filters.children track by $index" class="-iterative-container">

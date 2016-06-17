@@ -15,7 +15,7 @@ class UalInputController {
   }
 
   newvalue (value) {
-    if (angular.isDefined(value)) {
+    if (value) {
       this._value = value;
       if ( this.minChars ) {
         this.value = (value && value.length >= this.minChars) ? value : '';
