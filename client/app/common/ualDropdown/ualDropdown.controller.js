@@ -3,6 +3,7 @@ class UalDropdownController {
   constructor() {
     this.name = 'ualDropdown';
     this.isVisible = false;
+    this.limit=0;
   }
   select($event, item) {
     $event.stopPropagation();
@@ -19,6 +20,7 @@ class UalDropdownController {
 
   toogle() {
     this.isVisible = !this.isVisible;
+    this.limit=this.isVisible?this.list.length:0;
   }
 }
 

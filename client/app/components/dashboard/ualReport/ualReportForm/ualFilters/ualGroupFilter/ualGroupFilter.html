@@ -28,8 +28,8 @@
       <div ng-if="!(vm.filters.children|isEmpty)">
         <ul ng-if="!(vm.filters.children|isEmpty)">
           <li ng-repeat="child in vm.filters.children track by $index" class="-iterative-container">
-            <ual-group-filter ng-if="child.children!==undefined" filters="child" remove-parent="vm.remove($index)" parent-operator="vm.filters.operator" datasource="vm.datasource"></ual-group-filter>
-            <ual-filter-condition ng-if="child.children===undefined" datasource="vm.datasource" condition="child" operator-group="vm.filters.operator" remove-condition="vm.remove($index)">
+            <ual-group-filter ng-if="child.children!==undefined"  available-variables="vm.availableVariables" filters="child" remove-parent="vm.remove($index)" parent-operator="vm.filters.operator"></ual-group-filter>
+            <ual-filter-condition ng-if="child.children===undefined" available-variables="vm.availableVariables" condition="child" operator-group="vm.filters.operator" remove-condition="vm.remove($index)">
             </ual-filter-condition>
           </li>
         </ul>
