@@ -16,8 +16,7 @@ let ualInputComponent = {
         ualDebounce: '<',
         onChange: '&?',
         ualDisabled: '=',
-        placeholder: '@',
-        trim: '<?'
+        placeholder: '@'
     },
     transclude: true,
     template: template,

@@ -3,7 +3,6 @@ class UalInputController {
   constructor($scope) {
     this.name = 'ualInput';
     this._value = this.value;
-    this.trim = this.trim || false;
     this.debounce = parseInt(this.ualDebounce) || 0;
     this.options = { getterSetter: true, updateOn: 'default blur', debounce: { default: this.debounce, blur: 0 } }
 
@@ -16,10 +15,7 @@ class UalInputController {
   }
 
   newvalue (value) {
-    if (angular.isDefined(value)) {
-      if(!!this.trim){
-        value = _.trim(value);
-      }
+    if (value) {
       this._value = value;
       if ( this.minChars ) {
         this.value = (value && value.length >= this.minChars) ? value : '';

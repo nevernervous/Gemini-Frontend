@@ -14,14 +14,12 @@ class UalGroupFilterController {
   }
 
   addChildren() {
-    var index = this.filters.children.push({
+    this.filters.children.push({
       "variable": null,
       "operator": "=",
       "type": "Value",
       "value": null
     });
-
-    this.filters.children[index-1].id= index;
 
 
   }
