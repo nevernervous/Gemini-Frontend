@@ -25,7 +25,7 @@ class UalFilterConditionController {
   }
 
   getPlaceholder() {
-    let result = "numeric value";
+    let result = "[variable name]";
     if (this.condition.variable) {
       result = this.condition.variable.dataType == 'Number' ? "numeric value" : this.condition.variable.name;
     }
