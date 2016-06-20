@@ -25,7 +25,7 @@
                   name="value"
                   required
                   ng-pattern="vm.condition.variable.regEx"
-                  placeholder="Enter {{ !!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }}">
+                  placeholder="Enter {{ vm.getPlaceholder() }}" ng-blur="vm.trim($event)">
 	        <i class="ion-ios-close-outline"></i>
         </label>
       <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.value.$dirty"
