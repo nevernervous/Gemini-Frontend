@@ -8,7 +8,8 @@ let ualGroupFilterComponent = {
     filters: "=",
     removeParent: '&',
     parentOperator: "<",
-    availableVariables: "<"
+    availableVariables: "<",
+    datasource: "<"
   },
   template,
   controller,

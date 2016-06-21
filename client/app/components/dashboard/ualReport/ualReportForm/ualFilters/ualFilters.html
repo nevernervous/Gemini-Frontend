@@ -1,6 +1,6 @@
 <div class="-filter-container">
   <ual-group-filter filters="vm._filters" datasource="vm.datasource" available-variables="vm.availableVariables"></ual-group-filter>
-  <div ng-hide="true" class="-condition-container">
+  <div class="-condition-container" ng-if="vm.filters.hasValues() && false">
     <div class="-code">
       <span class="-highlight">WHERE</span> ([variable]=[value]
       <span class="-highlight">AND</span> [variable]=[value])

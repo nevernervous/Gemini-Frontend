@@ -5,11 +5,11 @@ import './ualDropdown.scss';
 let ualDropdownComponent = {
   restrict: 'E',
   bindings: {
+    onChange: '&?',
     placeholder: "@?",
     selected: "=",
     property: "@?",
-    list: '=',
-    onChange:"&?"
+    list: '='
   },
   template,
   controller,

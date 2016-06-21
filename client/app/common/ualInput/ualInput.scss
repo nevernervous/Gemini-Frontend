@@ -1,30 +1,34 @@
 @import '../common';
-
 .ual-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid $color08;
   background-color: $color00;
-  padding: 5px 8px 8px 8px;
-
+  padding: 5px 2px 5px 2px;
+  @include -ms-browser() {
+    padding: 1px 2px;
+  }
   input {
     @include font-clanot-book(14);
     width: calc(100% - 40px);
     border: 0;
     height: 28px;
+    @include -ms-browser() {
+      height: 23px;
+    }
     color: $color06;
-
     &:disabled {
       background-color: $color00;
     }
   }
-
   i {
     font-size: 22px;
     vertical-align: middle;
     color: $color07;
     display: inline-block;
-
     @include -ms-browser() {
-      margin-top: 6px;
+      margin-top: 5px;
     }
   }
 }
@@ -34,12 +38,6 @@ ual-input {
   &.-dropdown {
     display: inline-block;
     position: relative;
-  }
-
-  &.search-box {
-    i {
-      margin-top: 2px;
-    }
   }
 }
 
@@ -54,5 +52,15 @@ ual-input.-noborder {
 ual-input.-noborder {
   .ual-input {
     border-color: transparent
+  }
+}
+
+//VARIATION / HIDE ICON
+.ual-input.-no-icon {
+  input {
+    width: calc(100% - 15px);
+  }
+  i {
+    display: none;
   }
 }

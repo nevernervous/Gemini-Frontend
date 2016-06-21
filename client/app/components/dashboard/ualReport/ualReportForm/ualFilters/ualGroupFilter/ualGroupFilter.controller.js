@@ -20,6 +20,8 @@ class UalGroupFilterController {
       "type": "Value",
       "value": null
     });
+
+
   }
   addGroup() {
     this.filters.children.push({
