@@ -57,12 +57,21 @@ ual-group-filter {
     .-conditions {
       height: 100%;
       display: block;
+     .-no-conditions{
+        margin-top: 10%;
+      }
       ual-group-filter {
         margin-left: 22px;
         .-remove-label{
           display: inherit;
         }
         .-no-conditions{
+          display: none;
+        }
+        .-clear-all-label{
+          display: none;
+        }
+        .-remove-all-label{
           display: none;
         }
       }
