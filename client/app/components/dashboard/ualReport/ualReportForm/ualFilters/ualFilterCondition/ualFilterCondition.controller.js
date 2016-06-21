@@ -7,7 +7,7 @@ class UalFilterConditionController {
     this._datasourceService = DataSource;
     this.types = ["Value", "Variable"];
     this.operatorsList = ["=", "<", ">", "<>", "in"];
-
+    this._scope = $scope;
     $scope.$watch((scope) => {
       return scope.vm.datasource
     }, (newValue, oldValue) => {
@@ -47,6 +47,7 @@ class UalFilterConditionController {
   }
 
   reset() {
+    this._scope.filterConditionForm.$setPristine();
     this.condition.value = null;
   }
 
