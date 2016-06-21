@@ -1,7 +1,9 @@
 class UalFiltersController {
   /*@ngInject*/
-  constructor($scope) {
+  constructor($scope,DataSource) {
     this.name = 'ualFilters';
+    this.availableVariables;
+    this._datasourceService = DataSource;
     this._filters = this.filters.get();
     $scope.$watch((scope) => {
       return scope.vm._filters
@@ -17,8 +19,19 @@ class UalFiltersController {
           "operator": 'AND',
           "children": []
         };
+        this.getVariables();
       }
     });
+  }
+
+  getVariables() {
+    this._datasourceService.variables(this.datasource)
+      .then(response => {
+        this.availableVariables = response.data;
+      },
+      error => {
+        this.availableVariables = [];
+      });
   }
 }
 

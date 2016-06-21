@@ -3,6 +3,10 @@ ual-group-filter {
   display: block;
   width: 100%;
   padding: 15px 5px;
+  >div{
+    height: 100%;
+    padding-left: 47px;
+  }
   .-group-operator {
     margin-bottom: 20px;
     .-group-operator-text {
@@ -29,6 +33,7 @@ ual-group-filter {
   }
   .-tree-container {
     padding-left: 10px;
+    height: 100%;
     .-toolbar {
       display: flex;
       align-items: center;
@@ -50,9 +55,13 @@ ual-group-filter {
       }
     }
     .-conditions {
+      height: 100%;
       display: block;
+      .-no-conditions{
+        margin-top: 10%;
+      }
       .-iterative-container {
-        min-width: 800px;
+        min-width: 700px;
         ual-group-filter {
           margin-left: 22px;
           .-remove-label{
@@ -61,6 +70,12 @@ ual-group-filter {
           .-no-conditions{
             display: none;
           }
+        }
+        .-clear-all-label{
+          display: none;
+        }
+        .-remove-all-label{
+          display: none;
         }
       }
     }

@@ -1,41 +1,59 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 0 20px;
-  >.wrapper{
+  padding: 20px 0 0;
+  display: block;
+  >.wrapper {
     margin-left: 0px !important;
     @include gridle(row row-align);
-    >.section{
-      @include gridle(5);
+    >.section {
+      @include gridle(6);
       display: flex;
-      @include gridle(row row-align start middle);
+      @include gridle(row row-align start);
       padding: 0 10px;
-        >.operator{
-          margin : 0 16px;
+      >.operator {
+        // margin : 0 16px;
+        height: 37px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 72px;
+      }
+      >.value {
+        @include gridle(6);
+        >.-input {
           display: flex;
           align-items: center;
-          @include gridle(1);
+          justify-content: center;
+          padding: 5px 2px 5px 2px;
+          height: 37px;
+          @include -ms-browser() {
+            padding: 1px 2px;
+            height: 32px;
+          }
+          >input {
+            height: 28px;
+            @include -ms-browser() {
+              height: 23px;
+            }
+          }
+          >i {
+            vertical-align: middle;
+            @include -ms-browser() {
+              margin-top: 5px;
+            }
+          }
         }
-      >ual-input{
-        @include gridle(6);
-        >.ual-input{
-          padding:6px 4px 10px 8px;
-          @include -ms-browser(){
-            padding-bottom: 6px;
-          }
-          >input{
-            height: 34px;
-            width: calc(100% - 15px);
-            background-color: transparent;
-          }
+        .-error {
+          padding: 10px 10px 0;
         }
       }
-      >ual-dropdown{
+      >ual-dropdown {
         @include gridle(6);
-        &.short-field{
+        &.short-field {
           @include gridle(3);
         }
       }
-      >.close-btn{
+      >.close-btn {
         display: flex;
         align-items: center;
       }
@@ -43,3 +61,45 @@ ual-filter-condition {
   }
 }
 
+//VARIATIONS
+ual-filter-condition {
+  >.wrapper {
+    .-input {
+      border: 1px solid $color08;
+      background-color: $color00;
+      >input {
+        @include font-clanot-book(14);
+        width: calc(100% - 15px);
+        border: 0;
+        color: $color06;
+      }
+      >i {
+        display: none;
+        font-size: 22px;
+        color: $color07;
+      }
+    }
+    .-error {
+      @include font-clanot-book(12);
+      color: $color11;
+    }
+  }
+}
+
+//VARIATION Error Form
+ual-filter-condition {
+  >.wrapper.-error {
+    .value {
+      >.-input {
+        border-color: $color11;
+        >input {
+          width: calc(100% - 37px);
+        }
+        >i {
+          display: inline-block;
+          color: $color11;
+        }
+      }
+    }
+  }
+}
