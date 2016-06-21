@@ -7,8 +7,8 @@ let ualFilterConditionComponent = {
   bindings: {
      condition : "=",
      operatorGroup : "<",
-     datasource : "<",
-     removeCondition:"&"
+     removeCondition:"&",
+     availableVariables:"<"
   },
   template,
   controller,

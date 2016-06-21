@@ -8,7 +8,7 @@
     <div class="float-container" click-outside="vm.isVisible = false" outside-if-not="thisDropdown">
       <span class="dropdown-list">
           <ul class="list-options" >
-            <div class="dropdown-item" ng-click="vm.select($event, item)" ng-repeat="item in vm.list" >
+            <div class="dropdown-item" ng-click="vm.select($event, item)" ng-repeat="item in vm.list | limitTo:vm.limit" >
                 {{vm.getText(item)}}
             </div>
           </ul>
