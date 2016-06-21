@@ -51,13 +51,16 @@ ual-group-filter {
     }
     .-conditions {
       display: block;
-      ual-group-filter {
-        margin-left: 22px;
-        .-remove-label{
-          display: inherit;
-        }
-        .-no-conditions{
-          display: none;
+      .-iterative-container {
+        min-width: 55em;
+        ual-group-filter {
+          margin-left: 22px;
+          .-remove-label{
+            display: inherit;
+          }
+          .-no-conditions{
+            display: none;
+          }
         }
       }
     }
