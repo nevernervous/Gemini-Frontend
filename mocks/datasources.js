@@ -442,7 +442,7 @@ module.exports = {
             "id": 91,
             "dataType": "String",
             "regEx": '^[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]+(?:,[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]*)*$',
-            "name": "Extract Date",
+            "name": "Extract Date Eu aute ullamco ea in nisi mollit fugiat",
             "order": 0,
             "type": "Standard"
           },
@@ -512,7 +512,7 @@ module.exports = {
             "id": 96,
             "dataType": "String",
             "regEx": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
-            "name": "Leg Destination",
+            "name": "ergoerhgirehgeiugheiorufhewifyuhqwepdiwuedwiaeudhawpfuhDestination",
             "order": 0,
             "type": "Standard"
           },
