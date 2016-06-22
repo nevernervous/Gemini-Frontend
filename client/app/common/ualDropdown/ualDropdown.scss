@@ -9,6 +9,7 @@ ual-dropdown {
       box-sizing: border-box;
       .placeholder {
         display: inline-block;
+        @include ellipses();
         width: 85%;
         @include gridle_state ( projector ) {
           width: 75%;
@@ -46,8 +47,9 @@ ual-dropdown {
             overflow-y: auto;
             max-height: 250px;
             .dropdown-item {
-              display: inline-block;
+              display: block;
               width: 100%;
+              word-wrap: break-word;
               padding: 4px 8px 4px 8px;
               margin: 1px 0;
               line-height: 1;
