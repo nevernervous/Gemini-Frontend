@@ -7,14 +7,14 @@ class LoginController {
     this.logo = logo;
     this.expired = Token.wasExpired();
 
-    this.service = {
+    this.components = {
       toast: ualToast
     }
   }
 
   $postLink() {
     if ( this.expired ) {
-      this.service.toast.warning('Due to inactivity, your session has expired', false);
+      this.components.toast.warning('Due to inactivity, your session has expired', false);
     }
   }
 }

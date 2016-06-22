@@ -3,15 +3,15 @@ import uiRouter from 'angular-ui-router';
 import dashboardComponent from './dashboard.component';
 import LogoutModal from './logoutModal/logoutModal';
 import ExpirationModal from './expirationModal/expirationModal';
-import ualNavBar from './ualNavBar/ualNavBar';
-import ualMainMenu from './ualMainMenu/ualMainMenu';
+import ualNavbar from './ualNavbar/ualNavbar';
+import ualSidenav from './ualSidenav/ualSidenav';
 import ualReport from './ualReport/ualReport';
 
 let dashboardModule = angular.module('dashboard', [
   uiRouter,
   // LAYOUT
-  ualNavBar.name,
-  ualMainMenu.name,
+  ualNavbar.name,
+  ualSidenav.name,
   // MODALS
   LogoutModal.name,
   ExpirationModal.name,
@@ -25,7 +25,7 @@ let dashboardModule = angular.module('dashboard', [
   $stateProvider
     .state('dashboard', {
       url: '/dashboard',
-      template: '<dashboard></dashboard>'
+      template: '<dashboard layout="column"></dashboard>'
     });
 })
 

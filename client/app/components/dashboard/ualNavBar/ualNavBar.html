@@ -1,18 +1,21 @@
-<div class="navbar-header">
-  <img class="img-menu" ng-src="{{vm.menu}}" ng-click="vm.toggleMenu()">
-  <span class="title">Gemini</span>
-</div>
-<ul class="navbar-options">
-  <li ng-click="vm.toggleDropDown($event)">
-    <img class="img-circle" ng-src="{{vm.user}}" >
-    <ual-tooltip class="-dropdown" ng-show="vm.isOpenDropDown()">
-      <ual-menu>
-        <ual-menu-item class="-disabled">Settings</ual-menu-item>
-        <ual-menu-item class="-disabled">Help</ual-menu-item>
-        <ual-menu-item ng-click="vm.logout()">Logout</ual-menu-item>
-      </ual-menu>
-    </ual-tooltip>
-  </li>
-</ul>
-
-
+<md-toolbar class="ual-navbar">
+  <div class="md-toolbar-tools">
+    <md-button class="icon-button-burger md-icon-button" aria-label="Menu" >
+      <img class="img-menu" ng-src="{{vm.menu}}" ng-click="vm.toggle()">
+    </md-button>
+    <h1>
+      Gemini
+    </h1>
+    <span flex=""></span>
+    <md-menu md-position-mode="target-right target" md-offset="0 43">
+      <md-button aria-label="Open menu" class="icon-button-user md-icon-button" ng-click="$mdOpenMenu($event)">
+        <img ng-src="{{vm.user}}" alt="{{vm.user}}">
+      </md-button>
+      <md-menu-content class="menu-dropdown-user" width="3">
+        <ual-menuitem ng-disabled="true">Settings</ual-menuitem>
+        <ual-menuitem ng-disabled="true">Help</ual-menuitem>
+        <ual-menuitem ng-click="vm.logout($event)">Logout</ual-menuitem>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</md-toolbar>

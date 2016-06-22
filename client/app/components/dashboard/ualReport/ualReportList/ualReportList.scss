@@ -1,112 +1,119 @@
-@import '../../../../common/common';
-// LAYOUT
+@import '../../../components';
+
 ual-report-list {
-
-  position: relative;
-  display: block;
-  height: 100%;
-
-  .dashboard-body {
-    height: calc(100% - 27.5px);
-    position: relative;
-    padding-top: 30px;
-
-    > .reports-tabs {
-      position: absolute;
-      width: 100%;
-      height: inherit;
-      .tabs-extra {
-        padding-top: 5px;
-        height: 37px;
-
-      }
-      .toolbar-section {
-        @include font-clanot-book(16);
-        white-space: nowrap;
-
-        .-items-selected {
-          @include font-clanot-bold(16);
-          padding-right: 4%;
-          padding-left: 10px;
-        }
-
-        .-icon-option {
-          cursor: pointer;
-          &.-disabled{
-            cursor: default;
-          }
-          span {
-            @include link();
-          }
-          i {
-            color: $color07;
-            padding-left: 14px;
-            padding-right: 6px;
-            vertical-align: middle;
-            @include font-clanot-book(32);
-          }
-        }
-      }
-    }
-    .list-info {
-      @include gridle( row row-align between middle);
-      margin: 10px 0 0;
-    }
-    .list-content {
-      //@include gridle( row row-align right);
-      width: 100%;
-      position: absolute;
-      margin: 10px 0 0;
-      height: calc(100% - 100px);
-      width: 100%;
-      table {
-        width: 100%;
-        ual-checkbox {
-          visibility: hidden;
-
-          input:checked + label {
-            visibility: visible;
-          }
-        }
-        .-date {
-          min-width: 270px;
-          width: 270px;
-          @include -moz-browser() {
-            min-width: 295px;
-            width: 295px;
-
-          }
-        }
-        .-actions {
-          min-width: 200px;
-          //max-width: 200px;
-          width: 200px;
-        }
-      }
-    }
+  .button-create {
+    width: 200px;
   }
 }
 
-// VARIATIONS
-ual-report-list {
-
-  .dashboard-header {
-    > .button-create {
-      width: 200px;
-      margin-right: 0;
-    }
-  }
-  .dashboard-body {
-    .list-info > .list-count {
-      @include font-clanot-news(16);
-      color: $color07;
-      > strong {
-        @include font-clanot-bold(16);
-        color: $color06;
-      }
-    }
-    .-action.-delete ual-tooltip {
-      width: 70px;
-    }
-  }
-}
+// // LAYOUT
+// ual-report-list {
+//
+//   position: relative;
+//   display: block;
+//   height: 100%;
+//
+//   .dashboard-body {
+//     height: calc(100% - 27.5px);
+//     position: relative;
+//     padding-top: 30px;
+//
+//     > .reports-tabs {
+//       position: absolute;
+//       width: 100%;
+//       height: inherit;
+//       .tabs-extra {
+//         padding-top: 5px;
+//         height: 37px;
+//
+//       }
+//       .toolbar-section {
+//         @include font-clanot-book(16);
+//         white-space: nowrap;
+//
+//         .-items-selected {
+//           @include font-clanot-bold(16);
+//           padding-right: 4%;
+//           padding-left: 10px;
+//         }
+//
+//         .-icon-option {
+//           cursor: pointer;
+//           &.-disabled{
+//             cursor: default;
+//           }
+//           span {
+//             @include link();
+//           }
+//           i {
+//             color: $color07;
+//             padding-left: 14px;
+//             padding-right: 6px;
+//             vertical-align: middle;
+//             @include font-clanot-book(32);
+//           }
+//         }
+//       }
+//     }
+//     .list-info {
+//       @include gridle( row row-align between middle);
+//       margin: 10px 0 0;
+//     }
+//     .list-content {
+//       //@include gridle( row row-align right);
+//       width: 100%;
+//       position: absolute;
+//       margin: 10px 0 0;
+//       height: calc(100% - 100px);
+//       width: 100%;
+//       table {
+//         width: 100%;
+//         ual-checkbox {
+//           visibility: hidden;
+//
+//           input:checked + label {
+//             visibility: visible;
+//           }
+//         }
+//         .-date {
+//           min-width: 270px;
+//           width: 270px;
+//           @include -moz-browser() {
+//             min-width: 295px;
+//             width: 295px;
+//
+//           }
+//         }
+//         .-actions {
+//           min-width: 200px;
+//           //max-width: 200px;
+//           width: 200px;
+//         }
+//       }
+//     }
+//   }
+// }
+//
+// // VARIATIONS
+// ual-report-list {
+//
+//   .dashboard-header {
+//     > .button-create {
+//       width: 200px;
+//       margin-right: 0;
+//     }
+//   }
+//   .dashboard-body {
+//     .list-info > .list-count {
+//       @include font-clanot-news(16);
+//       color: $color07;
+//       > strong {
+//         @include font-clanot-bold(16);
+//         color: $color06;
+//       }
+//     }
+//     .-action.-delete ual-tooltip {
+//       width: 70px;
+//     }
+//   }
+// }

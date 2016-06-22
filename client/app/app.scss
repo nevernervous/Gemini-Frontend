@@ -7,11 +7,17 @@
 //@import url(https://hub.united.com/style%20library/united/stylesheets/fonts_ssl.min.css);
 @import 'common/common';
 @import '~angular-material/angular-material';
-@import '~malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
 
 
 html {
   font-size: $font-size;
+}
+
+*:focus {
+  outline: 0;
+}
+h2 {
+  font-size: $h2-font-size;
 }
 //@include keyframes-spin();
 

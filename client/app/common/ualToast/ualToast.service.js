@@ -10,7 +10,7 @@ let ualToastService = function ($mdToast) {
     'error': 'ion-ios-close-outline'
   }
 
-  const show = (text, type = 'success', autoclose = true, closable = false) => {
+  const show = (text, type = 'success', parent = 'body', autoclose = true, closable = false) => {
     const delay  = autoclose ? 5000 : 0;
     const locals = {
       text,
@@ -25,18 +25,19 @@ let ualToastService = function ($mdToast) {
       controllerAs    : 'vm',
       bindToController: true,
       template        : template,
-      locals          : locals
+      locals          : locals,
+      parent          : parent
     });
   }
 
-  const success = (text, autoclose) => {
-    show(text, 'success', autoclose, false);
+  const success = (text, autoclose, parent) => {
+    show(text, 'success', parent, autoclose, false);
   }
-  const error = (text, autoclose)  => {
-    show(text, 'error',   autoclose, true);
+  const error = (text, autoclose, parent)  => {
+    show(text, 'error',   parent, autoclose, true);
   }
-  const warning = (text, autoclose) => {
-    show(text, 'warning', autoclose, false);
+  const warning = (text, autoclose, parent) => {
+    show(text, 'warning', parent, autoclose, false);
   }
   return {
     success,

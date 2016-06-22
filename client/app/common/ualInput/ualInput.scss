@@ -28,11 +28,17 @@ md-input-container.ual-input {
     padding: $input-diff-padding-border $input-padding;
     border-width: $input-border;
   }
+
   &.md-input-focused .md-input,
   & .md-input.ng-invalid.ng-dirty {
     padding: $input-diff-padding-border $input-padding;
     border-width: $input-border;
   }
+
+  &.md-input-focused:not(.md-input-invalid) .md-input {
+    border-color: $input-focus-color;
+  }
+
   // ICON RIGHT
   &.md-icon-right {
     padding-right: 0;
@@ -63,6 +69,7 @@ md-input-container.ual-input {
     // ERROR ICON
     &.md-input-invalid, &.md-input-invalid.md-input-focused {
       .md-input {
+        border-color: $font-error-color;
         padding-right: ($input-icon-font-size + $input-padding);
       }
       > md-icon:last-of-type {
@@ -71,6 +78,7 @@ md-input-container.ual-input {
       }
     }
   }
+
   &.md-input-focused:not(.md-input-invalid) > md-icon {
     color: $input-font-color;
   }

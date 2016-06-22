@@ -18,9 +18,7 @@ import angularAnimate from 'angular-animate';
 import 'lodash';
 import $ from 'jquery';
 import './vendors/jquery.signalr-2.2.0.js';
-import customScroll from './vendors/jquery.mCustomScrollbar.concat.min.js';
 import localStorage from './vendors/localStorage.js';
-import JtDro from './vendors/JtDro.js';
 import uiRouter from 'angular-ui-router';
 import deferredBootstrapper from 'angular-deferred-bootstrap';
 import Common from './common/common';
@@ -37,10 +35,6 @@ import Clusterize from 'clusterize.js';
 import dotdotdot from 'jquery.dotdotdot';
 import selectionModel from 'selection-model';
 
-import ngAnimate from 'angular-animate';
-import ngAria from 'angular-aria';
-import ngMaterial from 'angular-material';
-
 import './common/fonts/clanot/clanot.scss';
 import './app.scss';
 //import 'normalize.css';
@@ -48,12 +42,9 @@ import './app.scss';
 window.$ = $;
 window.jQuery = $;
 window.Clusterize = Clusterize;
-window.customScroll = customScroll;
-window.customScroll(window.$);
 
 angular.module('app', [
   '$q-spread',
-  'dragDrop',
   'angular-click-outside',
   uiRouter,
   Constants.name,
@@ -62,11 +53,7 @@ angular.module('app', [
   Services.name,
   Helpers.name,
   Filters.name,
-  'ngAnimate',
-  'selectionModel',
-  ngAnimate,
-  ngAria,
-  ngMaterial
+  'selectionModel'
 ])
 
 .config(($stateProvider, $httpProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS, Properties) => {
@@ -89,58 +76,7 @@ angular.module('app', [
     $httpProvider.interceptors.push(Interceptor);
   }
 })
-.config(($mdThemingProvider) => {
-  "ngInject";
 
-  // http://www.google.com/design/spec/style/color.html#color-color-palette
-  $mdThemingProvider.definePalette('primary', {
-    '50': '#e3f2fd',
-    '100': '#bbdefb',
-    '200': '#90caf9',
-    '300': '#64b5f6',
-    '400': '#42a5f5',
-    '500': '#002244', // DEFAULT
-    '600': '#0a3d66', // HOVER
-    '700': '#1976d2',
-    '800': '#1565c0',
-    '900': '#0d47a1',
-    'A100': '#82b1ff',
-    'A200': '#448aff',
-    'A400': '#2979ff',
-    'A700': '#2962ff',
-    'contrastDefaultColor': 'light',
-    'contrastDarkColors': '50 100 200 300 400 A100',
-    'contrastStrongLightColors': '500 600 700 A200 A400 A700'
-  });
-
-  $mdThemingProvider.definePalette('secondary', {
-    '50': '#e3f2fd',
-    '100': '#bbdefb',
-    '200': '#90caf9',
-    '300': '#64b5f6',
-    '400': '#42a5f5',
-    '500': '#62a9e3', // DEFAULT
-    '600': '#0a3d66', // HOVER
-    '700': '#1976d2',
-    '800': '#1565c0',
-    '900': '#0d47a1',
-    'A100': '#82b1ff',
-    'A200': '#448aff',
-    'A400': '#2979ff',
-    'A700': '#cd202c',
-    'contrastDefaultColor': 'light',
-    'contrastDarkColors': '50 100 200 300 400 A100',
-    'contrastStrongLightColors': '500 600 700 A200 A400 A700'
-  });
-
-  $mdThemingProvider.theme('default')
-  .primaryPalette('primary');
-
-  $mdThemingProvider.theme('secondary')
-  .primaryPalette('secondary')
-  .warnPalette('secondary');
-
-})
 .component('app', AppComponent)
 
 

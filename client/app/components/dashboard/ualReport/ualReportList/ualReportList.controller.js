@@ -49,8 +49,8 @@ class UalReportListController {
     }
 
     this.saveResultMessages = [
-      { type: "-success", text: "Item(s) deleted successfully." },
-      { type: "-error", text: "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator." }
+      { type: "success", text: "Item(s) deleted successfully." },
+      { type: "error", text: "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator." }
     ];
   }
 
@@ -130,7 +130,6 @@ class UalReportListController {
     } else {
       this.saveResult = reply.data.errorMessage;
     }
-    // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]);
   }
 
   deleteReport(id) {
@@ -155,7 +154,6 @@ class UalReportListController {
               });
               this.refresh();
               this.total -= totalDelete;
-              // this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[0]);
             }, (reply) => this.showError(reply))
             .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
         }
@@ -164,4 +162,3 @@ class UalReportListController {
 }
 
 export default UalReportListController;
-

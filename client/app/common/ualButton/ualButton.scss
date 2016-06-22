@@ -1,8 +1,16 @@
 @import '../common';
 
+.md-button.md-primary {
+  text-transform: $button-text-transform;
+}
+
+.md-button.md-default-theme:not([disabled]):hover,
+.md-button:not([disabled]):hover {
+  background: none;
+}
+
 .ual-button.md-button {
   font-size: $button-font-size;
-  text-transform: $button-text-transform;
 
   &.md-raised {
     &:not([disabled]) {

@@ -1,0 +1,41 @@
+@import '../common';
+
+$list-item-color-light: rgba($list-item-color, 0.5);
+$list-item-icon-size: 2 * $list-item-font-size;
+$list-item-icon-top-bottom-margin: ($list-item-height - $list-item-icon-size) / 2;
+
+md-list-item.ual-listitem {
+  background-color: $list-item-bg-color;
+  border-top: 1px solid $list-item-color-light;
+  border-left: $list-item-border-width solid $list-item-bg-color;
+
+  font-size: $list-item-font-size;
+  font-weight: $list-item-font-weight;
+  color: $list-item-color;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  ._md-list-item-inner > md-icon:first-child:not(.md-avatar-icon) {
+    color: $list-item-color-light;
+    font-size: $list-item-icon-size;
+    height: $list-item-icon-size;
+    margin-top: $list-item-icon-top-bottom-margin;
+    margin-bottom: $list-item-icon-top-bottom-margin;
+  }
+
+  // DISABLED
+  &[disabled] {
+    color: $list-item-color-light;
+  }
+  // HOVER
+  &:not([disabled]):hover {
+    background-color: $list-item-bg-hover;
+    border-left-color: $list-item-border-hover;
+    .md-button:not([disabled]):hover {
+      background: none;
+    }
+  }
+
+}

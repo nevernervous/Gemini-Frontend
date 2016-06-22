@@ -3,33 +3,106 @@ ual-group-filter {
   display: block;
   width: 100%;
   padding: 15px 5px;
-  .-toolbar {
-    display: flex;
-    align-items: center;
-    vertical-align: middle;
-    .-not-button {
-      padding: 0 20px 0 0;
+  .-group-operator {
+    margin-bottom: 20px;
+    .-group-operator-text {
+      height: 30px;
+      width: 57px;
+      padding: 4px;
+      text-align: center;
+      color: $color00;
+      display: inline-block;
     }
-    ual-dropdown {
-      width: 100px;
-    }
-    ual-action-label {
-      padding-left: 8px;
-      &:first-child {
-        padding-left: 15px;
+    .-group-operator-arrow {
+      display: inline-block;
+      height: 30px;
+      width: 20px;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-left: 15px solid;
+      position: relative;
+      top: 9px;
+      @include -ms-browser() {
+        top: 11px;
       }
     }
   }
-  .-conditions {
-    display: block;
+  .-tree-container {
+    padding-left: 10px;
+    .-toolbar {
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+      .-not-button {
+        padding: 0 20px 0 0;
+      }
+      ual-dropdown {
+        width: 100px;
+      }
+      ual-action-label {
+        padding-left: 8px;
+        &:first-child {
+          padding-left: 15px;
+        }
+      }
+      .-remove-label{
+        display: none;
+      }
+    }
+    .-conditions {
+      display: block;
+      ual-group-filter {
+        margin-left: 22px;
+        .-remove-label{
+          display: inherit;
+        }
+        .-no-conditions{
+          display: none;
+        }
+      }
+    }
   }
 }
 
 //Variations
 ual-group-filter {
+  .or {
+    > .-group-operator {
+      > .-group-operator-text {
+        background: $other07;
+      }
+      > .-group-operator-arrow {
+        border-left-color: $other07;
+      }
+    }
+    > .-tree-container {
+      border-left: $other07 solid 2px;
+    }
+  }
+  .and {
+    > .-group-operator {
+      > .-group-operator-text {
+        background: $other08;
+      }
+      > .-group-operator-arrow {
+        border-left-color: $other08;
+      }
+    }
+    > .-tree-container {
+      border-left: $other08 solid 2px;
+    }
+  }
   .-toolbar {
     .-not-button {
-      @include font-clanot-bold(16);
+      @include font-clanot-book(16);
+      &.checked {
+        @include font-clanot-bold(16);
+      }
+    }
+  }
+  .-iterative-container:first-child {
+    > ual-filter-condition .operator {
+      visibility: hidden;
     }
   }
 }

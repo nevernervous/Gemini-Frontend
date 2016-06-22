@@ -37,7 +37,7 @@ class UalReportFormController {
     };
 
     this.selectedTab = 'report-datasource';
-    this.collection=[];//on integration change with filters
+
   }
 
   // NAME INPUT
@@ -62,7 +62,7 @@ class UalReportFormController {
     this._service.tooltip.hide();
   }
 
-  blurName() {
+  saveName() {
     this.name.focus = false;
     if (this.edit && this.name.current.toLowerCase() != this.report.name.get().toLowerCase()) {
       this.save();
@@ -105,6 +105,7 @@ class UalReportFormController {
     }
     this._responses();
     this._suscribe();
+
   }
   // INIT / RESPONSES
   _responses() {

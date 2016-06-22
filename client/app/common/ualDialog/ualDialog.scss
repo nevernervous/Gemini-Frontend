@@ -1,0 +1,37 @@
+@import '../common';
+
+md-dialog.ual-dialog {
+  border-radius: $dialog-border-radius;
+  padding: $dialog-padding;
+  width: $dialog-width;
+  max-width: $dialog-width;
+  bottom: $dialog-bottom;
+
+  border: $dialog-border;
+  @include box-shadow(6px, 6px, 0, 0, rgba(0, 0, 0, 0.1));
+
+  md-dialog-content, md-dialog-actions {
+    padding: 0;
+  }
+
+  md-dialog-content {
+    padding-bottom: 20px;
+  }
+
+  h2.md-title {
+    color: $dialog-title-color;
+    margin-bottom: 26px;
+  }
+  ._md-dialog-content-body {
+    margin-bottom: 26px;
+    font-size: $dialog-content-font-size;
+    color: $dialog-content-color;
+  }
+
+  md-dialog-actions .md-button {
+    margin: 0 0 0 6px;
+    &:last-child {
+      width: 130px;
+    }
+  }
+}

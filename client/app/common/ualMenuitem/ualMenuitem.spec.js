@@ -1,15 +1,16 @@
-import UalMainMenuModule from './ualMainMenu'
-import UalMainMenuController from './ualMainMenu.controller';
-import UalMainMenuService from './ualMainMenu.service';
+import UalMenuitemModule from './ualMenuitem'
+import UalMenuitemController from './ualMenuitem.controller';
+import UalMenuitemComponent from './ualMenuitem.component';
+import UalMenuitemTemplate from './ualMenuitem.html';
 
-describe('UalMainMenu', () => {
+describe('UalMenuitem', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalMainMenuModule.name));
+  beforeEach(window.module(UalMenuitemModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalMainMenuController(UalMainMenuService);
+      return new UalMenuitemController();
     };
   }));
 

@@ -1,0 +1,53 @@
+<md-sidenav
+  class="md-sidenav-left ual-sidenav"
+  md-component-id="sidenav">
+  <md-list>
+    <ual-listitem ual-listitem-icon="ion-speedometer"
+      ng-click="nav()"
+      aria-label="Dashboard"
+      ng-disabled="true">
+      Dashboard
+    </ual-listitem>
+    <ual-listitem ual-listitem-icon="ion-stats-bars"
+      ng-click="nav()"
+      aria-label="Season Stats"
+      ng-disabled="true">
+      Season Stats
+    </ual-listitem>
+    <ual-listitem ual-listitem-icon="ion-levels"
+      ng-click="nav()"
+      aria-label="Adjustments"
+      ng-disabled="true">
+      Adjustments
+    </ual-listitem>
+    <ual-listitem ual-listitem-icon="ion-android-plane"
+      ng-click="nav()"
+      aria-label="Space Planning"
+      ng-disabled="true">
+      Space Planning
+    </ual-listitem>
+    <ual-listitem ual-listitem-icon="ion-ios-pie-outline"
+      ng-click="nav('dashboard.report-list')"
+      aria-label="Reports">
+      Reports
+    </ual-listitem>
+    <ual-listitem ual-listitem-icon="ion-alert-circled"
+      ng-click="nav()"
+      aria-label="Alerts"
+      ng-disabled="true">
+      Alerts
+    </ual-listitem>
+    <ual-listitem ual-listitem-icon="ion-ios-telephone-outline"
+      ng-click="nav()"
+      aria-label="Support"
+      ng-disabled="true">
+      Support
+    </ual-listitem>
+    <ual-listitem
+      ng-click="nav()"
+      aria-label="External Visualization"
+      ng-disabled="true">
+      External Visualization
+    </ual-listitem>
+  </md-list>
+</md-sidenav>

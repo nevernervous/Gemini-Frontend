@@ -1,13 +1,10 @@
 import angular from 'angular';
-import ualNavBarService from './ualNavBar.service';
-import ualNavBarComponent from './ualNavBar.component';
+import ualNavbarDirective from './ualNavbar.directive';
 import ualUnsafeReportModal from '../ualUnsafeReportModal/ualUnsafeReportModal';
 import ReportService from '../../../services/report/report';
 
+let ualNavbarModule = angular.module('ualNavbar', [])
 
-let ualNavBarModule = angular.module('ualNavBar', [])
+.directive('ualNavbar', () => new ualNavbarDirective());
 
-.factory('ualNavBar', ualNavBarService)
-.component('ualNavBar', ualNavBarComponent);
-
-export default ualNavBarModule;
+export default ualNavbarModule;
