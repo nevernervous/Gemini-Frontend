@@ -20,7 +20,9 @@ class UalFilterConditionController {
   trim($event) {
     this._timeout(() => {
       let $target = $($event.target);
-      $target.val(_.trim($target.val()));
+      let value = _.trim($target.val());
+      $target.val(value);
+      this.condition.value = value;
     });
   }
 
