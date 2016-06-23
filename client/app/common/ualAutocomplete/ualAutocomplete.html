@@ -1,20 +1,22 @@
 <div class="autocomplete-container" ng-class="{ show: vm.isVisible }">
-  <div class="autocomplete-display" ng-click="vm.toogle()" id="thisDropdown">
+  <div class="autocomplete-display" id="thisDropdown">
     <ual-input ual-id="selected-searchbox" class="search-box" value="vm.filterName.name" min-chars="2" icon="ion-ios-search-strong" ng-show="vm.isVisible"></ual-input>
-    <div class="autocomplete-label" ng-if="!vm.isVisible">
+    <div class="autocomplete-label" ng-if="!vm.isVisible" ng-click="vm.show()">
       <span class="placeholder" ng-if="!vm.selected && !vm.isVisible">{{vm.placeholder || "Selected"}}</span>
       <span class="placeholder" ng-if="vm.selected && !vm.isVisible">{{vm.getText(vm.selected)}}</span>
-      <span class="icon">
-        <i class="ion-ios-search-strong"></i>
-      </span>
+      <i class="icon ion-ios-search-strong">
+      </i>
     </div>
-    <div class="float-container" click-outside="vm.isVisible = false" outside-if-not="thisDropdown">
+    <div class="float-container" click-outside="vm.hide()" outside-if-not="thisDropdown, selected-searchbox">
       <span class="autocomplete-list">
-          <ul class="list-options" >
-            <div class="autocomplete-item" ng-click="vm.select($event, item)" ng-repeat="item in vm.list | limitTo:vm.limit | filter:vm.filterName" >
+          <div class="list-options" >
+            <div class="autocomplete-item" ng-click="vm.select($event, item)" ng-repeat="item in filteredItems = (vm.list | limitTo:vm.limit | filter:vm.filterName)" >
                 {{vm.getText(item)}}
             </div>
-          </ul>
+            <div class="-empty-result" ng-if="filteredItems.length==0">
+              No results found
+            </div>
+          </div>
         </span>
     </div>
   </div>

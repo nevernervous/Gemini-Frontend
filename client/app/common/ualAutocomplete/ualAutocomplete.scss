@@ -22,7 +22,10 @@ ual-autocomplete {
         }
         .icon {
           float: right;
-          height: 100%;
+          font-size: 22px;
+          color: $color07;
+          display: inline-block;
+//          height: 100%;
           vertical-align: middle;
         }
       }

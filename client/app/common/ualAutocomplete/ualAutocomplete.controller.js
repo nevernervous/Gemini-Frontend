@@ -5,9 +5,16 @@ class UalAutocompleteController {
     this.isVisible = false;
     this.limit=0;
     this._scope = $scope;
-    this.filter= {
-      name: null
+    this.filterName= {
+      name: ""
     }
+
+    // RESET
+  /*  $scope.$watch((scope) => {
+      return $(".show input#selected-searchbox").is(":visible")
+    }, (newValue, oldValue) => {
+      if(newValue) $(".show input#selected-searchbox").focus();
+    });*/
   }
   select($event, item) {
     $event.stopPropagation();
@@ -15,17 +22,26 @@ class UalAutocompleteController {
      this.onChange() ;
     }
     this.selected = item;
-    this.isVisible = false;
+    this.hide();
+    this.filterName.name = "";
   }
 
   getText(item) {
     return !this.property || !item ? item : item[this.property];
   }
 
-  toogle() {
-    this.isVisible = !this.isVisible;
-    if(this.isVisible) console.log($("#selected-searchbox"));
-    this.limit=this.isVisible?this.list.length:0;
+  hide(){
+    if(this.isVisible){
+      this.isVisible = false;
+      this.limit=this.isVisible?this.list.length:0;
+    }
+  }
+
+  show(){
+    if(!this.isVisible){
+      this.isVisible = true;
+      this.limit=this.isVisible?this.list.length:0;
+    }
   }
 }
 
