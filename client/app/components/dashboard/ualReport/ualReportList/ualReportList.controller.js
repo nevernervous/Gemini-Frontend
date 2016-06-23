@@ -3,13 +3,17 @@ import myreports from './ualReportList._myreports.html';
 
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualReportListDeleteReportModal, ualTooltipService, $filter) {
+  constructor(Report, $rootScope, ualDialog, ualReportListDeleteReportModal, ualTooltipService, $filter) {
     this.name = 'ualReportList';
     this._rootScope = $rootScope;
 
     this._services = {
       report: Report
     };
+
+    this.components = {
+      dialog: ualDialog
+    }
 
     this.reports = [];
     this.selectedReports = [];
@@ -141,23 +145,21 @@ class UalReportListController {
 
   delete(ids) {
     let totalDelete = ids.length;
-    this._deletereportmodal.open()
-      .then((response) => {
-        if (response) {
-          this._services.report.remove(ids)
-            .then((reply) => {
-              _.remove(this.selectedReports, (item) => {
-                return _.contains(ids, item.id);
-              });
-              _.remove(this.reports, (item) => {
-                return _.contains(ids, item.id);
-              });
-              this.refresh();
-              this.total -= totalDelete;
-            }, (reply) => this.showError(reply))
-            .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
-        }
-      });
+    this.components.dialog.confirm()
+    .then(() => {
+      this._services.report.remove(ids)
+        .then((reply) => {
+          _.remove(this.selectedReports, (item) => {
+            return _.contains(ids, item.id);
+          });
+          _.remove(this.reports, (item) => {
+            return _.contains(ids, item.id);
+          });
+          this.refresh();
+          this.total -= totalDelete;
+        }, (reply) => this.showError(reply))
+        .catch(() => this._rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+    });
   }
 }
 

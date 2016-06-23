@@ -14,7 +14,7 @@ let ualDialogService = function ($mdDialog) {
     options = _.defaults(options, defaults);
     const confirm = $mdDialog.confirm()
           .title(title)
-          .textContent(description)
+          .htmlContent(description)
           .css('ual-dialog')
           .ariaLabel(defaults.ariaLabel)
           .targetEvent(options.target)
@@ -28,8 +28,13 @@ let ualDialogService = function ($mdDialog) {
     return $mdDialog.show(confirm);
   }
 
+  const show = (options) => {
+    return $mdDialog.show(options);
+  }
+
   return {
-    confirm
+    confirm,
+    show
   };
 };
 

@@ -5,15 +5,20 @@ class DashboardController {
     Session,
     ualToast, expirationModal) {
     this.name = 'dashboard';
+
+    // INTERNALS
     this.$rootScope = $rootScope;
     this.$state = $state;
 
+    // PRIVATE
     this._suscriptions = [];
 
+    // SERVICES
     this.services = {
       session: Session
     }
 
+    // COMPONENTS
     this.components = {
       toast: ualToast,
       expiration: expirationModal
@@ -23,6 +28,7 @@ class DashboardController {
 
   // LIFECYCLE
   $onInit() {
+
     this._suscriptions.push(this.$rootScope.$on('SESSION.EXPIRING', () => {
       this.expiration()
     }));
@@ -46,8 +52,13 @@ class DashboardController {
 
   expiration() {
     if ( this.services.session.isLogged() ) {
+
       this.components.expiration.open()
-      .then( response => response ? this.services.session.renew() : this.services.session.logout() );
+      .then(
+        () => this.services.session.renew(),
+        () => this.services.session.logout()
+      );
+
     } else {
       this.services.session.logout();
     }

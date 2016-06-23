@@ -2,6 +2,8 @@ import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';
 import ngMaterial from 'angular-material';
+import ngSanitize from 'angular-sanitize';
+
 
 import ualModal from './ualModal/ualModal';
 import ualCheckbox from './ualCheckbox/ualCheckbox';
@@ -36,6 +38,7 @@ let commonModule = angular.module('app.common', [
   ngAnimate,
   ngAria,
   ngMaterial,
+  ngSanitize,
 
   ualModal.name,
   ualCheckbox.name,

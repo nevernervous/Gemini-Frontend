@@ -1,11 +1,10 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualTooltipService) {
     this._state = $state;
     this._rootScope = $rootScope;
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
-    this._ualUnsafeReportModal = ualUnsafeReportModal;
 
     // SERVICES
     this._service = {
@@ -164,13 +163,12 @@ class UalReportFormController {
     this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (this.report.touched() && (toState.name !== 'login')) {
         event.preventDefault();
-        this._ualUnsafeReportModal.open().then(response => {
-          if (response) {
-            this.report = null;
-            $(window).unbind("beforeunload", this.beforeClose);
-            this._unsuscribe();
-            this._state.go(toState.name);
-          }
+        this.components.dialog.confirm( 'Exit without saving?' )
+        .then(() => {
+          this.report = null;
+          $(window).unbind("beforeunload", this.beforeClose);
+          this._unsuscribe();
+          this._state.go(toState.name);
         });
       } else {
         $(window).unbind("beforeunload", this.beforeClose);

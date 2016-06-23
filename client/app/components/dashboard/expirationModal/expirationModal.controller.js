@@ -1,31 +1,29 @@
 class ExpirationModalController {
   /*@ngInject*/
-  constructor($rootScope, close, Token) {
+  constructor(
+    $mdDialog,
+    Token) {
     this.name = 'expirationModal';
-    this._close = close;
-    this._token = Token;
 
-    this._suscriptions = [];
-    this._suscriptions.push($rootScope.$on('SESSION.LOGOUT', () =>  this._closemodal(true)));
-    this._suscriptions.push($rootScope.$on('SESSION.EXPIRED', () => this._closemodal(true)));
-    this._suscriptions.push($rootScope.$on('SESSION.RENEW', () =>   this._closemodal(true)));
+    // INTERNALS
+    this.$mdDialog = $mdDialog;
+
+    // SERVICES
+    this.services = {
+      token: Token
+    }
   }
 
   remaining() {
-    return this._token.remainingTime();
+    return this.services.token.remainingTime();
   }
 
-  _closemodal(response) {
-    this._suscriptions.forEach(suscription => suscription());
-    this._close(response);
-  }
-
-  yes() {
-    this._closemodal(true);
-  }
   no() {
-    this._closemodal(false);
-  }
+    this.$mdDialog.cancel();
+  };
+  yes() {
+    this.$mdDialog.hide();
+  };
 
 }
 

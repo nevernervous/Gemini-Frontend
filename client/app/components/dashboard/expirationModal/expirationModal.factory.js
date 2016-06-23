@@ -2,14 +2,20 @@ import template from './expirationModal.html';
 import controller from './expirationModal.controller';
 import './expirationModal.scss';
 
-let expirationModalService = function (ualModal) {
+let expirationModalService = function (ualDialog) {
   "ngInject";
-  
-  let open = (options) => {    
-    return ualModal.open({
-      template: '<ual-modal class="-yesno">' + template + '</ual-modal>',
+  const components = {
+    dialog: ualDialog
+  }
+
+  const open = () => {
+
+    return components.dialog.show({
+      parent: angular.element(document.body),
+      template: template,
       controller: controller,
-      controllerAs : 'vm'
+      controllerAs : 'vm',
+      clickOutsideToClose: false
     })
   }
 

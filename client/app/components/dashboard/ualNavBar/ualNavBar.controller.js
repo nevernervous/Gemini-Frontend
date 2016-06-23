@@ -3,28 +3,30 @@ import menu from './menu.png';
 
 class UalNavbarController {
   /*@ngInject*/
-  constructor(Report, ualSidenav, ualDialog, Session, logoutModal, ualUnsafeReportModal) {
+  constructor(
+    Report, Session,
+    ualSidenav, ualDialog) {
     this.name = 'ualNavbar';
+
+    // IMAGES
     this.user = user;
     this.menu = menu;
-    this._session = Session;
 
-    this._checkChanges = {
-      report: Report.currentReport()
-    };
-    this._unstagedModal = ualUnsafeReportModal;
-    this._logoutModal = logoutModal;
+    // SERVICES
+    this.services = {
+      report: Report.currentReport(),
+      session: Session
+    }
 
-    this.toggle = ualSidenav.toggle;
-
+    // COMPONENTS
     this.components = {
-      dialog: ualDialog
+      dialog: ualDialog,
+      sidenav: ualSidenav
     }
   }
 
-  toggleDropDown($event) {
-    $event.stopPropagation();
-    this._service.toggle();
+  toggle() {
+    this.components.sidenav.toggle();
   }
 
   logout(ev) {
@@ -37,9 +39,11 @@ class UalNavbarController {
       null,
       options)
     .then(() => {
-      this._checkChanges.report.untouch();
-      this._session.logout();
-    });
+      return this.services.report.touched() ?
+        this.components.dialog.confirm( 'Exit without saving?' ) :
+        true;
+    })
+    .then(() => this.services.session.logout() );
 
   }
 }
