@@ -20,6 +20,7 @@ import ualOnScroll from './ualOnScroll/ualOnScroll';
 import ualActionLabel from './ualActionLabel/ualActionLabel';
 import ualDraggable from './ualDraggable/ualDraggable';
 import ualDroppable from './ualDroppable/ualDroppable';
+import ualAutocomplete from './ualAutocomplete/ualAutocomplete';
 
 let commonModule = angular.module('app.common', [
   ualModal.name,
@@ -42,7 +43,8 @@ let commonModule = angular.module('app.common', [
   ualOnScroll.name,
   ualActionLabel.name,
   ualDraggable.name,
-  ualDroppable.name
+  ualDroppable.name,
+  ualAutocomplete.name
 ]);
 
 export default commonModule;

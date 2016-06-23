@@ -53,6 +53,12 @@ ual-filter-condition {
           @include gridle(3);
         }
       }
+      >ual-autocomplete {
+        @include gridle(6);
+        &.short-field {
+          @include gridle(3);
+        }
+      }
       >.close-btn {
         display: flex;
         align-items: center;

@@ -1,0 +1,21 @@
+<div class="autocomplete-container" ng-class="{ show: vm.isVisible }">
+  <div class="autocomplete-display" ng-click="vm.toogle()" id="thisDropdown">
+    <ual-input ual-id="selected-searchbox" class="search-box" value="vm.filterName.name" min-chars="2" icon="ion-ios-search-strong" ng-show="vm.isVisible"></ual-input>
+    <div class="autocomplete-label" ng-if="!vm.isVisible">
+      <span class="placeholder" ng-if="!vm.selected && !vm.isVisible">{{vm.placeholder || "Selected"}}</span>
+      <span class="placeholder" ng-if="vm.selected && !vm.isVisible">{{vm.getText(vm.selected)}}</span>
+      <span class="icon">
+        <i class="ion-ios-search-strong"></i>
+      </span>
+    </div>
+    <div class="float-container" click-outside="vm.isVisible = false" outside-if-not="thisDropdown">
+      <span class="autocomplete-list">
+          <ul class="list-options" >
+            <div class="autocomplete-item" ng-click="vm.select($event, item)" ng-repeat="item in vm.list | limitTo:vm.limit | filter:vm.filterName" >
+                {{vm.getText(item)}}
+            </div>
+          </ul>
+        </span>
+    </div>
+  </div>
+</div>
