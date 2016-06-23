@@ -70,7 +70,7 @@ ual-dropdown {
       color: $color07;
       cursor: pointer;
       .float-container {
-        visibility: hidden;
+        display: none;
         background-color: $color00;
         z-index: 90;
         @include box-shadow(2px, 2px, 1px, 0, $color08);
@@ -88,7 +88,7 @@ ual-dropdown {
   .dropdown-container {
     &.show {
       .float-container {
-        visibility: visible;
+        display: flex;
       }
     }
   }
