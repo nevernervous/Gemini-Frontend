@@ -1,8 +1,9 @@
 class UalGroupFilterController {
   /*@ngInject*/
-  constructor() {
+  constructor(ualRemoveGroupModal) {
     this.name = 'ualGroupFilter';
     this.operatorGroup='AND';
+    this._ualRemoveGroupModal=ualRemoveGroupModal;
 
     this.selectedItem = 'AND';
 
@@ -33,7 +34,20 @@ class UalGroupFilterController {
   cleanGroup(){
     this.filters.children = [];
   }
-  remove(id) {
+  remove(id,isGroup=false) {
+    if(isGroup){
+      this._ualRemoveGroupModal.open().then(
+        response => {
+          if(response) {
+            this.filters.children.splice(id, 1);
+          }
+        }
+      );
+      return;
+    }
+    if(id===0){
+       this.removeParent();
+    }
     this.filters.children.splice(id, 1);
   }
 }
