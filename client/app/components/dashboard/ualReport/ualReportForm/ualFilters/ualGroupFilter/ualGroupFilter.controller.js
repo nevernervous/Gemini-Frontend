@@ -34,21 +34,17 @@ class UalGroupFilterController {
   cleanGroup(){
     this.filters.children = [];
   }
-  remove(id,isGroup=false) {
-    if(isGroup){
-      this._ualRemoveGroupModal.open().then(
-        response => {
-          if(response) {
-            this.filters.children.splice(id, 1);
-          }
+  removeGroup(id) {
+    this._ualRemoveGroupModal.open().then(
+      response => {
+        if(response) {
+          this.filters.children.splice(id, 1);
         }
-      );
-      return;
-    }
-    if(id===0){
-       this.removeParent();
-    }
-    this.filters.children.splice(id, 1);
+      }
+    );
+  }
+  removeItem(id){
+   this.filters.children.splice(id, 1);
   }
 }
 
