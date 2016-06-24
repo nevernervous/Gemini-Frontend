@@ -64,6 +64,7 @@ ual-dropdown {
 //Variations
 ual-dropdown {
   .dropdown-container {
+    background-color: $color00;
     .dropdown-display {
       @include font-clanot-book(14);
       border: solid 1px $color08;
