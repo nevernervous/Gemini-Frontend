@@ -5,6 +5,9 @@ class UalAutocompleteController {
     this.isVisible = false;
     this.limit=0;
     this._scope = $scope;
+
+    this.inputHovered = false;
+
     this.filterName= {
       name: ""
     }
@@ -32,6 +35,7 @@ class UalAutocompleteController {
 
   hide(){
     if(this.isVisible){
+      this.filterName.name = "";
       this.isVisible = false;
       this.limit=this.isVisible?this.list.length:0;
     }

@@ -58,6 +58,9 @@ ual-filter-condition {
         &.short-field {
           @include gridle(3);
         }
+        ual-input label{
+          padding: 3px 2px;
+        }
       }
       >.close-btn {
         display: flex;

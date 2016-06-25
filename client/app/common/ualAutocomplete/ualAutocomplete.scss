@@ -5,30 +5,6 @@ ual-autocomplete {
     .autocomplete-display {
       position: relative;
       width: 100%;
-      .autocomplete-label {
-        padding: 8px;
-        box-sizing: border-box;
-        .placeholder {
-          display: inline-block;
-          @include ellipses();
-          width: 85%;
-          @include gridle_state ( projector ) {
-            width: 75%;
-          }
-          @include gridle_state ( desktop ) {
-            width: 80%;
-          }
-          vertical-align: middle;
-        }
-        .icon {
-          float: right;
-          font-size: 22px;
-          color: $color07;
-          display: inline-block;
-//          height: 100%;
-          vertical-align: middle;
-        }
-      }
       .float-container {
         display: inline-block;
         position: absolute;
@@ -36,12 +12,10 @@ ual-autocomplete {
         @include -ms-browser() {
           top: 30px;
         }
-        left: -1px;
         vertical-align: middle;
-        width: 101%;
+        width: 100%;
         .autocomplete-list {
           display: block;
-          width: 100%;
           box-sizing: border-box;
           .list-options {
             display: block;
@@ -59,6 +33,10 @@ ual-autocomplete {
               margin: 1px 0;
               line-height: 1;
             }
+            .-empty-result{
+              padding: 10px 0px;
+              text-align: center;
+            }
           }
         }
       }
@@ -70,12 +48,6 @@ ual-autocomplete {
 ual-autocomplete {
   .autocomplete-container {
     .autocomplete-display {
-      .autocomplete-label {
-        @include font-clanot-book(14);
-        border: solid 1px $color08;
-        color: $color07;
-        cursor: pointer;
-      }
       .float-container {
         visibility: hidden;
         background-color: $color00;
@@ -83,6 +55,10 @@ ual-autocomplete {
         @include box-shadow(2px, 2px, 1px, 0, $color08);
         .autocomplete-list{
             border: 1px solid $color08;
+        }
+        .-empty-result{
+          @include font-clanot-book(14);
+          color: $color07;
         }
       }
     }
