@@ -45,9 +45,9 @@
         <div ng-messages-include="default-messages"></div>
       </ng-messages>
     </div>
-    <ual-dropdown ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.value" property="name">
+    <ual-autocomplete ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.value" property="name">
       <!--this component will change on US - CR1.24-->
-    </ual-dropdown>
+    </ual-autocomplete>
     <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
     </ual-action-label>
   </div>
