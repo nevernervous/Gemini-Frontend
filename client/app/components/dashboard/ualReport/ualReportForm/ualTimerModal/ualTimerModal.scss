@@ -31,6 +31,7 @@ ual-modal {
       div:nth-child(4){
         padding-top: 16px;
         @include font-clanot-bold(16);
+        cursor: pointer;
       }
     }
   }
