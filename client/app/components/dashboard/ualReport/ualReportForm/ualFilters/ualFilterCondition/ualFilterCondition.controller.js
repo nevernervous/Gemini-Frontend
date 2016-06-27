@@ -47,7 +47,10 @@ class UalFilterConditionController {
         this.availableVariables = [];
       });
   }
-
+  resetSecond(){
+    this.condition.type='Value';
+    this.reset();
+  }
   reset() {
     this._scope.filterConditionForm.$setPristine();
     this.condition.value = null;

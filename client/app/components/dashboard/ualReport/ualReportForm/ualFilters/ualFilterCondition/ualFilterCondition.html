@@ -16,7 +16,7 @@
     <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name">
       <!--this component will change on US - CR1.24-->
     </ual-autocomplete>
-    <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator">
+    <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator"  on-change="vm.resetSecond()">
     </ual-dropdown>
   </div>
   <div class="section">
