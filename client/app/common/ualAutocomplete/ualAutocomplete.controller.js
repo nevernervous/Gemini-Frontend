@@ -11,13 +11,6 @@ class UalAutocompleteController {
     this.filterName= {
       name: ""
     }
-
-    // RESET
-  /*  $scope.$watch((scope) => {
-      return $(".show input#selected-searchbox").is(":visible")
-    }, (newValue, oldValue) => {
-      if(newValue) $(".show input#selected-searchbox").focus();
-    });*/
   }
   select($event, item) {
     $event.stopPropagation();

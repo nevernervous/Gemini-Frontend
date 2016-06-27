@@ -58,8 +58,14 @@ ual-filter-condition {
         &.short-field {
           @include gridle(3);
         }
-        ual-input label{
+        ual-input label {
           padding: 3px 2px;
+          @include -ms-browser() {
+            padding: 1px 2px;
+            i {
+              margin-top: 0px;
+            }
+          }
         }
       }
       >.close-btn {
