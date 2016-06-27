@@ -1,0 +1,95 @@
+@import '../common';
+ual-autocomplete {
+  .autocomplete-container {
+    width: 100%;
+    .autocomplete-display {
+      position: relative;
+      width: 100%;
+      .float-container {
+        display: inline-block;
+        position: absolute;
+        top: 34px;
+        @include -ms-browser() {
+          top: 30px;
+        }
+        vertical-align: middle;
+        width: 100%;
+        .autocomplete-list {
+          display: block;
+          box-sizing: border-box;
+          .list-options {
+            display: block;
+            margin: 0;
+            padding: 7px 0px;
+            box-sizing: border-box;
+            list-style: none;
+            overflow-y: auto;
+            max-height: 250px;
+            .autocomplete-item {
+              display: block;
+              width: 100%;
+              word-wrap: break-word;
+              padding: 4px 8px 4px 8px;
+              margin: 1px 0;
+              line-height: 1;
+            }
+            .-empty-result{
+              padding: 10px 0px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Variations
+ual-autocomplete {
+  .autocomplete-container {
+    .autocomplete-display {
+      .float-container {
+        visibility: hidden;
+        background-color: $color00;
+        z-index: 90;
+        @include box-shadow(2px, 2px, 1px, 0, $color08);
+        .autocomplete-list{
+            border: 1px solid $color08;
+        }
+        .-empty-result{
+          @include font-clanot-book(14);
+          color: $color07;
+        }
+      }
+    }
+  }
+}
+
+
+//Autocomplete Visible
+ual-autocomplete {
+  .autocomplete-container {
+    &.show {
+      .float-container {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+//Autocomplete Item states
+ual-autocomplete {
+  .autocomplete-container {
+    .autocomplete-item:not(.-disabled) {
+      &:hover {
+        background-color: $others01;
+        @include font-clanot-news(14);
+        color: $color06;
+        cursor: pointer;
+      }
+    }
+    .autocomplete-item.-disabled {
+      color: $color07;
+    }
+  }
+}
