@@ -53,6 +53,21 @@ ual-filter-condition {
           @include gridle(3);
         }
       }
+      >ual-autocomplete {
+        @include gridle(6);
+        &.short-field {
+          @include gridle(3);
+        }
+        ual-input label {
+          padding: 3px 2px;
+          @include -ms-browser() {
+            padding: 1px 2px;
+            i {
+              margin-top: 0px;
+            }
+          }
+        }
+      }
       >.close-btn {
         display: flex;
         align-items: center;
