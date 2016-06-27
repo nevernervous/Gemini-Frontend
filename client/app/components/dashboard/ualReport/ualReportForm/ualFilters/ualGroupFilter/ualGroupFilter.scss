@@ -2,7 +2,7 @@
 ual-group-filter {
   display: block;
   width: 100%;
-  padding: 15px 5px;
+  padding: 15px 5px 0px 5px;
   >div{
     height: 100%;
     padding-left: 47px;
@@ -34,6 +34,7 @@ ual-group-filter {
   .-tree-container {
     padding-left: 10px;
     height: 100%;
+    background-color: $other13;
     .-toolbar {
       display: flex;
       align-items: center;
@@ -78,6 +79,9 @@ ual-group-filter {
           display: none;
         }
       }
+    }
+    .not-group{
+      background-color: $other14;
     }
   }
 }
