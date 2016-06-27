@@ -124,249 +124,249 @@ module.exports = {
             },
             "order": 13
           },
-              {
-                "id": 12,
-                "name": "Data Source Name 12",
-                "description": "Data Source Description 12",
-                "group": {
-                  "groupId": 4,
-                  "groupName": "Group Name 4",
-                  "order": 4
-                },
-                "order": 14
-              },
-              {
-                "id": 13,
-                "name": "Data Source Name 13 with long name for test",
-                "description": "Data Source Description 13",
-                "group": {
-                  "groupId": 2,
-                  "groupName": "Group Name 2",
-                  "order": 3
-                },
-                "order": 15
-              },
-                  {
-                    "id": 14,
-                    "name": "Data Source Name 14",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
-                    "group": {
-                      "groupId": 4,
-                      "groupName": "Group Name 2",
-                      "order": 4
-                    },
-                    "order": 16
-                  },
-              {
-                "id": 15,
-                "name": "Data Source Name 15",
-                "description": "Data Source Description 15",
-                "group": {
-                  "groupId": 2,
-                  "groupName": "Group Name 2",
-                  "order": 3
-                },
-                "order": 17
-              },
-                  {
-                    "id": 16,
-                    "name": "Data Source Name 16",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
-                    "group": {
-                      "groupId": 4,
-                      "groupName": "Group Name 4",
-                      "order": 4
-                    },
-                    "order": 18
-                  },
-              {
-                "id": 17,
-                "name": "Data Source Name 17",
-                "description": "Data Source Description 17",
-                "group": {
-                  "groupId": 3,
-                  "groupName": "Group Name 3",
-                  "order": 1
-                },
-                "order": 1
-              },
-                  {
-                    "id": 18,
-                    "name": "Data Source Name 18",
-                    "description": "Data Source Description 18",
-                    "group": {
-                      "groupId": 4,
-                      "groupName": "Group Name 4",
-                      "order": 4
-                    },
-                    "order": 21
-                  },
-              {
-                "id": 19,
-                "name": "Data Source Name 19",
-                "description": "Data Source Description 19",
-                "group": {
-                  "groupId": 4,
-                  "groupName": "Group Name 4",
-                  "order": 4
-                },
-                "order": 22
-              },
-                  {
-                    "id": 20,
-                    "name": "Data Source Name 20 with long name for test",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
-                    "group": {
-                      "groupId": 4,
-                      "groupName": "Group Name 4",
-                      "order": 4
-                    },
-                    "order": 21
-                  },
-              {
-                "id": 21,
-                "name": "Data Source Name 21",
-                "description": "Data Source Description 21",
-                "group": {
-                  "groupId": 4,
-                  "groupName": "Group Name 4",
-                  "order": 4
-                },
-                "order": 22
-              },
-                  {
-                    "id": 22,
-                    "name": "Data Source Name 22",
-                    "description": "Data Source Description 22",
-                    "group": {
-                      "groupId": 5,
-                      "groupName": "Group Name 5",
-                      "order": 4
-                    },
-                    "order": 21
-                  },
-              {
-                "id": 23,
-                "name": "Data Source Name 23",
-                "description": "Data Source Description 23",
-                "group": {
-                  "groupId": 5,
-                  "groupName": "Group Name 5",
-                  "order": 4
-                },
-                "order": 2
-              },
-                  {
-                    "id": 24,
-                    "name": "Data Source Name 24",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
-                    "group": {
-                      "groupId": 5,
-                      "groupName": "Group Name 5",
-                      "order": 4
-                    },
-                    "order": 21
-                  },
-              {
-                "id": 25,
-                "name": "Data Source Name 25",
-                "description": "Data Source Description 25 with long name for test",
-                "group": {
-                  "groupId": 5,
-                  "groupName": "Group Name 5",
-                  "order": 4
-                },
-                "order": 3
-              },
-                  {
-                    "id": 26,
-                    "name": "Data Source Name 26",
-                    "description": "Data Source Description 26",
-                    "group": {
-                      "groupId": 5,
-                      "groupName": "Group Name 5",
-                      "order": 4
-                    },
-                    "order": 21
-                  },
-              {
-                "id": 27,
-                "name": "Data Source Name 27 with long name for test",
-                "description": "Data Source Description 27",
-                "group": {
-                  "groupId": 5,
-                  "groupName": "Group Name 5",
-                  "order": 4
-                },
-                "order": 22
-              }
-              ,
-              {
-                "id": 28,
-                "name": "Data Source Name 28 with long name for test",
-                "description": "Data Source Description 28",
-                "group": {
-                  "groupId": 7,
-                  "groupName": "Group Name 7",
-                  "order": 1
-                },
-                "order": 22
-              },
-              {
-                "id": 29,
-                "name": "Data Source Name 29 with long name for testing",
-                "description": "Data Source Description 29",
-                "group": {
-                  "groupId": 7,
-                  "groupName": "Group Name 7",
-                  "order": 0
-                },
-                "order": 20
-              },
-              {
-                "id": 30,
-                "name": "Data Source Name X for long text description text and tooltip",
-                "description": "Data Source Description 30",
-                "group": {
-                  "groupId": 6,
-                  "groupName": "Group Name 6",
-                  "order": 1
-                },
-                "order": 22
-              },
-              {
-                "id": 31,
-                "name": "Data Source Name 31 with long name for testing and more text",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
-                "group": {
-                  "groupId": 6,
-                  "groupName": "Group Name 6",
-                  "order": 0
-                },
-                "order": 20
-              },
-              {
-                "id": 32,
-                "name": "Data Source Name 32 with long name for test",
-                "description": "Data Source Description 32",
-                "group": {
-                  "groupId": 6,
-                  "groupName": "Group Name 6",
-                  "order": 1
-                },
-                "order": 22
-              },
-              {
-                "id": 33,
-                "name": "Data Source Name 33 with long name for testing",
-                "description": "Data Source Description 33",
-                "group": {
-                  "groupId": 6,
-                  "groupName": "Group Name 6",
-                  "order": 0
-                },
-                "order": 20
-              }
+          {
+            "id": 12,
+            "name": "Data Source Name 12",
+            "description": "Data Source Description 12",
+            "group": {
+              "groupId": 4,
+              "groupName": "Group Name 4",
+              "order": 4
+            },
+            "order": 14
+          },
+          {
+            "id": 13,
+            "name": "Data Source Name 13 with long name for test",
+            "description": "Data Source Description 13",
+            "group": {
+              "groupId": 2,
+              "groupName": "Group Name 2",
+              "order": 3
+            },
+            "order": 15
+          },
+          {
+            "id": 14,
+            "name": "Data Source Name 14",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
+            "group": {
+              "groupId": 4,
+              "groupName": "Group Name 2",
+              "order": 4
+            },
+            "order": 16
+          },
+          {
+            "id": 15,
+            "name": "Data Source Name 15",
+            "description": "Data Source Description 15",
+            "group": {
+              "groupId": 2,
+              "groupName": "Group Name 2",
+              "order": 3
+            },
+            "order": 17
+          },
+          {
+            "id": 16,
+            "name": "Data Source Name 16",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
+            "group": {
+              "groupId": 4,
+              "groupName": "Group Name 4",
+              "order": 4
+            },
+            "order": 18
+          },
+          {
+            "id": 17,
+            "name": "Data Source Name 17",
+            "description": "Data Source Description 17",
+            "group": {
+              "groupId": 3,
+              "groupName": "Group Name 3",
+              "order": 1
+            },
+            "order": 1
+          },
+          {
+            "id": 18,
+            "name": "Data Source Name 18",
+            "description": "Data Source Description 18",
+            "group": {
+              "groupId": 4,
+              "groupName": "Group Name 4",
+              "order": 4
+            },
+            "order": 21
+          },
+          {
+            "id": 19,
+            "name": "Data Source Name 19",
+            "description": "Data Source Description 19",
+            "group": {
+              "groupId": 4,
+              "groupName": "Group Name 4",
+              "order": 4
+            },
+            "order": 22
+          },
+          {
+            "id": 20,
+            "name": "Data Source Name 20 with long name for test",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
+            "group": {
+              "groupId": 4,
+              "groupName": "Group Name 4",
+              "order": 4
+            },
+            "order": 21
+          },
+          {
+            "id": 21,
+            "name": "Data Source Name 21",
+            "description": "Data Source Description 21",
+            "group": {
+              "groupId": 4,
+              "groupName": "Group Name 4",
+              "order": 4
+            },
+            "order": 22
+          },
+          {
+            "id": 22,
+            "name": "Data Source Name 22",
+            "description": "Data Source Description 22",
+            "group": {
+              "groupId": 5,
+              "groupName": "Group Name 5",
+              "order": 4
+            },
+            "order": 21
+          },
+          {
+            "id": 23,
+            "name": "Data Source Name 23",
+            "description": "Data Source Description 23",
+            "group": {
+              "groupId": 5,
+              "groupName": "Group Name 5",
+              "order": 4
+            },
+            "order": 2
+          },
+          {
+            "id": 24,
+            "name": "Data Source Name 24",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
+            "group": {
+              "groupId": 5,
+              "groupName": "Group Name 5",
+              "order": 4
+            },
+            "order": 21
+          },
+          {
+            "id": 25,
+            "name": "Data Source Name 25",
+            "description": "Data Source Description 25 with long name for test",
+            "group": {
+              "groupId": 5,
+              "groupName": "Group Name 5",
+              "order": 4
+            },
+            "order": 3
+          },
+          {
+            "id": 26,
+            "name": "Data Source Name 26",
+            "description": "Data Source Description 26",
+            "group": {
+              "groupId": 5,
+              "groupName": "Group Name 5",
+              "order": 4
+            },
+            "order": 21
+          },
+          {
+            "id": 27,
+            "name": "Data Source Name 27 with long name for test",
+            "description": "Data Source Description 27",
+            "group": {
+              "groupId": 5,
+              "groupName": "Group Name 5",
+              "order": 4
+            },
+            "order": 22
+          }
+          ,
+          {
+            "id": 28,
+            "name": "Data Source Name 28 with long name for test",
+            "description": "Data Source Description 28",
+            "group": {
+              "groupId": 7,
+              "groupName": "Group Name 7",
+              "order": 1
+            },
+            "order": 22
+          },
+          {
+            "id": 29,
+            "name": "Data Source Name 29 with long name for testing",
+            "description": "Data Source Description 29",
+            "group": {
+              "groupId": 7,
+              "groupName": "Group Name 7",
+              "order": 0
+            },
+            "order": 20
+          },
+          {
+            "id": 30,
+            "name": "Data Source Name X for long text description text and tooltip",
+            "description": "Data Source Description 30",
+            "group": {
+              "groupId": 6,
+              "groupName": "Group Name 6",
+              "order": 1
+            },
+            "order": 22
+          },
+          {
+            "id": 31,
+            "name": "Data Source Name 31 with long name for testing and more text",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
+            "group": {
+              "groupId": 6,
+              "groupName": "Group Name 6",
+              "order": 0
+            },
+            "order": 20
+          },
+          {
+            "id": 32,
+            "name": "Data Source Name 32 with long name for test",
+            "description": "Data Source Description 32",
+            "group": {
+              "groupId": 6,
+              "groupName": "Group Name 6",
+              "order": 1
+            },
+            "order": 22
+          },
+          {
+            "id": 33,
+            "name": "Data Source Name 33 with long name for testing",
+            "description": "Data Source Description 33",
+            "group": {
+              "groupId": 6,
+              "groupName": "Group Name 6",
+              "order": 0
+            },
+            "order": 20
+          }
         ]
       },
       code: 200
@@ -403,11 +403,11 @@ module.exports = {
             "groupName": "Fifth Group Name",
             "groupUrl": "/api/Datasources/1/ColumnGroups/2"
           },
-           {
-             "groupId": 6,
-             "groupName": "Six Group Name",
-             "groupUrl": "/api/Datasources/1/ColumnGroups/1"
-           },
+          {
+            "groupId": 6,
+            "groupName": "Six Group Name",
+            "groupUrl": "/api/Datasources/1/ColumnGroups/1"
+          },
           {
             "groupId": 7,
             "groupName": "seven Group Name",
@@ -428,330 +428,113 @@ module.exports = {
       }
     }
   },
-  '/api/DataSources/1/ColumnGroups/1/Columns': {
+  '/api/DataSources/1/Columns': {
     GET: {
       data: {
         "data": [
           {
-            "id": 1,
-            "name": "Variable name with a long name for testing the space",
-            "order": 1,
-            "type": "Type",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque convallis est nec condimentum consequat. Nulla scelerisque rhoncus dui, eget sagittis urna varius sit amet. Ut rutrum enim turpis, at consectetur velit posuere fermentum. Quisque neque massa, viverra ut felis nec, semper finibus augue. Aliquam fringilla metus quis magna suscipit mattis. Donec sed efficitur augue. Suspendisse risus ante, faucibus vitae augue non, efficitur luctus magna.",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
+            "description": "Snapshot extract date",
             "group": {
               "groupId": 1,
-              "groupName": "Group Name"
-            }
+              "groupName": "Flight Level",
+              "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/91"
+            },
+            "id": 91,
+            "dataType": "String",
+            "regEx": '^[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]+(?:,[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]*)*$',
+            "name": "Extract Date Eu aute ullamco ea in nisi mollit fugiat",
+            "order": 0,
+            "type": "Standard"
           },
           {
-            "id": 2,
-            "name": "Variable name 2 with lorem ipsum dolor",
-            "order": 2,
-            "type": "Type",
-            "description": "Variable Description 2",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
+            "description": "C643",
             "group": {
               "groupId": 1,
-              "groupName": "Group Name"
-            }
+              "groupName": "Flight Level",
+              "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/92"
+            },
+            "id": 92,
+            "dataType": "Number",
+            "regEx": '^-?[0-9]\\d*(\\.\\d+)?$',
+            "name": "C643",
+            "order": 0,
+            "type": "Standard"
           },
           {
-            "id": 3,
-            "name": "Variable name 3 this is another test",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 3",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
+            "description": "C642",
             "group": {
               "groupId": 1,
-              "groupName": "Group Name"
-            }
+              "groupName": "Flight Level",
+              "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/93"
+            },
+            "id": 93,
+            "dataType": "Number",
+            "regEx": '^[0-9]\\d*(\\.\\d+)?$',
+            "name": "C642",
+            "order": 0,
+            "type": "Standard"
           },
           {
-            "id": 4,
-            "name": "Variable name 4",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 4",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
+            "description": "C641",
             "group": {
               "groupId": 1,
-              "groupName": "Group Name"
-            }
+              "groupName": "Flight Level",
+              "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/94"
+            },
+            "id": 94,
+            "dataType": "Number",
+            "regEx": '^-?[0-9]\\d*(\\.\\d+)?$',
+            "name": "C641",
+            "order": 0,
+            "type": "Standard"
           },
           {
-            "id": 5,
-            "name": "Variable name 5",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 5",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
+            "description": "Scheduled departure IATA airport code.",
             "group": {
               "groupId": 1,
-              "groupName": "Group Name"
-            }
+              "groupName": "Flight Level",
+              "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/95"
+            },
+            "id": 95,
+            "dataType": "String",
+            "regEx": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
+            "name": "Leg Origin",
+            "order": 0,
+            "type": "Standard"
           },
           {
-            "id": 6,
-            "name": "Variable name 6",
-            "order": 2,
-            "type": "Type",
-            "description": "Variable Description 6",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
+            "description": "Scheduled arrival IATA airport code.",
             "group": {
               "groupId": 1,
-              "groupName": "Group Name"
-            }
+              "groupName": "Flight Level",
+              "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/96"
+            },
+            "id": 96,
+            "dataType": "String",
+            "regEx": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
+            "name": "ergoerhgirehgeiugheiorufhewifyuhqwepdiwuedwiaeudhawpfuhDestination",
+            "order": 0,
+            "type": "Standard"
           },
           {
-            "id": 7,
-            "name": "Variable name 7",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 7",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
+            "description": "Miles between leg origin, destination airports.",
             "group": {
               "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 8,
-            "name": "Variable name 8",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 8",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
+              "groupName": "Flight Level",
+              "groupUrl": "/api/Datasources/1565/ColumnGroups/1/Columns/97"
             },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 9,
-            "name": "Variable name 9",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 9",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 10,
-            "name": "Variable name 10",
-            "order": 2,
-            "type": "Type",
-            "description": "Variable Description 10",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 11,
-            "name": "Variable name 11",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 11",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 12,
-            "name": "Variable name 12",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 12",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 13,
-            "name": "Variable name 13",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 13",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 14,
-            "name": "Variable name 14",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 14",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 15,
-            "name": "Variable name 15",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 15",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 16,
-            "name": "Variable name 16",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 16",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 17,
-            "name": "Variable name 17",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 17",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 18,
-            "name": "Variable name 18 with a huge name",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 18",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 19,
-            "name": "Variable name 19",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 19",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 20,
-            "name": "Variable name 20",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 20",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
-          },
-          {
-            "id": 21,
-            "name": "Variable name 21",
-            "order": 1,
-            "type": "Type",
-            "description": "Variable Description 21",
-            "dataSource": {
-              "dataSourceId": 1,
-              "dataSourceName": "Data Source Name"
-            },
-            "group": {
-              "groupId": 1,
-              "groupName": "Group Name"
-            }
+            "id": 97,
+            "dataType": "String",
+            "regEx": '[a-zA-Z0-9-!$^&*()_+|~={}\\[\\]:;<>?,#@.\/\ ]',
+            "name": "Leg Miles",
+            "order": 0,
+            "type": "Standard"
           }
         ]
       }
     }
   },
-  '/api/DataSources/1/ColumnGroups/2/Columns': {
+  '/api/DataSources/2/Columns': {
     GET: {
       data: {
         "data": [
@@ -775,7 +558,7 @@ module.exports = {
     }
   }
   ,
-  '/api/DataSources/1/ColumnGroups/3/Columns': {
+  '/api/DataSources/3/Columns': {
     GET: {
       data: {
         "data": [
@@ -798,7 +581,7 @@ module.exports = {
       }
     }
   },
-  '/api/DataSources/1/ColumnGroups/4/Columns': {
+  '/api/DataSources/4/Columns': {
     GET: {
       data: {
         "data": [

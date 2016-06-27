@@ -77,6 +77,10 @@ $color-steel-blue: #4784B8;
 $color-pear: #CDDC39;
 $color-rolling-stone: #7C848A;
 $color-alto: #D4D4D4;
+$color-astral: #3271B1;
+$color-danube: #6F9BC8;
+$color-periwinkle-gray: #C1D4E7;
+$color-oslo-gray: #878F94;
 
 // COLOR / STATUS
 $color-success-dark:  $color-goblin;
@@ -135,6 +139,14 @@ $button-large-line-height: rem(5.0);
 $button-large-loading-size: rem(3.0);
 // MATERIAL / BUTTON / ICON
 $icon-button-margin-offset: 0;
+
+// MATERIAL / LINK (BUTTON)
+$link-font-size: rem(1.6);
+$link-left-right-padding: rem(0.5);
+$link-color: $color-astral;
+$link-color-hover: $color-danube;
+$link-color-disabled: $color-periwinkle-gray;
+$link-icon-color: $color-oslo-gray;
 
 // MATERIAL / PROGRESS
 $loading-disabled-color: $font-disabled-color;
@@ -205,3 +217,14 @@ $dialog-title-color: $color-rolling-stone;
 $dialog-content-font-size: rem(1.6);
 $dialog-content-color: $color-mine-shaft;
 $dialog-border: 1px solid $color-alto;
+
+// MATERIAL / TABS / INKBAR
+$tabs-inkbar-color: $color-havelock-blue;
+$tabs-inkbar-height: 3px;
+// MATERIAL / TABS / TAB
+$tabs-tab-font-size: rem(1.6);
+$tabs-tab-color: $color-rolling-stone;
+$tabs-header-height: rem(3.6);
+$tabs-tab-content-padding: rem(1.8) 0 0 0;
+// MATERIAL / TABS / TAB / ACTIVE
+$tabs-tab-color-active: $color-mine-shaft;

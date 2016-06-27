@@ -1,14 +1,16 @@
-import UalTabsModule from './ualTabs'
-import UalTabsController from './ualTabs.controller';
+import UalLinkModule from './ualLink'
+import UalLinkController from './ualLink.controller';
+import UalLinkComponent from './ualLink.component';
+import UalLinkTemplate from './ualLink.html';
 
-describe('UalTabs', () => {
+describe('UalLink', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalTabsModule.name));
+  beforeEach(window.module(UalLinkModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalTabsController();
+      return new UalLinkController();
     };
   }));
 

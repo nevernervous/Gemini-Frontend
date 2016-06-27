@@ -9,7 +9,14 @@ ual-dropdown {
       box-sizing: border-box;
       .placeholder {
         display: inline-block;
+        @include ellipses();
         width: 85%;
+        @include gridle_state ( projector ) {
+          width: 75%;
+        }
+        @include gridle_state ( desktop ) {
+          width: 80%;
+        }
         vertical-align: middle;
       }
       .icon {
@@ -26,7 +33,7 @@ ual-dropdown {
         }
         left: -1px;
         vertical-align: middle;
-        width: 102%;
+        width: 101%;
         .dropdown-list {
           display: block;
           width: 100%;
@@ -40,8 +47,9 @@ ual-dropdown {
             overflow-y: auto;
             max-height: 250px;
             .dropdown-item {
-              display: inline-block;
+              display: block;
               width: 100%;
+              word-wrap: break-word;
               padding: 4px 8px 4px 8px;
               margin: 1px 0;
               line-height: 1;
@@ -62,7 +70,7 @@ ual-dropdown {
       color: $color07;
       cursor: pointer;
       .float-container {
-        visibility: hidden;
+        display: none;
         background-color: $color00;
         z-index: 90;
         @include box-shadow(2px, 2px, 1px, 0, $color08);
@@ -80,7 +88,7 @@ ual-dropdown {
   .dropdown-container {
     &.show {
       .float-container {
-        visibility: visible;
+        display: flex;
       }
     }
   }

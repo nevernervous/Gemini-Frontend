@@ -17,4 +17,7 @@ md-backdrop.md-opaque {
   .header-dashboard {
     height: $header-dashboard-height;
   }
+  .body-dashboard {
+    margin-top: $body-dashboard-margin-top;
+  }
 }

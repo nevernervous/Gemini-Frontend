@@ -12,10 +12,14 @@ $login-message-font-size: rem(1.6);
 
 // DASHBOARD
 $user-icon-size: rem(3.4);
-
 // DASHBOARD / CONTENT
 $content-dashboard-bg-color: $color-white;
-
 // DASHBOARD / CONTENT / HEADER
 $header-dashboard-height: $button-line-height;
 $header-dashboard-h2: rem(3.4);
+// DASHBOARD / CONTENT / BODY
+$body-dashboard-margin-top: rem(2.6);
+
+// DASHBOARD / REPORT / LIST
+$report-list-header-font-size: rem(1.6);
+$report-list-header-actions-separation: rem(4.0);

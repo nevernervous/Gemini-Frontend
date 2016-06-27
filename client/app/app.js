@@ -15,6 +15,7 @@ window.isBlink = (isChrome || isOpera) && !!window.CSS;
 
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
+import angularMessage from 'angular-messages';
 import 'lodash';
 import $ from 'jquery';
 import './vendors/jquery.signalr-2.2.0.js';
@@ -53,9 +54,10 @@ angular.module('app', [
   Services.name,
   Helpers.name,
   Filters.name,
+  'ngAnimate',
+  'ngMessages',
   'selectionModel'
 ])
-
 .config(($stateProvider, $httpProvider, $urlRouterProvider, ConfigurationProvider, SETTINGS, Properties) => {
   "ngInject";
   $urlRouterProvider.otherwise('/login');

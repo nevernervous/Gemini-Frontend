@@ -4,6 +4,25 @@ ual-report-list {
   .button-create {
     width: 200px;
   }
+
+  // FIX: TAB MAX WIDTH INCREASE A LITTLE BIT TO PREVENT VISUAL ERROR
+  md-tabs .md-tab:last-child {
+    min-width: 170px;
+  }
+}
+
+ual-report-list .list-header {
+  font-size: $report-list-header-font-size;
+
+  .list-selected-item,
+  .list-available-items {
+    font-weight: bold;
+    margin: auto 0;
+  }
+
+  .list-selected-action {
+    margin-left: $report-list-header-actions-separation;
+  }
 }
 
 // // LAYOUT

@@ -8,25 +8,40 @@
     Create New Report
   </md-button>
 </div>
-<div class="dashboard-body">
-  <ual-tabs class="reports-tabs -inline">
-    <tabs-extra><ual-input value="vm.search" icon="ion-ios-search-strong" ual-disabled="true"></ual-input></tabs-extra>
-    <tabs-content>
-      <ual-tab ual-title="My Reports">
-        <div class="list-info">
-          <div class="toolbar-section" ng-style="{ 'visibility': (vm.selectedReports.length > 0 ? 'visible' : 'hidden')}">
-            <span class="-items-selected"> {{vm.selectedReports.length}} item(s) selected </span>
-            <span class="-icon-option" ng-click="vm.deleteSelected()">
-              <i class="ion-ios-trash-outline"></i> <span>Delete</span>
-            </span>
-            <span class="-icon-option -disabled">
-              <i class="ion-ios-copy-outline"></i> <span class="-disabled">Copy</span>
-            </span>
-            <span class="-icon-option -disabled">
-              <i class="ion-ios-download-outline"></i> <span class="-disabled">Export</span>
-            </span>
+<div class="body-dashboard" ng-cloak>
+  <md-tabs
+    md-enable-disconnect
+    >
+    <md-tab label="My Reports">
+      <md-content>
+        <div layout="row"
+          class="list-header">
+          <span class="list-selected-item"
+            ng-if="vm.selectedReports.length">
+            {{vm.selectedReports.length}} items selected
+          </span>
+          <div class="list-selected-action"
+            ng-if="vm.selectedReports.length">
+            <ual-link ual-link-icon="ion-ios-trash-outline"
+              arial-label="Delete"
+              ng-href="vm.deleteSelected()">
+              Delete
+            </ual-link>
+            <ual-link ual-link-icon="ion-ios-copy-outline"
+              arial-label="Copy"
+              ng-disabled="true">
+              Copy
+            </ual-link>
+            <ual-link ual-link-icon="ion-ios-download-outline"
+              arial-label="Export"
+              ng-disabled="true">
+              Export
+            </ual-link>
           </div>
-          <label class="list-count"><strong>{{vm.total}} reports available</strong></label>
+          <div flex></div>
+          <span class="list-available-items">
+            {{vm.total}} reports available
+          </span>
         </div>
         <div class="list-content">
           <table ual-clusterize-table ng-class="{'-loading': vm.loading, '-empty': (vm.rows.length == 0)}" rows="vm.rows" empty-message="No reports created." on-scroll="vm.hideTooltip()">
@@ -40,14 +55,13 @@
             </thead>
           </table>
         </div>
-      </ual-tab>
-      <ual-tab ual-title="Public Reports" is-enabled="false">
+      </md-content>
+    </md-tab>
+    <md-tab label="Public Reports" ng-disabled="true">
 
-      </ual-tab>
-      <ual-tab ual-title="Shared Reports" is-enabled="false">
+    </md-tab>
+    <md-tab label="Shared Reports" ng-disabled="true">
 
-      </ual-tab>
-    </tabs-content>
-  </ual-tabs>
-
+    </md-tab>
+  </md-tabs>
 </div>

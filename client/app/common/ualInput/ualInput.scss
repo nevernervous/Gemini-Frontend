@@ -125,3 +125,13 @@ ual-input.-noborder {
     border-color: transparent
   }
 }
+
+//VARIATION / HIDE ICON
+.ual-input.-no-icon {
+  input {
+    width: calc(100% - 15px);
+  }
+  i {
+    display: none;
+  }
+}

@@ -19,7 +19,7 @@ class ualMenuitemDirective {
   }
 
   link($scope, elem, attr, ctrl) {
-    //attr.$observe('disabled', newValue => $scope.isDisabled = newValue);
+    
   }
 }
 

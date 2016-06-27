@@ -14,7 +14,6 @@ import ualDropdown from './ualDropdown/ualDropdown';
 import ualResize from './ualResize/ualResize';
 import ualRender from './ualRender/ualRender';
 import ualMessageBanner from './ualMessageBanner/ualMessageBanner';
-import ualTabs from './ualTabs/ualTabs';
 import ualTable from './ualTable/ualTable';
 import ualSignalR from './ualSignalR/ualSignalR';
 import ualClusterizeTable from './ualClusterizeTable/ualClusterizeTable';
@@ -33,6 +32,8 @@ import ualInput from './ualInput/ualInput';
 import ualMenuitem from './ualMenuitem/ualMenuitem';
 import ualListitem from './ualListitem/ualListitem';
 import ualDialog from './ualDialog/ualDialog';
+import ualTabs from './ualTabs/ualTabs';
+import ualLink from './ualLink/ualLink';
 
 let commonModule = angular.module('app.common', [
   ngAnimate,
@@ -49,7 +50,6 @@ let commonModule = angular.module('app.common', [
   ualResize.name,
   ualRender.name,
   ualMessageBanner.name,
-  ualTabs.name,
   ualTable.name,
   ualSignalR.name,
   ualClusterizeTable.name,
@@ -67,7 +67,9 @@ let commonModule = angular.module('app.common', [
   ualToast.name,
   ualMenuitem.name,
   ualListitem.name,
-  ualDialog.name
+  ualDialog.name,
+  ualTabs.name,
+  ualLink.name
 ])
 .config(($mdThemingProvider) => {
   "ngInject";
