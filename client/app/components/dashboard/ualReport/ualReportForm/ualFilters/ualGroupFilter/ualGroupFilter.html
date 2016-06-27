@@ -2,7 +2,7 @@
   <div class="-group-operator" ng-if="vm.parentOperator">
     <span class="-group-operator-text">{{vm.parentOperator}}</span><span class="-group-operator-arrow"></span>
   </div>
-  <div class="-tree-container" ng-class="{notGroup:vm.filters.not}">
+  <div class="-tree-container" ng-class="{'not-group':vm.filters.not}">
     <div class="-toolbar">
       <span class="-not-button" ng-class="{checked:vm.filters.not}">
       <ual-checkbox on-click="vm.toggle()" is-checked="vm.filters.not"></ual-checkbox>
@@ -30,8 +30,8 @@
       <div ng-if="!(vm.filters.children|isEmpty)">
         <ul ng-if="!(vm.filters.children|isEmpty)">
           <li ng-repeat="child in vm.filters.children track by $index" class="-iterative-container">
-            <ual-group-filter ng-if="child.children!==undefined"  available-variables="vm.availableVariables" filters="child" remove-parent="vm.removeGroup($index)" parent-operator="vm.filters.operator" datasource="vm.datasource" ng-class="{notGroup:vm.filters.not}"></ual-group-filter>
-            <ual-filter-condition ng-if="child.children===undefined" available-variables="vm.availableVariables" condition="child" operator-group="vm.filters.operator" remove-condition="vm.removeItem($index)" datasource="vm.datasource">
+            <ual-group-filter ng-if="!!child.children"  available-variables="vm.availableVariables" filters="child" remove-parent="vm.removeGroup($index)" parent-operator="vm.filters.operator" datasource="vm.datasource" ng-class="{'not-group':vm.filters.not}"></ual-group-filter>
+            <ual-filter-condition ng-if="!child.children" available-variables="vm.availableVariables" condition="child" operator-group="vm.filters.operator" remove-condition="vm.removeItem($index)" datasource="vm.datasource">
             </ual-filter-condition>
           </li>
         </ul>
