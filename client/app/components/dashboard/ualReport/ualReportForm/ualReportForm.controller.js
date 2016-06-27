@@ -1,11 +1,12 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal) {
     this._state = $state;
     this._rootScope = $rootScope;
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
+    this._ualTimerModal = ualTimerModal;
 
     // SERVICES
     this._service = {
@@ -158,6 +159,10 @@ class UalReportFormController {
           });
       }
     };
+  }
+
+  runReport(){
+    this._ualTimerModal.open();
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {
