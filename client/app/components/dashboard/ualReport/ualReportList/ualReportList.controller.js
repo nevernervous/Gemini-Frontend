@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import myreports from './ualReportList._myreports.html';
+import myreports from './ualReportList.Mine.html';
 
 class UalReportListController {
   /*@ngInject*/

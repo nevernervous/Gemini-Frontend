@@ -1,0 +1,49 @@
+<tr ng-class="{'-selected': vm.isSelected(${item.id})}">
+  <td flex>
+    <ual-checkbox is-checked="vm.isSelected(${item.id})"
+      ng-click="vm.toggleReport(${item.id})">
+    </ual-checkbox>
+    <a id="reportNameItem_${item.id}"
+      ui-sref="dashboard.report-edit({id: ${item.id}})" >
+      ${item.name}
+    </a>
+  </td>
+  <td flex="initial" >
+    <span id="reportDataSourceItem_${item.id}"
+          ng-mouseover="vm.showTooltip('reportDataSourceItem_${item.id}', {text: '${item.dataSourceRefreshDate}'}, 'lastupdated' )" ng-mouseleave="vm.hideTooltip()" >
+      ${item.dataSource}
+    </span>
+  </td>
+  <td flex="none"
+    class="cell-date">
+    {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm':'-0500'}} CT
+  </td>
+  <td flex="none"
+    class="cell-action">
+    <md-button class="md-icon-button"
+      aria-label="Share">
+      <md-icon md-font-icon="Ionicons"
+        class="ion-android-share-alt">
+      </md-icon>
+    </md-button>
+    <md-button class="md-icon-button"
+      aria-label="Download">
+      <md-icon md-font-icon="Ionicons"
+        class="ion-ios-download-outline">
+      </md-icon>
+    </md-button>
+    <md-button class="md-icon-button"
+      aria-label="Copy">
+      <md-icon md-font-icon="Ionicons"
+        class="ion-ios-copy-outline">
+      </md-icon>
+    </md-button>
+    <md-button class="md-icon-button"
+      aria-label="Delete"
+      ng-click="vm.deleteReport(${item.id})">
+      <md-icon md-font-icon="Ionicons"
+        class="ion-android-close">
+      </md-icon>
+    </md-button>
+  </td>
+</tr>

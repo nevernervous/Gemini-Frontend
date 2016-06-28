@@ -23,6 +23,11 @@ h2 {
 md-content {
   background: $color-white;
 }
+
+table { 
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 //@include keyframes-spin();
 
 // *,

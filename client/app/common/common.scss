@@ -169,11 +169,13 @@ $toast-height: rem(5.2);
 $toast-font-size: rem(1.8);
 $toast-font-weight: $font-weight-bold;
 $md-toast-content-padding: 0;
-
+// MATERIAL / TOAST / SUCCESS
 $toast-success-bg-color: $color-success-light;
 $toast-success-color: $color-success-dark;
+// MATERIAL / TOAST / WARNING
 $toast-warning-bg-color: $color-warning-light;
 $toast-warning-color: $color-warning-dark;
+// MATERIAL / TOAST / ERROR
 $toast-error-bg-color: $color-error-light;
 $toast-error-color: $color-error-dark;
 
@@ -228,3 +230,6 @@ $tabs-header-height: rem(3.6);
 $tabs-tab-content-padding: rem(1.8) 0 0 0;
 // MATERIAL / TABS / TAB / ACTIVE
 $tabs-tab-color-active: $color-mine-shaft;
+
+// COMPONENT / TABLE
+$table-font-size: rem(1.6);

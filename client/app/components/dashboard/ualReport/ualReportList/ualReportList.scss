@@ -24,6 +24,14 @@ ual-report-list .list-header {
     margin-left: $report-list-header-actions-separation;
   }
 }
+ual-report-list .list-content {
+  .cell-date {
+    width: 200px;
+  }
+  .cell-action {
+    width: 200px;
+  }
+}
 
 // // LAYOUT
 // ual-report-list {

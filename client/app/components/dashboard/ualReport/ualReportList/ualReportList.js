@@ -14,11 +14,10 @@ let ualReportListModule = angular.module('ualReportList', [
   $stateProvider
     .state('dashboard.report-list', {
       url: '/report/list',
-      template: '<ual-report-list></ual-report-list>'
+      template: '<ual-report-list flex layout="column" layout-fill></ual-report-list>'
     });
 })
 
 .component('ualReportList', ualReportListComponent);
 
 export default ualReportListModule;
-
