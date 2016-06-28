@@ -81,6 +81,8 @@ ual-autocomplete {
 ual-autocomplete {
   .autocomplete-container {
     .autocomplete-item:not(.-disabled) {
+      @include font-clanot-book(14);
+      color: $color06;
       &:hover {
         background-color: $others01;
         @include font-clanot-news(14);

@@ -8,6 +8,7 @@ let ualAutocompleteComponent = {
     onChange: '&?',
     placeholder: "@?",
     selected: "=",
+    order: "<",
     property: "@?",
     list: '='
   },
