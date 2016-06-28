@@ -10,7 +10,7 @@
   <div class="-error" ng-message="required">Select variable</div>
   <div class="-error" ng-message="pattern">Invalid</div>
 </script>
-<form name="filterConditionForm" class="wrapper" ng-class="{'-error': (filterConditionForm.value.$dirty && !filterConditionForm.value.$touched) && !filterConditionForm.value.$valid}" novalidate>
+<form name="filterConditionForm" class="wrapper" ng-class="{'-error': (filterConditionForm.value.$dirty && !filterConditionForm.value.$valid && !!vm.condition.variable)  }" novalidate>
   <div class="section">
     <div class="operator">{{vm.operatorGroup}}</div>
     <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name">
@@ -27,7 +27,6 @@
           <input  ng-trim="false"
                   ng-model="vm.condition.value"
                   name="value"
-                  required
                   ng-pattern="vm.condition.variable.regEx"
                   placeholder="Enter {{ vm.getPlaceholder() }}" ng-blur="vm.trim($event)">
 	        <i class="ion-ios-close-outline"></i>
