@@ -42,7 +42,27 @@
             Export
           </ual-link>
         </div>
-        <div flex></div>
+        <div flex>
+          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button class="md-icon-button md-primary" aria-label="Settings">
+              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button md-accent" aria-label="Favorite">
+              <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More">
+              <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+            </md-button>
+            <md-button href="http://google.com"
+                       title="Launch Google.com in new window"
+                       target="_blank"
+                       aria-label="Google.com"
+                       class="md-icon-button launch" >
+              <md-icon md-font-icon="Ionicons" class="ion-android-share-alt"></md-icon>
+            </md-button>
+            <div class="label">Icon Button</div>
+          </section>
+        </div>
         <span class="list-available-items">
           {{vm.total}} reports available
         </span>
