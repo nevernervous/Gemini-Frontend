@@ -1,6 +1,6 @@
 class UalFilterConditionController {
   /*@ngInject*/
-  constructor($scope, DataSource, $timeout) {
+  constructor($scope, DataSource, $timeout, $filter) {
     this.name = 'ualFilterCondition';
     this.availableVariables;
     this._timeout = $timeout;
@@ -8,6 +8,8 @@ class UalFilterConditionController {
     this.types = ["Value", "Variable"];
     this.operatorsList = ["=", "<", ">", "<>", "in"];
     this._scope = $scope;
+
+    this.filteredVariables = [];
     $scope.$watch((scope) => {
       return scope.vm.datasource
     }, (newValue, oldValue) => {
@@ -15,6 +17,10 @@ class UalFilterConditionController {
         this.getVariables();
       }
     });
+
+    this.secondVariablesFilter = {
+      dataType: ""
+    }
   }
 
   trim($event) {
@@ -47,6 +53,10 @@ class UalFilterConditionController {
         this.availableVariables = [];
       });
   }
+  variableChange(){
+    this.secondVariablesFilter.dataType= this.condition.variable.dataType;
+  }
+
   resetSecond(){
     this.condition.type='Value';
     this.reset();
