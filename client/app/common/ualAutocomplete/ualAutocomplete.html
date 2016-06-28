@@ -5,7 +5,7 @@
     <div class="float-container" click-outside="vm.hide()" outside-if-not="thisDropdown, selected-searchbox, accordion-collapse">
       <span class="autocomplete-list">
           <div class="list-options" >
-            <div class="autocomplete-item" ng-click="vm.select($event, item)" ng-repeat="item in filteredItems = (vm.list | limitTo:vm.limit | filter:vm.filterName | orderBy: vm.order)" >
+            <div class="autocomplete-item" ng-click="vm.select($event, item)" ng-repeat="item in filteredItems = (vm.list | limitTo:vm.limit | filter:vm.filterName)" >
                 {{vm.getText(item)}}
             </div>
             <div class="-empty-result" ng-if="filteredItems.length==0">
