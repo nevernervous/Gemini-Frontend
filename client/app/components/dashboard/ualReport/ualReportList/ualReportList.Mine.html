@@ -1,25 +1,24 @@
 <tr ng-class="{'-selected': vm.isSelected(${item.id})}">
-  <td flex>
+  <td class="cell-check">
     <ual-checkbox is-checked="vm.isSelected(${item.id})"
       ng-click="vm.toggleReport(${item.id})">
     </ual-checkbox>
-    <a id="reportNameItem_${item.id}"
-      ui-sref="dashboard.report-edit({id: ${item.id}})" >
+  </td>
+  <td class="cell-ellipsis">
+    <a arial-label="${item.name}">
       ${item.name}
     </a>
   </td>
-  <td flex="initial" >
+  <td class="cell-nowrap cell-padding">
     <span id="reportDataSourceItem_${item.id}"
           ng-mouseover="vm.showTooltip('reportDataSourceItem_${item.id}', {text: '${item.dataSourceRefreshDate}'}, 'lastupdated' )" ng-mouseleave="vm.hideTooltip()" >
       ${item.dataSource}
     </span>
   </td>
-  <td flex="none"
-    class="cell-date">
+  <td class="cell-date cell-padding">
     {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm':'-0500'}} CT
   </td>
-  <td flex="none"
-    class="cell-action">
+  <td class="cell-action cell-padding cell-right ">
     <md-button class="md-icon-button"
       aria-label="Share">
       <md-icon md-font-icon="Ionicons"

@@ -51,8 +51,8 @@ class ualClusterizeTableDirective {
     let scrollBarAdjust = () =>{
       let tableHeight = $('#scrollArea > table').height();
       let scrollAreaHeight = $('#scrollArea').height();
-      let scrollBarFix = tableHeight > scrollAreaHeight ? 'calc(100% + 20px)' : '100%';
-      $('#scrollArea').css('width',scrollBarFix);
+      //let scrollBarFix = tableHeight > scrollAreaHeight ? 'calc(100% + 20px)' : '100%';
+      //$('#scrollArea').css('width',scrollBarFix);
     }
 
     // COMPILE ANGULAR ROWS

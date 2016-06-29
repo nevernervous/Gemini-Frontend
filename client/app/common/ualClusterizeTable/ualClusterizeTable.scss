@@ -3,16 +3,37 @@
 .ual-clusterize-table {
   font-size: $table-font-size;
   table {
+    table-layout: fixed;
+    word-wrap: break-word;
     width: 100%;
     tr {
       height: 36px;
     }
-
     tr:not(:first-child), thead tr {
       border-top: 1px solid $color08;
     }
     tr:last-child {
       border-bottom: 1px solid $color08;
+    }
+    td {
+      padding-left: 10px;
+    }
+    .cell-ellipsis {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .cell-nowrap {
+      white-space: nowrap;
+    }
+    .cell-padding {
+      padding-left: 36px;
+    }
+    .cell-left {
+      text-align: left;
+    }
+    .cell-right {
+      text-align: right;
     }
   }
 }

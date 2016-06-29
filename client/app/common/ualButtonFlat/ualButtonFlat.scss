@@ -1,0 +1,25 @@
+@import '../common';
+
+.md-button.ual-button-flat {
+  font-size: $button-flat-font-size;
+  padding-left: $button-flat-left-right-padding;
+  padding-right: $button-flat-left-right-padding;
+
+  &.ual-button-flat-icon{
+    padding-left: 0;
+    md-icon {
+      color: $button-flat-icon-color;
+      font-size: 1.4em;
+    }
+  }
+}
+
+.md-button.ual-button-flat:not([disabled]) {
+  color: $button-flat-color;
+}
+.md-button.ual-button-flat:hover:not([disabled]) {
+  color: $button-flat-color-hover;
+}
+.md-button.ual-button-flat[disabled] {
+  color: $button-flat-color-disabled;
+}

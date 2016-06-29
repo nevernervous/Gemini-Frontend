@@ -24,9 +24,12 @@ md-content {
   background: $color-white;
 }
 
-table { 
+table {
   border-collapse: collapse;
   border-spacing: 0;
+  td, th {
+    box-sizing: border-box;
+  }
 }
 //@include keyframes-spin();
 

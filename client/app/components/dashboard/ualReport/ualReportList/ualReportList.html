@@ -26,43 +26,23 @@
         </span>
         <div class="list-selected-action"
           ng-if="vm.selectedReports.length">
-          <ual-link ual-link-icon="ion-ios-trash-outline"
+          <ual-button-flat ual-button-flat-icon="ion-ios-trash-outline"
             arial-label="Delete"
             ng-href="vm.deleteSelected()">
             Delete
-          </ual-link>
-          <ual-link ual-link-icon="ion-ios-copy-outline"
+          </ual-button-flat>
+          <ual-button-flat ual-button-flat-icon="ion-ios-copy-outline"
             arial-label="Copy"
             ng-disabled="true">
             Copy
-          </ual-link>
-          <ual-link ual-link-icon="ion-ios-download-outline"
+          </ual-button-flat>
+          <ual-button-flat ual-button-flat-icon="ion-ios-download-outline"
             arial-label="Export"
             ng-disabled="true">
             Export
-          </ual-link>
+          </ual-button-flat>
         </div>
-        <div flex>
-          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-            <md-button class="md-icon-button md-primary" aria-label="Settings">
-              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button md-accent" aria-label="Favorite">
-              <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="More">
-              <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-            </md-button>
-            <md-button href="http://google.com"
-                       title="Launch Google.com in new window"
-                       target="_blank"
-                       aria-label="Google.com"
-                       class="md-icon-button launch" >
-              <md-icon md-font-icon="Ionicons" class="ion-android-share-alt"></md-icon>
-            </md-button>
-            <div class="label">Icon Button</div>
-          </section>
-        </div>
+        <div flex></div>
         <span class="list-available-items">
           {{vm.total}} reports available
         </span>
@@ -76,10 +56,27 @@
           on-scroll="vm.hideTooltip()">
           <thead>
             <tr>
-              <th class="-expand -left -{{vm.orders['name'].direction[0]}}" ng-class="{'-order': (vm.order == 'name')}" ng-click="vm.orderBy('name')">Report name<i></i></th>
-              <th class="-shrink -left -{{vm.orders['dataSource'].direction[0]}}" ng-class="{'-order': (vm.order == 'dataSource')}" ng-click="vm.orderBy('dataSource')">Data source<i></i></th>
-              <th class="-date -left -{{vm.orders['modificationDate'].direction[0]}}" ng-class="{'-order': (vm.order == 'modificationDate')}" ng-click="vm.orderBy('modificationDate')">Last modification date<i></i></th>
-              <th class="-actions"></th>
+              <th class="cell-check"></th>
+              <th
+                class="cell-left cell-padding -{{vm.orders['name'].direction[0]}}"
+                ng-class="{'-order': (vm.order == 'name')}"
+                ng-click="vm.orderBy('name')">
+                Report name<i></i>
+              </th>
+              <th
+                class="cell-left cell-padding -{{vm.orders['dataSource'].direction[0]}}"
+                ng-class="{'-order': (vm.order == 'dataSource')}"
+                ng-click="vm.orderBy('dataSource')">
+                Data source<i></i>
+              </th>
+              <th
+                class="cell-date cell-left cell-padding -{{vm.orders['modificationDate'].direction[0]}}"
+                ng-class="{'-order': (vm.order == 'modificationDate')}"
+                ng-click="vm.orderBy('modificationDate')">
+                Last modification date<i></i>
+              </th>
+              <th class="cell-action cell-right">
+              </th>
             </tr>
           </thead>
         </table>

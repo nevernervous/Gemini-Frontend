@@ -1,16 +1,16 @@
-import UalLinkModule from './ualLink'
-import UalLinkController from './ualLink.controller';
-import UalLinkComponent from './ualLink.component';
-import UalLinkTemplate from './ualLink.html';
+import UalButtonFlatModule from './ualButtonFlat'
+import UalButtonFlatController from './ualButtonFlat.controller';
+import UalButtonFlatComponent from './ualButtonFlat.component';
+import UalButtonFlatTemplate from './ualButtonFlat.html';
 
-describe('UalLink', () => {
+describe('UalButtonFlat', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalLinkModule.name));
+  beforeEach(window.module(UalButtonFlatModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalLinkController();
+      return new UalButtonFlatController();
     };
   }));
 

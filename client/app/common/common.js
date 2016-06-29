@@ -28,12 +28,13 @@ import ualDroppable from './ualDroppable/ualDroppable';
 import ualLoading from './ualLoading/ualLoading';
 import ualToast from './ualToast/ualToast';
 import ualButton from './ualButton/ualButton';
+import ualButtonFlat from './ualButtonFlat/ualButtonFlat';
 import ualInput from './ualInput/ualInput';
 import ualMenuitem from './ualMenuitem/ualMenuitem';
 import ualListitem from './ualListitem/ualListitem';
 import ualDialog from './ualDialog/ualDialog';
 import ualTabs from './ualTabs/ualTabs';
-import ualLink from './ualLink/ualLink';
+
 
 let commonModule = angular.module('app.common', [
   ngAnimate,
@@ -62,14 +63,14 @@ let commonModule = angular.module('app.common', [
 
   // MATERIAL
   ualButton.name,
+  ualButtonFlat.name,
   ualInput.name,
   ualLoading.name,
   ualToast.name,
   ualMenuitem.name,
   ualListitem.name,
   ualDialog.name,
-  ualTabs.name,
-  ualLink.name
+  ualTabs.name
 ])
 .config(($mdThemingProvider) => {
   "ngInject";

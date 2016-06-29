@@ -13,6 +13,7 @@ ual-report-list {
 
 ual-report-list .list-header {
   font-size: $report-list-header-font-size;
+  height: 34px;
 
   .list-selected-item,
   .list-available-items {
@@ -25,11 +26,21 @@ ual-report-list .list-header {
   }
 }
 ual-report-list .list-content {
+  .cell-check {
+    width: 20px;
+    max-width: 20px;
+  }
   .cell-date {
-    width: 200px;
+    width: 240px;
+    max-width: 240px;
   }
   .cell-action {
-    width: 200px;
+    width: 220px;
+    max-width: 220px;
+  }
+  .cell-action .md-button {
+    margin: 0;
+    font-size: 20px;
   }
 }
 

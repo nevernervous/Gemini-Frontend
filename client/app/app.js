@@ -36,9 +36,9 @@ import Clusterize from 'clusterize.js';
 import dotdotdot from 'jquery.dotdotdot';
 import selectionModel from 'selection-model';
 
+import 'normalize.css';
 import './common/fonts/clanot/clanot.scss';
 import './app.scss';
-//import 'normalize.css';
 
 window.$ = $;
 window.jQuery = $;
