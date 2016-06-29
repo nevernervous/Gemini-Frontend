@@ -54,7 +54,9 @@ class UalFilterConditionController {
       });
   }
   variableChange(){
-    this.secondVariablesFilter.dataType= this.condition.variable.dataType;
+    console.log(this.secondVariablesFilter);
+    console.log(this.condition.variable);
+//    this.secondVariablesFilter.dataType= this.condition.variable.dataType;
   }
 
   resetSecond(){

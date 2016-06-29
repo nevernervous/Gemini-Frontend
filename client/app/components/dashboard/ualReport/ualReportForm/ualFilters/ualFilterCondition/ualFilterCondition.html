@@ -13,8 +13,7 @@
 <form name="filterConditionForm" class="wrapper" ng-class="{'-error': (filterConditionForm.value.$dirty && !filterConditionForm.value.$touched) && !filterConditionForm.value.$valid}" novalidate>
   <div class="section">
     <div class="operator">{{vm.operatorGroup}}</div>
-    {{vm.condition.variable.dataType}}
-    <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name" on-change="vm.variableChange">
+    <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name" on-change="vm.variableChange()">
       <!--this component will change on US - CR1.24-->
     </ual-autocomplete>
     <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator"  on-change="vm.resetSecond()">
