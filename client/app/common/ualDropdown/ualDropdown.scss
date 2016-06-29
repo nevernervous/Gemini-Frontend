@@ -18,6 +18,9 @@ ual-dropdown {
           width: 80%;
         }
         vertical-align: middle;
+        @include -ms-browser() {
+          padding-top: 1px;
+        }
       }
       .icon {
         float: right;
