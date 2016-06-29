@@ -18,6 +18,17 @@ let servicesTransform = function ($http) {
       let result = _.sortByOrder(response, options.attributes, options.direction);
 
       return result;
+    },
+    sortbyorder: (response)=> {
+      var options = {
+        attributes: ['order'],
+        direction: ['asc']
+      };
+      response = response ? response.data : response;
+      let result = _.sortByOrder(response, options.attributes, options.direction);
+
+      return result;
+
     }
   }
 
