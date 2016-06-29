@@ -1,7 +1,7 @@
 @import '../components';
 
 .section-dashboard {
-  height: calc(100vh - #{$toolbar-tools-height});
+  height: calc(100vh - #{$section-dashboard-vh});
 
   .content-dashboard {
     background-color: $content-dashboard-bg-color;

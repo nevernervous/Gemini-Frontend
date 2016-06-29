@@ -6,7 +6,7 @@
     width: calc(100% - #{$scroll-bar-width});
   }
   .clusterize-scroll {
-    height: calc(100% - 36px);
+    height: calc(100% - #{$table-row-height});
     overflow-y: auto;
     padding-right: $scroll-bar-width;
   }
@@ -16,13 +16,13 @@
     word-wrap: break-word;
     width: 100%;
     tr {
-      height: 36px;
+      height: $table-row-height;
     }
     tr:not(:first-child), thead tr {
-      border-top: 1px solid $color08;
+      border-top: 1px solid $table-lines-color;
     }
     tr:last-child {
-      border-bottom: 1px solid $color08;
+      border-bottom: 1px solid $table-lines-color;
     }
     .cell-ellipsis {
       overflow: hidden;
@@ -33,7 +33,7 @@
       white-space: nowrap;
     }
     .cell-padding {
-      padding-left: 36px;
+      padding-left: $table-row-height;
     }
     .cell-center {
       text-align: center;
@@ -43,6 +43,18 @@
     }
     .cell-right {
       text-align: right;
+    }
+  }
+
+  .clusterize-content tr:hover,
+  .clusterize-content tr.row-selected {
+    background-color: $table-row-selected-color;
+  }
+  .clusterize-content {
+    tr.row-selected + tr.row-selected,
+    tr:hover + tr.row-selected,
+    tr.row-selected + tr:hover {
+      border-top: 1px solid $color-white;
     }
   }
 

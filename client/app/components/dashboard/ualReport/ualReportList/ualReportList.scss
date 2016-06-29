@@ -2,19 +2,19 @@
 
 ual-report-list {
   .button-create {
-    width: 200px;
+    width: $report-button-width;
   }
 
   // FIX: TAB MAX WIDTH INCREASE A LITTLE BIT TO PREVENT VISUAL ERROR
   md-tabs .md-tab:last-child {
-    min-width: 170px;
+    min-width: $report-tabs-width;
   }
 }
 
 ual-report-list .list-header {
   font-size: $report-list-header-font-size;
-  margin-top: 20px;
-  height: 34px;
+  margin-top: $report-list-header-margin-top;
+  height: $report-list-header-height;
 
   .list-selected-item,
   .list-available-items {
@@ -27,23 +27,16 @@ ual-report-list .list-header {
   }
 }
 ual-report-list .list-content {
-  margin-top: 10px;
-  height: calc(100vh - 264px);
+  margin-top: $report-list-content-margin-top;
+  height: calc(100vh - #{$report-list-content-vh});
   .ual-clusterize-table {
     height: 100%;
     width: calc(100% + #{$scroll-bar-width});
   }
-  // 10px margin-top
-  // 34px list-header height
-  // 20px list-header marting-top
-  // 36px tabs height
-  // 26px dashboard-body margin-top
-  // 34px header-dashboard height
-  // 26px content-dashboard height
-  // 52px navbar
+
   .cell-check {
-    width: 36px;
-    max-width: 36px;
+    width: $report-list-content-row-height;
+    max-width: $report-list-content-row-height;
   }
   .cell-date {
     width: 240px;
@@ -57,10 +50,10 @@ ual-report-list .list-content {
   }
   .cell-action .md-button {
     margin: 0;
-    font-size: 20px;
+    font-size: $report-list-content-button-size;
     padding: 0;
-    width: 36px;
-    height: 36px;
+    width: $report-list-content-row-height;
+    height: $report-list-content-row-height;
   }
 }
 

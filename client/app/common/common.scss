@@ -81,6 +81,7 @@ $color-astral: #3271B1;
 $color-danube: #6F9BC8;
 $color-periwinkle-gray: #C1D4E7;
 $color-oslo-gray: #878F94;
+$color-blizzard-blue: #BFDDF3;
 
 // COLOR / STATUS
 $color-success-dark:  $color-goblin;
@@ -234,3 +235,8 @@ $tabs-tab-color-active: $color-mine-shaft;
 
 // COMPONENT / TABLE
 $table-font-size: rem(1.6);
+$table-action-size: rem(2.0);
+$table-lines-color: $color-alto;
+// COMPONENT / TABLE / ROW / SELECTED
+$table-row-height: rem(3.6);
+$table-row-selected-color: $color-blizzard-blue;

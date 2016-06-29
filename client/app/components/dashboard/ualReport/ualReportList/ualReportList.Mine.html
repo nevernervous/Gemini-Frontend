@@ -1,4 +1,4 @@
-<tr ng-class="{'-selected': vm.isSelected(${item.id})}">
+<tr ng-class="{'row-selected': vm.isSelected(${item.id})}">
   <td class="cell-check cell-center">
     <ual-checkbox is-checked="vm.isSelected(${item.id})"
       ng-click="vm.toggleReport(${item.id})">
