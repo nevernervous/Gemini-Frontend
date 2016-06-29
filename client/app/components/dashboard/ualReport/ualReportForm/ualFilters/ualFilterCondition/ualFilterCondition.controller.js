@@ -17,10 +17,6 @@ class UalFilterConditionController {
         this.getVariables();
       }
     });
-
-    this.secondVariablesFilter = {
-      dataType: ""
-    }
   }
 
   trim($event) {
@@ -48,19 +44,23 @@ class UalFilterConditionController {
     this._datasourceService.variables(this.datasource)
       .then(response => {
         this.availableVariables = response.data;
+        this.filteredAvaiableVariables = [];
       },
       error => {
         this.availableVariables = [];
+        this.filteredAvaiableVariables = [];
       });
   }
-  variableChange(){
-    console.log(this.secondVariablesFilter);
-    console.log(this.condition.variable);
-//    this.secondVariablesFilter.dataType= this.condition.variable.dataType;
+  variableChange(oldValue,newValue){
+    this.filteredAvaiableVariables = _.filter(this.availableVariables, (variable)=>{
+      return newValue.dataType == variable.dataType;
+    });
+    this.condition.operator= this.operatorsList[0] ;
+    this.resetSecond();
   }
 
   resetSecond(){
-    this.condition.type='Value';
+    this.condition.type= this.types[0];
     this.reset();
   }
   reset() {
