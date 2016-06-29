@@ -35,6 +35,7 @@ import 'angular-q-spread/src/q-spread';
 import Clusterize from 'clusterize.js';
 import dotdotdot from 'jquery.dotdotdot';
 import selectionModel from 'selection-model';
+import angularScroll from 'angular-scroll';
 
 import './common/fonts/clanot/clanot.scss';
 
@@ -48,6 +49,7 @@ window.Clusterize = Clusterize;
 angular.module('app', [
   '$q-spread',
   'angular-click-outside',
+  'duScroll',
   uiRouter,
   Constants.name,
   Common.name,

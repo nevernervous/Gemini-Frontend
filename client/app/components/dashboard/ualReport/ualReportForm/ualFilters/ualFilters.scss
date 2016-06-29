@@ -9,6 +9,9 @@ ual-filters {
   .-filter-container {
     min-height: 80%;
     height: 100%;
+    ual-group-filter{
+      height: 90%;
+    }
     .-condition-container {
       width: 100%;
       .-code {

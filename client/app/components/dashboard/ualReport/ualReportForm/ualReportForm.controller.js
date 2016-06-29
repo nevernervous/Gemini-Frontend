@@ -1,8 +1,9 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal,$scope, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal) {
     this._state = $state;
     this._rootScope = $rootScope;
+    this._scope = $scope;
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
@@ -93,11 +94,11 @@ class UalReportFormController {
 
   $postLink() {
     this._scope.$watch((scope) => {
-      return this._scope.filterConditionForm.$valid;
+      return this._scope.reportForm.$valid;
     }, (newValue, oldValue) => {
-      let filters = this.filters.get();
-      filters.$valid = this._scope.filterConditionForm.$valid;
-      this.filters.set(filters);
+      let filters = this.report.filters.get();
+      filters.$valid = this._scope.reportForm.$valid;
+      this.report.filters.set(filters);
     });
   }
 
@@ -176,7 +177,14 @@ class UalReportFormController {
     if (isValid) {
       this._ualTimerModal.open();
     } else {
-      form;
+      _.forEach(form.$error, (errorType) => {
+        _.forEach(errorType, (item) => {
+          item.$setDirty();
+        });
+      });
+      let firstError = $('input.ng-invalid:first');
+      angular.element($('ual-filters')).scrollTo(firstError);
+      firstError.focus();
     }
   }
 
