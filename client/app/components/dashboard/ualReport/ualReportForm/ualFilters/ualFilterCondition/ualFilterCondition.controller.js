@@ -1,12 +1,14 @@
 class UalFilterConditionController {
   /*@ngInject*/
-  constructor($scope, DataSource, $timeout) {
+  constructor($scope, DataSource, $timeout, Operator) {
     this.name = 'ualFilterCondition';
     this.availableVariables;
     this._timeout = $timeout;
     this._datasourceService = DataSource;
+    this._operatorService=Operator;
     this.types = ["Value", "Variable"];
-    this.operatorsList = ["=", "<", ">", "<>", "in"];
+    this.operatorsList = [{'operator':"="}];
+    this.disableAsignation=false;
     this._scope = $scope;
     $scope.$watch((scope) => {
       return scope.vm.datasource
@@ -17,12 +19,12 @@ class UalFilterConditionController {
     });
   }
 
-  trim($event) {
+  trim($event,model) {
     this._timeout(() => {
       let $target = $($event.target);
       let value = _.trim($target.val());
       $target.val(value);
-      this.condition.value = value;
+      model = value;
     });
   }
 
@@ -36,6 +38,7 @@ class UalFilterConditionController {
 
   $onInit() {
     this.getVariables();
+    this.getAllOperators();
   }
 
   getVariables() {
@@ -46,6 +49,35 @@ class UalFilterConditionController {
       error => {
         this.availableVariables = [];
       });
+  }
+  getAllOperators(){
+    this._operatorService.all().then(response => {
+      this._allOperators=response.data;
+      this.operatorsList=this._allOperators['String'];
+    },
+    error => {
+      this.operatorsList=[];
+    });
+  }
+
+  onVariableChange(){
+    this._timeout(() => {
+      this.getOperatorListByVariableType(this.condition.variable.dataType);
+    });
+  }
+
+  getOperatorListByVariableType(dataType){
+    this.operatorsList=this._allOperators[dataType];
+    this.condition.operator = {'operator':"="};
+    this.changeOperator();
+  }
+
+  changeOperator(){
+    this._timeout(() => {
+      console.log("changeoperator",this.condition.operator);
+      this.disableAsignation=(this.condition.operator.id===15 || this.condition.operator.id===17);
+      this.extraField=this.condition.operator.id==9;
+    });
   }
 
   reset() {

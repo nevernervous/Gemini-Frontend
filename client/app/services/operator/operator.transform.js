@@ -6,11 +6,10 @@ let operatorTransform = function() {
     let _transformation = {
         grouped: (response) => {
           let operatorList={};
-          _.each(response, (item) => {
+          _.each(response.data, (item) => {
            operatorList[item.dataType.description]=item.filterOperators;
           });
           return operatorList;
-
         }
     }
 

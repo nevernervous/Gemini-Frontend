@@ -17,7 +17,7 @@ class UalGroupFilterController {
   addChildren() {
     this.filters.children.push({
       "variable": null,
-      "operator": "=",
+      "operator": {"operator":"="},
       "type": "Value",
       "value": null
     });
