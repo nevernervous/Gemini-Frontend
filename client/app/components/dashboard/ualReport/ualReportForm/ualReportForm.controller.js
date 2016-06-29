@@ -183,7 +183,7 @@ class UalReportFormController {
         });
       });
       let firstError = $('input.ng-invalid:first');
-      angular.element($('ual-filters')).scrollTo(firstError);
+      angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
       firstError.focus();
     }
   }
