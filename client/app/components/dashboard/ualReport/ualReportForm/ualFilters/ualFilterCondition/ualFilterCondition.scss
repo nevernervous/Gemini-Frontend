@@ -4,22 +4,23 @@ ual-filter-condition {
   display: block;
   >.wrapper {
     margin-left: 0px !important;
-    @include gridle(row row-align);
-    >.section {
-      @include gridle(6);
-      display: flex;
-      @include gridle(row row-align start);
-      padding: 0 10px;
+    @include gridle(row row-align between);
+    display: flex;
+    width: 75%;
       >.operator {
-        // margin : 0 16px;
+        padding-left: 15px;
         height: 37px;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 72px;
+        @include -ms-browser() {
+          padding-left: 20px;
+          margin-right: -20px;
+        }
       }
       >.value {
-        @include gridle(6);
+        @include gridle(3);
+        padding: 0px;
         >.-input {
           display: flex;
           align-items: center;
@@ -48,15 +49,17 @@ ual-filter-condition {
         }
       }
       >ual-dropdown {
-        @include gridle(6);
+        @include gridle(3);
         &.short-field {
-          @include gridle(3);
+          padding: 0px;
+          @include gridle(1.5);
         }
       }
       >ual-autocomplete {
-        @include gridle(6);
+        padding: 0px;
+        @include gridle(3);
         &.short-field {
-          @include gridle(3);
+          @include gridle(1.5);
         }
         ual-input label {
           padding: 3px 2px;
@@ -72,7 +75,6 @@ ual-filter-condition {
         display: flex;
         align-items: center;
       }
-    }
   }
 }
 
