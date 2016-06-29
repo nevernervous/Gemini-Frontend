@@ -2,6 +2,15 @@
 
 .ual-clusterize-table {
   font-size: $table-font-size;
+  .clusterize-header {
+    width: calc(100% - #{$scroll-bar-width});
+  }
+  .clusterize-scroll {
+    height: calc(100% - 36px);
+    overflow-y: auto;
+    padding-right: $scroll-bar-width;
+  }
+
   table {
     table-layout: fixed;
     word-wrap: break-word;
@@ -15,9 +24,6 @@
     tr:last-child {
       border-bottom: 1px solid $color08;
     }
-    td {
-      padding-left: 10px;
-    }
     .cell-ellipsis {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -29,6 +35,9 @@
     .cell-padding {
       padding-left: 36px;
     }
+    .cell-center {
+      text-align: center;
+    }
     .cell-left {
       text-align: left;
     }
@@ -36,6 +45,7 @@
       text-align: right;
     }
   }
+
 }
 //   thead > tr {
 //     border-bottom: 1px solid $color08;

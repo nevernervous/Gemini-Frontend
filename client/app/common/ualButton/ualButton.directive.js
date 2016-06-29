@@ -12,7 +12,7 @@ class ualButtonDirective {
         const theme = attr.ualButton || 'primary';
         const themeClass = ` md-${theme}`;
         const sizeClass = attr.ualButtonSize ? ' ual-button-' + attr.ualButtonSize : '';
-        el.addClass('ual-button md-raised md-primary' + themeClass + sizeClass);
+        el.addClass('ual-button md-raised' + themeClass + sizeClass);
       }
     }
   }

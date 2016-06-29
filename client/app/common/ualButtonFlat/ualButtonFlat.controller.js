@@ -1,4 +1,4 @@
-class ualLinkController {
+class ualButtonFlatController {
   /*@ngInject*/
   constructor() {
 
@@ -6,4 +6,4 @@ class ualLinkController {
 
 }
 
-export default ualLinkController;
+export default ualButtonFlatController;

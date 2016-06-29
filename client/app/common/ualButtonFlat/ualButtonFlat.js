@@ -1,8 +1,8 @@
 import angular from 'angular';
-import ualLinkDirective from './ualLink.directive';
+import ualButtonFlatDirective from './ualButtonFlat.directive';
 
-let ualLinkModule = angular.module('ualLink', [])
+let ualButtonFlatModule = angular.module('ualButtonFlat', [])
 
-.directive('ualLink', () => new ualLinkDirective());
+.directive('ualButtonFlat', () => new ualButtonFlatDirective());
 
-export default ualLinkModule;
+export default ualButtonFlatModule;

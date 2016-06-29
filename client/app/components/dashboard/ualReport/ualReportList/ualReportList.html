@@ -58,16 +58,16 @@
             <tr>
               <th class="cell-check"></th>
               <th
-                class="cell-left cell-padding -{{vm.orders['name'].direction[0]}}"
+                class="cell-left -{{vm.orders['name'].direction[0]}}"
                 ng-class="{'-order': (vm.order == 'name')}"
                 ng-click="vm.orderBy('name')">
                 Report name<i></i>
               </th>
               <th
-                class="cell-left cell-padding -{{vm.orders['dataSource'].direction[0]}}"
+                class="cell-shrink cell-left cell-padding -{{vm.orders['dataSource'].direction[0]}}"
                 ng-class="{'-order': (vm.order == 'dataSource')}"
                 ng-click="vm.orderBy('dataSource')">
-                Data source<i></i>
+                <span>Data source</span>
               </th>
               <th
                 class="cell-date cell-left cell-padding -{{vm.orders['modificationDate'].direction[0]}}"

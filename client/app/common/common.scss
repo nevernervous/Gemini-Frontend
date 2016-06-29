@@ -106,6 +106,7 @@ $color-error-light: $color-cupid;
 $baseline-grid: 6px;
 $layout-left-right-padding: rem(4.6);
 $layout-top-bottom-padding: rem(2.6);
+$scroll-bar-width: 17px;
 
 // MATERIAL / FONTS
 $font-family: 'ClanOT', sans-serif;
@@ -140,13 +141,13 @@ $button-large-loading-size: rem(3.0);
 // MATERIAL / BUTTON / ICON
 $icon-button-margin-offset: 0;
 
-// MATERIAL / LINK (BUTTON)
-$link-font-size: rem(1.6);
-$link-left-right-padding: rem(0.5);
-$link-color: $color-astral;
-$link-color-hover: $color-danube;
-$link-color-disabled: $color-periwinkle-gray;
-$link-icon-color: $color-oslo-gray;
+// MATERIAL / BUTTON / FLAT
+$button-flat-font-size: rem(1.6);
+$button-flat-left-right-padding: rem(0.5);
+$button-flat-color: $color-astral;
+$button-flat-color-hover: $color-danube;
+$button-flat-color-disabled: $color-periwinkle-gray;
+$button-flat-icon-color: $color-oslo-gray;
 
 // MATERIAL / PROGRESS
 $loading-disabled-color: $font-disabled-color;

@@ -1,9 +1,9 @@
-import template from './ualLink.html';
-import controller from './ualLink.controller';
-import './ualLink.scss';
+import template from './ualButtonFlat.html';
+import controller from './ualButtonFlat.controller';
+import './ualButtonFlat.scss';
 
 
-class ualLinkDirective {
+class ualButtonFlatDirective {
   /*@ngInject*/
   constructor() {
     this.restrict = 'E';
@@ -11,7 +11,7 @@ class ualLinkDirective {
     this.template = template;
     this.controller = controller;
     this.scope = {
-      icon: '@ualLinkIcon',
+      icon: '@ualButtonFlatIcon',
       ariaLabel: '@',
       onClick: '&ngHref',
       isDisabled: '=ngDisabled'
@@ -23,4 +23,4 @@ class ualLinkDirective {
   }
 }
 
-export default ualLinkDirective;
+export default ualButtonFlatDirective;

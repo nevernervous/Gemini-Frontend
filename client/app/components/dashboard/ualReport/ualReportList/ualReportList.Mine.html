@@ -1,5 +1,5 @@
 <tr ng-class="{'-selected': vm.isSelected(${item.id})}">
-  <td class="cell-check">
+  <td class="cell-check cell-center">
     <ual-checkbox is-checked="vm.isSelected(${item.id})"
       ng-click="vm.toggleReport(${item.id})">
     </ual-checkbox>
@@ -9,11 +9,8 @@
       ${item.name}
     </a>
   </td>
-  <td class="cell-nowrap cell-padding">
-    <span id="reportDataSourceItem_${item.id}"
-          ng-mouseover="vm.showTooltip('reportDataSourceItem_${item.id}', {text: '${item.dataSourceRefreshDate}'}, 'lastupdated' )" ng-mouseleave="vm.hideTooltip()" >
-      ${item.dataSource}
-    </span>
+  <td class="cell-shrink cell-nowrap cell-padding">
+    <span>${item.dataSource}</span>
   </td>
   <td class="cell-date cell-padding">
     {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm':'-0500'}} CT

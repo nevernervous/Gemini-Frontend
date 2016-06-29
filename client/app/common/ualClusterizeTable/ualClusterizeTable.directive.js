@@ -31,37 +31,32 @@ class ualClusterizeTableDirective {
     $('.clusterize-scroll .empty').html(attr.emptyMessage);
 
     // let onScroll = ctrl._compile(onScroll)($scope);
-    $('.clusterize-scroll') .on( "scroll", () => {
-      $scope.$apply(attr.onScroll);
-    });
+    // $('.clusterize-scroll') .on( "scroll", () => {
+    //   $scope.$apply(attr.onScroll);
+    // });
 
     // ADJUST COLUMNS HEADERS WIDTH
-    let resize = (clazz, action) => {
-      let header = $('#headersArea tr th.' + clazz);
-      let style = (action === 'min') ? 'max-width' : 'min-width';
+    const resize = () => {
+      const max = _.chain($('.ual-clusterize-table tr .cell-shrink span'))
+        .map(cell => $(cell).outerWidth())
+        .max()
+        .value() + 36; // 36 px padding
 
-      let row = $('#contentArea tr td.' + clazz);
-      if ( row.outerWidth() ) {
-        let size = Math[action](header.outerWidth(), row.outerWidth());
-        header.css(style, size+'px');
-        row.css(style, size+'px');
-      }
+      $('.ual-clusterize-table tr .cell-shrink').css('width', max + 'px');
     }
-
-    let scrollBarAdjust = () =>{
-      let tableHeight = $('#scrollArea > table').height();
-      let scrollAreaHeight = $('#scrollArea').height();
-      //let scrollBarFix = tableHeight > scrollAreaHeight ? 'calc(100% + 20px)' : '100%';
-      //$('#scrollArea').css('width',scrollBarFix);
-    }
+    //
+    // let scrollBarAdjust = () =>{
+    //   let tableHeight = $('#scrollArea > table').height();
+    //   let scrollAreaHeight = $('#scrollArea').height();
+    //   //let scrollBarFix = tableHeight > scrollAreaHeight ? 'calc(100% + 20px)' : '100%';
+    //   //$('#scrollArea').css('width',scrollBarFix);
+    // }
 
     // COMPILE ANGULAR ROWS
-    let recompile = () => {
+    const recompile = () => {
       let content_elem = angular.element(clusterize.content_elem);
       ctrl._compile(content_elem.contents())($scope);
-      resize('-shrink', 'max');
-      resize('-expand', 'min');
-      scrollBarAdjust();
+      resize();
     }
 
     // WATCH ROWS CHANGES
