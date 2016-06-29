@@ -1,6 +1,6 @@
 class UalFilterConditionController {
   /*@ngInject*/
-  constructor($scope, DataSource, $timeout, $filter) {
+  constructor($scope, DataSource, $timeout) {
     this.name = 'ualFilterCondition';
     this.availableVariables;
     this._timeout = $timeout;
