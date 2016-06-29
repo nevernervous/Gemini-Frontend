@@ -14,6 +14,8 @@ class UalGroupFilterController {
     this.filters.not = !this.filters.not;
   }
 
+
+
   addChildren() {
     this.filters.children.push({
       "variable": null,

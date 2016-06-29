@@ -5,6 +5,7 @@ class UalFiltersController {
     this.availableVariables;
     this._datasourceService = DataSource;
     this._filters = this.filters.get();
+
     $scope.$watch((scope) => {
       return scope.vm._filters
     }, (newValue, oldValue) => {

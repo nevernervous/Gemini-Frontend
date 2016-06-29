@@ -35,11 +35,13 @@
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Limits: <strong><span ng-show="!vm.report.filters.hasValues()">No limits</span> <span ng-show="vm.report.filters.hasValues()">Limits</span> </strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>
-        <ual-filters datasource="vm.report.datasource.get()" filters="vm.report.filters"></ual-filters>
+        <!--<form name="filterConditionForm" novalidate>-->
+          <ual-filters datasource="vm.report.datasource.get()" filters="vm.report.filters"></ual-filters>
+        <!--</form>-->
       </ual-accordion-content>
     </ual-accordion>
   </ual-accordion-group>
   <div class="run-section">
-    <ual-button class="run-button -primary" ng-click="vm.runReport()">Run report</ual-button>
+    <ual-button class="run-button -primary" ng-disabled="!vm.enableRun()" ng-click="vm.runReport(filterConditionForm)">Run report</ual-button>
   </div>
 </div>

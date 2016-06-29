@@ -91,6 +91,16 @@ class UalReportFormController {
     return;
   }
 
+  $postLink() {
+    this._scope.$watch((scope) => {
+      return this._scope.filterConditionForm.$valid;
+    }, (newValue, oldValue) => {
+      let filters = this.filters.get();
+      filters.$valid = this._scope.filterConditionForm.$valid;
+      this.filters.set(filters);
+    });
+  }
+
   // INIT
   $onInit() {
     let reportId = this._state.params["id"];
@@ -161,8 +171,17 @@ class UalReportFormController {
     };
   }
 
-  runReport(){
-    this._ualTimerModal.open();
+  runReport(form) {
+    let isValid = this.report.isValid();
+    if (isValid) {
+      this._ualTimerModal.open();
+    } else {
+      form;
+    }
+  }
+
+  enableRun() {
+    return !!this.report.datasource.get() && this.report.filters.hasValues() && (this.report.variables.hasValues() || this.report.aggregators.hasValues());
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {

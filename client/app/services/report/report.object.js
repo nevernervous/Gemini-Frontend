@@ -156,7 +156,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     object.aggregators = value;
     touched = hasReportChange();
   }
-  let hasValuesAggregators = () => {
+  let hasAggregatorsValues = () => {
     return !!object.aggregators && object.aggregators.length > 0;
   }
 
@@ -169,7 +169,19 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     return !!object.filters && object.filters.children.length > 0;
   }
 
+  let validate = function (result, item) {
+    result = result || true;
+    if (item.hasOwnProperty("children")) {
+      result = result && item.children.reduce(validate);
+    } else {
+      result = result && item.isValid;
+    }
+    return result;
+  };
 
+  let isValid = () => {
+    return (hasFilterValues && object.filters.$valid && (hasAggregatorsValues || hasVariablesValues));
+  }
 
   let isEmptyName = () => {
     return !object.name || _.isEmpty(object.name);
@@ -223,13 +235,14 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     aggregators: {
       get: getAggregators,
       set: setAggregators,
-      hasValues: hasValuesAggregators
+      hasValues: hasAggregatorsValues
     },
     filters: {
       get: getFilters,
       set: setFilters,
       hasValues: hasFilterValues
-    }
+    },
+    isValid
   };
 };
 export default reportObjectService;

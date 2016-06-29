@@ -1,21 +1,10 @@
-<script type="text/ng-template" id="text-messages">
-  <div class="-error" ng-message="required">Invalid {{!!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }} format</div>
-  <div class="-error" ng-message="pattern">Invalid {{!!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }} format</div>
-</script>
-<script type="text/ng-template" id="number-messages">
-  <div class="-error" ng-message="required">Numeric value expected</div>
-  <div class="-error" ng-message="pattern">Numeric value expected</div>
-</script>
-<script type="text/ng-template" id="default-messages">
-  <div class="-error" ng-message="required">Select variable</div>
-  <div class="-error" ng-message="pattern">Invalid</div>
-</script>
-<form name="filterConditionForm" class="wrapper" ng-class="{'-error': (filterConditionForm.value.$dirty && !filterConditionForm.value.$touched) && !filterConditionForm.value.$valid}" novalidate>
+<ng-form name="filterCondition" class="wrapper" ng-class="{'-error': filterCondition.$dirty && !filterCondition.$valid}" novalidate>
   <div class="section">
     <div class="operator">{{vm.operatorGroup}}</div>
     <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name">
       <!--this component will change on US - CR1.24-->
     </ual-autocomplete>
+    <!--<pre>{{vm.condition | json}}</pre>-->
     <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator">
     </ual-dropdown>
   </div>
@@ -32,17 +21,14 @@
                   placeholder="Enter {{ vm.getPlaceholder() }}" ng-blur="vm.trim($event)">
 	        <i class="ion-ios-close-outline"></i>
         </label>
-      <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterConditionForm.value.$dirty"
-              for="filterConditionForm.value.$error">
+        <!--<pre>{{filterCondition | json}}</pre>-->
+      <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterCondition.value.$dirty"
+              for="filterCondition.value.$error">
         <div ng-messages-include="text-messages"></div>
       </ng-messages>
-      <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.value.$dirty"
-              for="filterConditionForm.value.$error">
+      <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterCondition.value.$dirty"
+              for="filterCondition.value.$error">
         <div ng-messages-include="number-messages"></div>
-      </ng-messages>
-      <ng-messages ng-if="!vm.condition.variable  && (filterConditionForm.value.$dirty && !filterConditionForm.value.$touched)"
-              for="filterConditionForm.value.$error">
-        <div ng-messages-include="default-messages"></div>
       </ng-messages>
     </div>
     <ual-autocomplete ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.value" property="name">
@@ -51,4 +37,4 @@
     <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
     </ual-action-label>
   </div>
-</form>
+</ng-form>

@@ -49,7 +49,7 @@ class UalFilterConditionController {
   }
 
   reset() {
-    this._scope.filterConditionForm.$setPristine();
+    this._scope.filterCondition.$setPristine();
     this.condition.value = null;
   }
 
