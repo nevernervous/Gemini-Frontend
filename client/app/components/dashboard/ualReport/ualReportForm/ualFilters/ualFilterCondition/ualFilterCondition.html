@@ -1,13 +1,10 @@
 <ng-form name="filterCondition" class="wrapper" ng-class="{'-error': filterCondition.$dirty && !filterCondition.$valid}" novalidate>
-  <div class="section">
     <div class="operator">{{vm.operatorGroup}}</div>
     <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name">
       <!--this component will change on US - CR1.24-->
     </ual-autocomplete>
     <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator">
     </ual-dropdown>
-  </div>
-  <div class="section">
     <ual-dropdown class="short-field" placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
     </ual-dropdown>
     <div class="value" ng-show="vm.condition.type == 'Value'">
@@ -38,5 +35,4 @@
     </ual-autocomplete>
     <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
     </ual-action-label>
-  </div>
 </ng-form>

@@ -2,10 +2,10 @@
 ual-group-filter {
   display: block;
   width: 100%;
-  padding: 15px 5px 0px 5px;
+  padding-top: 15px;
   >div{
     height: 100%;
-    padding-left: 47px;
+    padding-left: 15px;
   }
   .-group-operator {
     margin-bottom: 20px;
@@ -39,6 +39,7 @@ ual-group-filter {
       display: flex;
       align-items: center;
       vertical-align: middle;
+      min-width: 900px;
       .-not-button {
         padding: 0 20px 0 0;
       }
@@ -59,9 +60,8 @@ ual-group-filter {
       height: 100%;
       display: block;
       .-iterative-container {
-        min-width: 700px;
+        min-width: 900px;
         ual-group-filter {
-          margin-left: 22px;
           .-remove-label{
             display: inherit;
           }
