@@ -7,74 +7,71 @@ ual-filter-condition {
     @include gridle(row row-align between);
     display: flex;
     width: 75%;
-      >.operator {
-        padding-left: 15px;
+    >.operator {
+      padding-left: 15px;
+      height: 37px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include -ms-browser() {
+        padding-left: 20px;
+        margin-right: -20px;
+      }
+    }
+    >ual-input {
+      @include gridle(3);
+      padding: 0;
+      .-input {
+        padding: 5px 2px 5px 2px;
         height: 37px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         @include -ms-browser() {
-          padding-left: 20px;
-          margin-right: -20px;
+          padding: 1px 2px;
+          height: 32px;
         }
-      }
-      >.value {
-        @include gridle(3);
-        padding: 0px;
-        >.-input {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 5px 2px 5px 2px;
-          height: 37px;
+        >input {
+          height: 28px;
           @include -ms-browser() {
-            padding: 1px 2px;
-            height: 32px;
-          }
-          >input {
-            height: 28px;
-            @include -ms-browser() {
-              height: 23px;
-            }
-          }
-          >i {
-            vertical-align: middle;
-            @include -ms-browser() {
-              margin-top: 5px;
-            }
+            height: 23px;
           }
         }
-        .-error {
-          padding: 10px 10px 0;
-        }
-      }
-      >ual-dropdown {
-        @include gridle(3);
-        &.short-field {
-          padding: 0px;
-          @include gridle(1.5);
-        }
-      }
-      >ual-autocomplete {
-        padding: 0px;
-        @include gridle(3);
-        &.short-field {
-          @include gridle(1.5);
-        }
-        ual-input label {
-          padding: 3px 2px;
+        >i {
+          vertical-align: middle;
           @include -ms-browser() {
-            padding: 1px 2px;
-            i {
-              margin-top: 0px;
-            }
+            margin-top: 5px;
           }
         }
       }
-      >.close-btn {
-        display: flex;
-        align-items: center;
+    }
+    .-error {
+      padding: 10px 10px 0;
+    }
+    >ual-dropdown {
+      @include gridle(3);
+      &.short-field {
+        padding: 0px;
+        @include gridle(1.5);
       }
+    }
+    >ual-autocomplete {
+      padding: 0px;
+      @include gridle(3);
+      &.short-field {
+        @include gridle(1.5);
+      }
+      ual-input label {
+        padding: 3px 2px;
+        @include -ms-browser() {
+          padding: 1px 2px;
+          i {
+            margin-top: 0px;
+          }
+        }
+      }
+    }
+    >.close-btn {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
@@ -106,16 +103,14 @@ ual-filter-condition {
 //VARIATION Error Form
 ual-filter-condition {
   >.wrapper.-error {
-    .value {
-      >.-input {
-        border-color: $color11;
-        >input {
-          width: calc(100% - 37px);
-        }
-        >i {
-          display: inline-block;
-          color: $color11;
-        }
+    .ng-invalid .-input {
+      border-color: $color11;
+      >input {
+        width: calc(100% - 37px);
+      }
+      >i {
+        display: inline-block;
+        color: $color11;
       }
     }
   }

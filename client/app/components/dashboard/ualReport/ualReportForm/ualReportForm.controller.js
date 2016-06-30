@@ -101,12 +101,6 @@ class UalReportFormController {
       filters.$valid = this._scope.reportForm.$valid;
       this.report.filters.set(filters);
     });
-
-    // this._scope.$watch((scope) => {
-    //   return scope.reportForm.$submitted;
-    // }, (submitted) => {
-    //   submitted && this._scope.$broadcast('$submitted');
-    // });
   }
 
   // INIT
@@ -191,7 +185,7 @@ class UalReportFormController {
             item.$setDirty();
           });
         });
-        let firstError = $('input.ng-invalid:first');
+        let firstError = $('.ng-invalid:not(ng-form):first', "ual-filters").find("input");
         if (firstError.length > 0) {
           angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
           firstError.focus();

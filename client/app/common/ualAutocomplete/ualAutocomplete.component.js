@@ -4,6 +4,10 @@ import './ualAutocomplete.scss';
 
 let ualAutocompleteComponent = {
   restrict: 'E',
+  transclude: true,
+  require:{
+    modelCtrl: '?ngModel'
+  },
   bindings: {
     onChange: '&?',
     placeholder: "@?",

@@ -20,12 +20,12 @@ class UalFilterConditionController {
     });
   }
 
-  trim($event) {
+  trim($event, model) {
     this._timeout(() => {
       let $target = $($event.target);
       let value = _.trim($target.val());
       $target.val(value);
-      this.condition.value = value;
+      model = value;
     });
   }
 
@@ -41,13 +41,13 @@ class UalFilterConditionController {
     this.getVariables();
   }
 
-  $postLink(){
+  $postLink() {
     this._subscriptions.push(this._scope.$on('$submitted', () => {
-        this._scope.filterCondition.$setSubmitted();
-      }));
+      this._scope.filterCondition.$setSubmitted();
+    }));
   }
 
-  $onDestroy(){
+  $onDestroy() {
     this._subscriptions.forEach(suscription => suscription());
   }
 

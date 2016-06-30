@@ -4,6 +4,7 @@ import './ualInput.scss';
 
 let ualInputComponent = {
     restrict: 'E',
+    require: '?ngModel',
     bindings: {
         ualId: '@',
         value: '=',
