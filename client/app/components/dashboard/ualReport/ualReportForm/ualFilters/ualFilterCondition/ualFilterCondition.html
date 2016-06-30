@@ -6,20 +6,23 @@
       placeholder="Search for variable"
       list="vm.availableVariables"
       selected="vm.condition.variable"
+      on-change="vm.variableChange(oldValue,newValue)"
       property="name">
     <!--this component will change on US - CR1.24-->
     <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty" for="filterCondition.variable.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-autocomplete>
-  <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator">
+  <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator" property="operator" on-change="vm.changeOperator()">
   </ual-dropdown>
-  <ual-dropdown class="short-field" placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
+  <ual-dropdown class="short-field" ng-if="!vm.disableAsignation" placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
   </ual-dropdown>
+
   <ual-input name="value"
-      ng-if="vm.condition.type == 'Value'"
+      ng-if="vm.condition.type == 'Value' && !vm.disableAsignation"
       ng-model="vm.condition.value"
       value="vm.condition.value"
+      trim="true"
       ng-required="filterCondition.$submitted"
       ng-pattern="vm.condition.variable.regEx"
       placeholder="Enter {{ vm.getPlaceholder() }}"
@@ -35,16 +38,54 @@
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-input>
-  <ual-autocomplete ng-if="vm.condition.type == 'Variable'"
+
+  <ual-input name="secondValue"
+      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value'"
+      ng-model="vm.condition.secondValue"
+      value="vm.condition.secondValue"
+      trim="true"
+      ng-required="filterCondition.$submitted"
+      ng-pattern="vm.condition.variable.regEx"
+      placeholder="Enter {{ vm.getPlaceholder() }}"
+      on-blur="vm.trim($event,vm.condition.secondValue)"
+      icon="ion-ios-close-outline">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterConditionForm.secondValue.$dirty"
+            for="filterConditionForm.secondValue.$error">
+      <div ng-messages-include="text-messages"></div>
+    </ng-messages>
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.secondValue.$dirty"
+            for="filterConditionForm.secondValue.$error">
+      <div ng-messages-include="number-messages"></div>
+    </ng-messages>
+    <ng-messages ng-if="!vm.condition.variable  && (filterConditionForm.secondValue.$dirty && !filterConditionForm.secondValue.$touched)"
+            for="filterConditionForm.secondValue.$error">
+      <div ng-messages-include="default-messages"></div>
+    </ng-messages>
+  </ual-input>
+
+  <ual-autocomplete ng-if="vm.condition.type == 'Variable' && !vm.disableAsignation"
       placeholder="Search for variable"
       ng-model='vm.condition.value'
       name='valueVariable'
       ng-required="filterCondition.$submitted"
-      list="vm.availableVariables"
+      list="vm.filteredAvaiableVariables"
       selected="vm.condition.value"
       property="name">
     <!--this component will change on US - CR1.24-->
     <ng-messages ng-if="!vm.condition.value && filterCondition.$dirty" for="filterCondition.valueVariable.$error">
+      <div ng-messages-include="default-messages"></div>
+    </ng-messages>
+  </ual-autocomplete>
+
+  <ual-autocomplete ng-if="vm.extraField && vm.condition.type == 'Variable'"
+      placeholder="Search for variable"
+      ng-model='vm.condition.secondValue'
+      name="secondValueVariable"
+      ng-required="filterCondition.$submitted"
+      list="vm.filteredAvaiableVariables"
+      selected="vm.condition.secondValue"
+      property="name">
+    <ng-messages ng-if="!vm.condition.secondValue && filterCondition.$dirty" for="filterCondition.secondValueVariable.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-autocomplete>
