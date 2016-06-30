@@ -234,9 +234,13 @@ $tabs-tab-content-padding: rem(1.8) 0 0 0;
 $tabs-tab-color-active: $color-mine-shaft;
 
 // COMPONENT / TABLE
-$table-font-size: rem(1.6);
+$table-font-size: rem(1.4);
+$table-color: $color-mine-shaft;
 $table-action-size: rem(2.0);
 $table-lines-color: $color-alto;
-// COMPONENT / TABLE / ROW / SELECTED
+// COMPONENT / TABLE / HEADER / HOVER
+$table-header-font-size: rem(1.6);
+$table-header-hover-color: $color-alto;
+// COMPONENT / TABLE / ROW / HOVER | SELECTED
 $table-row-height: rem(3.6);
 $table-row-selected-color: $color-blizzard-blue;

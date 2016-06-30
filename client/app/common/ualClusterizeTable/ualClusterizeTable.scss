@@ -1,7 +1,10 @@
 @import '../common';
+@import '../ionicons/scss/ionicons';
 
 .ual-clusterize-table {
   font-size: $table-font-size;
+
+  // SCROLL BARS
   .clusterize-header {
     width: calc(100% - #{$scroll-bar-width});
   }
@@ -11,11 +14,19 @@
     padding-right: $scroll-bar-width;
   }
 
+  // STYLING
   table {
     table-layout: fixed;
     word-wrap: break-word;
     width: 100%;
+    color: $table-color;
+
+    th {
+      font-size: $table-header-font-size;
+      font-weight: normal;
+    }
     tr {
+      font-weight: lighter;
       height: $table-row-height;
     }
     tr:not(:first-child), thead tr {
@@ -46,6 +57,29 @@
     }
   }
 
+  // HEADER / HOVER
+  .clusterize-header th:hover:not(.cell-disabled) {
+    cursor: pointer;
+    background-color: $table-header-hover-color;
+  }
+  // HEADER / SORT
+  .clusterize-header th {
+    i {
+      margin-left: 10px;
+      visibility: hidden;
+    }
+    &:hover i, &.-order i {
+      visibility: visible;
+    }
+    &.-asc i {
+      @extend .ion-ios-arrow-up;
+    }
+    &.-desc i {
+      @extend .ion-ios-arrow-down;
+    }
+  }
+
+  // ROW / HOVER | SELECTED
   .clusterize-content tr:hover,
   .clusterize-content tr.row-selected {
     background-color: $table-row-selected-color;
@@ -57,6 +91,16 @@
       border-top: 1px solid $color-white;
     }
   }
+
+  // //   th {
+  //     white-space: nowrap;
+  //     i {
+  //       margin-left: 10px;
+  //     }
+  //     &:hover {
+  //       cursor: pointer;
+  //       background-color: $color08;
+  //     }
 
 }
 //   thead > tr {

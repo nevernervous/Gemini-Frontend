@@ -38,6 +38,9 @@ ual-report-list .list-content {
     width: $report-list-content-row-height;
     max-width: $report-list-content-row-height;
   }
+  .cell-datasource {
+    min-width: 100px;
+  }
   .cell-date {
     width: 240px;
     max-width: 240px;
@@ -54,6 +57,29 @@ ual-report-list .list-content {
     padding: 0;
     width: $report-list-content-row-height;
     height: $report-list-content-row-height;
+  }
+
+  // INITIAL
+  .ual-clusterize-table tr {
+    .cell-check ual-checkbox,
+    .cell-action .md-button {
+      visibility: hidden;
+    }
+  }
+
+  // HOVER
+  .ual-clusterize-table tr:hover {
+    .cell-check ual-checkbox,
+    .cell-action .md-button {
+      visibility: visible;
+    }
+  }
+
+  // SELECTED
+  .ual-clusterize-table tr.row-selected {
+    .cell-check ual-checkbox {
+      visibility: visible;
+    }
   }
 }
 
