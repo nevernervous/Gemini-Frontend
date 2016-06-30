@@ -1,6 +1,6 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualTooltipService) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope) {
     this._state = $state;
     this._rootScope = $rootScope;
     // MODALS
@@ -9,8 +9,8 @@ class UalReportFormController {
     // SERVICES
     this._service = {
       report: Report,
-      datasource: DataSource,
-      tooltip: ualTooltipService
+      datasource: DataSource
+      //tooltip: ualTooltipService
     };
 
     this.dropDownStyle = {};
@@ -43,22 +43,22 @@ class UalReportFormController {
   hoverName() {
     this.name.hover = true;
     if (!this.name.focus) {
-      this._service.tooltip.show({
-        container: 'report-name .ual-input',
-        text: 'Change report name',
-        position: 'right'
-      });
+      // this._service.tooltip.show({
+      //   container: 'report-name .ual-input',
+      //   text: 'Change report name',
+      //   position: 'right'
+      // });
     }
   }
 
   leaveName() {
     this.name.hover = false;
-    this._service.tooltip.hide();
+    // this._service.tooltip.hide();
   }
 
   focusName() {
     this.name.focus = true;
-    this._service.tooltip.hide();
+    // this._service.tooltip.hide();
   }
 
   saveName() {

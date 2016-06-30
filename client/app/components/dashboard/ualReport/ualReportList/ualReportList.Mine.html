@@ -4,8 +4,12 @@
       ng-click="vm.toggleReport(${item.id})">
     </ual-checkbox>
   </td>
-  <td class="cell-ellipsis">
+  <td class="cell-name cell-ellipsis">
     <a arial-label="${item.name}">
+      <md-tooltip md-direction="right"
+        class="ual-tooltip-right">
+        ${item.name}
+      </md-tooltip>
       ${item.name}
     </a>
   </td>
@@ -37,7 +41,10 @@
     <md-button class="md-icon-button"
       aria-label="Delete"
       ng-click="vm.deleteReport(${item.id})">
-      <md-tooltip class="ual-tooltip-top" md-direction="top"> Delete </md-tooltip>
+      <md-tooltip md-direction="top"
+        class="ual-tooltip-top" >
+        Delete
+      </md-tooltip>
       <md-icon md-font-icon="Ionicons"
         class="ion-android-close">
       </md-icon>

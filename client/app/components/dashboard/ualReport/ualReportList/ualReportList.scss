@@ -38,6 +38,13 @@ ual-report-list .list-content {
     width: $report-list-content-row-height;
     max-width: $report-list-content-row-height;
   }
+  .cell-name {
+    color: $report-list-content-link-color;
+    font-weight: normal;
+    a {
+      cursor: pointer;
+    }
+  }
   .cell-datasource {
     min-width: 100px;
   }
@@ -69,6 +76,10 @@ ual-report-list .list-content {
 
   // HOVER
   .ual-clusterize-table tr:hover {
+    .cell-name {
+      color: $report-list-content-link-hover-color;
+    }
+
     .cell-check ual-checkbox,
     .cell-action .md-button {
       visibility: visible;

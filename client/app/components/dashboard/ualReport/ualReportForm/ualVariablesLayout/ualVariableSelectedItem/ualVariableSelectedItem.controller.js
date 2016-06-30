@@ -2,9 +2,8 @@ import $ from 'jquery';
 
 class UalVariableSelectedItemController {
   /*@ngInject*/
-  constructor($scope, ualTooltipService) {
+  constructor($scope) {
     this.name = 'ualVariableSelectedItem';
-    this._ualTooltipService=ualTooltipService;
     this.$scope = $scope;
 
     // STATE
@@ -45,20 +44,20 @@ class UalVariableSelectedItemController {
       });
     } else {
       this.position.new = this.position.old;
-      this._ualTooltipService.hide();
+      // this._ualTooltipService.hide();
     }
   }
 
   onChange() {
     if ( !this.isValid(this.position.new) && this.position.new != "") {
-      this._ualTooltipService.show({
-        container: this.identifier,
-        text:`Only numeric values between 1 and ${this.variableTotal} are allowed. Please try again.`,
-        position:"top",
-        type:"error"
-      });
+      // this._ualTooltipService.show({
+      //   container: this.identifier,
+      //   text:`Only numeric values between 1 and ${this.variableTotal} are allowed. Please try again.`,
+      //   position:"top",
+      //   type:"error"
+      // });
     }else{
-      this._ualTooltipService.hide();
+      //this._ualTooltipService.hide();
     }
   }
 

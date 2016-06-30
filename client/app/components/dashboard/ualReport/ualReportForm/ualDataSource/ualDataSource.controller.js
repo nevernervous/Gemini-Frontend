@@ -1,13 +1,12 @@
 class UalDataSourceController {
   /*@ngInject*/
 
-  constructor($rootScope, ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, ualTooltipService, $timeout) {
+  constructor($rootScope, ualDataSourceChangeModal, DataSource, ualDataSourceCancelModal, $timeout) {
     this.name = 'ualDataSource';
 
     this._datasource = DataSource;
     this._cancelmodal = ualDataSourceCancelModal;
     this._changemodal = ualDataSourceChangeModal;
-    this._ualTooltipService = ualTooltipService;
     this._timeout = $timeout;
 
     this._timeout = $timeout;
@@ -104,7 +103,7 @@ class UalDataSourceController {
   }
 
   hideTooltip() {
-    this._ualTooltipService.hide();
+    //this._ualTooltipService.hide();
   }
 
   $onInit() {

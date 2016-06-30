@@ -1,10 +1,9 @@
 class UalVariablesLayoutController {
   /*@ngInject*/
-  constructor($rootScope, $scope, ualVariablesDeteleAllModal, ualTooltipService) {
+  constructor($rootScope, $scope, ualVariablesDeteleAllModal) {
     this.name = 'ualVariablesLayout';
     this.$rootScope = $rootScope;
     this.$scope = $scope;
-    this._ualTooltipService = ualTooltipService;
     this._deleteallmodal = ualVariablesDeteleAllModal;
 
     // VARS / PUBLIC
@@ -38,14 +37,14 @@ class UalVariablesLayoutController {
 
   // TOOLTIP
   showTooltip(container, description, position = 'top') {
-    this._ualTooltipService.show({
-      container: container,
-      text: description,
-      position: position
-    });
+    // this._ualTooltipService.show({
+    //   container: container,
+    //   text: description,
+    //   position: position
+    // });
   }
   hideTooltip() {
-    this._ualTooltipService.hide();
+    // this._ualTooltipService.hide();
   }
 
   // ADD

@@ -3,7 +3,7 @@ import myreports from './ualReportList.Mine.html';
 
 class UalReportListController {
   /*@ngInject*/
-  constructor(Report, $rootScope, ualDialog, ualReportListDeleteReportModal, ualTooltipService, $filter) {
+  constructor(Report, $rootScope, ualDialog, ualReportListDeleteReportModal, $filter) {
     this.name = 'ualReportList';
     this._rootScope = $rootScope;
 
@@ -21,7 +21,6 @@ class UalReportListController {
     this.total = 0;
     this.loading = true;
     this._deletereportmodal = ualReportListDeleteReportModal;
-    this._ualTooltipService = ualTooltipService;
     this._filer = $filter;
 
     this.orders = {
@@ -101,18 +100,18 @@ class UalReportListController {
   // TOOLTIP
   showTooltip(container, data, type = 'simple', position = 'right') {
     let content = this.tooltips[type](data);
-    this._ualTooltipService.show({
-      container: container,
-      text: content,
-      position: position
-    });
+    // this._ualTooltipService.show({
+    //   container: container,
+    //   text: content,
+    //   position: position
+    // });
   }
   showTruncateTooltip(container, text, type = 'simple', position = 'right') {
     $("#"+container).hasClass('is-truncated') && this.showTooltip(container, text, type, position);
   }
 
   hideTooltip() {
-    this._ualTooltipService.hide();
+    //this._ualTooltipService.hide();
   }
 
   isSelected(reportId) {

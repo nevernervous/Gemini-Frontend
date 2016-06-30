@@ -63,7 +63,7 @@ $messageLowColor: $color00;
 
 // COLOR
 $color-cardinal: #CD202C;
-$color-mine-shaft: #333333;
+$color-mine-shaft: #333333; // C6
 $color-geyser: #D9E1E7;
 $color-gull-gray: #99A7B4;
 $color-white: #FFFFFF;
@@ -244,3 +244,11 @@ $table-header-hover-color: $color-alto;
 // COMPONENT / TABLE / ROW / HOVER | SELECTED
 $table-row-height: rem(3.6);
 $table-row-selected-color: $color-blizzard-blue;
+
+// COMPONENT / TOOLTIP
+$tooltip-triangle-width:  rem(0.4);
+$tooltip-triangle-height: rem(0.6);
+$tooltip-backgrownd: $color-alto;
+$tooltip-color: $color-mine-shaft;
+$tooltip-font-size: rem(1.2);
+$tooltip-padding: rem(1.0) rem(1.6);
