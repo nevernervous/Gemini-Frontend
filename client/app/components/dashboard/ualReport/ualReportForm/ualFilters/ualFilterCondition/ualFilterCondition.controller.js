@@ -52,7 +52,7 @@ class UalFilterConditionController {
       });
   }
   variableChange(oldValue,newValue){
-    _.filter(this.availableVariables, { 'dataType': newValue.dataType});
+    this.filteredAvaiableVariables = _.filter(this.availableVariables, { 'dataType': newValue.dataType});
     this.condition.operator= this.operatorsList[0] ;
     this.resetSecond();
   }
