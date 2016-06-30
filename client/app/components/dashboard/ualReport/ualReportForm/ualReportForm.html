@@ -32,7 +32,7 @@
         <ual-variables-layout class="ual-variables-layout" variables="vm.report.variables" aggregators="vm.report.aggregators" datasource="vm.report.datasource.get()"></ual-variables-layout>
       </ual-accordion-content>
     </ual-accordion>
-    <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()">
+    <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()" class="-filters">
       <ual-accordion-title>Limits: <strong><span ng-show="!vm.report.filters.hasValues()">No limits</span> <span ng-show="vm.report.filters.hasValues()">Limits</span> </strong><small>selected</small></ual-accordion-title>
       <ual-accordion-content>
         <ual-filters datasource="vm.report.datasource.get()" filters="vm.report.filters"></ual-filters>

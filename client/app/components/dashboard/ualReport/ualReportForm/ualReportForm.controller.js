@@ -102,11 +102,11 @@ class UalReportFormController {
       this.report.filters.set(filters);
     });
 
-    this._scope.$watch((scope) => {
-      return scope.reportForm.$submitted;
-    }, (submitted) => {
-      submitted && this._scope.$broadcast('$submitted');
-    });
+    // this._scope.$watch((scope) => {
+    //   return scope.reportForm.$submitted;
+    // }, (submitted) => {
+    //   submitted && this._scope.$broadcast('$submitted');
+    // });
   }
 
   // INIT
@@ -180,6 +180,7 @@ class UalReportFormController {
   }
 
   runReport(form) {
+    this._scope.$broadcast('$submitted');
     this._timeout(() => {
       let isValid = this.report.isValid();
       if (isValid) {

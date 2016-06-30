@@ -17,6 +17,7 @@
                   placeholder="Enter {{ vm.getPlaceholder() }}" ng-blur="vm.trim($event)">
 	        <i class="ion-ios-close-outline"></i>
         </label>
+        <!--<pre>{{filterCondition | json}}</pre>-->
     <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterCondition.$dirty" for="filterCondition.value.$error">
       <div ng-messages-include="text-messages"></div>
     </ng-messages>
