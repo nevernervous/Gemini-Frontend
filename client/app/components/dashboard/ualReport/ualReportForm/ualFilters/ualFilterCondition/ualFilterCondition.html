@@ -17,7 +17,7 @@
   <ual-dropdown class="short-field" placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
   </ual-dropdown>
   <ual-input name="value"
-      ng-show="vm.condition.type == 'Value'"
+      ng-if="vm.condition.type == 'Value'"
       ng-model="vm.condition.value"
       value="vm.condition.value"
       ng-required="filterCondition.$submitted"
@@ -35,9 +35,18 @@
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-input>
-
-  <ual-autocomplete ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.value" property="name">
+  <ual-autocomplete ng-if="vm.condition.type == 'Variable'"
+      placeholder="Search for variable"
+      ng-model='vm.condition.value'
+      name='valueVariable'
+      ng-required="filterCondition.$submitted"
+      list="vm.availableVariables"
+      selected="vm.condition.value"
+      property="name">
     <!--this component will change on US - CR1.24-->
+    <ng-messages ng-if="!vm.condition.value && filterCondition.$dirty" for="filterCondition.valueVariable.$error">
+      <div ng-messages-include="default-messages"></div>
+    </ng-messages>
   </ual-autocomplete>
   <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
   </ual-action-label>
