@@ -11,6 +11,8 @@ class UalFilterConditionController {
     this.operatorsList = [{'operator':"="}];
     this.disableAsignation=false;
     this._scope = $scope;
+
+    this.filteredVariables = [];
     $scope.$watch((scope) => {
       return scope.vm.datasource
     }, (newValue, oldValue) => {
@@ -46,10 +48,11 @@ class UalFilterConditionController {
     this._datasourceService.variables(this.datasource)
       .then(response => {
         this.availableVariables = response.data;
-        console.log(response.data);
+        this.filteredAvaiableVariables = [];
       },
       error => {
         this.availableVariables = [];
+        this.filteredAvaiableVariables = [];
       });
   }
   getAllOperators(){
@@ -62,12 +65,6 @@ class UalFilterConditionController {
     });
   }
 
-  onVariableChange(){
-    this._timeout(() => {
-      this.getOperatorListByVariableType(this.condition.variable.dataType);
-    });
-  }
-
   getOperatorListByVariableType(dataType){
     this.operatorsList=this._allOperators[dataType];
     this.condition.operator = {'operator':"="};
@@ -76,16 +73,28 @@ class UalFilterConditionController {
 
   changeOperator(){
     this._timeout(() => {
-      console.log("changeoperator",this.condition.operator);
+      console.log(this.condition.operator)
       this.extraField=[9,10].indexOf(this.condition.operator.id)>-1;
       this.disableAsignation= [15,16,17,18].indexOf(this.condition.operator.id)>-1;
       this.acceptComma=[1,2,7,8,11,12,13,14].indexOf(this.condition.operator.id)>-1;
     });
+    this.resetSecond();
   }
 
+  variableChange(oldValue,newValue){
+    this.filteredAvaiableVariables = _.filter(this.availableVariables, { 'dataType': newValue.dataType});
+    this.resetSecond();
+    this.getOperatorListByVariableType(newValue.dataType);
+  }
+
+  resetSecond(){
+    this.condition.type= this.types[0];
+    this.reset();
+  }
   reset() {
     this._scope.filterConditionForm.$setPristine();
     this.condition.value = null;
+    this.condition.secondValue=null;
   }
 
 }

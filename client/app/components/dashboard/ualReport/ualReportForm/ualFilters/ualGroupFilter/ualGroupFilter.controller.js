@@ -19,7 +19,8 @@ class UalGroupFilterController {
       "variable": null,
       "operator": {"operator":"="},
       "type": "Value",
-      "value": null
+      "value": null,
+      "secondValue": null
     });
 
 

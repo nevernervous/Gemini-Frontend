@@ -12,9 +12,9 @@
 </script>
 <form name="filterConditionForm" class="wrapper" ng-class="{'-error': (filterConditionForm.$dirty && !filterConditionForm.$valid && !!vm.condition.variable)  }"novalidate>
   <div class="operator">{{vm.operatorGroup}}</div>
-  <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name" on-change="vm.onVariableChange()">
+  <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name" on-change="vm.variableChange(oldValue,newValue)">
   </ual-autocomplete>
-  <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator" property="operator" on-change="vm.changeOperator(vm.condition.operator)">
+  <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator" property="operator" on-change="vm.changeOperator()">
   </ual-dropdown>
   <ual-dropdown class="short-field" ng-if="!vm.disableAsignation" placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
   </ual-dropdown>
@@ -31,12 +31,10 @@
             for="filterConditionForm.value.$error">
       <div ng-messages-include="text-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.value.$dirty"
-            for="filterConditionForm.value.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.value.$dirty" for="filterConditionForm.value.$error">
       <div ng-messages-include="number-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!vm.condition.variable  && (filterConditionForm.value.$dirty && !filterConditionForm.value.$touched)"
-            for="filterConditionForm.value.$error">
+    <ng-messages ng-if="!vm.condition.variable  && (filterConditionForm.value.$dirty && !filterConditionForm.value.$touched)" for="filterConditionForm.value.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </div>
@@ -62,9 +60,9 @@
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </div>
-  <ual-autocomplete ng-if="!vm.disableAsignation" ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.value" property="name">
+  <ual-autocomplete ng-if="!vm.disableAsignation" ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.filteredAvaiableVariables" selected="vm.condition.value" property="name">
   </ual-autocomplete>
-  <ual-autocomplete ng-if="vm.extraField" ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.secondValue" property="name">
+  <ual-autocomplete ng-if="vm.extraField" ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.filteredAvaiableVariables" selected="vm.condition.secondValue" property="name">
   </ual-autocomplete>
   <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
   </ual-action-label>
