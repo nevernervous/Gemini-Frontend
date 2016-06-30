@@ -8,6 +8,9 @@ class UalFilterConditionController {
     this.types = ["Value", "Variable"];
     this.operatorsList = ["=", "<", ">", "<>", "in"];
     this._scope = $scope;
+
+    this._subscriptions = [];
+
     $scope.$watch((scope) => {
       return scope.vm.datasource
     }, (newValue, oldValue) => {
@@ -36,6 +39,16 @@ class UalFilterConditionController {
 
   $onInit() {
     this.getVariables();
+  }
+
+  $postLink(){
+    this._subscriptions.push(this._scope.$on('$submitted', () => {
+        this._scope.filterCondition.$setSubmitted();
+      }));
+  }
+
+  $onDestroy(){
+    this._subscriptions.forEach(suscription => suscription());
   }
 
   getVariables() {

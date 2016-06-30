@@ -41,7 +41,11 @@ let reportTransform = function ($http) {
       }
 
       return JSON.stringify(data);
+    },
+    run: (report) => {
+
     }
+
   }
 
   let get = (key) => {

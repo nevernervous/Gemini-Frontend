@@ -9,14 +9,15 @@
     </ual-dropdown>
     <div class="value" ng-show="vm.condition.type == 'Value'">
       <label class="-input">
-          <input  ng-trim="false"
+          <input ng-trim="false"
                   ng-model="vm.condition.value"
                   name="value"
-                  required
+                  ng-required="filterCondition.$submitted"
                   ng-pattern="vm.condition.variable.regEx"
                   placeholder="Enter {{ vm.getPlaceholder() }}" ng-blur="vm.trim($event)">
 	        <i class="ion-ios-close-outline"></i>
         </label>
+        <pre>{{filterCondition | json}}</pre>
       <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterCondition.$dirty"
               for="filterCondition.value.$error">
         <div ng-messages-include="text-messages"></div>

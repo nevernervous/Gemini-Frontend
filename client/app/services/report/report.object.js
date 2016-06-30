@@ -180,7 +180,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   };
 
   let isValid = () => {
-    return (hasFilterValues && object.filters.$valid && (hasAggregatorsValues || hasVariablesValues));
+    return (hasFilterValues() && object.filters.$valid && (hasAggregatorsValues() || hasVariablesValues()));
   }
 
   let isEmptyName = () => {

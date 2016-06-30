@@ -1,9 +1,10 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal,$scope, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal, $timeout) {
     this._state = $state;
     this._rootScope = $rootScope;
     this._scope = $scope;
+    this._timeout = $timeout;
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
@@ -94,11 +95,17 @@ class UalReportFormController {
 
   $postLink() {
     this._scope.$watch((scope) => {
-      return this._scope.reportForm.$valid;
+      return scope.reportForm.$valid;
     }, (newValue, oldValue) => {
       let filters = this.report.filters.get();
       filters.$valid = this._scope.reportForm.$valid;
       this.report.filters.set(filters);
+    });
+
+    this._scope.$watch((scope) => {
+      return scope.reportForm.$submitted;
+    }, (submitted) => {
+      submitted && this._scope.$broadcast('$submitted');
     });
   }
 
@@ -173,19 +180,23 @@ class UalReportFormController {
   }
 
   runReport(form) {
-    let isValid = this.report.isValid();
-    if (isValid) {
-      this._ualTimerModal.open();
-    } else {
-      _.forEach(form.$error, (errorType) => {
-        _.forEach(errorType, (item) => {
-          item.$setDirty();
+    this._timeout(() => {
+      let isValid = this.report.isValid();
+      if (isValid) {
+        this._ualTimerModal.open();
+      } else {
+        _.forEach(form.$error, (errorType) => {
+          _.forEach(errorType, (item) => {
+            item.$setDirty();
+          });
         });
-      });
-      let firstError = $('input.ng-invalid:first');
-      angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
-      firstError.focus();
-    }
+        let firstError = $('input.ng-invalid:first');
+        if (firstError.length > 0) {
+          angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
+          firstError.focus();
+        }
+      }
+    }, 0);
   }
 
   enableRun() {
