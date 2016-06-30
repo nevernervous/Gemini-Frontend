@@ -8,10 +8,10 @@
             <div class="autocomplete-item" ng-click="vm.select($event, item)" ng-repeat="item in filteredItems = (vm.list | limitTo:vm.limit | filter:vm.filterName)" >
                 {{vm.getText(item)}}
             </div>
-            <div class="-empty-result" ng-if="vm.list.length!=0 && filteredItems.length==0">
+            <div class="-empty-result" ng-if="vm.list.length && !filteredItems.length">
               No results found
             </div>
-            <div class="-empty-result" ng-if="vm.list.length==0">
+            <div class="-empty-result" ng-if="!vm.list.length">
               No variables avaiable
             </div>
           </div>
