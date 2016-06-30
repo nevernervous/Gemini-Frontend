@@ -6,6 +6,7 @@ class UalFilterConditionController {
     this._timeout = $timeout;
     this._datasourceService = DataSource;
     this._operatorService=Operator;
+    this.acceptComma=true;
     this.types = ["Value", "Variable"];
     this.operatorsList = [{'operator':"="}];
     this.disableAsignation=false;
@@ -45,6 +46,7 @@ class UalFilterConditionController {
     this._datasourceService.variables(this.datasource)
       .then(response => {
         this.availableVariables = response.data;
+        console.log(response.data);
       },
       error => {
         this.availableVariables = [];
@@ -75,8 +77,9 @@ class UalFilterConditionController {
   changeOperator(){
     this._timeout(() => {
       console.log("changeoperator",this.condition.operator);
-      this.disableAsignation=(this.condition.operator.id===15 || this.condition.operator.id===17);
-      this.extraField=this.condition.operator.id==9;
+      this.extraField=[9,10].indexOf(this.condition.operator.id)>-1;
+      this.disableAsignation= [15,16,17,18].indexOf(this.condition.operator.id)>-1;
+      this.acceptComma=[1,2,7,8,11,12,13,14].indexOf(this.condition.operator.id)>-1;
     });
   }
 
