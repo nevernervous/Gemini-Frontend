@@ -1,5 +1,22 @@
 @import '../common';
 
+$tooltip-triangle-width:  5px;
+$tooltip-triangle-height: 8px;
+
+md-tooltip.ual-tooltip-top {
+  border-radius: 0;
+  //margin-top: 2 * $tooltip-triangle-height;
+
+  ._md-content {
+    @include triangle('bottom', $tooltip-triangle-width, $tooltip-triangle-height, red, red) {
+      bottom: 0;
+      right: calc(50% - #{$tooltip-triangle-width});
+    }
+  }
+
+}
+
+
 // LAYOUT
 ual-tooltip {
   position: absolute;
