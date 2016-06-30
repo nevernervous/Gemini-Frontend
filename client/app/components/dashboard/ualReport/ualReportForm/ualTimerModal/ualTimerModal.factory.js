@@ -7,7 +7,7 @@ let ualTimerModalService = function (ualModal) {
 
   let open = (inputs) => {
     return ualModal.open({
-      template: '<ual-modal class="-fullmodal">' + template + '</ual-modal>',
+      template: '<ual-modal class="-fullmodal -timerModal">' + template + '</ual-modal>',
       controller: controller,
       controllerAs : 'vm',
       inputs: inputs
