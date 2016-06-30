@@ -28,10 +28,12 @@
       placeholder="Enter {{ vm.getPlaceholder() }}"
       on-blur="vm.trim($event, vm.condition.value)"
       icon="ion-ios-close-outline">
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterCondition.$dirty" for="filterCondition.value.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterCondition.$dirty"
+        for="filterCondition.value.$error">
       <div ng-messages-include="text-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterCondition.$dirty" for="filterCondition.value.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterCondition.$dirty"
+        for="filterCondition.value.$error">
       <div ng-messages-include="number-messages"></div>
     </ng-messages>
     <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty" for="filterCondition.value.$error">
@@ -49,16 +51,15 @@
       placeholder="Enter {{ vm.getPlaceholder() }}"
       on-blur="vm.trim($event,vm.condition.secondValue)"
       icon="ion-ios-close-outline">
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterConditionForm.secondValue.$dirty"
-            for="filterConditionForm.secondValue.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterCondition.$dirty"
+            for="filterCondition.secondValue.$error">
       <div ng-messages-include="text-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.secondValue.$dirty"
-            for="filterConditionForm.secondValue.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterCondition.$dirty"
+            for="filterCondition.secondValue.$error">
       <div ng-messages-include="number-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!vm.condition.variable  && (filterConditionForm.secondValue.$dirty && !filterConditionForm.secondValue.$touched)"
-            for="filterConditionForm.secondValue.$error">
+    <ng-messages ng-if="!vm.condition.variable  && filterCondition.$dirty" for="filterCondition.secondValue.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-input>

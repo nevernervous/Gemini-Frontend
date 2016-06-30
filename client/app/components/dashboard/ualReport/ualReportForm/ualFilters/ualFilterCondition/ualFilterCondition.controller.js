@@ -83,7 +83,6 @@ class UalFilterConditionController {
 
   changeOperator(){
     this._timeout(() => {
-      console.log(this.condition.operator)
       this.extraField=[9,10].indexOf(this.condition.operator.id)>-1;
       this.disableAsignation= [15,16,17,18].indexOf(this.condition.operator.id)>-1;
       this.acceptComma=[1,2,7,8,11,12,13,14].indexOf(this.condition.operator.id)>-1;
@@ -101,6 +100,7 @@ class UalFilterConditionController {
     this.condition.type= this.types[0];
     this.reset();
   }
+
   reset() {
     this._scope.filterCondition.$setPristine();
     this.condition.value = null;
