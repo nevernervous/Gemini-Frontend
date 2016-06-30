@@ -8,6 +8,8 @@ class UalFilterConditionController {
     this.types = ["Value", "Variable"];
     this.operatorsList = ["=", "<", ">", "<>", "in"];
     this._scope = $scope;
+
+    this.filteredVariables = [];
     $scope.$watch((scope) => {
       return scope.vm.datasource
     }, (newValue, oldValue) => {
@@ -42,12 +44,23 @@ class UalFilterConditionController {
     this._datasourceService.variables(this.datasource)
       .then(response => {
         this.availableVariables = response.data;
+        this.filteredAvaiableVariables = [];
       },
       error => {
         this.availableVariables = [];
+        this.filteredAvaiableVariables = [];
       });
   }
+  variableChange(oldValue,newValue){
+    _.filter(this.availableVariables, { 'dataType': newValue.dataType});
+    this.condition.operator= this.operatorsList[0] ;
+    this.resetSecond();
+  }
 
+  resetSecond(){
+    this.condition.type= this.types[0];
+    this.reset();
+  }
   reset() {
     this._scope.filterConditionForm.$setPristine();
     this.condition.value = null;
