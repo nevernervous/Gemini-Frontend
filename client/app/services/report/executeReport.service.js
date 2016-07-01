@@ -1,18 +1,19 @@
-let reportService = function (Properties, $http, ReportObject, ReportTransform) {
+let reportService = function (Properties, $http, ReportTransform, ServicesTransform) {
   "ngInject";
-  const endpoint = Properties.endpoint + '/Reports';
+  const endpoint = Properties.endpoint + '/ExecuteReports';
 
 
-  let run = () => {
+  let run = (reportData) => {
     let requestTransform = [ReportTransform.get("run")];
-    let request = $http.post(`${endpoint}`,{
-      cache: Properties.cache,
-      data: ReportObject,
+    let responseTransform = [ServicesTransform.get('noop')];
+    let request = $http.post(`${endpoint}`,reportData,{
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
       },
-      transformRequest: ReportTransform.generate(requestTransform)
+      transformRequest: ReportTransform.generate(requestTransform),
+      transformResponse: ServicesTransform.generate(responseTransform)
     })
+    return request;
   }
 
   return {

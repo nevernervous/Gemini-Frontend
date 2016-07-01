@@ -3,6 +3,35 @@ import angular from 'angular';
 let reportTransform = function ($http) {
   "ngInject";
 
+  let transformFilters = (item, index, group) => {
+    if (item.hasOwnProperty("children")) {
+      let innerGroup = {
+        "order": 1,
+        "operator": {
+          "id": item.operator == 'AND' ? 1 : 2,
+        },
+        "filters": []
+      };
+      _.forEach(item.children, (innerItem, innerIndex) => {
+        transformFilters(innerItem, innerIndex, innerGroup);
+      })
+      group.filters.push(innerGroup);
+    } else {
+      group.filters.push({
+        "column": {
+          "id": item.variable.id
+        },
+        "filterOperator": {
+          "id": item.operator.id
+        },
+        "value": item.value,
+        "order": index,
+        "valueVariableTypeIndicator": item.type == 'Variable'
+      });
+    }
+
+  };
+
   let _transformation = {
     noop: (response) => {
       return response
@@ -43,7 +72,54 @@ let reportTransform = function ($http) {
       return JSON.stringify(data);
     },
     run: (report) => {
+      let data = {
+        dataSourceId: null,
+        variables: [],
+        aggregators: [],
+        groups: []
+      };
 
+      let datasource = report.datasource.get();
+
+      data.dataSourceId = datasource.id;
+
+      let aggregators = report.aggregators.get();
+      _.forEach(aggregators, (item) => {
+        data.aggregators.push({
+          "Id": item.id,
+          "Order": item.order
+        });
+      });
+
+      let variables = report.variables.get();
+      _.forEach(variables, (item) => {
+        data.variables.push({
+          "Id": item.id,
+          "Order": item.order
+        });
+      });
+
+      let root = report.filters.get();
+      let filters = root.children;
+
+      let firstGroup = {
+        "order": 1,
+        "operator": {
+          "id": root.operator == 'AND' ? 1 : 2,
+        },
+        "filters": []
+      };
+
+      if (_.isArray(filters)) {
+        _.forEach(filters, (item, index) => {
+          transformFilters(item, index, firstGroup);
+        });
+      }
+
+      data.groups.push(firstGroup);
+
+
+      return JSON.stringify(data)
     }
 
   }

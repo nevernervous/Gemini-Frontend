@@ -45,7 +45,7 @@ class UalFilterConditionController {
   }
 
   $postLink() {
-    this._subscriptions.push(this._scope.$on('$submitted', () => {
+    this._subscriptions.push(this._scope.$on('REPORT.EXECUTE', () => {
       this._scope.filterCondition.$setSubmitted();
     }));
   }

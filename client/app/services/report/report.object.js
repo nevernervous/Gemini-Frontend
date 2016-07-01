@@ -40,7 +40,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
         operator: 'AND',
         children: []
       }
-
     };
     initialHash = getReportHash();
     touched = false;
@@ -169,18 +168,12 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     return !!object.filters && object.filters.children.length > 0;
   }
 
-  let validate = function (result, item) {
-    result = result || true;
-    if (item.hasOwnProperty("children")) {
-      result = result && item.children.reduce(validate);
-    } else {
-      result = result && item.isValid;
-    }
-    return result;
-  };
+  let setValidForm = (value) => {
+    object.validForm = value;
+  }
 
   let isValid = () => {
-    return (hasFilterValues() && object.filters.$valid && (hasAggregatorsValues() || hasVariablesValues()));
+    return (!!object.validForm && (hasAggregatorsValues() || hasVariablesValues()));
   }
 
   let isEmptyName = () => {
@@ -242,6 +235,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       set: setFilters,
       hasValues: hasFilterValues
     },
+    setValidForm,
     isValid
   };
 };

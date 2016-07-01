@@ -97,9 +97,7 @@ class UalReportFormController {
     this._scope.$watch((scope) => {
       return scope.reportForm.$valid;
     }, (newValue, oldValue) => {
-      let filters = this.report.filters.get();
-      filters.$valid = this._scope.reportForm.$valid;
-      this.report.filters.set(filters);
+      this.report.setValidForm(newValue);
     });
   }
 
@@ -174,17 +172,20 @@ class UalReportFormController {
   }
 
   runReport(form) {
-    this._scope.$broadcast('$submitted');
+    this._scope.$broadcast('REPORT.EXECUTE');
     this._timeout(() => {
       let isValid = this.report.isValid();
       if (isValid) {
-        this._ualTimerModal.open();
+        this._ualTimerModal.open(this.report).then((reply) => {
+
+        });
       } else {
         _.forEach(form.$error, (errorType) => {
           _.forEach(errorType, (item) => {
             item.$setDirty();
           });
         });
+        this.selectedTab = 'report-filters';
         let firstError = $('.ng-invalid:not(ng-form):first', "ual-filters").find("input");
         if (firstError.length > 0) {
           angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
@@ -195,7 +196,7 @@ class UalReportFormController {
   }
 
   enableRun() {
-    return !!this.report.datasource.get() && this.report.filters.hasValues() && (this.report.variables.hasValues() || this.report.aggregators.hasValues());
+    return !!this.report.datasource.get() &&  (this.report.variables.hasValues() || this.report.aggregators.hasValues());
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {
