@@ -6,20 +6,21 @@ let reportTransform = function ($http) {
   const operatorsMultiple = [9, 10];
 
   let transformFilters = (item, index, group) => {
-    if (item.hasOwnProperty("children")) {
+    let isGroup = item.hasOwnProperty("children")
+    if (isGroup) {
       let innerGroup = {
-        "order": index,
+        "order": index + 1,
         "operator": {
           "id": item.operator.id
         },
-        "filters": []
+        "filters": [],
+        "children": []
       };
 
       _.forEach(item.children, (innerItem, innerIndex) => {
         transformFilters(innerItem, innerIndex, innerGroup);
       });
-      group.filters.push(innerGroup);
-
+      group.children.push(innerGroup);
     }
     else {
       let isVariable = item.type == 'Variable';
@@ -128,7 +129,8 @@ let reportTransform = function ($http) {
         "operator": {
           "id": root.operator.id,
         },
-        "filters": []
+        "filters": [],
+        "children": []
       };
 
       if (_.isArray(filters)) {
@@ -137,7 +139,7 @@ let reportTransform = function ($http) {
         });
       }
 
-      data.groups.push(firstGroup);
+      data.groups = firstGroup;
 
 
       return JSON.stringify(data)
