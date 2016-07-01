@@ -178,7 +178,9 @@ class UalReportFormController {
       let isValid = this.report.isValid();
       if (isValid) {
         this._ualTimerModal.open(this.report).then((reply) => {
-          this._executedReportModal.open();
+          if (!!reply) {
+            this._executedReportModal.open();
+          }
         });
       } else {
         _.forEach(form.$error, (errorType) => {
@@ -197,7 +199,7 @@ class UalReportFormController {
   }
 
   enableRun() {
-    return !!this.report.datasource.get() &&  (this.report.variables.hasValues() || this.report.aggregators.hasValues());
+    return !!this.report.datasource.get() && (this.report.variables.hasValues() || this.report.aggregators.hasValues());
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {

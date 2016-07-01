@@ -13,10 +13,13 @@ class UalTimerModalController {
   }
 
   _initialize() {
-    this._executeReportService.run(this.report).then((reply) => {
-      setTimeout(() => {
-        this.success(reply.data);
-      }, 10000);
+    this.request = this._executeReportService.run(this.report);
+    this.request.promise.then((reply) => {
+      if (!!reply) {
+        this.success(reply);
+      }
+    }, () => {
+      this.close(false);
     });
   }
 
@@ -30,6 +33,10 @@ class UalTimerModalController {
   }
 
   close() {
+    if (this.request) {
+      this.request.cancel();
+      this.request = null;
+    }
     this._close(false);
   }
 }
