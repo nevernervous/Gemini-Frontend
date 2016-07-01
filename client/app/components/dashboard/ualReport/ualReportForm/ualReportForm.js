@@ -9,6 +9,8 @@ import ualReportNameModal from './ualReportNameModal/ualReportNameModal';
 import ualUnsafeReportModal from '../../ualUnsafeReportModal/ualUnsafeReportModal';
 import ualFilters from './ualFilters/ualFilters';
 import ualTimerModal from './ualTimerModal/ualTimerModal';
+import ualExecuteReportModal from './ualTimerModal/ualTimerModal';
+import ualExecutedReportModal from './ualExecutedReportModal/ualExecutedReportModal';
 
 
 let ualReportFormModule = angular.module('ualReportForm', [
@@ -22,6 +24,7 @@ let ualReportFormModule = angular.module('ualReportForm', [
     ualReportNameModal.name,
     ualUnsafeReportModal.name,
     ualTimerModal.name,
+    ualExecutedReportModal.name
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {

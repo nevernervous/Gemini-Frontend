@@ -1,0 +1,19 @@
+@import '../../../../../common/common';
+ual-modal.-executed-report {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  ng-transclude {
+    display: block;
+    .-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      @include font-clanot-book(14);
+    }
+  }
+}

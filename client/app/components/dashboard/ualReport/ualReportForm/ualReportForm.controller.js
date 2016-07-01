@@ -1,6 +1,6 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal, $timeout) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal, ualExecutedReportModal, $timeout) {
     this._state = $state;
     this._rootScope = $rootScope;
     this._scope = $scope;
@@ -9,6 +9,7 @@ class UalReportFormController {
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
     this._ualTimerModal = ualTimerModal;
+    this._executedReportModal = ualExecutedReportModal;
 
     // SERVICES
     this._service = {
@@ -177,7 +178,7 @@ class UalReportFormController {
       let isValid = this.report.isValid();
       if (isValid) {
         this._ualTimerModal.open(this.report).then((reply) => {
-
+          this._executedReportModal.open();
         });
       } else {
         _.forEach(form.$error, (errorType) => {

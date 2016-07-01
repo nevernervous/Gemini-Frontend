@@ -14,11 +14,13 @@ class UalTimerModalController {
 
   _initialize() {
     this._executeReportService.run(this.report).then((reply) => {
+      setTimeout(() => {
         this.success(reply.data);
+      }, 10000);
     });
   }
 
-  success(reply){
+  success(reply) {
     this._close(reply);
   }
 
