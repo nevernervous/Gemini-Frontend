@@ -9,6 +9,25 @@ class UalGroupFilterController {
     this.selectedItem = 'AND';
 
     this.conditionList = ['AND', 'OR'];
+
+
+
+    this.resetDown = function resetDown(group){
+      let resetAllExceptions = ["Is Null","Is Not Null","Is Blank","Is Not Blank"];
+      _.forEach(group.children,function(element){
+        if(!element.children){
+          element.type = "Value";
+          element.value = null;
+          //element.secondValue = null;
+          if(resetAllExceptions.indexOf(element.operator)<0){
+            element.operator = "=";
+            element.variable = null;
+          }
+        }else{
+          resetDown(element);
+        }
+      });
+    }
   }
 
   toggle(){
@@ -49,7 +68,7 @@ class UalGroupFilterController {
       .then(
         response => {
           if(response) {
-            console.log("limpiando");
+            this.resetDown(this.filters);
           }
         }
       );
