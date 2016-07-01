@@ -8,7 +8,7 @@ class UalFilterConditionController {
     this._operatorService = Operator;
     this.acceptComma = true;
     this.types = ["Value", "Variable"];
-    this.operatorsList = [{ 'operator': "=" }];
+    this.operatorsList = [];
     this.disableAsignation = false;
     this._scope = $scope;
     this._subscriptions = [];
@@ -77,7 +77,7 @@ class UalFilterConditionController {
 
   getOperatorListByVariableType(dataType) {
     this.operatorsList = this._allOperators[dataType];
-    this.condition.operator = { 'operator': "=" };
+    this.condition.operator = { "id": 1, 'operator': "=" };
     this.changeOperator();
   }
 

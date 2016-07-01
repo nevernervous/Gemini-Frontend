@@ -1,5 +1,5 @@
 <ng-form name="filterCondition" class="wrapper" ng-class="{'-error': filterCondition.$dirty && !filterCondition.$valid}" novalidate>
-  <div class="operator">{{vm.operatorGroup}}</div>
+  <div class="operator">{{vm.operatorGroup.operator}}</div>
   <ual-autocomplete ng-model="vm.condition.variable"
       name="variable"
       ng-required="filterCondition.$submitted"

@@ -3,20 +3,41 @@ import angular from 'angular';
 let reportTransform = function ($http) {
   "ngInject";
 
+  const operatorsMultiple = [9, 10];
+
   let transformFilters = (item, index, group) => {
     if (item.hasOwnProperty("children")) {
       let innerGroup = {
-        "order": 1,
+        "order": index,
         "operator": {
-          "id": item.operator == 'AND' ? 1 : 2,
+          "id": item.operator.id
         },
         "filters": []
       };
+
       _.forEach(item.children, (innerItem, innerIndex) => {
         transformFilters(innerItem, innerIndex, innerGroup);
-      })
+      });
       group.filters.push(innerGroup);
-    } else {
+
+    }
+    else {
+      let isVariable = item.type == 'Variable';
+      let hasSecondValue = _.includes(operatorsMultiple, item.operator.id);
+      let value = [];
+
+      if (isVariable) {
+        value.push(item.value.id);
+        if (hasSecondValue) {
+          value.push(item.secondValue.id);
+        }
+      } else {
+        value.push(item.value);
+        if (hasSecondValue) {
+          value.push(item.secondValue);
+        }
+      }
+
       group.filters.push({
         "column": {
           "id": item.variable.id
@@ -24,9 +45,9 @@ let reportTransform = function ($http) {
         "filterOperator": {
           "id": item.operator.id
         },
-        "value": item.value,
-        "order": index,
-        "valueVariableTypeIndicator": item.type == 'Variable'
+        "value": value.join(','),
+        "order": index + 1,
+        "valueVariableTypeIndicator": isVariable
       });
     }
 
@@ -105,7 +126,7 @@ let reportTransform = function ($http) {
       let firstGroup = {
         "order": 1,
         "operator": {
-          "id": root.operator == 'AND' ? 1 : 2,
+          "id": root.operator.id,
         },
         "filters": []
       };

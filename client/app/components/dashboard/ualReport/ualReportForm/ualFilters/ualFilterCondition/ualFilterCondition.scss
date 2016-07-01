@@ -8,9 +8,9 @@ ual-filter-condition {
     display: flex;
     width: 100%;
     >.operator {
-      margin: 0 1%;
-      padding-left: 2px;
+      padding-left: 15px;
       height: 37px;
+      width: 59px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -56,6 +56,9 @@ ual-filter-condition {
       }
     }
     >ual-autocomplete {
+      &:first {
+        margin: 0 14px;
+      }
       margin: 0 1%;
       padding: 0px;
       @include gridle(2);

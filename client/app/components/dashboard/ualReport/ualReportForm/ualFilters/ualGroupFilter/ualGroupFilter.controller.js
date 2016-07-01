@@ -2,15 +2,25 @@ class UalGroupFilterController {
   /*@ngInject*/
   constructor(ualRemoveGroupModal) {
     this.name = 'ualGroupFilter';
-    this.operatorGroup='AND';
-    this._ualRemoveGroupModal=ualRemoveGroupModal;
+    this.andOperator = {
+      "id": 1,
+      "operator": "AND"
+    };
+    this.orOperator = {
+      "id": 2,
+      "operator": "OR"
+    };
 
-    this.selectedItem = 'AND';
+    this.operatorGroup = this.andOperator;
+    this._ualRemoveGroupModal = ualRemoveGroupModal;
 
-    this.conditionList = ['AND', 'OR'];
+
+    this.selectedItem = this.andOperator;
+
+    this.conditionList = [this.andOperator, this.orOperator];
   }
 
-  toggle(){
+  toggle() {
     this.filters.not = !this.filters.not;
   }
 
@@ -19,7 +29,7 @@ class UalGroupFilterController {
   addChildren() {
     this.filters.children.push({
       "variable": null,
-      "operator": {"operator":"="},
+      "operator": { "id": 1, "operator": "=" },
       "type": "Value",
       "value": null,
       "secondValue": null
@@ -30,24 +40,24 @@ class UalGroupFilterController {
   addGroup() {
     this.filters.children.push({
       "not": false,
-      "operator": 'AND',
+      "operator": this.andOperator,
       "children": []
     });
   }
-  cleanGroup(){
+  cleanGroup() {
     this.filters.children = [];
   }
   removeGroup(id) {
     this._ualRemoveGroupModal.open().then(
       response => {
-        if(response) {
+        if (response) {
           this.filters.children.splice(id, 1);
         }
       }
     );
   }
-  removeItem(id){
-   this.filters.children.splice(id, 1);
+  removeItem(id) {
+    this.filters.children.splice(id, 1);
   }
 }
 
