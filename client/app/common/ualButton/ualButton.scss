@@ -15,6 +15,9 @@
   &.md-raised {
     &:not([disabled]) {
       box-shadow: none;
+      &.md-focused {
+        box-shadow: none;
+      }
     }
     &[disabled] {
       color: $button-disabled-color;

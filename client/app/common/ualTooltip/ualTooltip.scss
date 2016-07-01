@@ -8,12 +8,19 @@ md-tooltip.ual-tooltip-right {
   overflow: visible;
   color: $tooltip-color;
   font-size: $tooltip-font-size;
+  font-weight: $tooltip-font-weight;
 
   ._md-content {
     padding: $tooltip-padding;
     background: $tooltip-backgrownd;
+    max-width: $tooltip-max-width;
+    height: 100%;
     overflow: visible;
+    white-space: normal;
+  }
 
+  &.ual-tooltip-hide {
+    visibility: hidden;
   }
 }
 

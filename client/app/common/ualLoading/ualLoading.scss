@@ -1,6 +1,13 @@
 @import '../common';
 
-// VARIANT / DISABLED
+// PROGRESS
+md-progress-circular {
+  path {
+    stroke: $loading-color;
+  }
+}
+
+// PROGRESS / DISABLED
 [disabled] ual-loading md-progress-circular {
   path {
     stroke: $loading-disabled-color;

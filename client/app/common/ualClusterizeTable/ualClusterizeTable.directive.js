@@ -11,12 +11,11 @@ class ualClusterizeTableDirective {
     this.transclude = true;
     this.template = template;
     this.controller = controller;
-    //this.controllerAs = 'vm';
   }
 
   link($scope, elem, attr, ctrl) {
     // INIT CLUSTERIZE
-    let clusterize = new Clusterize({
+    const clusterize = new Clusterize({
       rows: $scope.vm.rows,
       scrollId: 'scrollArea',
       contentId: 'contentArea',
@@ -30,6 +29,7 @@ class ualClusterizeTableDirective {
     // EMPTY DATA
     $('.clusterize-scroll .empty').html(attr.emptyMessage);
 
+    // TODO: Is this necesary ?
     // let onScroll = ctrl._compile(onScroll)($scope);
     // $('.clusterize-scroll') .on( "scroll", () => {
     //   $scope.$apply(attr.onScroll);
@@ -37,14 +37,16 @@ class ualClusterizeTableDirective {
 
     // ADJUST COLUMNS HEADERS WIDTH
     const resize = () => {
-      const max = _.chain($('.ual-clusterize-table tr .cell-shrink span'))
-        .map(cell => $(cell).outerWidth())
-        .max()
-        .value() + 36; // 36 px padding
+      if ( $scope.vm.rows.length ) {
+        const max = _.chain($('.ual-clusterize-table tr .cell-shrink span'))
+          .map(cell => $(cell).outerWidth())
+          .max()
+          .value() + 36; // 36 px padding
 
-      $('.ual-clusterize-table tr .cell-shrink').css('width', max + 'px');
+        $('.ual-clusterize-table tr .cell-shrink').css('width', max + 'px');
+      }
     }
-    //
+    // TODO: Review scrollbars visualizarion
     // let scrollBarAdjust = () =>{
     //   let tableHeight = $('#scrollArea > table').height();
     //   let scrollAreaHeight = $('#scrollArea').height();
@@ -55,7 +57,7 @@ class ualClusterizeTableDirective {
     // COMPILE ANGULAR ROWS
     const recompile = () => {
       let content_elem = angular.element(clusterize.content_elem);
-      ctrl._compile(content_elem.contents())($scope);
+      ctrl.$compile(content_elem.contents())($scope);
       resize();
     }
 

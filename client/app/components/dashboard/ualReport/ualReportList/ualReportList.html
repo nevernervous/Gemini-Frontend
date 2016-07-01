@@ -28,7 +28,7 @@
           ng-if="vm.selectedReports.length">
           <ual-button-flat ual-button-flat-icon="ion-ios-trash-outline"
             arial-label="Delete"
-            ng-href="vm.deleteSelected()">
+            ng-href="vm.deleteSelected($event)">
             Delete
           </ual-button-flat>
           <ual-button-flat ual-button-flat-icon="ion-ios-copy-outline"
@@ -50,7 +50,7 @@
       <div flex layout="column"
         class="list-content">
         <table ual-clusterize-table
-          ng-class="{'-loading': vm.loading, '-empty': (vm.rows.length == 0)}"
+          loading="vm.loading"
           rows="vm.rows"
           empty-message="No reports created."
           on-scroll="vm.hideTooltip()">
@@ -63,7 +63,7 @@
                 <span>Report name</span><i></i>
               </th>
               <th
-                class="cell-shrink cell-left cell-padding -{{vm.orders['dataSource'].direction[0]}}"
+                class="cell-datasource cell-left cell-shrink cell-nowrap cell-padding -{{vm.orders['dataSource'].direction[0]}}"
                 ng-class="{'-order': (vm.order == 'dataSource')}"
                 ng-click="vm.orderBy('dataSource')">
                 <span>Data source</span><i></i>

@@ -92,6 +92,21 @@
     }
   }
 
+  .clusterize-no-data {
+    display: none;
+  }
+  .empty {
+    text-align: center;
+    position: relative;
+    top: 50%;
+  }
+  .loading {
+    padding: 10px 0;
+    &.initialize {
+      height: 100%;
+    }
+  }
+
   // //   th {
   //     white-space: nowrap;
   //     i {

@@ -72,10 +72,10 @@ $color-chrome-white: #D7EDC8;
 $color-golden-bell: #DB8C0E;
 $color-frangipani: #FFE0B2;
 $color-cupid: #FAC6CA;
-$color-havelock-blue: #62A9E3;
+$color-havelock-blue: #62A9E3; //C3
 $color-steel-blue: #4784B8;
 $color-pear: #CDDC39;
-$color-rolling-stone: #7C848A;
+$color-rolling-stone: #7C848A; //C7
 $color-alto: #D4D4D4;
 $color-astral: #3271B1;
 $color-danube: #6F9BC8;
@@ -151,6 +151,7 @@ $button-flat-color-disabled: $color-periwinkle-gray;
 $button-flat-icon-color: $color-oslo-gray;
 
 // MATERIAL / PROGRESS
+$loading-color: $color-havelock-blue;
 $loading-disabled-color: $font-disabled-color;
 
 // MATERIAL / INPUT
@@ -248,7 +249,9 @@ $table-row-selected-color: $color-blizzard-blue;
 // COMPONENT / TOOLTIP
 $tooltip-triangle-width:  rem(0.4);
 $tooltip-triangle-height: rem(0.6);
+$tooltip-max-width: rem(30.0);
 $tooltip-backgrownd: $color-alto;
 $tooltip-color: $color-mine-shaft;
 $tooltip-font-size: rem(1.2);
+$tooltip-font-weight: normal;
 $tooltip-padding: rem(1.0) rem(1.6);
