@@ -73,7 +73,6 @@ class UalFilterConditionController {
 
   changeOperator(){
     this._timeout(() => {
-      console.log(this.condition.operator)
       this.extraField=[9,10].indexOf(this.condition.operator.id)>-1;
       this.disableAsignation= [15,16,17,18].indexOf(this.condition.operator.id)>-1;
       this.acceptComma=[1,2,7,8,11,12,13,14].indexOf(this.condition.operator.id)>-1;
