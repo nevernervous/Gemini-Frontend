@@ -1,6 +1,6 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 20px 0 0;
+  padding: 0px 0 20px;
   display: block;
   >.wrapper {
     margin-left: 0px !important;
@@ -8,6 +8,7 @@ ual-filter-condition {
     display: flex;
     width: 100%;
       >.operator {
+        width: 40px;
         margin: 0 12px;
         padding-left: 5px;
         height: 37px;
