@@ -2,6 +2,7 @@
 
 .md-sidenav-left.ual-sidenav,
 md-backdrop._md-sidenav-backdrop {
+  position: fixed;
   top: $toolbar-tools-height;
 }
 

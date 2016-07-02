@@ -6,6 +6,7 @@ class UalReportListController {
     $rootScope,
     $timeout,
     ualDialog,
+    errorsHandler,
     Report) {
     this.name = 'ualReportList';
 
@@ -15,7 +16,8 @@ class UalReportListController {
 
     // SERVICES
     this.services = {
-      report: Report
+      report: Report,
+      error: errorsHandler
     };
 
     // COMPONENTS
@@ -48,12 +50,6 @@ class UalReportListController {
         direction: ['desc']
       }
     }
-
-    // TODO: Error Message Managment
-    this.saveResultMessages = [
-      { type: "success", text: "Item(s) deleted successfully." },
-      { type: "error", text: "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator." }
-    ];
   }
 
   $onInit() {
@@ -140,27 +136,27 @@ class UalReportListController {
       options)
     .then(() => {
       this.services.report.remove(ids)
-        .then((reply) => {
-          _.remove(this.selectedReports, (item) => {
-            return _.contains(ids, item.id);
-          });
-          _.remove(this.reports, (item) => {
-            return _.contains(ids, item.id);
-          });
-          this.refresh();
-          this.total -= totalDelete;
-        }, (reply) => this.showError(reply))
-        .catch(() => this.$rootScope.$broadcast('BANNER.SHOW', this.saveResultMessages[1]));
+      .then((reply) => {
+        _.remove(this.selectedReports, (item) => {
+          return _.contains(ids, item.id);
+        });
+        _.remove(this.reports, (item) => {
+          return _.contains(ids, item.id);
+        });
+        this.refresh();
+        this.total -= totalDelete;
+
+        const banner = { type: "success", text: "Item(s) deleted successfully." }
+        this.$rootScope.$broadcast('BANNER.SHOW', banner);
+      }, (reply) => {
+        this.services.error.handle(reply);
+        // const banner = { type: "error", text: "The item(s) was not deleted due to an unexpected error. Please try again or contact the Gemini administrator." };
+        // this.$rootScope.$broadcast('BANNER.SHOW', banner);
+      });
+
     });
   }
-  // TODO: Error Message Managment
-  showError(reply) {
-    if (!reply.data || !reply.data.errorMessages) {
-      this.saveResult = this.saveResultMessages[1];
-    } else {
-      this.saveResult = reply.data.errorMessage;
-    }
-  }
+
 }
 
 export default UalReportListController;

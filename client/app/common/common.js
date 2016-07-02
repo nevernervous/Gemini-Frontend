@@ -35,6 +35,9 @@ import ualListitem from './ualListitem/ualListitem';
 import ualDialog from './ualDialog/ualDialog';
 import ualTabs from './ualTabs/ualTabs';
 
+// CUSTOM
+import ualTimepicker from './ualTimepicker/ualTimepicker';
+
 
 let commonModule = angular.module('app.common', [
   ngAnimate,
@@ -70,7 +73,10 @@ let commonModule = angular.module('app.common', [
   ualMenuitem.name,
   ualListitem.name,
   ualDialog.name,
-  ualTabs.name
+  ualTabs.name,
+
+  // CUSTOM
+  ualTimepicker.name
 ])
 .config(($mdThemingProvider) => {
   "ngInject";
