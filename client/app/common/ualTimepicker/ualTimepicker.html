@@ -1,16 +1,12 @@
 <input class="hours"
   placeholder="--"
   ng-focus="vm.reset = true"
-  ng-keydown="vm.hoursdown($event)"
-  ng-keyup="vm.hoursup($event)"
   ng-model="vm.time.hour"
   ng-model-options="{ getterSetter: true }">
 <span>:</span>
 <input class="minutes"
   placeholder="--"
   ng-focus="vm.reset = true"
-  ng-keydown="vm.minutesdown($event)"
-  ng-keyup="vm.minutesup($event)"
   ng-model="vm.time.minute"
   ng-model-options="{ getterSetter: true }">
 <md-button class="clock md-icon-button"
