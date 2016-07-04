@@ -1,25 +1,24 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 20px 0 0;
+  padding: 0px 0 20px;
   display: block;
   >.wrapper {
     margin-left: 0px !important;
-    @include gridle(row row-align between);
+    @include gridle(row row-align left);
     display: flex;
-    width: 75%;
+    width: 100%;
       >.operator {
-        padding-left: 15px;
+        width: 40px;
+        margin: 0 12px;
+        padding-left: 5px;
         height: 37px;
         display: flex;
         align-items: center;
         justify-content: center;
-        @include -ms-browser() {
-          padding-left: 20px;
-          margin-right: -20px;
-        }
       }
       >.value {
-        @include gridle(3);
+        margin: 0 8px;
+        @include gridle(2);
         padding: 0px;
         >.-input {
           display: flex;
@@ -49,17 +48,19 @@ ual-filter-condition {
         }
       }
       >ual-dropdown {
-        @include gridle(3);
+        margin: 0 8px;
+        @include gridle(2);
         &.short-field {
           padding: 0px;
-          @include gridle(1.5);
+          @include gridle(1);
         }
       }
       >ual-autocomplete {
+        margin: 0 8px;
         padding: 0px;
-        @include gridle(3);
+        @include gridle(2);
         &.short-field {
-          @include gridle(1.5);
+          @include gridle(0.88);
         }
         ual-input label {
           padding: 3px 2px;
@@ -105,11 +106,11 @@ ual-filter-condition {
 
 //VARIATION Error Form
 ual-filter-condition {
-  >.wrapper.-error {
-    .value {
-      >.-input {
+  >.wrapper.-error{
+    .value{
+      >.-input.-invalid{
         border-color: $color11;
-        >input {
+        >input{
           width: calc(100% - 37px);
         }
         >i {

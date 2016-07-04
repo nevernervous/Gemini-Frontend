@@ -17,9 +17,10 @@ class UalGroupFilterController {
   addChildren() {
     this.filters.children.push({
       "variable": null,
-      "operator": "=",
+      "operator": {"operator":"="},
       "type": "Value",
-      "value": null
+      "value": null,
+      "secondValue": null
     });
 
 
@@ -45,6 +46,13 @@ class UalGroupFilterController {
   }
   removeItem(id){
    this.filters.children.splice(id, 1);
+  }
+
+  getGroupClass(){
+    return {
+      'not-group-and' : (this.filters.not && this.filters.operator =='AND'),
+      'not-group-or' : (this.filters.not && this.filters.operator =='OR')
+    };
   }
 }
 
