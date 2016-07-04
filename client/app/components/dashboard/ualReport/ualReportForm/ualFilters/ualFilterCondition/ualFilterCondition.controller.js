@@ -72,7 +72,6 @@ class UalFilterConditionController {
 
   changeOperator(){
     this._timeout(() => {
-      console.log(this.condition.operator);
       let extraFieldArray = ["between","not between"];
       let disableAsignationArray = ["is blank","not blank","is null","not null"];
       this.extraField = extraFieldArray.indexOf(this.condition.operator.operator.toLowerCase())>-1;
