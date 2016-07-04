@@ -47,6 +47,14 @@ class UalFiltersController {
         this.availableVariables = [];
       });
   }
+
+  getGroupClass(){
+    return {
+      'not-group-and' : (this._filters.not && this._filters.operator =='AND'),
+      'not-group-or' : (this._filters.not && this._filters.operator =='OR')
+    };
+  }
+
 }
 
 export default UalFiltersController;

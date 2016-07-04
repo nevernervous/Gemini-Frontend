@@ -13,14 +13,15 @@ class UalGroupFilterController {
 
 
     this.resetDown = function resetDown(group){
-      let resetAllExceptions = ["Is Null","Is Not Null","Is Blank","Is Not Blank"];
+      let resetAllExceptions = ["is blank","not blank","is null","not null"];
       _.forEach(group.children,function(element){
         if(!element.children){
           element.type = "Value";
           element.value = null;
-          //element.secondValue = null;
-          if(resetAllExceptions.indexOf(element.operator)<0){
-            element.operator = "=";
+          element.secondValue = null;
+          let resetAll = resetAllExceptions.indexOf(element.operator.operator.toLowerCase()) < 0;
+          if( resetAll ){
+            element.operator.operator = "=";
             element.variable = null;
           }
         }else{
@@ -37,9 +38,10 @@ class UalGroupFilterController {
   addChildren() {
     this.filters.children.push({
       "variable": null,
-      "operator": "=",
+      "operator": {"operator":"="},
       "type": "Value",
-      "value": null
+      "value": null,
+      "secondValue": null
     });
 
 
@@ -75,6 +77,13 @@ class UalGroupFilterController {
   }
   removeItem(id){
    this.filters.children.splice(id, 1);
+  }
+
+  getGroupClass(){
+    return {
+      'not-group-and' : (this.filters.not && this.filters.operator =='AND'),
+      'not-group-or' : (this.filters.not && this.filters.operator =='OR')
+    };
   }
 }
 
