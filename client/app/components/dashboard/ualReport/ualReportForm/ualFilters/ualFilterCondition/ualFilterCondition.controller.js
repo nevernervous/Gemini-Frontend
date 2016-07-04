@@ -6,7 +6,6 @@ class UalFilterConditionController {
     this._timeout = $timeout;
     this._datasourceService = DataSource;
     this._operatorService = Operator;
-    this.acceptComma = true;
     this.types = ["Value", "Variable"];
     this.operatorsList = [];
     this.disableAsignation = false;
@@ -83,9 +82,10 @@ class UalFilterConditionController {
 
   changeOperator() {
     this._timeout(() => {
-      this.extraField = [9, 10].indexOf(this.condition.operator.id) > -1;
-      this.disableAsignation = [15, 16, 17, 18].indexOf(this.condition.operator.id) > -1;
-      this.acceptComma = [1, 2, 7, 8, 11, 12, 13, 14].indexOf(this.condition.operator.id) > -1;
+      let extraFieldArray = ["between", "not between"];
+      let disableAsignationArray = ["is blank", "not blank", "is null", "not null"];
+      this.extraField = extraFieldArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
+      this.disableAsignation = disableAsignationArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
     });
     this.resetSecond();
   }
