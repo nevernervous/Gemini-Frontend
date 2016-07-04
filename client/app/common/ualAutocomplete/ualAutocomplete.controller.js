@@ -15,7 +15,7 @@ class UalAutocompleteController {
   select($event, item) {
     $event.stopPropagation();
     if (!_.isEqual(this.selected, item) && !!this.onChange) {
-     this.onChange() ;
+     this.onChange({oldValue:this.selected,newValue:item}) ;
     }
     this.selected = item;
     this.hide();
