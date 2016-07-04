@@ -1,12 +1,14 @@
 class UalFilterConditionController {
   /*@ngInject*/
-  constructor($scope, DataSource, $timeout) {
+  constructor($scope, DataSource, $timeout, Operator) {
     this.name = 'ualFilterCondition';
     this.availableVariables;
     this._timeout = $timeout;
     this._datasourceService = DataSource;
+    this._operatorService=Operator;
     this.types = ["Value", "Variable"];
-    this.operatorsList = ["=", "<", ">", "<>", "in"];
+    this.operatorsList = [{'operator':"="}];
+    this.disableAsignation=false;
     this._scope = $scope;
 
     this.filteredVariables = [];
@@ -19,12 +21,12 @@ class UalFilterConditionController {
     });
   }
 
-  trim($event) {
+  trim($event,model) {
     this._timeout(() => {
       let $target = $($event.target);
       let value = _.trim($target.val());
       $target.val(value);
-      this.condition.value = value;
+      model = value;
     });
   }
 
@@ -38,6 +40,7 @@ class UalFilterConditionController {
 
   $onInit() {
     this.getVariables();
+    this.getAllOperators();
   }
 
   getVariables() {
@@ -51,10 +54,37 @@ class UalFilterConditionController {
         this.filteredAvaiableVariables = [];
       });
   }
+  getAllOperators(){
+    this._operatorService.all().then(response => {
+      this._allOperators=response.data;
+      this.operatorsList=this._allOperators['String'];
+    },
+    error => {
+      this.operatorsList=[];
+    });
+  }
+
+  getOperatorListByVariableType(dataType){
+    this.operatorsList=this._allOperators[dataType];
+    this.condition.operator = {'operator':"="};
+    this.changeOperator();
+  }
+
+  changeOperator(){
+    this._timeout(() => {
+      console.log(this.condition.operator);
+      let extraFieldArray = ["between","not between"];
+      let disableAsignationArray = ["is blank","not blank","is null","not null"];
+      this.extraField = extraFieldArray.indexOf(this.condition.operator.operator.toLowerCase())>-1;
+      this.disableAsignation= disableAsignationArray.indexOf(this.condition.operator.operator.toLowerCase())>-1;
+    });
+    this.resetSecond();
+  }
+
   variableChange(oldValue,newValue){
     this.filteredAvaiableVariables = _.filter(this.availableVariables, { 'dataType': newValue.dataType});
-    this.condition.operator= this.operatorsList[0] ;
     this.resetSecond();
+    this.getOperatorListByVariableType(newValue.dataType);
   }
 
   resetSecond(){
@@ -64,6 +94,7 @@ class UalFilterConditionController {
   reset() {
     this._scope.filterConditionForm.$setPristine();
     this.condition.value = null;
+    this.condition.secondValue=null;
   }
 
 }
