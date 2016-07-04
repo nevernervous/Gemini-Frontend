@@ -1,3 +1,6 @@
+
+// TODO: COPY feature
+// TODO: ngModel support
 class UalTimepickerController {
   /*@ngInject*/
   constructor($element, $scope, $timeout) {
@@ -20,6 +23,14 @@ class UalTimepickerController {
         // 1. Because it is called as a getter and thus called with no arguments
         // 2. Because the property should actually be set to undefined. This happens e.g. if the
         //    input is invalid
+
+        // For PASTE purpose
+        if ( arguments.length && /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(newHour) ) {
+          const time = newHour.split(':');
+          newHour = parseInt(time[0]);
+          this.time.minute(time[1]);
+        }
+
         if ( arguments.length && /^[0-9]+$/.test(newHour) ) {
           newHour = newHour < 0 ? 23 : parseInt(newHour) % 24;
           _hour = newHour > 9 ? newHour : `0${newHour}`;
@@ -36,6 +47,14 @@ class UalTimepickerController {
         // 1. Because it is called as a getter and thus called with no arguments
         // 2. Because the property should actually be set to undefined. This happens e.g. if the
         //    input is invalid
+
+        // For PASTE purpose
+        if ( arguments.length && /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(newMinute) ) {
+          const time = newHour.split(':');
+          newMinute = parseInt(time[1]);
+          this.time.hour(time[0]);
+        }
+
         if ( arguments.length && /^[0-9]+$/.test(newMinute) ) {
           newMinute = newMinute < 0 ? 59 : parseInt(newMinute) % 60;
           _minute = newMinute > 9 ? newMinute : `0${newMinute}`;

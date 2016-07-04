@@ -37,6 +37,7 @@ import ualTabs from './ualTabs/ualTabs';
 
 // CUSTOM
 import ualTimepicker from './ualTimepicker/ualTimepicker';
+import ualDatepicker from './ualDatepicker/ualDatepicker';
 
 
 let commonModule = angular.module('app.common', [
@@ -76,7 +77,8 @@ let commonModule = angular.module('app.common', [
   ualTabs.name,
 
   // CUSTOM
-  ualTimepicker.name
+  ualTimepicker.name,
+  ualDatepicker.name
 ])
 .config(($mdThemingProvider) => {
   "ngInject";

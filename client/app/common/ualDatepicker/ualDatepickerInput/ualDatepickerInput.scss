@@ -1,0 +1,21 @@
+@import '../../common';
+@import '../../ionicons/scss/ionicons';
+
+.md-datepicker-calendar-pane {
+  .md-calendar-scroll-mask .md-virtual-repeat-scroller {
+    overflow-y: hidden;
+  }
+}
+
+md-calendar-month .md-calendar-month-label:not(.md-calendar-month-label-disabled) {
+
+  &:before {
+    @extend .ion;
+    content: $ionicon-var-ios-arrow-left;
+
+  }
+  &:after {
+    @extend .ion;
+    content: $ionicon-var-ios-arrow-right;
+  }
+}

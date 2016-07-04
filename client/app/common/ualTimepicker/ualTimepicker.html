@@ -1,17 +1,16 @@
 <input class="hours"
-  placeholder="--"
+  placeholder="HH"
   ng-focus="vm.reset = true"
   ng-model="vm.time.hour"
   ng-model-options="{ getterSetter: true }">
 <span>:</span>
 <input class="minutes"
-  placeholder="--"
+  placeholder="MM"
   ng-focus="vm.reset = true"
   ng-model="vm.time.minute"
   ng-model-options="{ getterSetter: true }">
 <md-button class="clock md-icon-button"
-  ng-keydown="vm.clockdown($event)"
-  aria-label="Copy">
+  aria-label="Clock">
   <md-icon md-font-icon="Ionicons"
     class="ion-ios-clock-outline">
   </md-icon>
