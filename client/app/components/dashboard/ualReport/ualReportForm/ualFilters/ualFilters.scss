@@ -4,15 +4,12 @@ ual-filters {
   display: block;
   height: 100%;
   width: 100%;
-  margin-right: -12px;
-  margin-left: -12px;
   overflow-y: auto;
   overflow-x: auto;
   .-filter-container {
-    min-height: 80%;
     height: 100%;
     ual-group-filter {
-      height: 90%;
+      height: 100%;
     }
     .-condition-container {
       width: 100%;

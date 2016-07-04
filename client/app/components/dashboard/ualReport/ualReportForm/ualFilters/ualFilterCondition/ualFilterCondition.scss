@@ -1,6 +1,6 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 0px 0 20px;
+  padding: 10px 0 10px;
   display: block;
   >.wrapper {
     margin-left: 0px !important;
@@ -8,16 +8,13 @@ ual-filter-condition {
     display: flex;
     width: 100%;
     >.operator {
-      padding-left: 15px;
+      padding-left: 5px;
+      margin: 0 8px;
       height: 37px;
       width: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      // @include -ms-browser() {
-      //   padding-left: 20px;
-      //   margin-right: -20px;
-      // }
     }
     >ual-input {
       margin: 0 8px;
@@ -31,7 +28,7 @@ ual-filter-condition {
         height: 37px;
         @include -ms-browser() {
           padding: 1px 2px;
-          height: 32px;
+          height: 31spx;
         }
         >input {
           height: 28px;
@@ -60,20 +57,28 @@ ual-filter-condition {
     }
     >ual-autocomplete {
       &:first-of-type() {
-        margin: 0 14px;
+        margin: 0 8px 0 16px;
       }
       margin: 0 8px;
       padding: 0px;
+      height: 37px;
       @include gridle(2);
       &.short-field {
         @include gridle(0.88);
       }
-      ual-input label {
-        padding: 3px 2px;
-        @include -ms-browser() {
-          padding: 1px 2px;
-          i {
-            margin-top: 0px;
+      ual-input {
+        .-input {
+          padding: 5px 2px 5px 2px;
+          height: 37px;
+          @include -ms-browser() {
+            padding: 1px 2px;
+            height: 33px;
+          }
+        }
+        >i {
+          vertical-align: middle;
+          @include -ms-browser() {
+            margin-top: 5px;
           }
         }
       }

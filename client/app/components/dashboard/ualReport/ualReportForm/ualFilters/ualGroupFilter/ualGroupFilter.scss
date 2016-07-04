@@ -2,7 +2,7 @@
 ual-group-filter {
   display: block;
   width: 100%;
-  >div{
+  >div {
     height: 100%;
     padding-left: 2px;
   }
@@ -32,13 +32,16 @@ ual-group-filter {
   .-tree-container {
     padding-left: 16px;
     padding-top: 10px;
-    height: 100%;
+    height: auto;
+    &.empty{
+      height: calc(100% - 47px);
+    }
     .-toolbar {
       display: flex;
       align-items: center;
       vertical-align: middle;
       min-width: 900px;
-      padding-bottom: 20px;
+      padding-bottom: 10px;
       .-not-button {
         padding: 0 20px 0 0;
       }
@@ -51,7 +54,7 @@ ual-group-filter {
           padding-left: 15px;
         }
       }
-      .-remove-label{
+      .-remove-label {
         display: none;
       }
     }
@@ -61,25 +64,25 @@ ual-group-filter {
       .-iterative-container {
         min-width: 900px;
         ual-group-filter {
-          .-remove-label{
+          .-remove-label {
             display: inherit;
           }
-          .-no-conditions{
+          .-no-conditions {
             display: none;
           }
         }
-        .-clear-all-label{
+        .-clear-all-label {
           display: none;
         }
-        .-remove-all-label{
+        .-remove-all-label {
           display: none;
         }
       }
     }
-    .not-group-and{
+    .not-group-and {
       background-color: $other13;
     }
-    .not-group-or{
+    .not-group-or {
       background-color: $other14;
     }
   }
