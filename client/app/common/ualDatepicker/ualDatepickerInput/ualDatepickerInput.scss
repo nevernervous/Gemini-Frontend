@@ -1,21 +1,35 @@
 @import '../../common';
 @import '../../ionicons/scss/ionicons';
 
-.md-datepicker-calendar-pane {
-  .md-calendar-scroll-mask .md-virtual-repeat-scroller {
-    overflow-y: hidden;
+.md-calendar-month-label {
+  * {
+    cursor: pointer;
+  }
+  i {
+    padding: 0 5px;
+  }
+  .ion-ios-arrow-left:hover:before {
+    content: $ionicon-var-ios-arrow-back;
+  }
+  .ion-ios-arrow-right:hover:before {
+    content: $ionicon-var-ios-arrow-forward;
+  }
+  div {
+    font-weight: lighter;
+    margin: 0 5px;
+    width: 80px;
+    display: inline-block;
+    text-align: center;
+    &:hover {
+      font-weight: normal;
+    }
   }
 }
 
-md-calendar-month .md-calendar-month-label:not(.md-calendar-month-label-disabled) {
-
-  &:before {
-    @extend .ion;
-    content: $ionicon-var-ios-arrow-left;
-
-  }
-  &:after {
-    @extend .ion;
-    content: $ionicon-var-ios-arrow-right;
+ual-calendar-month,
+md-calendar-year{
+  .md-calendar-scroll-container,
+  .md-calendar-scroll-mask {
+    height: 265px;
   }
 }

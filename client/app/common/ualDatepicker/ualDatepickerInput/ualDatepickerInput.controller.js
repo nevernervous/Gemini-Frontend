@@ -251,7 +251,7 @@ class UalDatepickerInputController {
   setDisabled(isDisabled) {
     this.isDisabled = isDisabled;
     this.inputElement.disabled = isDisabled;
-    this.calendarButton.disabled = isDisabled;
+    // this.calendarButton.disabled = isDisabled;
   }
 
   /**
@@ -506,7 +506,7 @@ class UalDatepickerInputController {
 
   /** Gets the controller instance for the calendar in the floating pane. */
   getCalendarCtrl() {
-    return angular.element(this.calendarPane.querySelector('md-calendar')).controller('mdCalendar');
+    return angular.element(this.calendarPane.querySelector('ual-calendar')).controller('ualCalendar');
   }
 
   /** Focus the calendar in the floating pane. */
@@ -538,7 +538,7 @@ class UalDatepickerInputController {
     if (this.isCalendarOpen) {
       // TODO(jelbourn): way want to also include the md-datepicker itself in this check.
       var closest = this.$mdUtil.getClosest;
-      var isInCalendar = closest(event.target, 'md-calendar-year') || closest(event.target, 'md-calendar-month');
+      var isInCalendar = closest(event.target, 'md-calendar-year') || closest(event.target, 'ual-calendar-month');
 
       if (!isInCalendar) {
         this.closeCalendarPane();

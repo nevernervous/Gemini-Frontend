@@ -3,13 +3,13 @@ import controller from './ualCalendarMonthBody.controller';
 class ualCalendarMonthBodyDirective {
   /*@ngInject*/
   constructor() {
-    this.restrict = 'E';
-    this.require = ['^^mdCalendar', '^^mdCalendarMonth', 'ualCalendarMonthBody'];
+
+    this.require = ['^^ualCalendar', '^^ualCalendarMonth', 'ualCalendarMonthBody'];
     this.scope = {
       offset: '=mdMonthOffset'
     };
     this.controller = controller;
-    controllerAs: 'mdMonthBodyCtrl',
+    this.controllerAs = 'mdMonthBodyCtrl';
     this.bindToController = true;
   }
 
@@ -31,6 +31,8 @@ class ualCalendarMonthBodyDirective {
         monthBodyCtrl.generateContent();
       }
     });
+
+    var label = monthBodyCtrl.$element;
   }
 }
 

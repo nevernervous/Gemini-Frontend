@@ -166,13 +166,33 @@ class UalCalendarMonthBodyController {
     // two cells of the first row.
     var blankCellOffset = 0;
     var monthLabelCell = document.createElement('td');
-    monthLabelCell.textContent = this.dateLocale.monthHeaderFormatter(date);
+
+    var monthPrev = document.createElement('i');
+    monthPrev.classList.add('ion-ios-arrow-left');
+    monthLabelCell.appendChild(monthPrev);
+    var monthLabel = document.createElement('div');
+    monthLabel.textContent = this.dateLocale.monthHeaderFormatter(date);
+    monthLabelCell.appendChild(monthLabel);
+    var monthNext = document.createElement('i');
+    monthNext.classList.add('ion-ios-arrow-right');
+    monthLabelCell.appendChild(monthNext);
+
+    // monthLabelCell.textContent = this.dateLocale.monthHeaderFormatter(date);
     monthLabelCell.classList.add('md-calendar-month-label');
     // If the entire month is after the max date, render the label as a disabled state.
     if (this.calendarCtrl.maxDate && firstDayOfMonth > this.calendarCtrl.maxDate) {
       monthLabelCell.classList.add('md-calendar-month-label-disabled');
     } else {
-      monthLabelCell.addEventListener('click', this.monthCtrl.headerClickHandler);
+      var prev = new Date(date);
+      prev.setMonth(prev.getMonth() - 1);
+      monthPrev.addEventListener('click', this.monthCtrl.prevClickHandler(prev));
+
+      monthLabel.addEventListener('click', this.monthCtrl.headerClickHandler);
+
+      var next = new Date(date);
+      next.setMonth(next.getMonth() + 1);
+      monthNext.addEventListener('click', this.monthCtrl.nextClickHandler(next));
+
       monthLabelCell.setAttribute('data-timestamp', firstDayOfMonth.getTime());
       monthLabelCell.setAttribute('aria-label', this.dateLocale.monthFormatter(date));
     }
@@ -188,8 +208,8 @@ class UalCalendarMonthBodyController {
         return monthBody;
       }
     } else {
-      blankCellOffset = 2;
-      monthLabelCell.setAttribute('colspan', '2');
+      blankCellOffset = 3;
+      monthLabelCell.setAttribute('colspan', '3');
       row.appendChild(monthLabelCell);
     }
 

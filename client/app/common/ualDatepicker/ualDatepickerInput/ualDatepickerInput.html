@@ -2,7 +2,8 @@
   type="button"
   tabindex="-1"
   aria-hidden="true"
-  ng-click="ctrl.openCalendarPane($event)">
+  ng-click="ctrl.openCalendarPane($event)"
+  ng-hide="true">
   <md-icon md-font-icon="Ionicons"
     aria-label="md-calendar"
     class="ion-ios-calendar-outline">
@@ -16,7 +17,10 @@
     class="md-datepicker-triangle-button md-icon-button"
     ng-click="ctrl.openCalendarPane($event)"
     aria-label="{{::ctrl.dateLocale.msgOpenCalendar}}">
-    <div class="md-datepicker-expand-triangle"></div>
+    <md-icon md-font-icon="Ionicons"
+      aria-label="md-calendar"
+      class="ion-ios-calendar-outline">
+    </md-icon>
   </md-button>
 </div>
 
@@ -25,12 +29,12 @@
     <div class="md-datepicker-input-mask-opaque"></div>
   </div>
   <div class="md-datepicker-calendar">
-    <md-calendar role="dialog"
+    <ual-calendar role="dialog"
       aria-label="{{::ctrl.dateLocale.msgCalendar}}"
       md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate"
       md-date-filter="ctrl.dateFilter"
       ng-model="ctrl.date"
       ng-if="ctrl.isCalendarOpen">
-    </md-calendar>
+    </ual-calendar>
   </div>
 </div>
