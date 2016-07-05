@@ -104,7 +104,9 @@ class UalFilterConditionController {
   }
 
   reset() {
-    this._scope.filterCondition.$setPristine();
+    if (this._scope.filterCondition.$error.length == 0) {
+      this._scope.filterCondition.$setPristine();
+    }
     this.condition.value = null;
     this.condition.secondValue = null;
   }

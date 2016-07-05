@@ -3,7 +3,7 @@ import angular from 'angular';
 let reportTransform = function ($http) {
   "ngInject";
 
-  const operatorsMultiple = [9, 10];
+  const operatorsMultiple = ["between", "not between"];
 
   let transformFilters = (item, index, group) => {
     let isGroup = item.hasOwnProperty("children")
@@ -24,7 +24,7 @@ let reportTransform = function ($http) {
     }
     else {
       let isVariable = item.type == 'Variable';
-      let hasSecondValue = _.includes(operatorsMultiple, item.operator.id);
+      let hasSecondValue = _.includes(operatorsMultiple, item.operator.operator);
       let value = [];
 
       if (isVariable) {

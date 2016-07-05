@@ -28,15 +28,17 @@ ual-filter-condition {
         height: 37px;
         @include -ms-browser() {
           padding: 1px 2px;
-          height: 31spx;
+          height: 33px;
         }
         >input {
+          width: calc(100% - 15px);
           height: 28px;
           @include -ms-browser() {
             height: 23px;
           }
         }
         >i {
+          display: none;
           vertical-align: middle;
           @include -ms-browser() {
             margin-top: 5px;
@@ -61,7 +63,6 @@ ual-filter-condition {
       }
       margin: 0 8px;
       padding: 0px;
-      height: 37px;
       @include gridle(2);
       &.short-field {
         @include gridle(0.88);
@@ -74,11 +75,15 @@ ual-filter-condition {
             padding: 1px 2px;
             height: 33px;
           }
-        }
-        >i {
-          vertical-align: middle;
-          @include -ms-browser() {
-            margin-top: 5px;
+          >input{
+            width: calc(100% - 37px);
+          }
+          >i {
+            display: inline-block;
+            vertical-align: middle;
+            @include -ms-browser() {
+              margin-top: 5px;
+            }
           }
         }
       }
@@ -98,12 +103,10 @@ ual-filter-condition {
       background-color: $color00;
       >input {
         @include font-clanot-book(14);
-        width: calc(100% - 15px);
         border: 0;
         color: $color06;
       }
       >i {
-        display: none;
         font-size: 22px;
         color: $color07;
       }
@@ -126,6 +129,9 @@ ual-filter-condition {
       >i {
         display: inline-block;
         color: $color11;
+        @include -ms-browser() {
+          margin-top: 3px;
+        }
       }
     }
   }
