@@ -27,11 +27,11 @@ const CALENDAR_PANE_HEIGHT = 368;
 */
 const CALENDAR_PANE_WIDTH = 360;
 
-class UalDatepickerInputController {
+class UalDatepickerController {
   /*@ngInject*/
   constructor($scope, $element, $attrs, $compile, $timeout, $window,
     $mdConstant, $mdTheming, $mdUtil, $mdDateLocale, $$mdDateUtil, $$rAF) {
-    this.name = 'ualDatepickerInput';
+    this.name = 'ualDatepicker';
 
     /** @final */
     this.$compile = $compile;
@@ -538,7 +538,7 @@ class UalDatepickerInputController {
     if (this.isCalendarOpen) {
       // TODO(jelbourn): way want to also include the md-datepicker itself in this check.
       var closest = this.$mdUtil.getClosest;
-      var isInCalendar = closest(event.target, 'md-calendar-year') || closest(event.target, 'ual-calendar-month');
+      var isInCalendar = closest(event.target, 'ual-calendar-year') || closest(event.target, 'ual-calendar-month');
 
       if (!isInCalendar) {
         this.closeCalendarPane();
@@ -549,4 +549,4 @@ class UalDatepickerInputController {
   }
 }
 
-export default UalDatepickerInputController;
+export default UalDatepickerController;

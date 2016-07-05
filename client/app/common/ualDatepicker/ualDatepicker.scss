@@ -1,5 +1,25 @@
-@import '../../common';
-@import '../../ionicons/scss/ionicons';
+@import '../common';
+@import '../ionicons/scss/ionicons';
+
+ual-calendar-month {
+  .md-calendar-scroll-mask .md-virtual-repeat-scroller {
+    overflow-y: hidden;
+  }
+}
+
+.md-datepicker-calendar-pane {
+  .md-datepicker-input-mask {
+    background: white;
+    span {
+      padding-left: 25px;
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+  .md-datepicker-input-mask-opaque {
+    display: none;
+  }
+}
 
 .md-calendar-month-label {
   * {
@@ -27,7 +47,7 @@
 }
 
 ual-calendar-month,
-md-calendar-year{
+ual-calendar-year {
   .md-calendar-scroll-container,
   .md-calendar-scroll-mask {
     height: 265px;

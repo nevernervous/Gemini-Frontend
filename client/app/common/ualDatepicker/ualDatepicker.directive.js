@@ -1,13 +1,13 @@
-import template from './ualDatepickerInput.html';
-import controller from './ualDatepickerInput.controller';
-import './ualDatepickerInput.scss';
+import template from './ualDatepicker.html';
+import controller from './ualDatepicker.controller';
+import './ualDatepicker.scss';
 
-class ualDatepickerInputDirective {
+class ualDatepickerDirective {
   /*@ngInject*/
   constructor() {
     this.restrict = 'E';
     this.template = template;
-    this.require = ['ngModel', 'ualDatepickerInput', '?^mdInputContainer'];
+    this.require = ['ngModel', 'ualDatepicker', '?^mdInputContainer'];
     this.scope = {
       minDate: '=mdMinDate',
       maxDate: '=mdMaxDate',
@@ -25,11 +25,11 @@ class ualDatepickerInputDirective {
 
     var mdInputContainer = controllers[2];
     if (mdInputContainer) {
-      throw Error('ual-datepicker-input should not be placed inside md-input-container.');
+      throw Error('ual-datepicker should not be placed inside md-input-container.');
     }
 
     mdDatePickerCtrl.configureNgModel(ngModelCtrl);
   }
 }
 
-export default ualDatepickerInputDirective;
+export default ualDatepickerDirective;
