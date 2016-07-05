@@ -18,7 +18,7 @@
       </ual-action-label>
       <ual-action-label class="-remove-label" icon="ion-android-close" label="Remove Group" ng-click="vm.removeParent()">
       </ual-action-label>
-      <ual-action-label class="-clear-all-label" icon="ion-android-close" label="Clear All" ng-click="!(vm.filters.children|isEmpty) && vm.cleanGroup()" ng-disabled="(vm.filters.children|isEmpty)" >
+      <ual-action-label class="-clear-all-label" icon="ion-android-close" label="Reset All" ng-click="vm.resetEnable && vm.resetAll()" ng-disabled="!vm.resetEnable" >
       </ual-action-label>
     </div>
     <div class="-conditions">
