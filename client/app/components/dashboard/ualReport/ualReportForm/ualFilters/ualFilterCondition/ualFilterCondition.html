@@ -27,6 +27,7 @@
       placeholder="{{ vm.getPlaceholder() }}"
       on-blur="vm.trim($event, vm.condition.value)"
       ual-date-validator
+      second-date="{{vm.condition.secondValue}}"
       datatype="{{vm.condition.variable.dataType}}"
       maxlength="{{vm.condition.variable.dataType === 'Date' ? 10 : null }}"
       icon="ion-ios-close-outline">
@@ -42,9 +43,6 @@
         for="filterCondition.value.$error">
       <div ng-messages-include="date-messages"></div>
     </ng-messages>
-    <div class ="value -error" ng-if="vm.validateTwoDates()">
-      Start date must be before end date
-    </div>
     <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty"
         for="filterCondition.value.$error">
       <div ng-messages-include="default-messages"></div>
