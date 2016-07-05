@@ -19,7 +19,7 @@
   </ual-dropdown>
   <!--Value Fields-->
   <ual-input name="value"
-      ng-if="vm.condition.type == 'Value' && !vm.disableAsignation"
+      ng-if="vm.condition.type == 'Value' && !vm.disableAsignation && vm.condition.variable.dataType !== 'Date'"
       ng-model="vm.condition.value"
       value="vm.condition.value"
       ng-required="filterCondition.$submitted"
@@ -39,8 +39,44 @@
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-input>
+  <ual-input name="value"
+      ng-if="vm.condition.type == 'Value' && !vm.disableAsignation && vm.condition.variable.dataType === 'Date'"
+      ng-model="vm.condition.value"
+      ng-pattern="vm.condition.variable.regEx"
+      placeholder="mm/dd/yyyy"
+      on-blur="vm.trim($event,vm.condition.value)"
+      icon="ion-ios-close-outline"
+      ual-date-validator
+      maxlength="10">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterCondition.value.$invalid"
+        for="filterCondition.value.$error">
+      <div ng-messages-include="date-messages"></div>
+    </ng-messages>
+    <div class ="value -error" ng-if="vm.validateTwoDates()">
+      Start date must be before end date
+    </div>
+    <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty"
+        for="filterCondition.value.$error">
+      <div ng-messages-include="default-messages"></div>
+    </ng-messages>
+  </ual-input>
+
+   <!--<label ng-if="vm.condition.variable.dataType === 'Date' " class="-input" ng-class="{'-invalid': (filterConditionForm.value.$invalid || vm.validateTwoDates())}">
+        <input  ng-trim="false"
+                ng-pattern="vm.condition.variable.regEx"
+                ng-model="vm.condition.value"
+                name="value"
+                maxlength="10"
+                ual-date-validator
+                placeholder="mm/dd/yyyy" ng-blur="vm.trim($event,vm.condition.value)">
+        <i class="ion-ios-close-outline"></i>
+      </label>
+      <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterConditionForm.value.$invalid" for="filterConditionForm.value.$error">
+      <div ng-messages-include="date-messages"></div>
+    </ng-messages>
+    <div class ="value -error" ng-if="vm.validateTwoDates()">Start date must be before end date</div>-->
   <ual-input name="secondValue"
-      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value'"
+      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value' && vm.condition.variable.dataType !== 'Date'"
       ng-model="vm.condition.secondValue"
       value="vm.condition.secondValue"
       ng-required="filterCondition.$submitted"
@@ -56,10 +92,47 @@
             for="filterCondition.secondValue.$error">
       <div ng-messages-include="number-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!vm.condition.variable  && filterCondition.$dirty" for="filterCondition.secondValue.$error">
+    <ng-messages ng-if="!vm.condition.variable  && filterCondition.$dirty"
+            for="filterCondition.secondValue.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-input>
+
+  <ual-input name="secondValue"
+      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value' && vm.condition.variable.dataType === 'Date'"
+      ng-model="vm.condition.secondValue"
+      ng-pattern="vm.condition.variable.regEx"
+      placeholder="mm/dd/yyyy"
+      on-blur="vm.trim($event,vm.condition.secondValue)"
+      icon="ion-ios-close-outline"
+      ual-date-validator
+      maxlength="10">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterCondition.secondValue.$invalid"
+        for="filterCondition.secondValue.$error">
+      <div ng-messages-include="date-messages"></div>
+    </ng-messages>
+    <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty"
+        for="filterCondition.secondValue.$error">
+      <div ng-messages-include="default-messages"></div>
+    </ng-messages>
+  </ual-input>
+
+  <!--<label ng-if="vm.condition.variable.dataType === 'Date' " class="-input" ng-class="{'-invalid': filterConditionForm.secondValue.$invalid}">
+        <input  ng-trim="false"
+                ng-pattern="vm.condition.variable.regEx"
+                ng-model="vm.condition.secondValue"
+                name="secondValue"
+                maxlength="10"
+                ual-date-validator
+                placeholder="mm/dd/yyyy" ng-blur="vm.trim($event,vm.condition.secondValue)">
+        <i class="ion-ios-close-outline"></i>
+      </label>-->
+    <!--<ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterConditionForm.secondValue.$invalid" for="filterConditionForm.secondValue.$error">
+      <div ng-messages-include="date-messages"></div>
+    </ng-messages>
+    <ng-messages ng-if="!vm.condition.variable  && (filterConditionForm.secondValue.$dirty && !filterConditionForm.secondValue.$touched)"
+            for="filterConditionForm.secondValue.$error">
+    </ng-messages>-->
   <!--End Value Fields-->
   <!--Variable Fields-->
   <ual-autocomplete ng-if="vm.condition.type == 'Variable' && !vm.disableAsignation"

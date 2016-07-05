@@ -27,6 +27,7 @@ import Components from './components/components';
 import Services from './services/services';
 import Helpers from './helpers/helpers';
 import Filters from './filters/filters';
+import Validators from './validators/validators.js';
 import Constants from './app.constants';
 import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
@@ -57,6 +58,7 @@ angular.module('app', [
   Services.name,
   Helpers.name,
   Filters.name,
+  Validators.name,
   'ngAnimate',
   'ngMessages',
   'selectionModel'
