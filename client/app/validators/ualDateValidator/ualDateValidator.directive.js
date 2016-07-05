@@ -13,17 +13,13 @@ class ualDateValidatorDirective {
   }
 
   link($scope, elem, attr, ctrl) {
-    ctrl.$validators.value = function (modelValue, viewValue) {
-      if(!!attr.pattern && !!viewValue){
-        let pattern = new RegExp(attr.pattern);
-        let valid=pattern.test(viewValue);
-        if(!valid){
-          return false
-        }
+    ctrl.$validators.dateValue = function (modelValue, viewValue) {
+      if(!!viewValue && attr.datatype === "Date"){
         let dateArray=viewValue.split("/");
         let tempDate = new Date(dateArray[2], --dateArray[0], dateArray[1]);
         return dateArray[0] === tempDate.getMonth();
       }
+      return true;
     };
   }
 }

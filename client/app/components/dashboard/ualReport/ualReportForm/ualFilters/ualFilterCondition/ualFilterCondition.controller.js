@@ -31,9 +31,13 @@ class UalFilterConditionController {
   }
 
   getPlaceholder() {
-    let result = "[variable name]";
+    let result = "Enter [variable name]";
     if (this.condition.variable) {
-      result = this.condition.variable.dataType == 'Number' ? "numeric value" : this.condition.variable.name;
+      if(this.condition.variable.dataType == 'Date')
+      {
+        return "mm/dd/yyyy";
+      }
+      result = this.condition.variable.dataType == 'Number' ? "Enter numeric value" : `Enter ${this.condition.variable.name}`;
     }
     return result;
   }

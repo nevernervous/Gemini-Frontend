@@ -1,4 +1,4 @@
-<div class="-filter-container"  ng-class="vm.getGroupClass()" >
+<div class="-filter-container" ng-class="vm.getGroupClass()">
   <ual-group-filter filters="vm._filters" datasource="vm.datasource" available-variables="vm.availableVariables" ng-class="vm.getGroupClass()" reset-enable="vm.resetEnable"></ual-group-filter>
   <div class="-condition-container" ng-if="vm.filters.hasValues() && false">
     <div class="-code">
@@ -23,4 +23,9 @@
 <script type="text/ng-template" id="default-messages">
   <div class="-error" ng-message="required">Incomplete condition</div>
   <div class="-error" ng-message="pattern">Invalid</div>
+</script>
+<script type="text/ng-template" id="date-messages">
+  <div class="-error" ng-message="required">Valid date format: mm/dd/yyyy</div>
+  <div class="-error" ng-message="dateValue">Valid date format: mm/dd/yyyy</div>
+  <div class="-error" ng-message="pattern">Valid date format: mm/dd/yyyy</div>
 </script>
