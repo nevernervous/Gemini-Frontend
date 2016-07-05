@@ -1,6 +1,6 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 20px 0 0;
+  padding: 0px 0 20px;
   display: block;
   >.wrapper {
     margin-left: 0px !important;
@@ -8,19 +8,16 @@ ual-filter-condition {
     display: flex;
     width: 100%;
       >.operator {
-        margin: 0 1%;
+        width: 40px;
+        margin: 0 12px;
         padding-left: 5px;
         height: 37px;
         display: flex;
         align-items: center;
         justify-content: center;
-        @include -ms-browser() {
-          padding-left: 20px;
-          margin-right: -20px;
-        }
       }
       >.value {
-        margin: 0 1%;
+        margin: 0 8px;
         @include gridle(2);
         padding: 0px;
         >.-input {
@@ -51,7 +48,7 @@ ual-filter-condition {
         }
       }
       >ual-dropdown {
-        margin: 0 1%;
+        margin: 0 8px;
         @include gridle(2);
         &.short-field {
           padding: 0px;
@@ -59,7 +56,7 @@ ual-filter-condition {
         }
       }
       >ual-autocomplete {
-        margin: 0 1%;
+        margin: 0 8px;
         padding: 0px;
         @include gridle(2);
         &.short-field {

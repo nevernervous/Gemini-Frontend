@@ -4,6 +4,7 @@ ual-filters {
   display: block;
   height: 96%;
   margin-right: -12px;
+  margin-left: -12px;
   overflow-y: auto;
   overflow-x: auto;
   .-filter-container {
@@ -21,7 +22,10 @@ ual-filters {
       align-items: center;
       justify-content: center;
     }
-    .not-group{
+    .not-group-and{
+      background-color: $other13;
+    }
+    .not-group-or{
       background-color: $other14;
     }
   }
@@ -41,8 +45,10 @@ ual-filters {
   .-no-conditions {
     color: $color07;
   }
-  background-color: $other13;
-  .not-group{
+  .not-group-and{
+    background-color: $other13;
+  }
+  .not-group-or{
     background-color: $other14;
   }
 }

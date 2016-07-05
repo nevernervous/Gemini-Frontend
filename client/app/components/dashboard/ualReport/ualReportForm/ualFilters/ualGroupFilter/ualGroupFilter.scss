@@ -2,10 +2,9 @@
 ual-group-filter {
   display: block;
   width: 100%;
-  padding-top: 15px;
   >div{
     height: 100%;
-    padding-left: 15px;
+    padding-left: 2px;
   }
   .-group-operator {
     margin-bottom: 20px;
@@ -14,7 +13,6 @@ ual-group-filter {
       width: 57px;
       padding: 4px;
       text-align: center;
-      color: $color00;
       display: inline-block;
     }
     .-group-operator-arrow {
@@ -32,14 +30,15 @@ ual-group-filter {
     }
   }
   .-tree-container {
-    padding-left: 10px;
+    padding-left: 16px;
+    padding-top: 10px;
     height: 100%;
-    background-color: $other13;
     .-toolbar {
       display: flex;
       align-items: center;
       vertical-align: middle;
       min-width: 900px;
+      padding-bottom: 20px;
       .-not-button {
         padding: 0 20px 0 0;
       }
@@ -80,7 +79,10 @@ ual-group-filter {
         }
       }
     }
-    .not-group{
+    .not-group-and{
+      background-color: $other13;
+    }
+    .not-group-or{
       background-color: $other14;
     }
   }
