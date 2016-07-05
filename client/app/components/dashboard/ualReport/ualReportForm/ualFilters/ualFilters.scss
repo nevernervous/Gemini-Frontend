@@ -2,14 +2,15 @@
 //Layout
 ual-filters {
   display: block;
-  height: 96%;
-  margin-right: -12px;
-  margin-left: -12px;
+  height: 100%;
+  width: 100%;
   overflow-y: auto;
   overflow-x: auto;
   .-filter-container {
-    min-height: 80%;
     height: 100%;
+    ual-group-filter {
+      height: 100%;
+    }
     .-condition-container {
       width: 100%;
       .-code {

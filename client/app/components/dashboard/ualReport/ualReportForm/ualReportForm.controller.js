@@ -1,11 +1,15 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $rootScope, ualUnsafeReportModal, ualTooltipService) {
+  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal, ualExecutedReportModal, $timeout) {
     this._state = $state;
     this._rootScope = $rootScope;
+    this._scope = $scope;
+    this._timeout = $timeout;
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
     this._ualUnsafeReportModal = ualUnsafeReportModal;
+    this._ualTimerModal = ualTimerModal;
+    this._executedReportModal = ualExecutedReportModal;
 
     // SERVICES
     this._service = {
@@ -90,6 +94,14 @@ class UalReportFormController {
     return;
   }
 
+  $postLink() {
+    this._scope.$watch((scope) => {
+      return scope.reportForm.$valid;
+    }, (newValue, oldValue) => {
+      this.report.setValidForm(newValue);
+    });
+  }
+
   // INIT
   $onInit() {
     let reportId = this._state.params["id"];
@@ -158,6 +170,36 @@ class UalReportFormController {
           });
       }
     };
+  }
+
+  runReport(form) {
+    this._scope.$broadcast('REPORT.EXECUTE');
+    this._timeout(() => {
+      let isValid = this.report.isValid();
+      if (isValid) {
+        this._ualTimerModal.open(this.report).then((reply) => {
+          if (!!reply) {
+            this._executedReportModal.open();
+          }
+        });
+      } else {
+        _.forEach(form.$error, (errorType) => {
+          _.forEach(errorType, (item) => {
+            item.$setDirty();
+          });
+        });
+        this.selectedTab = 'report-filters';
+        let firstError = $('.ng-invalid:not(ng-form):first', "ual-filters").find("input");
+        if (firstError.length > 0) {
+          angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
+          firstError.focus();
+        }
+      }
+    }, 0);
+  }
+
+  enableRun() {
+    return !!this.report.datasource.get() && (this.report.variables.hasValues() || this.report.aggregators.hasValues());
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {
