@@ -106,7 +106,7 @@ ual-filter-condition {
 
 //VARIATION Error Form
 ual-filter-condition {
-  >.wrapper.-error{
+  >.wrapper{
     .value{
       >.-input.-invalid{
         border-color: $color11;

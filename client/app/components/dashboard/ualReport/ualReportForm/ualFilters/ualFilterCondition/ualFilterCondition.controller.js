@@ -96,6 +96,17 @@ class UalFilterConditionController {
     this.condition.secondValue=null;
   }
 
+  validateTwoDates(){
+    if(!!this.condition.value && !!this.condition.secondValue){
+      let firstDateArray=this.condition.value.split("/");
+      let secondDateArray=this.condition.secondValue.split("/");
+      let tempFirstDate = new Date(firstDateArray[2], --firstDateArray[0], firstDateArray[1]);
+      let tempSecondDate = new Date(secondDateArray[2], --secondDateArray[0], secondDateArray[1]);
+      return tempFirstDate > tempSecondDate;
+    }
+    return false;
+  }
+
 }
 
 export default UalFilterConditionController;
