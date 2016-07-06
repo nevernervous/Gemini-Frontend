@@ -4,7 +4,8 @@ class UalInputController {
     this.name = 'ualInput';
     this._value = this.value;
     this.debounce = parseInt(this.ualDebounce) || 0;
-    this.options = { getterSetter: true, updateOn: 'default blur', debounce: { default: this.debounce, blur: 0 } }
+    this.updateOn= this.updateOn || 'default blur';
+    this.options = { getterSetter: true, updateOn: this.updateOn, debounce: { default: this.debounce, blur: 0 } }
 
     // RESET
     $scope.$watch((scope) => {
