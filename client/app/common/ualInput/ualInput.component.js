@@ -4,6 +4,7 @@ import './ualInput.scss';
 
 let ualInputComponent = {
     restrict: 'E',
+    require: '?ngModel',
     bindings: {
         ualId: '@',
         value: '=',
@@ -16,7 +17,8 @@ let ualInputComponent = {
         ualDebounce: '<',
         onChange: '&?',
         ualDisabled: '=',
-        placeholder: '@'
+        placeholder: '@',
+        maxlength: "@?"
     },
     transclude: true,
     template: template,
