@@ -27,7 +27,7 @@ class UalGroupFilterController {
           element.secondValue = null;
           let resetAll = resetAllExceptions.indexOf(element.operator.operator.toLowerCase()) < 0;
           if (resetAll) {
-            element.operator.operator = "=";
+            element.operator= { "id": 1, 'operator': "=" };;
             element.variable = null;
           }
         } else {
@@ -79,7 +79,7 @@ class UalGroupFilterController {
   }
 
   resetAll() {
-    this._ualRemoveGroupModal.open()
+    this._ualResetGroupModal.open()
       .then(
       response => {
         if (response) {
