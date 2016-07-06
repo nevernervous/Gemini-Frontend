@@ -4,10 +4,10 @@ import './ualResetGroupModal.scss';
 
 let ualResetGroupModalService = function (ualModal) {
   "ngInject";
-  
-  let open = (inputs) => {    
+
+  let open = (inputs) => {
     return ualModal.open({
-      template: '<ual-modal>' + template + '</ual-modal>',
+      template: '<ual-modal class="-yesno">' + template + '</ual-modal>',
       controller: controller,
       controllerAs : 'vm',
       inputs: inputs

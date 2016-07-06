@@ -4,9 +4,16 @@ class UalResetGroupModalController {
     this.name = 'ualResetGroupModal';
     this._close = close;
   }
-  
-  close(){
-    this._close(false);
+
+  _closemodal(response) {
+    this._close(response);
+  }
+
+  no() {
+    this._closemodal(false);
+  }
+  yes() {
+    this._closemodal(true);
   }
 }
 

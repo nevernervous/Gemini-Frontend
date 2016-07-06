@@ -10,7 +10,9 @@ class UalFiltersController {
     this.hasLimit = function hasLimit(group){
       let value = false;
       _.forEach(group.children,function(element){
-        if(!element.children) return (value = true);
+        if(!element.children){
+          return (value |= (!!element.variable || !!element.value || !!element.secondValue || element.operator.operator != '=' || element.type != 'Value'));
+        }
         value |= hasLimit(element);
         if(value) return;
       });
