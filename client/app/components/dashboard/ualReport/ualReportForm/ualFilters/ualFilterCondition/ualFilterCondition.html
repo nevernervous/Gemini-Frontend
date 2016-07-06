@@ -50,7 +50,7 @@
   </ual-input>
 
   <ual-input name="secondValue"
-      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value'"
+      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value' && vm.condition.operator.operator != '='"
       ng-model="vm.condition.secondValue"
       value="vm.condition.secondValue"
       ng-required="filterCondition.$submitted"
@@ -93,7 +93,7 @@
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-autocomplete>
-  <ual-autocomplete ng-if="vm.extraField && vm.condition.type == 'Variable'"
+  <ual-autocomplete ng-if="vm.extraField && vm.condition.type == 'Variable' && vm.condition.operator.operator != '='"
       placeholder="Search for variable"
       ng-model='vm.condition.secondValue'
       name="secondValueVariable"
