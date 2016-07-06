@@ -203,12 +203,12 @@ class ualDateController {
     this.actions.year = {
       '38': (e) => { // UP
         e.preventDefault();
-        const value = parseInt(_year || (UAL_DATE_MAX - 1)) + 1;
+        const value = parseInt(_year || (UAL_DATE.getFullYear() - 1)) + 1;
         this.date.year(value, true);
       },
       '40': (e) => { // DOWN
         e.preventDefault();
-        const value = parseInt(_year || (UAL_DATE_MIN + 1)) - 1;
+        const value = parseInt(_year || (UAL_DATE.getFullYear() + 1)) - 1;
         this.date.year(value, true);
       },
       '37': (e) => { // LEFT
