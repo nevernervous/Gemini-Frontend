@@ -10,7 +10,7 @@ class UalDropdownController {
     if (!_.isEqual(this.selected, item) && !!this.onChange) {
      this.onChange() ;
     }
-    this.selected = item;
+    this.selected = _.clone(item);
     this.isVisible = false;
   }
 
