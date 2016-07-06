@@ -76,10 +76,13 @@ ual-filter-condition {
           width: -moz-max-content;
           width: -webkit-max-content;
           width: max-content;
-//          width: -o-max-content;
-//          width: -ms-max-content;
+          @include -ms-browser(){
+            width: auto;
+            display: inline-block;
+          }
           .autocomplete-list .list-options {
             .autocomplete-item {
+              white-space: nowrap;
               margin-right: 10%;
             }
             .-empty-result {
