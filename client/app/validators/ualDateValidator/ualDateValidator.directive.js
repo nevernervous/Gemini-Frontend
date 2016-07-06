@@ -1,13 +1,9 @@
-import template from './ualDateValidator.html';
 import controller from './ualDateValidator.controller';
-import './ualDateValidator.scss';
-
 
 class ualDateValidatorDirective {
   /*@ngInject*/
   constructor() {
     this.restrict = 'A';
-    this.template = template;
     this.controller = controller;
     this.require = 'ngModel';
   }
