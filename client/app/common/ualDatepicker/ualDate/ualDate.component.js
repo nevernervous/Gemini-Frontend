@@ -4,7 +4,9 @@ import './ualDate.scss';
 
 let ualDateComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    ngModel: '='
+  },
   template,
   controller,
   controllerAs: 'vm'

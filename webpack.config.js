@@ -37,7 +37,8 @@ module.exports = {
     new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery",
-        _: "lodash"
+        _: "lodash",
+        m: "moment"
     }),
 
     // Automatically move all modules defined outside of application directory to vendor bundle.

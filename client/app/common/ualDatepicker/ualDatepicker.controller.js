@@ -167,7 +167,7 @@ class UalDatepickerController {
       }
 
       self.date = value;
-      self.inputElement.value = self.dateLocale.formatDate(value);
+      //self.inputElement.value = self.dateLocale.formatDate(value);
       self.resizeInputElement();
       self.updateErrorState();
     };
@@ -184,7 +184,7 @@ class UalDatepickerController {
     self.$scope.$on('md-calendar-change', function(event, date) {
       self.ngModelCtrl.$setViewValue(date);
       self.date = date;
-      self.inputElement.value = self.dateLocale.formatDate(date);
+      //self.inputElement.value = self.dateLocale.formatDate(date);
       self.closeCalendarPane();
       self.resizeInputElement();
       self.updateErrorState();
