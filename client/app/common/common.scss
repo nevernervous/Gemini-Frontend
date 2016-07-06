@@ -79,11 +79,13 @@ $color-steel-blue: #4784B8;
 $color-pear: #CDDC39;
 $color-rolling-stone: #7C848A; //C7
 $color-alto: #D4D4D4;
-$color-astral: #3271B1;
+$color-astral: #3271B1; //C2
 $color-danube: #6F9BC8;
 $color-periwinkle-gray: #C1D4E7;
 $color-oslo-gray: #878F94;
 $color-blizzard-blue: #BFDDF3;
+$color-polo-blue: #84AAD0;
+$color-botticelli: #CED9E9;
 
 // COLOR / STATUS
 $color-success-dark:  $color-goblin;
@@ -130,7 +132,7 @@ $font-error-color: $color-error-dark;
 $button-margin: 0;
 $button-font-size: rem(1.6);
 $button-line-height: rem(3.4);
-$button-text-transform: capitalize;
+$button-text-transform: none;
 $button-disabled-color: $font-disabled-color;
 $button-disabled-bg-color: $color-gull-gray;
 $button-loading-size: rem(2.0);
@@ -151,6 +153,15 @@ $button-flat-color: $color-astral;
 $button-flat-color-hover: $color-danube;
 $button-flat-color-disabled: $color-periwinkle-gray;
 $button-flat-icon-color: $color-oslo-gray;
+
+// MATERIAL / BUTTON / SECONDARY
+$button-secondary-color: $color-astral;
+$button-secondary-font-color: $color-white;
+// MATERIAL / BUTTON / SECONDARY / HOVER
+$button-secondary-hover-color: $color-danube;
+// MATERIAL / BUTTON / SECONDARY / DISABLED
+$button-secondary-disabled-color: $color-polo-blue;
+$button-secondary-disabled-font-color: $color-botticelli;
 
 // MATERIAL / PROGRESS
 $loading-color: $color-havelock-blue;

@@ -31,6 +31,10 @@ table {
     box-sizing: border-box;
   }
 }
+ul {
+    list-style-type: none;
+    padding: 0;
+}
 //@include keyframes-spin();
 
 // *,

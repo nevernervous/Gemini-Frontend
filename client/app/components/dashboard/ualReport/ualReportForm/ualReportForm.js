@@ -21,7 +21,6 @@ let ualReportFormModule = angular.module('ualReportForm', [
     ualDataSource.name,
     ualAgregationItem.name,
     ualReportNameModal.name,
-    ualUnsafeReportModal.name,
     ualTimerModal.name,
     ualExecutedReportModal.name
 ])
@@ -32,11 +31,11 @@ let ualReportFormModule = angular.module('ualReportForm', [
     $stateProvider
         .state('dashboard.report-new', {
             url: '/report/new',
-            template: '<ual-report-form></ual-report-form>'
+            template: '<ual-report-form flex layout="column" layout-fill></ual-report-form>'
         })
         .state('dashboard.report-edit', {
             url: '/report/:id',
-            template: '<ual-report-form></ual-report-form>'
+            template: '<ual-report-form flex layout="column" layout-fill></ual-report-form>'
         });
 })
 

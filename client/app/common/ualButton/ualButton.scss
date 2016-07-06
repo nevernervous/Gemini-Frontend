@@ -1,15 +1,12 @@
 @import '../common';
 
-.md-button.md-primary {
-  text-transform: $button-text-transform;
-}
-
 .md-button.md-default-theme:not([disabled]):hover,
 .md-button:not([disabled]):hover {
   background: none;
 }
 
 .ual-button.md-button {
+  text-transform: $button-text-transform;
   font-size: $button-font-size;
 
   &.md-raised {
@@ -41,5 +38,20 @@
   ual-loading md-progress-circular {
     bottom: ($button-large-loading-size / 2);
     right: ($button-large-loading-size / 2);
+  }
+}
+
+// TYPE / SECONDARY
+.ual-button.md-button.md-secondary {
+  background: $button-secondary-color;
+  color: $button-secondary-font-color;
+
+  &:hover:not([disabled]) {
+    background: $button-secondary-hover-color
+  }
+
+  &[disabled] {
+    background: $button-secondary-disabled-color;
+    color: $button-secondary-disabled-font-color;
   }
 }

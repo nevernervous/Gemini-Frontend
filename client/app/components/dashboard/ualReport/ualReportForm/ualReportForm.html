@@ -1,15 +1,29 @@
-<div class="dashboard-header">
+<div class="header-dashboard"
+  layout="row"
+  layout-align="space-between center">
   <form name="nameForm" class="name" ng-submit="vm.saveName()">
     <ual-report-input id="report-name" class="name-input" ng-class="{'-noborder': !(vm.name.hover || vm.name.focus), '-empty': (!vm.name.current || !vm.report.name.get()), '-error': vm.name.duplicated}" placeholder="Enter report name" ual-value="vm.name.current"
       ng-mouseover="vm.hoverName()" ng-mouseleave="vm.leaveName()" on-focus="vm.focusName()" on-blur="vm.saveName()"></ual-report-input>
     <span class="duplicate-error" ng-show="vm.name.duplicated">Report name already exists. Please select another.</span>
   </form>
-  <div class="buttons-group">
-    <ual-button class="save-button -secondary" loading="{{vm.isSaving}}" ng-disabled="!vm.report.datasource.get() || vm.isSaving" ng-click="vm.save()">Save</ual-button>
-    <ual-button class="copy-button -secondary" ng-disabled="true">Create a copy</ual-button>
+  <div class="buttons-group"
+    layout="row">
+    <md-button ual-button="secondary"
+      ng-disabled="!vm.report.datasource.get() || vm.isSaving"
+      ng-click="vm.save()">
+      <ual-loading
+        ual-loading-enable="vm.isSaving"
+        ual-loading-diameter="20">
+        Save
+      </ual-loading>
+    </md-button>
+    <md-button ual-button="secondary"
+      ng-disabled="true">
+      Create a copy
+    </md-button>
   </div>
 </div>
-<form class="dashboard-body" name="reportForm" novalidate>
+<form class="body-dashboard" name="reportForm" novalidate>
   <ual-accordion-group selected="vm.selectedTab">
     <ual-accordion id="report-datasource" ng-disabled="false">
       <ual-accordion-title>Data source:
@@ -39,7 +53,13 @@
       </ual-accordion-content>
     </ual-accordion>
   </ual-accordion-group>
-  <div class="run-section">
-    <ual-button class="run-button -primary" type="submit" ng-disabled="!vm.enableRun()" ng-click="vm.runReport(reportForm)">Run report</ual-button>
+  <div layout="row" layout-align="end center">
+    <md-button ual-button
+      class="run-button"
+      type="submit"
+      ng-disabled="!vm.enableRun()"
+      ng-click="vm.runReport(reportForm)">
+      Run report
+    </md-button>
   </div>
 </form>

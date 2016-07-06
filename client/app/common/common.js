@@ -65,7 +65,7 @@ let commonModule = angular.module('app.common', [
   ualActionLabel.name,
   ualDraggable.name,
   ualDroppable.name,
-  ualAutocomplete.name
+  ualAutocomplete.name,
 
   // MATERIAL
   ualButton.name,

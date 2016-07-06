@@ -1,14 +1,28 @@
 class UalReportFormController {
   /*@ngInject*/
-  constructor($state, Aggregator, Report, DataSource, ualReportNameModal, $scope, $rootScope, ualUnsafeReportModal, ualTooltipService, ualTimerModal, ualExecutedReportModal, $timeout) {
+  constructor(
+    // INTERNALS
+    $state,
+    $scope,
+    $rootScope,
+    $timeout,
+    // SERVICES
+    Aggregator,
+    Report,
+    DataSource,
+    // COMPONENTS
+    ualReportNameModal,
+    ualTimerModal,
+    ualExecutedReportModal) {
 
-    this._state = $state;
-    this._rootScope = $rootScope;
-    this._scope = $scope;
-    this._timeout = $timeout;
+    // INTERNALS
+    this.$state = $state;
+    this.$rootScope = $rootScope;
+    this.$scope = $scope;
+    this.$timeout = $timeout;
+
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
-    this._ualUnsafeReportModal = ualUnsafeReportModal;
     this._ualTimerModal = ualTimerModal;
     this._executedReportModal = ualExecutedReportModal;
 
@@ -96,7 +110,7 @@ class UalReportFormController {
   }
 
   $postLink() {
-    this._scope.$watch((scope) => {
+    this.$scope.$watch((scope) => {
       return scope.reportForm.$valid;
     }, (newValue, oldValue) => {
       this.report.setValidForm(newValue);
@@ -105,7 +119,7 @@ class UalReportFormController {
 
   // INIT
   $onInit() {
-    let reportId = this._state.params["id"];
+    let reportId = this.$state.params["id"];
     if (!reportId) {
       this.report = this._service.report.create();
     } else {
@@ -136,7 +150,7 @@ class UalReportFormController {
               this.response.success(response.msg);
             } else if (response.status === 'error') {
               this.report.name.set(response.name);
-              this._rootScope.$broadcast('BANNER.SHOW', response.msg);
+              this.$rootScope.$broadcast('BANNER.SHOW', response.msg);
             }
           }
           );
@@ -147,7 +161,7 @@ class UalReportFormController {
       },
       // ON ERROR: SAVING
       (msg) => {
-        this._rootScope.$broadcast('BANNER.SHOW', msg);
+        this.$rootScope.$broadcast('BANNER.SHOW', msg);
       }
     ];
 
@@ -160,11 +174,11 @@ class UalReportFormController {
     // ON SUCCESS
     this.response.success = (msg) => {
       this.name.duplicated = false;
-      this._rootScope.$broadcast('BANNER.SHOW', msg);
+      this.$rootScope.$broadcast('BANNER.SHOW', msg);
       this.name.current = _.clone(this.report.name.get());
       if (!this.edit) {
         this.edit = true;
-        this._state.go("dashboard.report-edit", {
+        this.$state.go("dashboard.report-edit", {
           "id": this.report.id.get()
         }, {
             notify: false
@@ -174,8 +188,8 @@ class UalReportFormController {
   }
 
   runReport(form) {
-    this._scope.$broadcast('REPORT.EXECUTE');
-    this._timeout(() => {
+    this.$scope.$broadcast('REPORT.EXECUTE');
+    this.$timeout(() => {
       let isValid = this.report.isValid();
       if (isValid) {
         this._ualTimerModal.open(this.report).then((reply) => {
@@ -204,7 +218,7 @@ class UalReportFormController {
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {
-    this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
+    this._suscriptions.push(this.$rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (this.report.touched() && (toState.name !== 'login')) {
         event.preventDefault();
         this.components.dialog.confirm( 'Exit without saving?' )
@@ -212,7 +226,7 @@ class UalReportFormController {
           this.report = null;
           $(window).unbind("beforeunload", this.beforeClose);
           this._unsuscribe();
-          this._state.go(toState.name);
+          this.$state.go(toState.name);
         });
       } else {
         $(window).unbind("beforeunload", this.beforeClose);
