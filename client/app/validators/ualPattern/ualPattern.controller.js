@@ -1,6 +1,6 @@
 class ualPatternController {
   /*@ngInject*/
-  constructor($timeout) {
+  constructor() {
     this.name = 'ualPattern';
   }
 

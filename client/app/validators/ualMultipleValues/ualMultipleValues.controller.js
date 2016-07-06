@@ -1,6 +1,6 @@
 class ualMultipleValuesController {
   /*@ngInject*/
-  constructor($timeout) {
+  constructor() {
     this.name = 'ualMultipleValues';
   }
 
