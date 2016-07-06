@@ -27,6 +27,7 @@ import Components from './components/components';
 import Services from './services/services';
 import Helpers from './helpers/helpers';
 import Filters from './filters/filters';
+import Validators from './validators/validators.js';
 import Constants from './app.constants';
 import Interceptor from './app.interceptor';
 import AppComponent from './app.component';
@@ -35,6 +36,7 @@ import 'angular-q-spread/src/q-spread';
 import Clusterize from 'clusterize.js';
 import dotdotdot from 'jquery.dotdotdot';
 import selectionModel from 'selection-model';
+import angularScroll from 'angular-scroll';
 
 import 'normalize.css';
 import './common/fonts/clanot/clanot.scss';
@@ -47,6 +49,7 @@ window.Clusterize = Clusterize;
 angular.module('app', [
   '$q-spread',
   'angular-click-outside',
+  'duScroll',
   uiRouter,
   Constants.name,
   Common.name,
@@ -54,6 +57,7 @@ angular.module('app', [
   Services.name,
   Helpers.name,
   Filters.name,
+  Validators.name,
   'ngAnimate',
   'ngMessages',
   'selectionModel'

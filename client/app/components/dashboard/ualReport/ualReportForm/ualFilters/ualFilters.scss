@@ -2,13 +2,15 @@
 //Layout
 ual-filters {
   display: block;
-  height: 96%;
-  margin-right: -12px;
+  height: 100%;
+  width: 100%;
   overflow-y: auto;
   overflow-x: auto;
   .-filter-container {
-    min-height: 80%;
-    height: 80%;
+    height: 100%;
+    ual-group-filter {
+      height: 100%;
+    }
     .-condition-container {
       width: 100%;
       .-code {
@@ -20,6 +22,12 @@ ual-filters {
       height: calc(100% - 50px);
       align-items: center;
       justify-content: center;
+    }
+    .not-group-and{
+      background-color: $other13;
+    }
+    .not-group-or{
+      background-color: $other14;
     }
   }
 }
@@ -37,5 +45,12 @@ ual-filters {
   }
   .-no-conditions {
     color: $color07;
+    @include font-clanot-book();
+  }
+  .not-group-and{
+    background-color: $other13;
+  }
+  .not-group-or{
+    background-color: $other14;
   }
 }

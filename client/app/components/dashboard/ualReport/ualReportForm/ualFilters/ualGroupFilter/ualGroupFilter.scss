@@ -2,10 +2,9 @@
 ual-group-filter {
   display: block;
   width: 100%;
-  padding: 15px 5px;
-  >div{
+  >div {
     height: 100%;
-    padding-left: 47px;
+    padding-left: 2px;
   }
   .-group-operator {
     margin-bottom: 20px;
@@ -14,7 +13,6 @@ ual-group-filter {
       width: 57px;
       padding: 4px;
       text-align: center;
-      color: $color00;
       display: inline-block;
     }
     .-group-operator-arrow {
@@ -32,12 +30,18 @@ ual-group-filter {
     }
   }
   .-tree-container {
-    padding-left: 10px;
-    height: 100%;
+    padding-left: 16px;
+    padding-top: 10px;
+    height: auto;
+    &.empty{
+      height: calc(100% - 47px);
+    }
     .-toolbar {
       display: flex;
       align-items: center;
       vertical-align: middle;
+      min-width: 900px;
+      padding-bottom: 10px;
       .-not-button {
         padding: 0 20px 0 0;
       }
@@ -50,34 +54,36 @@ ual-group-filter {
           padding-left: 15px;
         }
       }
-      .-remove-label{
+      .-remove-label {
         display: none;
       }
     }
     .-conditions {
       height: 100%;
       display: block;
-      .-no-conditions{
-        margin-top: 10%;
-      }
       .-iterative-container {
-        min-width: 700px;
+        min-width: 900px;
         ual-group-filter {
-          margin-left: 22px;
-          .-remove-label{
+          .-remove-label {
             display: inherit;
           }
-          .-no-conditions{
+          .-no-conditions {
             display: none;
           }
         }
-        .-clear-all-label{
+        .-clear-all-label {
           display: none;
         }
-        .-remove-all-label{
+        .-remove-all-label {
           display: none;
         }
       }
+    }
+    .not-group-and {
+      background-color: $other13;
+    }
+    .not-group-or {
+      background-color: $other14;
     }
   }
 }

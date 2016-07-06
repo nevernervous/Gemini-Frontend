@@ -23,6 +23,7 @@ import ualOnScroll from './ualOnScroll/ualOnScroll';
 import ualActionLabel from './ualActionLabel/ualActionLabel';
 import ualDraggable from './ualDraggable/ualDraggable';
 import ualDroppable from './ualDroppable/ualDroppable';
+import ualAutocomplete from './ualAutocomplete/ualAutocomplete';
 
 // MATERIAL
 import ualLoading from './ualLoading/ualLoading';
@@ -64,6 +65,7 @@ let commonModule = angular.module('app.common', [
   ualActionLabel.name,
   ualDraggable.name,
   ualDroppable.name,
+  ualAutocomplete.name
 
   // MATERIAL
   ualButton.name,
@@ -107,6 +109,6 @@ let commonModule = angular.module('app.common', [
   $mdThemingProvider.theme('default')
   .primaryPalette('primary');
 
-})
+});
 
 export default commonModule;

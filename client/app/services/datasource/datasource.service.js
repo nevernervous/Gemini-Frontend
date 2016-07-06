@@ -21,7 +21,7 @@ let datasourceService = function (Properties, $http, $q, ServicesTransform) {
   }
 
   let variables = (datasource) => {
-    let transformation = [ServicesTransform.get('simple')];
+    let transformation = [ServicesTransform.get('sortbyorder')];
     return $http.get(`${endpoint}/${datasource.id}/Columns`, {
       cache: Properties.cache,
       transformResponse: ServicesTransform.generate(transformation)

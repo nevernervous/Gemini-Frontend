@@ -40,7 +40,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
         operator: 'AND',
         children: []
       }
-
     };
     initialHash = getReportHash();
     touched = false;
@@ -139,7 +138,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     }
   }
   let equalDataSource = newDataSource => {
-    return (object.dataSource && object.dataSourceId === newDataSource.id);
+    return (object.dataSource && object.dataSource.id === newDataSource.id);
   }
 
   let getVariables = () => object.variables;
@@ -156,7 +155,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     object.aggregators = value;
     touched = hasReportChange();
   }
-  let hasValuesAggregators = () => {
+  let hasAggregatorsValues = () => {
     return !!object.aggregators && object.aggregators.length > 0;
   }
 
@@ -169,7 +168,13 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     return !!object.filters && object.filters.children.length > 0;
   }
 
+  let setValidForm = (value) => {
+    object.validForm = value;
+  }
 
+  let isValid = () => {
+    return (!!object.validForm && (hasAggregatorsValues() || hasVariablesValues()));
+  }
 
   let isEmptyName = () => {
     return !object.name || _.isEmpty(object.name);
@@ -223,13 +228,15 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     aggregators: {
       get: getAggregators,
       set: setAggregators,
-      hasValues: hasValuesAggregators
+      hasValues: hasAggregatorsValues
     },
     filters: {
       get: getFilters,
       set: setFilters,
       hasValues: hasFilterValues
-    }
+    },
+    setValidForm,
+    isValid
   };
 };
 export default reportObjectService;
