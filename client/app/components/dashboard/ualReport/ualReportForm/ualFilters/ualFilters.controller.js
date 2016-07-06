@@ -1,6 +1,6 @@
 class UalFiltersController {
   /*@ngInject*/
-  constructor($scope,DataSource) {
+  constructor($scope, DataSource) {
     this.name = 'ualFilters';
     this.availableVariables;
     this.resetEnable = false;
@@ -27,9 +27,12 @@ class UalFiltersController {
       return scope.vm.datasource
     }, (newValue, oldValue) => {
       if (newValue !== oldValue && newValue) {
-        this._filters={
+        this._filters = {
           "not": false,
-          "operator": 'AND',
+          "operator": {
+            "id": 1,
+            "operator": "AND"
+          },
           "children": []
         };
         this.resetEnable = false;
@@ -50,8 +53,8 @@ class UalFiltersController {
 
   getGroupClass(){
     return {
-      'not-group-and' : (this._filters.not && this._filters.operator =='AND'),
-      'not-group-or' : (this._filters.not && this._filters.operator =='OR')
+      'not-group-and' : (this._filters.not && this._filters.operator.operator =='AND'),
+      'not-group-or' : (this._filters.not && this._filters.operator.operator =='OR')
     };
   }
 

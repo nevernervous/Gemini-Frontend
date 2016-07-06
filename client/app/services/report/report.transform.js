@@ -3,6 +3,57 @@ import angular from 'angular';
 let reportTransform = function ($http) {
   "ngInject";
 
+  const operatorsMultiple = ["between", "not between"];
+
+  let transformFilters = (item, index, group) => {
+    let isGroup = item.hasOwnProperty("children")
+    if (isGroup) {
+      let innerGroup = {
+        "order": index + 1,
+        "operator": {
+          "id": item.operator.id
+        },
+        "filters": [],
+        "children": []
+      };
+
+      _.forEach(item.children, (innerItem, innerIndex) => {
+        transformFilters(innerItem, innerIndex, innerGroup);
+      });
+      group.children.push(innerGroup);
+    }
+    else {
+      let isVariable = item.type == 'Variable';
+      let hasSecondValue = _.includes(operatorsMultiple, item.operator.operator);
+      let value = [];
+
+      if (isVariable) {
+        value.push(item.value.id);
+        if (hasSecondValue) {
+          value.push(item.secondValue.id);
+        }
+      } else {
+        value.push(item.value);
+        if (hasSecondValue) {
+          value.push(item.secondValue);
+        }
+      }
+
+      group.filters.push({
+        "column": {
+          "id": item.variable.id
+        },
+        "filterOperator": {
+          "id": item.operator.id
+        },
+        "value": value.join(','),
+        "order": index + 1,
+        "valueVariableTypeIndicator": isVariable
+      });
+    }
+
+  };
+
   let _transformation = {
     noop: (response) => {
       return response
@@ -41,7 +92,59 @@ let reportTransform = function ($http) {
       }
 
       return JSON.stringify(data);
+    },
+    run: (report) => {
+      let data = {
+        dataSourceId: null,
+        variables: [],
+        aggregators: [],
+        groups: []
+      };
+
+      let datasource = report.datasource.get();
+
+      data.dataSourceId = datasource.id;
+
+      let aggregators = report.aggregators.get();
+      _.forEach(aggregators, (item) => {
+        data.aggregators.push({
+          "Id": item.id,
+          "Order": item.order
+        });
+      });
+
+      let variables = report.variables.get();
+      _.forEach(variables, (item) => {
+        data.variables.push({
+          "Id": item.id,
+          "Order": item.order
+        });
+      });
+
+      let root = report.filters.get();
+      let filters = root.children;
+
+      let firstGroup = {
+        "order": 1,
+        "operator": {
+          "id": root.operator.id,
+        },
+        "filters": [],
+        "children": []
+      };
+
+      if (_.isArray(filters)) {
+        _.forEach(filters, (item, index) => {
+          transformFilters(item, index, firstGroup);
+        });
+      }
+
+      data.groups = firstGroup;
+
+
+      return JSON.stringify(data)
     }
+
   }
 
   let get = (key) => {

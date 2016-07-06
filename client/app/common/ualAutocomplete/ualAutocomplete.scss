@@ -1,5 +1,7 @@
 @import '../common';
 ual-autocomplete {
+  height: 100%;
+  display: inline-block;
   .autocomplete-container {
     width: 100%;
     .autocomplete-display {
@@ -33,7 +35,7 @@ ual-autocomplete {
               margin: 1px 0;
               line-height: 1;
             }
-            .-empty-result{
+            .-empty-result {
               padding: 10px 0px;
               text-align: center;
             }
@@ -53,10 +55,10 @@ ual-autocomplete {
         background-color: $color00;
         z-index: 90;
         @include box-shadow(2px, 2px, 1px, 0, $color08);
-        .autocomplete-list{
-            border: 1px solid $color08;
+        .autocomplete-list {
+          border: 1px solid $color08;
         }
-        .-empty-result{
+        .-empty-result {
           @include font-clanot-book(14);
           color: $color07;
         }
@@ -64,7 +66,6 @@ ual-autocomplete {
     }
   }
 }
-
 
 //Autocomplete Visible
 ual-autocomplete {

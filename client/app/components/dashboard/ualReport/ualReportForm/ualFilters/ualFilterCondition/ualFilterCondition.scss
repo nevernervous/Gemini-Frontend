@@ -1,81 +1,97 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 0px 0 20px;
+  padding: 10px 0 10px;
   display: block;
   >.wrapper {
     margin-left: 0px !important;
     @include gridle(row row-align left);
     display: flex;
     width: 100%;
-      >.operator {
-        width: 40px;
-        margin: 0 12px;
-        padding-left: 5px;
-        height: 37px;
+    >.operator {
+      padding-left: 5px;
+      margin: 0 8px;
+      height: 37px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    >ual-input {
+      margin: 0 8px;
+      @include gridle(2);
+      padding: 0;
+      .-input {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 5px 2px 5px 2px;
+        height: 37px;
+        @include -ms-browser() {
+          padding: 1px 2px;
+          height: 33px;
+        }
+        >input {
+          width: calc(100% - 15px);
+          height: 28px;
+          @include -ms-browser() {
+            height: 23px;
+          }
+        }
+        >i {
+          display: none;
+          vertical-align: middle;
+          @include -ms-browser() {
+            margin-top: 5px;
+          }
+        }
       }
-      >.value {
-        margin: 0 8px;
-        @include gridle(2);
+    }
+    .-error {
+      padding: 10px 10px 0;
+    }
+    >ual-dropdown {
+      margin: 0 8px;
+      @include gridle(2);
+      &.short-field {
         padding: 0px;
-        >.-input {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        @include gridle(1);
+      }
+    }
+    >ual-autocomplete {
+      &:first-of-type() {
+        margin: 0 8px 0 16px;
+      }
+      margin: 0 8px;
+      padding: 0px;
+      @include gridle(2);
+      &.short-field {
+        @include gridle(0.88);
+      }
+      ual-input {
+        .-input {
           padding: 5px 2px 5px 2px;
           height: 37px;
           @include -ms-browser() {
             padding: 1px 2px;
-            height: 32px;
+            height: 33px;
           }
-          >input {
-            height: 28px;
-            @include -ms-browser() {
-              height: 23px;
-            }
+          >input{
+            width: calc(100% - 37px);
           }
           >i {
+            display: inline-block;
             vertical-align: middle;
             @include -ms-browser() {
               margin-top: 5px;
             }
           }
         }
-        .-error {
-          padding: 10px 10px 0;
-        }
       }
-      >ual-dropdown {
-        margin: 0 8px;
-        @include gridle(2);
-        &.short-field {
-          padding: 0px;
-          @include gridle(1);
-        }
-      }
-      >ual-autocomplete {
-        margin: 0 8px;
-        padding: 0px;
-        @include gridle(2);
-        &.short-field {
-          @include gridle(0.88);
-        }
-        ual-input label {
-          padding: 3px 2px;
-          @include -ms-browser() {
-            padding: 1px 2px;
-            i {
-              margin-top: 0px;
-            }
-          }
-        }
-      }
-      >.close-btn {
-        display: flex;
-        align-items: center;
-      }
+    }
+    >.close-btn {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
@@ -87,12 +103,10 @@ ual-filter-condition {
       background-color: $color00;
       >input {
         @include font-clanot-book(14);
-        width: calc(100% - 15px);
         border: 0;
         color: $color06;
       }
       >i {
-        display: none;
         font-size: 22px;
         color: $color07;
       }
@@ -106,16 +120,17 @@ ual-filter-condition {
 
 //VARIATION Error Form
 ual-filter-condition {
-  >.wrapper{
-    .value{
-      >.-input.-invalid{
-        border-color: $color11;
-        >input{
-          width: calc(100% - 37px);
-        }
-        >i {
-          display: inline-block;
-          color: $color11;
+  >.wrapper.-error {
+    .ng-invalid .-input {
+      border-color: $color11;
+      >input {
+        width: calc(100% - 37px);
+      }
+      >i {
+        display: inline-block;
+        color: $color11;
+        @include -ms-browser() {
+          margin-top: 3px;
         }
       }
     }
