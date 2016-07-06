@@ -138,7 +138,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     }
   }
   let equalDataSource = newDataSource => {
-    return (object.dataSource && object.dataSourceId === newDataSource.id);
+    return (object.dataSource && object.dataSource.id === newDataSource.id);
   }
 
   let getVariables = () => object.variables;
