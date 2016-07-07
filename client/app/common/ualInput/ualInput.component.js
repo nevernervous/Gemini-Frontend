@@ -18,7 +18,8 @@ let ualInputComponent = {
         onChange: '&?',
         ualDisabled: '=',
         placeholder: '@',
-        maxlength: "@?"
+        maxlength: "@?",
+        updateOn: "@?"
     },
     transclude: true,
     template: template,
