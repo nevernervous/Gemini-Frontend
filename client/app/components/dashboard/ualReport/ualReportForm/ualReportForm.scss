@@ -2,8 +2,12 @@
 
 ual-report-form {
   .md-button {
-    margin-left: 15px;
-    width: 165px;
+    margin-left: $report-form-button-margin;
+    width: $report-form-button-width;
+  }
+
+  .report-form-submit {
+    margin-top: $report-form-submit-margin-top;
   }
 }
 // // LAYOUT

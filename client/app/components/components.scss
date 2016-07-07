@@ -43,3 +43,9 @@ $report-list-content-vh: $report-tabs-content-vh + $report-list-header-margin-to
 
 $report-list-content-link-color: $color-astral;
 $report-list-content-link-hover-color: $color-mine-shaft;
+
+// DASHBOARD / REPORT / FORM
+$report-form-button-width: rem(16.5);
+$report-form-button-margin: rem(1.5);
+
+$report-form-submit-margin-top: $body-dashboard-margin-top;
