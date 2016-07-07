@@ -1,13 +1,9 @@
-import template from './ualDateValidator.html';
 import controller from './ualDateValidator.controller';
-import './ualDateValidator.scss';
-
 
 class ualDateValidatorDirective {
   /*@ngInject*/
   constructor() {
     this.restrict = 'A';
-    this.template = template;
     this.controller = controller;
     this.require = 'ngModel';
   }
@@ -31,7 +27,7 @@ class ualDateValidatorDirective {
         let secondDateArray = secondDate.split("/");
         let tempFirstDate = new Date(firstDateArray[2], --firstDateArray[0], firstDateArray[1]);
         let tempSecondDate = new Date(secondDateArray[2], --secondDateArray[0], secondDateArray[1]);
-        validity = tempSecondDate > tempFirstDate;
+        validity = tempSecondDate >= tempFirstDate;
       }
       ctrl.$setValidity('secondDate', validity);
       return viewValue;

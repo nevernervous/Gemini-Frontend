@@ -9,6 +9,7 @@ class UalFilterConditionController {
     this.types = ["Value", "Variable"];
     this.operatorsList = [];
     this.disableAsignation = false;
+    this.acceptCommas=true;
     this._scope = $scope;
     this._subscriptions = [];
     this.filteredVariables = [];
@@ -88,6 +89,8 @@ class UalFilterConditionController {
     this._timeout(() => {
       let extraFieldArray = ["between", "not between"];
       let disableAsignationArray = ["is blank", "not blank", "is null", "not null"];
+      let acceptCommasArray = ['=','<>','begins with','does not begin with','contains','does not contain','ends with','does not end with']
+      this.acceptCommas= acceptCommasArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
       this.extraField = extraFieldArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
       this.disableAsignation = disableAsignationArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
     });
