@@ -1,5 +1,13 @@
 <div class="search-area">
-  <ual-input class="search-box" value="vm.searchTerm" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.filterData()" ual-debounce="'200'"></ual-input>
+  <!-- <ual-input class="search-box" value="vm.searchTerm" min-chars="3" icon="ion-ios-search-strong" ng-keyup="vm.hideTooltip()" on-change="vm.filterData()" ual-debounce="'200'"></ual-input> -->
+  <md-input-container ual-input
+    ual-input-icon="ion-ios-search">
+    <input class="search-box"
+      aria-label="search datasource"
+      ng-model="vm.pass"
+      ng-minlength="3"
+      ng-model-options="{ debounce: { default: 200 } }" >
+  </md-input-container>
 </div>
 <div class="content">
   <div class="loading-message" ng-if="!vm.datasources ">Loading ...</div>
@@ -13,7 +21,7 @@
       <div class="datasource-group" ng-repeat-start="item in vm.datasources" ng-if="vm.isFirstInGroup($index) && vm.hasValuesGroup(item.group.groupId)">
         <span>{{item.group.groupName}}</span>
       </div>
-      <ual-data-source-item ng-repeat-end datasource-item="item" ng-click="vm.selectedDataSource(item)" ng-show="item.show" ng-class="{'-selected': vm.isActive(item.id)}" id="datasource_{{item.id}}">
+      <ual-data-source-item ng-repeat-end datasource-item="item" ng-click="vm.selectedDataSource(item, $event)" ng-show="item.show" ng-class="{'-selected': vm.isActive(item.id)}" id="datasource_{{item.id}}">
       </ual-data-source-item>
     </div>
   </div>

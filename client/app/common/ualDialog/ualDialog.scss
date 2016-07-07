@@ -29,6 +29,7 @@ md-dialog.ual-dialog {
   }
 
   md-dialog-actions .md-button {
+    text-transform: $button-text-transform;
     margin: 0 0 0 6px;
     &:last-child {
       min-width: 130px;

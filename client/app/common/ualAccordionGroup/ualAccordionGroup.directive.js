@@ -6,6 +6,7 @@ class ualAccordionGroupDirective {
   /*@ngInject*/
   constructor() {
     this.restrict = 'E';
+    this.replace = true;
     this.transclude = true;
     this.template = template;
     this.scope = {

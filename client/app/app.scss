@@ -12,6 +12,9 @@
 html {
   font-size: $font-size;
 }
+body {
+  overflow: hidden;  
+}
 
 *:focus {
   outline: 0;

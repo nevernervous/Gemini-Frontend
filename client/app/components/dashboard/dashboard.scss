@@ -6,6 +6,7 @@
   .content-dashboard {
     background-color: $content-dashboard-bg-color;
     padding: $layout-top-bottom-padding $layout-left-right-padding;
+    margin-bottom: $layout-top-bottom-padding;
   }
 }
 
@@ -16,6 +17,7 @@ md-backdrop.md-opaque {
 .section-dashboard .content-dashboard {
   .header-dashboard {
     height: $header-dashboard-height;
+    min-height: $header-dashboard-height;
   }
   .body-dashboard {
     margin-top: $body-dashboard-margin-top;

@@ -1,8 +1,7 @@
 class UalRemoveGroupModalController {
-  /*@ngInject*/
    /*@ngInject*/
   constructor($rootScope, close) {
-    this.name = 'ualDataSourceCancelModal';
+    this.name = 'ualRemoveGroupModal';
     this._close = close;
   }
 

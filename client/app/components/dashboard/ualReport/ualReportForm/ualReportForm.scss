@@ -8,6 +8,8 @@ ual-report-form {
 
   .report-form-submit {
     margin-top: $report-form-submit-margin-top;
+    height: $report-form-submit-height;
+    min-height: $report-form-submit-height;
   }
 }
 // // LAYOUT

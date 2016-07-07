@@ -11,6 +11,7 @@ class UalReportFormController {
     Report,
     DataSource,
     // COMPONENTS
+    ualDialog,
     ualReportNameModal,
     ualTimerModal,
     ualExecutedReportModal) {
@@ -21,24 +22,28 @@ class UalReportFormController {
     this.$scope = $scope;
     this.$timeout = $timeout;
 
-    // MODALS
-    this._ualReportNameModal = ualReportNameModal;
-    this._ualTimerModal = ualTimerModal;
-    this._executedReportModal = ualExecutedReportModal;
-
     // SERVICES
-    this._service = {
+    this.services = {
       report: Report,
       datasource: DataSource
       //tooltip: ualTooltipService
     };
+
+    // COMPONENTS
+    this.components = {
+      dialog: ualDialog
+    }
+
+    // MODALS
+    this._ualReportNameModal = ualReportNameModal;
+    this._ualTimerModal = ualTimerModal;
+    this._executedReportModal = ualExecutedReportModal;
 
     this.dropDownStyle = {};
 
     // STATE
     this.edit = false;
     this._suscriptions = [];
-
     this.report = null;
     this.isSaving = false;
 
@@ -59,56 +64,7 @@ class UalReportFormController {
 
   }
 
-  // NAME INPUT
-  hoverName() {
-    this.name.hover = true;
-    if (!this.name.focus) {
-      // this._service.tooltip.show({
-      //   container: 'report-name .ual-input',
-      //   text: 'Change report name',
-      //   position: 'right'
-      // });
-    }
-  }
-
-  leaveName() {
-    this.name.hover = false;
-    // this._service.tooltip.hide();
-  }
-
-  focusName() {
-    this.name.focus = true;
-    // this._service.tooltip.hide();
-  }
-
-  saveName() {
-    this.name.focus = false;
-    if (this.edit && this.name.current.toLowerCase() != this.report.name.get().toLowerCase()) {
-      this.save();
-    } else if (!this.edit) {
-      this.report.name.set(_.clone(this.name.current));
-    }
-  }
-
-  // SAVE
-  save() {
-    this.report.name.set(_.clone(this.name.current));
-
-    this.isSaving = true;
-
-    this.report.save().then(
-      result => {
-        this.response.success(result.msg);
-        this.isSaving = false;
-      },
-      result => {
-        this.response.error(result.code, result.msg);
-        this.isSaving = false;
-      }
-    );
-    return;
-  }
-
+  // LIFECYCLE
   $postLink() {
     this.$scope.$watch((scope) => {
       return scope.reportForm.$valid;
@@ -121,10 +77,10 @@ class UalReportFormController {
   $onInit() {
     let reportId = this.$state.params["id"];
     if (!reportId) {
-      this.report = this._service.report.create();
+      this.report = this.services.report.create();
     } else {
       this.edit = true;
-      this._service.report.getById(reportId)
+      this.services.report.getById(reportId)
         .then((reply) => {
           this.report = reply;
           this.name.current = _.clone(this.report.name.get());
@@ -134,6 +90,8 @@ class UalReportFormController {
     this._suscribe();
 
   }
+
+  // TODO: Refacto Error Handlers
   // INIT / RESPONSES
   _responses() {
     let error_actions = [
@@ -187,6 +145,58 @@ class UalReportFormController {
     };
   }
 
+
+  // NAME INPUT
+  hoverName() {
+    this.name.hover = true;
+    if (!this.name.focus) {
+      // this.services.tooltip.show({
+      //   container: 'report-name .ual-input',
+      //   text: 'Change report name',
+      //   position: 'right'
+      // });
+    }
+  }
+
+  leaveName() {
+    this.name.hover = false;
+    // this.services.tooltip.hide();
+  }
+
+  focusName() {
+    this.name.focus = true;
+    // this.services.tooltip.hide();
+  }
+
+  saveName() {
+    this.name.focus = false;
+    if (this.edit && this.name.current.toLowerCase() != this.report.name.get().toLowerCase()) {
+      this.save();
+    } else if (!this.edit) {
+      this.report.name.set(_.clone(this.name.current));
+    }
+  }
+
+  // SAVE
+  save() {
+    this.report.name.set(_.clone(this.name.current));
+
+    this.isSaving = true;
+
+    this.report.save().then(
+      result => {
+        this.response.success(result.msg);
+        this.isSaving = false;
+      },
+      result => {
+        this.response.error(result.code, result.msg);
+        this.isSaving = false;
+      }
+    );
+    return;
+  }
+
+
   runReport(form) {
     this.$scope.$broadcast('REPORT.EXECUTE');
     this.$timeout(() => {
@@ -214,7 +224,9 @@ class UalReportFormController {
   }
 
   enableRun() {
-    return !!this.report.datasource.get() && (this.report.variables.hasValues() || this.report.aggregators.hasValues());
+    return (this.report) &&
+      (this.report.datasource.get()) &&
+      (this.report.variables.hasValues() || this.report.aggregators.hasValues());
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {
