@@ -1,4 +1,4 @@
-let sessionInterceptor = function (Token, $rootScope) {
+let sessionInterceptor = function (Token, $rootScope, $q) {
   "ngInject";
   let _token = Token;
 
@@ -18,6 +18,7 @@ let sessionInterceptor = function (Token, $rootScope) {
     if (response.status === 401) {
       _token.destroy();
     }
+    return $q.reject(response);
   }
 
   return { request, response, responseError };

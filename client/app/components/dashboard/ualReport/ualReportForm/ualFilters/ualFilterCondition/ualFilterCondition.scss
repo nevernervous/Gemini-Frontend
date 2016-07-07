@@ -47,8 +47,8 @@ ual-filter-condition {
       }
     }
     .-error {
-      padding: 10px 10px 0;
-    }
+        padding: 10px 10px 0;
+      }
     >ual-dropdown {
       margin: 0 8px;
       @include gridle(2);
@@ -67,22 +67,42 @@ ual-filter-condition {
       &.short-field {
         @include gridle(0.88);
       }
-      ual-input {
-        .-input {
-          padding: 5px 2px 5px 2px;
-          height: 37px;
-          @include -ms-browser() {
-            padding: 1px 2px;
-            height: 33px;
-          }
-          >input{
-            width: calc(100% - 37px);
-          }
-          >i {
-            display: inline-block;
-            vertical-align: middle;
+      .autocomplete-container .autocomplete-display {
+        ual-input {
+          .-input {
+            padding: 5px 2px 5px 2px;
+            height: 37px;
             @include -ms-browser() {
-              margin-top: 5px;
+              padding: 1px 2px;
+              height: 33px;
+            }
+            >input{
+              width: calc(100% - 37px);
+            }
+            >i {
+              display: inline-block;
+              vertical-align: middle;
+              @include -ms-browser() {
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+        .float-container {
+          width: -moz-max-content;
+          width: -webkit-max-content;
+          width: max-content;
+          @include -ms-browser(){
+            width: auto;
+            display: inline-block;
+          }
+          .autocomplete-list .list-options {
+            .autocomplete-item {
+              white-space: nowrap;
+              margin-right: 10%;
+            }
+            .-empty-result {
+              padding: 10px 45px;
             }
           }
         }
