@@ -8,7 +8,7 @@ let sessionService = function (Properties, Token, $http, uuid) {
 
   // DOC: http://docs.ualgemini.apiary.io/#reference/0/tokens/create-a-new-token
   let login = (user, pass) => {
-    localStorage.setItem('gemini.session.user', user);
+    localStorage.setItem('gemini.session.user', user || '');
     let session = {
       username: user,
       password: pass,
