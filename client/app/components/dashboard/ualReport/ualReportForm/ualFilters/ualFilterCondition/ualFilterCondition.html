@@ -21,11 +21,15 @@
   <ual-input name="value"
       ng-if="vm.condition.type == 'Value' && !vm.disableAsignation"
       ng-model="vm.condition.value"
+      update-on="blur"
       value="vm.condition.value"
       ng-required="filterCondition.$submitted"
-      ng-pattern="vm.condition.variable.regEx"
+      reg-ex="{{vm.condition.variable.regEx}}"
       placeholder="{{ vm.getPlaceholder() }}"
       on-blur="vm.trim($event, vm.condition.value)"
+      accept-commas="{{vm.acceptCommas}}"
+      ual-multiple-values
+      ual-pattern
       ual-date-validator
       second-date="{{vm.condition.secondValue}}"
       datatype="{{vm.condition.variable.dataType}}"
@@ -43,6 +47,10 @@
         for="filterCondition.value.$error">
       <div ng-messages-include="date-messages"></div>
     </ng-messages>
+    <ng-messages ng-if="!!vm.condition.variable && filterCondition.$dirty"
+        for="filterCondition.value.$error">
+      <div ng-messages-include="multiple-values"></div>
+    </ng-messages>
     <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty"
         for="filterCondition.value.$error">
       <div ng-messages-include="default-messages"></div>
@@ -50,13 +58,17 @@
   </ual-input>
 
   <ual-input name="secondValue"
-      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value'"
+      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value' && vm.condition.operator.operator != '='"
       ng-model="vm.condition.secondValue"
+      update-on="blur"
       value="vm.condition.secondValue"
       ng-required="filterCondition.$submitted"
-      ng-pattern="vm.condition.variable.regEx"
+      reg-ex="{{vm.condition.variable.regEx}}"
       placeholder="{{ vm.getPlaceholder() }}"
       on-blur="vm.trim($event,vm.condition.secondValue)"
+      accept-commas="{{vm.acceptCommas}}"
+      ual-multiple-values
+      ual-pattern
       ual-date-validator
       datatype="{{vm.condition.variable.dataType}}"
       maxlength="{{vm.condition.variable.dataType === 'Date' ? 10 : null }}"
@@ -72,6 +84,10 @@
     <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterCondition.$dirty"
         for="filterCondition.secondValue.$error">
       <div ng-messages-include="date-messages"></div>
+    </ng-messages>
+    <ng-messages ng-if="!!vm.condition.variable && filterCondition.$dirty"
+        for="filterCondition.secondValue.$error">
+      <div ng-messages-include="multiple-values"></div>
     </ng-messages>
     <ng-messages ng-if="!vm.condition.variable  && filterCondition.$dirty"
             for="filterCondition.secondValue.$error">
@@ -93,7 +109,7 @@
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-autocomplete>
-  <ual-autocomplete ng-if="vm.extraField && vm.condition.type == 'Variable'"
+  <ual-autocomplete ng-if="vm.extraField && vm.condition.type == 'Variable' && vm.condition.operator.operator != '='"
       placeholder="Search for variable"
       ng-model='vm.condition.secondValue'
       name="secondValueVariable"
