@@ -1,5 +1,5 @@
 @import '../common';
-.ual-input {
+.-input {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,9 +27,6 @@
     vertical-align: middle;
     color: $color07;
     display: inline-block;
-    @include -ms-browser() {
-      margin-top: 5px;
-    }
   }
 }
 
@@ -43,20 +40,20 @@ ual-input {
 
 // VARIATION / NOBORDER
 ual-input.-noborder {
-  .ual-input {
+  .-input {
     border-color: transparent
   }
 }
 
 // VARIATION / DISABLED
 ual-input.-noborder {
-  .ual-input {
+  .-input {
     border-color: transparent
   }
 }
 
 //VARIATION / HIDE ICON
-.ual-input.-no-icon {
+.-input.-no-icon {
   input {
     width: calc(100% - 15px);
   }

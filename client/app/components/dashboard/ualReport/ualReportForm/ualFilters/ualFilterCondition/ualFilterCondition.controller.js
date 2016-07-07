@@ -5,12 +5,13 @@ class UalFilterConditionController {
     this.availableVariables;
     this._timeout = $timeout;
     this._datasourceService = DataSource;
-    this._operatorService=Operator;
+    this._operatorService = Operator;
     this.types = ["Value", "Variable"];
-    this.operatorsList = [{'operator':"="}];
-    this.disableAsignation=false;
+    this.operatorsList = [];
+    this.disableAsignation = false;
+    this.acceptCommas=true;
     this._scope = $scope;
-
+    this._subscriptions = [];
     this.filteredVariables = [];
     $scope.$watch((scope) => {
       return scope.vm.datasource
@@ -21,7 +22,7 @@ class UalFilterConditionController {
     });
   }
 
-  trim($event,model) {
+  trim($event, model) {
     this._timeout(() => {
       let $target = $($event.target);
       let value = _.trim($target.val());
@@ -31,9 +32,13 @@ class UalFilterConditionController {
   }
 
   getPlaceholder() {
-    let result = "[variable name]";
+    let result = "Enter [variable name]";
     if (this.condition.variable) {
-      result = this.condition.variable.dataType == 'Number' ? "numeric value" : this.condition.variable.name;
+      if(this.condition.variable.dataType == 'Date')
+      {
+        return "mm/dd/yyyy";
+      }
+      result = this.condition.variable.dataType == 'Number' ? "Enter numeric value" : `Enter ${this.condition.variable.name}`;
     }
     return result;
   }
@@ -41,6 +46,16 @@ class UalFilterConditionController {
   $onInit() {
     this.getVariables();
     this.getAllOperators();
+  }
+
+  $postLink() {
+    this._subscriptions.push(this._scope.$on('REPORT.EXECUTE', () => {
+      this._scope.filterCondition.$setSubmitted();
+    }));
+  }
+
+  $onDestroy() {
+    this._subscriptions.forEach(suscription => suscription());
   }
 
   getVariables() {
@@ -54,57 +69,53 @@ class UalFilterConditionController {
         this.filteredAvaiableVariables = [];
       });
   }
-  getAllOperators(){
+  getAllOperators() {
     this._operatorService.all().then(response => {
-      this._allOperators=response.data;
-      this.operatorsList=this._allOperators['String'];
+      this._allOperators = response.data;
+      this.operatorsList = this._allOperators['String'];
     },
-    error => {
-      this.operatorsList=[];
-    });
+      error => {
+        this.operatorsList = [];
+      });
   }
 
-  getOperatorListByVariableType(dataType){
-    this.operatorsList=this._allOperators[dataType];
-    this.condition.operator = {'operator':"="};
+  getOperatorListByVariableType(dataType) {
+    this.operatorsList = this._allOperators[dataType];
+    this.condition.operator = { "id": 1, 'operator': "=" };
     this.changeOperator();
   }
 
-  changeOperator(){
+  changeOperator() {
     this._timeout(() => {
-      let extraFieldArray = ["between","not between"];
-      let disableAsignationArray = ["is blank","not blank","is null","not null"];
-      this.extraField = extraFieldArray.indexOf(this.condition.operator.operator.toLowerCase())>-1;
-      this.disableAsignation= disableAsignationArray.indexOf(this.condition.operator.operator.toLowerCase())>-1;
+      let extraFieldArray = ["between", "not between"];
+      let disableAsignationArray = ["is blank", "not blank", "is null", "not null"];
+      let acceptCommasArray = ['=','<>','begins with','does not begin with','contains','does not contain','ends with','does not end with']
+      this.acceptCommas= acceptCommasArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
+      this.extraField = extraFieldArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
+      this.disableAsignation = disableAsignationArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
     });
     this.resetSecond();
   }
 
-  variableChange(oldValue,newValue){
-    this.filteredAvaiableVariables = _.filter(this.availableVariables, { 'dataType': newValue.dataType});
-    this.resetSecond();
+  variableChange(oldValue, newValue) {
+    this.filteredAvaiableVariables = _.filter(this.availableVariables, { 'dataType': newValue.dataType });
+    if (oldValue) {
+      this.resetSecond();
+    }
     this.getOperatorListByVariableType(newValue.dataType);
   }
 
-  resetSecond(){
-    this.condition.type= this.types[0];
+  resetSecond() {
+    this.condition.type = this.types[0];
     this.reset();
   }
-  reset() {
-    this._scope.filterConditionForm.$setPristine();
-    this.condition.value = null;
-    this.condition.secondValue=null;
-  }
 
-  validateTwoDates(){
-    if(!!this.condition.value && !!this.condition.secondValue){
-      let firstDateArray=this.condition.value.split("/");
-      let secondDateArray=this.condition.secondValue.split("/");
-      let tempFirstDate = new Date(firstDateArray[2], --firstDateArray[0], firstDateArray[1]);
-      let tempSecondDate = new Date(secondDateArray[2], --secondDateArray[0], secondDateArray[1]);
-      return tempFirstDate > tempSecondDate;
+  reset() {
+    if (this._scope.filterCondition.$error.length == 0) {
+      this._scope.filterCondition.$setPristine();
     }
-    return false;
+    this.condition.value = null;
+    this.condition.secondValue = null;
   }
 
 }

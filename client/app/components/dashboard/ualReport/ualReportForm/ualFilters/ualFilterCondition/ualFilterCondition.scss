@@ -1,6 +1,6 @@
 @import '../../../../../../common/common';
 ual-filter-condition {
-  padding: 0px 0 20px;
+  padding: 10px 0 10px;
   display: block;
   >.wrapper {
     margin-left: 0px !important;
@@ -8,19 +8,19 @@ ual-filter-condition {
     display: flex;
     width: 100%;
     >.operator {
-      width: 40px;
-      margin: 0 12px;
       padding-left: 5px;
+      margin: 0 8px;
       height: 37px;
+      width: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    >.value {
+    >ual-input {
       margin: 0 8px;
       @include gridle(2);
-      padding: 0px;
-      >.-input {
+      padding: 0;
+      .-input {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -31,12 +31,14 @@ ual-filter-condition {
           height: 32px;
         }
         >input {
+          width: calc(100% - 15px);
           height: 28px;
           @include -ms-browser() {
             height: 23px;
           }
         }
         >i {
+          display: none;
           vertical-align: middle;
           @include -ms-browser() {
             margin-top: 5px;
@@ -56,6 +58,9 @@ ual-filter-condition {
       }
     }
     >ual-autocomplete {
+      &:first-of-type() {
+        margin: 0 8px 0 16px;
+      }
       margin: 0 8px;
       padding: 0px;
       @include gridle(2);
@@ -107,12 +112,10 @@ ual-filter-condition {
       background-color: $color00;
       >input {
         @include font-clanot-book(14);
-        width: calc(100% - 15px);
         border: 0;
         color: $color06;
       }
       >i {
-        display: none;
         font-size: 22px;
         color: $color07;
       }
@@ -126,16 +129,17 @@ ual-filter-condition {
 
 //VARIATION Error Form
 ual-filter-condition {
-  >.wrapper {
-    .value {
-      >.-input.-invalid {
-        border-color: $color11;
-        >input {
-          width: calc(100% - 37px);
-        }
-        >i {
-          display: inline-block;
-          color: $color11;
+  >.wrapper.-error {
+    .ng-invalid .-input {
+      border-color: $color11;
+      >input {
+        width: calc(100% - 37px);
+      }
+      >i {
+        display: inline-block;
+        color: $color11;
+        @include -ms-browser() {
+          margin-top: 3px;
         }
       }
     }

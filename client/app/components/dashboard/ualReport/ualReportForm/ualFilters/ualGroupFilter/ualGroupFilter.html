@@ -1,6 +1,6 @@
-<div ng-class="vm.parentOperator.toLowerCase()">
+<div ng-class="vm.parentOperator.operator.toLowerCase()">
   <div class="-group-operator" ng-if="vm.parentOperator">
-    <span class="-group-operator-text">{{vm.parentOperator}}</span><span class="-group-operator-arrow"></span>
+    <span class="-group-operator-text">{{vm.parentOperator.operator}}</span><span class="-group-operator-arrow"></span>
   </div>
   <div class="-tree-container" ng-class="vm.getGroupClass()">
     <div class="-toolbar">
@@ -8,7 +8,10 @@
       <ual-checkbox on-click="vm.toggle()" is-checked="vm.filters.not"></ual-checkbox>
         Not
       </span>
-      <ual-dropdown placeholder="SELECT" list="vm.conditionList" selected="vm.filters.operator">
+      <ual-dropdown placeholder="SELECT"
+          list="vm.conditionList"
+          selected="vm.filters.operator"
+          property="operator">
       </ual-dropdown>
       <ual-action-label class="-condition-label" icon="ion-android-add" label="Add condition" ng-click="vm.addChildren()">
       </ual-action-label>

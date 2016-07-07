@@ -1,99 +1,127 @@
-<script type="text/ng-template" id="text-messages">
-  <div class="-error" ng-message="required">Invalid {{!!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }} format</div>
-  <div class="-error" ng-message="pattern">Invalid {{!!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }} format</div>
-</script>
-<script type="text/ng-template" id="number-messages">
-  <div class="-error" ng-message="required">Numeric value expected</div>
-  <div class="-error" ng-message="pattern">Numeric value expected</div>
-</script>
-<script type="text/ng-template" id="default-messages">
-  <div class="-error" ng-message="required">Select variable</div>
-  <div class="-error" ng-message="pattern">Invalid</div>
-</script>
-<script type="text/ng-template" id="date-messages">
-  <div class="-error" ng-message="value">Valid date format: mm/dd/yyyy</div>
-</script>
-<form name="filterConditionForm" class="wrapper" ng-class="{'-error': (filterConditionForm.$dirty && !filterConditionForm.$valid && !!vm.condition.variable)  }"novalidate>
-  <div class="operator">{{vm.operatorGroup}}</div>
-  <ual-autocomplete placeholder="Search for variable" list="vm.availableVariables" selected="vm.condition.variable" property="name" on-change="vm.variableChange(oldValue,newValue)">
+<ng-form name="filterCondition" class="wrapper" ng-class="{'-error': filterCondition.$dirty && !filterCondition.$valid}" novalidate>
+  <div class="operator">{{vm.operatorGroup.operator}}</div>
+  <ual-autocomplete ng-model="vm.condition.variable"
+      name="variable"
+      ng-required="filterCondition.$submitted"
+      placeholder="Search for variable"
+      list="vm.availableVariables"
+      selected="vm.condition.variable"
+      on-change="vm.variableChange(oldValue,newValue)"
+      property="name">
+    <!--this component will change on US - CR1.24-->
+    <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty" for="filterCondition.variable.$error">
+      <div ng-messages-include="default-messages"></div>
+    </ng-messages>
   </ual-autocomplete>
   <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator" property="operator" on-change="vm.changeOperator()">
   </ual-dropdown>
   <ual-dropdown class="short-field" ng-if="!vm.disableAsignation" placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
   </ual-dropdown>
-  <div class="value" ng-if="!vm.disableAsignation" ng-show="vm.condition.type == 'Value'">
-    <label ng-if="vm.condition.variable.dataType !== 'Date' " class="-input" ng-class="{'-invalid': filterConditionForm.value.$invalid}">
-        <input  ng-trim="false"
-                ng-model="vm.condition.value"
-                name="value"
-                ng-pattern="vm.condition.variable.regEx"
-                placeholder="Enter {{ vm.getPlaceholder() }}" ng-blur="vm.trim($event,vm.condition.value)">
-        <i class="ion-ios-close-outline"></i>
-      </label>
-      <label ng-if="vm.condition.variable.dataType === 'Date' " class="-input" ng-class="{'-invalid': (filterConditionForm.value.$invalid || vm.validateTwoDates())}">
-        <input  ng-trim="false"
-                ng-pattern="vm.condition.variable.regEx"
-                ng-model="vm.condition.value"
-                name="value"
-                maxlength="10"
-                ual-date-validator
-                placeholder="mm/dd/yyyy" ng-blur="vm.trim($event,vm.condition.value)">
-        <i class="ion-ios-close-outline"></i>
-      </label>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterConditionForm.value.$dirty"
-            for="filterConditionForm.value.$error">
+  <!--Value Fields-->
+  <ual-input name="value"
+      ng-if="vm.condition.type == 'Value' && !vm.disableAsignation"
+      ng-model="vm.condition.value"
+      update-on="blur"
+      value="vm.condition.value"
+      ng-required="filterCondition.$submitted"
+      reg-ex="{{vm.condition.variable.regEx}}"
+      placeholder="{{ vm.getPlaceholder() }}"
+      on-blur="vm.trim($event, vm.condition.value)"
+      accept-commas="{{vm.acceptCommas}}"
+      ual-multiple-values
+      ual-pattern
+      ual-date-validator
+      second-date="{{vm.condition.secondValue}}"
+      datatype="{{vm.condition.variable.dataType}}"
+      maxlength="{{vm.condition.variable.dataType === 'Date' ? 10 : null }}"
+      icon="ion-ios-close-outline">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterCondition.$dirty"
+        for="filterCondition.value.$error">
       <div ng-messages-include="text-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.value.$dirty" for="filterConditionForm.value.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterCondition.$dirty"
+        for="filterCondition.value.$error">
       <div ng-messages-include="number-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterConditionForm.value.$invalid" for="filterConditionForm.value.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterCondition.$dirty"
+        for="filterCondition.value.$error">
       <div ng-messages-include="date-messages"></div>
     </ng-messages>
-    <div class ="value -error" ng-if="vm.validateTwoDates()">Start date must be before end date</div>
-    <ng-messages ng-if="!vm.condition.variable  && (filterConditionForm.value.$dirty && !filterConditionForm.value.$touched)" for="filterConditionForm.value.$error">
+    <ng-messages ng-if="!!vm.condition.variable && filterCondition.$dirty"
+        for="filterCondition.value.$error">
+      <div ng-messages-include="multiple-values"></div>
+    </ng-messages>
+    <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty"
+        for="filterCondition.value.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
-  </div>
-  <div class="value" ng-if="!vm.disableAsignation && vm.extraField" ng-show="vm.condition.type == 'Value'">
-    <label ng-if="vm.condition.variable.dataType !== 'Date' " class="-input" ng-class="{'-invalid': filterConditionForm.secondValue.$invalid}">
-        <input  ng-trim="false"
-                ng-model="vm.condition.secondValue"
-                name="secondValue"
-                ng-pattern="vm.condition.variable.regEx"
-                placeholder="Enter {{ vm.getPlaceholder() }}" ng-blur="vm.trim($event,vm.condition.secondValue)">
-        <i class="ion-ios-close-outline"></i>
-      </label>
-      <label ng-if="vm.condition.variable.dataType === 'Date' " class="-input" ng-class="{'-invalid': filterConditionForm.secondValue.$invalid}">
-        <input  ng-trim="false"
-                ng-pattern="vm.condition.variable.regEx"
-                ng-model="vm.condition.secondValue"
-                name="secondValue"
-                maxlength="10"
-                ual-date-validator
-                placeholder="mm/dd/yyyy" ng-blur="vm.trim($event,vm.condition.secondValue)">
-        <i class="ion-ios-close-outline"></i>
-      </label>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterConditionForm.secondValue.$dirty"
-            for="filterConditionForm.secondValue.$error">
+  </ual-input>
+
+  <ual-input name="secondValue"
+      ng-if="!vm.disableAsignation && vm.extraField && vm.condition.type == 'Value' && vm.condition.operator.operator != '='"
+      ng-model="vm.condition.secondValue"
+      update-on="blur"
+      value="vm.condition.secondValue"
+      ng-required="filterCondition.$submitted"
+      reg-ex="{{vm.condition.variable.regEx}}"
+      placeholder="{{ vm.getPlaceholder() }}"
+      on-blur="vm.trim($event,vm.condition.secondValue)"
+      accept-commas="{{vm.acceptCommas}}"
+      ual-multiple-values
+      ual-pattern
+      ual-date-validator
+      datatype="{{vm.condition.variable.dataType}}"
+      maxlength="{{vm.condition.variable.dataType === 'Date' ? 10 : null }}"
+      icon="ion-ios-close-outline">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'String' && filterCondition.$dirty"
+            for="filterCondition.secondValue.$error">
       <div ng-messages-include="text-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterConditionForm.secondValue.$dirty"
-            for="filterConditionForm.secondValue.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Number' && filterCondition.$dirty"
+            for="filterCondition.secondValue.$error">
       <div ng-messages-include="number-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterConditionForm.secondValue.$invalid" for="filterConditionForm.secondValue.$error">
+    <ng-messages ng-if="!!vm.condition.variable && vm.condition.variable.dataType === 'Date' && filterCondition.$dirty"
+        for="filterCondition.secondValue.$error">
       <div ng-messages-include="date-messages"></div>
     </ng-messages>
-    <ng-messages ng-if="!vm.condition.variable  && (filterConditionForm.secondValue.$dirty && !filterConditionForm.secondValue.$touched)"
-            for="filterConditionForm.secondValue.$error">
+    <ng-messages ng-if="!!vm.condition.variable && filterCondition.$dirty"
+        for="filterCondition.secondValue.$error">
+      <div ng-messages-include="multiple-values"></div>
+    </ng-messages>
+    <ng-messages ng-if="!vm.condition.variable  && filterCondition.$dirty"
+            for="filterCondition.secondValue.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
-  </div>
-  <ual-autocomplete ng-if="!vm.disableAsignation" ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.filteredAvaiableVariables" selected="vm.condition.value" property="name">
+  </ual-input>
+  <!--End Value Fields-->
+  <!--Variable Fields-->
+  <ual-autocomplete ng-if="vm.condition.type == 'Variable' && !vm.disableAsignation"
+      placeholder="Search for variable"
+      ng-model='vm.condition.value'
+      name='valueVariable'
+      ng-required="filterCondition.$submitted"
+      list="vm.filteredAvaiableVariables"
+      selected="vm.condition.value"
+      property="name">
+    <!--this component will change on US - CR1.24-->
+    <ng-messages ng-if="!vm.condition.value && filterCondition.$dirty" for="filterCondition.valueVariable.$error">
+      <div ng-messages-include="default-messages"></div>
+    </ng-messages>
   </ual-autocomplete>
-  <ual-autocomplete ng-if="vm.extraField" ng-show="vm.condition.type == 'Variable'" placeholder="Search for variable" list="vm.filteredAvaiableVariables" selected="vm.condition.secondValue" property="name">
+  <ual-autocomplete ng-if="vm.extraField && vm.condition.type == 'Variable' && vm.condition.operator.operator != '='"
+      placeholder="Search for variable"
+      ng-model='vm.condition.secondValue'
+      name="secondValueVariable"
+      ng-required="filterCondition.$submitted"
+      list="vm.filteredAvaiableVariables"
+      selected="vm.condition.secondValue"
+      property="name">
+    <ng-messages ng-if="!vm.condition.secondValue && filterCondition.$dirty" for="filterCondition.secondValueVariable.$error">
+      <div ng-messages-include="default-messages"></div>
+    </ng-messages>
   </ual-autocomplete>
+  <!--End Variable Fields-->
   <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
   </ual-action-label>
-</form>
+</ng-form>
