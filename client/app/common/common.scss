@@ -78,7 +78,7 @@ $color-havelock-blue: #62A9E3; //C3
 $color-steel-blue: #4784B8;
 $color-pear: #CDDC39;
 $color-rolling-stone: #7C848A; //C7
-$color-alto: #D4D4D4;
+$color-alto: #D4D4D4; //C8
 $color-astral: #3271B1; //C2
 $color-danube: #6F9BC8;
 $color-periwinkle-gray: #C1D4E7;
@@ -174,7 +174,14 @@ $input-line-height: rem(3.2);
 $input-font-size: rem(1.6);
 $input-font-color: $font-defaut-color;
 $input-focus-color: $color-havelock-blue;
+$input-icon-color: $color-rolling-stone;
+// MATERIAL / INPUT / MEDIUM
+$input-medium-border-color: $color-alto;
+$input-medium-font-size: rem(1.4);
+$input-medium-border: 1px;
+$input-medium-line-height: $input-line-height;
 // MATERIAL / INPUT / LARGE
+$input-large-border-color: rgba(0,0,0,0);
 $input-large-border: 2px;
 $input-large-line-height: rem(4.2);
 

@@ -78,7 +78,7 @@ class UalReportListController {
     // wait until tooltip was rendered
     this.$timeout(
       () => is_truncated && $(tooltip).removeClass('ual-tooltip-hide'),
-      100
+      200
     )
   }
 

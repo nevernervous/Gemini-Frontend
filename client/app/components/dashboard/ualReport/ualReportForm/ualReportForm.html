@@ -27,14 +27,17 @@
   class="body-dashboard"
   name="reportForm"
   novalidate>
-  <ual-accordion-group 
+  <ual-accordion-group
     selected="vm.selectedTab">
     <ual-accordion id="report-datasource" ng-disabled="false">
       <ual-accordion-title>Data source:
         <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source' }}</strong>
         <small>{{ vm.report.datasource.get() ? 'Last updated ' + (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
-      <ual-accordion-content>
-        <ual-data-source on-change="vm.onChangeDataSource()" selected="vm.report.datasource" has-variables="vm.hasVariables()">
+      <ual-accordion-content layout="column">
+        <ual-data-source layout="column" layout-fill
+          on-change="vm.onChangeDataSource()"
+          selected="vm.report.datasource"
+          has-variables="vm.hasVariables()">
         </ual-data-source>
       </ual-accordion-content>
     </ual-accordion>

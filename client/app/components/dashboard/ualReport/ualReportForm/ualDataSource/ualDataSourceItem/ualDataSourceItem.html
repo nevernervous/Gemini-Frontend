@@ -1,4 +1,24 @@
-<span class="tooltip-sibling" id="datasourceItem_{{vm.datasourceItem.id}}" ual-ellipsis ellipsis-height="15"
-      ng-mouseover="vm.showTooltip('datasourceItem_' + vm.datasourceItem.id, vm.datasourceItem )" ng-mouseleave="vm.hideTooltip()">
-      {{vm.datasourceItem.name}}
-</span>
+<!-- <span class="tooltip-sibling" id="datasourceItem_{{vm.datasourceItem.id}}"
+  ng-mouseover="vm.showTooltip('datasourceItem_' + vm.datasourceItem.id, vm.datasourceItem )"
+  ng-mouseleave="vm.hideTooltip()">
+  {{vm.datasourceItem.name}}
+</span> -->
+<div class="datasource-item-wrapper"
+  ng-mouseover="vm.showMore('wrapper')">
+  <md-tooltip id="datasource-item-wrapper-{{vm.datasourceItem.id}}"
+    md-direction="right"
+    class="ual-tooltip-right ual-tooltip-hide">
+    <strong>{{vm.datasourceItem.name}}</strong>
+    Jeronimo
+  </md-tooltip>
+
+  <span class="datasource-item-content"
+    ng-mouseover="vm.showMore('content')">
+    <md-tooltip id="datasource-item-content-{{vm.datasourceItem.id}}"
+      md-direction="right"
+      class="ual-tooltip-right ual-tooltip-hide">
+      Jeronimo
+    </md-tooltip>
+    {{vm.datasourceItem.name}}
+  </span>
+</div>

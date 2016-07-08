@@ -10,6 +10,10 @@ md-tooltip.ual-tooltip-right {
   font-size: $tooltip-font-size;
   font-weight: $tooltip-font-weight;
 
+  strong {
+    display: block;
+  }
+
   ._md-content {
     padding: $tooltip-padding;
     background: $tooltip-backgrownd;

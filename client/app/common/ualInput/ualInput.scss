@@ -5,9 +5,9 @@ $input-diff-padding-border: $input-padding - $input-border;
 $input-icon-font-size: $input-font-size * 1.5;
 
 md-input-container.ual-input {
-  font-size: $input-font-size;
   color: $input-font-color;
   margin-top: ($input-label-font-size * 2);
+  margin-bottom: 0;
 
   // LABEL
   label:not(._md-container-ignore){
@@ -19,10 +19,18 @@ md-input-container.ual-input {
       content: none;
     }
   }
+  &.ual-input-no-label {
+    margin-top: 0;
+  }
+  &.ual-input-no-validate {
+    .md-errors-spacer {
+      display: none;
+    }
+  }
+
   // INPUT
   .md-input {
     background: white;
-    border-color: rgba(0,0,0,0);
     @include box-shadow(0, 0, 2px, 1px, rgba(0, 0, 0, 0.1));
     font-weight: $font-weight-light;
     padding: $input-diff-padding-border $input-padding;
@@ -48,6 +56,7 @@ md-input-container.ual-input {
     }
     > md-icon:last-of-type {
       display: block;
+      color: $input-icon-color;
       top: $input-border;
       right: $input-border;
       font-size: $input-icon-font-size;
@@ -80,62 +89,72 @@ md-input-container.ual-input {
   }
 
   &.md-input-focused:not(.md-input-invalid) > md-icon {
-    color: $input-font-color;
+    color: $input-icon-color;
   }
 }
 
-// SIZE / LARGE
-md-input-container.ual-input.ual-input-medium {
 
-}
-// SIZE / LARGE
-md-input-container.ual-input.ual-input-large {
-  $input-border: $input-large-border;
-  $input-line-height: $input-large-line-height;
+// SIZES
+$sizes: medium large;
+@each $size in $sizes {
+  md-input-container.ual-input.ual-input-#{$size} {
+    @if $size == large {
+      $input-border-color: $input-large-border-color;
+      $input-border: $input-large-border;
+      $input-line-height: $input-large-line-height;
+    } @else {
+      $input-border-color: $input-medium-border-color;
+      $input-font-size: $input-medium-font-size;
+      $input-border: $input-medium-border;
+      $input-line-height: $input-medium-line-height;
+    }
 
-  $input-diff-padding-border: $input-padding - $input-border;
-  $input-icon-font-size: $input-line-height - ($input-diff-padding-border * 2);
+    $input-diff-padding-border: $input-padding - $input-border;
+    $input-icon-font-size: $input-line-height - ($input-diff-padding-border * 2);
 
-  .md-input {
-    box-shadow: none;
-    padding: $input-diff-padding-border $input-padding;
-    border-width: $input-border;
+    font-size: $input-font-size;
+    .md-input {
+      box-shadow: none;
+      border-color: $input-border-color;
+      padding: $input-diff-padding-border $input-padding;
+      border-width: $input-border;
 
-    line-height: $input-line-height;
-    height: $input-line-height;
-    -ms-flex-preferred-size: $input-line-height; //IE fix
-  }
-  &.md-input-focused .md-input,
-  & .md-input.ng-invalid.ng-dirty {
-    padding: $input-diff-padding-border $input-padding;
-    border-width: $input-border;
-  }
+      line-height: $input-line-height;
+      height: $input-line-height;
+      -ms-flex-preferred-size: $input-line-height; //IE fix
+    }
+    &.md-input-focused .md-input,
+    & .md-input.ng-invalid.ng-dirty {
+      padding: $input-diff-padding-border $input-padding;
+      border-width: $input-border;
+    }
 
-  // ICON RIGHT
-  &.md-icon-right {
-    > md-icon:last-of-type {
-      top: $input-border;
-      right: $input-border;
-      &:before {
-        line-height: $input-line-height;
+    // ICON RIGHT
+    &.md-icon-right {
+      > md-icon:last-of-type {
+        top: $input-border;
+        right: $input-border;
+        &:before {
+          line-height: $input-line-height;
+        }
       }
     }
   }
 }
 
-// VARIATION / DISABLED
-ual-input.-noborder {
-  .-input {
-    border-color: transparent
-  }
-}
-
-//VARIATION / HIDE ICON
-.-input.-no-icon {
-  input {
-    width: calc(100% - 15px);
-  }
-  i {
-    display: none;
-  }
-}
+// // VARIATION / DISABLED
+// ual-input.-noborder {
+//   .-input {
+//     border-color: transparent
+//   }
+// }
+//
+// //VARIATION / HIDE ICON
+// .-input.-no-icon {
+//   input {
+//     width: calc(100% - 15px);
+//   }
+//   i {
+//     display: none;
+//   }
+// }
