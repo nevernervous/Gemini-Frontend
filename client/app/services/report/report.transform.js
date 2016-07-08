@@ -10,17 +10,18 @@ let reportTransform = function ($http) {
     if (isGroup) {
       let innerGroup = {
         "order": index + 1,
+        "Not": item.not,
         "operator": {
           "id": item.operator.id
         },
-        "filters": [],
-        "children": []
+        "Filters": [],
+        "Children": []
       };
 
       _.forEach(item.children, (innerItem, innerIndex) => {
         transformFilters(innerItem, innerIndex, innerGroup);
       });
-      group.children.push(innerGroup);
+      group.Children.push(innerGroup);
     }
     else {
       let isVariable = item.type == 'Variable';
@@ -39,11 +40,11 @@ let reportTransform = function ($http) {
         }
       }
 
-      group.filters.push({
+      group.Filters.push({
         "column": {
           "id": item.variable.id
         },
-        "filterOperator": {
+        "FilterOperator": {
           "id": item.operator.id
         },
         "value": value.join(','),
@@ -126,11 +127,12 @@ let reportTransform = function ($http) {
 
       let firstGroup = {
         "order": 1,
+        "Not": root.not,
         "operator": {
           "id": root.operator.id,
         },
-        "filters": [],
-        "children": []
+        "Filters": [],
+        "Children": []
       };
 
       if (_.isArray(filters)) {
