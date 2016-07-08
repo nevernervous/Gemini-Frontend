@@ -91,8 +91,8 @@ class UalGroupFilterController {
 
   getGroupClass() {
     return {
-      'not-group-and': (this.filters.not && this.filters.operator.operator == 'AND'),
-      'not-group-or': (this.filters.not && this.filters.operator.operator == 'OR'),
+      'not-group-soft': (this.filters.not && !this.parentOperator),
+      'not-group-strong': (this.filters.not && this.parentOperator),
       'empty': this.filters.children.length == 0
     };
   }
