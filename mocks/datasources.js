@@ -60,7 +60,7 @@ module.exports = {
           },
           {
             "id": 6,
-            "name": "Data Source Name 6",
+            "name": "Data Source Name 6 asd ad asdasd asda sdasd asd asdasdasd asdasd ",
             "description": "Data Source Description 6",
             "group": {
               "groupId": 2,

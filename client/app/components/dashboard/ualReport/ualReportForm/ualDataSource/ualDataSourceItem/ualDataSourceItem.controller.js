@@ -4,37 +4,46 @@ class UalDataSourceItemController {
     $element,
     $timeout) {
     this.name = 'ualDataSourceItem';
-    this.hasTooltip = {
-      wrapper: false,
-      content: false
-    }
+    this.direction = 'right';
+    this.class = 'ual-tooltip-right';
 
     // INTERNALS
     this.$element = $element;
     this.$timeout = $timeout;
   }
 
-  // LiFECYCLE
-  $postLink() {
-    const wrapper = $(this.$element).find('.datasource-item-wrapper');
-    const content = wrapper.find('.datasource-item-content');
-    console.log('wrapper: ' + wrapper.width());
-    console.log('content: ' + content.width());
-    this.isTruncated = wrapper.width() < content.width();
-  }
+  //LIFECYCLE
+  // $postLink() {
+  //
+  // }
 
-  showMore(type) {
-    if ( !this.hasTooltip[type] ) {
-      this.hasTooltip[type] = true;
+  // TODO: Improve visualization effect
+  // $( "ul li:nth-child(4n)" )
+  // class: datasource-item-group-{{vm.datasourceItem.group.groupId}} 
+  showMore() {
+    this.direction = 'right';
+    this.$timeout(
+      () => {
+        const wrapper = $(`#datasource-item-wrapper-${this.datasourceItem.id}`);
+        const content = $(`#datasource-item-content-${this.datasourceItem.id}`);
 
-      this.$timeout(
-        () => {
-          const tooltip = this.isTruncated ? 'datasource-item-content' : 'datasource-item-wrapper';
-          $(`#${tooltip}-${this.datasourceItem.id}`).removeClass('ual-tooltip-hide');
-        },
-        200
-      )
-    }
+        const id = (wrapper.width() < content.width()) ?
+          '#datasource-item-wrapper-tooltip-' :
+          '#datasource-item-content-tooltip-';
+
+        const tooltip = $(`${id}${this.datasourceItem.id}`);
+        const offset = tooltip.offset();
+        const top = wrapper.offset().top - (tooltip.height() / 2);
+        const left = wrapper.offset().left + (wrapper.width() / 2);
+
+        if ( offset &&  top > offset.top) {
+          this.direction = 'top';
+        }
+        this.class = `ual-tooltip-${this.direction}`;
+        tooltip.removeClass('ual-tooltip-hide');
+      },
+      200
+    )
   }
 
   showTooltip(container, data, position = 'right') {

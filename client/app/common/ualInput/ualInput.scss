@@ -76,7 +76,8 @@ md-input-container.ual-input {
       }
     }
     // ERROR ICON
-    &.md-input-invalid, &.md-input-invalid.md-input-focused {
+    &.md-input-invalid:not(.ual-input-no-validate),
+    &.md-input-invalid.md-input-focused:not(.ual-input-no-validate) {
       .md-input {
         border-color: $font-error-color;
         padding-right: ($input-icon-font-size + $input-padding);
