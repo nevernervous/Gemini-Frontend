@@ -51,7 +51,7 @@
         for="filterCondition.value.$error">
       <div ng-messages-include="multiple-values"></div>
     </ng-messages>
-    <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty"
+    <ng-messages ng-if="filterCondition.$dirty"
         for="filterCondition.value.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
@@ -89,7 +89,7 @@
         for="filterCondition.secondValue.$error">
       <div ng-messages-include="multiple-values"></div>
     </ng-messages>
-    <ng-messages ng-if="!vm.condition.variable  && filterCondition.$dirty"
+    <ng-messages ng-if="filterCondition.$dirty"
             for="filterCondition.secondValue.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
