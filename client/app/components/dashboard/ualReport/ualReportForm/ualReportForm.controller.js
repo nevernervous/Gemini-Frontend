@@ -188,14 +188,20 @@ class UalReportFormController {
             item.$setDirty();
           });
         });
-        this.selectedTab = 'report-filters';
-        let firstError = $('.ng-invalid:not(ng-form):first', "ual-filters").find("input");
-        if (firstError.length > 0) {
-          angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
-          firstError.focus();
-        }
+        this.focusFirstError();
       }
     }, 0);
+  }
+
+  focusFirstError() {
+    this._timeout(() => {
+      this.selectedTab = 'report-filters';
+      let firstError = $('.ng-invalid:not(ng-form):first', "ual-filters").find("input");
+      if (firstError.length > 0) {
+        angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
+        firstError.focus();
+      }
+    }, 0)
   }
 
   enableRun() {
