@@ -24,7 +24,7 @@ ual-variables-multi-select {
       }
       margin-top: 20px;
       width: calc(100% + 17px);
-      overflow-y: scroll;
+      overflow-y: auto;
       li {
         padding: 5px 6px;
         cursor: pointer;
