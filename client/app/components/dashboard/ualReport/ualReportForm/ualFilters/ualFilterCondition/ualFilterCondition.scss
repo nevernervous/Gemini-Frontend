@@ -99,7 +99,12 @@ ual-filter-condition {
           .autocomplete-list .list-options {
             .autocomplete-item {
               white-space: nowrap;
-              margin-right: 10%;
+              padding-right: 10%;
+              overflow-x: hidden;
+              @include -ms-browser(){
+                margin-right: 30px;
+                padding-right: 10px;
+              }
             }
             .-empty-result {
               padding: 10px 45px;
