@@ -1,9 +1,9 @@
 <div class="autocomplete-container" ng-class="{ show: vm.isVisible }">
-  <div class="autocomplete-display" id="thisDropdown">
+  <div class="autocomplete-display" id="thisDropdown-{{::$id}}">
     <ual-input ual-id="selected-input" class="search-box" value="vm.getText(vm.selected)" placeholder="{{vm.placeholder || 'Selected'}}" icon="ion-ios-search-strong" ng-if="!vm.isVisible && !vm.inputHovered" ng-mouseover="vm.inputHovered = true"></ual-input>
-    <ual-input ual-id="selected-searchbox" class="search-box" value="vm.filterName.name" min-chars="2" icon="ion-ios-search-strong" ng-if="vm.isVisible || vm.inputHovered" placeholder="{{ !vm.selected ? (vm.placeholder || 'Selected') : vm.getText(vm.selected)}}"
+    <ual-input ual-id="selected-searchbox-{{::$id}}" class="search-box" value="vm.filterName.name" min-chars="2" icon="ion-ios-search-strong" ng-if="vm.isVisible || vm.inputHovered" placeholder="{{ !vm.selected ? (vm.placeholder || 'Selected') : vm.getText(vm.selected)}}"
       on-focus="vm.show()" ng-mouseleave="!vm.visible && (vm.inputHovered = false)"></ual-input>
-    <div class="float-container" click-outside="vm.hide()" outside-if-not="thisDropdown, selected-searchbox, accordion-collapse">
+    <div class="float-container" click-outside="vm.hide()" outside-if-not="thisDropdown-{{::$id}}, selected-searchbox-{{::$id}} , accordion-collapse">
       <span class="autocomplete-list">
           <div class="list-options" >
             <div class="autocomplete-item" ng-click="vm.select($event, item)" ng-repeat="item in filteredItems = (vm.list | limitTo:vm.limit | filter:vm.filterName)" >
