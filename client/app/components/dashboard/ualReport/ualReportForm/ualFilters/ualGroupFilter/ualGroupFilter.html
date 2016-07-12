@@ -1,5 +1,6 @@
-<div ng-class="vm.parentOperator.operator.toLowerCase()">
-  <div class="-group-operator"
+<div flex
+  ng-class="vm.parentOperator.operator.toLowerCase()">
+  <div class="operator"
     ng-if="vm.parentOperator">
     {{vm.parentOperator.operator}}
   </div>
@@ -64,20 +65,22 @@
         <ul ng-if="!(vm.filters.children|isEmpty)">
           <li ng-repeat="child in vm.filters.children track by $index"
           class="-iterative-container">
-            <ual-group-filter ng-if="!!child.children"
-            available-variables="vm.availableVariables"
-            filters="child"
-            remove-parent="vm.removeGroup($index)"
-            parent-operator="vm.filters.operator"
-            datasource="vm.datasource"
-            ng-class="vm.getGroupClass()">
+            <ual-group-filter layout="row" layout-fill
+              ng-if="!!child.children"
+              available-variables="vm.availableVariables"
+              filters="child"
+              remove-parent="vm.removeGroup($index)"
+              parent-operator="vm.filters.operator"
+              datasource="vm.datasource"
+              ng-class="vm.getGroupClass()">
             </ual-group-filter>
-            <ual-filter-condition ng-if="!child.children"
-            available-variables="vm.availableVariables"
-            condition="child"
-            operator-group="vm.filters.operator"
-            remove-condition="vm.removeItem($index)"
-            datasource="vm.datasource">
+            <ual-filter-condition layout="row" layout-fill
+              ng-if="!child.children"
+              available-variables="vm.availableVariables"
+              condition="child"
+              operator-group="vm.filters.operator"
+              remove-condition="vm.removeItem($index)"
+              datasource="vm.datasource">
             </ual-filter-condition>
           </li>
         </ul>

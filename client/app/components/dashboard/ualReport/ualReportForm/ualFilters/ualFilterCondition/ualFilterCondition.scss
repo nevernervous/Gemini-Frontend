@@ -1,158 +1,188 @@
-@import '../../../../../../common/common';
+@import '../../../../../components';
+
+$limits-filter-condition-padding: 10px 0 10px 10px;
+
 ual-filter-condition {
-  padding: 10px 0 10px;
-  display: block;
-  >.wrapper {
-    margin-left: 0px !important;
-    @include gridle(row row-align left);
-    display: flex;
-    width: 100%;
-    >.operator {
-      padding-left: 5px;
-      margin: 0 8px;
-      height: 37px;
-      width: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    >ual-input {
-      margin: 0 8px;
-      @include gridle(2);
-      padding: 0;
-      .-input {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 5px 2px 5px 2px;
-        height: 37px;
-        @include -ms-browser() {
-          padding: 1px 2px;
-          height: 33px;
-        }
-        >input {
-          width: calc(100% - 15px);
-          height: 28px;
-          @include -ms-browser() {
-            height: 23px;
-          }
-        }
-        >i {
-          display: none;
-          vertical-align: middle;
-          @include -ms-browser() {
-            margin-top: 5px;
-          }
-        }
-      }
-    }
-    .-error {
-        padding: 10px 10px 0;
-      }
-    >ual-dropdown {
-      margin: 0 8px;
-      @include gridle(2);
-      &.short-field {
-        padding: 0px;
-        @include gridle(1);
-      }
-    }
-    >ual-autocomplete {
-      &:first-of-type() {
-        margin: 0 8px 0 16px;
-      }
-      margin: 0 8px;
-      padding: 0px;
-      @include gridle(2);
-      &.short-field {
-        @include gridle(0.88);
-      }
-      .autocomplete-container .autocomplete-display {
-        ual-input {
-          .-input {
-            padding: 5px 2px 5px 2px;
-            height: 37px;
-            @include -ms-browser() {
-              padding: 1px 2px;
-              height: 33px;
-            }
-            >input{
-              width: calc(100% - 37px);
-            }
-            >i {
-              display: inline-block;
-              vertical-align: middle;
-              @include -ms-browser() {
-                margin-top: 5px;
-              }
-            }
-          }
-        }
-        .float-container {
-          width: -moz-max-content;
-          width: -webkit-max-content;
-          width: max-content;
-          @include -ms-browser(){
-            width: auto;
-            display: inline-block;
-          }
-          .autocomplete-list .list-options {
-            .autocomplete-item {
-              white-space: nowrap;
-              margin-right: 10%;
-            }
-            .-empty-result {
-              padding: 10px 45px;
-            }
-          }
-        }
-      }
-    }
-    >.close-btn {
-      display: flex;
-      align-items: center;
-    }
+  padding: $limits-filter-condition-padding;
+
+  ng-form {
+    height: 36px;
+  }
+
+  .operator {
+    position: relative;
+    width: 60px;
+
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 36px;
+    height: 36px;
+    text-align: center;
+
+  }
+
+  .ual-select {
+    width: 120px;
+    max-width: 120px;
+
   }
 }
 
-//VARIATIONS
-ual-filter-condition {
-  >.wrapper {
-    .-input {
-      border: 1px solid $color08;
-      background-color: $color00;
-      >input {
-        @include font-clanot-book(14);
-        border: 0;
-        color: $color06;
-      }
-      >i {
-        font-size: 22px;
-        color: $color07;
-      }
-    }
-    .-error {
-      @include font-clanot-book(12);
-      color: $color11;
-    }
-  }
-}
-
-//VARIATION Error Form
-ual-filter-condition {
-  >.wrapper.-error {
-    .ng-invalid .-input {
-      border-color: $color11;
-      >input {
-        width: calc(100% - 37px);
-      }
-      >i {
-        display: inline-block;
-        color: $color11;
-        @include -ms-browser() {
-          margin-top: 3px;
-        }
-      }
-    }
-  }
-}
+//
+// ual-filter-condition {
+//   padding: 10px 0 10px;
+//   display: block;
+//   >.wrapper {
+//     margin-left: 0px !important;
+//     @include gridle(row row-align left);
+//     display: flex;
+//     width: 100%;
+//     >.operator {
+//       padding-left: 5px;
+//       margin: 0 8px;
+//       height: 37px;
+//       width: 40px;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//     }
+//     >ual-input {
+//       margin: 0 8px;
+//       @include gridle(2);
+//       padding: 0;
+//       .-input {
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         padding: 5px 2px 5px 2px;
+//         height: 37px;
+//         @include -ms-browser() {
+//           padding: 1px 2px;
+//           height: 33px;
+//         }
+//         >input {
+//           width: calc(100% - 15px);
+//           height: 28px;
+//           @include -ms-browser() {
+//             height: 23px;
+//           }
+//         }
+//         >i {
+//           display: none;
+//           vertical-align: middle;
+//           @include -ms-browser() {
+//             margin-top: 5px;
+//           }
+//         }
+//       }
+//     }
+//     .-error {
+//         padding: 10px 10px 0;
+//       }
+//     >ual-dropdown {
+//       margin: 0 8px;
+//       @include gridle(2);
+//       &.short-field {
+//         padding: 0px;
+//         @include gridle(1);
+//       }
+//     }
+//     >ual-autocomplete {
+//       &:first-of-type() {
+//         margin: 0 8px 0 16px;
+//       }
+//       margin: 0 8px;
+//       padding: 0px;
+//       @include gridle(2);
+//       &.short-field {
+//         @include gridle(0.88);
+//       }
+//       .autocomplete-container .autocomplete-display {
+//         ual-input {
+//           .-input {
+//             padding: 5px 2px 5px 2px;
+//             height: 37px;
+//             @include -ms-browser() {
+//               padding: 1px 2px;
+//               height: 33px;
+//             }
+//             >input{
+//               width: calc(100% - 37px);
+//             }
+//             >i {
+//               display: inline-block;
+//               vertical-align: middle;
+//               @include -ms-browser() {
+//                 margin-top: 5px;
+//               }
+//             }
+//           }
+//         }
+//         .float-container {
+//           width: -moz-max-content;
+//           width: -webkit-max-content;
+//           width: max-content;
+//           @include -ms-browser(){
+//             width: auto;
+//             display: inline-block;
+//           }
+//           .autocomplete-list .list-options {
+//             .autocomplete-item {
+//               white-space: nowrap;
+//               margin-right: 10%;
+//             }
+//             .-empty-result {
+//               padding: 10px 45px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//     >.close-btn {
+//       display: flex;
+//       align-items: center;
+//     }
+//   }
+// }
+//
+// //VARIATIONS
+// ual-filter-condition {
+//   >.wrapper {
+//     .-input {
+//       border: 1px solid $color08;
+//       background-color: $color00;
+//       >input {
+//         @include font-clanot-book(14);
+//         border: 0;
+//         color: $color06;
+//       }
+//       >i {
+//         font-size: 22px;
+//         color: $color07;
+//       }
+//     }
+//     .-error {
+//       @include font-clanot-book(12);
+//       color: $color11;
+//     }
+//   }
+// }
+//
+// //VARIATION Error Form
+// ual-filter-condition {
+//   >.wrapper.-error {
+//     .ng-invalid .-input {
+//       border-color: $color11;
+//       >input {
+//         width: calc(100% - 37px);
+//       }
+//       >i {
+//         display: inline-block;
+//         color: $color11;
+//         @include -ms-browser() {
+//           margin-top: 3px;
+//         }
+//       }
+//     }
+//   }
+// }

@@ -11,7 +11,7 @@ $limits-message-color: $color-rolling-stone;
 
 ual-group-filter {
 
-  .-group-operator {
+  .operator {
     position: relative;
     width: 60px;
 
@@ -51,6 +51,14 @@ ual-group-filter {
     .-conditions {
       ul {
         padding-top: 10px;
+        li:first-child {
+          > ual-group-filter .operator {
+            display: none;
+          }
+          > ual-filter-condition .operator {
+            visibility: hidden;
+          }
+        }
       }
     }
 
@@ -81,7 +89,7 @@ ual-group-filter .-tree-container .-tree-container {
 
 // AND
 ual-group-filter > .and {
-  > .-group-operator {
+  > .operator {
     margin: 10px 0;
     background: $other08;
     @include triangle('right', 15px, 10px, $other08, $other08) {
@@ -95,7 +103,7 @@ ual-group-filter > .and {
 
 // OR
 ual-group-filter > .or {
-  > .-group-operator {
+  > .operator {
     margin: 10px 0;
     background: $other07;
     @include triangle('right', 15px, 10px, $other07, $other07) {
@@ -106,7 +114,6 @@ ual-group-filter > .or {
     border-left: 3px solid $other07;
   }
 }
-
 
 ual-group-filter .-tree-container.not-group-soft {
   background-color: $limits-not-group-soft;

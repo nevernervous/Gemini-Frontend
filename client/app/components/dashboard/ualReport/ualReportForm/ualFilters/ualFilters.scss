@@ -1,4 +1,11 @@
 @import '../../../../../common/common';
+
+ual-filters {
+  .-filter-container > ual-group-filter {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
 // //Layout
 // ual-filters {
 //   display: block;

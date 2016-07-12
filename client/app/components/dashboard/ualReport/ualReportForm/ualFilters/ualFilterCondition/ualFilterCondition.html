@@ -1,4 +1,9 @@
-<ng-form name="filterCondition" class="wrapper" ng-class="{'-error': filterCondition.$dirty && !filterCondition.$valid}" novalidate>
+<ng-form flex
+  layout="row"
+  name="filterCondition"
+  class="wrapper"
+  ng-class="{'-error': filterCondition.$dirty && !filterCondition.$valid}"
+  novalidate>
   <div class="operator">{{vm.operatorGroup.operator}}</div>
   <ual-autocomplete ng-model="vm.condition.variable"
       name="variable"
@@ -13,10 +18,28 @@
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
   </ual-autocomplete>
-  <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator" property="operator" on-change="vm.changeOperator()">
-  </ual-dropdown>
-  <ual-dropdown class="short-field" ng-if="!vm.disableAsignation" placeholder="Select One..." list="vm.types" selected="vm.condition.type" on-change="vm.reset()">
-  </ual-dropdown>
+  <md-select class="ual-select"
+    ng-model="vm.condition.operator"
+    ng-model-options="{trackBy: '$value.operator'}">
+    <md-option ng-repeat="operator in vm.operatorsList" ng-value="{{operator}}" >
+      {{operator.operator}}
+    </md-option>
+  </md-select>
+  <!-- TODO: [FIX] Implements "on-change="vm.changeOperator()" with watchers
+  <ual-dropdown class="short-field" placeholder="Select One..." list="vm.operatorsList" selected="vm.condition.operator" property="operator"
+  on-change="vm.changeOperator()">
+  </ual-dropdown> -->
+  <md-select class="ual-select"
+    ng-if="!vm.disableAsignation"
+    ng-model="vm.condition.type">
+    <md-option ng-repeat="type in vm.types" value="{{type}}" >
+      {{type}}
+    </md-option>
+  </md-select>
+  <!-- TODO: [FIX] Implements "on-change="vm.reset()" with watchers
+  <ual-dropdown class="short-field" ng-if="!vm.disableAsignation" placeholder="Select One..." list="vm.types" selected="vm.condition.type"
+  on-change="vm.reset()">
+  </ual-dropdown> -->
   <!--Value Fields-->
   <ual-input name="value"
       ng-if="vm.condition.type == 'Value' && !vm.disableAsignation"
@@ -122,6 +145,10 @@
     </ng-messages>
   </ual-autocomplete>
   <!--End Variable Fields-->
-  <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
-  </ual-action-label>
+  <ual-button-flat ual-button-flat-icon="ion-android-close"
+    arial-label="Remove"
+    ng-href="vm.removeCondition()">
+  </ual-button-flat>
+  <!-- <ual-action-label class="close-btn" icon="ion-android-close" label="" ng-click="vm.removeCondition()">
+  </ual-action-label> -->
 </ng-form>

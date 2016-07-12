@@ -1,9 +1,9 @@
 <div class="-filter-container" ng-class="vm.getGroupClass()">
-  <ual-group-filter
-  filters="vm._filters"
-  datasource="vm.datasource"
-  available-variables="vm.availableVariables"
-  reset-enable="vm.resetEnable">
+  <ual-group-filter layout="row" layout-fill
+    filters="vm._filters"
+    datasource="vm.datasource"
+    available-variables="vm.availableVariables"
+    reset-enable="vm.resetEnable">
   </ual-group-filter>
   <div class="-condition-container" ng-if="vm.filters.hasValues() && false">
     <div class="-code">
