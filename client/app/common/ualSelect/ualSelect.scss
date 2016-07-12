@@ -1,0 +1,58 @@
+@import '../common';
+@import '../ionicons/scss/ionicons';
+
+md-select.ual-select {
+  padding: 2px 0;
+  margin: 0;
+
+  ._md-select-value {
+    color: $font-defaut-color;
+    //font-weight: $font-weight-light;
+  }
+
+  ._md-select-value,
+  ._md-select-value._md-select-placeholder {
+    background-color: $color-white;
+    padding-left: $input-padding;
+    border: 1px solid $input-medium-border-color;
+    min-height: 27px;
+    font-size: $input-font-size;
+
+    > span {
+      height: 100%;
+    }
+
+    ._md-select-icon:after {
+      font-family: $ionicons-font-family;
+      content: $ionicon-var-ios-arrow-down;
+      transform: none;
+      font-size: 20px;
+      top: 0;
+    }
+  }
+
+}
+
+._md-select-menu-container {
+  > md-select-menu,
+  > md-select-menu md-content md-option[selected] {
+    color: $font-defaut-color;
+  }
+
+  > md-select-menu {
+    border: 1px solid $input-medium-border-color;
+    @include box-shadow(3px, 3px, 0, 0, rgba(0, 0, 0, 0.1));
+  }
+}
+
+// FOCUS
+md-select.ual-select:not([disabled]):focus {
+  ._md-select-value {
+    color: $font-defaut-color;
+  }
+  ._md-select-value,
+  ._md-select-value._md-select-placeholder {
+    border: 1px solid $input-medium-border-color;
+    padding-bottom: 1px;
+  }
+}

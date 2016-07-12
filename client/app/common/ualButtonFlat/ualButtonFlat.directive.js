@@ -2,7 +2,6 @@ import template from './ualButtonFlat.html';
 import controller from './ualButtonFlat.controller';
 import './ualButtonFlat.scss';
 
-
 class ualButtonFlatDirective {
   /*@ngInject*/
   constructor() {

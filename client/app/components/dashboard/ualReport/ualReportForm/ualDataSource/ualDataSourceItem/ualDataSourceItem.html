@@ -1,6 +1,5 @@
 <div id="datasource-item-wrapper-{{vm.datasourceItem.id}}"
-  class="datasource-item-group-{{vm.datasourceItem.group.groupId}} datasource-item-wrapper"
-  ng-mouseover="vm.showMore('wrapper')">
+  class="datasource-item-group-{{vm.datasourceItem.group.groupId}} datasource-item-wrapper">
   <md-tooltip id="datasource-item-wrapper-tooltip-{{vm.datasourceItem.id}}"
     md-direction="{{vm.direction}}"
     ng-class="vm.class"
@@ -12,7 +11,7 @@
 
   <span id="datasource-item-content-{{vm.datasourceItem.id}}"
     class="datasource-item-content"
-    ng-mouseover="vm.showMore('content')">
+    ng-mouseover="vm.showMore()">
     <md-tooltip id="datasource-item-content-tooltip-{{vm.datasourceItem.id}}"
       md-direction="{{vm.direction}}"
       ng-class="vm.class"

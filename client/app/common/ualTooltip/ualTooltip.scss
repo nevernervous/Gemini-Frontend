@@ -29,7 +29,8 @@ md-tooltip.ual-tooltip-right {
 }
 
 md-tooltip.ual-tooltip-top {
-  margin-top: 2 * $tooltip-triangle-width;
+  //margin-top: 2 * $tooltip-triangle-width;
+  margin-top: 0;
 
   ._md-content {
     @include triangle('bottom', $tooltip-triangle-width, $tooltip-triangle-height, $tooltip-backgrownd, $tooltip-backgrownd) {

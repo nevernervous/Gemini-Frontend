@@ -55,8 +55,7 @@ class UalFiltersController {
 
   getGroupClass(){
     return {
-      'not-group-and' : (this._filters.not && this._filters.operator.operator =='AND'),
-      'not-group-or' : (this._filters.not && this._filters.operator.operator =='OR')
+      'not-group-soft' : (this._filters.not && !this.parentOperator)
     };
   }
 

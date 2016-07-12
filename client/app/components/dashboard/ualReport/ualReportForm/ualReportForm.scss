@@ -1,7 +1,7 @@
 @import '../../../components';
 
 ual-report-form {
-  .md-button {
+  .md-button.button-form {
     margin-left: $report-form-button-margin;
     width: $report-form-button-width;
   }
@@ -10,6 +10,19 @@ ual-report-form {
     margin-top: $report-form-submit-margin-top;
     height: $report-form-submit-height;
     min-height: $report-form-submit-height;
+  }
+
+  .datasource-accordion  {
+    padding: 24px 12px;
+  }
+
+  .variables-accordion {
+    padding: 12px 0;
+    height: calc(100vh - #{$report-form-accordion-content-vh});
+  }
+
+  .limits-accordion {
+    padding: 12px 0;
   }
 }
 // // LAYOUT

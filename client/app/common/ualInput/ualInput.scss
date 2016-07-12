@@ -96,18 +96,30 @@ md-input-container.ual-input {
 
 
 // SIZES
-$sizes: medium large;
+$sizes: small medium large;
 @each $size in $sizes {
   md-input-container.ual-input.ual-input-#{$size} {
     @if $size == large {
       $input-border-color: $input-large-border-color;
       $input-border: $input-large-border;
       $input-line-height: $input-large-line-height;
-    } @else {
+    }
+    @if $size == medium {
       $input-border-color: $input-medium-border-color;
       $input-font-size: $input-medium-font-size;
       $input-border: $input-medium-border;
       $input-line-height: $input-medium-line-height;
+    }
+    @if $size == small {
+      $input-border-color: $input-small-border-color;
+      $input-font-size: $input-small-font-size;
+      $input-border: $input-small-border;
+      $input-line-height: $input-small-line-height;
+      $input-padding: $input-small-padding;
+      padding: 0;
+      &.md-icon-right:not(.ual-input-icon) .md-input {
+        padding: $input-diff-padding-border $input-padding;
+      }
     }
 
     $input-diff-padding-border: $input-padding - $input-border;
@@ -142,20 +154,3 @@ $sizes: medium large;
     }
   }
 }
-
-// // VARIATION / DISABLED
-// ual-input.-noborder {
-//   .-input {
-//     border-color: transparent
-//   }
-// }
-//
-// //VARIATION / HIDE ICON
-// .-input.-no-icon {
-//   input {
-//     width: calc(100% - 15px);
-//   }
-//   i {
-//     display: none;
-//   }
-// }

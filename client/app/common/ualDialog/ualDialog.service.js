@@ -1,5 +1,6 @@
 import './ualDialog.scss';
 
+// TODO: Close all dialogs on logout
 let ualDialogService = function ($mdDialog) {
   "ngInject";
 

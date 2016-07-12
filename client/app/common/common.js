@@ -35,8 +35,10 @@ import ualMenuitem from './ualMenuitem/ualMenuitem';
 import ualListitem from './ualListitem/ualListitem';
 import ualDialog from './ualDialog/ualDialog';
 import ualTabs from './ualTabs/ualTabs';
+import ualSelect from './ualSelect/ualSelect';
 
 // CUSTOM
+import ualPopover from './ualPopover/ualPopover';
 import ualTimepicker from './ualTimepicker/ualTimepicker';
 import ualDatepicker from './ualDatepicker/ualDatepicker';
 
@@ -77,8 +79,10 @@ let commonModule = angular.module('app.common', [
   ualListitem.name,
   ualDialog.name,
   ualTabs.name,
+  ualSelect.name,
 
   // CUSTOM
+  ualPopover.name,
   ualTimepicker.name,
   ualDatepicker.name
 ])

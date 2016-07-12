@@ -1,5 +1,10 @@
 <div class="-filter-container" ng-class="vm.getGroupClass()">
-  <ual-group-filter filters="vm._filters" datasource="vm.datasource" available-variables="vm.availableVariables" ng-class="vm.getGroupClass()" reset-enable="vm.resetEnable"></ual-group-filter>
+  <ual-group-filter
+  filters="vm._filters"
+  datasource="vm.datasource"
+  available-variables="vm.availableVariables"
+  reset-enable="vm.resetEnable">
+  </ual-group-filter>
   <div class="-condition-container" ng-if="vm.filters.hasValues() && false">
     <div class="-code">
       <span class="-highlight">WHERE</span> ([variable]=[value]
@@ -13,11 +18,9 @@
   </div>
 </div>
 <script type="text/ng-template" id="text-messages">
-  <div class="-error" ng-message="required">Invalid {{!!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }} format</div>
   <div class="-error" ng-message="pattern">Invalid {{!!vm.condition.variable ? vm.condition.variable.name : '[variable name]' }} format</div>
 </script>
 <script type="text/ng-template" id="number-messages">
-  <div class="-error" ng-message="required">Numeric value expected</div>
   <div class="-error" ng-message="pattern">Numeric value expected</div>
 </script>
 <script type="text/ng-template" id="default-messages">
@@ -25,8 +28,10 @@
   <div class="-error" ng-message="pattern">Invalid</div>
 </script>
 <script type="text/ng-template" id="date-messages">
-  <div class="-error" ng-message="required">Valid date format: mm/dd/yyyy</div>
   <div class="-error" ng-message="dateValue">Valid date format: mm/dd/yyyy</div>
   <div class="-error" ng-message="pattern">Valid date format: mm/dd/yyyy</div>
   <div class="-error" ng-message="secondDate">Start date must be before end date</div>
+</script>
+<script type="text/ng-template" id="multiple-values">
+  <div class="-error" ng-message="acceptCommas">The selected operator doesn't allow commas</div>
 </script>

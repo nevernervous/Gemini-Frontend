@@ -1,132 +1,248 @@
-@import '../../../../../../common/common';
+@import '../../../../../components';
+
+$limits-not-group-soft: $other13;
+$limits-not-group-strong: $other14;
+$limits-tree-container-padding: 10px 0 10px 10px;
+
+$limits-message-placeholder: 300px;
+$limits-message-font-weight: $font-weight-regular;
+$limits-message-font-size: 16px;
+$limits-message-color: $color-rolling-stone;
+
 ual-group-filter {
-  display: block;
-  width: 100%;
-  >div {
-    height: 100%;
-    padding-left: 2px;
-  }
+
   .-group-operator {
-    margin-bottom: 20px;
-    .-group-operator-text {
-      height: 30px;
-      width: 57px;
-      padding: 4px;
-      text-align: center;
-      display: inline-block;
-    }
-    .-group-operator-arrow {
-      display: inline-block;
-      height: 30px;
-      width: 20px;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-left: 15px solid;
-      position: relative;
-      top: 9px;
-      @include -ms-browser() {
-        top: 11px;
-      }
-    }
+    position: relative;
+    width: 60px;
+
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+
   }
+
   .-tree-container {
-    padding-left: 16px;
-    padding-top: 10px;
-    height: auto;
-    &.empty{
-      height: calc(100% - 47px);
-    }
+    padding: $limits-tree-container-padding;
     .-toolbar {
-      display: flex;
-      align-items: center;
-      vertical-align: middle;
-      min-width: 900px;
-      padding-bottom: 10px;
-      .-not-button {
-        padding: 0 20px 0 0;
+      height: 36px;
+
+      ual-checkbox {
+        width: 70px;
       }
-      ual-dropdown {
-        width: 100px;
+
+      .select-operators {
+        min-width: 100px;
       }
-      ual-action-label {
-        padding-left: 8px;
-        &:first-child {
-          padding-left: 15px;
-        }
+
+      .ual-button-flat {
+        margin-left: 10px;
       }
-      .-remove-label {
+
+      .-root-action {
+        display: flex;
+      }
+      .-no-root-action {
         display: none;
       }
     }
+
     .-conditions {
-      height: 100%;
-      display: block;
-      .-iterative-container {
-        min-width: 900px;
-        ual-group-filter {
-          .-remove-label {
-            display: inherit;
-          }
-          .-no-conditions {
-            display: none;
-          }
-        }
-        .-clear-all-label {
-          display: none;
-        }
-        .-remove-all-label {
-          display: none;
-        }
+      ul {
+        padding-top: 10px;
       }
     }
-    .not-group-and {
-      background-color: $other13;
-    }
-    .not-group-or {
-      background-color: $other14;
+
+    .-no-conditions {
+      display: flex;
+      height: $limits-message-placeholder;
+      font-weight: $limits-message-font-weight;
+      font-size: $limits-message-font-size;
+      color: $limits-message-color;
     }
   }
 }
 
-//Variations
-ual-group-filter {
-  .or {
-    > .-group-operator {
-      > .-group-operator-text {
-        background: $other07;
-      }
-      > .-group-operator-arrow {
-        border-left-color: $other07;
-      }
-    }
-    > .-tree-container {
-      border-left: $other07 solid 2px;
-    }
-  }
-  .and {
-    > .-group-operator {
-      > .-group-operator-text {
-        background: $other08;
-      }
-      > .-group-operator-arrow {
-        border-left-color: $other08;
-      }
-    }
-    > .-tree-container {
-      border-left: $other08 solid 2px;
-    }
-  }
+// NOT ROOT
+ual-group-filter .-tree-container .-tree-container {
   .-toolbar {
-    .-not-button {
-      @include font-clanot-book(16);
-      &.checked {
-        @include font-clanot-bold(16);
-      }
+    .-root-action {
+      display: none;
+    }
+    .-no-root-action {
+      display: flex;
     }
   }
-  .-iterative-container:first-child {
-    > ual-filter-condition .operator {
-      visibility: hidden;
-    }
+  .-no-conditions {
+    display: none;
   }
 }
+
+// AND
+ual-group-filter > .and {
+  > .-group-operator {
+    margin: 10px 0;
+    background: $other08;
+    @include triangle('right', 15px, 10px, $other08, $other08) {
+      top: 0;
+    }
+  }
+  > .-tree-container {
+    border-left: 3px solid $other08;
+  }
+}
+
+// OR
+ual-group-filter > .or {
+  > .-group-operator {
+    margin: 10px 0;
+    background: $other07;
+    @include triangle('right', 15px, 10px, $other07, $other07) {
+      top: 0;
+    }
+  }
+  > .-tree-container {
+    border-left: 3px solid $other07;
+  }
+}
+
+
+ual-group-filter .-tree-container.not-group-soft {
+  background-color: $limits-not-group-soft;
+}
+ual-group-filter .-tree-container.not-group-strong {
+  background-color: $limits-not-group-strong;
+}
+
+// ual-group-filter {
+//   display: block;
+//   width: 100%;
+//   >div {
+//     height: 100%;
+//     padding-left: 2px;
+//   }
+//   .-group-operator {
+//     margin-bottom: 20px;
+//     .-group-operator-text {
+//       height: 30px;
+//       width: 57px;
+//       padding: 4px;
+//       text-align: center;
+//       display: inline-block;
+//     }
+//     .-group-operator-arrow {
+//       display: inline-block;
+//       height: 30px;
+//       width: 20px;
+//       border-top: 15px solid transparent;
+//       border-bottom: 15px solid transparent;
+//       border-left: 15px solid;
+//       position: relative;
+//       top: 9px;
+//       @include -ms-browser() {
+//         top: 11px;
+//       }
+//     }
+//   }
+//   .-tree-container {
+//     padding-left: 16px;
+//     padding-top: 10px;
+//     height: auto;
+//     &.empty{
+//       height: calc(100% - 47px);
+//     }
+//     .-toolbar {
+//       display: flex;
+//       align-items: center;
+//       vertical-align: middle;
+//       min-width: 900px;
+//       padding-bottom: 10px;
+//       .-not-button {
+//         padding: 0 20px 0 0;
+//       }
+//       ual-dropdown {
+//         width: 100px;
+//       }
+//       ual-action-label {
+//         padding-left: 8px;
+//         &:first-child {
+//           padding-left: 15px;
+//         }
+//       }
+//       .-remove-label {
+//         display: none;
+//       }
+//     }
+//     .-conditions {
+//       height: 100%;
+//       display: block;
+//       .-iterative-container {
+//         min-width: 900px;
+//         ual-group-filter {
+//           .-remove-label {
+//             display: inherit;
+//           }
+//           .-no-conditions {
+//             display: none;
+//           }
+//         }
+//         .-clear-all-label {
+//           display: none;
+//         }
+//         .-remove-all-label {
+//           display: none;
+//         }
+//       }
+//     }
+//     .not-group-soft {
+//       background-color: $other13;
+//     }
+//     .not-group-strong {
+//       background-color: $other14;
+//     }
+//   }
+// }
+//
+// //Variations
+// ual-group-filter {
+//   .or {
+//     > .-group-operator {
+//       > .-group-operator-text {
+//         background: $other07;
+//       }
+//       > .-group-operator-arrow {
+//         border-left-color: $other07;
+//       }
+//     }
+//     > .-tree-container {
+//       border-left: $other07 solid 2px;
+//     }
+//   }
+//   .and {
+//     > .-group-operator {
+//       > .-group-operator-text {
+//         background: $other08;
+//       }
+//       > .-group-operator-arrow {
+//         border-left-color: $other08;
+//       }
+//     }
+//     > .-tree-container {
+//       border-left: $other08 solid 2px;
+//     }
+//   }
+//   .-toolbar {
+//     .-not-button {
+//       @include font-clanot-book(16);
+//       &.checked {
+//         @include font-clanot-bold(16);
+//       }
+//     }
+//   }
+//   .-iterative-container:first-child {
+//     > ual-filter-condition .operator {
+//       visibility: hidden;
+//     }
+//   }
+// }

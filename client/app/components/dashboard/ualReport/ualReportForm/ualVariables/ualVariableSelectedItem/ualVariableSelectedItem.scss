@@ -1,0 +1,57 @@
+@import '../../../../../components';
+
+ual-variable-selected-item {
+  padding: 5px;
+  .variable-container {
+    cursor: move;
+  }
+
+  .ual-popover {
+    width: 200px;
+  }
+
+  .variable-order {
+    width: 32px;
+    .md-input {
+      -webkit-user-select: none; // event if it's not necessary, let's just add it
+      -ms-user-select: none;
+      user-select: none;
+      text-align: center;
+    }
+    &.variable-order-invalid .md-input {
+      border-color: $color-error-dark !important;
+    }
+  }
+
+  .variable-description {
+    @include ellipses();
+    font-size: 14px;
+    line-height: $input-small-line-height;
+    margin-left: 5px;
+  }
+
+  .variable-actions {
+    visibility: hidden;
+    .md-button.md-icon-button {
+      margin: 0;
+      padding: 0;
+      height: $input-small-line-height;
+      min-height: $input-small-line-height;
+      width: $input-small-line-height;
+      line-height: $input-small-line-height;
+    }
+  }
+}
+
+ual-variable-selected-item:hover {
+  background-color: $color10;
+  .variable-actions {
+    visibility: visible;
+  }
+}
+ual-variable-selected-item.-hovered {
+  background-color: $color10;
+  > .variable-actions > .variable-delete {
+    visibility: visible;
+  }
+}

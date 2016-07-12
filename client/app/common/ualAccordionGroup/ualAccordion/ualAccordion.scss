@@ -1,7 +1,7 @@
 @import '../../common';
 @import '../../ionicons/scss/ionicons';
 
-
+// TODO: CLOSE EFFECT
 .ual-accordion {
   .accordion-title {
     height: 42px;
@@ -15,9 +15,6 @@
       float: right;
       font-size: 24px;
     }
-  }
-  .accordion-content {
-    padding: 24px 12px;
   }
 }
 

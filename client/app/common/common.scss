@@ -175,6 +175,12 @@ $input-font-size: rem(1.6);
 $input-font-color: $font-defaut-color;
 $input-focus-color: $color-havelock-blue;
 $input-icon-color: $color-rolling-stone;
+// MATERIAL / INPUT / SMALL
+$input-small-padding: 1px;
+$input-small-border-color: $color-alto;
+$input-small-font-size: rem(1.2);
+$input-small-border: 1px;
+$input-small-line-height: rem(2.2);
 // MATERIAL / INPUT / MEDIUM
 $input-medium-border-color: $color-alto;
 $input-medium-font-size: rem(1.4);
@@ -253,6 +259,9 @@ $tabs-header-height: rem(3.6);
 $tabs-tab-content-padding: rem(1.8) 0 0 0;
 // MATERIAL / TABS / TAB / ACTIVE
 $tabs-tab-color-active: $color-mine-shaft;
+
+// MATERIAL / SELECT
+$select-option-height: rem(3.6);
 
 // COMPONENT / TABLE
 $table-font-size: rem(1.4);

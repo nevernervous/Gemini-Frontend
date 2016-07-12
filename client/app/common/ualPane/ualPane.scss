@@ -1,31 +1,52 @@
 @import '../common';
 
-// LAYOUT
-ual-pane {
-  > .pane-header {
-    @include gridle(row row-align between);
-    margin: 0;
-    padding: 12px 20px;
-  }
+$pane-padding: 10px 15px;
+$pane-border-color: $color-alto;
+$pane-header-font-size: 16px;
+$pane-header-line-height: 34px;
 
-  > .pane-body {
-    > .search-box {
-      display: block;
-      margin-bottom: 10px;
+ual-pane {
+  padding: $pane-padding;
+  border: 1px solid $color-alto;
+
+  .pane-header {
+    font-size: $pane-header-font-size;
+    color: $color-rolling-stone;
+    .title {
+      line-height: $pane-header-line-height;
+    }
+    .md-button {
+      text-transform: none;
+      width: auto;
     }
   }
 }
-
-// VARIATIONS
-ual-pane {
-  > .pane-header {
-    > .title {
-      @include font-clanot-news(16);
-      color: $color07;
-    }
-
-    > .action {
-      @include link();
-    }
-  }
-}
+// // LAYOUT
+// ual-pane {
+//   > .pane-header {
+//     @include gridle(row row-align between);
+//     margin: 0;
+//     padding: 12px 20px;
+//   }
+//
+//   > .pane-body {
+//     > .search-box {
+//       display: block;
+//       margin-bottom: 10px;
+//     }
+//   }
+// }
+//
+// // VARIATIONS
+// ual-pane {
+//   > .pane-header {
+//     > .title {
+//       @include font-clanot-news(16);
+//       color: $color07;
+//     }
+//
+//     > .action {
+//       @include link();
+//     }
+//   }
+// }

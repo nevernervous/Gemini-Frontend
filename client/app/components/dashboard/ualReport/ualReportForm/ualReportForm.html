@@ -9,6 +9,7 @@
   <div class="buttons-group"
     layout="row">
     <md-button ual-button="secondary"
+      class="button-form"
       ng-disabled="!vm.report.datasource.get() || vm.isSaving"
       ng-click="vm.save()">
       <ual-loading
@@ -18,6 +19,7 @@
       </ual-loading>
     </md-button>
     <md-button ual-button="secondary"
+      class="button-form"
       ng-disabled="true">
       Create a copy
     </md-button>
@@ -27,13 +29,13 @@
   class="body-dashboard"
   name="reportForm"
   novalidate>
-  <ual-accordion-group
-    selected="vm.selectedTab">
-    <ual-accordion id="report-datasource" ng-disabled="false">
+  <ual-accordion-group selected="vm.selectedTab">
+    <ual-accordion id="report-datasource" >
       <ual-accordion-title>Data source:
         <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source' }}</strong>
         <small>{{ vm.report.datasource.get() ? 'Last updated ' + (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected' }}</small></ual-accordion-title>
-      <ual-accordion-content layout="column">
+      <ual-accordion-content layout="column"
+        class="datasource-accordion">
         <ual-data-source layout="column" layout-fill
           on-change="vm.onChangeDataSource()"
           selected="vm.report.datasource"
@@ -41,7 +43,8 @@
         </ual-data-source>
       </ual-accordion-content>
     </ual-accordion>
-    <ual-accordion id="report-variables" ng-disabled="!vm.report.datasource.get()">
+    <ual-accordion id="report-variables"
+      ng-disabled="!vm.report.datasource.get()">
       <ual-accordion-title>Variables:
         <strong>
           {{vm.report.aggregators.get().length >0 ? vm.report.aggregators.get().length : 'No'}} aggregators and
@@ -49,13 +52,20 @@
         </strong>
         <small>selected</small>
       </ual-accordion-title>
-      <ual-accordion-content>
-        <ual-variables-layout class="ual-variables-layout" variables="vm.report.variables" aggregators="vm.report.aggregators" datasource="vm.report.datasource.get()"></ual-variables-layout>
+      <ual-accordion-content layout="row" layout-fill
+        class="variables-accordion">
+        <ual-variables layout="row" layout-fill
+          class="ual-variables-layout"
+          variables="vm.report.variables"
+          aggregators="vm.report.aggregators"
+          datasource="vm.report.datasource.get()">
+        </ual-variables>
       </ual-accordion-content>
     </ual-accordion>
     <ual-accordion id="report-filters" ng-disabled="!vm.report.datasource.get()" class="-filters">
       <ual-accordion-title>Limits: <strong><span ng-show="!vm.report.filters.hasValues()">No limits</span> <span ng-show="vm.report.filters.hasValues()">Limits</span> </strong><small>selected</small></ual-accordion-title>
-      <ual-accordion-content>
+      <ual-accordion-content layout="column" layout-fill
+        class="limits-accordion">
         <ual-filters datasource="vm.report.datasource.get()" filters="vm.report.filters"></ual-filters>
       </ual-accordion-content>
     </ual-accordion>
@@ -63,6 +73,7 @@
   <div layout="row" layout-align="end center"
     class="report-form-submit">
     <md-button ual-button
+      class="button-form"
       type="submit"
       ng-disabled="!vm.enableRun()"
       ng-click="vm.runReport(reportForm)">

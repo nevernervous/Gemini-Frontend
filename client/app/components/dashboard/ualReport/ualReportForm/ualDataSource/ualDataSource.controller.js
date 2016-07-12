@@ -1,3 +1,4 @@
+// TODO: ON SELECT, CLOSE TOOLTIP
 class UalDataSourceController {
   /*@ngInject*/
 
@@ -25,9 +26,9 @@ class UalDataSourceController {
 
     // STATE
     this.loading = true;
-    this.searchTerm;
-    this.datasources;
-    this.selected;
+    this.searchTerm = {};
+    this.datasources = null;
+    //this.selected;
   }
 
   // LIFECYCLE
