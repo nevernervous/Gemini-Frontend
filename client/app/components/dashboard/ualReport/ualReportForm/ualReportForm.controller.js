@@ -213,6 +213,7 @@ class UalReportFormController {
         event.preventDefault();
         this._ualUnsafeReportModal.open().then(response => {
           if (response) {
+            this.report.clean();
             this.report = null;
             $(window).unbind("beforeunload", this.beforeClose);
             this._unsuscribe();
@@ -220,6 +221,10 @@ class UalReportFormController {
           }
         });
       } else {
+        if(this.report){
+          this.report.clean();
+          this.report = null;
+        }
         $(window).unbind("beforeunload", this.beforeClose);
         this._unsuscribe();
       }
