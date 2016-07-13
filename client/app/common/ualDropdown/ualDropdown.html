@@ -1,11 +1,11 @@
 <div class="dropdown-container" ng-class="{ show: vm.isVisible }">
-  <div class="dropdown-display" ng-click="vm.toogle()" id="thisDropdown">
+  <div class="dropdown-display" ng-click="vm.toogle()" id="thisDropdown-{{::$id}}">
     <span class="placeholder" ng-if="!vm.selected">{{vm.placeholder || "Selected"}}</span>
     <span class="placeholder" ng-if="vm.selected">{{vm.getText(vm.selected)}}</span>
     <span class="icon">
       <i class="ion-chevron-down"></i>
     </span>
-    <div class="float-container" click-outside="vm.isVisible = false" outside-if-not="thisDropdown">
+    <div class="float-container" click-outside="vm.isVisible = false" outside-if-not="thisDropdown-{{::$id}}">
       <span class="dropdown-list">
           <ul class="list-options" >
             <div class="dropdown-item" ng-click="vm.select($event, item)" ng-repeat="item in vm.list | limitTo:vm.limit" >
