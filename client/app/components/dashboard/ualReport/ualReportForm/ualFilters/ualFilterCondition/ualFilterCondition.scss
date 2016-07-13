@@ -11,7 +11,7 @@ ual-filter-condition {
 
   .operator {
     position: relative;
-    width: 60px;
+    width: 50px;
 
     font-weight: normal;
     font-size: 14px;
@@ -20,11 +20,19 @@ ual-filter-condition {
     text-align: center;
 
   }
+  .ual-select,
+  .ual-autocomplete {
+    margin-left: 10px;
+  }
 
   .ual-select {
     width: 120px;
     max-width: 120px;
+  }
 
+  .ual-autocomplete {
+    width: 240px;
+    max-width: 240px;
   }
 }
 

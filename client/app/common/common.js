@@ -38,6 +38,7 @@ import ualTabs from './ualTabs/ualTabs';
 import ualSelect from './ualSelect/ualSelect';
 
 // CUSTOM
+import ualAuto from './ualAuto/ualAuto';
 import ualPopover from './ualPopover/ualPopover';
 import ualTimepicker from './ualTimepicker/ualTimepicker';
 import ualDatepicker from './ualDatepicker/ualDatepicker';
@@ -82,6 +83,7 @@ let commonModule = angular.module('app.common', [
   ualSelect.name,
 
   // CUSTOM
+  ualAuto.name,
   ualPopover.name,
   ualTimepicker.name,
   ualDatepicker.name

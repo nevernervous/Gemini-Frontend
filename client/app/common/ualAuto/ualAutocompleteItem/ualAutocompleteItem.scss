@@ -1,0 +1,31 @@
+@import '../../common';
+
+$menu-item-color-light: rgba($menu-item-color, 0.5);
+
+md-menu-item.ual-autocomplete-item {
+  background-color: $menu-item-bg-color;
+  border-top: 1px solid $menu-item-color-light;
+  &:first-child {
+    border-top: 0;
+  }
+
+  .md-button {
+    font-size: $menu-item-font-size;
+    font-weight: $menu-item-font-weight;
+    color: $menu-item-color;
+    border-left: $menu-item-border-width solid $menu-item-bg-color;
+  }
+  .md-button:not([disabled]) {
+    background-color: $menu-item-bg-color;
+  }
+
+  // DISABLED: TODO
+  .md-button[disabled] {
+    color: $menu-item-color-light;
+  }
+  // HOVER
+  .md-button:not([disabled]):hover{
+    background-color: $menu-item-bg-hover;
+    border-left-color: $menu-item-border-hover;
+  }
+}

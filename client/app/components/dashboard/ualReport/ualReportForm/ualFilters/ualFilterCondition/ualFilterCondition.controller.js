@@ -1,6 +1,10 @@
 class UalFilterConditionController {
   /*@ngInject*/
-  constructor($scope, DataSource, $timeout, Operator) {
+  constructor(
+    $scope,
+    $timeout,
+    DataSource,
+    Operator) {
     this.name = 'ualFilterCondition';
     this.availableVariables;
     this._timeout = $timeout;
@@ -20,7 +24,29 @@ class UalFilterConditionController {
         this.getVariables();
       }
     });
+
+    //INTERNALS
+    // this.$q = $q;
+    this.$timeout = $timeout;
+
+    // STATE
+    // this.variableTerm = null;
   }
+
+  // getFilteredVariables() {
+  //   let deferred = this.$q.defer();
+  //
+  //   this.$timeout(() => {
+  //     const response = ( this.variableTerm && (this.variableTerm.length > 0) ) ?
+  //       _.filter(this.availableVariables, item => {
+  //         return item.name.toLowerCase().includes(this.variableTerm.toLowerCase());
+  //       }) :
+  //       this.availableVariables;
+  //     deferred.resolve( response );
+  //   }, 200);
+  //
+  //   return deferred.promise;
+  // }
 
   trim($event, model) {
     this._timeout(() => {

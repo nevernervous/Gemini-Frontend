@@ -5,19 +5,41 @@
   ng-class="{'-error': filterCondition.$dirty && !filterCondition.$valid}"
   novalidate>
   <div class="operator">{{vm.operatorGroup.operator}}</div>
-  <ual-autocomplete ng-model="vm.condition.variable"
+  <!-- <md-autocomplete class="ual-autocomplete"
+      md-menu-class="ual-autocomplete-menu"
+      md-selected-item="vm.condition.variable"
+      md-search-text="vm.variableTerm"
+      md-items="variable in vm.getFilteredVariables()"
+      md-item-text="variable.name"
+      md-min-length="0"
+      placeholder="Search for variable">
+    <md-item-template>
+      <span md-highlight-text="vm.variableTerm">
+        {{variable.name}}
+      </span>
+    </md-item-template>
+    <md-not-found >
+      No results found
+    </md-not-found>
+  </md-autocomplete> -->
+
+  <ual-auto class="ual-autocomplete"
+    input-width="240px"
+    items="vm.availableVariables">
+  </ual-auto>
+  <!-- <ual-autocomplete ng-model="vm.condition.variable"
       name="variable"
       ng-required="filterCondition.$submitted"
       placeholder="Search for variable"
       list="vm.availableVariables"
       selected="vm.condition.variable"
       on-change="vm.variableChange(oldValue,newValue)"
-      property="name">
+      property="name">  -->
     <!--this component will change on US - CR1.24-->
-    <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty" for="filterCondition.variable.$error">
+    <!-- <ng-messages ng-if="!vm.condition.variable && filterCondition.$dirty" for="filterCondition.variable.$error">
       <div ng-messages-include="default-messages"></div>
     </ng-messages>
-  </ual-autocomplete>
+  </ual-autocomplete> -->
   <md-select class="ual-select"
     ng-model="vm.condition.operator"
     ng-model-options="{trackBy: '$value.operator'}">
