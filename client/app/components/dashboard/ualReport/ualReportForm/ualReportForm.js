@@ -1,40 +1,24 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import ualReportInput from './ualReportInput/ualReportInput';
 import ualDataSource from './ualDataSource/ualDataSource';
 import ualVariables from './ualVariables/ualVariables';
-import ualReportFormComponent from './ualReportForm.component';
-import ualReportInput from './ualReportInput/ualReportInput';
-import ualReportNameModal from './ualReportNameModal/ualReportNameModal';
 import ualFilters from './ualFilters/ualFilters';
+import ualReportNameModal from './ualReportNameModal/ualReportNameModal';
 import ualTimerModal from './ualTimerModal/ualTimerModal';
-import ualExecuteReportModal from './ualTimerModal/ualTimerModal';
-import ualExecutedReportModal from './ualExecutedReportModal/ualExecutedReportModal';
+
+import ualReportFormComponent from './ualReportForm.component';
 
 let ualReportFormModule = angular.module('ualReportForm', [
   uiRouter,
-  ualVariables.name,
   ualReportInput.name,
-  ualFilters.name,
   ualDataSource.name,
+  ualVariables.name,
+  ualFilters.name,
   // MODALS
   ualReportNameModal.name,
-  ualTimerModal.name,
-  ualExecutedReportModal.name
+  ualTimerModal.name
 ])
-
-.config(($stateProvider, $urlRouterProvider) => {
-  "ngInject";
-
-  $stateProvider
-    .state('dashboard.report-new', {
-      url: '/report/new',
-      template: '<ual-report-form layout="column" layout-fill></ual-report-form>'
-    })
-    .state('dashboard.report-edit', {
-      url: '/report/:id',
-      template: '<ual-report-form layout="column" layout-fill></ual-report-form>'
-    });
-})
 
 .component('ualReportForm', ualReportFormComponent);
 

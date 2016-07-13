@@ -114,7 +114,7 @@ class UalFilterConditionController {
   changeOperator() {
     this._timeout(() => {
       let extraFieldArray = ["between", "not between"];
-      let disableAsignationArray = ["is blank", "not blank", "is null", "not null"];
+      let disableAsignationArray = ["is blank", "is not blank", "is null", "is not null"];
       let acceptCommasArray = ['=','<>','begins with','does not begin with','contains','does not contain','ends with','does not end with']
       this.acceptCommas= acceptCommasArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;
       this.extraField = extraFieldArray.indexOf(this.condition.operator.operator.toLowerCase()) > -1;

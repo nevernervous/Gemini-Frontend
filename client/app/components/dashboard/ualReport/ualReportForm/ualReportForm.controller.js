@@ -2,6 +2,7 @@
 // TODO: On Change to Variables, scroll to
 class UalReportFormController {
   /*@ngInject*/
+<<<<<<< HEAD
   constructor(
     // INTERNALS
     $state,
@@ -9,14 +10,12 @@ class UalReportFormController {
     $rootScope,
     $timeout,
     // SERVICES
-    Aggregator,
     Report,
     DataSource,
     // COMPONENTS
     ualDialog,
     ualReportNameModal,
-    ualTimerModal,
-    ualExecutedReportModal) {
+    ualTimerModal) {
 
     // INTERNALS
     this.$state = $state;
@@ -28,7 +27,6 @@ class UalReportFormController {
     this.services = {
       report: Report,
       datasource: DataSource
-      //tooltip: ualTooltipService
     };
 
     // COMPONENTS
@@ -39,7 +37,6 @@ class UalReportFormController {
     // MODALS
     this._ualReportNameModal = ualReportNameModal;
     this._ualTimerModal = ualTimerModal;
-    this._executedReportModal = ualExecutedReportModal;
 
     this.dropDownStyle = {};
 
@@ -206,7 +203,7 @@ class UalReportFormController {
       if (isValid) {
         this._ualTimerModal.open(this.report).then((reply) => {
           if (!!reply) {
-            this._executedReportModal.open();
+            this._state.go('dashboard.report-view');
           }
         });
       } else {
@@ -215,14 +212,20 @@ class UalReportFormController {
             item.$setDirty();
           });
         });
-        this.selectedTab = 'report-filters';
-        let firstError = $('.ng-invalid:not(ng-form):first', "ual-filters").find("input");
-        if (firstError.length > 0) {
-          angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
-          firstError.focus();
-        }
+        this.focusFirstError();
       }
     }, 0);
+  }
+
+  focusFirstError() {
+    this._timeout(() => {
+      this.selectedTab = 'report-filters';
+      let firstError = $('.ng-invalid:not(ng-form):first', "ual-filters").find("input");
+      if (firstError.length > 0) {
+        angular.element($('ual-filters')).scrollTo(firstError, 20, 0.5);
+        firstError.focus();
+      }
+    }, 0)
   }
 
   enableRun() {
@@ -232,8 +235,13 @@ class UalReportFormController {
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {
+<<<<<<< HEAD
     this._suscriptions.push(this.$rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (this.report.touched() && (toState.name !== 'login')) {
+=======
+    this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
+      if (this.report.touched() && toState.name !== 'login' && toState.name !== 'dashboard.report-view') {
+>>>>>>> 663be0468694c76ac3baa2c7eaf8d3eee6803aa9
         event.preventDefault();
         this.components.dialog.confirm( 'Exit without saving?' )
         .then(() => {
