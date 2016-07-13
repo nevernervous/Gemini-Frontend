@@ -19,6 +19,10 @@ ual-filter-condition {
     >ual-input {
       margin: 0 8px;
       @include gridle(2);
+      @include gridle_state (projector) {
+        @include gridle(2.4);
+      }
+
       padding: 0;
       .-input {
         display: flex;
@@ -47,8 +51,8 @@ ual-filter-condition {
       }
     }
     .-error {
-        padding: 10px 10px 0;
-      }
+      padding: 10px 10px 0;
+    }
     >ual-dropdown {
       margin: 0 8px;
       @include gridle(2);
@@ -64,6 +68,9 @@ ual-filter-condition {
       margin: 0 8px;
       padding: 0px;
       @include gridle(2);
+      @include gridle_state (projector) {
+        @include gridle(2.4);
+      }
       &.short-field {
         @include gridle(0.88);
       }
@@ -76,7 +83,7 @@ ual-filter-condition {
               padding: 1px 2px;
               height: 33px;
             }
-            >input{
+            >input {
               width: calc(100% - 37px);
             }
             >i {
@@ -92,7 +99,7 @@ ual-filter-condition {
           width: -moz-max-content;
           width: -webkit-max-content;
           width: max-content;
-          @include -ms-browser(){
+          @include -ms-browser() {
             width: auto;
             display: inline-block;
           }
@@ -101,7 +108,7 @@ ual-filter-condition {
               white-space: nowrap;
               padding-right: 10%;
               overflow-x: hidden;
-              @include -ms-browser(){
+              @include -ms-browser() {
                 margin-right: 30px;
                 padding-right: 10px;
               }
