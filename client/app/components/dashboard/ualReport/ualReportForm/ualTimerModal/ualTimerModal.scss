@@ -28,7 +28,7 @@ ual-modal.-timerModal {
       }
       div:nth-child(3){
         padding-top: 8px;
-        @include font-clanot-book(14, 600);
+        @include font-clanot-bold(14);
       }
       div:nth-child(4){
         padding-top: 16px;
