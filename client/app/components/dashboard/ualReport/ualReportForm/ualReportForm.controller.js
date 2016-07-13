@@ -2,7 +2,6 @@
 // TODO: On Change to Variables, scroll to
 class UalReportFormController {
   /*@ngInject*/
-<<<<<<< HEAD
   constructor(
     // INTERNALS
     $state,
