@@ -92,6 +92,10 @@ md-input-container.ual-input {
   &.md-input-focused:not(.md-input-invalid) > md-icon {
     color: $input-icon-color;
   }
+
+  .md-input-messages-animation {
+    position: initial;
+  }
 }
 
 
@@ -109,6 +113,9 @@ $sizes: small medium large;
       $input-font-size: $input-medium-font-size;
       $input-border: $input-medium-border;
       $input-line-height: $input-medium-line-height;
+      label:not(._md-container-ignore) {
+        display: none;
+      }
     }
     @if $size == small {
       $input-border-color: $input-small-border-color;

@@ -1,45 +1,56 @@
+
+// TODO: [IMPROVEMENT] Arrow up/down to navigate
+// TODO: [FIX] Placeholder
+// TODO: [FIX] Validation
+// TODO: [FIX] Arrows left/right not working
 class UalAutocompleteController {
   /*@ngInject*/
-  constructor($scope) {
+  constructor(
+    // INTERNALS
+    $element,
+    $timeout,
+    // COMPONENTS
+    $mdMenu
+  ) {
     this.name = 'ualAutocomplete';
-    this.isVisible = false;
-    this.limit=0;
-    this._scope = $scope;
 
-    this.inputHovered = false;
+    // INTERNALS
+    this.$element = $element;
+    this.$timeout = $timeout;
 
-    this.filterName= {
-      name: ""
+    // COMPONENTS
+    this.components = {
+      menu: $mdMenu
+    }
+
+    // STATE
+    this.searchTerm = {}
+  }
+
+  // LIFECYCLE
+  $onInit() {
+    if ( this.selected ) {
+      this.searchTerm[this.property] = this.selected[this.property];
     }
   }
-  select($event, item) {
-    $event.stopPropagation();
-    if (!_.isEqual(this.selected, item) && !!this.onChange) {
-     this.onChange({oldValue:this.selected,newValue:item}) ;
-    }
+  $postLink() {
+    $(this.$element).find('.ual-input').width(this.width);
+  }
+
+  // SELECT
+  selectItem(item) {
     this.selected = item;
-    this.hide();
-    this.filterName.name = "";
+    this.searchTerm[this.property] = item[this.property];
+  }
+  checkSelectedItem() {
+    this.$timeout(() => {
+      if ( this.searchTerm && this.selected &&
+        ( this.searchTerm[this.property] !== this.selected[this.property]) ) {
+        this.selected = null;
+      }
+    }, 500);
   }
 
-  getText(item) {
-    return !this.property || !item ? item : item[this.property];
-  }
-
-  hide(){
-    if(this.isVisible){
-      this.filterName.name = "";
-      this.isVisible = false;
-      this.limit=this.isVisible?this.list.length:0;
-    }
-  }
-
-  show(){
-    if(!this.isVisible){
-      this.isVisible = true;
-      this.limit=this.isVisible?this.list.length:0;
-    }
-  }
 }
 
 export default UalAutocompleteController;

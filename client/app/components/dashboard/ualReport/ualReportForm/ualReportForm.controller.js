@@ -1,5 +1,5 @@
 
-// TODO: On Change to Variables, scroll to
+// TODO: [IMPROVEMENT] On Change to Variables, scroll to
 class UalReportFormController {
   /*@ngInject*/
   constructor(
@@ -234,13 +234,8 @@ class UalReportFormController {
   }
   // INIT / SUSCRIPTIONS
   _suscribe() {
-<<<<<<< HEAD
     this._suscriptions.push(this.$rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-      if (this.report.touched() && (toState.name !== 'login')) {
-=======
-    this._suscriptions.push(this._rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       if (this.report.touched() && toState.name !== 'login' && toState.name !== 'dashboard.report-view') {
->>>>>>> 663be0468694c76ac3baa2c7eaf8d3eee6803aa9
         event.preventDefault();
         this.components.dialog.confirm( 'Exit without saving?' )
         .then(() => {

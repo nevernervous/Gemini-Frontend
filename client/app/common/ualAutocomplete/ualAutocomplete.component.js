@@ -4,16 +4,11 @@ import './ualAutocomplete.scss';
 
 let ualAutocompleteComponent = {
   restrict: 'E',
-  transclude: true,
-  require:{
-    modelCtrl: '?ngModel'
-  },
   bindings: {
-    onChange: '&?',
-    placeholder: "@?",
-    selected: "=",
-    property: "@?",
-    list: '='
+    items: '<',
+    selected: '=itemSelected',
+    property: '@itemProperty',
+    width: '@inputWidth'
   },
   template,
   controller,

@@ -13,7 +13,6 @@ import ualTooltip from './ualTooltip/ualTooltip';
 import ualDropdown from './ualDropdown/ualDropdown';
 import ualResize from './ualResize/ualResize';
 import ualRender from './ualRender/ualRender';
-import ualMessageBanner from './ualMessageBanner/ualMessageBanner';
 import ualTable from './ualTable/ualTable';
 import ualSignalR from './ualSignalR/ualSignalR';
 import ualClusterizeTable from './ualClusterizeTable/ualClusterizeTable';
@@ -23,7 +22,6 @@ import ualOnScroll from './ualOnScroll/ualOnScroll';
 import ualActionLabel from './ualActionLabel/ualActionLabel';
 import ualDraggable from './ualDraggable/ualDraggable';
 import ualDroppable from './ualDroppable/ualDroppable';
-import ualAutocomplete from './ualAutocomplete/ualAutocomplete';
 
 // MATERIAL
 import ualLoading from './ualLoading/ualLoading';
@@ -38,7 +36,7 @@ import ualTabs from './ualTabs/ualTabs';
 import ualSelect from './ualSelect/ualSelect';
 
 // CUSTOM
-import ualAuto from './ualAuto/ualAuto';
+import ualAutocomplete from './ualAutocomplete/ualAutocomplete';
 import ualPopover from './ualPopover/ualPopover';
 import ualTimepicker from './ualTimepicker/ualTimepicker';
 import ualDatepicker from './ualDatepicker/ualDatepicker';
@@ -58,7 +56,6 @@ let commonModule = angular.module('app.common', [
   ualDropdown.name,
   ualResize.name,
   ualRender.name,
-  ualMessageBanner.name,
   ualTable.name,
   ualSignalR.name,
   ualClusterizeTable.name,
@@ -68,7 +65,6 @@ let commonModule = angular.module('app.common', [
   ualActionLabel.name,
   ualDraggable.name,
   ualDroppable.name,
-  ualAutocomplete.name,
 
   // MATERIAL
   ualButton.name,
@@ -83,7 +79,7 @@ let commonModule = angular.module('app.common', [
   ualSelect.name,
 
   // CUSTOM
-  ualAuto.name,
+  ualAutocomplete.name,
   ualPopover.name,
   ualTimepicker.name,
   ualDatepicker.name

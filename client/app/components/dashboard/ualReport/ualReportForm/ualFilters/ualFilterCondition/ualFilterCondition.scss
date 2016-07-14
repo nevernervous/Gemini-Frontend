@@ -21,7 +21,8 @@ ual-filter-condition {
 
   }
   .ual-select,
-  .ual-autocomplete {
+  .ual-autocomplete,
+  .condition-value {
     margin-left: 10px;
   }
 
@@ -30,7 +31,8 @@ ual-filter-condition {
     max-width: 120px;
   }
 
-  .ual-autocomplete {
+  .ual-autocomplete,
+  .condition-value {
     width: 240px;
     max-width: 240px;
   }
