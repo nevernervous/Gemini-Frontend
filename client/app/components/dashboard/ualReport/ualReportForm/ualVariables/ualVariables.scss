@@ -29,7 +29,7 @@ ual-variables {
       margin: 10px -15px 0 -5px;
       padding-right: 10px;
       overflow-x: hidden;
-      overflow-y: scroll;
+      overflow-y: auto;
 
       li.over ual-variable-selected-item {
         background-color: $color08;
