@@ -65,7 +65,6 @@ class UalVariablesMultiSelectController {
   }
 
   // SELECTION
-  // TODO: FIX Select ALL. revert
   selectAll() {
     this.selectedReference = _.map(this.variablesFiltered,
       (item) => {

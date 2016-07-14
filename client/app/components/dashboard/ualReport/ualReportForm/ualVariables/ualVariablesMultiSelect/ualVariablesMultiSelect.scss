@@ -9,7 +9,7 @@ ual-variables-multi-select {
     margin: 10px -15px 0 -5px;
     padding-right: 10px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     .avaiable-variable-item {
       @include ellipses();
       padding: 5px;
