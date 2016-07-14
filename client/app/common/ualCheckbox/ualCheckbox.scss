@@ -4,6 +4,7 @@ ual-checkbox {
   height: 36px;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   > input[type="checkbox"] {
     display:none;

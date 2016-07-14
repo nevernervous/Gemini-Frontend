@@ -15,7 +15,11 @@ class ExpirationModalController {
   }
 
   remaining() {
-    return this.services.token.remainingTime();
+    const remaining = this.services.token.remainingTime();
+    if ( remaining === 0 ) {
+      this.$mdDialog.cancel();
+    } 
+    return remaining;
   }
 
   no() {

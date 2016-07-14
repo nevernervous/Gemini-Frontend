@@ -65,7 +65,7 @@ class UalReportFormController {
   // LIFECYCLE
   $postLink() {
     this.$scope.$watch((scope) => {
-      return scope.reportForm.$valid;
+      return scope.reportForm && scope.reportForm.$valid;
     }, (newValue, oldValue) => {
       this.report.setValidForm(newValue);
     });

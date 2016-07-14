@@ -3,15 +3,35 @@ import $ from 'jquery';
 // TODO: FIX on submit close toast
 class LoginFormController {
   /*@ngInject*/
-  constructor(Session, Configuration, $state, $scope) {
+  constructor(
+    // INTERNALS
+    $state,
+    $scope,
+    // SERVICES
+    Session,
+    Configuration,
+    // COMPONENTS
+    ualToast) {
     this.name = 'loginForm';
-    this.mailto = Configuration.get('login.contact');
-    this._session = Session;
+
+    // INTERNALS
     this.$state = $state;
     this.$scope = $scope;
+
+    // SERVICES
+    this.services = {
+      session: Session
+    }
+
+    // COMPONENTS
+    this.components = {
+      toast: ualToast
+    }
+
+    // STATE
     this.loading = false;
     this.error = false;
-
+    this.mailto = Configuration.get('login.contact');
     this.user = Session.get() ? Session.get().username : null;
   }
 
@@ -19,9 +39,12 @@ class LoginFormController {
     // Change focus to emulate IE behaviour
     $('login-form-submit').focus();
 
+    // HIDE TOAST
+    this.components.toast.close();
+
     this.error = false;
     this.loading = true;
-    this._session.login(this.user, this.pass)
+    this.services.session.login(this.user, this.pass)
     .then ( () => this.$state.go('dashboard.report-list'))
     .catch( response => this.error = response.data )
     .finally(() => {

@@ -39,10 +39,14 @@ let ualToastService = function ($mdToast) {
   const warning = (text, autoclose, parent) => {
     show(text, 'warning', parent, autoclose, false);
   }
+  const close = () => {
+    $mdToast.hide();
+  }
   return {
     success,
     error,
-    warning
+    warning,
+    close
   };
 };
 
