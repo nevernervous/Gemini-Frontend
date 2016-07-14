@@ -37,7 +37,6 @@ class UalGroupFilterController {
           let resetAll = resetAllExceptions.indexOf(element.operator.operator.toLowerCase()) < 0;
           if (resetAll) {
             element.operator= { "id": 1, 'operator': "=" };;
-            element.variable = null;
           }
         } else {
           resetDown(element);

@@ -239,12 +239,17 @@ class UalReportFormController {
         event.preventDefault();
         this.components.dialog.confirm( 'Exit without saving?' )
         .then(() => {
+          this.report.clean();
           this.report = null;
           $(window).unbind("beforeunload", this.beforeClose);
           this._unsuscribe();
           this.$state.go(toState.name);
         });
       } else {
+        if(this.report){
+          this.report.clean();
+          this.report = null;
+        }
         $(window).unbind("beforeunload", this.beforeClose);
         this._unsuscribe();
       }
