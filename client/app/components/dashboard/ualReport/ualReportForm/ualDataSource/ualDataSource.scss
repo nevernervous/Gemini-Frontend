@@ -12,6 +12,12 @@ ual-data-source {
     ual-input {
       @include gridle(5);
       padding-left: 34px;
+      i {
+        vertical-align: middle;
+        @include -ms-browser() {
+          margin-top: 5px;
+        }
+      }
     }
   }
   .content {
