@@ -1,0 +1,56 @@
+@import '../../../../../common/common';
+
+// MIXIN
+@mixin input-invalid() {
+  border: 1px solid $alertHighColor;
+  > .icon-warning {
+    display: inline;
+  }
+}
+
+//  LAYOUT
+ual-modal.-slice {
+  z-index: 50;
+  > ng-transclude {
+    width: 60%;
+    height: 73%;
+    margin: 0;
+      > .description {
+            > div {
+                border: 1px solid $color08;
+                margin-top: 25px;
+                > input {
+                    width: calc(100% - 45px);
+                    @include font-clanot-book(16);
+                    color: $color06;
+                    border: none;
+                    padding: 10px;
+                }
+                .icon-warning {
+                    display: none;
+                    color: $alertHighColor;
+                    vertical-align: middle;
+                    font-size: 28px;
+                    margin: auto 7px;
+                }
+            }
+            .-error-tooltip{
+                color: $alertHighColor;
+                margin-top: 10px;
+                @include font-clanot-news(16);
+                @include -ms-browser(){
+                    position: relative;
+                    top: 10px;
+                }
+            }
+
+      }
+  }
+}
+
+//VARIATION
+
+//VARIATION / INPUT INVALID
+ual-modal.-slice > ng-transclude > .description > div.input-invalid {
+    @include input-invalid();
+}
