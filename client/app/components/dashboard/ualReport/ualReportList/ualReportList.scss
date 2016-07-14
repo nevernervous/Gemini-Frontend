@@ -26,6 +26,14 @@ ual-report-list .list-header {
     margin-left: $report-list-header-actions-separation;
   }
 }
+
+// TABS
+ual-report-list .reportslist-tabs {
+  md-tab-content:nth-child(1) { // MY REPORT TAB
+    overflow: hidden;
+  }
+}
+
 ual-report-list .list-content {
   margin-top: $report-list-content-margin-top;
   height: calc(100vh - #{$report-list-content-vh});
