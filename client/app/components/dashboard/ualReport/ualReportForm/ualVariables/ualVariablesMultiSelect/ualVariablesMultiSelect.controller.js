@@ -64,7 +64,7 @@ class UalVariablesMultiSelectController {
     }, 200);
   }
 
-  // SELECTION (to correct operation add 'tabindex' in HTML)
+  // SELECTION
   selectAll() {
     this.selectedReference = _.map(this.variablesFiltered,
       (item) => {
