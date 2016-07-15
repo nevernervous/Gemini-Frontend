@@ -7,6 +7,22 @@ ual-report-view {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @include font-clanot-book(14);
+    @include font-clanot-book(18);
+  }
+  .report-name{
+    @include font-clanot-bold(20);
+    color: $color06;
+    span{
+      @include ellipses();
+    }
+  }
+  .buttons-group {
+    .-save-button{
+      width: 205px;
+    }
+    #repotMenu-control md-icon {
+      color: $button-flat-icon-color;
+      font-size: 1.4em;
+    }
   }
 }

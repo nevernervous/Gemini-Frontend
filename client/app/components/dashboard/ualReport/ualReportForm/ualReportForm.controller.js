@@ -202,7 +202,7 @@ class UalReportFormController {
       if (isValid) {
         this._ualTimerModal.open(this.report).then((reply) => {
           if (!!reply) {
-            this._state.go('dashboard.report-view');
+            this.$state.go('dashboard.report-view');
           }
         });
       } else {
@@ -246,7 +246,7 @@ class UalReportFormController {
           this.$state.go(toState.name);
         });
       } else {
-        if(this.report){
+        if(this.report && toState.name !== 'dashboard.report-view'){
           this.report.clean();
           this.report = null;
         }

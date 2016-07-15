@@ -1,4 +1,37 @@
+<div class="header-dashboard" layout="row" layout-align="space-between center">
+  <div class="report-name" flex="50" layout="row">
+    <span>{{ !vm.report.name.get() ? 'No name assigned' : vm.report.name.get()}}</span>
+  </div>
+  <div flex="5" layout="row"></div>
+  <div class="buttons-group" flex layout="row" layout-align="space-between center">
+    <ual-button-flat
+       ual-button="primary"
+       ual-button-flat-icon="ion-compose"
+       ng-disabled="true">
+      Edit report
+    </ual-button-flat>
+    <ual-button-flat
+       ual-button="primary"
+       ng-href="vm.toggleDetails()"
+       ual-button-flat-icon="ion-eye{{vm.hidingDetails?'-disabled':''}}">
+      <span ng-if="!vm.hidingDetails">Show</span><span ng-if="vm.hidingDetails">Hide</span> details
+    </ual-button-flat>
+    <md-button ual-button
+      class="md-secondary -save-button"
+       ng-disabled="true">
+      <ual-loading
+        ual-loading-enable=false
+        ual-loading-diameter="30">
+        Save
+      </ual-loading>
+    </md-button>
+    <md-button class="ual-button-flat md-primary md-icon-button" id="repotMenu-control">
+      <md-icon md-font-icon="Ionicons"
+        class="ion-android-more-horizontal" ></md-icon>
+    </md-button>
+  </div>
+</div>
 <div class="-content">
-	<div>Placeholder</div>
-	<div>Page result generated</div>
+  <div>Placeholder</div>
+  <div>Page result generated</div>
 </div>
