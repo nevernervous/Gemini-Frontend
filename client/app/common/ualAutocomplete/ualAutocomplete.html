@@ -1,18 +1,20 @@
 <md-menu>
   <md-input-container
+    md-no-float
     ual-input
     ual-input-size="medium"
     ual-input-icon="ion-ios-search"
-    class="search-placeholder ual-input-no-validate">
+    class="search-placeholder">
     <input aria-label="autocomplete placeholder"
+      name="{{vm.name}}"
+      placeholder="{{vm.placeholder}}"
       ng-focus="$mdOpenMenu($event)"
       ng-model="vm.searchTerm[vm.property]"
+      ng-required="vm.required"
       ng-minlength="1"
-      ng-model-options="{ updateOn: 'blur', debounce: { default: 200 } }" >
+      ng-model-options="{ updateOn: 'blur', debounce: { default: 200 } }">
+      <ng-messages for="vm.errors" ng-transclude></ng-messages>
   </md-input-container>
-  <!-- <md-button aria-label="Open menu" class="icon-button-user md-icon-button" ng-click="$mdOpenMenu($event)">
-    <img ng-src="{{vm.user}}" alt="{{vm.user}}">
-  </md-button> -->
   <md-menu-content class="ual-autocomplete-content"
     width="3">
     <md-input-container

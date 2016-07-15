@@ -7,11 +7,13 @@ let ualAutocompleteComponent = {
   transclude: true,
   bindings: {
     items: '<',
+    name: '@',
     selected: '=itemSelected',
     property: '@itemProperty',
     width: '@inputWidth',
     placeholder: '@',
-    ngRequired: '<'
+    required: '<ngRequired',
+    errors: '<'
   },
   template,
   controller,

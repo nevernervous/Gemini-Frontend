@@ -23,11 +23,15 @@
     </md-not-found>
   </md-autocomplete> -->
   <ual-autocomplete class="ual-autocomplete"
+    name="variable"
     placeholder="Search for variable"
     input-width="240px"
+    ng-required="true"
     items="vm.availableVariables"
     item-selected="vm.condition.variable"
-    item-property="name">
+    item-property="name"
+    errors="filterCondition.variable.$error">
+    <div ng-messages-include="default-messages"></div>
   </ual-autocomplete>
   <!-- <ual-autocomplete ng-model="vm.condition.variable"
       name="variable"
