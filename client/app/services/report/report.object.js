@@ -200,6 +200,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
       get: getId,
       set: setId
     },
+    isInit: function() {
+      return (object.name !== undefined);
+    },
     untouch: function () {
       touched = false;
     },
