@@ -1,14 +1,16 @@
-import UalDropdownModule from './ualDropdown'
-import UalDropdownController from './ualDropdown.controller';
+import UalIconModule from './ualIcon'
+import UalIconController from './ualIcon.controller';
+import UalIconComponent from './ualIcon.component';
+import UalIconTemplate from './ualIcon.html';
 
-describe('UalDropdown', () => {
+describe('UalIcon', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalDropdownModule.name));
+  beforeEach(window.module(UalIconModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalDropdownController();
+      return new UalIconController();
     };
   }));
 

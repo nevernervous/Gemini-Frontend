@@ -7,10 +7,8 @@ import ngSanitize from 'angular-sanitize';
 
 import ualModal from './ualModal/ualModal';
 import ualCheckbox from './ualCheckbox/ualCheckbox';
-import ualMenu from './ualMenu/ualMenu';
 import ualPane from './ualPane/ualPane';
 import ualTooltip from './ualTooltip/ualTooltip';
-import ualDropdown from './ualDropdown/ualDropdown';
 import ualResize from './ualResize/ualResize';
 import ualRender from './ualRender/ualRender';
 import ualTable from './ualTable/ualTable';
@@ -19,7 +17,6 @@ import ualClusterizeTable from './ualClusterizeTable/ualClusterizeTable';
 import ualEllipsis from './ualEllipsis/ualEllipsis';
 import ualAccordionGroup from './ualAccordionGroup/ualAccordionGroup';
 import ualOnScroll from './ualOnScroll/ualOnScroll';
-import ualActionLabel from './ualActionLabel/ualActionLabel';
 import ualDraggable from './ualDraggable/ualDraggable';
 import ualDroppable from './ualDroppable/ualDroppable';
 
@@ -50,10 +47,8 @@ let commonModule = angular.module('app.common', [
 
   ualModal.name,
   ualCheckbox.name,
-  ualMenu.name,
   ualPane.name,
   ualTooltip.name,
-  ualDropdown.name,
   ualResize.name,
   ualRender.name,
   ualTable.name,
@@ -62,7 +57,6 @@ let commonModule = angular.module('app.common', [
   ualEllipsis.name,
   ualAccordionGroup.name,
   ualOnScroll.name,
-  ualActionLabel.name,
   ualDraggable.name,
   ualDroppable.name,
 

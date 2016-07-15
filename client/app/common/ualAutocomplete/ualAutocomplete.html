@@ -4,11 +4,11 @@
     ual-input-size="medium"
     ual-input-icon="ion-ios-search"
     class="search-placeholder ual-input-no-validate">
-    <input aria-label="search placeholder"
+    <input aria-label="autocomplete placeholder"
       ng-focus="$mdOpenMenu($event)"
       ng-model="vm.searchTerm[vm.property]"
       ng-minlength="1"
-      ng-model-options="{ debounce: { default: 200 } }" >
+      ng-model-options="{ updateOn: 'blur', debounce: { default: 200 } }" >
   </md-input-container>
   <!-- <md-button aria-label="Open menu" class="icon-button-user md-icon-button" ng-click="$mdOpenMenu($event)">
     <img ng-src="{{vm.user}}" alt="{{vm.user}}">
@@ -20,7 +20,7 @@
       ual-input-size="medium"
       ual-input-icon="ion-ios-search"
       class="search-autocomplete ual-input-no-validate">
-      <input aria-label="search autocomplete"
+      <input aria-label="autocomplete input"
         ng-model="vm.searchTerm[vm.property]"
         ng-blur="vm.checkSelectedItem()"
         ng-minlength="1"
