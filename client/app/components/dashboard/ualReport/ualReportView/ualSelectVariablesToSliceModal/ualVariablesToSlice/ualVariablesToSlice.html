@@ -1,0 +1,86 @@
+
+<div flex
+  class="selected-variables first">
+  <ual-variables-to-slice-multi-select layout="column" layout-fill
+    datasource="vm.datasource"
+    selected-reference="vm.selectedsVariables">
+  </ual-variables-to-slice-multi-select>
+</div>
+
+<div flex="none"
+  layout="column" layout-fill layout-align="center center"
+  class="divider buttons">
+  <md-button ual-button="secondary"
+    ng-click="vm.addSlicers()"
+    ng-disabled="!vm.selectedsVariables.length">
+    <md-tooltip md-direction="top"
+      class="ual-tooltip-top variables-button-tooltip">
+      Add to selected slicers
+    </md-tooltip>
+    >
+  </md-button>
+</div>
+
+<div flex
+  class="selected-variables">
+  <ual-pane layout="column" layout-fill
+    ual-title="Selected slicers ({{vm.aggregatorsFiltered.length}})"
+    action="Delete all" on-action="vm.deleteAllSlicers($event)"
+    is-disabled="(vm.aggregatorsFiltered = (vm.aggregators.get() | visible:'name':vm._aggregators.filter | filter:{'_visible': true} )) | isEmpty">
+    <md-input-container
+      ual-input
+      ual-input-size="medium"
+      ual-input-icon="ion-ios-search"
+      class="search-box ual-input-no-validate">
+      <input aria-label="search selected aggregators"
+        ng-model="vm._aggregators.filter"
+        ng-minlength="2"
+        ng-model-options="{ debounce: { default: 200 } }" >
+    </md-input-container>
+    <!-- <ual-input ual-id="selected-searchbox" class="search-box" value="vm._aggregators.filter" min-chars="2" icon="ion-ios-search-strong" ual-disabled="vm.dragging || vm._aggregators.isempty"></ual-input> -->
+
+    <div flex layout="column"
+      layout-align="center center"
+      class="message-placeholder "
+      ng-if="!vm._aggregators.isempty && (vm.aggregatorsFiltered | isEmpty)">
+      No results found.
+    </div>
+    <div flex layout="colunm"
+      layout-align="center center"
+      class="message-placeholder"
+      ng-if="vm._aggregators.isempty">
+      No slicers selected yet.
+    </div>
+    <!-- <div class="empty-search" ng-if="!vm._aggregators.isempty" ng-show="vm.aggregatorsFiltered | isEmpty">
+      <div>No results found.</div>
+    </div>
+    <div class="empty-list" ng-if="vm._aggregators.isempty">
+      <div>No aggregators selected yet.</div>
+    </div> -->
+    <ul flex
+      class="selected-variables-list"
+      ng-show="!vm._aggregators.isempty && !(vm.aggregatorsFiltered | isEmpty)">
+
+      <li id="{{ $index }}_selected_container-aggregator"
+        ng-repeat="item in vm.aggregators.get()"
+        ual-droppable
+        drop="vm.onDropAggregators(from, to)" >
+
+        <ual-variable-selected-item id="{{ $index }}_selected_item-aggregator"
+          layout="row"
+          ual-draggable
+          ng-show="item._visible"
+          variable-total="vm._aggregators.total"
+          variable-item="item"
+          variable-order="$index"
+          variable-type="aggregator"
+          variable-change="vm.changeAggregators(oldOrder, newOrder)"
+          on-delete="vm.deleteAggregator($index)"
+          ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
+        </ual-variable-selected-item>
+
+      </li>
+    </ul>
+  </ual-pane>
+</div>
+

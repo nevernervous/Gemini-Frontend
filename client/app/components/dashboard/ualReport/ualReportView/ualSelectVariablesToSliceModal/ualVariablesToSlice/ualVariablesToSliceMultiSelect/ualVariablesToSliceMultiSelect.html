@@ -1,0 +1,63 @@
+<ual-pane layout="column" layout-fill
+  ual-title="Available slicers ({{vm.variablesFiltered.length}})"
+  action="Select all" on-action="vm.selectAll()"
+  is-disabled="(vm.variablesFiltered = ((vm.avaiableVariables || []) | filter:vm.filterTerm )) | isEmpty">
+
+  <md-input-container
+    ual-input
+    ual-input-size="medium"
+    ual-input-icon="ion-ios-search"
+    class="search-box ual-input-no-validate">
+    <input aria-label="search available variables"
+      ng-model="vm.filterTerm.name"
+      ng-minlength="2"
+      ng-model-options="{ debounce: { default: 200 } }" >
+  </md-input-container>
+
+  <div flex layout="column"
+    layout-align="center center"
+    class="message-placeholder message-loading"
+    ng-if="vm.loading ">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    Loading ...
+  </div>
+  <div flex layout="colunm"
+    layout-align="center center"
+    class="message-placeholder"
+    ng-show="!vm.loading && vm.variablesFiltered && !vm.variablesFiltered.length">
+    No results found.
+  </div>
+  <ul flex
+    tabindex="0"
+    class="avaiable-variables"
+    ng-keydown="vm.keyDown($event)"
+    ng-keyup="vm.keyUp($event)"
+    ng-show="!vm.loading && vm.variablesFiltered && vm.variablesFiltered.length">
+    <li ng-repeat="variable in vm.variablesFiltered"
+      id="available-variable-item-wrapper-{{variable.id}}"
+      class="avaiable-variable-item "
+      ng-class="{'avaiable-variable-item-selected': variable.selected}"
+      onselectstart="return false;"
+      selection-model
+      selection-model-mode="'multiple'"
+      selection-model-selected-items="vm.selectedReference">
+      <md-tooltip
+        id="available-variable-item-wrapper-tooltip-{{variable.id}}"
+        md-direction="right"
+        class="ual-tooltip-right ual-tooltip-hide">
+        {{variable.name}}<br />
+        {{variable.description}}
+      </md-tooltip>
+      <span id="available-variable-item-content-{{variable.id}}"
+        ng-mouseover="vm.showMore(variable)">
+        {{variable.name}}
+        <md-tooltip
+          id="available-variable-item-content-tooltip-{{variable.id}}"
+          md-direction="right"
+          class="ual-tooltip-right ual-tooltip-hide">
+          {{variable.description}}
+        </md-tooltip>
+      </span>
+    </li>
+  </ul>
+</ual-pane>

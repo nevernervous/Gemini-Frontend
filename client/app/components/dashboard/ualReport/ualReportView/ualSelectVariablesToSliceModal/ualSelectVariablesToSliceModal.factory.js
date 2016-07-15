@@ -2,17 +2,21 @@ import template from './ualSelectVariablesToSliceModal.html';
 import controller from './ualSelectVariablesToSliceModal.controller';
 import './ualSelectVariablesToSliceModal.scss';
 
-let ualSelectVariablesToSliceModalService = function (ualModal) {
+let ualSelectVariablesToSliceModalService = function (ualDialog) {
   "ngInject";
+  const components = {
+    dialog: ualDialog
+  }
 
-  let open = (inputs) => {
+  const open = () => {
 
-    return ualModal.open({
-      template: '<ual-modal class="-yesno -slice">' + template + '</ual-modal>',
+    return components.dialog.show({
+      parent: angular.element(document.body),
+      template: template,
       controller: controller,
       controllerAs : 'vm',
-      inputs: inputs,
-    });
+      clickOutsideToClose: false
+    })
   }
 
   return { open };

@@ -1,7 +1,22 @@
-<div class="description">
-
-</div>
-<div class="buttons">
-  <ual-button class="-link"  ng-click="vm.cancel()">Cancel</ual-button>
-  <ual-button class="-primary"  ng-click="vm.ok()" ng-disabled="(!vm.name.current) || vm.report.saving.isSaving()">Ok</button>
-</div>
+<md-dialog ng-cloak  layout="column"
+  class="ual-dialog slice-modal">
+  <md-dialog-content class="md-dialog-content">
+      <ual-variables-to-slice
+      layout="row"
+      layout-fill>
+      </ual-variables-to-slice>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button
+      class="md-primary"
+      aria-label="Cancel"
+      ng-click="vm.cancel()">
+      Cancel
+    </md-button>
+    <md-button ual-button
+      aria-label="Ok"
+      ng-click="vm.ok()">
+      Ok
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

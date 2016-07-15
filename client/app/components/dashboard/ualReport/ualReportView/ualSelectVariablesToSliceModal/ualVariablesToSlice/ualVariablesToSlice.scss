@@ -1,0 +1,45 @@
+@import '../../../../../components';
+
+$selected-variables-message-font-weight: $font-weight-regular;
+$selected-variables-message-font-size: 16px;
+$selected-variables-message-color: $color-rolling-stone;
+
+ual-variables-to-slice {
+  .divider {
+    width: 46px;
+  }
+  .buttons .md-button {
+    width: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px;
+    padding: 0;
+    font-weight: bold;
+  }
+
+  .selected-variables {
+    .message-placeholder {
+      font-weight: $selected-variables-message-font-weight;
+      font-size: $selected-variables-message-font-size;
+      color: $selected-variables-message-color;
+    }
+    .selected-variables-list {
+      margin: 10px -15px 0 -5px;
+      padding-right: 10px;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      li.over ual-variable-selected-item {
+        background-color: $color08;
+      }
+    }
+  }
+
+}
+
+// TOOLTIP / TOP
+md-tooltip.variables-button-tooltip.ual-tooltip-top {
+  margin-top: 0;
+}

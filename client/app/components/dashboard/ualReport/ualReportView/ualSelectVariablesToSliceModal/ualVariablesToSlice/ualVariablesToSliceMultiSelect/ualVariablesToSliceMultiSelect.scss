@@ -1,0 +1,51 @@
+@import '../../../../../../components';
+
+$avaiable-variables-message-font-weight: $font-weight-regular;
+$avaiable-variables-message-font-size: 16px;
+$avaiable-variables-message-color: $color-rolling-stone;
+
+ual-variables-to-slice-multi-select {
+  .avaiable-variables {
+    margin: 10px -15px 0 -5px;
+    padding-right: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    .avaiable-variable-item {
+      @include ellipses();
+      padding: 5px;
+      margin-bottom: 1px;
+      cursor: pointer;
+      font-weight: lighter;
+      font-size: 14px;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      &.avaiable-variable-item-selected {
+        background-color: $color10;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .message-placeholder {
+    font-weight: $avaiable-variables-message-font-weight;
+    font-size: $avaiable-variables-message-font-size;
+    color: $avaiable-variables-message-color;
+
+    &.message-loading {
+      font-size: 12px;
+      md-progress-circular {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .separator {
+    border-top: 1px solid $color-alto;
+    padding: 10px 25px 0;
+    .md-button {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+}
