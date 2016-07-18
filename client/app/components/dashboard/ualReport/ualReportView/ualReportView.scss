@@ -1,12 +1,63 @@
-@import '../../../../common/common';
+@import '../../../components';
+
+$report-info-font-size: 12px;
+$report-code-line-height: 18px;
+
+$report-placeholder-font-size: 18px;
+$report-menu-more-icon-font-size: 24px;
+
 ual-report-view {
-  .-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    @include font-clanot-book(14);
+  .report-name {
+    font-size: $report-view-name-font-size;
+    font-weight: bold;
+    color: $color-mine-shaft;
+    span {
+      @include ellipses();
+    }
+  }
+  .buttons-group {
+    .save-button {
+      width: $report-view-button-width;
+    }
+    >ual-button-flat {
+      width: $report-view-button-width;
+    }
+    md-menu {
+      md-button md-icon.ion-more {
+        color: $button-flat-icon-color;
+        font-size: $report-menu-more-icon-font-size;
+      }
+    }
+  }
+  .report-detail {
+    margin-top: 10px;
+    border-top: 1px solid $color-rolling-stone;
+    .report-info {
+      font-size: $report-info-font-size;
+      margin: 20px 10px;
+    }
+    .condition-container {
+      padding: 20px 10px;
+      background-color: $color-alto;
+      .code {
+        line-height: $report-code-line-height;
+        font-size: $report-info-font-size;
+        .highlight {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .placeholder {
+    background-color: $color-desert-storm;
+    font-size: $report-placeholder-font-size;
+    color: $color-alto;
+    margin: 20px 0px;
+    &.slicers-container {
+      height: 150px;
+    }
+    &.datatable-container {
+      height: 20em;
+    }
   }
 }
