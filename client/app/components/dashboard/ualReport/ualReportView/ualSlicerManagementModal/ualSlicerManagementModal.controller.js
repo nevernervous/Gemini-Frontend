@@ -3,7 +3,7 @@ class ualSlicerManagementModalController {
   constructor(
     $mdDialog) {
     this.name = 'ualSlicerManagementModal';
-
+    this.slicers=[];
     // INTERNALS
     this.$mdDialog = $mdDialog;
   }

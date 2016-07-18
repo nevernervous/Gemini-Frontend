@@ -19,20 +19,46 @@ ual-available-slicer {
     font-weight: bold;
   }
 
-  .selected-variables {
+  .selected-slicers {
     .message-placeholder {
       font-weight: $selected-variables-message-font-weight;
       font-size: $selected-variables-message-font-size;
       color: $selected-variables-message-color;
     }
-    .selected-variables-list {
+    .selected-slicer-list {
       margin: 10px -15px 0 -5px;
       padding-right: 10px;
       overflow-x: hidden;
       overflow-y: auto;
+      li>.slicer-description {
+        @include ellipses();
+        padding: 5px;
+        margin-bottom: 1px;
+        cursor: pointer;
+        font-weight: lighter;
+        font-size: 14px;
+      }
+      .slicer-actions {
+        visibility: hidden;
+        .md-button.md-icon-button {
+          margin: 0;
+          padding: 0;
+          height: 28px;
+          min-height: 28px;
+          width: 28px;
+          line-height: $input-small-line-height;
+        }
+      }
 
-      li.over ual-variable-selected-item {
-        background-color: $color-alto;
+      li:hover {
+        background-color: $color-tropical-blue;
+        >.slicer-description{
+          font-weight: bold;
+        }
+        >.slicer-actions {
+          visibility: visible;
+        }
+
       }
     }
   }

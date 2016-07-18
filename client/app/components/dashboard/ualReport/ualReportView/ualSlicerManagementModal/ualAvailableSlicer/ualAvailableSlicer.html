@@ -1,14 +1,13 @@
 
 <div flex
-  class="selected-variables first">
+  class="selected-slicers first">
   <ual-slicer-multiple-select
     layout="column"
     layout-fill
     datasource="vm.datasource"
-    selected-reference="vm.selectedsVariables">
+    selected-reference="vm.selectedSlicers">
   </ual-slicer-multiple-select>
 </div>
-
 <div flex="none"
   layout="column"
   layout-fill
@@ -16,7 +15,8 @@
   class="divider buttons">
   <md-button ual-button="secondary"
     ng-click="vm.addSlicers()"
-    ng-disabled="!vm.selectedsVariables.length">
+    ng-disabled="!vm.selectedSlicers.length"
+    >
     <md-tooltip md-direction="top"
       class="ual-tooltip-top variables-button-tooltip">
       Add to selected slicers
@@ -26,60 +26,58 @@
 </div>
 
 <div flex
-  class="selected-variables">
+  class="selected-slicers">
   <ual-pane layout="column" layout-fill
-    ual-title="Selected slicers ({{vm.aggregatorsFiltered.length}})"
+    ual-title="Selected slicers ({{vm.slicersFiltered.length}})"
     action="Delete all" on-action="vm.deleteAllSlicers($event)"
-    is-disabled="(vm.aggregatorsFiltered = (vm.aggregators.get() | visible:'name':vm._aggregators.filter | filter:{'_visible': true} )) | isEmpty">
+    is-disabled="(vm.slicersFiltered = (vm.slicers | visible:'name':vm._slicers.filter | filter:{'_visible': true} )) | isEmpty">
     <md-input-container
       ual-input
       ual-input-size="medium"
       ual-input-icon="ion-ios-search"
       class="search-box ual-input-no-validate">
       <input aria-label="search selected aggregators"
-        ng-model="vm._aggregators.filter"
+        ng-model="vm._slicers.filter"
         ng-minlength="2"
         ng-model-options="{ debounce: { default: 200 } }" >
     </md-input-container>
-    <!-- <ual-input ual-id="selected-searchbox" class="search-box" value="vm._aggregators.filter" min-chars="2" icon="ion-ios-search-strong" ual-disabled="vm.dragging || vm._aggregators.isempty"></ual-input> -->
 
     <div flex layout="column"
       layout-align="center center"
       class="message-placeholder "
-      ng-if="!vm._aggregators.isempty && (vm.aggregatorsFiltered | isEmpty)">
+      ng-if="!vm._slicers.isempty && (vm.slicersFiltered | isEmpty)">
       No results found.
     </div>
     <div flex layout="colunm"
       layout-align="center center"
       class="message-placeholder"
-      ng-if="vm._aggregators.isempty">
+      ng-if="vm._slicers.isempty">
       No slicers selected yet.
     </div>
-    <!-- <div class="empty-search" ng-if="!vm._aggregators.isempty" ng-show="vm.aggregatorsFiltered | isEmpty">
-      <div>No results found.</div>
-    </div>
-    <div class="empty-list" ng-if="vm._aggregators.isempty">
-      <div>No aggregators selected yet.</div>
-    </div> -->
     <ul flex
-      class="selected-variables-list"
-      ng-show="!vm._aggregators.isempty && !(vm.aggregatorsFiltered | isEmpty)">
+      class="selected-slicer-list"
+      ng-show="!vm._slicers.isempty && !(vm.slicersFiltered | isEmpty)">
 
-      <li id="{{ $index }}_selected_container-aggregator"
-        ng-repeat="item in vm.aggregators.get()"
-        ual-droppable
-        drop="vm.onDropAggregators(from, to)" >
-        <ual-selected-slicer-item id="{{ $index }}_selected_item-aggregator"
-          layout="row"
-          ng-show="item._visible"
-          variable-total="vm._aggregators.total"
-          variable-item="item"
-          variable-order="$index"
-          variable-type="aggregator"
-          variable-change="vm.changeAggregators(oldOrder, newOrder)"
-          on-delete="vm.deleteAggregator($index)"
-          ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
-        </ual-slicer-slicer>
+      <li
+        flex
+        layout="row"
+        ng-show="item._visible"
+        ng-repeat="item in vm.slicers">
+        <span flex
+            class="slicer-description">
+            {{item.name}}
+        </span>
+        <div flex="none"
+          class="slicer-actions">
+          <md-button class="variable-delete md-icon-button"
+            aria-label="Delete"
+            ng-click="vm.deleteSlicer($index)">
+            <md-icon md-font-icon="Ionicons"
+              class="ion-android-close">
+            </md-icon>
+          </md-button>
+        </div>
+
       </li>
     </ul>
   </ual-pane>

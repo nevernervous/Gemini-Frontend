@@ -17,9 +17,7 @@ ual-variables-multi-select {
       cursor: pointer;
       font-weight: lighter;
       font-size: 14px;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
+      @include unselectable();
       &.avaiable-variable-item-selected {
         background-color: $color-tropical-blue;
         font-weight: bold;
