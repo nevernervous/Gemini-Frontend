@@ -1,6 +1,8 @@
 @import '../../../components';
 
 $report-info-font-size: 12px;
+$report-code-line-height: 18px;
+
 $report-placeholder-font-size: 18px;
 $report-menu-more-icon-font-size: 24px;
 
@@ -38,7 +40,7 @@ ual-report-view {
       padding: 20px 10px;
       background-color: $color-alto;
       .code {
-        line-height: 1.5em;
+        line-height: $report-code-line-height;
         font-size: $report-info-font-size;
         .highlight {
           font-weight: bold;
