@@ -1,62 +1,55 @@
 @import '../../../components';
-//LAYOUT
 ual-report-view {
   .report-name {
-    font-size: 20px;
+    font-size: $report-vew-name-font-size;
     font-weight: bold;
-    color: $color06;
+    color: $color-mine-shaft;
     span {
       @include ellipses();
     }
   }
   .buttons-group {
-    .-save-button {
+    .save-button {
       width: 205px;
     }
-    >ual-button-flat{
+    >ual-button-flat {
       width: 150px;
     }
     md-menu {
       md-button md-icon.ion-more {
         color: $button-flat-icon-color;
-        font-size: 24px;
+        font-size: rem(2.4);
       }
     }
   }
-  .-report-detail {
+  .report-detail {
     margin-top: 10px;
-    border-top: 1px solid $color07;
-    .-report-info {
-      font-size: 12px;
+    border-top: 1px solid $color-rolling-stone;
+    .report-info {
+      font-size: rem(1.2);
       margin: 20px 10px;
     }
-    .-condition-container {
+    .condition-container {
       padding: 20px 10px;
-    }
-  }
-}
-
-//VARIATIONS
-ual-report-view {
-  .-condition-container {
-    background-color: $color08;
-    .-code {
-      line-height: 1.5em;
-      font-size: 12px;
-      .-highlight {
-        font-weight: bold;
+      background-color: $color-alto;
+      .code {
+        line-height: 1.5em;
+        font-size: rem(1.2);
+        .highlight {
+          font-weight: bold;
+        }
       }
     }
   }
-  .-placeholder{
-    background-color: $other05;
-    font-size: 18px;
-    color: $color08;
+  .placeholder {
+    background-color: $color-desert-storm;
+    font-size: rem(1.8);
+    color: $color-alto;
     margin: 19px 0px;
-    &.-slicers-container{
+    &.slicers-container {
       height: 137px;
     }
-    &.-datatable-container{
+    &.datatable-container {
       height: 300px;
     }
   }

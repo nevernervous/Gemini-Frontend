@@ -22,7 +22,6 @@ class UalReportViewController {
   // INIT
   $onInit() {
     this.report = this.services.report.currentReport();
-    console.log(!this.report.isInit());
     if(!this.report.isInit()) this.report = this.services.report.create();
     this.generatedOn = new Date();
     this.timeElipsed = "hh:mm:ss";
