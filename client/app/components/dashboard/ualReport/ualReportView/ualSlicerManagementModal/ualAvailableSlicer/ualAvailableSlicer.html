@@ -1,14 +1,18 @@
 
 <div flex
   class="selected-variables first">
-  <ual-variables-to-slice-multi-select layout="column" layout-fill
+  <ual-slicer-multiple-select
+    layout="column"
+    layout-fill
     datasource="vm.datasource"
     selected-reference="vm.selectedsVariables">
-  </ual-variables-to-slice-multi-select>
+  </ual-slicer-multiple-select>
 </div>
 
 <div flex="none"
-  layout="column" layout-fill layout-align="center center"
+  layout="column"
+  layout-fill
+  layout-align="center center"
   class="divider buttons">
   <md-button ual-button="secondary"
     ng-click="vm.addSlicers()"
@@ -65,10 +69,8 @@
         ng-repeat="item in vm.aggregators.get()"
         ual-droppable
         drop="vm.onDropAggregators(from, to)" >
-
-        <ual-variable-selected-item id="{{ $index }}_selected_item-aggregator"
+        <ual-selected-slicer-item id="{{ $index }}_selected_item-aggregator"
           layout="row"
-          ual-draggable
           ng-show="item._visible"
           variable-total="vm._aggregators.total"
           variable-item="item"
@@ -77,8 +79,7 @@
           variable-change="vm.changeAggregators(oldOrder, newOrder)"
           on-delete="vm.deleteAggregator($index)"
           ng-class="{'-error': (vm.error_selected && vm.error_selected.id == item.id)}">
-        </ual-variable-selected-item>
-
+        </ual-slicer-slicer>
       </li>
     </ul>
   </ual-pane>

@@ -44,13 +44,13 @@ ual-variable-selected-item {
 }
 
 ual-variable-selected-item:hover {
-  background-color: $color10;
+  background-color: $color-tropical-blue;
   .variable-actions {
     visibility: visible;
   }
 }
 ual-variable-selected-item.-hovered {
-  background-color: $color10;
+  background-color: $color-tropical-blue;
   > .variable-actions > .variable-delete {
     visibility: visible;
   }

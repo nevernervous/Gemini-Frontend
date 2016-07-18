@@ -4,22 +4,10 @@
   ng-mouseover="vm.onMouseover()"
   ng-mouseleave="vm.onMouseleave()">
 
-  <ual-popover trigger="{{vm.identifier}}"
-    class="error"
-    direction="top" >
-    <div layout="row" layout-align="start start">
-      <md-icon md-font-icon="Ionicons"
-        class="ion-ios-close-outline">
-      </md-icon>
-		  <span flex>Only numeric values between 1 and {{vm.variableTotal}} are allowed. Please try again.</span>
-    </div>
-	</ual-popover>
-
   <md-input-container
     flex="none"
     ual-input
     ual-input-size="small"
-    ng-class="{'variable-order-invalid': vm.error}"
     class="variable-order ual-input-no-validate">
     <input id="{{vm.identifier}}"
       aria-label="variable {{vm.variableItem.name}} order"
@@ -35,7 +23,6 @@
   <span flex
     class="variable-description">
     <span class="variable-name" >{{vm.variableItem.name}}</span>
-    <!-- <span class="variable-group">{{vm.variableItem.group.groupName}}</span> -->
   </span>
 </div>
 <div flex="none"

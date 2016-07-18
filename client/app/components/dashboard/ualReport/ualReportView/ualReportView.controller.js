@@ -2,16 +2,16 @@ class UalReportViewController {
   /*@ngInject*/
   constructor(
     // COMPONENTS
-    ualSelectVariablesToSliceModal
+    ualSlicerManagementModal
   ) {
     this.name = 'ualReportView';
 
     // MODALS
-    this._ualSelectVariablesToSlice=ualSelectVariablesToSliceModal;
+    this._ualSlicerManagementModal=ualSlicerManagementModal;
   }
 
   addToSlicers(){
-    this._ualSelectVariablesToSlice.open({
+    this._ualSlicerManagementModal.open({
       report: null
     }).then(
       response => {

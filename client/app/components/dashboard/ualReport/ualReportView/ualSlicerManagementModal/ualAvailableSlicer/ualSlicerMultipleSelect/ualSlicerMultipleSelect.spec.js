@@ -1,15 +1,15 @@
-import UalVariablesToSliceMultiSelectModule from './ualVariablesToSliceMultiSelect'
-import UalVariablesToSliceMultiSelectController from './ualVariablesToSliceMultiSelect.controller';
+import ualSlicerMultipleSelectModule from './ualSlicerMultipleSelect'
+import ualSlicerMultipleSelectController from './ualSlicerMultipleSelect.controller';
 
 
-describe('UalVariablesToSliceMultiSelect', () => {
+describe('ualSlicerMultipleSelect', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalVariablesToSliceMultiSelectModule.name));
+  beforeEach(window.module(ualSlicerMultipleSelectModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalVariablesToSliceMultiSelectController($rootScope);
+      return new ualSlicerMultipleSelectController($rootScope);
     };
   }));
 

@@ -1,18 +1,16 @@
 import $ from 'jquery';
 
-class UalVariablesToSliceSelectedItemController {
+class UalSelectedSlicerController {
   /*@ngInject*/
   constructor(
     //INTERNALS
     $scope,
-    $timeout,
     //COMPONENTS
     ualPopover) {
-    this.name = 'ualVariablesToSliceSelectedItem';
+    this.name = 'ualSelectedSlicer';
 
     // INTERNALS
     this.$scope = $scope;
-    this.$timeout = $timeout;
 
     // COMPONENTS
     this.components = {
@@ -77,4 +75,4 @@ class UalVariablesToSliceSelectedItemController {
 
 }
 
-export default UalVariablesToSliceSelectedItemController;
+export default UalSelectedSlicerController;

@@ -1,6 +1,6 @@
 @import '../../../../../../components';
 
-ual-variables-to-slice-selected-item {
+ual-available-slicer-selected-item {
   padding: 5px;
   .variable-container {
     cursor: move;
@@ -17,9 +17,6 @@ ual-variables-to-slice-selected-item {
       -ms-user-select: none;
       user-select: none;
       text-align: center;
-    }
-    &.variable-order-invalid .md-input {
-      border-color: $color-error-dark !important;
     }
   }
 
@@ -43,14 +40,14 @@ ual-variables-to-slice-selected-item {
   }
 }
 
-ual-variables-to-slice-selected-item:hover {
-  background-color: $color10;
+ual-available-slicer-selected-item:hover {
+  background-color: $color-tropical-blue;
   .variable-actions {
     visibility: visible;
   }
 }
-ual-variables-to-slice-selected-item.-hovered {
-  background-color: $color10;
+ual-available-slicer-selected-item.-hovered {
+  background-color: $color-tropical-blue;
   > .variable-actions > .variable-delete {
     visibility: visible;
   }

@@ -1,14 +1,14 @@
-import UalSelectVariablesToSliceModalModule from './ualSelectVariablesToSliceModal'
-import UalSelectVariablesToSliceModalController from './ualSelectVariablesToSliceModal.controller';
+import UalAvailableSlicerModule from './ualAvailableSlicer'
+import UalAvailableSlicerController from './ualAvailableSlicer.controller';
 
-describe('UalSelectVariablesToSliceModal', () => {
+describe('UalAvailableSlicer', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalSelectVariablesToSliceModalModule.name));
+  beforeEach(window.module(UalAvailableSlicerModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalSelectVariablesToSliceModalController($rootScope);
+      return new UalAvailableSlicerController($rootScope);
     };
   }));
 

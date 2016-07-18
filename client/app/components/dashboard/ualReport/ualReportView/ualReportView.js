@@ -1,10 +1,10 @@
 import angular from 'angular';
 import ualReportViewComponent from './ualReportView.component';
-import ualSelectVariablesToSliceModal from './ualSelectVariablesToSliceModal/ualSelectVariablesToSliceModal';
+import ualSlicerManagementModal from './ualSlicerManagementModal/ualSlicerManagementModal';
 
 let ualReportViewModule = angular.module('ualReportView', [
   // MODALS
-  ualSelectVariablesToSliceModal.name
+  ualSlicerManagementModal.name
 ])
 
 .component('ualReportView', ualReportViewComponent);

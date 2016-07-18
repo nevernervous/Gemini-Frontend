@@ -4,7 +4,7 @@ $selected-variables-message-font-weight: $font-weight-regular;
 $selected-variables-message-font-size: 16px;
 $selected-variables-message-color: $color-rolling-stone;
 
-ual-variables-to-slice {
+ual-available-slicer {
   .divider {
     width: 46px;
   }
@@ -32,7 +32,7 @@ ual-variables-to-slice {
       overflow-y: auto;
 
       li.over ual-variable-selected-item {
-        background-color: $color08;
+        background-color: $color-alto;
       }
     }
   }

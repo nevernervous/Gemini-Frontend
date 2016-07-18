@@ -1,8 +1,8 @@
-import template from './ualSelectVariablesToSliceModal.html';
-import controller from './ualSelectVariablesToSliceModal.controller';
-import './ualSelectVariablesToSliceModal.scss';
+import template from './ualSlicerManagementModal.html';
+import controller from './ualSlicerManagementModal.controller';
+import './ualSlicerManagementModal.scss';
 
-let ualSelectVariablesToSliceModalService = function (ualDialog) {
+let ualSlicerManagementModalService = function (ualDialog) {
   "ngInject";
   const components = {
     dialog: ualDialog
@@ -22,4 +22,4 @@ let ualSelectVariablesToSliceModalService = function (ualDialog) {
   return { open };
 };
 
-export default ualSelectVariablesToSliceModalService;
+export default ualSlicerManagementModalService;

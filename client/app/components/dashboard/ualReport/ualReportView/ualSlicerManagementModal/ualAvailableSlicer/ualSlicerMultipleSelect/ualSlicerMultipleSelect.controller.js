@@ -1,14 +1,12 @@
-class UalVariablesToSliceMultiSelectController {
+class ualSlicerMultipleSelectController {
   /*@ngInject*/
   constructor(
     // INTERNALS
-    $scope,
     $timeout,
     DataSource) {
-    this.name = 'ualVariablesToSliceMultiSelect';
+    this.name = 'ualSlicerMultipleSelect';
 
     // INTERNALS
-    this.$scope = $scope;
     this.$timeout = $timeout;
 
     // SERVICES
@@ -80,4 +78,4 @@ class UalVariablesToSliceMultiSelectController {
 
 }
 
-export default UalVariablesToSliceMultiSelectController;
+export default ualSlicerMultipleSelectController;

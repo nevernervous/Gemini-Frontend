@@ -1,11 +1,11 @@
-class UalVariablesToSliceController {
+class UalAvailableSlicerController {
   /*@ngInject*/
   constructor(
     // INTERNALS
     $rootScope,
     $scope,
     ualDialog) {
-    this.name = 'ualVariablesToSlice';
+    this.name = 'ualAvailableSlicer';
 
     // INTERNALS
     this.$rootScope = $rootScope;
@@ -24,9 +24,6 @@ class UalVariablesToSliceController {
   }
 
   $onInit() {
-    this._suscriptions.push(this.$rootScope.$on('DRAGGING.START', () => this.dragging = true));
-    this._suscriptions.push(this.$rootScope.$on('DRAGGING.END', () => this.dragging = false));
-
     // RESET
     this.$scope.$watch((scope) => {
       return scope.vm.datasource
@@ -94,4 +91,4 @@ class UalVariablesToSliceController {
 
 }
 
-export default UalVariablesToSliceController;
+export default UalAvailableSlicerController;
