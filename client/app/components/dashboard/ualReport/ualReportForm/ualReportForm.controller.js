@@ -239,7 +239,7 @@ class UalReportFormController {
           this.$state.go(toState.name);
         });
       } else {
-        if(this.report){
+        if(this.report && toState.name !== 'dashboard.report-view'){
           this.report.clean();
           this.report = null;
         }

@@ -1,11 +1,12 @@
 class UalReportViewController {
   /*@ngInject*/
+
   constructor(
     // INTERNALS
     $state,
     // SERVICES
     Report
-  ) {
+    ) {
     this.name = 'ualReportView';
 
     // INTERNALS
@@ -13,20 +14,28 @@ class UalReportViewController {
 
     // SERVICES
     this.services = {
-      report: Report
-    }
+      report: Report,
+    };
 
-    // STATE
+    //STATE
     this.loading = true;
+    this.report = null;
+    this.hidingDetails = false;
+    this.rowsNumber = 0;
+    this.generatedOn = null;
+    this.timeElipsed = null;
   }
 
-  // LIFECYCLE
+  // INIT
   $onInit() {
+    this.report = this.services.report.currentReport();
+    if(!this.report.isInit()) this.report = this.services.report.create();
+    this.generatedOn = new Date();
+    this.timeElipsed = "hh:mm:ss";
+  }
 
-    if ( this.$state.params["id"] ) {
-
-    }
-
+  toggleDetails(){
+    this.hidingDetails = !this.hidingDetails;
   }
 
 
