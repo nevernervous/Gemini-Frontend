@@ -1,7 +1,5 @@
 
 // TODO: [IMPROVEMENT] Arrow up/down to navigate
-// TODO: [FIX] Placeholder
-// TODO: [FIX] Validation
 // TODO: [FIX] Arrows left/right not working
 class UalAutocompleteController {
   /*@ngInject*/
@@ -45,7 +43,8 @@ class UalAutocompleteController {
   checkSelectedItem() {
     this.$timeout(() => {
       if ( this.searchTerm && this.selected &&
-        ( this.searchTerm[this.property] !== this.selected[this.property]) ) {
+         ( this.searchTerm[this.property] !== this.selected[this.property]) ) {
+        this.searchTerm = null;
         this.selected = null;
       }
     }, 500);

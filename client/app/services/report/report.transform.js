@@ -3,63 +3,14 @@ import angular from 'angular';
 let reportTransform = function ($http) {
   "ngInject";
 
+  // TODO: [REFACTOR] BACKEND TO ADD FLAG INDICATION WHITCH OPERATORS ARE MULTIPLES
   const operatorsMultiple = ["between", "not between"];
-
-  let transformFilters = (item, index, group) => {
-    let isGroup = item.hasOwnProperty("children")
-    if (isGroup) {
-      let innerGroup = {
-        "order": index + 1,
-        "Not": item.not,
-        "operator": {
-          "id": item.operator.id
-        },
-        "Filters": [],
-        "Children": []
-      };
-
-      _.forEach(item.children, (innerItem, innerIndex) => {
-        transformFilters(innerItem, innerIndex, innerGroup);
-      });
-      group.Children.push(innerGroup);
-    }
-    else {
-      let isVariable = item.type == 'Variable';
-      let hasSecondValue = _.includes(operatorsMultiple, item.operator.operator);
-      let value = [];
-
-      if (isVariable) {
-        value.push(item.value.id);
-        if (hasSecondValue) {
-          value.push(item.secondValue.id);
-        }
-      } else {
-        value.push(item.value);
-        if (hasSecondValue) {
-          value.push(item.secondValue);
-        }
-      }
-
-      group.Filters.push({
-        "column": {
-          "id": item.variable.id
-        },
-        "FilterOperator": {
-          "id": item.operator.id
-        },
-        "value": value.join(','),
-        "order": index + 1,
-        "valueVariableTypeIndicator": isVariable
-      });
-    }
-
-  };
 
   let _transformation = {
     noop: (response) => {
       return response
-    }
-    , simple: (response) => {
+    },
+    simple: (response) => {
       response = response.data ? response.data : response;
       response.dataSource = {
         id: response.dataSourceId,
@@ -69,102 +20,129 @@ let reportTransform = function ($http) {
       delete response.dataSourceId;
       return response;
     },
-    save: (object) => {
-      let data = {
-        name: object.name
-        , dataSourceId: object.dataSource.id
-        , variables: []
-        , aggregators: []
-        , slicers: []
-      };
-      for (let i in object.variables) {
-        data.variables.push({
-          Id: object.variables[i].id
-          , Name: object.variables[i].name
-          , Order: i
-        })
-      }
-      for (let i in object.aggregators) {
-        data.aggregators.push({
-          Id: object.aggregators[i].id
-          , Name: object.aggregators[i].name
-          , Order: i
-        })
-      }
-
-      return JSON.stringify(data);
+    reportToJSON: (report) => {
+      return transformReportToJSON(report);
     },
-    run: (report) => {
+    reportFromJSON: (report) => {
+      // let data = transformReportToJSON(report);
+      // return JSON.stringify(data)
+    },
+    reportExecute: (response) => {
       let data = {
-        dataSourceId: null,
-        variables: [],
-        aggregators: [],
-        groups: []
-      };
-
-      let datasource = report.datasource.get();
-
-      data.dataSourceId = datasource.id;
-
-      let aggregators = report.aggregators.get();
-      _.forEach(aggregators, (item) => {
-        data.aggregators.push({
-          "Id": item.id,
-          "Order": item.order
-        });
-      });
-
-      let variables = report.variables.get();
-      _.forEach(variables, (item) => {
-        data.variables.push({
-          "Id": item.id,
-          "Order": item.order
-        });
-      });
-
-      let root = report.filters.get();
-      let filters = root.children;
-
-      let firstGroup = {
-        "order": 1,
-        "Not": root.not,
-        "operator": {
-          "id": root.operator.id,
-        },
-        "Filters": [],
-        "Children": []
-      };
-
-      if (_.isArray(filters)) {
-        _.forEach(filters, (item, index) => {
-          transformFilters(item, index, firstGroup);
-        });
+        table: {},
+        slicers: []
       }
 
-      data.groups = firstGroup;
+      // TABLE
+      data.table.data = response.data;
+      data.table.headers = _.map(response.headers, item => item.name );
 
+      // SLICERS
+      // TODO: [FIX] Sort by Type
+      data.slicers = response.headers;
+      _.each(data.slicers, (item, index) => {
+        item.values = _.chain(response.data)
+          .map(row => row[index])
+          .flatten()
+          .uniq()
+          .value();
+      });
 
-      return JSON.stringify(data)
+      return data;
+    }
+  }
+
+  const transformReportToJSON = (report) => {
+    let data = {};
+
+    // DATASOURCE
+    data.dataSourceId = report.datasource.get().id;
+
+    // AGGREGATORS & VARIABLES
+    data.aggregators = transformVariables(report.aggregators.get());
+    data.variables = transformVariables(report.variables.get());
+
+    // FILTERS
+    data.groups = transformGroups(report.filters.get());
+
+    return data;
+  }
+
+  const transformVariables = (variables) => {
+    return _.map(variables, item => {
+      return {
+        Id: item.id,
+        Order: item.order
+      }
+    });
+  }
+
+  const transformGroups = (condition, index = 1, parent = null, groups = []) => {
+    if ( condition.hasOwnProperty("children") ) {
+      const group = transformGroup(condition, index, parent);
+
+      groups.push(group);
+      _.each(condition.children, next => {
+        transformGroups(next, index++, group, groups)
+      });
+
+    } else {
+      const filter = transformFilter(condition, index);
+      parent.Filters.push(filter);
     }
 
+    return groups;
+  }
+
+  const transformGroup = (item, index, parent) => {
+    let group = {
+      order: index,
+      Not: item.not,
+      operator: {
+        id: item.operator.id,
+      },
+      Filters: []
+    }
+    // PARENT
+    if ( parent ) {
+      group.parent = {
+        order: parent.order
+      }
+    }
+
+    return group;
+  }
+
+  const transformFilter = (item, index) => {
+    let filter = {
+      column: {
+        id: item.variable.id
+      },
+      FilterOperator: {
+        id: item.operator.id
+      },
+      order: index,
+      valueVariableTypeIndicator: (item.type == 'Variable')
+    }
+
+    // VALUES
+    const hasSecondValue = _.includes(operatorsMultiple, item.operator.operator);
+    let value = [];
+    value.push(isVariable ? item.value.id : item.value);
+    if (hasSecondValue) {
+      value.push(isVariable ? item.secondValue.id : item.secondValue);
+    }
+    filter.value = value.join(',');
+
+    return filter;
   }
 
   let get = (key) => {
     return _transformation[key] ? _transformation[key] : _transformation.noop;
   }
 
-  let generate = (transformation = [_transformation.noop]) => {
-    let transformations = [];
-    let defaults = _.isArray($http.defaults.transformResponse) ? $http.defaults.transformResponse : [$http.defaults.transformResponse];
-    transformation = _.isArray(transformation) ? transformation : [transformation];
-
-    transformations.push(...defaults);
-    transformations.push(...transformation);
-    return transformations;
-  }
   return {
     get
-    , generate
   };
 };
 

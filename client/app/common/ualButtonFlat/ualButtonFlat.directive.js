@@ -18,7 +18,7 @@ class ualButtonFlatDirective {
   }
 
   link($scope, elem, attr, ctrl) {
-
+    $scope.iconFont = _.startsWith($scope.icon, 'icon-') ? 'Glyphter' : 'Ionicons';
   }
 }
 

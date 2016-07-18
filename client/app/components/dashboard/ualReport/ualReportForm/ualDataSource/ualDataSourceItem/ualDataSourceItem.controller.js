@@ -1,14 +1,14 @@
 class UalDataSourceItemController {
   /*@ngInject*/
   constructor(
-    $element,
+    //$element,
     $timeout) {
     this.name = 'ualDataSourceItem';
     this.direction = 'right';
     this.class = 'ual-tooltip-right';
 
     // INTERNALS
-    this.$element = $element;
+    //this.$element = $element;
     this.$timeout = $timeout;
   }
 
@@ -19,7 +19,7 @@ class UalDataSourceItemController {
 
   // TODO: Improve visualization effect
   // $( "ul li:nth-child(4n)" )
-  // class: datasource-item-group-{{vm.datasourceItem.group.groupId}} 
+  // class: datasource-item-group-{{vm.datasourceItem.group.groupId}}
   showMore() {
     this.direction = 'right';
     this.$timeout(

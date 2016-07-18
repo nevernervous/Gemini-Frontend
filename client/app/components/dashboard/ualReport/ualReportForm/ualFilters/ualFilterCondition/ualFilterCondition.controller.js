@@ -1,3 +1,4 @@
+// TODO: [FIX] Add validation and Placeholder to values autocompletes
 class UalFilterConditionController {
   /*@ngInject*/
   constructor(
@@ -128,14 +129,10 @@ class UalFilterConditionController {
     }
     if ( newValue ) {
       this.filteredAvaiableVariables = _.filter(this.availableVariables, { 'dataType': newValue.dataType });
-      this.getOperatorListByVariableType(newValue.dataType);
+      this.operatorsList = this._allOperators[newValue.dataType];
+      this.condition.operator = { "id": 1, 'operator': "=" };
+      this.changeOperator();
     }
-  }
-
-  getOperatorListByVariableType(dataType) {
-    this.operatorsList = this._allOperators[dataType];
-    this.condition.operator = { "id": 1, 'operator': "=" };
-    this.changeOperator();
   }
 
   // RESET

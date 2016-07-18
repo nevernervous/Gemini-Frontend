@@ -63,15 +63,6 @@ class UalReportFormController {
   }
 
   // LIFECYCLE
-  $postLink() {
-    this.$scope.$watch((scope) => {
-      return scope.reportForm && scope.reportForm.$valid;
-    }, (newValue, oldValue) => {
-      this.report.setValidForm(newValue);
-    });
-  }
-
-  // INIT
   $onInit() {
     let reportId = this.$state.params["id"];
     if (!reportId) {
@@ -88,6 +79,14 @@ class UalReportFormController {
     this._suscribe();
 
   }
+  $postLink() {
+    this.$scope.$watch((scope) => {
+      return scope.reportForm && scope.reportForm.$valid;
+    }, (newValue, oldValue) => {
+      this.report.setValidForm(newValue);
+    });
+  }
+
 
   // TODO: Refacto Error Handlers
   // INIT / RESPONSES
@@ -197,27 +196,21 @@ class UalReportFormController {
 
   runReport(form) {
     this.$scope.$broadcast('REPORT.EXECUTE');
-    this.$timeout(() => {
-      let isValid = this.report.isValid();
-      if (isValid) {
-        this._ualTimerModal.open(this.report).then((reply) => {
-          if (!!reply) {
-            this._state.go('dashboard.report-view');
-          }
+    const isValid = this.report.isValid();
+    if (isValid) {
+      this.$state.go('dashboard.report-view');
+    } else {
+      _.forEach(form.$error, (errorType) => {
+        _.forEach(errorType, (item) => {
+          item.$setDirty();
         });
-      } else {
-        _.forEach(form.$error, (errorType) => {
-          _.forEach(errorType, (item) => {
-            item.$setDirty();
-          });
-        });
-        this.focusFirstError();
-      }
-    }, 0);
+      });
+      this.focusFirstError();
+    }
   }
 
   focusFirstError() {
-    this._timeout(() => {
+    this.$timeout(() => {
       this.selectedTab = 'report-filters';
       let firstError = $('.ng-invalid:not(ng-form):first', "ual-filters").find("input");
       if (firstError.length > 0) {
@@ -246,7 +239,7 @@ class UalReportFormController {
           this.$state.go(toState.name);
         });
       } else {
-        if(this.report){
+        if(this.report && toState.name !== 'dashboard.report-view'){
           this.report.clean();
           this.report = null;
         }

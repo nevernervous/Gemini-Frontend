@@ -1,8 +1,116 @@
-<div class="-content">
-	<div>Placeholder</div>
-	<div>Page result generated</div>
-  <ual-button-flat ual-button-flat-icon="ion-android-add"
+<div class="header-dashboard"
+  layout="row"
+  layout-align="space-between center">
+  <div class="report-name">
+    <span>{{ !vm.report.name.get() ? 'No name assigned' : vm.report.name.get()}}</span>
+  </div>
+  <div flex></div>
+  <div class="buttons-group"
+    flex
+    layout="row"
+    layout-align="space-between center">
+    <ual-button-flat ual-button="primary"
+      ual-button-flat-icon="ion-compose"
+      ng-disabled="true">
+      Edit report
+    </ual-button-flat>
+    <ual-button-flat ual-button="primary"
+      ng-href="vm.toggleDetails()"
+      ual-button-flat-icon="ion-eye{{vm.hidingDetails?'-disabled':''}}">
+      <span ng-if="!vm.hidingDetails">Show</span>
+      <span ng-if="vm.hidingDetails">Hide</span> details
+    </ual-button-flat>
+    <md-button ual-button
+      class="md-secondary save-button"
+      ng-disabled="true">
+      <ual-loading ual-loading-enable=false
+        ual-loading-diameter="30">
+        Save
+      </ual-loading>
+    </md-button>
+    <md-menu md-position-mode="target-right target"
+      md-offset="0 43">
+      <md-button class="md-icon-button"
+        aria-label="more"
+        ng-click="$mdOpenMenu($event)">
+        <md-icon md-font-icon="Ionicons"
+          class="ion-more">
+        </md-icon>
+      </md-button>
+      <md-menu-content class="ual-secondary" width="3">
+        <ual-menuitem ng-disabled="true">
+          <md-icon md-font-icon="Ionicons"
+            class="ion-ios-copy-outline"></md-icon>
+          Create a copy
+        </ual-menuitem>
+        <ual-menuitem ng-disabled="true">
+          <md-icon md-font-icon="Ionicons"
+            class="ion-ios-download-outline"></md-icon>
+          Export
+        </ual-menuitem>
+        <ual-menuitem ng-disabled="true">
+          <md-icon md-font-icon="Ionicons"
+            class="ion-android-share-alt"></md-icon>
+          Share
+        </ual-menuitem>
+        <ual-menuitem ng-disabled="true">
+          <md-icon md-font-icon="Ionicons"
+            class="ion-ios-redo-outline"></md-icon>
+          Publish
+        </ual-menuitem>
+        <ual-menuitem ng-disabled="true">
+          <md-icon md-font-icon="Ionicons"
+            class="ion-ios-close-empty"></md-icon>
+          Delete
+        </ual-menuitem>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</div>
+<div class="report-detail"
+  ng-if="vm.hidingDetails">
+  <div class="report-info"
+    layout="row"
+    layout-align="space-between center">
+    <div flex>
+      Report generated: <strong>{{vm.generatedOn | date:'MM/dd/yy HH:mm':'-0500'}} CT</strong>
+    </div>
+    <div flex>
+      Elapsed time: <strong>{{vm.timeElipsed}}</strong>
+    </div>
+    <div flex>
+      Retrieved rows: <strong>{{vm.rowsNumber}}</strong>
+    </div>
+    <div>
+      Data source: <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source'}}</strong>
+      {{!!vm.report.datasource.get() ? 'Last updated ' + (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected'}}
+    </div>
+  </div>
+  <div class="condition-container">
+    <div class="code">
+      <span class="highlight">WHERE</span> ([variable]=[value]
+      <span class="highlight">AND</span> [variable]=[value])
+      <span class="highlight">AND</span> [variable]=[value]
+      <span class="highlight">AND</span> ([variable]=[value]
+      <span class="highlight">OR</span> [variable]=[value]
+      <span class="highlight">OR</span> [variable]=[value]
+      <span class="highlight">OR</span> [variable]=[value])
+    </div>
+  </div>
+</div>
+<div class="body-dashboard">
+  <div class="slicers-container placeholder"
+    layout="row"
+    layout-align="center center">
+    <ual-button-flat ual-button-flat-icon="ion-android-add"
         ng-href="vm.addToSlicers()">
         Manage Slicers
-      </ual-button-flat>
+    </ual-button-flat>
+    Slicers Placeholder
+  </div>
+  <div class="datatable-container placeholder"
+    layout="row"
+    layout-align="center center">
+    Data table place holder
+  </div>
 </div>
