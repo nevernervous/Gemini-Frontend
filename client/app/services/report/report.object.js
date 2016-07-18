@@ -1,7 +1,7 @@
 let reportObjectService = function (Properties, ServicesTransform, $http, $q, ReportTransform) {
   "ngInject";
 
-  const endpoint = Properties.endpoint + '/Reports';
+  const endpoint = Properties.endpoint;
 
   let initialHash = null;
 
@@ -113,13 +113,18 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   let saveRequest = () => {
 
-    let transformation = [ReportTransform.get('save')];
+    let transformation = [ReportTransform.get('reportToJSON')];
     if (object.id === null) {
-      return $http.post(endpoint, object, { transformRequest: ReportTransform.generate(transformation) });
+      return $http.post(endpoint + '/Reports', object, { transformRequest: ReportTransform.generate(transformation) });
     } else {
-      return $http.put(endpoint + "/" + object.id, object, { transformRequest: ReportTransform.generate(transformation) });
+      return $http.put(endpoint + '/Reports/' + object.id, object, { transformRequest: ReportTransform.generate(transformation) });
     }
   };
+
+  let execute = () => {
+    const transformation = [ReportTransform.get('reportToJSON')];
+    return $http.post(endpoint + '/ExecuteReports', object, { transformRequest: ReportTransform.generate(transformation) });
+  }
 
   let getDataSource = () => {
     return (object.dataSource.id) ? object.dataSource : null;
@@ -193,6 +198,7 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
 
   return {
     save,
+    execute,
     load,
     clean,
     isEmptyName: isEmptyName,

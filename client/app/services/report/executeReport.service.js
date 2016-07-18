@@ -4,8 +4,8 @@ let reportService = function (Properties, $http, ReportTransform, ServicesTransf
 
 
   let run = (reportData) => {
-    let requestTransform = [ReportTransform.get("run")];
-    let responseTransform = [ServicesTransform.get('noop')];
+    let requestTransform = [ReportTransform.get("reportToJSON")];
+    let responseTransform = [ReportTransform.get('reportExecute')];
     let canceller = $q.defer();
 
     let cancel = function () {
@@ -17,7 +17,7 @@ let reportService = function (Properties, $http, ReportTransform, ServicesTransf
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
       },
-      transformRequest: ReportTransform.generate(requestTransform),
+      transformRequest: ServicesTransform.generate(requestTransform),
       transformResponse: ServicesTransform.generate(responseTransform)
     });
 
