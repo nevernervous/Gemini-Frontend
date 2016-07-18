@@ -6,61 +6,61 @@
   </div>
   <div flex></div>
   <div class="buttons-group"
-       flex
-       layout="row"
-       layout-align="space-between center">
+    flex
+    layout="row"
+    layout-align="space-between center">
     <ual-button-flat ual-button="primary"
-                     ual-button-flat-icon="ion-compose"
-                     ng-disabled="true">
+      ual-button-flat-icon="ion-compose"
+      ng-disabled="true">
       Edit report
     </ual-button-flat>
     <ual-button-flat ual-button="primary"
-                     ng-href="vm.toggleDetails()"
-                     ual-button-flat-icon="ion-eye{{vm.hidingDetails?'-disabled':''}}">
+      ng-href="vm.toggleDetails()"
+      ual-button-flat-icon="ion-eye{{vm.hidingDetails?'-disabled':''}}">
       <span ng-if="!vm.hidingDetails">Show</span>
       <span ng-if="vm.hidingDetails">Hide</span> details
     </ual-button-flat>
     <md-button ual-button
-               class="md-secondary save-button"
-               ng-disabled="true">
+      class="md-secondary save-button"
+      ng-disabled="true">
       <ual-loading ual-loading-enable=false
-                   ual-loading-diameter="30">
+        ual-loading-diameter="30">
         Save
       </ual-loading>
     </md-button>
     <md-menu md-position-mode="target-right target"
-             md-offset="0 43">
+      md-offset="0 43">
       <md-button class="md-icon-button"
-                   aria-label="more"
-                   ng-click="$mdOpenMenu($event)">
+        aria-label="more"
+        ng-click="$mdOpenMenu($event)">
         <md-icon md-font-icon="Ionicons"
-                   class="ion-more">
+          class="ion-more">
         </md-icon>
       </md-button>
       <md-menu-content class="ual-secondary" width="3">
         <ual-menuitem ng-disabled="true">
           <md-icon md-font-icon="Ionicons"
-                   class="ion-ios-copy-outline"></md-icon>
+            class="ion-ios-copy-outline"></md-icon>
           Create a copy
         </ual-menuitem>
         <ual-menuitem ng-disabled="true">
           <md-icon md-font-icon="Ionicons"
-                   class="ion-ios-download-outline"></md-icon>
+            class="ion-ios-download-outline"></md-icon>
           Export
         </ual-menuitem>
         <ual-menuitem ng-disabled="true">
           <md-icon md-font-icon="Ionicons"
-                   class="ion-android-share-alt"></md-icon>
+            class="ion-android-share-alt"></md-icon>
           Share
         </ual-menuitem>
         <ual-menuitem ng-disabled="true">
           <md-icon md-font-icon="Ionicons"
-                   class="ion-ios-redo-outline"></md-icon>
+            class="ion-ios-redo-outline"></md-icon>
           Publish
         </ual-menuitem>
         <ual-menuitem ng-disabled="true">
           <md-icon md-font-icon="Ionicons"
-                   class="ion-ios-close-empty"></md-icon>
+            class="ion-ios-close-empty"></md-icon>
           Delete
         </ual-menuitem>
       </md-menu-content>
@@ -68,10 +68,10 @@
   </div>
 </div>
 <div class="report-detail"
-     ng-if="vm.hidingDetails">
+  ng-if="vm.hidingDetails">
   <div class="report-info"
-       layout="row"
-       layout-align="space-between center">
+    layout="row"
+    layout-align="space-between center">
     <div flex>
       Report generated: <strong>{{vm.generatedOn | date:'MM/dd/yy HH:mm':'-0500'}} CT</strong>
     </div>
@@ -99,12 +99,12 @@
   </div>
 </div>
 <div class="slicers-container placeholder"
-     layout="row"
-     layout-align="center center">
+  layout="row"
+  layout-align="center center">
   Slicers Placeholder
 </div>
 <div class="datatable-container placeholder"
-     layout="row"
-     layout-align="center center">
+  layout="row"
+  layout-align="center center">
   Data table place holder
 </div>

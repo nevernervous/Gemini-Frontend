@@ -1,7 +1,12 @@
 @import '../../../components';
+
+$report-info-font-size: 12px;
+$report-placeholder-font-size: 18px;
+$report-menu-more-icon-font-size: 24px;
+
 ual-report-view {
   .report-name {
-    font-size: $report-vew-name-font-size;
+    font-size: $report-view-name-font-size;
     font-weight: bold;
     color: $color-mine-shaft;
     span {
@@ -10,15 +15,15 @@ ual-report-view {
   }
   .buttons-group {
     .save-button {
-      width: 205px;
+      width: $report-form-button-width;
     }
     >ual-button-flat {
-      width: 150px;
+      width: $report-form-button-width;
     }
     md-menu {
       md-button md-icon.ion-more {
         color: $button-flat-icon-color;
-        font-size: rem(2.4);
+        font-size: $report-menu-more-icon-font-size;
       }
     }
   }
@@ -26,7 +31,7 @@ ual-report-view {
     margin-top: 10px;
     border-top: 1px solid $color-rolling-stone;
     .report-info {
-      font-size: rem(1.2);
+      font-size: $report-info-font-size;
       margin: 20px 10px;
     }
     .condition-container {
@@ -34,7 +39,7 @@ ual-report-view {
       background-color: $color-alto;
       .code {
         line-height: 1.5em;
-        font-size: rem(1.2);
+        font-size: $report-info-font-size;
         .highlight {
           font-weight: bold;
         }
@@ -43,14 +48,14 @@ ual-report-view {
   }
   .placeholder {
     background-color: $color-desert-storm;
-    font-size: rem(1.8);
+    font-size: $report-placeholder-font-size;
     color: $color-alto;
-    margin: 19px 0px;
+    margin: 20px 0px;
     &.slicers-container {
-      height: 137px;
+      height: 150px;
     }
     &.datatable-container {
-      height: 300px;
+      height: 20em;
     }
   }
 }
