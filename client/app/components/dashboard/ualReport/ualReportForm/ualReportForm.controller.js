@@ -8,6 +8,7 @@ class UalReportFormController {
     $scope,
     $rootScope,
     $timeout,
+    $q,
     // SERVICES
     Report,
     DataSource,
@@ -21,6 +22,7 @@ class UalReportFormController {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$timeout = $timeout;
+    this.$q = $q;
 
     // SERVICES
     this.services = {
@@ -65,19 +67,19 @@ class UalReportFormController {
   // LIFECYCLE
   $onInit() {
     let reportId = this.$state.params["id"];
-    if (!reportId) {
-      this.report = this.services.report.create();
-    } else {
-      this.edit = true;
-      this.services.report.getById(reportId)
-        .then((reply) => {
-          this.report = reply;
-          this.name.current = _.clone(this.report.name.get());
-        });
-    }
+    this.edit = !!reportId;
+    const promise = this.edit ? this.services.report.getById(reportId) :
+                                this.services.report.currentReport();
+
+    this.$q.when(promise).then(
+      response => {
+        this.report = response;
+        this.name.current = _.clone(this.report.name.get());
+      }
+    );
+
     this._responses();
     this._suscribe();
-
   }
   $postLink() {
     this.$scope.$watch((scope) => {
@@ -133,11 +135,9 @@ class UalReportFormController {
       this.name.current = _.clone(this.report.name.get());
       if (!this.edit) {
         this.edit = true;
-        this.$state.go("dashboard.report-edit", {
+        this.$state.go("dashboard.report-form", {
           "id": this.report.id.get()
-        }, {
-            notify: false
-          });
+        }, { notify: false });
       }
     };
   }

@@ -1,43 +1,53 @@
 class UalReportViewController {
   /*@ngInject*/
 
+  // TODO: [FIX] Get Report from ID
   constructor(
     // INTERNALS
     $state,
+    $window,
     // SERVICES
-    Report
+    Report,
+    // COMPONENTS
+    ualTimerModal
     ) {
     this.name = 'ualReportView';
 
     // INTERNALS
     this.$state = $state;
+    this.$window = $window;
 
-    // SERVICES
-    this.services = {
-      report: Report,
-    };
+    // COMPONENTS
+    this.components = {
+      timer: ualTimerModal
+    }
 
     //STATE
-    this.loading = true;
-    this.report = null;
+    this.report = Report.currentReport();
+    this.table = null;
+    this.slicers = null;
     this.hidingDetails = false;
-    this.rowsNumber = 0;
-    this.generatedOn = null;
-    this.timeElipsed = null;
+    this.generatedOn = new Date();
+    this.timeElapsed = 0;
   }
 
   // INIT
   $onInit() {
-    this.report = this.services.report.currentReport();
-    if(!this.report.isInit()) this.report = this.services.report.create();
-    this.generatedOn = new Date();
-    this.timeElipsed = "hh:mm:ss";
+    let reportId = this.$state.params["id"];
+    this.components.timer.open(reportId)
+    .then(
+      reponse => {
+        this.timeElapsed = reponse.timeElapsed;
+        this.table = reponse.data.data;
+        this.slicers = reponse.data.slicers;
+      },
+      () => this.$window.history.back()
+    );
   }
 
   toggleDetails(){
     this.hidingDetails = !this.hidingDetails;
   }
-
 
 }
 

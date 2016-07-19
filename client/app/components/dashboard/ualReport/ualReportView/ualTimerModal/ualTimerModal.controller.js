@@ -1,44 +1,69 @@
-class UalTimerModalController {
+class ualTimerModalController {
   /*@ngInject*/
-  constructor(close, ExecuteReport, ReportObject) {
+  constructor(
+    // INTERNALS
+    $q,
+    // SERVICES
+    Report,
+    ExecuteReport,
+    // COMPONENTS
+    $mdDialog,
+    // LOCALS
+    id) {
     this.name = 'ualTimerModal';
-    this._close = close;
 
+    // INTERNALS
+    this.$q = $q;
+
+    // SERVICES
+    this.services = {
+      report: Report,
+      execute: ExecuteReport
+    }
+
+    // COMPONENTS
+    this.components = {
+      dialog: $mdDialog
+    }
+
+    // STATE
+    this.request = null;
+    this.report = null;
     this.startTime = new Date();
 
-    this._executeReportService = ExecuteReport;
-    this.report = ReportObject;
-
-    this._initialize();
+    // INIT
+    this.onInit(id);
   }
 
-  _initialize() {
-    this.request = this._executeReportService.run(this.report);
-    this.request.promise.then((reply) => {
-      if (!!reply) {
-        this.success(reply);
-      }
-    }, () => {
-      this.close(false);
-    });
+  onInit(id) {
+    const promise = id ? this.services.report.getById(id) : this.services.report.currentReport();
+    this.$q.when(promise).then(
+      response => {
+        this.report = response;
+        this.request = this.services.execute.run(this.report);
+        this.request.promise.then(
+          response => {
+            const reply = {
+              timeElapsed: this.timer(),
+              data: response
+            };
+
+            this.components.dialog.hide(reply);
+          },
+          () => this.components.dialog.cancel()
+        );
+      });
   }
 
-  success(reply) {
-    this._close(reply);
-  }
-
-  getElapsed() {
+  timer() {
     let now = +(Date.now());
     return now - (+this.startTime);
   }
 
-  close() {
-    if (this.request) {
-      this.request.cancel();
-      this.request = null;
-    }
-    this._close(false);
-  }
+  cancel() {
+    this.request.cancel();
+  };
+
 }
 
-export default UalTimerModalController;
+export default ualTimerModalController;

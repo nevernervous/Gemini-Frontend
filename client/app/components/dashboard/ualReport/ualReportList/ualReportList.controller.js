@@ -4,6 +4,7 @@ class UalReportListController {
   /*@ngInject*/
   constructor(
     $rootScope,
+    $state,
     $timeout,
     ualDialog,
     errorsHandler,
@@ -13,6 +14,7 @@ class UalReportListController {
     // INTERNALS
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
+    this.$state = $state;
 
     // SERVICES
     this.services = {
@@ -80,6 +82,12 @@ class UalReportListController {
       () => is_truncated && $(tooltip).removeClass('ual-tooltip-hide'),
       200
     )
+  }
+
+  // CREATE
+  createReport() {
+    this.services.report.create();
+    this.$state.go('dashboard.report-form');
   }
 
   // SELECT

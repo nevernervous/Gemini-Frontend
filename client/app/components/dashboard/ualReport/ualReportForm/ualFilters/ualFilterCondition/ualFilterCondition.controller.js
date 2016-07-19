@@ -1,4 +1,4 @@
-// TODO: [FIX] Add validation and Placeholder to values autocompletes
+
 class UalFilterConditionController {
   /*@ngInject*/
   constructor(
