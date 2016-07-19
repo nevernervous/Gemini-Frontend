@@ -1,0 +1,19 @@
+<md-dialog ng-cloak
+  class="ual-dialog ual-timer-modal"
+  aria-label="Timer Box" >
+  <md-dialog-content layout="column"
+    layout-align="start center"
+    class="md-dialog-content">
+  	<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  	<span class="message">
+  	  Running report... please wait
+  	</span>
+  	<span class="timer">
+  	  Elapsed time {{ vm.timer() | secondstotime }}
+  	</span>
+  	<span class="cancel"
+      ng-click="vm.cancel()">
+      Cancel
+    </span>
+  </md-dialog-content>
+</md-dialog>

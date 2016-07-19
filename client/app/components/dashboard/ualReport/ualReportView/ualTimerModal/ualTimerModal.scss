@@ -1,0 +1,29 @@
+@import '../../../../components';
+
+md-dialog.ual-timer-modal {
+  background: none;
+  box-shadow: none;
+  border: none;
+  bottom: 10%;
+
+  .message {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+  }
+
+  .timer {
+    font-size: 14px;
+    font-weight: $font-weight-regular;
+  }
+
+  .cancel {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: $font-weight-bold;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

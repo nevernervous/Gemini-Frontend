@@ -121,11 +121,6 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     }
   };
 
-  let execute = () => {
-    const transformation = [ReportTransform.get('reportToJSON')];
-    return $http.post(endpoint + '/ExecuteReports', object, { transformRequest: ReportTransform.generate(transformation) });
-  }
-
   let getDataSource = () => {
     return (object.dataSource.id) ? object.dataSource : null;
   }
@@ -196,9 +191,10 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   let getId = () => object.id;
   let setId = value => object.id = value;
 
+  clean();
+
   return {
     save,
-    execute,
     load,
     clean,
     isEmptyName: isEmptyName,
