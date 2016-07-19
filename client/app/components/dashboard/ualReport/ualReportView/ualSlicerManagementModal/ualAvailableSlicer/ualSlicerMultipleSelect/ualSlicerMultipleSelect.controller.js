@@ -26,14 +26,14 @@ class ualSlicerMultipleSelectController {
   }
   getvariables() {
     this.loading = true;
-    this.services.datasource.variables({id:1})//HARDCODE change to service with selected variables
+    this.services.datasource.variables({id:1})//HARDCODE change to service with available slicers
     .then(response => {
       this.loading = false;
-      this.avaiableVariables = response.data;
+      this.availableSlicers = response.data;
     },
     error => {
       this.loading = false;
-      this.avaiableVariables = [];
+      this.availableSlicers = [];
     });
   }
 

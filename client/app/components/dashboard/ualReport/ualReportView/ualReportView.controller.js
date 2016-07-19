@@ -44,10 +44,10 @@ class UalReportViewController {
 
   addToSlicers(){
     this._ualSlicerManagementModal.open({
-      report: null
+      report: this.report
     }).then(
       response => {
-        //implementation to implementation
+        console.log(response)
       }
     );
   }

@@ -1,7 +1,7 @@
 <ual-pane layout="column" layout-fill
   ual-title="Available slicers ({{vm.variablesFiltered.length}})"
   action="Select all" on-action="vm.selectAll()"
-  is-disabled="(vm.variablesFiltered = ((vm.avaiableVariables || []) | filter:vm.filterTerm )) | isEmpty">
+  is-disabled="(vm.variablesFiltered = ((vm.availableSlicers || []) | filter:vm.filterTerm )) | isEmpty">
 
   <md-input-container
     ual-input

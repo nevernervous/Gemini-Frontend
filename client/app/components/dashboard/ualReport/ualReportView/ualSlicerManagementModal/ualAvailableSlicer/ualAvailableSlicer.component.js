@@ -5,7 +5,8 @@ import './ualAvailableSlicer.scss';
 let ualAvailableSlicerComponent = {
   restrict: 'E',
   bindings: {
-    slicers: "<",
+    availableSlicers: "<",
+    slicers: "<"
   },
   template,
   controller,

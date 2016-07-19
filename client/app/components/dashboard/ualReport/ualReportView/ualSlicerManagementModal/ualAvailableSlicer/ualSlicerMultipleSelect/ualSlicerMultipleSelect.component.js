@@ -5,6 +5,7 @@ import './ualSlicerMultipleSelect.scss';
 let ualSlicerMultipleSelectComponent = {
   restrict: 'E',
   bindings: {
+    availableSlicers: "<",
     selectedReference: "=",
   },
   template,
