@@ -13,16 +13,14 @@ class UalReportViewController {
     ) {
     this.name = 'ualReportView';
 
-    // MODALS
-    this._ualSlicerManagementModal=ualSlicerManagementModal;
-
     // INTERNALS
     this.$state = $state;
     this.$window = $window;
 
     // COMPONENTS
     this.components = {
-      timer: ualTimerModal
+      timer: ualTimerModal,
+      slicerManagment: ualSlicerManagementModal
     }
 
     //STATE
@@ -53,7 +51,7 @@ class UalReportViewController {
   }
 
   addToSlicers(){
-    this._ualSlicerManagementModal.open({
+    this.components.slicerManagment.open({
       report: this.report
     }).then(
       response => {

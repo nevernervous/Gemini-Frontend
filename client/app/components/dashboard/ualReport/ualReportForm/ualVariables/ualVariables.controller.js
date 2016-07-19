@@ -47,6 +47,7 @@ class UalVariablesController {
 
   // ADD
   addSelection(container, state) {
+    this.selectedsVariables.reverse();
     while ( this.selectedsVariables.length > 0 ) {
       let item = this.selectedsVariables.pop();
       item.selected = false;

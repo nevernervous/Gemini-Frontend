@@ -10,7 +10,7 @@ let ualSlicerManagementModalService = function (ualDialog) {
 
   const open = (data) => {
     return components.dialog.show({
-      locals:{report:data.report},
+      locals:data,
       parent: angular.element(document.body),
       template: template,
       controller: controller,

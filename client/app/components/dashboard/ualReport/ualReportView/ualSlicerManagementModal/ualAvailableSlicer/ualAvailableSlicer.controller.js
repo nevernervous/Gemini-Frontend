@@ -27,6 +27,7 @@ class UalAvailableSlicerController {
 
   // ADD
   addSelection(container, state) {
+    this.selectedSlicers.reverse();
     while ( this.selectedSlicers.length > 0 ) {
       let item = this.selectedSlicers.pop();
       item.selected = false;
