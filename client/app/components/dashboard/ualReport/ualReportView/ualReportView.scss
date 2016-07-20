@@ -10,6 +10,7 @@ $report-view-link-width: 150px;
 
 ual-report-view {
   .report-name {
+    padding-left: 10px;
     font-size: $report-view-name-font-size;
     font-weight: bold;
     color: $color-mine-shaft;
@@ -33,20 +34,26 @@ ual-report-view {
   }
   .report-detail {
     margin-top: 10px;
-    border-top: 1px solid $color-rolling-stone;
+    border-top: 1px solid $color-alto;
     .report-info {
       font-size: $report-info-font-size;
-      margin: 20px 10px;
+      margin: 14px 10px;
+      div {
+        margin-right: 14px;
+      }
     }
     .condition-container {
       padding: 20px 10px;
       background-color: $color-alto;
-      .code {
+      .code, .empty {
         line-height: $report-code-line-height;
         font-size: $report-info-font-size;
         .highlight {
           font-weight: bold;
         }
+      }
+      .empty {
+        text-align: center;
       }
     }
   }
