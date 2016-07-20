@@ -12,11 +12,7 @@ let ualReportModule = angular.module('ualReport', [
     "ngInject";
 
     $stateProvider
-      .state('dashboard.report-new', {
-        url: '/report/new',
-        template: '<ual-report-form></ual-report-form>'
-      })
-      .state('dashboard.report-edit', {
+      .state('dashboard.report-form', {
         url: '/report/:id',
         template: '<ual-report-form></ual-report-form>'
       })
@@ -26,4 +22,3 @@ let ualReportModule = angular.module('ualReport', [
       });
   });
 export default ualReportModule;
-

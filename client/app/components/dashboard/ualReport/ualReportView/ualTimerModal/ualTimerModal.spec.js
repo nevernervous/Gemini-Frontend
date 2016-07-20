@@ -1,7 +1,5 @@
 import UalTimerModalModule from './ualTimerModal'
 import UalTimerModalController from './ualTimerModal.controller';
-import UalTimerModalComponent from './ualTimerModal.component';
-import UalTimerModalTemplate from './ualTimerModal.html';
 
 describe('UalTimerModal', () => {
   let $rootScope, makeController;
@@ -10,7 +8,7 @@ describe('UalTimerModal', () => {
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalTimerModalController();
+      return new UalTimerModalController($rootScope);
     };
   }));
 

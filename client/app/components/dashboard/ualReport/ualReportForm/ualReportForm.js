@@ -5,7 +5,6 @@ import ualDataSource from './ualDataSource/ualDataSource';
 import ualVariables from './ualVariables/ualVariables';
 import ualFilters from './ualFilters/ualFilters';
 import ualReportNameModal from './ualReportNameModal/ualReportNameModal';
-import ualTimerModal from './ualTimerModal/ualTimerModal';
 
 import ualReportFormComponent from './ualReportForm.component';
 
@@ -16,8 +15,7 @@ let ualReportFormModule = angular.module('ualReportForm', [
   ualVariables.name,
   ualFilters.name,
   // MODALS
-  ualReportNameModal.name,
-  ualTimerModal.name
+  ualReportNameModal.name
 ])
 
 .component('ualReportForm', ualReportFormComponent);

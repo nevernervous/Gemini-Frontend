@@ -21,7 +21,7 @@ module.exports = {
           {  name: "Header7", type: "Number" }
         ]
       },
-      timeout: 10000
+      timeout: 5000
     }
   }
 

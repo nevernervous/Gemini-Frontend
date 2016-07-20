@@ -1,4 +1,11 @@
-let reportObjectService = function (Properties, ServicesTransform, $http, $q, ReportTransform) {
+let reportObjectService = function (
+  // INTERNALS
+  $http,
+  $q,
+  // SERVICES
+  Properties,
+  ServicesTransform,
+  ReportTransform) {
   "ngInject";
 
   const endpoint = Properties.endpoint;
@@ -11,22 +18,22 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   var touched = false;
   let unchangedName = null;
 
-  let duplicatedErrorResponse = "Report name already exists. Please select another.";
+  // let duplicatedErrorResponse = "Report name already exists. Please select another.";
 
-  let saveResultMessages = [
-    {
-      type: "success",
-      text: "Report saved successfully."
-    },
-    {
-      type: "error",
-      text: "Report name already exists. Please select another."
-    },
-    {
-      type: "error",
-      text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
-    }
-  ];
+  // let saveResultMessages = [
+  //   {
+  //     type: "success",
+  //     text: "Report saved successfully."
+  //   },
+  //   {
+  //     type: "error",
+  //     text: "Report name already exists. Please select another."
+  //   },
+  //   {
+  //     type: "error",
+  //     text: "The report was not saved due to an unexpected error. Please try again or contact the Gemini administrator."
+  //   }
+  // ];
 
   let clean = () => {
     object = {
@@ -70,61 +77,56 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
     return hash;
   }
 
-  let save = () => {
-    var deferred = $q.defer();
-    if (!getName()) {
-      deferred.reject({ code: 1, msg: "No name assigned" });
-    } else if (!touched) {
-      deferred.reject({ code: 0, msg: saveResultMessages[0] });
-    } else {
-      saveRequest().then(
-        response => {
-          object.id = response.data.id;
-          unchangedName = object.name;
-          touched = false;
-
-          initialHash = getReportHash();
-
-          deferred.resolve({ result: object.id, msg: saveResultMessages[0] });
-        },
-        response => {
-          // TODO: REFACTOR THIS CODE. USE 'errorCode' instead of check 'errorMessages'
-          if (!response.data || !response.data.errorMessages) {
-            //UNEXPECTED ERROR
-            object.name = unchangedName;
-            deferred.reject({ code: 3, msg: saveResultMessages[2] });
-          } else if (response.data.errorMessages.indexOf(duplicatedErrorResponse) < 0) {
-            //EXPECTED ERROR
-            object.name = unchangedName;
-            let tmp = _.clone(saveResultMessages[2]);
-            tmp.msg = response.data.errorMessage;
-            deferred.reject({ code: 3, msg: tmp });
-          } else {
-            //DUPLICATED NAME
-            deferred.reject({ code: 2, msg: "Name already exists" });
-          }
-        }
-      ).catch(() => {
-        deferred.reject(false);
-      });
-    }
-    return deferred.promise;
-  };
-
-  let saveRequest = () => {
-
-    let transformation = [ReportTransform.get('reportToJSON')];
-    if (object.id === null) {
-      return $http.post(endpoint + '/Reports', object, { transformRequest: ReportTransform.generate(transformation) });
-    } else {
-      return $http.put(endpoint + '/Reports/' + object.id, object, { transformRequest: ReportTransform.generate(transformation) });
-    }
-  };
-
-  let execute = () => {
-    const transformation = [ReportTransform.get('reportToJSON')];
-    return $http.post(endpoint + '/ExecuteReports', object, { transformRequest: ReportTransform.generate(transformation) });
-  }
+  // let save = () => {
+  //   var deferred = $q.defer();
+  //   if (!getName()) {
+  //     deferred.reject({ code: 1, msg: "No name assigned" });
+  //   } else if (!touched) {
+  //     deferred.reject({ code: 0, msg: saveResultMessages[0] });
+  //   } else {
+  //     saveRequest().then(
+  //       response => {
+  //         object.id = response.data.id;
+  //         unchangedName = object.name;
+  //         touched = false;
+  //
+  //         initialHash = getReportHash();
+  //
+  //         deferred.resolve({ result: object.id, msg: saveResultMessages[0] });
+  //       },
+  //       response => {
+  //         // TODO: REFACTOR THIS CODE. USE 'errorCode' instead of check 'errorMessages'
+  //         if (!response.data || !response.data.errorMessages) {
+  //           //UNEXPECTED ERROR
+  //           object.name = unchangedName;
+  //           deferred.reject({ code: 3, msg: saveResultMessages[2] });
+  //         } else if (response.data.errorMessages.indexOf(duplicatedErrorResponse) < 0) {
+  //           //EXPECTED ERROR
+  //           object.name = unchangedName;
+  //           let tmp = _.clone(saveResultMessages[2]);
+  //           tmp.msg = response.data.errorMessage;
+  //           deferred.reject({ code: 3, msg: tmp });
+  //         } else {
+  //           //DUPLICATED NAME
+  //           deferred.reject({ code: 2, msg: "Name already exists" });
+  //         }
+  //       }
+  //     ).catch(() => {
+  //       deferred.reject(false);
+  //     });
+  //   }
+  //   return deferred.promise;
+  // };
+  //
+  // let saveRequest = () => {
+  //
+  //   let transformation = [ReportTransform.get('reportToJSON')];
+  //   if (object.id === null) {
+  //     return $http.post(endpoint + '/Reports', this, { transformRequest: ServicesTransform.generate(transformation) });
+  //   } else {
+  //     return $http.put(endpoint + '/Reports/' + object.id, this, { transformRequest: ServicesTransform.generate(transformation) });
+  //   }
+  // };
 
   let getDataSource = () => {
     return (object.dataSource.id) ? object.dataSource : null;
@@ -196,9 +198,9 @@ let reportObjectService = function (Properties, ServicesTransform, $http, $q, Re
   let getId = () => object.id;
   let setId = value => object.id = value;
 
+  clean();
+
   return {
-    save,
-    execute,
     load,
     clean,
     isEmptyName: isEmptyName,

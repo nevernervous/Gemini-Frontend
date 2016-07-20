@@ -1,7 +1,12 @@
 class ualSidenavController {
   /*@ngInject*/
-  constructor($state) {
+  constructor(
+    $state,
+    ualSidenav) {
     this.$state = $state;
+    this.components = {
+      sidenav: ualSidenav
+    }
   }
 
 }

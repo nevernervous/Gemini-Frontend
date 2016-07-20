@@ -2,15 +2,24 @@ import template from './ualTimerModal.html';
 import controller from './ualTimerModal.controller';
 import './ualTimerModal.scss';
 
-let ualTimerModalService = function (ualModal) {
+let ualTimerModalService = function (ualDialog) {
   "ngInject";
+  const components = {
+    dialog: ualDialog
+  }
 
-  let open = (inputs) => {
-    return ualModal.open({
-      template: '<ual-modal class="-fullmodal -timerModal">' + template + '</ual-modal>',
+  const open = (reportId) => {
+
+    return components.dialog.show({
+      parent: angular.element(document.body),
+      template: template,
       controller: controller,
       controllerAs : 'vm',
-      inputs: inputs
+      clickOutsideToClose: false,
+      fullscreen: true,
+      locals: {
+        id: reportId
+      }
     })
   }
 
