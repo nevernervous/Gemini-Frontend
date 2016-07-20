@@ -163,7 +163,7 @@ let reportTransform = function ($http) {
 
     } else {
       const filter = transformToFilter(condition, index);
-      parent.Filters.push(filter);
+      parent.filters.push(filter);
     }
 
     return groups;
@@ -176,7 +176,7 @@ let reportTransform = function ($http) {
       operator: {
         id: item.operator.id,
       },
-      Filters: []
+      filters: []
     }
     // PARENT
     if ( parent ) {
@@ -193,7 +193,7 @@ let reportTransform = function ($http) {
       column: {
         id: item.variable.id
       },
-      FilterOperator: {
+      filterOperator: {
         id: item.operator.id
       },
       order: index,

@@ -94,9 +94,15 @@ let reportService = function (
 
   let save = (report) => {
     let transformation = [ReportTransform.get('reportToJSON')];
-    const url = report.id.get() ? endpoint + '/' + report.id.get() : endpoint;
-
-    return $http.put(url, report, { transformRequest: ServicesTransform.generate(transformation) });
+    if ( report.id.get() ) {
+      return $http.put( endpoint + '/' + report.id.get(),
+        report,
+        { transformRequest: ServicesTransform.generate(transformation) });
+    } else {
+      return $http.post(endpoint,
+        report,
+        { transformRequest: ServicesTransform.generate(transformation) });
+    }
   }
 
   return {

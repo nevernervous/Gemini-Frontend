@@ -200,7 +200,7 @@ class UalReportFormController {
     this.services.report.save(this.report).then(
       response => {
         this.isSaving = false;
-        this.report.setId(response.data.id);
+        this.report.id.set(response.data.id);
         // TODO: [FIX] SET REPORT PRISTINE
 
         // NOTIFY

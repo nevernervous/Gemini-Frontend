@@ -13,7 +13,10 @@ class ualSidenavDirective {
   }
 
   link($scope, elem, attr, ctrl) {
-    $scope.nav = ctrl.$state.go;
+    $scope.nav = (url) => {
+      ctrl.components.sidenav.toggle();
+      ctrl.$state.go(url);
+    }
   }
 }
 

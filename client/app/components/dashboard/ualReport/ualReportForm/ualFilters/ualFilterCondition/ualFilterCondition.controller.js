@@ -44,6 +44,7 @@ class UalFilterConditionController {
     this.getAllOperators();
     this.watchOperator();
     this.watchVariable();
+    this.watchType();
   }
   getVariables() {
     this._datasourceService.variables(this.datasource).then(
@@ -80,6 +81,13 @@ class UalFilterConditionController {
       this.variableChange(newValue, oldValue);
     });
   }
+  watchType() {
+    this.$scope.$watch((scope) => {
+      return scope.vm.condition.type
+    }, (newValue, oldValue) => {
+      this.reset();
+    });
+  }
   $postLink() {
     this._subscriptions.push(this.$scope.$on('REPORT.EXECUTE', () => {
       this.$scope.filterCondition.$setSubmitted();
@@ -89,28 +97,7 @@ class UalFilterConditionController {
     this._subscriptions.forEach(suscription => suscription());
   }
 
-  // TODO: [FIX] Implement trim feature
-  trim($event, model) {
-    this.$timeout(() => {
-      let $target = $($event.target);
-      let value = _.trim($target.val());
-      $target.val(value);
-      model = value;
-    });
-  }
-
-  getPlaceholder() {
-    let result = "Enter [variable name]";
-    if (this.condition.variable) {
-      if(this.condition.variable.dataType == 'Date') {
-        return "mm/dd/yyyy";
-      }
-      result = this.condition.variable.dataType == 'Number' ? "Enter numeric value" : `Enter ${this.condition.variable.name}`;
-    }
-    return result;
-  }
-
-  // CHAGNE / OPERATOR
+  // CHANGE / OPERATOR
   changeOperator() {
     const extraFieldArray = ["between", "not between"];
     const disableAsignationArray = ["is blank", "is not blank", "is null", "is not null"];
@@ -140,12 +127,34 @@ class UalFilterConditionController {
     this.condition.type = this.types[0];
     this.reset();
   }
+  // CHANGE / TYPE
   reset() {
     if (this.$scope.filterCondition.$error.length == 0) {
       this.$scope.filterCondition.$setPristine();
     }
     this.condition.value = null;
     this.condition.secondValue = null;
+  }
+
+  // VALUE / TRIM
+  trim($event, model) {
+    this.$timeout(() => {
+      const $target = $($event.target);
+      const value = _.trim($target.val());
+      $target.val(value);
+      model = value;
+    });
+  }
+  // VALUE / PLACEHOLDER
+  getPlaceholder() {
+    let result = "Enter [variable name]";
+    if (this.condition.variable) {
+      if(this.condition.variable.dataType == 'Date') {
+        return "mm/dd/yyyy";
+      }
+      result = this.condition.variable.dataType == 'Number' ? "Enter numeric value" : `Enter ${this.condition.variable.name}`;
+    }
+    return result;
   }
 
 }
