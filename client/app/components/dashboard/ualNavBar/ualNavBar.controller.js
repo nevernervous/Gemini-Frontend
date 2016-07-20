@@ -26,6 +26,7 @@ class UalNavbarController {
   }
 
   toggle() {
+    console.log('toggle');
     this.components.sidenav.toggle();
   }
 

@@ -1,5 +1,13 @@
-let reportService = function (Properties, PromisesSerializer, ServicesTransform, $http, $q, ReportObject, ReportTransform) {
+let reportService = function (
+  $http,
+  $q,
+  Properties,
+  PromisesSerializer,
+  ServicesTransform,
+  ReportTransform,
+  ReportObject) {
   "ngInject";
+
   const endpoint = Properties.endpoint + '/Reports';
   const pageSize = 50;
 
@@ -84,6 +92,13 @@ let reportService = function (Properties, PromisesSerializer, ServicesTransform,
     return request;
   }
 
+  let save = (report) => {
+    let transformation = [ReportTransform.get('reportToJSON')];
+    const url = report.id.get() ? endpoint + '/' + report.id.get() : endpoint;
+
+    return $http.put(url, report, { transformRequest: ServicesTransform.generate(transformation) });
+  }
+
   return {
     all,
     create,
@@ -91,7 +106,8 @@ let reportService = function (Properties, PromisesSerializer, ServicesTransform,
     first,
     pages,
     remove,
-    getById
+    getById,
+    save
   };
 };
 

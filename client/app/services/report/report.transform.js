@@ -21,7 +21,7 @@ let reportTransform = function ($http) {
       return response;
     },
     reportToJSON: (report) => {
-      return transformReportToJSON(report);
+      return JSON.stringify(transformReportToJSON(report));
     },
     reportFromJSON: (report) => {
       return transformReportFromJSON(report);
@@ -123,6 +123,8 @@ let reportTransform = function ($http) {
 
   const transformReportToJSON = (report) => {
     let data = {};
+    // NAME
+    data.name = report.name.get();
 
     // DATASOURCE
     data.dataSourceId = report.datasource.get().id;
@@ -138,12 +140,16 @@ let reportTransform = function ($http) {
   }
 
   const transformToVariables = (variables) => {
-    return _.map(variables, item => {
-      return {
-        Id: item.id,
-        Order: item.order
-      }
-    });
+    return _.chain(variables)
+      .each((item, index) => {
+        item.order = index;
+      })
+      .map(item => {
+        return {
+          Id: item.id,
+          Order: item.order
+        }
+      }).value();
   }
 
   const transformToGroups = (condition, index = 1, parent = null, groups = []) => {
@@ -195,11 +201,11 @@ let reportTransform = function ($http) {
     }
 
     // VALUES
-    const hasSecondValue = _.includes(operatorsMultiple, item.operator.operator);
+    const hasSecondValue = _.includes(operatorsMultiple, item.operator.operator.toLowerCase());
     let value = [];
-    value.push(isVariable ? item.value.id : item.value);
+    value.push(filter.valueVariableTypeIndicator ? item.value.id : item.value);
     if (hasSecondValue) {
-      value.push(isVariable ? item.secondValue.id : item.secondValue);
+      value.push(filter.valueVariableTypeIndicator ? item.secondValue.id : item.secondValue);
     }
     filter.value = value.join(',');
 

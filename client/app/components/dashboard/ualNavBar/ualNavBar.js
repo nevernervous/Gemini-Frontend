@@ -1,8 +1,8 @@
 import angular from 'angular';
-import ualNavbarDirective from './ualNavbar.directive';
+import ualNavbarComponent from './ualNavbar.component';
 
 let ualNavbarModule = angular.module('ualNavbar', [])
 
-.directive('ualNavbar', () => new ualNavbarDirective());
+.component('ualNavbar', ualNavbarComponent);
 
 export default ualNavbarModule;

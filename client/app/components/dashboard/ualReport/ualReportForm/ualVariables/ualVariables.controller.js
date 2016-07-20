@@ -48,7 +48,7 @@ class UalVariablesController {
   // ADD
   addSelection(container, state) {
     while ( this.selectedsVariables.length > 0 ) {
-      let item = this.selectedsVariables.pop();
+      const item = this.selectedsVariables.pop();
       item.selected = false;
       container.push(angular.copy(item));
     }
