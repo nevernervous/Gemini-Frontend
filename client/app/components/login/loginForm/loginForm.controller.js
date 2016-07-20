@@ -1,6 +1,5 @@
 import $ from 'jquery';
 
-// TODO: FIX on submit close toast
 class LoginFormController {
   /*@ngInject*/
   constructor(

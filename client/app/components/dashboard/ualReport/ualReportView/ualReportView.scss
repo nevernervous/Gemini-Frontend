@@ -6,6 +6,8 @@ $report-code-line-height: 18px;
 $report-placeholder-font-size: 18px;
 $report-menu-more-icon-font-size: 24px;
 
+$report-view-link-width: 150px;
+
 ual-report-view {
   .report-name {
     font-size: $report-view-name-font-size;
@@ -19,11 +21,11 @@ ual-report-view {
     .save-button {
       width: $report-view-button-width;
     }
-    >ual-button-flat {
-      width: $report-view-button-width;
+    > ual-button-flat {
+      width: $report-view-link-width;
     }
     md-menu {
-      md-button md-icon.ion-more {
+      .md-button md-icon.ion-more {
         color: $button-flat-icon-color;
         font-size: $report-menu-more-icon-font-size;
       }
