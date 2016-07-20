@@ -39,19 +39,23 @@ class ualTimerModalController {
     const promise = id ? this.services.report.getById(id) : this.services.report.currentReport();
     this.$q.when(promise).then(
       response => {
-        this.report = response;
-        this.request = this.services.execute.run(this.report);
-        this.request.promise.then(
-          response => {
-            const reply = {
-              timeElapsed: this.timer(),
-              data: response
-            };
+        if ( response.isValid() ) {
+          this.report = response;
+          this.request = this.services.execute.run(this.report);
+          this.request.promise.then(
+            response => {
+              const reply = {
+                timeElapsed: this.timer(),
+                data: response
+              };
 
-            this.components.dialog.hide(reply);
-          },
-          () => this.components.dialog.cancel()
-        );
+              this.components.dialog.hide(reply);
+            },
+            () => this.components.dialog.cancel()
+          );
+        } else {
+          this.components.dialog.cancel()
+        }
       });
   }
 

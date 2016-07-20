@@ -8,7 +8,7 @@
   <div class="buttons-group"
     flex
     layout="row"
-    layout-align="space-between center">
+    layout-align="end center">
     <ual-button-flat ual-button="primary"
       ual-button-flat-icon="ion-compose"
       ng-disabled="true">
@@ -71,7 +71,7 @@
   ng-if="vm.hidingDetails">
   <div class="report-info"
     layout="row"
-    layout-align="space-between center">
+    layout-align="end center">
     <div flex>
       Report generated: <strong>{{vm.generatedOn | date:'MM/dd/yy HH:mm':'-0500'}} CT</strong>
     </div>
@@ -79,14 +79,14 @@
       Elapsed time: <strong>{{vm.timeElapsed | secondstotime}}</strong>
     </div>
     <div flex>
-      Retrieved rows: <strong>{{vm.table.table.data.length}}</strong>
+      Retrieved rows: <strong>{{vm.table.table.data.length || 0}}</strong>
     </div>
     <div>
       Data source: <strong>{{ vm.report.datasource.get() ? vm.report.datasource.get().name : 'No data source'}}</strong>
       {{!!vm.report.datasource.get() ? 'Last updated ' + (vm.report.datasource.get().refreshDate | date:'MM/dd/yy HH:mm':'-0500') + ' CT' : 'selected'}}
     </div>
   </div>
-  <div class="condition-container">
+  <div class="condition-container" ng-if="false">
     <div class="code">
       <span class="highlight">WHERE</span> ([variable]=[value]
       <span class="highlight">AND</span> [variable]=[value])

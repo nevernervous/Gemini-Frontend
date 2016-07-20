@@ -76,7 +76,6 @@ class UalReportFormController {
           this.report.clean();
           this.report = null;
           $(window).unbind("beforeunload", this.beforeClose);
-          this._unsuscribe();
           this.$state.go(toState.name);
         });
       } else {
@@ -85,7 +84,6 @@ class UalReportFormController {
           this.report = null;
         }
         $(window).unbind("beforeunload", this.beforeClose);
-        this._unsuscribe();
       }
     }));
     this.beforeClose = function (event) {
