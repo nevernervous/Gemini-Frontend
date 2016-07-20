@@ -1,8 +1,8 @@
 class UalReportViewController {
   /*@ngInject*/
-
-  // TODO: [FIX] Get Report from ID
   constructor(
+    // COMPONENTS
+    ualSlicerManagementModal,
     // INTERNALS
     $state,
     $window,
@@ -19,7 +19,8 @@ class UalReportViewController {
 
     // COMPONENTS
     this.components = {
-      timer: ualTimerModal
+      timer: ualTimerModal,
+      slicerManagment: ualSlicerManagementModal
     }
 
     //STATE
@@ -47,6 +48,16 @@ class UalReportViewController {
 
   toggleDetails(){
     this.hidingDetails = !this.hidingDetails;
+  }
+
+  addToSlicers(){
+    this.components.slicerManagment.open({
+      report: this.report
+    }).then(
+      response => {
+        console.log(response)
+      }
+    );
   }
 
 }

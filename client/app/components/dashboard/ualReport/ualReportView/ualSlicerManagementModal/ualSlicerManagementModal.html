@@ -1,0 +1,26 @@
+<md-dialog ng-cloak  layout="column"
+  class="ual-dialog slice-modal"
+  flex="60"
+  layout-align="center">
+  <md-dialog-content class="md-dialog-content">
+    <ual-available-slicer
+      available-slicers="vm.availableSlicers"
+      slicers="vm.slicers"
+      layout="row"
+      layout-fill>
+    </ual-available-slice>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button
+      class="md-primary"
+      aria-label="Cancel"
+      ng-click="vm.cancel()">
+      Cancel
+    </md-button>
+    <md-button ual-button
+      aria-label="Ok"
+      ng-click="vm.ok()">
+      Ok
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

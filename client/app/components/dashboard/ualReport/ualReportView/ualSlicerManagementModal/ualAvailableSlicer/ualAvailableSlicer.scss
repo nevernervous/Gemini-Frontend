@@ -1,0 +1,71 @@
+@import '../../../../../components';
+
+$selected-variables-message-font-weight: $font-weight-regular;
+$selected-variables-message-font-size: 16px;
+$selected-variables-message-color: $color-rolling-stone;
+
+ual-available-slicer {
+  .divider {
+    width: 46px;
+  }
+  .buttons .md-button {
+    width: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px;
+    padding: 0;
+    font-weight: bold;
+  }
+
+  .selected-slicers {
+    .message-placeholder {
+      font-weight: $selected-variables-message-font-weight;
+      font-size: $selected-variables-message-font-size;
+      color: $selected-variables-message-color;
+    }
+    .selected-slicer-list {
+      margin: 10px -15px 0 -5px;
+      padding-right: 10px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      li>.slicer-description {
+        @include ellipses();
+        padding: 5px;
+        margin-bottom: 1px;
+        cursor: pointer;
+        font-weight: lighter;
+        font-size: 14px;
+      }
+      .slicer-actions {
+        visibility: hidden;
+        .md-button.md-icon-button {
+          margin: 0;
+          padding: 0;
+          height: 28px;
+          min-height: 28px;
+          width: 28px;
+          line-height: $input-small-line-height;
+        }
+      }
+
+      li:hover {
+        background-color: $color-tropical-blue;
+        >.slicer-description{
+          font-weight: bold;
+        }
+        >.slicer-actions {
+          visibility: visible;
+        }
+
+      }
+    }
+  }
+
+}
+
+// TOOLTIP / TOP
+md-tooltip.variables-button-tooltip.ual-tooltip-top {
+  margin-top: 0;
+}

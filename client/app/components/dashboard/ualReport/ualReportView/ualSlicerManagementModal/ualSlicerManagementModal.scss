@@ -1,0 +1,15 @@
+md-dialog.slice-modal {
+  width: 60%;
+  min-width: 820px;
+  height: 80vh;
+  max-height: 768px;
+  bottom: initial;
+  md-dialog-content{
+    height: 100%
+  }
+  md-dialog-actions {
+    .md-button.md-primary {
+      text-transform: none;
+    }
+  }
+}

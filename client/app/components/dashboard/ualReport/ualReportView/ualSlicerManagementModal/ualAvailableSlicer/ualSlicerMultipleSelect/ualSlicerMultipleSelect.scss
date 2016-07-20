@@ -1,10 +1,10 @@
-@import '../../../../../components';
+@import '../../../../../../components';
 
 $avaiable-variables-message-font-weight: $font-weight-regular;
 $avaiable-variables-message-font-size: 16px;
 $avaiable-variables-message-color: $color-rolling-stone;
 
-ual-variables-multi-select {
+ual-slicer-multiple-select {
   .avaiable-variables {
     margin: 10px -15px 0 -5px;
     padding-right: 10px;

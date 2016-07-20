@@ -24,7 +24,7 @@ let ualDialogService = function ($mdDialog) {
     const template = $(confirm._options.template);
     template.find('md-button:last-child').attr( 'ual-button', 'primary' );
     confirm._options.template = template[0].outerHTML;
-
+    confirm._options.skipHide=true;
     return $mdDialog.show(confirm);
   }
 
