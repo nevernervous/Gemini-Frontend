@@ -1,12 +1,10 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import loginComponent from './login.component';
-import LoginHeader from './loginHeader/loginHeader';
 import LoginForm from './loginForm/loginForm';
 
 let loginModule = angular.module('login', [
   uiRouter,
-  LoginHeader.name,
   LoginForm.name
 ])
 

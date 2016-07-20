@@ -1,4 +1,24 @@
-<span class="tooltip-sibling" id="datasourceItem_{{vm.datasourceItem.id}}" ual-ellipsis ellipsis-height="15"
-      ng-mouseover="vm.showTooltip('datasourceItem_' + vm.datasourceItem.id, vm.datasourceItem )" ng-mouseleave="vm.hideTooltip()">
-      {{vm.datasourceItem.name}}
-</span>
+<div id="datasource-item-wrapper-{{vm.datasourceItem.id}}"
+  class="datasource-item-group-{{vm.datasourceItem.group.groupId}} datasource-item-wrapper">
+  <md-tooltip id="datasource-item-wrapper-tooltip-{{vm.datasourceItem.id}}"
+    md-direction="{{vm.direction}}"
+    ng-class="vm.class"
+    class="datasource-item-tooltip ual-tooltip-hide">
+    <strong>Last updated date {{vm.datasourceItem.refreshDate | date:'MM/dd/yy HH:mm':'-0500'}}  CT</strong>
+    {{vm.datasourceItem.name}}<br />
+    {{vm.datasourceItem.description}}
+  </md-tooltip>
+
+  <span id="datasource-item-content-{{vm.datasourceItem.id}}"
+    class="datasource-item-content"
+    ng-mouseover="vm.showMore()">
+    <md-tooltip id="datasource-item-content-tooltip-{{vm.datasourceItem.id}}"
+      md-direction="{{vm.direction}}"
+      ng-class="vm.class"
+      class="datasource-item-tooltip ual-tooltip-{{vm.direction}} ual-tooltip-hide">
+      <strong>Last updated date {{vm.datasourceItem.refreshDate | date:'MM/dd/yy HH:mm':'-0500'}}  CT</strong>
+      {{vm.datasourceItem.description}}
+    </md-tooltip>
+    {{vm.datasourceItem.name}}
+  </span>
+</div>

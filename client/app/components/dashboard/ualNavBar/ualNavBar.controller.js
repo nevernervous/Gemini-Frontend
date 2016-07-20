@@ -1,45 +1,51 @@
 import user from './user.jpg';
 import menu from './menu.png';
 
-class UalNavBarController {
+class UalNavbarController {
   /*@ngInject*/
-  constructor(Report, ualMainMenu, ualNavBar, Session, logoutModal, ualUnsafeReportModal) {
-    this.name = 'ualNavBar';
+  constructor(
+    Report, Session,
+    ualSidenav, ualDialog) {
+    this.name = 'ualNavbar';
+
+    // IMAGES
     this.user = user;
     this.menu = menu;
-    this._session = Session;
 
-    this._checkChanges = {
-      report: Report.currentReport()
+    // SERVICES
+    this.services = {
+      report: Report.currentReport(),
+      session: Session
+    }
+
+    // COMPONENTS
+    this.components = {
+      dialog: ualDialog,
+      sidenav: ualSidenav
+    }
+  }
+
+  toggle() {
+    this.components.sidenav.toggle();
+  }
+
+  logout(ev) {
+    const options = {
+      target: ev
     };
-    this._unstagedModal = ualUnsafeReportModal;
-    this._logoutModal = logoutModal;
-    this.toggleMenu = ualMainMenu.toggle;
 
-    this._service = ualNavBar;
-    this.isOpenDropDown = ualNavBar.isOpen;
-  }
+    this.components.dialog.confirm(
+      'Are you sure you want to logout?',
+      null,
+      options)
+    .then(() => {
+      return this.services.report.touched() ?
+        this.components.dialog.confirm( 'Exit without saving?' ) :
+        true;
+    })
+    .then(() => this.services.session.logout() );
 
-  toggleDropDown($event) {
-    $event.stopPropagation();
-    this._service.toggle();
-  }
-
-  logout() {
-    this._logoutModal.open()
-      .then(response => {
-        if (response && this._checkChanges.report.touched()) {
-          return this._unstagedModal.open()
-        }
-        return response;
-      })
-      .then(response => {
-        if (response) {
-          this._checkChanges.report.untouch();
-          this._session.logout()
-        }
-      })
   }
 }
 
-export default UalNavBarController;
+export default UalNavbarController;

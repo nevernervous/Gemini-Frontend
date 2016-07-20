@@ -1,32 +1,20 @@
-import template from './ualButton.html';
 import './ualButton.scss';
 
 class ualButtonDirective {
   /*@ngInject*/
   constructor() {
-    this.restrict = 'E';
-    this.replace = true;
-    this.transclude = true;
-    this.template = template;
+    this.restrict = 'A';
   }
 
-  link(scope, element) {
-    scope.$watch(
-      () => element.attr('disabled'),
-      newValue => {
-        let action = newValue ? 'addClass' : 'removeClass';
-        element[action]('-disabled');
+  compile() {
+    return {
+      pre: function(scope, el, attr){
+        const theme = attr.ualButton || 'primary';
+        const themeClass = ` md-${theme}`;
+        const sizeClass = attr.ualButtonSize ? ' ual-button-' + attr.ualButtonSize : '';
+        el.addClass('ual-button md-raised' + themeClass + sizeClass);
       }
-    );
-    scope.$watch(
-      () => element.attr('loading'),
-      newValue => {
-        let action = (newValue === 'true') ? 'addClass' : 'removeClass';
-
-        element[action]('-disabled');
-        element[action]('-spinner');
-      }
-    );
+    }
   }
 }
 

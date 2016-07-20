@@ -1,14 +1,25 @@
 <div class="ual-clusterize-table">
-  <table id="headersArea" ng-transclude></table>
-  <div id="scrollArea" class="clusterize-scroll">
+  <table id="headersArea"
+    class="clusterize-header"
+    ng-transclude>
+  </table>
+  <div id="scrollArea"
+    class="clusterize-scroll">
     <table>
-      <tbody id="contentArea" class="clusterize-content">
+      <tbody id="contentArea"
+        class="clusterize-content">
         <tr class="clusterize-no-data">
           <td></td>
         </tr>
       </tbody>
     </table>
-    <div class="empty"></div>
-    <div class="loading"></div>
+    <div class="empty"
+      ng-if="!vm.rows.length && !vm.loading"></div>
+    <div class="loading"
+      ng-class="{initialize: !vm.rows.length}"
+      ng-if="vm.loading"
+      layout="row" layout-align="center center" >
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
   </div>
 </div>

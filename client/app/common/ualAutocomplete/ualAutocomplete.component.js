@@ -5,15 +5,15 @@ import './ualAutocomplete.scss';
 let ualAutocompleteComponent = {
   restrict: 'E',
   transclude: true,
-  require:{
-    modelCtrl: '?ngModel'
-  },
   bindings: {
-    onChange: '&?',
-    placeholder: "@?",
-    selected: "=",
-    property: "@?",
-    list: '='
+    items: '<',
+    name: '@',
+    selected: '=itemSelected',
+    property: '@itemProperty',
+    width: '@inputWidth',
+    placeholder: '@',
+    required: '<ngRequired',
+    errors: '<'
   },
   template,
   controller,

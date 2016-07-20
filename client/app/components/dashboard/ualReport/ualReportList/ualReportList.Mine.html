@@ -1,0 +1,63 @@
+<tr ng-class="{'row-selected': vm.isSelected(${item.id})}">
+  <td class="cell-check cell-center">
+    <ual-checkbox is-checked="vm.isSelected(${item.id})"
+      ng-click="vm.toggleReport(${item.id})">
+    </ual-checkbox>
+  </td>
+  <td id="cell-name-${item.id}"
+    class="cell-name cell-ellipsis"
+    ng-mouseover="vm.showMore('#cell-name-${item.id}', '#cell-tooltip-${item.id}')">
+    <md-tooltip id="cell-tooltip-${item.id}"
+      md-direction="right"
+      class="ual-tooltip-right ual-tooltip-hide">
+      ${item.name}
+    </md-tooltip>
+    <a arial-label="${item.name}">
+      ${item.name}
+    </a>
+  </td>
+  <td class="cell-datasource cell-shrink cell-nowrap cell-padding">
+    <md-tooltip md-direction="right"
+      class="ual-tooltip-right">
+      Last updated {{ '${item.dataSourceRefreshDate}' | date:'MM/dd/yy HH:mm':'-0500'}} CT
+    </md-tooltip>
+    <span>${item.dataSource}</span>
+  </td>
+  <td class="cell-date cell-padding">
+    {{ '${item.modificationDate}' | date:'MM/dd/yy HH:mm':'-0500'}} CT
+  </td>
+  <td class="cell-action cell-padding cell-right ">
+    <md-button class="md-icon-button"
+      ng-disabled="true"
+      aria-label="Share">
+      <md-icon md-font-icon="Ionicons"
+        class="ion-android-share-alt">
+      </md-icon>
+    </md-button>
+    <md-button class="md-icon-button"
+      ng-disabled="true"
+      aria-label="Download">
+      <md-icon md-font-icon="Ionicons"
+        class="ion-ios-download-outline">
+      </md-icon>
+    </md-button>
+    <md-button class="md-icon-button"
+      ng-disabled="true"
+      aria-label="Copy">
+      <md-icon md-font-icon="Ionicons"
+        class="ion-ios-copy-outline">
+      </md-icon>
+    </md-button>
+    <md-button class="md-icon-button"
+      aria-label="Delete"
+      ng-click="vm.deleteReport(${item.id}, $event)">
+      <md-tooltip md-direction="top"
+        class="ual-tooltip-top" >
+        Delete
+      </md-tooltip>
+      <md-icon md-font-icon="Ionicons"
+        class="ion-android-close">
+      </md-icon>
+    </md-button>
+  </td>
+</tr>

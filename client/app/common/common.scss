@@ -18,7 +18,6 @@ $color06: #333333;
 $color07: #7c848a;
 $color08: #d4d4d4;
 $color09: #667a8e;
-$color10: #c0ddf4;
 // COLOURS / ERROR
 $color11: #cd202c;
 $color12: #fac6ca;
@@ -62,3 +61,227 @@ $successHighColor: $color15;
 $successLowColor: $color16;
 $messageHighColor: $color03;
 $messageLowColor: $color00;
+
+// COLOR
+$color-cardinal: #CD202C;
+$color-mine-shaft: #333333; // C6
+$color-geyser: #D9E1E7;
+$color-gull-gray: #99A7B4;
+$color-white: #FFFFFF;
+$color-goblin: #44883E;
+$color-chrome-white: #D7EDC8;
+$color-golden-bell: #DB8C0E;
+$color-frangipani: #FFE0B2;
+$color-cupid: #FAC6CA;
+$color-havelock-blue: #62A9E3; //C3
+$color-steel-blue: #4784B8;
+$color-pear: #CDDC39;
+$color-rolling-stone: #7C848A; //C7
+$color-alto: #D4D4D4; //C8
+$color-astral: #3271B1; //C2
+$color-danube: #6F9BC8;
+$color-periwinkle-gray: #C1D4E7;
+$color-oslo-gray: #878F94;
+$color-blizzard-blue: #BFDDF3;
+$color-polo-blue: #84AAD0;
+$color-botticelli: #CED9E9;
+$color-tropical-blue: #C0DDF4; //C10
+$color-desert-storm: #E9E9E7; //OHTER5
+
+// COLOR / STATUS
+$color-success-dark:  $color-goblin;
+$color-success-light: $color-chrome-white;
+$color-warning-dark:  $color-golden-bell;
+$color-warning-light: $color-frangipani;
+$color-error-dark:  $color-cardinal;
+$color-error-light: $color-cupid;
+
+// MATERIAL
+@function rem($multiplier) {
+  $font-size: 10px;
+  @return $multiplier * $font-size;
+}
+@mixin rtl($prop, $ltr-value, $rtl-value) {
+  #{$prop}: $ltr-value;
+  [dir=rtl] & {
+    #{$prop}: $rtl-value;
+  }
+}
+
+// MATERIAL / LAYOUT
+$baseline-grid: 6px;
+$layout-left-right-padding: rem(4.6);
+$layout-top-bottom-padding: rem(2.6);
+$scroll-bar-width: 17px;
+
+// MATERIAL / FONTS
+$font-family: 'ClanOT', sans-serif;
+$font-size:   10px;
+$title-font-size-base: rem(1.8);
+
+$h1-font-size: title-font-size-base;
+$h2-font-size: rem(2.0);
+
+$font-weight-light: 200;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+$font-defaut-color: $color-mine-shaft;
+$font-disabled-color: $color-geyser;
+$font-error-color: $color-error-dark;
+
+// MATERIAL / BUTTON
+$button-margin: 0;
+$button-font-size: rem(1.6);
+$button-line-height: rem(3.4);
+$button-text-transform: none;
+$button-disabled-color: $font-disabled-color;
+$button-disabled-bg-color: $color-gull-gray;
+$button-loading-size: rem(2.0);
+$button-min-width: rem(6.4);
+$button-left-right-padding: rem(2.0);
+$button-border-radius: 0;
+// MATERIAL / BUTTON / LARGE
+$button-large-font-size: rem(1.8);
+$button-large-line-height: rem(5.0);
+$button-large-loading-size: rem(3.0);
+// MATERIAL / BUTTON / ICON
+$icon-button-margin-offset: 0;
+
+// MATERIAL / BUTTON / FLAT
+$button-flat-font-size: rem(1.6);
+$button-flat-left-right-padding: rem(0.5);
+$button-flat-color: $color-astral;
+$button-flat-color-hover: $color-danube;
+$button-flat-color-disabled: $color-periwinkle-gray;
+$button-flat-icon-color: $color-oslo-gray;
+
+// MATERIAL / BUTTON / SECONDARY
+$button-secondary-color: $color-astral;
+$button-secondary-font-color: $color-white;
+// MATERIAL / BUTTON / SECONDARY / HOVER
+$button-secondary-hover-color: $color-danube;
+// MATERIAL / BUTTON / SECONDARY / DISABLED
+$button-secondary-disabled-color: $color-polo-blue;
+$button-secondary-disabled-font-color: $color-botticelli;
+
+// MATERIAL / PROGRESS
+$loading-color: $color-havelock-blue;
+$loading-disabled-color: $font-disabled-color;
+
+// MATERIAL / INPUT
+$input-padding: 6px;
+$input-border: 1px;
+$input-line-height: rem(3.2);
+$input-font-size: rem(1.6);
+$input-font-color: $font-defaut-color;
+$input-focus-color: $color-havelock-blue;
+$input-icon-color: $color-rolling-stone;
+// MATERIAL / INPUT / SMALL
+$input-small-padding: 1px;
+$input-small-border-color: $color-alto;
+$input-small-font-size: rem(1.2);
+$input-small-border: 1px;
+$input-small-line-height: rem(2.2);
+// MATERIAL / INPUT / MEDIUM
+$input-medium-border-color: $color-alto;
+$input-medium-font-size: rem(1.4);
+$input-medium-border: 1px;
+$input-medium-line-height: $input-line-height;
+// MATERIAL / INPUT / LARGE
+$input-large-border-color: rgba(0,0,0,0);
+$input-large-border: 2px;
+$input-large-line-height: rem(4.2);
+
+// MATERIAL / TOAST
+$toast-margin: 0;
+$toast-border-radius: 0;
+$toast-height: rem(5.2);
+$toast-font-size: rem(1.8);
+$toast-font-weight: $font-weight-bold;
+$md-toast-content-padding: 0;
+// MATERIAL / TOAST / SUCCESS
+$toast-success-bg-color: $color-success-light;
+$toast-success-color: $color-success-dark;
+// MATERIAL / TOAST / WARNING
+$toast-warning-bg-color: $color-warning-light;
+$toast-warning-color: $color-warning-dark;
+// MATERIAL / TOAST / ERROR
+$toast-error-bg-color: $color-error-light;
+$toast-error-color: $color-error-dark;
+
+// MATERIAL / TOOLBAR
+$toolbar-tools-height: rem(5.2);
+$toolbar-padding: $layout-left-right-padding;
+
+// MATERIAL / MENU / ITEM
+$menu-item-height: rem(4.6);
+$menu-item-font-size: rem(1.6);
+$menu-item-font-weight: $font-weight-light;
+$menu-item-color: $color-white;
+$menu-item-bg-color: $color-havelock-blue;
+$menu-item-bg-hover: $color-steel-blue;
+$menu-item-border-hover: $color-pear;
+$menu-item-border-width: 4px;
+
+// MATERIAL / LIST / ITEM
+$list-item-height: rem(5.6);
+$list-item-font-size: rem(1.6);
+$list-item-font-weight: $font-weight-light;
+$list-item-color: $color-white;
+$list-item-bg-color: $color-havelock-blue;
+$list-item-bg-hover: $color-steel-blue;
+$list-item-border-hover: $color-pear;
+$list-item-border-width: 4px;
+
+// MATERIA / SIDENAV
+$sidenav-mobile-width: 260px;
+$sidenav-bg-color: $color-havelock-blue;
+
+// MATERIAL / BACKDROP
+$backdrop-bg-color: $color-white;
+
+// MATERIAL / DIALOG
+$dialog-padding: rem(4.4) rem(2.8) rem(2.8);
+$dialog-width: rem(58.0);
+$dialog-border-radius: 0;
+$dialog-bottom: 20%;
+$dialog-title-color: $color-rolling-stone;
+$dialog-content-font-size: rem(1.6);
+$dialog-content-color: $color-mine-shaft;
+$dialog-border: 1px solid $color-alto;
+
+// MATERIAL / TABS / INKBAR
+$tabs-inkbar-color: $color-havelock-blue;
+$tabs-inkbar-height: 3px;
+// MATERIAL / TABS / TAB
+$tabs-tab-font-size: rem(1.6);
+$tabs-tab-color: $color-rolling-stone;
+$tabs-header-height: rem(3.6);
+$tabs-tab-content-padding: rem(1.8) 0 0 0;
+// MATERIAL / TABS / TAB / ACTIVE
+$tabs-tab-color-active: $color-mine-shaft;
+
+// MATERIAL / SELECT
+$select-option-height: rem(3.6);
+
+// COMPONENT / TABLE
+$table-font-size: rem(1.4);
+$table-color: $color-mine-shaft;
+$table-action-size: rem(2.0);
+$table-lines-color: $color-alto;
+// COMPONENT / TABLE / HEADER / HOVER
+$table-header-font-size: rem(1.6);
+$table-header-hover-color: $color-alto;
+// COMPONENT / TABLE / ROW / HOVER | SELECTED
+$table-row-height: rem(3.6);
+$table-row-selected-color: $color-blizzard-blue;
+
+// COMPONENT / TOOLTIP
+$tooltip-triangle-width:  rem(0.4);
+$tooltip-triangle-height: rem(0.6);
+$tooltip-max-width: rem(30.0);
+$tooltip-backgrownd: $color-alto;
+$tooltip-color: $color-mine-shaft;
+$tooltip-font-size: rem(1.2);
+$tooltip-font-weight: normal;
+$tooltip-padding: rem(1.0) rem(1.6);

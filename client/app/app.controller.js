@@ -15,14 +15,12 @@ window.isBlink = (isChrome || isOpera) && !!window.CSS;
 
 class AppController {
   /*@ngInject*/
-  constructor($rootScope, ualNavBar, $state, $timeout, Session) {
+  constructor($rootScope, $state, $timeout, Session) {
     this.name = 'app';
     this._session = Session;
     this._state = $state;
     this._rootScope = $rootScope;
     this._timeout = $timeout;
-
-    this.navBar = ualNavBar;
   }
 
   _sessionWatcher() {

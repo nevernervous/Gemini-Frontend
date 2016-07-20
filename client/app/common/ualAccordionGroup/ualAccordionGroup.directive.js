@@ -2,10 +2,12 @@ import template from './ualAccordionGroup.html';
 import controller from './ualAccordionGroup.controller';
 import './ualAccordionGroup.scss';
 
+// TODO: IF close accordion, remove dom
 class ualAccordionGroupDirective {
   /*@ngInject*/
   constructor() {
     this.restrict = 'E';
+    this.replace = true;
     this.transclude = true;
     this.template = template;
     this.scope = {

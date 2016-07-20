@@ -1,13 +1,47 @@
-<form class="login-form" name="loginform" ng-submit="vm.submit()" novalidate autocomplete="off">
-  <login-form-input ng-class="{'-invalid': vm.error && loginform.$submitted}" label="User ID"  type="text"
-                    value="vm.user" tabindex="1" on-focus="loginform.$setPristine()" is-required="true"></login-form-input>
-  <login-form-input ng-class="{'-invalid': vm.error && loginform.$submitted}" label="Password" type="password"
-                    value="vm.pass" tabindex="2" on-focus="loginform.$setPristine()" is-required="true"></login-form-input>
+<form novalidate
+  class="login-form"
+  name="loginform"
+  ng-submit="vm.submit()"
+  autocomplete="off"
+  layout="column">
+  <md-input-container ual-input
+    ual-input-size="large">
+    <label>User ID</label>
+    <input
+      aria-label="user id"
+      type="text"
+      ng-model="vm.user"
+      ng-required="true">
+  </md-input-container>
+  <md-input-container ual-input
+    ual-input-size="large">
+    <label>Password</label>
+    <input
+      aria-label="password"
+      type="password"
+      ng-model="vm.pass"
+      ng-required="true">
+  </md-input-container>
   <div class="message">
-    <span ng-class="{visible: vm.error }">{{vm.error.errorMessage || 'The userID or password are invalid'}}</span>
-    <a href="mailto:{{vm.mailto}}" ng-class="{visible: vm.error.errorCode == 1}">Please click here to contact PDS.</a>
+    <span ng-show="vm.error">
+      {{vm.error.errorMessage || 'The userID or password are invalid'}}
+    </span>
+    <a
+      href="mailto:{{vm.mailto}}"
+      ng-show="vm.error.errorCode == 1">
+      Please click here to contact PDS.
+    </a>
   </div>
-  <div class="buttons">
-    <ual-button class="login-form-submit -primary" type="submit" tabindex="3" loading="{{vm.loading}}" ng-disabled="vm.loading">Login</ual-button>
-  </div>
+  <md-button ual-button
+    ual-button-size="large"
+    class="login-form-submit md-primary"
+    type="submit"
+    tabindex="3"
+    ng-disabled="vm.loading">
+    <ual-loading
+      ual-loading-enable="vm.loading"
+      ual-loading-diameter="30">
+      Login
+    </ual-loading>
+  </md-button>
 </form>

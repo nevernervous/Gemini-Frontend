@@ -1,21 +1,20 @@
-import UalNavBarModule from './ualNavBar'
-import UalNavBarController from './ualNavBar.controller';
-import UalNavBarService from './ualNavBar.service';
+import UalNavbarModule from './ualNavbar'
+import UalNavbarController from './ualNavbar.controller';
+import UalNavbarService from './ualNavbar.service';
 import Report from '~/services/report/report.service';
-import UalMainMenu from '~/components/dashboard/ualMainMenu/ualMainMenu.service';
 
 const Properties = {
   endpoint: ''
 }
 
-describe('UalNavBar', () => {
+describe('UalNavbar', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(UalNavBarModule.name));
+  beforeEach(window.module(UalNavbarModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new UalNavBarController(Report(Properties), UalMainMenu(), UalNavBarService());
+      return new UalNavbarController(Report(Properties), null, UalNavbarService());
     };
   }));
 

@@ -22,7 +22,7 @@ config.plugins = config.plugins.concat([
       except: ['$super', '$', 'exports', 'require', 'angular']
     }
   })
-    
+
 ]);
 
 module.exports = config;

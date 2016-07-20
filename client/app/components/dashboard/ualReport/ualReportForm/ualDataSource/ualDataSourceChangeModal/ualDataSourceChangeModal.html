@@ -1,13 +1,26 @@
-<div class="title">
-  Change Data Source
-</div>
-<div class="description">
-  Data source will be updated to "{{vm.newDataSource.name}}"
-</div>
-<div class="description">
-  All selected criteria will be lost. Continue?
-</div>
-<div class="buttons">
-  <ual-button class="-link" ng-click="vm.cancel()">No</ual-button>
-  <ual-button class="-primary" ng-click="vm.change()">Yes</button>
-</div>
+<md-dialog ng-cloak
+  class="ual-dialog datasource-change-modal"
+  aria-label="DataSource Change Box" >
+  <md-dialog-content class="md-dialog-content">
+    <h2 class="md-title ng-binding">Change Data Source</h2>
+    <div class="_md-dialog-content-body">
+      Data source will be updated to "{{vm.datasource.name}}"
+    </div>
+    <div class="_md-dialog-content-body">
+      All selected criteria will be lost. Continue?
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button
+      class="md-primary"
+      aria-label="No"
+      ng-click="vm.no()">
+      No
+    </md-button>
+    <md-button ual-button
+      aria-label="Yes"
+      ng-click="vm.yes()">
+      Yes
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

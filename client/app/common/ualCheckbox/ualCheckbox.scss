@@ -1,6 +1,11 @@
 @import '../common';
 
 ual-checkbox {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   > input[type="checkbox"] {
     display:none;
   }
@@ -17,11 +22,11 @@ ual-checkbox {
     background:url(_checked.jpg) top no-repeat;
   }
   > span {
-    @include font-clanot-book(14);
+    @include font-clanot-book(16);
     color: $color06;
     cursor: pointer;
   }
   > input[type="checkbox"]:checked + label + span {
-    @include font-clanot-bold(14);
+    @include font-clanot-bold(16);
   }
 }

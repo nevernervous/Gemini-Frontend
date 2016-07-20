@@ -1,5 +1,15 @@
-<div class="pane-header">
-  <span class="title">{{vm.ualTitle}}</span>
-  <a href class="action" ng-class="{'-disabled': vm.isDisabled}" ng-click="!vm.isDisabled && vm.onAction()">{{vm.action}}</a>
+<div layout="row" flex="none"
+  class="pane-header">
+  <span flex
+    class="title">
+    {{vm.ualTitle}}
+  </span>
+  <ual-button-flat  arial-label="{{vm.action}}"
+    ng-disabled="vm.isDisabled"
+    ng-href="vm.onAction()">
+    {{vm.action}}
+  </ual-button-flat>
 </div>
-<ng-transclude class="pane-body"></ng-transclude>
+<ng-transclude layout="column" flex
+  class="pane-body">
+</ng-transclude>

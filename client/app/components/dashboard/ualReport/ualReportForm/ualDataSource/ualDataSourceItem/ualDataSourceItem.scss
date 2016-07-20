@@ -1,32 +1,67 @@
 @import '../../../../../../common/common';
 
-// LAYOUT
-ual-data-source-item {
-    display: inline-block;
+$datasource-element-padding: 5px;
 
-    > span {
-      display: inline-block;
-      pointer-events: all;
-      height: 100%;
-      padding: 8px;
-      margin-left: 8px;
-    }
+$datasource-item-height: 28px;
+$datasource-item-font-size: 14px;
+$datasource-item-font-weight: $font-weight-light;
+$datasource-item-padding: 20px;
+$datasource-item-selected-color: $color-tropical-blue;
+
+ual-data-source-item {
+  font-size: $datasource-item-font-size;
+  font-weight: $datasource-item-font-weight;
+  padding-right: $datasource-item-padding;
+
+  .datasource-item-wrapper {
+    @include ellipses();
+    height: $datasource-item-height;
+    line-height: $datasource-item-height;
+  }
+  span {
+    padding: $datasource-element-padding;
+  }
 }
 
-// VARIANT
-ual-data-source-item {
-   cursor: pointer;
-   line-height: 1;
-    > span{
-      @include font-clanot-book(14);
-      @include ellipses();
-      pointer-events: none;
-      pointer-events: all;
-    }
-    &.-selected{
-        > span {
-          @include font-clanot-bold(14);
-          background-color: $color10;
-        }
-    }
+// TOOLTIP / TOP
+md-tooltip.datasource-item-tooltip.ual-tooltip-top {
+  margin-top: 0;
 }
+
+ual-data-source-item.-selected{
+  span {
+    font-weight: bold;
+    background-color: $datasource-item-selected-color;
+  }
+}
+//
+// // LAYOUT
+// ual-data-source-item {
+//     display: inline-block;
+//
+//     > span {
+//       display: inline-block;
+//       pointer-events: all;
+//       height: 100%;
+//       padding: 8px;
+//       margin-left: 8px;
+//     }
+// }
+//
+// // VARIANT
+// ual-data-source-item {
+//    cursor: pointer;
+//    line-height: 1;
+//     > span{
+//       @include font-clanot-book(14);
+//       @include ellipses();
+//       pointer-events: none;
+//       pointer-events: all;
+//     }
+//     &.-selected{
+//         > span {
+//           @include font-clanot-bold(14);
+//           background-color: $color10;
+//         }
+//     }
+// }

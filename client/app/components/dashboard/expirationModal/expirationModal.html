@@ -1,10 +1,23 @@
-<div class="title">
-  Your session is about to expire!
-</div>
-<div class="description">
-  You will be logged out in <strong>{{ vm.remaining() | secondstotime }}</strong> minutes. Do you want to stay signed in?
-</div>
-<div class="buttons">
-  <ual-button class="-link"  ng-click="vm.no()">No, sign me out</ual-button>
-  <ual-button class="-primary"  ng-click="vm.yes()">Yes, keep me signed in</button>
-</div>
+<md-dialog ng-cloak
+  class="ual-dialog expiration-modal"
+  aria-label="Expiration Box" >
+  <md-dialog-content class="md-dialog-content">
+    <h2 class="md-title ng-binding">Your session is about to expire!</h2>
+    <div class="_md-dialog-content-body">
+      You will be logged out in <strong>{{ vm.remaining() | secondstotime }}</strong> minutes. Do you want to stay signed in?
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button
+      class="md-primary"
+      aria-label="No"
+      ng-click="vm.no()">
+      No, sign me out
+    </md-button>
+    <md-button ual-button
+      aria-label="Yes"
+      ng-click="vm.yes()">
+      Yes, keep me signed in
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

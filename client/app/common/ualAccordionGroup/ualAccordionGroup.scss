@@ -1,5 +1,7 @@
 .ual-accordion-group {
   margin: 0;
-  display: block;
-  height: 100%;
+
+  .ual-accordion:not(:first-child) {
+    margin-top: 2px;
+  }
 }

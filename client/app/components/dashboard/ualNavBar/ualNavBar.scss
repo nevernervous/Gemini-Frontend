@@ -1,60 +1,36 @@
-@import '../../../common/common';
+@import '../../components';
 
-// LAYOUT
-ual-nav-bar {
-  @include gridle( row row-align between middle);
-  > .navbar-header {
-    color: $color00;
-    @include gridle( gutter 0 26px );
-    padding-top: 2px;
-    > .img-menu {
-      cursor: pointer;
-      margin-right: 16px;
+md-toolbar.ual-navbar {
+  .md-toolbar-tools {
+    .icon-button-burger.md-button.md-icon-button {
+      margin-left: -40px;
+      .img-menu {
+        vertical-align: middle;
+      }
     }
-    > .title {
-      vertical-align: top;
+    h1 {
+      margin-left: 8px;
+      font-weight: bold;
     }
-  }
-  > .navbar-options {
-    @include gridle( gutter 0 112px );
-    > li {
-      position: relative;
-      height: 33px;
-      > img {
+    .icon-button-user.md-button.md-icon-button {
+      width: $user-icon-size;
+      height: $user-icon-size;
+      margin-right: 10px;
+      img {
+        position: absolute;
         height: 100%;
-      }
-      > ual-tooltip {
-        width: 153px;
-        margin-top: 4px;
-
-        @include -moz-browser(){
-          margin-top: 42px;
-        }
-
-        @include -ms-browser(){
-          margin-top: 42px;
-        }
+        left: 0;
+        top: 0;
       }
     }
   }
 }
 
-// VARIANT
-ual-nav-bar {
-  background-color: $color01;
-  > .navbar-header {
-    color: $color00;
-    @include font-clanot-bold(18);
-  }
-  > .navbar-options {
-    > li > img.img-circle {
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    > li > ual-tooltip {
-      @include box-shadow(0, 3px, 5px, 1px, rgba($color99, 0.2));
+md-menu-content.menu-dropdown-user {
+  padding: 0;
+  md-menu-item:first-child {
+    @include triangle('top', 8px, 8px, $menu-item-bg-color, $menu-item-bg-hover) {
+      right:10px;
     }
   }
 }
-
-

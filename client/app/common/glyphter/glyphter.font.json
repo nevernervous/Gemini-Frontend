@@ -1,0 +1,7 @@
+{
+	"name": "Glyphter",
+	"files": [{
+		"weight": 400,
+		"file": "./fonts/glyphter.ttf"
+	}]
+}

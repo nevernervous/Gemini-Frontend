@@ -1,0 +1,27 @@
+@import '../../common';
+
+$autocomplete-item-bg-color: $color-white;
+$autocomplete-item-bg-hover: $color-alto;
+$autocomplete-item-color: $input-font-color;
+
+md-menu-item.ual-autocomplete-item {
+  height: 32px;
+  min-height: 32px;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  .md-button {
+    background-color: $autocomplete-item-bg-color;
+    font-size: $menu-item-font-size;
+    font-weight: $menu-item-font-weight;
+    color: $autocomplete-item-color;
+  }
+
+  // HOVER
+  .md-button:hover,
+  .md-button.md-focused {
+    background-color: $autocomplete-item-bg-hover;
+  }
+}

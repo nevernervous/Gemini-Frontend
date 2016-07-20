@@ -1,71 +1,35 @@
-@import '../../../../../common/common';
-// LAYOUT
-ual-data-source {
-  height: 100%;
-  margin-left: -23px;
-  margin-right: -12px;
-  display: block;
-  @include gridle(container);
-  .search-area {
-    @include gridle(row);
-    padding-top: 6px;
-    ual-input {
-      @include gridle(5);
-      padding-left: 34px;
-      i {
-        vertical-align: middle;
-        @include -ms-browser() {
-          margin-top: 5px;
-        }
-      }
-    }
-  }
-  .content {
-    height: calc(100% - 50px);
-    padding: 4px 0;
-    .empty-search,
-    .loading-message {
-      height: 100%;
-    }
-    .content-list {
-      height: 100%;
-      .elastic-container {
-        @include gridle(row row-align middle);
-        margin: 5px 0;
-        padding: 5px 0;
-        .datasource-group {
-          @include gridle(12);
-          > span {
-            padding: 12px 5px 2px 14px;
-            display: inline-block;
-          }
-        }
-        ual-data-source-item {
-          @include gridle(3);
-        }
-      }
-    }
-  }
-}
+@import '../../../../components';
 
-//VARIANTS
+$datasource-element-padding: 5px;
+
+$datasource-group-margin: 15px 0 5px;
+$datasource-group-font-size: 16px;
+$datasource-group-font-weight: $font-weight-bold;
+$datasource-message-placeholder: 300px;
+$datasource-message-font-weight: $font-weight-regular;
+$datasource-message-font-size: 16px;
+$datasource-message-color: $color-rolling-stone;
+
 ual-data-source {
-  .empty-search,
-  .loading-message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @include font-clanot-book(16);
-    color: $color07;
-  }
-  .content-list {
-    overflow-y: auto;
-    overflow-x: hidden;
+  .content {
+    margin-left: -$datasource-element-padding;
     .datasource-group {
-      @include font-clanot-bold(16);
-      color: $color06;
-      > span {
-        @include ellipses();
+      padding: 0 $datasource-element-padding;
+      margin: $datasource-group-margin;
+      font-size: $datasource-group-font-size;
+      font-weight: $datasource-group-font-weight;
+    }
+    .message-placeholder {
+      height: $datasource-message-placeholder;
+      font-weight: $datasource-message-font-weight;
+      font-size: $datasource-message-font-size;
+      color: $datasource-message-color;
+
+      &.message-loading {
+        font-size: 12px;
+        md-progress-circular {
+          margin-bottom: 10px;
+        }
       }
     }
   }

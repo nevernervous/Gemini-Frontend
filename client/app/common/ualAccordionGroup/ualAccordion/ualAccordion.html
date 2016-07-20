@@ -1,8 +1,15 @@
-<li class="ual-accordion" ng-class="accordion.status">
-  <div class="accordion-title">
-    <span ng-transclude="title"></span><i class="accordion-collapse" ng-click="vm.toggle()"></i>
+<li layout="column"
+  class="ual-accordion"
+  ng-class="accordion.status">
+  <div layout="row"
+    class="accordion-title"
+    ng-click="vm.toggle()">
+    <span ng-transclude="title"></span>
+    <span flex></span>
+    <i class="accordion-collapse"></i>
   </div>
-  <div class="accordion-content" ng-transclude="content" ng-if="!vm.closed"></div>
+  <div layout="column"
+    class="accordion-content"
+    ng-if="!vm.closed"
+    ng-transclude="content" ></div>
 </li>
-
-

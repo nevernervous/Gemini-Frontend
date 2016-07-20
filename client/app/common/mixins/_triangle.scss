@@ -1,0 +1,29 @@
+@mixin triangle($position, $width, $height, $color, $hover) {
+  @if $position == 'top' {
+    $opposite: 'bottom';
+  } @else if $position == 'bottom' {
+    $opposite: 'top';
+  } @else if $position == 'left' {
+    $opposite: 'right';
+  } @else {
+    $opposite: 'left';
+  }
+
+  &::after {
+    content:'';
+    display:block;
+    width:0;
+    height:0;
+    position:absolute;
+
+    border: $width solid transparent;
+    border-#{$position}: 0;
+    border-#{$opposite}: $height solid $color;
+
+    #{$position}: $height * (-1);
+    @content;
+  }
+  &:hover:not([disabled])::after {
+    border-#{$opposite}-color: $hover;
+  }
+}

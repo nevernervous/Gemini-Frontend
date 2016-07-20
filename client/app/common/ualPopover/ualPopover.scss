@@ -1,0 +1,56 @@
+@import '../common';
+
+
+.ual-popover {
+  position: relative;
+  border-radius: 0;
+  color: $tooltip-color;
+  font-size: $tooltip-font-size;
+  font-weight: $tooltip-font-weight;
+  background: $tooltip-backgrownd;
+  z-index: 10;
+  text-align: center;
+
+  .ual-popover-wrapper{
+    position: relative;
+    padding: $tooltip-padding;
+    &.bottom{
+      // TODO
+    }
+    &.top{
+      @include triangle('bottom', $tooltip-triangle-width, $tooltip-triangle-height, $tooltip-backgrownd, $tooltip-backgrownd) {
+        right: calc(50% - #{$tooltip-triangle-width});
+      }
+    }
+    &.left{
+      // TODO
+    }
+    &.right{
+      // TODO
+    }
+  }
+  .ual-popover-content {
+    overflow: auto;
+  }
+}
+
+.ual-popover.hide {
+  display: none;
+}
+.ual-popover.error {
+  color: $color-error-dark;
+  background: $color-error-light;
+  md-icon {
+    color: $color-error-dark;
+    font-size: 24px;
+    margin: 0;
+  }
+  .ual-popover-wrapper {
+    padding-left: 8px;
+    &.top{
+      @include triangle('bottom', $tooltip-triangle-width, $tooltip-triangle-height, $color-error-light, $color-error-light) {
+        right: calc(50% - #{$tooltip-triangle-width});
+      }
+    }
+  }
+}

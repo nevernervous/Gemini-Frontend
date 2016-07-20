@@ -11,12 +11,11 @@ class ualClusterizeTableDirective {
     this.transclude = true;
     this.template = template;
     this.controller = controller;
-    //this.controllerAs = 'vm';
   }
 
   link($scope, elem, attr, ctrl) {
     // INIT CLUSTERIZE
-    let clusterize = new Clusterize({
+    const clusterize = new Clusterize({
       rows: $scope.vm.rows,
       scrollId: 'scrollArea',
       contentId: 'contentArea',
@@ -30,38 +29,36 @@ class ualClusterizeTableDirective {
     // EMPTY DATA
     $('.clusterize-scroll .empty').html(attr.emptyMessage);
 
+    // TODO: Is this necesary ?
     // let onScroll = ctrl._compile(onScroll)($scope);
-    $('.clusterize-scroll') .on( "scroll", () => {
-      $scope.$apply(attr.onScroll);
-    });
+    // $('.clusterize-scroll') .on( "scroll", () => {
+    //   $scope.$apply(attr.onScroll);
+    // });
 
     // ADJUST COLUMNS HEADERS WIDTH
-    let resize = (clazz, action) => {
-      let header = $('#headersArea tr th.' + clazz);
-      let style = (action === 'min') ? 'max-width' : 'min-width';
+    const resize = () => {
+      if ( $scope.vm.rows.length ) {
+        const max = _.chain($('.ual-clusterize-table tr .cell-shrink span'))
+          .map(cell => $(cell).outerWidth())
+          .max()
+          .value() + 36; // 36 px padding
 
-      let row = $('#contentArea tr td.' + clazz);
-      if ( row.outerWidth() ) {
-        let size = Math[action](header.outerWidth(), row.outerWidth());
-        header.css(style, size+'px');
-        row.css(style, size+'px');
+        $('.ual-clusterize-table tr .cell-shrink').css('width', max + 'px');
       }
     }
-
-    let scrollBarAdjust = () =>{
-      let tableHeight = $('#scrollArea > table').height();
-      let scrollAreaHeight = $('#scrollArea').height();
-      let scrollBarFix = tableHeight > scrollAreaHeight ? 'calc(100% + 20px)' : '100%';
-      $('#scrollArea').css('width',scrollBarFix);
-    }
+    // TODO: Review scrollbars visualizarion
+    // let scrollBarAdjust = () =>{
+    //   let tableHeight = $('#scrollArea > table').height();
+    //   let scrollAreaHeight = $('#scrollArea').height();
+    //   //let scrollBarFix = tableHeight > scrollAreaHeight ? 'calc(100% + 20px)' : '100%';
+    //   //$('#scrollArea').css('width',scrollBarFix);
+    // }
 
     // COMPILE ANGULAR ROWS
-    let recompile = () => {
+    const recompile = () => {
       let content_elem = angular.element(clusterize.content_elem);
-      ctrl._compile(content_elem.contents())($scope);
-      resize('-shrink', 'max');
-      resize('-expand', 'min');
-      scrollBarAdjust();
+      ctrl.$compile(content_elem.contents())($scope);
+      resize();
     }
 
     // WATCH ROWS CHANGES

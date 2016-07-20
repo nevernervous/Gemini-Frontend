@@ -1,74 +1,99 @@
-@import '../../../../common/common';
-// LAYOUT
-ual-report-form {
-  @include gridle_container();
-  > .dashboard-header {
-    > .name {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 15px;
-    }
-    .buttons-group {
-      button {
-        margin-left: 15px;
-        width: 155px;
-      }
-    }
-  }
-  > .dashboard-body {
-    height: calc(100% - 120px);
-    margin-top: 30px;
-    margin-bottom: 30px;
-    > .run-section {
-      @include gridle(row row-align right);
-      margin: 30px 0 0;
-      width: 100%;
-      button {
-        width: 155px;
-      }
-    }
-    .ual-accordion.-filters .accordion-content{
-      padding: 24px 0 0;
-    }
+@import '../../../components';
 
+ual-report-form {
+  .md-button.button-form {
+    margin-left: $report-form-button-margin;
+    width: $report-form-button-width;
+  }
+
+  .report-form-submit {
+    margin-top: $report-form-submit-margin-top;
+    height: $report-form-submit-height;
+    min-height: $report-form-submit-height;
+  }
+
+  .datasource-accordion  {
+    padding: 24px 12px;
+  }
+
+  .variables-accordion {
+    padding: 12px 0;
+    height: calc(100vh - #{$report-form-accordion-content-vh});
+  }
+
+  .limits-accordion {
+    padding: 12px 0;
   }
 }
-
-// VARIANT
-ual-report-form {
-  > .dashboard-header {
-    > .name {
-      .name-input {
-        display: inline-block;
-        input {
-          @include font-clanot-bold(20);
-          color: $color06;
-        }
-        &.-empty input {
-          @include font-clanot-news(20);
-        }
-      }
-      .duplicate-error {
-        @include gridle_state(projector) {
-          width: 300px;
-        }
-        padding-left: 10px;
-        color: $color11;
-        display: inline-block;
-      }
-    }
-  }
-  > .dashboard-body {
-    .ual-accordion-group .ual-accordion .accordion-title {
-      strong {
-        @include font-clanot-bold(16);
-      }
-      small {
-        margin-left: 3px;
-        @include font-clanot-book(16);
-      }
-    }
-  }
-}
-
+// // LAYOUT
+// ual-report-form {
+//   @include gridle_container();
+//   > .dashboard-header {
+//     > .name {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       margin-left: 15px;
+//     }
+//     .buttons-group {
+//       button {
+//         margin-left: 15px;
+//         width: 155px;
+//       }
+//     }
+//   }
+//   > .dashboard-body {
+//     height: calc(100% - 120px);
+//     margin-top: 30px;
+//     margin-bottom: 30px;
+//     > .run-section {
+//       @include gridle(row row-align right);
+//       margin: 30px 0 0;
+//       width: 100%;
+//       button {
+//         width: 155px;
+//       }
+//     }
+//     .ual-accordion.-filters .accordion-content{
+//       padding: 24px 0 0;
+//     }
+//
+//   }
+// }
+//
+// // VARIANT
+// ual-report-form {
+//   > .dashboard-header {
+//     > .name {
+//       .name-input {
+//         display: inline-block;
+//         input {
+//           @include font-clanot-bold(20);
+//           color: $color06;
+//         }
+//         &.-empty input {
+//           @include font-clanot-news(20);
+//         }
+//       }
+//       .duplicate-error {
+//         @include gridle_state(projector) {
+//           width: 300px;
+//         }
+//         padding-left: 10px;
+//         color: $color11;
+//         display: inline-block;
+//       }
+//     }
+//   }
+//   > .dashboard-body {
+//     .ual-accordion-group .ual-accordion .accordion-title {
+//       strong {
+//         @include font-clanot-bold(16);
+//       }
+//       small {
+//         margin-left: 3px;
+//         @include font-clanot-book(16);
+//       }
+//     }
+//   }
+// }

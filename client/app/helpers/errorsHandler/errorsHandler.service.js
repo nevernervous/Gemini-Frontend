@@ -1,13 +1,14 @@
 import angular from 'angular';
 
-let errorsHandler = function ($rootScope, Messages) {
+let errorsHandler = function ($rootScope, errorMessages) {
   "ngInject";
 
-  const defaultMessage = { type: '-error', text: 'Unexpected error. Please try again.'};
+  const defaultMessage = { type: 'error', text: 'Unexpected error. Please try again.'};
 
   const defaultHandler = (error) => {
-    const message = Messages[error.status] || defaultMessage;
-    $rootScope.$broadcast('BANNER.SHOW', message);
+    const custom = { type: 'error', text: error.data ? error.data.errorMessage : null } ;
+    const message = errorMessages[error.status] || defaultMessage;
+    $rootScope.$broadcast('BANNER.SHOW', custom.text ? custom : message);
   }
 
   // PARAM: error:
@@ -16,9 +17,8 @@ let errorsHandler = function ($rootScope, Messages) {
   //   errorMessage: <string>,
   //   errorList: List<errorCode, errorMessage>
   // }
-  let handle = function(handler, error) {
-    handler = handler(error) || defaultHandler(error);
-    handler();
+  let handle = function(error) {
+    defaultHandler(error);
   }
 
   return {
@@ -29,6 +29,3 @@ let errorsHandler = function ($rootScope, Messages) {
 
 
 export default errorsHandler;
-
-
-

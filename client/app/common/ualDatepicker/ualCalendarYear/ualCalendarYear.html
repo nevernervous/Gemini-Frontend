@@ -1,0 +1,14 @@
+<div class="md-calendar-scroll-mask">
+  <md-virtual-repeat-container class="md-calendar-scroll-container">
+    <table role="grid" tabindex="0" class="md-calendar" aria-readonly="true">
+      <tbody
+        ual-calendar-year-body
+        role="rowgroup"
+        md-virtual-repeat="i in yearCtrl.items"
+        md-year-offset="$index" class="md-calendar-year"
+        md-start-index="yearCtrl.getFocusedYearIndex()"
+        md-item-size="88">
+      </tbody>
+    </table>
+  </md-virtual-repeat-container>
+</div>

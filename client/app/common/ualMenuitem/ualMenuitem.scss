@@ -1,0 +1,94 @@
+@import '../common';
+
+$menu-item-color-light: rgba($menu-item-color, 0.5);
+
+md-menu-item.ual-menuitem {
+  background-color: $menu-item-bg-color;
+  border-top: 1px solid $menu-item-color-light;
+  &:first-child {
+    border-top: 0;
+  }
+
+  .md-button {
+    font-size: $menu-item-font-size;
+    font-weight: $menu-item-font-weight;
+    color: $menu-item-color;
+    border-left: $menu-item-border-width solid $menu-item-bg-color;
+  }
+  .md-button:not([disabled]) {
+    background-color: $menu-item-bg-color;
+  }
+
+  // DISABLED: TODO
+  .md-button[disabled] {
+    color: $menu-item-color-light;
+  }
+  // HOVER
+  .md-button:not([disabled]):hover{
+    background-color: $menu-item-bg-hover;
+    border-left-color: $menu-item-border-hover;
+  }
+}
+
+$menu-item-secondary-bg-color: $color-white;
+$menu-item-secondary-border-color: $color-alto;
+$menu-item-secondary-font-size: 14px;
+$menu-item-secondary-font-weight: regular;
+$menu-item-secondary-color: $color-mine-shaft;
+$menu-item-secondary-border-width: 3px;
+$menu-item-secondary-bg-hover: $color-tropical-blue;
+$menu-item-secondary-border-hover: $color-havelock-blue;
+$menu-item-secondary-height: 32px;
+
+// SECONDARY
+md-menu-content.ual-secondary {
+  padding: 0;
+  margin-top: -1px;
+  border: 1px solid $menu-item-secondary-border-color;
+  @include box-shadow(3px, 3px, 0, 0, rgba(0, 0, 0, 0.1));
+
+  md-menu-item.ual-menuitem:first-child {
+    @include arrow('top', 10px, $menu-item-secondary-border-color, 1px, $menu-item-secondary-bg-color, $menu-item-secondary-bg-hover) {
+      left: calc(100% - 20px);
+    };
+  }
+
+  md-menu-item.ual-menuitem {
+    min-height: $menu-item-secondary-height;
+    height: $menu-item-secondary-height;
+    .md-button {
+      min-height: $menu-item-secondary-height;
+      height: $menu-item-secondary-height;
+      md-icon {
+        font-size: 1.4em;
+        margin-right: 0;
+      }
+    }
+    background-color: $menu-item-secondary-bg-color;
+    border-top: 1px solid $menu-item-secondary-border-color;
+    &:first-child {
+      border-top: 0;
+    }
+
+    .md-button {
+      font-size: $menu-item-secondary-font-size;
+      //font-weight: $menu-item-secondary-font-weight;
+      color: $menu-item-secondary-color;
+      border-left: $menu-item-secondary-border-width solid $menu-item-secondary-bg-color;
+    }
+    .md-button:not([disabled]) {
+      background-color: $menu-item-secondary-bg-color;
+    }
+
+    // DISABLED: TODO
+    .md-button[disabled] {
+      color: $menu-item-secondary-border-color;
+    }
+    // HOVER
+    .md-button:not([disabled]):hover{
+      background-color: $menu-item-secondary-bg-hover;
+      border-left-color: $menu-item-secondary-border-hover;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<md-button class="ual-button-flat md-primary"
+  ng-class="{'ual-button-flat-icon': icon}"
+  arial-label="{{arialLabel}}"
+  ng-disabled="isDisabled"
+  ng-click="onClick()">
+  <md-icon ng-if="icon"
+    md-font-icon="iconFont"
+    ng-class="icon" ></md-icon>
+  <ng-transclude></ng-transclude>
+</md-button>

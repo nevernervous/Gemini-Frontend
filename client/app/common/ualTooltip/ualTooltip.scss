@@ -1,199 +1,49 @@
 @import '../common';
 
-// LAYOUT
-ual-tooltip {
-  position: absolute;
-}
+md-tooltip.ual-tooltip-top,
+md-tooltip.ual-tooltip-bottom,
+md-tooltip.ual-tooltip-left,
+md-tooltip.ual-tooltip-right {
+  border-radius: 0;
+  overflow: visible;
+  color: $tooltip-color;
+  font-size: $tooltip-font-size;
+  font-weight: $tooltip-font-weight;
 
-// VARIANTS
-ual-tooltip {
-  i {
-    display: none;
-  }
-  &.-fade-in {
-    opacity: 0;
-    opacity: 1 \9; /*just in case ie*/
-    @include fadeIn();
-    @include animation(fadeIn ease-in 1);
-    @include animation-fill-mode(forwards);
-    @include animation-duration(0.2s);
-  }
-}
-
-ual-tooltip.-dropdown {
-  right: 0px;
-
-  &::before {
-    content: '';
+  strong {
     display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 8px;
-    top: -10px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 10px solid $color03;
+  }
 
-    @include -ms-browser() {
-      padding-top: 2px;
-    }
+  ._md-content {
+    padding: $tooltip-padding;
+    background: $tooltip-backgrownd;
+    max-width: $tooltip-max-width;
+    height: 100%;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  &.ual-tooltip-hide {
+    visibility: hidden;
   }
 }
 
-ual-tooltip.-error {
-  background-color: $color12;
-  color: $color11;
-  @include font-clanot-news(12);
-  display: flex;
-  align-items: stretch;
-  padding: 17px 17px;
-  width: 226px;
-  cursor: default;
+md-tooltip.ual-tooltip-top {
+  //margin-top: 2 * $tooltip-triangle-width;
+  margin-top: 0;
 
-  i {
-    display: inline-flex;
-    font-size: 24px;
-    margin-top: -3px;
-    cursor: pointer;
-
-    @include -ms-browser() {
-      margin-left: -5px;
-    }
-  }
-
-  ng-transclude {
-    display: inline-flex;
-    padding-left: 5px;
-
-    @include -ms-browser() {
-      padding-left: 15px;
-    }
-  }
-
-  &::before {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 50%;
-    bottom: -8px;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-top: 8px solid $color12;
-  }
-}
-
-ual-tooltip.-top {
-  background-color: $color08;
-  color: $color06;
-  @include font-clanot-news(12);
-  display: none;
-  text-align: center;
-  padding: 13px 4px;
-  cursor: default;
-
-  ng-transclude {
-    margin: auto;
-  }
-
-  &::before {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 41%;
-    bottom: -6px;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 6px solid $color08;
-  }
-
-  &.-show-tooltip {
-    position: fixed;
-    display: block;
-  }
-}
-
-ual-tooltip.-tooltip {
-  @include font-clanot-news(12);
-  color: $color06;
-  background-color: $color08;
-  padding: 15px;
-  min-width: 200px;
-  max-width: 300px;
-  text-align: center;
-  z-index: 99;
-  white-space: normal;
-  display: none;
-  position: fixed;
-  margin-top: -10px;
-  top: 0;
-  left: 0;
-  word-wrap: break-word;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: calc(50% - 3px);
-
-    @include -ms-browser() {
-      top: calc(50% - 2px);
-    }
-  }
-
-  &.-show-tooltip {
-    position: fixed;
-    display: inline;
-  }
-
-  &.-tooltip-right {
-    &::before {
-      left: -5px;
-      border-top: 3px solid transparent;
-      border-bottom: 3px solid transparent;
-      border-right: 5px solid $color08;
-    }
-  }
-
-  &.-tooltip-left {
-    &::before {
-      right: -5px;
-      border-top: 3px solid transparent;
-      border-bottom: 3px solid transparent;
-      border-left: 5px solid $color08;
+  ._md-content {
+    @include triangle('bottom', $tooltip-triangle-width, $tooltip-triangle-height, $tooltip-backgrownd, $tooltip-backgrownd) {
+      right: calc(50% - #{$tooltip-triangle-width});
     }
   }
 }
+md-tooltip.ual-tooltip-right {
+  margin-top: 0;
 
-ual-tooltip.-delete-tooltip {
-  background-color: $color08;
-  color: $color06;
-  @include font-clanot-news(12);
-  align-items: stretch;
-  padding: 13px 17px;
-  width: 100px;
-  cursor: default;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 50%;
-    bottom: -8px;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-top: 8px solid $color08;
-  }
-
-  &.-show-tooltip-delete {
-    visibility: visible !important;
+  ._md-content {
+    @include triangle('left', $tooltip-triangle-width, $tooltip-triangle-height, $tooltip-backgrownd, $tooltip-backgrownd) {
+      top: calc(50% - #{$tooltip-triangle-width});
+    }
   }
 }

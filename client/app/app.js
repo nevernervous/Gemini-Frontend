@@ -38,10 +38,9 @@ import dotdotdot from 'jquery.dotdotdot';
 import selectionModel from 'selection-model';
 import angularScroll from 'angular-scroll';
 
-import './common/fonts/clanot/clanot.scss';
-
-import './app.scss';
 import 'normalize.css';
+import './common/fonts/clanot/clanot.scss';
+import './app.scss';
 
 window.$ = $;
 window.jQuery = $;
@@ -83,6 +82,7 @@ angular.module('app', [
     $httpProvider.interceptors.push(Interceptor);
   }
 })
+
 .component('app', AppComponent)
 
 

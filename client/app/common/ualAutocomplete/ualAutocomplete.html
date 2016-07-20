@@ -1,25 +1,38 @@
-<div class="autocomplete-container" ng-class="{ show: vm.isVisible }">
-  <div class="autocomplete-display" id="thisDropdown-{{::$id}}">
-    <ual-input ual-id="selected-input" class="search-box" value="vm.getText(vm.selected)" placeholder="{{vm.placeholder || 'Selected'}}" icon="ion-ios-search-strong" ng-if="!vm.isVisible && !vm.inputHovered" ng-mouseover="vm.inputHovered = true"></ual-input>
-    <ual-input ual-id="selected-searchbox-{{::$id}}" class="search-box" value="vm.filterName.name" min-chars="2" icon="ion-ios-search-strong" ng-if="vm.isVisible || vm.inputHovered" placeholder="{{ !vm.selected ? (vm.placeholder || 'Selected') : vm.getText(vm.selected)}}"
-      on-focus="vm.show()" ng-mouseleave="!vm.visible && (vm.inputHovered = false)"></ual-input>
-    <div class="float-container" click-outside="vm.hide()" outside-if-not="thisDropdown-{{::$id}}, selected-searchbox-{{::$id}} , accordion-collapse">
-      <span class="autocomplete-list">
-          <div class="list-options" >
-            <div class="autocomplete-item" ng-click="vm.select($event, item)" ng-repeat="item in filteredItems = (vm.list | limitTo:vm.limit | filter:vm.filterName)" >
-                {{vm.getText(item)}}
-            </div>
-            <div class="-empty-result" ng-if="vm.list.length && !filteredItems.length">
-              No results found
-            </div>
-            <div class="-empty-result" ng-if="!vm.list.length">
-              No variables avaiable
-            </div>
-          </div>
-        </span>
+<md-menu>
+  <md-input-container
+    md-no-float
+    ual-input
+    ual-input-size="medium"
+    ual-input-icon="ion-ios-search"
+    class="search-placeholder">
+    <input aria-label="autocomplete placeholder"
+      name="{{vm.name}}"
+      placeholder="{{vm.placeholder}}"
+      ng-focus="$mdOpenMenu($event)"
+      ng-model="vm.searchTerm[vm.property]"
+      ng-required="vm.required"
+      ng-minlength="1"
+      ng-model-options="{ updateOn: 'blur', debounce: { default: 200 } }">
+      <ng-messages for="vm.errors" ng-transclude></ng-messages>
+  </md-input-container>
+  <md-menu-content class="ual-autocomplete-content"
+    width="3">
+    <md-input-container
+      ual-input
+      ual-input-size="medium"
+      ual-input-icon="ion-ios-search"
+      class="search-autocomplete ual-input-no-validate">
+      <input aria-label="autocomplete input"
+        ng-model="vm.searchTerm[vm.property]"
+        ng-blur="vm.checkSelectedItem()"
+        ng-minlength="1"
+        ng-model-options="{ debounce: { default: 200 } }" >
+    </md-input-container>
+    <div class="ual-autocomplete-content-scroll">
+      <ual-autocomplete-item ng-click="vm.selectItem(item)"
+        ng-repeat="item in vm.items | filter:vm.searchTerm" >
+        {{item[vm.property]}}
+      </ual-autocomplete-item>
     </div>
-  </div>
-</div>
-<span ng-transclude>
-
-</span>
+  </md-menu-content>
+</md-menu>

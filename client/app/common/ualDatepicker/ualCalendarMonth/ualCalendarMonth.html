@@ -1,0 +1,18 @@
+<table aria-hidden="true" class="md-calendar-day-header">
+  <thead></thead>
+</table>
+<div class="md-calendar-scroll-mask">
+  <md-virtual-repeat-container class="md-calendar-scroll-container"
+    md-offset-size="-220">
+    <table role="grid" tabindex="0" class="md-calendar" aria-readonly="true">
+      <tbody ual-calendar-month-body
+        role="rowgroup"
+        md-virtual-repeat="i in monthCtrl.items"
+        md-month-offset="$index"
+        class="md-calendar-month"
+        md-start-index="monthCtrl.getSelectedMonthIndex()"
+        md-item-size="265">
+      </tbody>
+    </table>
+  </md-virtual-repeat-container>
+</div>

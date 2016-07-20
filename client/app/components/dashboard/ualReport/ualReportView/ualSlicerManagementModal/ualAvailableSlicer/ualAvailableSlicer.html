@@ -1,0 +1,85 @@
+
+<div flex
+  class="selected-slicers first">
+  <ual-slicer-multiple-select
+    layout="column"
+    layout-fill
+    available-slicers="vm.availableSlicers"
+    selected-reference="vm.selectedSlicers">
+  </ual-slicer-multiple-select>
+</div>
+<div flex="none"
+  layout="column"
+  layout-fill
+  layout-align="center center"
+  class="divider buttons">
+  <md-button ual-button="secondary"
+    ng-click="vm.addSlicers()"
+    ng-disabled="!vm.selectedSlicers.length"
+    >
+    <md-tooltip md-direction="top"
+      class="ual-tooltip-top variables-button-tooltip">
+      Add to selected slicers
+    </md-tooltip>
+    >
+  </md-button>
+</div>
+
+<div flex
+  class="selected-slicers">
+  <ual-pane layout="column" layout-fill
+    ual-title="Selected slicers ({{vm.slicersFiltered.length}})"
+    action="Delete all" on-action="vm.deleteAllSlicers($event)"
+    is-disabled="(vm.slicersFiltered = (vm.slicers | visible:'name':vm._slicers.filter | filter:{'_visible': true} )) | isEmpty">
+    <md-input-container
+      ual-input
+      ual-input-size="medium"
+      ual-input-icon="ion-ios-search"
+      class="search-box ual-input-no-validate">
+      <input aria-label="search selected aggregators"
+        ng-model="vm._slicers.filter"
+        ng-minlength="2"
+        ng-model-options="{ debounce: { default: 200 } }" >
+    </md-input-container>
+
+    <div flex layout="column"
+      layout-align="center center"
+      class="message-placeholder "
+      ng-if="!vm._slicers.isempty && (vm.slicersFiltered | isEmpty)">
+      No results found.
+    </div>
+    <div flex layout="colunm"
+      layout-align="center center"
+      class="message-placeholder"
+      ng-if="vm._slicers.isempty">
+      No slicers selected yet.
+    </div>
+    <ul flex
+      class="selected-slicer-list"
+      ng-show="!vm._slicers.isempty && !(vm.slicersFiltered | isEmpty)">
+
+      <li
+        flex
+        layout="row"
+        ng-show="item._visible"
+        ng-repeat="item in vm.slicers">
+        <span flex
+            class="slicer-description">
+            {{item.name}}
+        </span>
+        <div flex="none"
+          class="slicer-actions">
+          <md-button class="variable-delete md-icon-button"
+            aria-label="Delete"
+            ng-click="vm.deleteSlicer($index)">
+            <md-icon md-font-icon="Ionicons"
+              class="ion-android-close">
+            </md-icon>
+          </md-button>
+        </div>
+
+      </li>
+    </ul>
+  </ual-pane>
+</div>
+

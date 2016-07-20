@@ -1,0 +1,14 @@
+@import '../../components';
+
+.md-sidenav-left.ual-sidenav,
+md-backdrop._md-sidenav-backdrop {
+  position: fixed;
+  top: $toolbar-tools-height;
+}
+
+.md-sidenav-left.ual-sidenav {
+  background-color: $sidenav-bg-color;
+  md-list {
+    padding: 0;
+  }
+}

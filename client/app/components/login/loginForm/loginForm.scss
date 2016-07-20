@@ -1,17 +1,8 @@
-@import '../../../common/common';
+@import '../../components';
 
 // LAYOUT
 .login-form {
-  @include gridle( col );
-  @include gridle( gutter 60px 0px );
-
-  > * {
-    @include gridle( 12 );
-    @include gridle( gutter 40px 100px );
-  }
-  > .message {
-    @include gridle( gutter 0px 50px 30px 50px);
-  }
+  padding: 50px;
 }
 
 // VARIANTS
@@ -19,40 +10,19 @@
   @include box-shadow(0, 15px, 15px, 0, rgba(0, 0, 0, 0.2));
   background-color:rgba(255, 255, 255, 0.75);
 
-  .buttons {
-    .ual-button.login-form-submit {
-      width: 100%;
-      @include font-clanot-news(18);
-      padding: 14px;
-      > span {
-        display: block;
-      }
+  .login-form-submit {
+    width: 100%;
+  }
+
+  > .message {
+    min-height: 90px;
+    font-size: $login-message-font-size;
+    color: $font-error-color;
+
+    > a {
+      color: $font-error-color;
+      font-weight: $font-weight-bold;
+      text-decoration: none;
     }
   }
 }
-
-// MESSAGE / VARIANTS
-.login-form > .message {
-  min-height: 75px;
-  > * {
-    visibility: hidden;
-    &.visible {
-      visibility: visible;
-    }
-  }
-  > span {
-    @include font-clanot-news(16);
-    color: $alertHighColor;
-  }
-
-  > a {
-    @include font-clanot-bold(16);
-    color: $alertHighColor;
-    text-decoration: none;
-    &:hover, &:focus {
-      text-decoration: underline;
-    }
-  }
-}
-
-

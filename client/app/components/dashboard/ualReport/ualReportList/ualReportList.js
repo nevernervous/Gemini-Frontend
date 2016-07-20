@@ -1,11 +1,9 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ualReportListComponent from './ualReportList.component';
-import ualReportListDeleteReportModal from './ualReportListDeleteReportModal/ualReportListDeleteReportModal';
 
 let ualReportListModule = angular.module('ualReportList', [
-  uiRouter,
-  ualReportListDeleteReportModal.name
+  uiRouter
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
@@ -14,11 +12,10 @@ let ualReportListModule = angular.module('ualReportList', [
   $stateProvider
     .state('dashboard.report-list', {
       url: '/report/list',
-      template: '<ual-report-list></ual-report-list>'
+      template: '<ual-report-list flex layout="column" layout-fill></ual-report-list>'
     });
 })
 
 .component('ualReportList', ualReportListComponent);
 
 export default ualReportListModule;
-

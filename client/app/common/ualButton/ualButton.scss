@@ -1,35 +1,57 @@
 @import '../common';
 
-.ual-button {
-  cursor: pointer;
-  text-align: center;
-  @include button-primary();
+.md-button.md-default-theme:not([disabled]):hover,
+.md-button:not([disabled]):hover {
+  background: none;
 }
 
-.ual-button.-primary {
-  @include button-primary();
-  &.-spinner {
-    @include button-spinner();
-    background-image: url('spinner_white.gif');
+.ual-button.md-button {
+  text-transform: $button-text-transform;
+  font-size: $button-font-size;
+
+  &.md-raised {
+    &:not([disabled]) {
+      box-shadow: none;
+      &.md-focused {
+        box-shadow: none;
+      }
+    }
+    &[disabled] {
+      color: $button-disabled-color;
+      background-color: $button-disabled-bg-color;
+    }
+  }
+
+  // LOADING
+  ual-loading md-progress-circular {
+    bottom: ($button-loading-size / 2);
+    right: ($button-loading-size / 2);
   }
 }
 
-.ual-button.-secondary {
-  @include button-secondary();
-  &.-spinner {
-    @include button-spinner();
-    background-image: url('spinner_white.gif');
+// SIZE / LARGE
+.ual-button.ual-button-large.md-button {
+  font-size: $button-large-font-size;
+  line-height: $button-large-line-height;
+  min-height: $button-large-line-height;
+  // LOADING
+  ual-loading md-progress-circular {
+    bottom: ($button-large-loading-size / 2);
+    right: ($button-large-loading-size / 2);
   }
 }
 
-.ual-button.-terciary {
-  @include button-terciary();
-  &.-spinner {
-    @include button-spinner();
-    background-image: url('spinner_blue.gif');
-  }
-}
+// TYPE / SECONDARY
+.ual-button.md-button.md-secondary {
+  background: $button-secondary-color;
+  color: $button-secondary-font-color;
 
-.ual-button.-link {
-  @include button-link();
+  &:hover:not([disabled]) {
+    background: $button-secondary-hover-color
+  }
+
+  &[disabled] {
+    background: $button-secondary-disabled-color;
+    color: $button-secondary-disabled-font-color;
+  }
 }

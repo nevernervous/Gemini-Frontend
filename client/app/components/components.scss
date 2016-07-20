@@ -1,0 +1,56 @@
+@import '../common/common';
+@function rem($multiplier) {
+  $font-size: 10px;
+  @return $multiplier * $font-size;
+}
+
+// LOGIN
+$login-header-font-size: rem(4.6);
+$login-header-font-weight: $font-weight-light;
+$login-header-color: $color-white;
+$login-message-font-size: rem(1.6);
+
+// DASHBOARD
+$section-dashboard-vh: $toolbar-tools-height;
+$user-icon-size: rem(3.4);
+// DASHBOARD / CONTENT
+$content-dashboard-bg-color: $color-white;
+$content-dashboard-vh: $toolbar-tools-height + (2 * $layout-top-bottom-padding);
+// DASHBOARD / CONTENT / HEADER
+$header-dashboard-height: $button-line-height;
+$header-dashboard-h2: rem(3.4);
+// DASHBOARD / CONTENT / BODY
+$body-dashboard-margin-top: rem(2.6);
+$body-dashboard-vh: $content-dashboard-vh + $button-line-height + $body-dashboard-margin-top;
+
+
+// DASHBOARD / REPORT
+$report-button-width: rem(20.0);
+// DASHBOARD / REPORT / TABS / CONTENT
+$report-tabs-content-vh: $body-dashboard-vh + $tabs-header-height;
+$report-tabs-width: rem(17.0);
+// DASHBOARD / REPORT / LIST / HEADER
+$report-list-header-margin-top: rem(2.0);
+$report-list-header-height: rem(3.4);
+$report-list-header-font-size: rem(1.6);
+$report-list-header-actions-separation: rem(4.0);
+// DASHBOARD / REPORT / LIST / CONTENT
+$report-list-content-margin-top: rem(1.0);
+$report-list-content-row-height: $table-row-height;
+$report-list-content-button-size: $table-action-size;
+$report-list-content-vh: $report-tabs-content-vh + $report-list-header-margin-top +
+  $report-list-header-height + $report-list-content-margin-top;
+
+$report-list-content-link-color: $color-astral;
+$report-list-content-link-hover-color: $color-mine-shaft;
+
+// DASHBOARD / REPORT / FORM
+$report-form-accordion-content-vh: $content-dashboard-vh + ($body-dashboard-margin-top / 2);
+$report-form-button-width: rem(16.5);
+$report-form-button-margin: rem(1.5);
+$report-form-submit-height: $header-dashboard-height;
+$report-form-submit-margin-top: $body-dashboard-margin-top;
+
+// DASHBOARD / REPORT / VIEW
+$report-view-name-font-size: 20px;
+$report-view-button-width: $report-form-button-width;
